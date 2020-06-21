@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d95f71b0ecb984994fbe8ed6ae5941, type: 3}
+  m_Name: Fallen Angel
+  m_EditorClassIdentifier: 
+  scale: {x: 50, y: 50, z: 1}
+  characterName: Fallen Angel
+  description: what a shame...
+  level: 38
+  health: 3340
+  strength: 32
+  magic: 27
+  accuracy: 45
+  initiative: 18
+  defense: 13
+  criticalChance: 22
+  maxAP: 6
+  characterPrefab: {fileID: 1109450531332189788, guid: 4c66f5057c296d34987d4b8965774b8f,
+    type: 3}
+  unit: {fileID: 0}

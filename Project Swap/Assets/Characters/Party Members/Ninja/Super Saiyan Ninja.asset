@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4760f1c8fd2d6214986da2731bc0ab7b, type: 3}
+  m_Name: Super Saiyan Ninja
+  m_EditorClassIdentifier: 
+  scale: {x: 10, y: 10, z: 0}
+  characterName: SS Ninja
+  description: You know what is is
+  characterSprite: {fileID: 1526218485019349028, guid: dff75b77ab575a04687b8cc7d561f487,
+    type: 3}
+  battlePanel: {fileID: 0}
+  icon: {fileID: 21300000, guid: a7e49ba33f94dd14f986eb282c2295b7, type: 3}
+  unit: {fileID: 0}
+  buttonTest: {fileID: 0}
+  level: 34
+  health: 2363
+  strength: 29
+  magic: 16
+  accuracy: 45
+  initiative: 22
+  defense: 16
+  criticalChance: 49
+  positionInParty: 1
+  maxAP: 6

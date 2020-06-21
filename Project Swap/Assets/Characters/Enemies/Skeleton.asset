@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d95f71b0ecb984994fbe8ed6ae5941, type: 3}
+  m_Name: Skeleton
+  m_EditorClassIdentifier: 
+  scale: {x: 45, y: 45, z: 1}
+  characterName: Skeleton
+  description: I mean, he's a...
+  level: 36
+  health: 2980
+  strength: 29
+  magic: 12
+  accuracy: 33
+  initiative: 18
+  defense: 12
+  criticalChance: 21
+  maxAP: 6
+  characterPrefab: {fileID: 1109450531332189788, guid: 46c69567f6d4d924ca3cfc4c96675443,
+    type: 3}
+  unit: {fileID: 0}

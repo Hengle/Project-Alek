@@ -1,0 +1,148 @@
+private IEnumerator PlayerTurn()
+        {
+            partyHasChosenSwap = false;
+            enemyPartyHasChosenSwap = false;
+            
+            // Checks a party member's current status, and skips them if they are unable to function
+            foreach (var character in from character in membersForThisBattle
+                let checkMemberStatus = character.CheckUnitStatus()
+                where checkMemberStatus
+                select character)
+            {
+                character.ResetCommandsAndAP();
+                
+                main_menu:
+                canPressBack = false;
+                battlePanel.ShowBattlePanel(character);
+
+                while (choosingOption) yield return null;
+                yield return new WaitForSeconds(0.5f);
+                
+                while (choosingAbility)
+                {
+                    canPressBack = true;
+                    if ((Input.GetKeyDown(KeyCode.Backspace)) && canPressBack) goto main_menu;
+                    yield return null;
+                }
+                
+                if (endThisMembersTurn) { endThisMembersTurn = false; continue; }
+                
+                ChooseTarget.GetPartyMember(character);
+                yield return new WaitForSeconds(0.5f);
+
+                while (choosingTarget)
+                {
+                    canPressBack = true;
+                    if ((Input.GetKeyDown(KeyCode.Backspace)) && canPressBack) goto main_menu;
+                    yield return null;
+                }
+                
+                character.unit.currentAP -= character.unit.actionCost;
+                character.unit.actionPointAnim.SetInteger(AnimationHandler.APVal, character.unit.currentAP);
+                if (character.unit.currentAP <= 0) continue;
+                goto main_menu;
+            }
+
+            StartCoroutine(PerformRound());
+            state = BattleState.ExecutionPhase;
+        }
+
+        // This function executes each characters command by order of their initiative stat
+        private IEnumerator PerformRound()
+        {
+            // Sorts the party and enemy list by initiative
+            StartCoroutine(SortingCalculator.SortAndCombine());
+            while (!SortingCalculator.isFinished) yield return null;
+
+            foreach (var character in from character in membersAndEnemies
+                let checkMemberStatus = character.CheckUnitStatus()
+                where checkMemberStatus
+                select character)
+            {
+                if (allMembersDead || allEnemiesDead) break;
+                
+                yield return new WaitUntil(character.SetAI);
+                var characterUnit = character.GetUnit();
+
+                // Loop through command list and execute them
+                for (var i = 0; i < characterUnit.numCommands; i++)
+                {
+                    yield return new WaitForSeconds(0.5f);
+                    if (allMembersDead || allEnemiesDead) break;
+                    
+                    characterUnit.currentTarget = characterUnit.currentTargetList[i];
+                    characterUnit.commandActionName = characterUnit.commandActionNameList[i];
+                    characterUnit.commandActionOption = characterUnit.commandActionOptionList[i];
+
+                    character.GiveCommand(false);
+                    while (performingAction) yield return null;
+                }
+                if (allMembersDead || allEnemiesDead) break;
+            }
+            
+            // Change this so that I can set battle state in other functions so i don't need this code
+            if (allEnemiesDead) state = BattleState.Won;
+            else if (allMembersDead) state = BattleState.Lost;
+
+            StartCoroutine(ExecuteSwap());
+            while (performingSwap) yield return null;
+
+            yield return new WaitForSeconds(1);
+            
+            switch (state)
+            {
+                case BattleState.Won:
+                    StartCoroutine(WonBattleSequence());
+                    break;
+                case BattleState.Lost:
+                    StartCoroutine(LostBattleSequence());
+                    break;
+                default:
+                    state = BattleState.PartyTurn;
+                    StartCoroutine(PlayerTurn());
+                    break;
+            }
+        }
+		
+		
+public List<string> commandActionNameList = new List<string>();
+public List<int> commandActionOptionList = new List<int>();
+public List<Unit> currentTargetList = new List<Unit>();
+		
+// choose target
+/*memberCurrentlyChoosingTarget.currentTargetList.Add(gameObject.GetComponent<Unit>());
+memberCurrentlyChoosingTarget.commandActionNameList.Add(className);
+memberCurrentlyChoosingTarget.commandActionOptionList.Add(classOption);
+memberCurrentlyChoosingTarget.numCommands += 1;*/
+
+
+private void InstantiatePrefabs()
+        {
+            var position = gameObject.transform.position;
+            var newPosition = new Vector3(position.x, position.y + 2, position.z);
+            var parent = transform.parent;
+
+            nameText = Instantiate(showDamageSO.nameTextWithDmgColor, newPosition, nameText.transform.rotation);
+            nameText.transform.SetParent(parent);
+            nameText.text = unitName.ToUpper();
+
+            damagePrefab = Instantiate(showDamageSO.damagePrefab, newPosition, showDamageSO.damagePrefab.transform.rotation);
+            damagePrefab.transform.SetParent(parent, true);
+            damageText = damagePrefab.GetComponentInChildren<TextMeshPro>();
+            damagePrefab.SetActive(false);
+            
+            damagePrefab2 = Instantiate(showDamageSO.damagePrefab, newPosition, showDamageSO.damagePrefab.transform.rotation);
+            damagePrefab2.transform.SetParent(parent, true);
+            damageText2 = damagePrefab2.GetComponentInChildren<TextMeshPro>();
+            damagePrefab2.SetActive(false);
+            
+            critDamagePrefab = Instantiate(showDamageSO.critDamagePrefab, newPosition, showDamageSO.critDamagePrefab.transform.rotation);
+            critDamagePrefab.transform.SetParent(parent, true);
+            critDamageText = critDamagePrefab.GetComponentInChildren<TextMeshPro>();
+            critDamagePrefab.SetActive(false);
+            
+            critDamagePrefab2 = Instantiate(showDamageSO.critDamagePrefab, newPosition, showDamageSO.critDamagePrefab.transform.rotation);
+            critDamagePrefab2.transform.SetParent(parent, true);
+            critDamageText2 = critDamagePrefab2.GetComponentInChildren<TextMeshPro>();
+            critDamagePrefab2.SetActive(false);
+        }

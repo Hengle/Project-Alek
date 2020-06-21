@@ -1,0 +1,454 @@
+			SortByInitiative();
+
+            // Wait until function is completed
+            yield return new WaitUntil(SortByInitiative);
+
+            // Combine the player and enemy list
+            CombinePlayerAndEnemyList();
+
+            // Wait until function is completed
+            yield return new WaitUntil(CombinePlayerAndEnemyList);
+
+IEnumerator PreviousPerformRoundFunction()
+    {
+        // Sorts the party and enemy list by initiative
+        SortByInitiative();
+
+        // Wait until function is completed
+        yield return new WaitUntil(SortByInitiative);
+;
+        var i = 0; // party member
+        var e = 0; // enemy
+        
+        // Keep track of how many characters have performed an action
+        var total = membersForThisBattle.Count + enemiesForThisBattle.Count;
+
+        // This compares the initiative value of the member and enemy
+        while ((i + e) < total)
+        {
+            // If all the active enemies have performed an action, then performs the next party member's command
+            if (e == enemiesForThisBattle.Count)
+            {
+                if (!CheckUnitStatus((membersForThisBattle[i].Unit))) { i += 1; continue;}
+
+                membersForThisBattle[i].GiveCommand();
+                while (performingAction) yield return null;
+                i += 1;
+            }
+
+            // If all the active party members have performed an action, then performs the next enemy's command
+            else if (i == membersForThisBattle.Count)
+            {
+                if (!CheckUnitStatus((enemiesForThisBattle[e].Unit))) { e += 1; continue;}
+
+                enemiesForThisBattle[e].GiveCommand();
+                while (performingAction) yield return null;
+                e += 1;
+            }
+
+            // If above conditions are false, if the party member's initiate is > OR equal to the enemy's, the player executes their command
+            else if (membersForThisBattle[i].Unit.currentInitiative >= enemiesForThisBattle[e].Unit.currentInitiative)
+            {
+                if (!CheckUnitStatus((membersForThisBattle[i].Unit))) { i += 1; continue;}
+
+                membersForThisBattle[i].GiveCommand();
+                while (performingAction) yield return null;
+                i += 1;
+            }
+
+            // If the party member's initiate is not the same or higher than the enemy's, then the enemy executes their command
+            else
+            {
+                if (!CheckUnitStatus((enemiesForThisBattle[e].Unit))) { e += 1; continue;}
+
+                enemiesForThisBattle[e].GiveCommand();
+                while (performingAction) yield return null;
+                e += 1;
+            }
+        }
+
+        yield return new WaitForSeconds(1);
+        StartCoroutine(PlayerTurn());
+        state = BattleState.PartyTurn;
+    }
+	
+	private bool CombinePlayerAndEnemyList()
+        {
+            var i = 0; // party member
+            var e = 0; // enemy
+
+            // Keep track of the combined count for both lists
+            var total = membersForThisBattle.Count + enemiesForThisBattle.Count;
+
+            // Empty the memberAndEnemyList
+            memberAndEnemyList = new List<object>();
+
+            while ((i + e) < total)
+            {
+                // Store the initiative values into variables
+                var memberI = 0;
+                var enemyI = 0;
+
+                // Checks if the index is out of range, then assigns 0 or the initiative value appropriately
+                memberI = i >= membersForThisBattle.Count ? 0 : membersForThisBattle[i].Unit.currentInitiative;
+                enemyI = e >= enemiesForThisBattle.Count ? 0 : enemiesForThisBattle[e].Unit.currentInitiative;
+
+                bool compare = memberI >= enemyI;
+
+                // If the party member's initiative is >= the enemy's, that member is added to the list. If not, then the enemy is added
+                if (compare)
+                {
+                    memberAndEnemyList.Add(membersForThisBattle[i]);
+                    i++;
+                }
+                else
+                {
+                    memberAndEnemyList.Add(enemiesForThisBattle[e]);
+                    e++;
+                }
+            }
+
+            return true;
+        }
+
+        private static bool SortByInitiative()
+        {
+            // Order the party members and enemies by their initiative values
+            membersForThisBattle = membersForThisBattle.OrderByDescending(e => e.Unit.currentInitiative).ToList();
+            enemiesForThisBattle = enemiesForThisBattle.OrderByDescending(f => f.Unit.currentInitiative).ToList();
+
+            //memberAndEnemyList = memberAndEnemyList.OrderByDescending(x => x.GetType() == typeof(CharacterData) ? 
+            enemyObjects = enemyObjects.OrderByDescending(g => g.GetComponent<Unit>().currentInitiative).ToList();
+
+            return true;
+        }
+		
+		
+		// Check the status of the unit and returns false if they are unable to function
+        private static bool CheckUnitStatus(Unit character)
+        {
+            switch (character.status)
+            {
+                case Status.Normal: // Unnecessary since default returns true;
+                    Debug.Log(character.unitName + " status is " + character.status);
+                    return true;
+
+                case Status.Dead:
+                    Debug.Log(character.unitName + " status is " + character.status);
+                    return false;
+
+                default:
+                    return true;
+            }
+        }
+		
+		
+		private void CheckTargetStatus()
+    {
+        //checkingStatus = true;
+        endFunction = false;
+            
+        if (!currentTarget.gameObject.activeSelf || currentTarget.status == Status.Dead)
+        {
+            Debug.Log(currentTarget.unitName + " is dead. Getting new target . . . ");
+            switch (currentTarget.id)
+            {
+                case 0:
+                    foreach 
+                        (var enemy in BattleHandler.enemiesForThisBattle.Where(enemy => enemy.unit.spriteParentObject.transform.GetChild(0).gameObject.activeSelf))
+                    {
+                        Debug.Log("New target: " + enemy.characterName);
+                        currentTarget = enemy.unit.spriteParentObject.transform.GetChild(0).GetComponent<Unit>();
+                        break;
+                    }
+
+                    if (currentTarget.gameObject.activeSelf || currentTarget.status != Status.Dead) break;
+                    
+                    Debug.Log("No enemies left!");
+                    handler.state = BattleState.Won;
+                    endFunction = true;
+                    break;
+                case 1:
+                    foreach 
+                        (var member in BattleHandler.membersForThisBattle.Where(member => member.unit.status == Status.Normal))
+                    {
+                        Debug.Log("New target: " + member.characterName);
+                        currentTarget = member.unit.spriteParentObject.transform.GetChild(0).GetComponent<Unit>();
+                        break;
+                    }
+                    if (currentTarget.gameObject.activeSelf || currentTarget.status != Status.Dead) break;
+                    
+                    Debug.Log("No members left!");
+                    handler.state = BattleState.Lost;
+                    endFunction = true;
+                    break;
+            }
+        }
+
+        //checkingStatus = false;
+    }
+	
+	private void SetupPartyPanel()
+        {
+            // Setup each character panel with the appropriate party member info
+            var i = 0;
+            foreach (CharacterData character in PartyManager.instance.partyMembers)
+            {
+                characterPanels[i].gameObject.SetActive(true);
+
+                var iconImage = characterPanels[i].transform.GetChild(0).GetComponent<Image>();
+                iconImage.sprite = character.icon;
+
+                var nameUgui = (characterPanels[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>());
+                nameUgui.text = character.name;
+
+                slider = (characterPanels[i].transform.GetChild(2).GetComponent<Slider>());
+                slider.maxValue = character.health;
+            
+                // temporary
+                character.unit.currentHP = character.health; // delete later
+                slider.value = character.unit.currentHP; // If you enter battle with less than max hp, it will stay the same
+
+                healthText = (characterPanels[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>());
+                healthText.text = "HP: " + character.unit.currentHP;
+
+                var level = (characterPanels[i].transform.GetChild(4).GetComponent<TextMeshProUGUI>());
+                level.text = "LV\n" + character.level;
+
+                // Make a clone of the battle options menu and instantiate it next to the party member
+                character.battlePanel = Instantiate(boPanel.battlePanel, battlePanelSpawns[i].transform);
+                // Add line(s) that fill that member's battle options with the appropriate ones
+                character.battlePanel.SetActive(false);
+
+                // Set the party member's stats to the unit stat
+                character.unit.status = Status.Normal;
+                character.unit.unitName = character.name;
+                character.unit.maxHealthRef = character.health;
+                character.unit.currentStrength = character.strength;
+                character.unit.currentMagic = character.magic;
+                character.unit.currentAccuracy = character.accuracy;
+                character.unit.currentInitiative = character.initiative;
+                character.unit.currentDefense = character.defense;
+                character.unit.currentAP = character.maxAP;
+
+                character.unit.characterPanelRef = characterPanels[i];
+                i++;
+            }
+        }
+		
+		// All UI components of battle/ anything that needs to be generated at the start of a battle need to be referenced here
+        [FormerlySerializedAs("CharacterPanels")] [SerializeField]
+        public List<GameObject> characterPanels = new List<GameObject>();
+
+        [FormerlySerializedAs("BattlePanelSpawns")] [SerializeField]
+        List<GameObject> battlePanelSpawns = new List<GameObject>();
+
+        [FormerlySerializedAs("CharacterSpawnPoints")] [SerializeField]
+        public List<GameObject> characterSpawnPoints = new List<GameObject>();
+
+        [FormerlySerializedAs("EnemySpawnPoints")] [SerializeField]
+        public List<GameObject> enemySpawnPoints = new List<GameObject>();
+
+        [FormerlySerializedAs("BOPanel")] public BattleOptionsPanel boPanel;
+        
+        [FormerlySerializedAs("Enemies")] [SerializeField]
+        public List<EnemyData> enemies = new List<EnemyData>();
+		
+		// This function executes each characters command by order of their initiative stat
+        /*private IEnumerator PerformRound()
+        {
+            // Sorts the party and enemy list by initiative
+            StartCoroutine(Calculator.SortAndCombine());
+            while (!Calculator.isFinished) yield return null;
+
+            // Checks the type of each object, and casts as appropriate type, then perform that characters action
+            foreach (var character in memberAndEnemyList)
+            {
+                if (character.GetType() == typeof(CharacterData))
+                {
+                    var member = (CharacterData) character;
+                    Debug.Log(member.unit.status);
+                    if (!member.CheckUnitStatus())
+                    //if (!CheckUnitStatus((member.unit)))
+                    {
+                        continue;
+                    }
+
+                    // Loop through command list until end
+                    for (var i = 0; i < member.unit.numCommands; i++)
+                    {
+                        member.unit.currentTarget = member.unit.currentTargetList[i];
+                        member.unit.commandClassName = member.unit.commandClassNameList[i];
+                        member.unit.commandClassOption = member.unit.commandClassOptionList[i];
+                        
+                        member.GiveCommand();
+                        while (performingAction) yield return null;
+                        //Debug.Log("Not performing action");
+                        if (endRound) break;
+                    }
+                }
+
+                else if (character.GetType() == typeof(EnemyData))
+                {
+                    var enemy = (EnemyData) character;
+                    //enemy.ResetCommandsAndAP();
+                    if (!enemy.CheckUnitStatus())
+                    //if (!CheckUnitStatus((enemy.unit)))
+                    {
+                        continue;
+                    }
+                    
+                    // loop through command list until end
+                    /*for (var i = 0; i < enemy.Unit.numCommands; i++)
+                    {
+                        enemy.Unit.currentTarget = enemy.Unit.currentTargetList[i];
+                        enemy.Unit.commandClassName = enemy.Unit.commandClassNameList[i];
+                        enemy.Unit.commandClassOption = enemy.Unit.commandClassOptionList[i];
+                        
+                        enemy.GiveCommand();
+                        while (performingAction) yield return null;
+                    }
+
+                    enemy.GiveCommand();
+                    while (performingAction) yield return null;
+                    //Debug.Log("Not performing action");
+                    if (endRound) break;
+                }
+            }
+
+            switch (state)
+            {
+                case BattleState.Won:
+                    StartCoroutine(WonBattleSequence());
+                    break;
+                case BattleState.Lost:
+                    StartCoroutine(LostBattleSequence());
+                    break;
+                default:
+                    yield return new WaitForSeconds(1);
+                    StartCoroutine(PlayerTurn());
+                    state = BattleState.PartyTurn;
+                    break;
+            }
+        }*/
+
+/*battleGeneratorDatabase.characterPanels[i].gameObject.SetActive(true);
+
+                var iconImage = battleGeneratorDatabase.characterPanels[i].transform.GetChild(0).GetComponent<Image>();
+                iconImage.sprite = character.icon;
+
+                var nameUgui = (battleGeneratorDatabase.characterPanels[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>());
+                nameUgui.text = character.name;
+
+                slider = (battleGeneratorDatabase.characterPanels[i].transform.GetChild(2).GetComponent<Slider>());
+                slider.maxValue = character.health;
+            
+                // temporary
+                character.unit.currentHP = character.health; // delete later
+                slider.value = character.unit.currentHP; // If you enter battle with less than max hp, it will stay the same
+
+                healthText = (battleGeneratorDatabase.characterPanels[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>());
+                healthText.text = "HP: " + character.unit.currentHP;
+
+                var level = (battleGeneratorDatabase.characterPanels[i].transform.GetChild(4).GetComponent<TextMeshProUGUI>());
+                level.text = "LV\n" + character.level;*/
+                SetPartyMemberPanel(character, i);
+
+                /*// Make a clone of the battle options menu and instantiate it next to the party member
+                character.battlePanel = Instantiate
+                    (battleGeneratorDatabase.boPanel.battlePanel, battleGeneratorDatabase.battlePanelSpawns[i].transform);
+                
+                // Add line(s) that fill that member's battle options with the appropriate ones
+                character.battlePanel.SetActive(false);*/
+                SetBattlePanel(character, i);
+
+                // Set the party member's stats to the unit stat
+                SetStats(character);
+
+                // I don't think this is being used right now
+                character.unit.characterPanelRef = battleGeneratorDatabase.characterPanels[i];
+                
+                SpawnThisMember(character, i);
+                i++;
+				
+		// Definitely get rid of this sh*t
+        public void UpdateStatus(Unit unit)
+        {
+            status = unit.status;
+            currentHP = unit.currentHP;
+            currentStrength = unit.currentStrength;
+            currentMagic = unit.currentMagic;
+            currentAccuracy = unit.currentAccuracy;
+            currentInitiative = unit.currentInitiative;
+            currentDefense = unit.currentDefense;
+        }
+		
+		public static void UpdateStatus()
+        {
+            var i = 0;
+            foreach (GameObject character in PartyMemberObjects)
+            {
+                //PartyManager.instance.partyMembers[i].unit.UpdateStatus(character.GetComponent<Unit>());
+                i++;
+            }
+        }
+		
+		/*public void UpdatePartyPanel()
+        {
+            foreach (var characterUnit in PartyMemberObjects.Select(character => character.GetComponent<Unit>()))
+            {
+                healthText = characterUnit.characterPanelRef.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+                healthText.text = "HP: " + characterUnit.currentHP;
+                slider = characterUnit.characterPanelRef.transform.GetChild(2).GetComponent<Slider>();
+                slider.value = characterUnit.currentHP;
+            }
+        }*/
+		
+		// Definitely get rid of this sh*t
+        public void UpdateStatus(Unit unit)
+        {
+            status = unit.status;
+            currentHP = unit.currentHP;
+            currentStrength = unit.currentStrength;
+            currentMagic = unit.currentMagic;
+            currentAccuracy = unit.currentAccuracy;
+            currentInitiative = unit.currentInitiative;
+            currentDefense = unit.currentDefense;
+        }
+		
+		
+		// This is probably unnecessary now since you should not be able to target dead characters anymore
+            Debug.Log(unit.currentTarget.unitName + " is dead. Getting new target . . . ");
+            switch (unit.currentTarget.id)
+            {
+                case 0: // Enemy
+                    foreach (var enemy in BattleHandler.enemiesForThisBattle.Where(enemy =>
+                        enemy.unit.spriteParentObject.transform.GetChild(0).gameObject.activeSelf))
+                    {
+                        Debug.Log("New target: " + enemy.characterName);
+                        unit.currentTarget = enemy.unit;
+                        return unit.currentTarget;
+                    }
+
+                    if (unit.currentTarget.gameObject.activeSelf || unit.currentTarget.status != Status.Dead) break;
+
+                    Debug.Log("No enemies left!");
+                    BattleHandler.allEnemiesDead = true;
+                    break;
+            
+                case 1: // Party Member
+                    foreach (var member in BattleHandler.membersForThisBattle.Where(member =>
+                        member.unit.status != Status.Dead))
+                    {
+                        Debug.Log("New target: " + member.characterName);
+                        unit.currentTarget = member.unit;
+                        return unit.currentTarget;
+                    }
+
+                    if (unit.currentTarget.gameObject.activeSelf || unit.currentTarget.status != Status.Dead) break;
+
+                    Debug.Log("No members left!");
+                    BattleHandler.allMembersDead = true;
+                    break;
+            }
+            return unit.currentTarget;

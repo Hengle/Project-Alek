@@ -1,0 +1,238 @@
+The following is a list of all the bone names, shape keys, drivers, and their equations in the Blenda Royal Rig. 
+All of the file information, mathatical formulas, model, and rig are free to use without charge. 
+I hope this rig can shed some light on some of the problems new young 3D artists encounter when trying to create their own rig. 
+Will not necessary, it would be greatly appreciated to include Royal Skies LLC in the credits if the rig or character is used in
+a personal or commercial project. 
+
+148 Total Bones (49 Correction Drivers)
+Bone Name		Purpose			Driver Variable		Driver Trigger		Driver Equation
+cMain			Master position control
+cHeadTarget		Direction head faces
+cEyes			Direction eyes face
+cBrow.L			Eyebrow rotation con
+cBrow.R			Eyebrow rotation con
+cBlink			Eye & Brow shapekey con
+cMouth			Mouth shapekey control
+cTongue			Tongue shapekey con
+cShrugger.L		Shrug shoulder control
+cShrugger.R		Shrug shoulder control
+cBicep.L		Bicep weight paint con	Y-Rotation		Bicep.L Y-Rotation	-var*1.5
+cBicep.R		Bicep weight paint con	Y-Rotation		Bicep.R Y-Rotation	-var*1.5
+cWrist.L		Wrist weight paint				Hand.L Z-Rotation	-abs(var * .025)
+cWrist.R		Wrist weight paint 				Hand.R Z-Rotation	-abs(var * .025)
+cThigh.L		Upper thigh clipping	Y-Location		Hip.L X-Rotation	-var*.035
+cThigh.R		Upper thigh clipping	Y-Location		Hip.R X-Rotation	-var*.035
+cButt.L			Butt bend shape fix	Y-Location		Hip.L X-Rotation	max(-.04, var*.05)
+						Z-Location		Hip.L X-Rotation	-var*.1
+cButt.R			Butt bend shape fix	Y-Location		Hip.R X-Rotation	max(-.04, var*.05)
+						Z-Location		Hip.R X-Rotation	-var*.1
+cHip.L			Hip weight paint fix	Y-Location		Hip.L X-Rotation	max(0, -var*.78)
+						Z-Location		Hip.L X-Rotation	var*.2
+cHip.R			Hip weight paint fix	Y-Location		Hip.R X-Rotation	max(0, -var*.78)
+						Z-Location		Hip.R X-Rotation	var*.2
+cToePivot.L		Pivots foot on toes
+cToePivot.R		Pivots foot on toes
+Head			Head weight paint
+Neck			Neck weight paint
+Shoulder.L		Shoulder weight paint 	X-Rotation		Bicep.L Z-Location	var *4.2
+						Y-Rotation		Bicep.L & handIK.L	min(0,max(rotx*.85,-var *13))
+						Z-Rotation		Bicep.L X-Loaction	-var *4
+Shoulder.R		Shoulder weight paint 	X-Rotation		Bicep.R Z-Location	var *4.2
+						Y-Rotation		Bicep.R & handIK.R	min(0,max(rotx*.85,-var *13))
+						Z-Rotation		Bicep.R X-Location	-var *4
+Elbow.L			Elbow weight paint
+Elbow.R			Elbow weight paint
+4arm.L			4arm weight paint
+4arm.R			4arm weight paint
+Hand.L			Hand weight paint
+Hand.R			Hand weight paint
+Eye.L			Eye rotation control	X-Rotation		cEyes Z-Location	var 
+						Z-Rotation		cEyes X-Location	-var 
+Eye.R			Eye rotation control	X-Rotation		cEyes Z-Location	var 
+						Z-Rotation		cEyes X-Location	-var 
+Bicep.L			Bicep direction con	X-Location		Bicep.L Z-Rotation	min(.005, max(-.078,-var*.06))
+						Z-Location		Bicep.L & HandIK.L	min(((abs(zar - .37) + (zar - .37)) / 2)*.3, max(-.042, var*.06))
+Bicep.R			Bicep direction con	X-Location		Bicep.R Z-Rotation	min(.078, max(-.005,-var*.06))
+						Z-Location		Bicep.R & HandIK.R	min(((abs(zar - .37) + (zar - .37)) / 2)*.3, max(-.042, var*.06))
+Boob.L			Breast control
+Boob.R			Breast control
+Spine3			Ribcage weight paint
+Spine2			Waist weight paint				coreIK Z-Rotation	rot / 2
+Spine1			Pelvis weight piant	
+Spine0			Master core positioner		
+coreIK			Direction chest faces	
+handIK.L		Hand position
+handIK.R		Hand position
+kneeIK.L		Direction knee faces
+kneeIK.R		Direction knee faces
+elbowIK.L		Direction elbow faces
+elbowIK.R		Direction elbow faces
+footIK.L		Position of foot
+footIK.R		Position of foot
+Hip.L			Hip weight paint
+Hip.R			Hip weight paint
+Knee.L			Knee weight paint
+Knee.R			Knee weight paint
+Shin.L			Shin weight paint
+Shin.R			Shin weight paint
+Foot.L			Foot weight paint
+Foot.R			Foot weight paint
+Toe.L			Controls foot position
+Toe.R			Controls foot position
+Toe1.L			Toe weight paint	Y-Location		Toe1.L X-Rotation	var * .0075
+						Z-Location		Toe1.L X-Rotation	var * .02
+Toe2.L			Toe weight paint	Y-Location		Toe2.L X-Rotation	var * .0075
+						Z-Location		Toe2.L X-Rotation	var * .02
+Toe3.L			Toe weight paint	Y-Location		Toe3.L X-Rotation	var * .0075
+						Z-Location		Toe1.L X-Rotation	var * .02
+Toe4.L			Toe weight paint	Y-Location		Toe4.L X-Rotation	var * .0075
+						Z-Location		Toe1.L X-Rotation	var * .02
+Toe5.L			Toe weight paint	Y-Location		Toe5.L X-Rotation	var * .0075
+						Z-Location		Toe1.L X-Rotation	var * .02
+Toe1.R			Toe weight paint	Y-Location		Toe1.R X-Rotation	var * .0075
+						Z-Location		Toe1.R X-Rotation	var * .02
+Toe2.R			Toe weight paint	Y-Location		Toe2.R X-Rotation	var * .0075
+						Z-Location		Toe2.R X-Rotation	var * .02
+Toe3.R			Toe weight paint	Y-Location		Toe3.R X-Rotation	var * .0075
+						Z-Location		Toe3.R X-Rotation	var * .02
+Toe4.R			Toe weight paint	Y-Location		Toe4.R X-Rotation	var * .0075
+						Z-Location		Toe4.R X-Rotation	var * .02
+Toe5.R			Toe weight paint	Y-Location		Toe5.R X-Rotation	var * .0075
+									Toe5.R X-Rotation	var * .02
+Thumb1.L		Finger weight paint
+Thumb2.L		Finger weight paint
+Thumb3.L		Finger weight paint
+Thumb1.R		Finger weight paint
+Thumb2.R		Finger weight paint
+Thumb3.R		Finger weight paint
+Pointer1.L		Finger weight paint
+Pointer2.L		Finger weight paint
+Pointer3.L		Finger weight paint
+Pointer1.R		Finger weight paint
+Pointer2.R		Finger weight paint
+Pointer3.R		Finger weight paint
+Middle1.L		Finger weight paint
+Middle2.L		Finger weight paint
+Middle3.L		Finger weight paint
+Middle1.R		Finger weight paint
+Middle2.R		Finger weight paint
+Middle3.R		Finger weight paint
+Ring1.L			Finger weight paint
+Ring2.L			Finger weight paint
+Ring3.L			Finger weight paint
+Ring1.R			Finger weight paint
+Ring2.R			Finger weight paint
+Ring3.R			Finger weight paint
+Pinky1.L		Finger weight paint
+Pinky2.L		Finger weight paint
+Pinky3.L		Finger weight paint
+Pinky1.R		Finger weight paint
+Pinky2.R		Finger weight paint
+Pinky3.R		Finger weight paint
+h			First hair bone
+h.001			Hair strand con
+h.002.L			Hair strand con
+h.002.R			Hair strand con
+h.003			Hair strand con
+h.004.L			Hair strand con
+h.004.R			Hair strand con
+h.005			Hair strand con
+h.006			Hair strand con
+h.007			Hair strand con
+h.008			Hair strand con
+h.008.L			Hair strand con
+h.008.R			Hair strand con
+h.009			Hair strand con
+h.010			Hair strand con
+h.011			Hair strand con
+h.012			Hair strand con
+h.013.L			Hair strand con
+h.013.R			Hair strand con
+h.014.L			Hair strand con
+h.014.R			Hair strand con
+h.015.L			Hair strand con
+h.015.R			Hair strand con
+h.016.L			Hair strand con
+h.016.R			Hair strand con
+h.017.L			Hair strand con
+h.017.R			Hair strand con
+h.018			Hair strand con
+h.019			Hair strand con
+h.020			Hair strand con
+h.021			Hair strand con
+h.022			Hair strand con
+h.023			Hair strand con
+h.024			Hair strand con
+h.025			Hair strand con
+h.026			Hair strand con
+h.027			Hair strand con
+h.028			Hair strand con
+h.029			Hair strand con
+h.030			Hair strand con
+h.031			Hair strand con
+h.032			Hair strand con
+h.033			Hair strand con
+h.034			Hair strand con
+h.035			Hair strand con
+
+Total of 59 Mesh Correction Shape Keys (All automatically controlled by bone drivers)
+Key Name 	Purpose			Trigger			Driver Equation
+shoulder.L	Arm bending forward	bicepL X-Rotation	var * 1.35
+shoulder.R	Arm bending forward	bicepR X-Rotation	var * 1.35
+knee.L		Knee bend clippping	shinL X-Rotation	var*1.8
+knee.R		Knee bend clippping	shinR X-Rotation	var*1.8
+splits.L	Leg out sideways	hipL Z-Rotation		-(var/.421)* var**2
+splits.R	Leg out sideways	hipR Z-Rotation		(var/.421)* var**2
+thigh.L		Inner thigh bend 	hipL X-Rotation		-(var/.6)* var**2
+thigh.R		Inner thigh bend 	hipR X-Rotation		-(var/.6)* var**2
+butt.L		Leg bending back	hipL X-Rotation		(var/.03)*var**2
+butt.R		Leg bending back	hipR X-Rotation		(var/.03)*var**2
+elbow.L		Elbow bend clipping	4armL & BicepL		min(1+(yar/1.1+zar/9), (var/.26)*var**2) 
+elbow.R		Elbow bend clipping	4armL & BicepR		min(1-(yar/1.1+zar/9), (var/.26)*var**2)
+elbowDown.L	Elbow IK dropping	bicepL Y-Rotation	-(var/.32)*var**2
+elbowDown.R	Elbow IK dropping	bicepR Y-Rotation	(var/.32)*var**2
+elbowUp.L	Elbow IK raising	bicepL Y-Rotation	(var/.32)*var**2
+elbowUp.R	Elbow IK raising	bicepR Y-Rotation	-(var/.32)*var**2
+wristDown.L	Wrist bend down		handL Z-Rotation	-(var/.34)*var**2
+wristDown.R	Wrist bend down		handR Z-Rotation	(var/.34)*var**2
+wristUp.L	Wrist bend up		handL Z-Rotation	(var/.34)*var**2
+wristUp.R	Wrist bend up		handR Z-Rotation	-(var/.34)*var**2
+wristFront.L	Wrist twist up		handL Y-Rotation	-(var/.53)*var**2
+wristFront.R	Wrist twist up		handR Y-Rotation	(var/.53)*var**2
+wristBack.L	Wrist twist down	handR Y-Rotation	(var/.35)*var**2
+wristBack.R	Wrist twist down	handR Y-Rotation	-(var/.35)*var**2
+A		Talking vowel A		cMouth X-Location	-var*100
+I		Talking vowel I		cMouth Y-Location	-var*100
+U		Talking vowel U		cMouth X-Location	var*100 if var <= .01 else 1+(1-var*100)
+kiss		kiss-like lip shape	cMouth X-Location	var*100 -1
+E		Talking vowel E		cMouth Y-Location	var*100
+O		Talking vowel O		cMouth Z-Location	var*100
+bpm		Talking consonant BPM	cMouth Z-Location	-var*100 if var >= -.01 else 1+(1+var*100)
+th		Talking consonant TH	cMouth Z-Location	-1+(-var*100) if var >= -.02 else 1+ (2+var*100)
+fv		Talking consonant FV	cMouth Z-Location	-2+(-var*100) if var >= -.03 else 1+ (3+var*100)
+l		Talking consonant L	cMouth Z-Location	-3+(-var*100) if var >= -.04 else 1+ (4+var*100)
+tongueTipFront  Tongue forward 		cTongue Y-Location	var*100
+tongueTopFront	Tongue forward & up	cTongue Z-Location	-var*100
+tongueTopBack	Tongue up & back	cTongue Y-Location	-var*100
+tongueMidDown	Tongue folding down	cTongue Z-Location	var*100
+tongueFlat	Tongue flattened	cTongue X-Location	var*100
+smile		Small smile		cMouth Y-Scale		var*10 if var <= .1 else 1+(1-var*10)
+Smile		Medium smile		cMouth Y-Scale 		var*10 - 1 if var <=.2 else 1- ((var-.2)*10)
+SMILE		Large Smile		cMouth Y-Scale		var*10 - 2 if var <=.3 else 1- ((var-.3)*10)
+smileTalk	Talking Smile		cMouth Y-Scale		var*10 - 3 if var <=.4 else 1- ((var-.4)*10)
+smirk		Half a smile		cMouth Z-Rotation	var*1.42
+frown		Sad face		cMouth Z-Rotation	-var*1.42
+grit		teeth together		cMouth X-Rotation	var*1.42
+scream		Mouth open large	cMouth X-Rotation	-var*1.42
+eyesSurprise	Eyes & Brows Up		cBlink Z-Location	-2+(-var*100) 
+eyesSad		Eyes & Brows Tilted	cBlink Z-Location	-1+(-var*100) if var >= -.02 else 1+ (2+var*100)
+eyesGlare	Eyes & Brows Down	cBlink Z-Location	-var*100 if var >= -.01 else 1+ (1+var*100)
+eyesBlink	Eyes Down		cBlink Z-Location	var*100 if var <=.01 else 1-((var-.01)*100)
+eyesFocus	Eyes shut deep		cBlink Z-Location	-(1-.01-var*100) if var <=.02 else 1-((var-.02)*100)
+eyesDamage	Eyes scrunched		cBlink Z-Location	-(2-.01-var*100) if var <=.03 else 1-((var-.03)*100)
+eyesHappy	Anime happy face	cBlink Z-Location	-(3-.01-var*100) 
+browsInL	Brows tilted in		cBrowL Z-Location	var*68
+browsInR	Brows tilted in		cBrowR Z-Location	var*68
+browsOutL	Brows tilted out	cBrowL Z-Location	-var*68
+browsOutR	Brows tilted out	cBrowR Z-Location	-var*68
+winkyFace	Fun face		cMouth Y-Rotation	var

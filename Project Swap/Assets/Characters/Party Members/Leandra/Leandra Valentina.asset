@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4760f1c8fd2d6214986da2731bc0ab7b, type: 3}
+  m_Name: Leandra Valentina
+  m_EditorClassIdentifier: 
+  scale: {x: 50, y: 50, z: 1}
+  characterName: Leandra
+  characterPrefab: {fileID: 1526218485019349028, guid: 55418c9ff21905d4c9ac6a87a12001cb,
+    type: 3}
+  icon: {fileID: 21300000, guid: 64f58419216e9fe4d9789fc9cb4d908e, type: 3}
+  description: 
+  level: 38
+  health: 3370
+  strength: 29
+  magic: 22
+  accuracy: 55
+  initiative: 26
+  defense: 13
+  criticalChance: 29
+  maxAP: 6
+  abilities:
+  - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}
+  - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
+  unit: {fileID: 0}
+  positionInParty: 3
+  battlePanel: {fileID: 0}

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4760f1c8fd2d6214986da2731bc0ab7b, type: 3}
+  m_Name: Ninja
+  m_EditorClassIdentifier: 
+  scale: {x: 10, y: 10, z: 0}
+  characterName: Ninja
+  description: It's a ninja lol
+  characterSprite: {fileID: 3807694444362356570, guid: 29526edd94b368f45a1714170677d419,
+    type: 3}
+  battlePanel: {fileID: 0}
+  icon: {fileID: 21300000, guid: 2cc15b85208ce624cbbd22d2ae5ccef7, type: 3}
+  unit: {fileID: 0}
+  buttonTest: {fileID: 0}
+  level: 28
+  health: 1790
+  strength: 21
+  magic: 10
+  accuracy: 33
+  initiative: 14
+  defense: 13
+  criticalChance: 29
+  positionInParty: 2
+  maxAP: 6

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4760f1c8fd2d6214986da2731bc0ab7b, type: 3}
+  m_Name: SSGSS Ninja
+  m_EditorClassIdentifier: 
+  scale: {x: 10, y: 10, z: 0}
+  characterName: SSGSS Ninja
+  description: That's how we do it
+  characterSprite: {fileID: 1526218485019349028, guid: af34e045d01d6354aa12545b6a436fd8,
+    type: 3}
+  battlePanel: {fileID: 0}
+  icon: {fileID: 21300000, guid: a83bb160ff53f824c9630116d1ef997e, type: 3}
+  unit: {fileID: 0}
+  buttonTest: {fileID: 0}
+  level: 42
+  health: 2850
+  strength: 40
+  magic: 22
+  accuracy: 75
+  initiative: 28
+  defense: 21
+  criticalChance: 70
+  positionInParty: 4
+  maxAP: 6

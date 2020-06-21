@@ -1,0 +1,1217 @@
+fileFormatVersion: 2
+guid: 937c76e0f98d35149a08fdd3ffcdc56a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -101077536881121594
+    second: Alek_Idle_0
+  - first:
+      213: -3370211089549886926
+    second: Alek_Idle_1
+  - first:
+      213: 1015100729584850392
+    second: Alek_Idle_2
+  - first:
+      213: 6793270333695974565
+    second: Alek_Idle_3
+  - first:
+      213: 7834667530827453432
+    second: Alek_Idle_4
+  - first:
+      213: 7093675328859517998
+    second: Alek_Idle_5
+  - first:
+      213: -1845318871005137062
+    second: Alek_Idle_6
+  - first:
+      213: -7874377898427596181
+    second: Alek_Idle_7
+  - first:
+      213: 8175380350747912358
+    second: Alek_Idle_8
+  - first:
+      213: 580404298743812923
+    second: Alek_Idle_9
+  - first:
+      213: -6167135516873513502
+    second: Alek_Attack_0
+  - first:
+      213: 4114320767065710305
+    second: Alek_Attack_1
+  - first:
+      213: 5433712350016597700
+    second: Alek_Attack_2
+  - first:
+      213: -7104101662215828582
+    second: Alek_Attack_3
+  - first:
+      213: 1677161432751216026
+    second: Alek_Attack_4
+  - first:
+      213: 5760706523388527860
+    second: Alek_15
+  - first:
+      213: -6420392974010352234
+    second: Alek_Attack_5
+  - first:
+      213: -5269352768340663114
+    second: Alek_Attack_6
+  - first:
+      213: -4618265876625095357
+    second: Alek_Crit_0
+  - first:
+      213: 8735735804767248431
+    second: Alek_Crit_1
+  - first:
+      213: -6888104644527530710
+    second: Alek_Crit_2
+  - first:
+      213: 3298544898381654833
+    second: Alek_Crit_3
+  - first:
+      213: 4311721021454459024
+    second: Alek_Crit_4
+  - first:
+      213: -448757860630737450
+    second: Alek_23
+  - first:
+      213: 7395381651493124929
+    second: Alek_Crit_5
+  - first:
+      213: -6831275929507322396
+    second: Alek_SpinAtk_0
+  - first:
+      213: 6941666274773304747
+    second: Alek_SpinAtk_1
+  - first:
+      213: 8504256573497133585
+    second: Alek_SpinAtk_2
+  - first:
+      213: -7548184503648828166
+    second: Alek_28
+  - first:
+      213: -3077207917115844340
+    second: Alek_SpinAtk_3
+  - first:
+      213: 680981849641943375
+    second: Alek_SpinAtk_4
+  - first:
+      213: 8848341494874099621
+    second: Alek_SpinAtk_5
+  - first:
+      213: 1148059454560366171
+    second: Alek_SpinAtk_6
+  - first:
+      213: 6540377446864380469
+    second: Alek_33
+  - first:
+      213: 6412559050831439103
+    second: Alek_SpinAtk_7
+  - first:
+      213: -8560996333019869098
+    second: Alek_SpinAtk_8
+  - first:
+      213: -2096439322344767709
+    second: Alek_Hurt_0
+  - first:
+      213: 4799302066305277623
+    second: Alek_Hurt_1
+  - first:
+      213: 2747268092021987393
+    second: Alek_Hurt_2
+  - first:
+      213: 1421189392654682484
+    second: Alek_Hurt_3
+  - first:
+      213: 571952261906412749
+    second: Alek_Hurt_4
+  - first:
+      213: -5714897454968513854
+    second: Alek_Death_0
+  - first:
+      213: 2292373512568938183
+    second: Alek_Death_1
+  - first:
+      213: 7103579581289489738
+    second: Alek_Death_2
+  - first:
+      213: -2715333466408127952
+    second: Alek_Death_3
+  - first:
+      213: 6403016738869244587
+    second: Alek_Death_4
+  - first:
+      213: -1123877373742874502
+    second: Alek_Death_5
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 2
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Alek_Idle_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 329
+        width: 26
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c6ed670486e89ef0800000000000000
+      internalID: -101077536881121594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Idle_1
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 329
+        width: 26
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23afb45ceda9a31d0800000000000000
+      internalID: -3370211089549886926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Idle_2
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 329
+        width: 26
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d5152e3cbc561e00800000000000000
+      internalID: 1015100729584850392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Idle_3
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 329
+        width: 26
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5acd52f406b864e50800000000000000
+      internalID: 6793270333695974565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Idle_4
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 329
+        width: 26
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f3d1440c945abc60800000000000000
+      internalID: 7834667530827453432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Idle_5
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 329
+        width: 26
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e24bf90b02cc17260800000000000000
+      internalID: 7093675328859517998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Idle_6
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 329
+        width: 26
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a57f964834c1466e0800000000000000
+      internalID: -1845318871005137062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Idle_7
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 329
+        width: 26
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b624909850798b290800000000000000
+      internalID: -7874377898427596181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Idle_8
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 329
+        width: 26
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a8a90e2d19c47170800000000000000
+      internalID: 8175380350747912358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Idle_9
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 329
+        width: 26
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b331cb472a20e0800800000000000000
+      internalID: 580404298743812923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Attack_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 265
+        width: 29
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e52f0b1ceee96aa0800000000000000
+      internalID: -6167135516873513502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Attack_1
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 265
+        width: 28
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1eed6f460f0091930800000000000000
+      internalID: 4114320767065710305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Attack_2
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 265
+        width: 35
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ce6462e79c686b40800000000000000
+      internalID: 5433712350016597700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Attack_3
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 265
+        width: 31
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9b0d576d29296d90800000000000000
+      internalID: -7104101662215828582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Attack_4
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 265
+        width: 29
+        height: 44
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a951f16ef69764710800000000000000
+      internalID: 1677161432751216026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Attack_5
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 265
+        width: 29
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69df2b95b9e26e6a0800000000000000
+      internalID: -6420392974010352234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Attack_6
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 265
+        width: 26
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b465de439f7fd6b0800000000000000
+      internalID: -5269352768340663114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Crit_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 201
+        width: 31
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 345047167af98efb0800000000000000
+      internalID: -4618265876625095357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Crit_1
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 201
+        width: 31
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2020d63e619b3970800000000000000
+      internalID: 8735735804767248431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Crit_2
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 201
+        width: 25
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2dd73f02598860a0800000000000000
+      internalID: -6888104644527530710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Crit_3
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 201
+        width: 39
+        height: 47
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13b27bfcb19c6cd20800000000000000
+      internalID: 3298544898381654833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Crit_4
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 201
+        width: 39
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 090a06eac6f46db30800000000000000
+      internalID: 4311721021454459024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Crit_5
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 201
+        width: 32
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14b70bbfd6ca1a660800000000000000
+      internalID: 7395381651493124929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_SpinAtk_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 137
+        width: 26
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e52a0b5cbe6231a0800000000000000
+      internalID: -6831275929507322396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_SpinAtk_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 137
+        width: 26
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba50c29c2b0c55060800000000000000
+      internalID: 6941666274773304747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_SpinAtk_2
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 137
+        width: 37
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11ac31ecb40350670800000000000000
+      internalID: 8504256573497133585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_SpinAtk_3
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 137
+        width: 30
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c095a4004bf8b45d0800000000000000
+      internalID: -3077207917115844340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_SpinAtk_4
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 137
+        width: 34
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f41856e5265537900800000000000000
+      internalID: 680981849641943375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_SpinAtk_5
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 137
+        width: 30
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5afc15585bf9bca70800000000000000
+      internalID: 8848341494874099621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_SpinAtk_6
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 137
+        width: 24
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5e6912cdf9beef00800000000000000
+      internalID: 1148059454560366171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_33
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 167
+        width: 9
+        height: 4
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 532e351b2a614ca50800000000000000
+      internalID: 6540377446864380469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_SpinAtk_7
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 137
+        width: 24
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff426064b7cfdf850800000000000000
+      internalID: 6412559050831439103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_SpinAtk_8
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 137
+        width: 26
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 650dde6713b313980800000000000000
+      internalID: -8560996333019869098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Hurt_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 73
+        width: 29
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32fba723b83f7e2e0800000000000000
+      internalID: -2096439322344767709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Hurt_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 73
+        width: 31
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7be9cef2dcb8a9240800000000000000
+      internalID: 4799302066305277623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Hurt_2
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 73
+        width: 33
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1485cb726c1402620800000000000000
+      internalID: 2747268092021987393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Hurt_3
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 73
+        width: 29
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4794cbb093419b310800000000000000
+      internalID: 1421189392654682484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Hurt_4
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 73
+        width: 26
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc4b9674d8bffe700800000000000000
+      internalID: 571952261906412749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Death_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 9
+        width: 26
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ca51d42b0b90b0b0800000000000000
+      internalID: -5714897454968513854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Death_1
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 9
+        width: 26
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ce9f2d609520df10800000000000000
+      internalID: 2292373512568938183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Death_2
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 9
+        width: 27
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a456a782efbf49260800000000000000
+      internalID: 7103579581289489738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Death_3
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 9
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03273084992315ad0800000000000000
+      internalID: -2715333466408127952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Death_4
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 9
+        width: 31
+        height: 26
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba27e23acc51cd850800000000000000
+      internalID: 6403016738869244587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Death_5
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 9
+        width: 31
+        height: 26
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7005feab7f2760f0800000000000000
+      internalID: -1123877373742874502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 52d64328c7736764fbc8f2eaa2ef68f7
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
