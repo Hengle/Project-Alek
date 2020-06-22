@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BattleSystem;
 using Characters;
-using TMPro;
-using UnityEditor;
+using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.PlayerLoop;
 
 public class MenuController : MonoBehaviour
 {
@@ -24,7 +19,8 @@ public class MenuController : MonoBehaviour
     private GameObject mainMenuFirstSelected;
     [SerializeField]
     private GameObject abilityMenuFirstSelected;
-
+    
+    private GameObject currentlySelected;
     private GameObject swapButtonGO;
     private Button swapButton;
 
@@ -48,28 +44,33 @@ public class MenuController : MonoBehaviour
     private void Update()
     {
         swapButton.enabled = !BattleHandler.partyHasChosenSwap;
+        if (!BattleHandler.inputModule.move && !BattleHandler.inputModule.submit) return;
+        if (EventSystem.current.currentSelectedGameObject == null) EventSystem.current.SetSelectedGameObject(currentlySelected);
     }
 
     private void OnEnable()
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
+        currentlySelected = mainMenuFirstSelected;
 
         if (BattleHandler.partyHasChosenSwap) swapButton.enabled = false;
     }
     
-    public void SetMainMenuFirstSelected()
+    [UsedImplicitly] public void SetMainMenuFirstSelected()
     {
         swapButtonGO.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
+        currentlySelected = mainMenuFirstSelected;
     }
 
-    public void SetAbilityMenuFirstSelected()
+    [UsedImplicitly] public void SetAbilityMenuFirstSelected()
     {
         swapButtonGO.SetActive(!swapButton.enabled);
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(abilityMenuFirstSelected);
+        currentlySelected = abilityMenuFirstSelected;
     }
 
     public void SetTargetFirstSelected()
@@ -79,10 +80,12 @@ public class MenuController : MonoBehaviour
             case 0:
                 EventSystem.current.SetSelectedGameObject(null);
                 EventSystem.current.SetSelectedGameObject(enemySelectable[0]);
+                currentlySelected = enemySelectable[0];
                 break;
             case 1:
                 EventSystem.current.SetSelectedGameObject(null);
                 EventSystem.current.SetSelectedGameObject(memberSelectable[0]);
+                currentlySelected = memberSelectable[0];
                 break;
             case 2:
                 break;

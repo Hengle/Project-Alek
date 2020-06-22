@@ -17,6 +17,7 @@ namespace BattleSystem
 {
     // Need to rework the enums. They are not good right now
     public enum BattleState { Start, PartyTurn, EnemyTurn, Won, Lost }
+    [RequireComponent(typeof(InputSystemUIInputModule))]
     public class BattleHandler : MonoBehaviour
     {
         public static GlobalBattleFuncs battleFuncs;
@@ -40,10 +41,10 @@ namespace BattleSystem
 
         public static BattleState state;
         public static UnityEvent newRound;
-        public BattleOptionsPanel battlePanel;
+        public static InputSystemUIInputModule inputModule;
         
-        [SerializeField]
-        private InputSystemUIInputModule inputModule;
+        public BattleOptionsPanel battlePanel;
+
         private BattleGenerator generator;
         private Camera cam;
         
@@ -56,6 +57,7 @@ namespace BattleSystem
         private void Start()
         {
             newRound = new UnityEvent();
+            inputModule = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<InputSystemUIInputModule>();
 
             generator = GetComponent<BattleGenerator>();
             battleFuncs = GetComponent<GlobalBattleFuncs>();
@@ -250,16 +252,6 @@ namespace BattleSystem
             allEnemiesDead = false;
             partyHasChosenSwap = false;
             roundCount = 0;
-        }
-
-        private void OnEnable()
-        {
-            
-        }
-
-        private void OnDisable()
-        {
-            
         }
     }
 }
