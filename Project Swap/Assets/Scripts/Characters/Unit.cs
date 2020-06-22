@@ -48,6 +48,9 @@ namespace Characters
         [HideInInspector] public IUnitBase iUnitRef;
         [HideInInspector] public Unit currentTarget; // Might have to make list again. Did not think about how multi-target attacks will work;
         [HideInInspector] public Ability currentAbility;
+        [HideInInspector] public Button button;
+        [HideInInspector] public Image fillRect;
+        [HideInInspector] public Color currentColor;
 
         [HideInInspector] public int id;
         [HideInInspector] public int maxHealthRef;
@@ -59,7 +62,7 @@ namespace Characters
 
         [HideInInspector] public string commandActionName;
         public string unitName;
-        
+
         public Status status = Status.Normal;
 
         public int level;
@@ -74,7 +77,6 @@ namespace Characters
 
         public List<StatusEffect> statusEffects = new List<StatusEffect>();
 
-        [HideInInspector] public Button button;
 
         public void RemoveStatusEffect(StatusEffect effect)
         {
@@ -113,10 +115,10 @@ namespace Characters
                 if (!damagePrefab.activeSelf) { damageText.text = dmg.ToString(); damagePrefab.SetActive(true);}
                 else { damageText2.text = dmg.ToString(); damagePrefab2.SetActive(true); }
             }
-            
-            CurrentHP = currentHP;
 
             SetColor();
+            CurrentHP = currentHP;
+
             if (colorHasChanged) StartCoroutine(ResetDamageColor());
             
             if (currentHP > 0) return;
@@ -128,6 +130,7 @@ namespace Characters
             anim = GetComponent<Animator>();
             outline = GetComponent<SpriteOutline>();
             button = GetComponent<Button>();
+            currentColor = Color.green;
             outline.enabled = false;
             nameText.renderer.enabled = false;
         }
@@ -159,8 +162,8 @@ namespace Characters
 
         private void SetColor()
         {
-            if (currentHP <= 0.25f * maxHealthRef) nameText.color = Color.red;
-            else if (currentHP <= 0.5f * maxHealthRef) nameText.color = Color.yellow;
+            if (currentHP <= 0.25f * maxHealthRef) currentColor = Color.red;
+            else if (currentHP <= 0.5f * maxHealthRef) currentColor = Color.yellow;
         }
 
         private void OnHpValueChanged()
@@ -168,6 +171,7 @@ namespace Characters
             if (id != 1) return;
             slider.value = currentHP;
             healthText.text = "HP: " + currentHP;
+            fillRect.color = currentColor;
         }
 
         private IEnumerator ResetDamageColor()

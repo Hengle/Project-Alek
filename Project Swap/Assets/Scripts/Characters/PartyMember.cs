@@ -77,6 +77,7 @@ namespace Characters
             unit.slider = slider;
             unit.slider.maxValue = health;
             unit.slider.value = health;
+            unit.fillRect = slider.fillRect.GetComponent<Image>();
             
             unit.healthText = healthText;
             unit.showDamageSO = showDamageSO;
