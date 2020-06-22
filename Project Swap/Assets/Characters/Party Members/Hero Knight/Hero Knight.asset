@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Hero Knight
   m_EditorClassIdentifier: 
   scale: {x: 50, y: 50, z: 0}
-  characterName: Hero Knight
   characterPrefab: {fileID: 1526218485019349028, guid: d31dfb895a5ac204485d636d12c3ffff,
     type: 3}
   icon: {fileID: 21300000, guid: f2ea487f62fd65944b6389c00e56eb6b, type: 3}
+  characterName: Hero Knight
   description: Hes a hero!
   level: 36
   health: 2860
@@ -27,12 +27,7 @@ MonoBehaviour:
   defense: 20
   criticalChance: 25
   maxAP: 6
-  abilities:
-  - {fileID: 11400000, guid: e558d404ab0ced340bb9314e1e677569, type: 2}
-  - {fileID: 11400000, guid: 8e151e58900d509469c607fa4066a172, type: 2}
-  - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}
-  - {fileID: 11400000, guid: 24d8040ab92bbdb419ea865e3fefa3ce, type: 2}
-  - {fileID: 11400000, guid: 1306999bff8e7c14892abd85b0b028c7, type: 2}
   unit: {fileID: 0}
+  abilities: []
   positionInParty: 4
   battlePanel: {fileID: 0}

@@ -74,7 +74,7 @@ namespace Characters
 
         public List<StatusEffect> statusEffects = new List<StatusEffect>();
 
-        public Button button;
+        [HideInInspector] public Button button;
 
         public void RemoveStatusEffect(StatusEffect effect)
         {
@@ -129,14 +129,16 @@ namespace Characters
             outline = GetComponent<SpriteOutline>();
             button = GetComponent<Button>();
             outline.enabled = false;
+            nameText.renderer.enabled = false;
         }
 
         private void Update()
         {
             // Shows the name text above the character's heads when choosing a target
-            nameText.gameObject.SetActive(BattleHandler.choosingTarget);
-            if (!battlePanelIsSet) return;
+            //nameText.gameObject.SetActive(BattleHandler.choosingTarget);
+            button.enabled = BattleHandler.choosingTarget;
             
+            if (!battlePanelIsSet) return;
             // Activates the camera during that member's turn
             closeUpCam.SetActive(battlePanelRef.activeSelf && battlePanelRef.transform.GetChild(0).gameObject.activeSelf);
         }

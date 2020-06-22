@@ -8,8 +8,8 @@ using UnityEngine.EventSystems;
 
 public class MenuController : MonoBehaviour
 {
-    public List<GameObject> enemySelectable = new List<GameObject>();
-    public List<GameObject> memberSelectable = new List<GameObject>();
+    [HideInInspector] public List<GameObject> enemySelectable = new List<GameObject>();
+    [HideInInspector] public List<GameObject> memberSelectable = new List<GameObject>();
     
     [SerializeField]
     private GameObject mainMenu;

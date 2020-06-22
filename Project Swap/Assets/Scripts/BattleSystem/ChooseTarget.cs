@@ -66,6 +66,7 @@ namespace BattleSystem
         {
             if (isSwapOption && memberCurrentlyChoosingTarget != thisUnit) { AddSwapCommand(); return; }
             if (isSwapOption && memberCurrentlyChoosingTarget == thisUnit) return;
+            if (thisUnit.status == Status.Dead) return;
             
             memberCurrentlyChoosingTarget.currentTarget = thisUnit;
             memberCurrentlyChoosingTarget.commandActionName = className;
@@ -75,6 +76,7 @@ namespace BattleSystem
 
         private void AddSwapCommand()
         {
+            if (thisUnit.status == Status.Dead) return;
             isSwapOption = false;
             memberCurrentlyChoosingTarget.isSwapping = true;
             BattleHandler.partyHasChosenSwap = true;
