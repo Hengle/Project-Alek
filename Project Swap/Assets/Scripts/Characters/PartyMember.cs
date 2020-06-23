@@ -1,4 +1,5 @@
-﻿using Abilities;
+﻿using System;
+using Abilities;
 using BattleSystem;
 using TMPro;
 using UnityEngine;
@@ -7,47 +8,22 @@ using UnityEngine.UI;
 namespace Characters
 {
     [CreateAssetMenu(fileName = "New Party Member", menuName = "Character/Party Member")]
-    public class PartyMember : UnitBase, IUnitBase
+    public class PartyMember : UnitBase
     {
         [Range(0,4)] public int positionInParty;
         [HideInInspector] public GameObject battlePanel;
         private GameObject unitGO;
 
-        public void GiveCommand(bool isSwapping)
+        public override void GiveCommand(bool isSwapping)
         {
             BattleHandler.battleFuncs.GetCommand(this, isSwapping);
             BattleHandler.performingAction = true;
-        }
-
-        public void SetupUnit()
-        {
-            unit.id = 1;
-            unit.level = level;
-            unit.status = Status.Normal;
-            unit.unitName = characterName;
-            unit.nameText.text = characterName.ToUpper();
-            unit.CurrentHP = health;
-            unit.maxHealthRef = health;
-            unit.currentStrength = strength;
-            unit.currentMagic = magic;
-            unit.currentAccuracy = accuracy;
-            unit.currentInitiative = initiative;
-            unit.currentCrit = criticalChance;
-            unit.currentDefense = defense;
-            unit.currentAP = maxAP;
-            unit.iUnitRef = this;
         }
 
         public bool SetAI()
         {
             // Empty for now
             return true;
-        }
-
-        public Ability GetAndSetAbility(int index)
-        {
-            unit.currentAbility = abilities[index];
-            return abilities[index];
         }
 
         public void SetAbilityMenuOptions(BattleOptionsPanel battleOptionsPanel)

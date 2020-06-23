@@ -5,16 +5,19 @@ using UnityEngine;
 namespace Abilities
 {
     public enum AbilityType { Physical, Ranged, NonAttack }
+    public enum DamageType { Str, Mag }
     public abstract class Ability : ScriptableObject
     {
-        public AbilityType type;
+        public AbilityType abilityType;
+        public DamageType damageType;
         [Range(0, 6)] public int actionCost;
-        [Tooltip("0 = Enemy, 1 = Party Member, 2 = All")]
+        [Tooltip("0 = Enemy, 1 = Party Member, 2 = All")]    
         [Range(0, 2)] public int targetOptions;
         public bool hasStatusEffect;
         public StatusEffect statusEffect;
         [Range(0, 1)] public float chanceOfInfliction;
-        public int attackState;
+        [Range(0,3)] public float damageMultiplier = 1f;
+        public int attackState = 2;
 
         public string GetParameters(int actionOption) { return $"AbilityAction,{actionOption},{targetOptions},{actionCost}"; }
     }

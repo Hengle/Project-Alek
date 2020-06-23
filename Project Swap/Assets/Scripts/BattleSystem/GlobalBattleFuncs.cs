@@ -20,6 +20,8 @@ namespace BattleSystem
         private static bool isMoving;
         private bool endFunction;
         private bool specialSwap;
+        private bool executing;
+        //private bool isAbility;
         public bool slowTime;
         public bool slowTimeCrit;
         
@@ -27,9 +29,9 @@ namespace BattleSystem
         private AnimationHandler animHandler;
         private Ability ability;
 
-        private IUnitBase iUnitBase;
+        private UnitBase unitBase;
         private Unit unit, currentTarget;
-        private IUnitBase iUnitCharacterSwappingPosition;
+        private UnitBase iUnitCharacterSwappingPosition;
         private Unit characterSwappingPositionUnit, currentSwapTarget;
         
         private void Update()
@@ -57,34 +59,36 @@ namespace BattleSystem
             }
         }
         
-        public void GetCommand(IUnitBase unitBase, bool isSwapping)
+        public void GetCommand(UnitBase unitBaseParam, bool isSwapping)
         {
             if (!isSwapping)
             {
-                iUnitBase = unitBase;
-                unit = unitBase.GetUnit();
+                unitBase = unitBaseParam;
+                unit = unitBaseParam.unit;
                 currentTarget = unit.currentTarget;
                 
-                animHandler = unitBase.GetAnimationHandler();
+                animHandler = unitBaseParam.unit.animationHandler;
                 StartCoroutine(unit.commandActionName);
                 return;
             }
             
-            iUnitCharacterSwappingPosition = unitBase;
-            characterSwappingPositionUnit = unitBase.GetUnit();
+            iUnitCharacterSwappingPosition = unitBaseParam;
+            characterSwappingPositionUnit = unitBaseParam.unit;
             characterSwappingPositionUnit.currentTarget = BattleHandler.partySwapTarget;
             currentSwapTarget = characterSwappingPositionUnit.currentTarget;
                 
-            animHandler = unitBase.GetAnimationHandler();
+            animHandler = unitBaseParam.unit.animationHandler;
             StartCoroutine(Swap());
         }
 
         // Called from GetCommand with unit.commandActionName
         [UsedImplicitly] private IEnumerator UniversalAction()
         {
+            unit.isAbility = false;
+            
             switch (unit.commandActionOption)
             {
-                case 1: StartCoroutine(PhysicalAttack(false));
+                case 1: StartCoroutine(PhysicalAttack());
                     yield break;
                 case 2: // Item
                     yield break;
@@ -95,13 +99,14 @@ namespace BattleSystem
         
         [UsedImplicitly] private IEnumerator AbilityAction()
         {
-            ability = iUnitBase.GetAndSetAbility(unit.commandActionOption);
+            ability = unitBase.GetAndSetAbility(unit.commandActionOption);
+            unit.isAbility = true;
 
-            switch (ability.type)
+            switch (ability.abilityType)
             {
-                case AbilityType.Physical: StartCoroutine(PhysicalAttack(true));
+                case AbilityType.Physical: StartCoroutine(PhysicalAttack());
                     break;
-                case AbilityType.Ranged: Debug.Log("Ranged: " + ability.name);
+                case AbilityType.Ranged: StartCoroutine(RangedAttack());
                     break;
                 case AbilityType.NonAttack: Debug.Log("Non-Attack: " + ability.name);
                     break;
@@ -117,8 +122,8 @@ namespace BattleSystem
             currentTarget.isSwapping = false;
             slowTime = true;
 
-            iUnitCharacterSwappingPosition = currentTarget.iUnitRef;
-            characterSwappingPositionUnit = iUnitCharacterSwappingPosition.GetUnit();
+            iUnitCharacterSwappingPosition = currentTarget.unitRef;
+            characterSwappingPositionUnit = iUnitCharacterSwappingPosition.unit;
             
             currentSwapTarget = BattleHandler.partySwapTarget;
             characterSwappingPositionUnit.currentTarget = currentSwapTarget;
@@ -129,7 +134,7 @@ namespace BattleSystem
             currentTarget = currentSwapTarget;
             unit.currentTarget = currentSwapTarget;
             // Need way to know what attack is being used to call the right calculate function upon swap
-            unit.currentDamage = DamageCalculator.CalculateAttackDamage(iUnitBase);
+            unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase);
         }
 
         private IEnumerator Swap()
@@ -226,18 +231,13 @@ namespace BattleSystem
             yield return new WaitForSeconds(1);
             isMoving = false;
         }
-        
-        private IEnumerator PhysicalAttack(bool isAbility)
+
+        private IEnumerator ExecuteAttack()
         {
-            currentTarget = iUnitBase.CheckTargetStatus(false);
-            unit.currentDamage = DamageCalculator.CalculateAttackDamage(iUnitBase);
-
-            StartCoroutine(MoveToTargetPosition());
-            while (isMoving) yield return null;
-
+            executing = true;
             if (unit.isCrit && unit.id == 1) slowTimeCrit = true;
             
-            if (isAbility) unit.anim.SetInteger(AnimationHandler.PhysAttackState, ability.attackState);
+            if (unit.isAbility) unit.anim.SetInteger(AnimationHandler.PhysAttackState, ability.attackState);
             unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
             yield return new WaitForEndOfFrame();
             while (animHandler.isAttacking) yield return null;
@@ -249,17 +249,45 @@ namespace BattleSystem
                 where statusEffect.rateOfInfliction == RateOfInfliction.AfterAttacked
                 select statusEffect) statusEffect.InflictStatus(currentTarget);
 
+            executing = false;
+        }
+        
+        private IEnumerator PhysicalAttack()
+        {
+            currentTarget = unitBase.CheckTargetStatus(false);
+            unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase);
+
+            StartCoroutine(MoveToTargetPosition());
+            while (isMoving) yield return null;
+
+            StartCoroutine(ExecuteAttack());
+            while (executing) yield return null;
+
             StartCoroutine(MoveBackToOriginPosition());
             while (isMoving) yield return null;
 
             BattleHandler.performingAction = false;
         }
 
+        
+        // Gonna have to update this to account for multi-target attacks
         private IEnumerator RangedAttack()
         {
-            currentTarget = iUnitBase.CheckTargetStatus(false);
-            unit.currentDamage = DamageCalculator.CalculateAttackDamage(iUnitBase);
-            yield break;
+            currentTarget = unitBase.CheckTargetStatus(false);
+            unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase);
+
+            var originalRotation = unit.transform.rotation;
+            var lookAtPosition = currentTarget.transform.position;
+            
+            unit.transform.LookAt(lookAtPosition);
+            unit.transform.rotation *= Quaternion.FromToRotation(Vector3.right, Vector3.forward);
+
+            StartCoroutine(ExecuteAttack());
+            while (executing) yield return null;
+            
+            unit.transform.rotation = originalRotation;
+
+            BattleHandler.performingAction = false;
         }
     }
 }

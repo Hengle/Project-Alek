@@ -9,8 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fe0785f3733400495ac195eb98ba710, type: 3}
-  m_Name: Ooh Ala
+  m_Script: {fileID: 11500000, guid: 2407d836efeb419c811cc8d2bfd001dc, type: 3}
+  m_Name: Equalizer
   m_EditorClassIdentifier: 
-  actionCost: 6
-  targetOptions: 0
+  icon: {fileID: 0}
+  effectType: 3
+  rateOfInfliction: 3
+  color: {r: 0, g: 0, b: 0, a: 0}
+  duration: 1
+  buffedStats: 
+  debuffedStats: 0100000004000000

@@ -69,7 +69,7 @@ namespace BattleSystem
                 (battleGeneratorDatabase.boPanel.battlePanel, newPosition, rotation);
 
             character.battlePanel.transform.position = newPosition;
-            character.battlePanel.transform.SetParent(character.GetUnit().transform.parent, true);
+            character.battlePanel.transform.SetParent(character.unit.transform.parent, true);
 
             character.SetAbilityMenuOptions(battleGeneratorDatabase.boPanel);
             
@@ -87,7 +87,7 @@ namespace BattleSystem
 
             character.SetUnitGO(memberGo, slider, healthText, battleGeneratorDatabase.showDamageSO);
             SetupBattlePanel(character, i);
-            character.SetupUnit();
+            character.SetupUnit(character);
 
             InstantiateUnitPrefabs(character.unit);
             
@@ -117,7 +117,7 @@ namespace BattleSystem
                     partyMember.battlePanel.GetComponent<MenuController>().enemySelectable.Add(enemyGo);
 
                 enemy.SetUnitGO(enemyGo);
-                enemy.SetupUnit();
+                enemy.SetupUnit(enemy);
                 
                 InstantiateUnitPrefabs(enemy.unit);
 

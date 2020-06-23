@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Ugly Wizard
   m_EditorClassIdentifier: 
   scale: {x: 45, y: 45, z: 1}
+  characterPrefab: {fileID: 1109450531332189788, guid: 855eb21ea4a7ba14a850a0f6daae31c5,
+    type: 3}
+  icon: {fileID: 0}
+  id: 0
   characterName: Ugly Wizard
   description: ewww
   level: 40
@@ -20,10 +24,10 @@ MonoBehaviour:
   strength: 26
   magic: 35
   accuracy: 51
-  initiative: 17
+  initiative: 16
   defense: 12
+  resistance: 20
   criticalChance: 27
   maxAP: 6
-  characterPrefab: {fileID: 1109450531332189788, guid: 855eb21ea4a7ba14a850a0f6daae31c5,
-    type: 3}
   unit: {fileID: 0}
+  abilities: []

@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Skeleton
   m_EditorClassIdentifier: 
   scale: {x: 45, y: 45, z: 1}
+  characterPrefab: {fileID: 1109450531332189788, guid: 46c69567f6d4d924ca3cfc4c96675443,
+    type: 3}
+  icon: {fileID: 0}
+  id: 0
   characterName: Skeleton
   description: I mean, he's a...
   level: 36
@@ -22,8 +26,8 @@ MonoBehaviour:
   accuracy: 33
   initiative: 18
   defense: 12
+  resistance: 9
   criticalChance: 21
   maxAP: 6
-  characterPrefab: {fileID: 1109450531332189788, guid: 46c69567f6d4d924ca3cfc4c96675443,
-    type: 3}
   unit: {fileID: 0}
+  abilities: []

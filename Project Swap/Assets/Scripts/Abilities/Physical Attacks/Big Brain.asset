@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe0785f3733400495ac195eb98ba710, type: 3}
   m_Name: Big Brain
   m_EditorClassIdentifier: 
-  type: 0
+  abilityType: 0
+  damageType: 0
   actionCost: 1
   targetOptions: 0
   hasStatusEffect: 1
   statusEffect: {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
-  chanceOfInfliction: 0.6
+  chanceOfInfliction: 0.8
+  damageMultiplier: 1
   attackState: 2

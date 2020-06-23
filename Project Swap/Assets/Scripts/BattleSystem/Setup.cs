@@ -22,7 +22,7 @@ namespace BattleSystem
             }
         }
 
-        public void ThisPartyMember(PartyMember member, BattleGeneratorDatabase database, int index, GameObject memberGO)
+        /*public void ThisPartyMember(PartyMember member, BattleGeneratorDatabase database, int index, GameObject memberGO)
         {
             
         }
@@ -70,6 +70,6 @@ namespace BattleSystem
         public static void ThisEnemy()
         {
             
-        }
+        }*/
     }
 }

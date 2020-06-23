@@ -24,9 +24,9 @@ namespace BattleSystem
 
         public static List<Enemy> enemiesForThisBattle = new List<Enemy>();
         public static List<PartyMember> membersForThisBattle = new List<PartyMember>();
-        public static List<IUnitBase> membersAndEnemies = new List<IUnitBase>();
+        public static List<UnitBase> membersAndEnemies = new List<UnitBase>();
 
-        public static IUnitBase partyMemberWhoChoseSwap;
+        public static UnitBase partyMemberWhoChoseSwap;
         public static Unit partySwapTarget;
 
         public static bool
@@ -91,13 +91,13 @@ namespace BattleSystem
             {
                 if (allMembersDead || allEnemiesDead) break;
                 
-                foreach (var statusEffect in from statusEffect in character.GetUnit().statusEffects
+                foreach (var statusEffect in from statusEffect in character.unit.statusEffects
                     where statusEffect.rateOfInfliction == RateOfInfliction.EveryTurn 
-                    select statusEffect) statusEffect.InflictStatus(character.GetUnit());
+                    select statusEffect) statusEffect.InflictStatus(character.unit);
                 
                 if (allMembersDead || allEnemiesDead) break;
                 
-                StartCoroutine(character.GetUnit().id == 1 ? ThisPlayerTurn((PartyMember) character) : ThisEnemyTurn((Enemy) character));
+                StartCoroutine(character.unit.id == 1 ? ThisPlayerTurn((PartyMember) character) : ThisEnemyTurn((Enemy) character));
                 while (performingRound) yield return null;
             }
             
@@ -210,10 +210,10 @@ namespace BattleSystem
 
         private IEnumerator ExecuteSwap()
         {
-            if (partyMemberWhoChoseSwap != null && partyMemberWhoChoseSwap.GetUnit().isSwapping)
+            if (partyMemberWhoChoseSwap != null && partyMemberWhoChoseSwap.unit.isSwapping)
             {
                 performingSwap = true;
-                partyMemberWhoChoseSwap.GetUnit().currentTarget = partySwapTarget;
+                partyMemberWhoChoseSwap.unit.currentTarget = partySwapTarget;
                 partyMemberWhoChoseSwap.GiveCommand(true);
                 while (performingAction) yield return null;
             }
@@ -232,7 +232,7 @@ namespace BattleSystem
             Debug.Log("you lost idiot");
         }
 
-        public static void RemoveFromBattle(IUnitBase unit, int id)
+        public static void RemoveFromBattle(UnitBase unit, int id)
         {
             if (id == 0) enemiesForThisBattle.Remove((Enemy) unit);
             else membersForThisBattle.Remove((PartyMember) unit);

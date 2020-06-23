@@ -12,5 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c89647cb589c4c46adccd11c07fb607c, type: 3}
   m_Name: Range Boi
   m_EditorClassIdentifier: 
+  abilityType: 1
+  damageType: 0
   actionCost: 2
   targetOptions: 0
+  hasStatusEffect: 1
+  statusEffect: {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
+  chanceOfInfliction: 1
+  damageMultiplier: 1
+  attackState: 2

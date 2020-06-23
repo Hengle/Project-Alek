@@ -16,6 +16,7 @@ MonoBehaviour:
   characterPrefab: {fileID: 1526218485019349028, guid: 80fba7b309cffdf48b282c30d855c120,
     type: 3}
   icon: {fileID: 21300000, guid: a83bb160ff53f824c9630116d1ef997e, type: 3}
+  id: 1
   characterName: Bald Bruiser
   description: BAAALD
   level: 35
@@ -23,11 +24,13 @@ MonoBehaviour:
   strength: 24
   magic: 34
   accuracy: 66
-  initiative: 17
+  initiative: 20
   defense: 12
-  criticalChance: 24
+  resistance: 18
+  criticalChance: 4
   maxAP: 6
   unit: {fileID: 0}
-  abilities: []
+  abilities:
+  - {fileID: 11400000, guid: e558d404ab0ced340bb9314e1e677569, type: 2}
   positionInParty: 1
   battlePanel: {fileID: 0}

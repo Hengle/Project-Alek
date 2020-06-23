@@ -1431,7 +1431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partyMembers:
-  - {fileID: 11400000, guid: 16c0a33b5b556224684facafa2139eee, type: 2}
+  - {fileID: 11400000, guid: d6f9f6976ec82a845b32a3da08e83dad, type: 2}
   - {fileID: 11400000, guid: 373387c9350c0a44fb7b0f7a1b6fa996, type: 2}
   - {fileID: 11400000, guid: 1e24f5e3c257cec49bdf735f79ca53aa, type: 2}
   - {fileID: 11400000, guid: bce5c1264c07e43488e2ea4155308e40, type: 2}

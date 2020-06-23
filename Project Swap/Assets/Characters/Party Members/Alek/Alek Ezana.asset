@@ -16,6 +16,7 @@ MonoBehaviour:
   characterPrefab: {fileID: 1526218485019349028, guid: 38e223593cf5fd94cb9a317771507f77,
     type: 3}
   icon: {fileID: 21300000, guid: 93a66ee4446eb5741900a389e401cdb0, type: 3}
+  id: 1
   characterName: Alek Ezana
   description: 
   level: 37
@@ -25,10 +26,11 @@ MonoBehaviour:
   accuracy: 42
   initiative: 24
   defense: 16
-  criticalChance: 31
+  resistance: 9
+  criticalChance: 11
   maxAP: 6
   unit: {fileID: 0}
   abilities:
-  - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}
+  - {fileID: 11400000, guid: 6c09b3176a3b3e54ca0946ee458d3fa6, type: 2}
   positionInParty: 2
   battlePanel: {fileID: 0}

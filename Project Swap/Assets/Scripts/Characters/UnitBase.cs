@@ -11,6 +11,7 @@ namespace Characters
         public GameObject characterPrefab;
         public Sprite icon;
 
+        public int id; // change this to enum later
         public string characterName;
         [TextArea(5,15)] public string  description;
         [Range(0,99)] public int level;
@@ -20,16 +21,21 @@ namespace Characters
         [Range(0,99)] public int accuracy;
         [Range(0,99)] public int initiative;
         [Range(0,99)] public int defense;
+        [Range(0,99)] public int resistance;
         [Range(0,99)] public int criticalChance;
         
         [HideInInspector] public int maxAP = 6;
         [HideInInspector] public Unit unit;
         
         public List<Ability> abilities = new List<Ability>();
-        public int GetCriticalChance() { return unit.currentCrit; } // Probably can get rid of this function
-        public Unit GetUnit() { return unit; } // Probably can get rid of this function
-        public Animator GetAnimator() { return unit.spriteParentObject.GetComponentInChildren<Animator>(); }
-        public AnimationHandler GetAnimationHandler() { return unit.spriteParentObject.GetComponentInChildren<AnimationHandler>(); }
+        
+        public abstract void GiveCommand(bool isSwapping);
+
+        public Ability GetAndSetAbility(int index)
+        {
+            unit.currentAbility = abilities[index];
+            return abilities[index];
+        }
         
         public void ResetCommandsAndAP()
         {
@@ -59,6 +65,26 @@ namespace Characters
 
             if (isSwap) Debug.Log("Unable to execute swap because target is dead");
             return unit;
+        }
+        
+        public void SetupUnit(UnitBase reference)
+        {
+            unit.id = id;
+            unit.level = level;
+            unit.status = Status.Normal;
+            unit.unitName = characterName;
+            unit.nameText.text = characterName.ToUpper();
+            unit.CurrentHP = health;
+            unit.maxHealthRef = health;
+            unit.currentStrength = strength;
+            unit.currentMagic = magic;
+            unit.currentAccuracy = accuracy;
+            unit.currentInitiative = initiative;
+            unit.currentCrit = criticalChance;
+            unit.currentDefense = defense;
+            unit.currentResistance = resistance;
+            unit.currentAP = maxAP;
+            unit.unitRef = reference;
         }
     }
 }

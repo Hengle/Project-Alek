@@ -44,7 +44,7 @@ namespace Calculator
             // Keep track of the combined count for both lists
             var total = BattleHandler.membersForThisBattle.Count + BattleHandler.enemiesForThisBattle.Count;
 
-            BattleHandler.membersAndEnemies = new List<IUnitBase>();
+            BattleHandler.membersAndEnemies = new List<UnitBase>();
 
             while ((i + e) < total)
             {

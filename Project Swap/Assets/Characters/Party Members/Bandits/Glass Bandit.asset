@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Glass Bandit
   m_EditorClassIdentifier: 
   scale: {x: 48, y: 48, z: 0}
+  characterPrefab: {fileID: 1526218485019349028, guid: b123cb380acadd94a975f793161c50a0,
+    type: 3}
+  icon: {fileID: 21300008, guid: f2ed27d6c1c3ccc48959bcca269d88f0, type: 3}
+  id: 1
   characterName: Glass Bandit
   description: He hits hard.. til he dies
   level: 30
@@ -22,13 +26,11 @@ MonoBehaviour:
   accuracy: 26
   initiative: 19
   defense: 9
+  resistance: 0
   criticalChance: 55
   maxAP: 6
-  characterPrefab: {fileID: 1526218485019349028, guid: b123cb380acadd94a975f793161c50a0,
-    type: 3}
   unit: {fileID: 0}
-  icon: {fileID: 21300008, guid: f2ed27d6c1c3ccc48959bcca269d88f0, type: 3}
-  battlePanel: {fileID: 0}
-  positionInParty: 1
   abilities:
   - {fileID: 11400000, guid: 24d8040ab92bbdb419ea865e3fefa3ce, type: 2}
+  positionInParty: 1
+  battlePanel: {fileID: 0}

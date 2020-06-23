@@ -16,6 +16,7 @@ MonoBehaviour:
   characterPrefab: {fileID: 1526218485019349028, guid: 55418c9ff21905d4c9ac6a87a12001cb,
     type: 3}
   icon: {fileID: 21300000, guid: 9ffa2a80407c9364db839b73e127de83, type: 3}
+  id: 1
   characterName: Leandra
   description: 
   level: 38
@@ -25,7 +26,8 @@ MonoBehaviour:
   accuracy: 55
   initiative: 26
   defense: 13
-  criticalChance: 29
+  resistance: 6
+  criticalChance: 9
   maxAP: 6
   unit: {fileID: 0}
   abilities:

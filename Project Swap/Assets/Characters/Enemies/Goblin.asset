@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Goblin
   m_EditorClassIdentifier: 
   scale: {x: 50, y: 50, z: 1}
+  characterPrefab: {fileID: 1109450531332189788, guid: a8ec9d4fb47d1b241981a2a4e89f88f2,
+    type: 3}
+  icon: {fileID: 0}
+  id: 0
   characterName: Goblin
   description: What's a goon to a...
   level: 41
@@ -20,10 +24,10 @@ MonoBehaviour:
   strength: 35
   magic: 16
   accuracy: 52
-  initiative: 21
+  initiative: 23
   defense: 13
+  resistance: 7
   criticalChance: 30
   maxAP: 6
-  characterPrefab: {fileID: 1109450531332189788, guid: a8ec9d4fb47d1b241981a2a4e89f88f2,
-    type: 3}
   unit: {fileID: 0}
+  abilities: []

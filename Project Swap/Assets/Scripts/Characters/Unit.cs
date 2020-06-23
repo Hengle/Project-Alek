@@ -20,6 +20,7 @@ namespace Characters
     {
         [HideInInspector] public bool isSwapping;
         [HideInInspector] public bool isCrit;
+        [HideInInspector] public bool isAbility;
         [HideInInspector] public bool battlePanelIsSet;
 
         [HideInInspector] public TextMeshProUGUI healthText;
@@ -42,10 +43,11 @@ namespace Characters
         [HideInInspector] public Slider slider;
         [HideInInspector] public Animator actionPointAnim;
         [HideInInspector] public Animator anim;
+        [HideInInspector] public AnimationHandler animationHandler;
         [HideInInspector] public SpriteOutline outline;
         [HideInInspector] public Transform characterPanelRef;
         [HideInInspector] public ShowDamageSO showDamageSO;
-        [HideInInspector] public IUnitBase iUnitRef;
+        [HideInInspector] public UnitBase unitRef;
         [HideInInspector] public Unit currentTarget; // Might have to make list again. Did not think about how multi-target attacks will work;
         [HideInInspector] public Ability currentAbility;
         [HideInInspector] public Button button;
@@ -73,11 +75,11 @@ namespace Characters
         public int currentInitiative;
         public int currentCrit;
         public int currentDefense;
+        public int currentResistance;
         public int CurrentHP { set { currentHP = value; OnHpValueChanged(); } }
 
         public List<StatusEffect> statusEffects = new List<StatusEffect>();
-
-
+        
         public void RemoveStatusEffect(StatusEffect effect)
         {
             if (!(from statEffect in statusEffects where effect.name == statEffect.name select effect).Any()) return;
@@ -89,7 +91,7 @@ namespace Characters
         // These functions are called from the animator
         [UsedImplicitly] public void TryToInflictStatusEffect() { if (currentAbility.hasStatusEffect) InflictStatusEffect(currentAbility.statusEffect); }
         [UsedImplicitly] public void TargetTakeDamage() => currentTarget.TakeDamage(currentDamage, this,false);
-        [UsedImplicitly] public void RecalculateDamage() => currentDamage = DamageCalculator.CalculateAttackDamage(iUnitRef);
+        [UsedImplicitly] public void RecalculateDamage() => currentDamage = DamageCalculator.CalculateAttackDamage(unitRef);
 
         public void SetColor(Color color) => damageText.color = color;
 
@@ -130,6 +132,8 @@ namespace Characters
             anim = GetComponent<Animator>();
             outline = GetComponent<SpriteOutline>();
             button = GetComponent<Button>();
+            animationHandler = GetComponent<AnimationHandler>();
+            
             currentColor = Color.green;
             outline.enabled = false;
             nameText.renderer.enabled = false;
@@ -183,7 +187,7 @@ namespace Characters
         private IEnumerator Die()
         {
             statusEffects = new List<StatusEffect>();
-            BattleHandler.RemoveFromBattle(iUnitRef, id);
+            BattleHandler.RemoveFromBattle(unitRef, id);
             anim.SetBool(AnimationHandler.DeathTrigger, true);
             status = Status.Dead;
 

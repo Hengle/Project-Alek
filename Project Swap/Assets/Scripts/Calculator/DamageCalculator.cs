@@ -1,25 +1,47 @@
-﻿using Animations;
+﻿using System;
+using Abilities;
+using Animations;
 using Characters;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Calculator
 {
     public static class DamageCalculator
     {
         // Make this the base function that is called for everything and delegate to correct function based on action type
-        public static int CalculateAttackDamage(IUnitBase damageDealer)
+        public static int CalculateAttackDamage(UnitBase damageDealer)
         {
-            var dealerUnit = damageDealer.GetUnit();
-            var targetUnit = dealerUnit.currentTarget;
+            var dealerUnit = damageDealer.unit;
+            var targetUnit = damageDealer.unit.currentTarget;
+            if (damageDealer.unit == targetUnit) return 0;
 
-            if (dealerUnit == targetUnit) return 0;
+            float dealerDamage = 0;
+            int targetDefense = 0;
             
-            // This needs to be changed so that it calls a function on the units that returns what stat is supposed to be used to determine damage
-            var dealerDamage = dealerUnit.currentStrength * dealerUnit.weaponMT;
-            // Needs to be changed to check what type of damage is being applied and set targetDefense to a function call that determines stats to use
-            var targetDefense = targetUnit.currentDefense * (targetUnit.level / 2);
-            
-            var totalDamage = dealerDamage - targetDefense;
+            if (damageDealer.unit.isAbility)
+            {
+                switch (damageDealer.unit.currentAbility.damageType)
+                {
+                    case DamageType.Str:
+                        dealerDamage = dealerUnit.currentStrength * dealerUnit.weaponMT * dealerUnit.currentAbility.damageMultiplier;
+                        targetDefense = targetUnit.currentDefense * (targetUnit.level / 2);
+                        break;
+                    
+                    case DamageType.Mag: 
+                        dealerDamage = dealerUnit.currentMagic * dealerUnit.weaponMT * dealerUnit.currentAbility.damageMultiplier;
+                        targetDefense = targetUnit.currentResistance * (targetUnit.level / 2);
+                        break;
+                }
+            }
+
+            else
+            {
+                dealerDamage = dealerUnit.currentStrength * dealerUnit.weaponMT;
+                targetDefense = targetUnit.currentDefense * (targetUnit.level / 2);
+            }
+
+            var totalDamage = (int) dealerDamage - targetDefense;
 
             var critical = CalculateCritChance(damageDealer);
             if (!critical) return totalDamage < 0 ? 0 : Random.Range((int) (0.95f * totalDamage), (int) (1.05f * totalDamage));
@@ -30,10 +52,10 @@ namespace Calculator
 
             return totalDamage < 0 ? 0 : Random.Range((int)(0.95f * totalDamage), (int)(1.05f * totalDamage));
         }
-
-        private static bool CalculateCritChance(IUnitBase damageDealer)
+        
+        private static bool CalculateCritChance(UnitBase damageDealer)
         {
-            var critChance = (float) damageDealer.GetCriticalChance() / 100;
+            var critChance = (float) damageDealer.unit.currentCrit / 100;
             var randomValue = Random.value;
 
             return randomValue <= critChance;

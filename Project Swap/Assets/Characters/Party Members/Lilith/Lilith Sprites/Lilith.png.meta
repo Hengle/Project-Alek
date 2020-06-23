@@ -1,0 +1,1271 @@
+fileFormatVersion: 2
+guid: 8a1a271f01f1d47449080e654d7ec44b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4086712470370239071
+    second: Lilith_Idle_0
+  - first:
+      213: 1347898597378612322
+    second: Lilith_Idle_1
+  - first:
+      213: 5042779848621159768
+    second: Lilith_Idle_2
+  - first:
+      213: 1368847300311692791
+    second: Lilith_Idle_3
+  - first:
+      213: 8003516623816356271
+    second: Lilith_Idle_4
+  - first:
+      213: -8668504712326042304
+    second: Lilith_Idle_5
+  - first:
+      213: 3264103807168742580
+    second: Lilith_Idle_6
+  - first:
+      213: 8716956004214370564
+    second: Lilith_Idle_7
+  - first:
+      213: -9162974247747474189
+    second: Lilith_Idle_8
+  - first:
+      213: -2377940115423729652
+    second: Lilith_Idle_9
+  - first:
+      213: 6043695664611590250
+    second: Lilith_Attack_0
+  - first:
+      213: 8411376850941335540
+    second: Lilith_Attack_1
+  - first:
+      213: -5154203946887131724
+    second: Lilith_Attack_2
+  - first:
+      213: 1871993086628189392
+    second: Lilith_13
+  - first:
+      213: 1323051416596807354
+    second: Lilith_Attack_3
+  - first:
+      213: -5452476400514035574
+    second: Lilith_Attack_4
+  - first:
+      213: -1929024797490712859
+    second: Lilith_Attack_5
+  - first:
+      213: 8953740447381444975
+    second: Lilith_17
+  - first:
+      213: 6758941911727128651
+    second: Lilith_18
+  - first:
+      213: -4939340232784700212
+    second: Lilith_Crit_0
+  - first:
+      213: 3784319451267404897
+    second: Lilith_Crit_1
+  - first:
+      213: -4798285467274941797
+    second: Lilith_Crit_2
+  - first:
+      213: 670126138820601265
+    second: Lilith_Crit_3
+  - first:
+      213: -1404713513712501450
+    second: Lilith_Crit_4
+  - first:
+      213: -911497211812941605
+    second: Lilith_Crit_5
+  - first:
+      213: -4072954937382466167
+    second: Lilith_Crit_6
+  - first:
+      213: 3892783455171605793
+    second: Lilith_Gun_0
+  - first:
+      213: -8242042333785811991
+    second: Lilith_Gun_1
+  - first:
+      213: -3204017188167820954
+    second: Lilith_Gun_2
+  - first:
+      213: 3441949235538047099
+    second: Lilith_Gun_3
+  - first:
+      213: 4079753145555027467
+    second: Lilith_Gun_4
+  - first:
+      213: 5777503355249227937
+    second: Lilith_Gun_5
+  - first:
+      213: -4158982559212682242
+    second: Lilith_32
+  - first:
+      213: 2307825210497352570
+    second: Lilith_Gun_6
+  - first:
+      213: -2536825928556477876
+    second: Lilith_Gun_7
+  - first:
+      213: 407395863354067570
+    second: Lilith_Gun_8
+  - first:
+      213: -7871880562465930676
+    second: Lilith_Hurt_0
+  - first:
+      213: 3039292449508872011
+    second: Lilith_Hurt_1
+  - first:
+      213: 8768916892488552897
+    second: Lilith_Hurt_2
+  - first:
+      213: 2300142469211999398
+    second: Lilith_Hurt_3
+  - first:
+      213: -107360603567076711
+    second: Lilith_Death_0
+  - first:
+      213: -5461362865111144724
+    second: Lilith_Death_1
+  - first:
+      213: 8640709372074376611
+    second: Lilith_42
+  - first:
+      213: 4825473844433130350
+    second: Lilith_Death_2
+  - first:
+      213: 821784042002217528
+    second: Lilith_Death_3
+  - first:
+      213: -4461540024180749465
+    second: Lilith_Death_4
+  - first:
+      213: 7989691381299458549
+    second: Lilith_Death_5
+  - first:
+      213: 5436184230026464129
+    second: Lilith_Death_6
+  - first:
+      213: -4037622990684110299
+    second: Lilith_Death_7
+  - first:
+      213: 5935008780280161570
+    second: Lilith_Death_8
+  - first:
+      213: 6351762781368567080
+    second: Lilith_Death_9
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 2
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Lilith_Idle_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 329
+        width: 26
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f52c397e65be6b830800000000000000
+      internalID: 4086712470370239071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Idle_1
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 329
+        width: 26
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26cdff102a2b4b210800000000000000
+      internalID: 1347898597378612322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Idle_2
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 329
+        width: 26
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 855ff85fd8d8bf540800000000000000
+      internalID: 5042779848621159768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Idle_3
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 329
+        width: 24
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f5b4defd5f1ff210800000000000000
+      internalID: 1368847300311692791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Idle_4
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 329
+        width: 23
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa1f18407f3321f60800000000000000
+      internalID: 8003516623816356271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Idle_5
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 329
+        width: 22
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04da10054e843b780800000000000000
+      internalID: -8668504712326042304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Idle_6
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 329
+        width: 22
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b40b406e1d6c4d20800000000000000
+      internalID: 3264103807168742580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Idle_7
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 329
+        width: 22
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 401f7e92d49d8f870800000000000000
+      internalID: 8716956004214370564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Idle_8
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 329
+        width: 23
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fca5fc187396d080800000000000000
+      internalID: -9162974247747474189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Idle_9
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 329
+        width: 24
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c08640b501cdffed0800000000000000
+      internalID: -2377940115423729652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Attack_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 265
+        width: 28
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a600eb3af258fd350800000000000000
+      internalID: 6043695664611590250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Attack_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 265
+        width: 29
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f75d483ea63bb470800000000000000
+      internalID: 8411376850941335540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Attack_2
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 265
+        width: 28
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bd40e581d69878b0800000000000000
+      internalID: -5154203946887131724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Attack_3
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 265
+        width: 28
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abe74d9e04c6c5210800000000000000
+      internalID: 1323051416596807354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Attack_4
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 265
+        width: 23
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8019292a99e454b0800000000000000
+      internalID: -5452476400514035574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Attack_5
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 265
+        width: 26
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ee65a6ca2aba35e0800000000000000
+      internalID: -1929024797490712859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Crit_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 201
+        width: 28
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccc92106a30f37bb0800000000000000
+      internalID: -4939340232784700212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Crit_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 201
+        width: 29
+        height: 45
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1641561ad7a948430800000000000000
+      internalID: 3784319451267404897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Crit_2
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 201
+        width: 30
+        height: 47
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9a68283ac0196db0800000000000000
+      internalID: -4798285467274941797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Crit_3
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 201
+        width: 30
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b52b1b3c24cc4900800000000000000
+      internalID: 670126138820601265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Crit_4
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 201
+        width: 37
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63db9f37084718ce0800000000000000
+      internalID: -1404713513712501450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Crit_5
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 201
+        width: 36
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd0712c7d16b953f0800000000000000
+      internalID: -911497211812941605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Crit_6
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 201
+        width: 31
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98d052b5015f977c0800000000000000
+      internalID: -4072954937382466167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Gun_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 137
+        width: 28
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12575097de1f50630800000000000000
+      internalID: 3892783455171605793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Gun_1
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 137
+        width: 38
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e317f66a226e9d80800000000000000
+      internalID: -8242042333785811991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Gun_2
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 137
+        width: 40
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 669d20dc75b0983d0800000000000000
+      internalID: -3204017188167820954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Gun_3
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 137
+        width: 40
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b703c2fe79244cf20800000000000000
+      internalID: 3441949235538047099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Gun_4
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 137
+        width: 51
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b060714ded13e9830800000000000000
+      internalID: 4079753145555027467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Gun_5
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 137
+        width: 47
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a8f14ae0b0dd2050800000000000000
+      internalID: 5777503355249227937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Gun_6
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 137
+        width: 46
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a73c2633dca070020800000000000000
+      internalID: 2307825210497352570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Gun_7
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 137
+        width: 28
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c42046732426bccd0800000000000000
+      internalID: -2536825928556477876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Gun_8
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 137
+        width: 28
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27ace26116c57a500800000000000000
+      internalID: 407395863354067570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Hurt_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 73
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c428aefd55671c290800000000000000
+      internalID: -7871880562465930676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Hurt_1
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 73
+        width: 22
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4fc085416cbd2a20800000000000000
+      internalID: 3039292449508872011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Hurt_2
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 73
+        width: 23
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c1d3b9347371b970800000000000000
+      internalID: 8768916892488552897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Hurt_3
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 73
+        width: 26
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6accb2a936fbbef10800000000000000
+      internalID: 2300142469211999398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Death_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 9
+        width: 28
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99a43819914928ef0800000000000000
+      internalID: -107360603567076711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Death_1
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 9
+        width: 31
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce66a83e8675534b0800000000000000
+      internalID: -5461362865111144724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Death_2
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 9
+        width: 33
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e63106225e687f240800000000000000
+      internalID: 4825473844433130350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Death_3
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 8
+        width: 35
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83a70a17b30976b00800000000000000
+      internalID: 821784042002217528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Death_4
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 9
+        width: 35
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76bc48b7cfc6512c0800000000000000
+      internalID: -4461540024180749465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Death_5
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 7
+        width: 36
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f1ba57eaf511ee60800000000000000
+      internalID: 7989691381299458549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Death_6
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 7
+        width: 41
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18bce4c41c4317b40800000000000000
+      internalID: 5436184230026464129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Death_7
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 7
+        width: 46
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 522c25f384b77f7c0800000000000000
+      internalID: -4037622990684110299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Death_8
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 7
+        width: 46
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2256c676a036d5250800000000000000
+      internalID: 5935008780280161570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Death_9
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 7
+        width: 46
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8254509b89ef52850800000000000000
+      internalID: 6351762781368567080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 989e33f72776a8c46a750df27e4e70aa
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

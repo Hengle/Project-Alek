@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Booty Bandit
   m_EditorClassIdentifier: 
   scale: {x: 52, y: 52, z: 0}
+  characterPrefab: {fileID: 1526218485019349028, guid: 0a959e7dcdfb2a14485d8d29d933b392,
+    type: 3}
+  icon: {fileID: 21300008, guid: 317b8365a4649ab459f6cb58ec8f9f18, type: 3}
+  id: 1
   characterName: Booty Bandit
   description: He wants da booty
   level: 31
@@ -22,14 +26,12 @@ MonoBehaviour:
   accuracy: 29
   initiative: 18
   defense: 11
+  resistance: 0
   criticalChance: 40
   maxAP: 6
-  characterPrefab: {fileID: 1526218485019349028, guid: 0a959e7dcdfb2a14485d8d29d933b392,
-    type: 3}
   unit: {fileID: 0}
-  icon: {fileID: 21300008, guid: 317b8365a4649ab459f6cb58ec8f9f18, type: 3}
-  battlePanel: {fileID: 0}
-  positionInParty: 1
   abilities:
   - {fileID: 11400000, guid: c957cd31b21e04e49b65806efd6ba04e, type: 2}
   - {fileID: 11400000, guid: 6c09b3176a3b3e54ca0946ee458d3fa6, type: 2}
+  positionInParty: 1
+  battlePanel: {fileID: 0}
