@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 1
   damageType: 0
+  description: THE RANGE THO (2 AP)
   actionCost: 2
   targetOptions: 0
   hasStatusEffect: 1
   statusEffect: {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
   chanceOfInfliction: 1
-  damageMultiplier: 1
+  damageMultiplier: 1.5
   attackState: 2
+  lookAtTarget: 1

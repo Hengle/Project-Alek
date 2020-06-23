@@ -1433,7 +1433,7 @@ MonoBehaviour:
   partyMembers:
   - {fileID: 11400000, guid: d6f9f6976ec82a845b32a3da08e83dad, type: 2}
   - {fileID: 11400000, guid: 373387c9350c0a44fb7b0f7a1b6fa996, type: 2}
-  - {fileID: 11400000, guid: 1e24f5e3c257cec49bdf735f79ca53aa, type: 2}
+  - {fileID: 11400000, guid: 16c0a33b5b556224684facafa2139eee, type: 2}
   - {fileID: 11400000, guid: bce5c1264c07e43488e2ea4155308e40, type: 2}
 --- !u!4 &1224894415
 Transform:
@@ -5429,6 +5429,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7759989855378840408, guid: 8caa1144b0ef0a940b1e21274cc4472c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Canvas
+      objectReference: {fileID: 0}
     - target: {fileID: 7759989855378840412, guid: 8caa1144b0ef0a940b1e21274cc4472c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5880,6 +5885,31 @@ PrefabInstance:
     - target: {fileID: 7896484268295193783, guid: 8caa1144b0ef0a940b1e21274cc4472c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934561053514339551, guid: 8caa1144b0ef0a940b1e21274cc4472c,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934561053514339551, guid: 8caa1144b0ef0a940b1e21274cc4472c,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934561053514339551, guid: 8caa1144b0ef0a940b1e21274cc4472c,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934561053514339551, guid: 8caa1144b0ef0a940b1e21274cc4472c,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934561053514339551, guid: 8caa1144b0ef0a940b1e21274cc4472c,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8140486071367021338, guid: 8caa1144b0ef0a940b1e21274cc4472c,

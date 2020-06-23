@@ -41,6 +41,7 @@ namespace Characters
                 
                 var param = abilities[abilityListIndex].GetParameters(abilityListIndex);
                 optionButton.GetComponent<Button>().onClick.AddListener(delegate { battleOptionsPanel.GetCommandInformation(param); });
+                optionButton.GetComponent<InfoBoxScript>().information = abilities[abilityListIndex].description;
                 abilityListIndex++;
             }
         }

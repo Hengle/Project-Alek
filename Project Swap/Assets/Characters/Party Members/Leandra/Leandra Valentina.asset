@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4760f1c8fd2d6214986da2731bc0ab7b, type: 3}
   m_Name: Leandra Valentina
   m_EditorClassIdentifier: 
-  scale: {x: 50, y: 50, z: 1}
+  scale: {x: 50, y: 55, z: 1}
   characterPrefab: {fileID: 1526218485019349028, guid: 55418c9ff21905d4c9ac6a87a12001cb,
     type: 3}
   icon: {fileID: 21300000, guid: 9ffa2a80407c9364db839b73e127de83, type: 3}
   id: 1
-  characterName: Leandra
+  characterName: Leandra Valentina
   description: 
   level: 38
   health: 3370

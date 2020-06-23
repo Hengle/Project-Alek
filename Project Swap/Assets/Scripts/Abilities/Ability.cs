@@ -10,6 +10,7 @@ namespace Abilities
     {
         public AbilityType abilityType;
         public DamageType damageType;
+        [TextArea(5,15)] public string  description = "Insert description for this ability";
         [Range(0, 6)] public int actionCost;
         [Tooltip("0 = Enemy, 1 = Party Member, 2 = All")]    
         [Range(0, 2)] public int targetOptions;

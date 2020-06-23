@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 0
   damageType: 1
+  description: You got the juice?? (1 AP)
   actionCost: 1
   targetOptions: 0
   hasStatusEffect: 1

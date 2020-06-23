@@ -32,5 +32,6 @@ MonoBehaviour:
   unit: {fileID: 0}
   abilities:
   - {fileID: 11400000, guid: 8e151e58900d509469c607fa4066a172, type: 2}
+  - {fileID: 11400000, guid: c957cd31b21e04e49b65806efd6ba04e, type: 2}
   positionInParty: 4
   battlePanel: {fileID: 0}

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 0
   damageType: 1
+  description: OoOoH MaAgic (3 AP)
   actionCost: 3
   targetOptions: 0
   hasStatusEffect: 1

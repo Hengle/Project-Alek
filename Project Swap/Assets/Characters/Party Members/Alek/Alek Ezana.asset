@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4760f1c8fd2d6214986da2731bc0ab7b, type: 3}
   m_Name: Alek Ezana
   m_EditorClassIdentifier: 
-  scale: {x: 50, y: 50, z: 1}
+  scale: {x: 55, y: 55, z: 1}
   characterPrefab: {fileID: 1526218485019349028, guid: 38e223593cf5fd94cb9a317771507f77,
     type: 3}
   icon: {fileID: 21300000, guid: 93a66ee4446eb5741900a389e401cdb0, type: 3}

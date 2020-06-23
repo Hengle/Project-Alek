@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 0
   damageType: 0
+  description: Attack twice at 75% strength (3 AP)
   actionCost: 3
   targetOptions: 0
   hasStatusEffect: 0

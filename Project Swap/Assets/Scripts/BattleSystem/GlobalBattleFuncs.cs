@@ -133,7 +133,7 @@ namespace BattleSystem
                     
             currentTarget = currentSwapTarget;
             unit.currentTarget = currentSwapTarget;
-            // Need way to know what attack is being used to call the right calculate function upon swap
+
             unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase);
         }
 
@@ -275,12 +275,16 @@ namespace BattleSystem
         {
             currentTarget = unitBase.CheckTargetStatus(false);
             unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase);
-
+            
             var originalRotation = unit.transform.rotation;
             var lookAtPosition = currentTarget.transform.position;
-            
-            unit.transform.LookAt(lookAtPosition);
-            unit.transform.rotation *= Quaternion.FromToRotation(Vector3.right, Vector3.forward);
+
+            var rangeAbility = (RangedAttack) ability;
+            if (rangeAbility.lookAtTarget) 
+            {
+                unit.transform.LookAt(lookAtPosition);
+                unit.transform.rotation *= Quaternion.FromToRotation(Vector3.right, Vector3.forward); 
+            }
 
             StartCoroutine(ExecuteAttack());
             while (executing) yield return null;
