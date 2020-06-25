@@ -33,7 +33,7 @@ namespace Characters
 
         public Ability GetAndSetAbility(int index)
         {
-            unit.currentAbility = abilities[index];
+            //unit.currentAbility = abilities[index]; // redundant??
             return abilities[index];
         }
         
@@ -60,11 +60,7 @@ namespace Characters
         
         public Unit CheckTargetStatus(bool isSwap)
         {
-            if (unit.currentTarget.status != Status.Dead)
-                return unit.currentTarget;
-
-            if (isSwap) Debug.Log("Unable to execute swap because target is dead");
-            return unit;
+            return unit.currentTarget.status != Status.Dead ? unit.currentTarget : unit;
         }
         
         public void SetupUnit(UnitBase reference)
@@ -73,9 +69,9 @@ namespace Characters
             unit.level = level;
             unit.status = Status.Normal;
             unit.unitName = characterName;
-            unit.nameText.text = characterName.ToUpper();
-            unit.CurrentHP = health;
+            //unit.nameText.text = characterName.ToUpper();
             unit.maxHealthRef = health;
+            unit.CurrentHP = health;
             unit.currentStrength = strength;
             unit.currentMagic = magic;
             unit.currentAccuracy = accuracy;

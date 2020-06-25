@@ -30,4 +30,6 @@ MonoBehaviour:
   criticalChance: 30
   maxAP: 6
   unit: {fileID: 0}
-  abilities: []
+  abilities:
+  - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}
+  - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}

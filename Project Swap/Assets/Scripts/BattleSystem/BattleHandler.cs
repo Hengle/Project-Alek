@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using System.Linq;
 using Calculator;
 using Characters;
 using Animations;
+using BattleSystem.Generator;
+using Characters.PartyMembers;
 using StatusEffects;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 
 namespace BattleSystem
@@ -49,8 +49,8 @@ namespace BattleSystem
         private Camera cam;
         
         private bool canPressBack;
-        private bool performingSwap;
         private bool performingRound;
+        private bool performingSwap;
         
         private int roundCount; // use this for bonuses based on how many rounds it took
 
@@ -92,8 +92,13 @@ namespace BattleSystem
                 if (allMembersDead || allEnemiesDead) break;
                 
                 foreach (var statusEffect in from statusEffect in character.unit.statusEffects
-                    where statusEffect.rateOfInfliction == RateOfInfliction.EveryTurn 
-                    select statusEffect) statusEffect.InflictStatus(character.unit);
+                    where statusEffect.rateOfInfliction.Contains(RateOfInfliction.EveryTurn)
+                    select statusEffect)
+                {
+                    statusEffect.InflictStatus(character.unit);
+                    yield return new WaitForSeconds(1);
+                    if (character.unit.status == Status.Dead) break;
+                }
                 
                 if (allMembersDead || allEnemiesDead) break;
                 
@@ -104,8 +109,8 @@ namespace BattleSystem
             if (allEnemiesDead) state = BattleState.Won;
             else if (allMembersDead) state = BattleState.Lost;
 
-            StartCoroutine(ExecuteSwap());
-            while (performingSwap) yield return null;
+            // StartCoroutine(ExecuteSwap());
+            // while (performingSwap) yield return null;
 
             switch (state)
             {
@@ -167,10 +172,14 @@ namespace BattleSystem
             while (performingAction) yield return null;
 
             character.ResetAnimationStates();
-            
+
             foreach (var statusEffect in from statusEffect in character.unit.statusEffects
-                where statusEffect.rateOfInfliction == RateOfInfliction.EveryAction
-                select statusEffect) statusEffect.InflictStatus(character.unit);
+                where statusEffect.rateOfInfliction.Contains(RateOfInfliction.EveryAction)
+                select statusEffect)
+            {
+                statusEffect.InflictStatus(character.unit);
+                yield return new WaitForSeconds(1);
+            }
             
             if (allMembersDead || allEnemiesDead || character.unit.status == Status.Dead) { performingRound = false; yield break; }
             if (character.unit.currentAP > 0) goto main_menu;
@@ -185,18 +194,21 @@ namespace BattleSystem
 
             while (enemy.unit.currentAP > 0)
             {
-                yield return new WaitUntil(enemy.SetAI);
-                
+                if (enemy.unit.status == Status.Dead) break;
+
+                var shouldAttack = enemy.SetAI();
+                if (!shouldAttack) break;
+
                 enemy.unit.currentAP -= enemy.unit.actionCost;
-                
+
                 enemy.GiveCommand(false);
                 while (performingAction) yield return null;
 
                 foreach (var statusEffect in from statusEffect in enemy.unit.statusEffects
-                    where statusEffect.rateOfInfliction == RateOfInfliction.EveryAction select statusEffect)
+                    where statusEffect.rateOfInfliction.Contains(RateOfInfliction.EveryAction) select statusEffect)
                 {
                     statusEffect.InflictStatus(enemy.unit);
-                    yield return new WaitForSeconds(1.5f);
+                    yield return new WaitForSeconds(1f);
                     if (enemy.unit.status == Status.Dead) break;
                 }
                 
@@ -208,15 +220,18 @@ namespace BattleSystem
             performingRound = false;
         }
 
-        private IEnumerator ExecuteSwap()
+        private IEnumerator ExecuteSwap() // Needs to be fixed
         {
+            performingSwap = true;
+            
             if (partyMemberWhoChoseSwap != null && partyMemberWhoChoseSwap.unit.isSwapping)
             {
-                performingSwap = true;
+                partyMemberWhoChoseSwap.unit.isSwapping = false;
                 partyMemberWhoChoseSwap.unit.currentTarget = partySwapTarget;
                 partyMemberWhoChoseSwap.GiveCommand(true);
                 while (performingAction) yield return null;
             }
+            
             performingSwap = false;
         }
 

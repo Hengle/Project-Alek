@@ -121,21 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a35d465435e2d2478d6cc7424f3de5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSwapping: 0
-  isCrit: 0
-  battlePanelIsSet: 0
   healthText: {fileID: 0}
   nameText: {fileID: 1908044061140127015, guid: fad630881272faf49b87a7d24300b057,
     type: 3}
-  damageText: {fileID: 0}
-  damageText2: {fileID: 0}
-  critDamageText: {fileID: 0}
-  critDamageText2: {fileID: 0}
   spriteParentObject: {fileID: 0}
-  damagePrefab: {fileID: 0}
-  damagePrefab2: {fileID: 0}
-  critDamagePrefab: {fileID: 0}
-  critDamagePrefab2: {fileID: 0}
   closeUpCam: {fileID: 0}
   closeUpCamCrit: {fileID: 0}
   battlePanelRef: {fileID: 0}
@@ -143,11 +132,18 @@ MonoBehaviour:
   slider: {fileID: 0}
   actionPointAnim: {fileID: 0}
   anim: {fileID: 0}
+  animationHandler: {fileID: 0}
   outline: {fileID: 0}
   characterPanelRef: {fileID: 0}
-  showDamageSO: {fileID: 11400000, guid: 087577be0da3dae499973e25a8d88b04, type: 2}
+  unitRef: {fileID: 0}
   currentTarget: {fileID: 0}
   currentAbility: {fileID: 0}
+  button: {fileID: 0}
+  fillRect: {fileID: 0}
+  isSwapping: 0
+  isCrit: 0
+  isAbility: 0
+  battlePanelIsSet: 0
   id: 1
   maxHealthRef: 1750
   commandActionOption: 0
@@ -158,16 +154,16 @@ MonoBehaviour:
   commandActionName: 
   unitName: 
   status: 0
-  level: 19
-  currentHP: 1750
-  currentStrength: 60
-  currentMagic: 60
-  currentAccuracy: 60
-  currentInitiative: 6
+  level: 0
+  currentHP: 0
+  currentStrength: 0
+  currentMagic: 0
+  currentAccuracy: 0
+  currentInitiative: 0
   currentCrit: 0
-  currentDefense: 60
+  currentDefense: 0
+  currentResistance: 0
   statusEffects: []
-  button: {fileID: 0}
 --- !u!114 &4243244753647906
 MonoBehaviour:
   m_ObjectHideFlags: 0

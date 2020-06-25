@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   effectType: 3
-  rateOfInfliction: 3
+  rateOfInfliction: 
   color: {r: 0, g: 0, b: 0, a: 0}
   duration: 1
+  buffMultiplier: 0
+  debuffMultiplier: 1
   buffedStats: 
   debuffedStats: 0100000004000000

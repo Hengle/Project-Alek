@@ -1,21 +1,19 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Characters;
 
 [ExecuteInEditMode]
-public class SpriteOutline : MonoBehaviour {
-    [HideInInspector]
-    public Color color = Color.green;
+public class SpriteOutline : MonoBehaviour
+{
+    public Color color;
 
     [Range(0, 16)]
     public float outlineSize = 6.5f;
 
     private SpriteRenderer spriteRenderer;
-    private Unit unit;
 
     void OnEnable() {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        unit = GetComponent<Unit>();
-
         UpdateOutline(true);
     }
 
@@ -27,7 +25,7 @@ public class SpriteOutline : MonoBehaviour {
         MaterialPropertyBlock mpb = new MaterialPropertyBlock();
         spriteRenderer.GetPropertyBlock(mpb);
         mpb.SetFloat("_Outline", outline ? 1f : 0);
-        mpb.SetColor("_OutlineColor", unit.currentColor);
+        mpb.SetColor("_OutlineColor", color); // probably need to change this for objects that are not units
         mpb.SetFloat("_OutlineSize", outlineSize);
         spriteRenderer.SetPropertyBlock(mpb);
     }

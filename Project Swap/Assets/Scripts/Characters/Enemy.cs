@@ -16,14 +16,18 @@ namespace Characters
         
         public bool SetAI()
         {
-            var rand = Random.Range(0, BattleHandler.membersForThisBattle.Count);
+            if (unit.currentAP <= 2) return false;
+            
+            var rand = Random.Range(0, BattleHandler.membersForThisBattle.Count); // Inclusive apparently
             unit.currentTarget = BattleHandler.membersForThisBattle[rand].unit;
-            unit.commandActionName = "UniversalAction";
-            unit.commandActionOption = 1;
-            // When I add abilities / more options to enemies, set AI to check cost and if it can use ability
-            unit.actionCost = 2;
 
-            return true;
+            rand = Random.Range(0, abilities.Count);
+            unit.commandActionName = rand < abilities.Count ? "AbilityAction" : "UniversalAction";
+            unit.commandActionOption = rand < abilities.Count ? rand : 1;
+            unit.actionCost = rand < abilities.Count ? abilities[rand].actionCost : 2;
+
+            // Will need to update to try to find an attack that does cost less
+            return unit.currentAP - unit.actionCost >= 0;
         }
 
         public void SetUnitGO(GameObject enemyGO) => unit = enemyGO.GetComponent<Unit>();

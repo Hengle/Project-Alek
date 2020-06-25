@@ -15,10 +15,10 @@ MonoBehaviour:
   abilityType: 0
   damageType: 0
   description: Big Brain plays (1 AP)
-  actionCost: 1
+  actionCost: 3
   targetOptions: 0
   hasStatusEffect: 1
   statusEffect: {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
-  chanceOfInfliction: 0.8
+  chanceOfInfliction: 1
   damageMultiplier: 1
   attackState: 2

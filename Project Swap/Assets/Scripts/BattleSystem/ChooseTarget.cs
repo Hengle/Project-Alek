@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using Characters;
-using UnityEngine.InputSystem;
+using Characters.PartyMembers;
 
-// Attach this script to all enemies and party members
 namespace BattleSystem
 {
     public class ChooseTarget : MonoBehaviour

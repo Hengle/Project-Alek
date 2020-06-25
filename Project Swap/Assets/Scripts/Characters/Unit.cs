@@ -4,11 +4,11 @@ using System.Linq;
 using Abilities;
 using Animations;
 using BattleSystem;
+using BattleSystem.DamagePrefab;
 using Calculator;
 using JetBrains.Annotations;
 using StatusEffects;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -18,27 +18,13 @@ namespace Characters
     public enum Status { Normal, Dead }
     public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
     {
-        [HideInInspector] public bool isSwapping;
-        [HideInInspector] public bool isCrit;
-        [HideInInspector] public bool isAbility;
-        [HideInInspector] public bool battlePanelIsSet;
-
         [HideInInspector] public TextMeshProUGUI healthText;
         [HideInInspector] public TextMeshPro nameText;
-        [HideInInspector] public TextMeshPro damageText;
-        [HideInInspector] public TextMeshPro damageText2;
-        [HideInInspector] public TextMeshPro critDamageText;
-        [HideInInspector] public TextMeshPro critDamageText2;
 
         [HideInInspector] public GameObject spriteParentObject;
-        [HideInInspector] public GameObject damagePrefab;
-        [HideInInspector] public GameObject damagePrefab2;
-        [HideInInspector] public GameObject critDamagePrefab;
-        [HideInInspector] public GameObject critDamagePrefab2;
         [HideInInspector] public GameObject closeUpCam;
         [HideInInspector] public GameObject closeUpCamCrit;
         [HideInInspector] public GameObject battlePanelRef;
-        [HideInInspector] public GameObject statusEffectGO;
 
         [HideInInspector] public Slider slider;
         [HideInInspector] public Animator actionPointAnim;
@@ -46,13 +32,17 @@ namespace Characters
         [HideInInspector] public AnimationHandler animationHandler;
         [HideInInspector] public SpriteOutline outline;
         [HideInInspector] public Transform characterPanelRef;
-        [HideInInspector] public ShowDamageSO showDamageSO;
+        public Transform statusBox;
         [HideInInspector] public UnitBase unitRef;
-        [HideInInspector] public Unit currentTarget; // Might have to make list again. Did not think about how multi-target attacks will work;
-        [HideInInspector] public Ability currentAbility;
+        public Unit currentTarget; // Might have to make list again. Did not think about how multi-target attacks will work;
+        public Ability currentAbility;
         [HideInInspector] public Button button;
         [HideInInspector] public Image fillRect;
-        [HideInInspector] public Color currentColor;
+        
+        [HideInInspector] public bool isSwapping;
+        [HideInInspector] public bool isCrit;
+        [HideInInspector] public bool isAbility;
+        [HideInInspector] public bool battlePanelIsSet;
 
         [HideInInspector] public int id;
         [HideInInspector] public int maxHealthRef;
@@ -76,56 +66,14 @@ namespace Characters
         public int currentCrit;
         public int currentDefense;
         public int currentResistance;
-        public int CurrentHP { set { currentHP = value; OnHpValueChanged(); } }
+
+        public int CurrentHP { set { currentHP = value < 0 ? 0 : value; OnHpValueChanged(); } }
 
         public List<StatusEffect> statusEffects = new List<StatusEffect>();
-        
-        public void RemoveStatusEffect(StatusEffect effect)
-        {
-            if (!(from statEffect in statusEffects where effect.name == statEffect.name select effect).Any()) return;
-            
-            statusEffects.Remove(effect);
-            effect.OnRemoval(this);
-        }
 
-        // These functions are called from the animator
-        [UsedImplicitly] public void TryToInflictStatusEffect() { if (currentAbility.hasStatusEffect) InflictStatusEffect(currentAbility.statusEffect); }
-        [UsedImplicitly] public void TargetTakeDamage() => currentTarget.TakeDamage(currentDamage, this,false);
-        [UsedImplicitly] public void RecalculateDamage() => currentDamage = DamageCalculator.CalculateAttackDamage(unitRef);
-
-        public void SetColor(Color color) => damageText.color = color;
-
-        public void TakeDamage(int dmg, Unit unit, bool colorHasChanged)
-        {
-            damagePrefab.SetActive(false);
-            damagePrefab2.SetActive(false);
-            critDamagePrefab.SetActive(false);
-            currentHP -= dmg;
-
-            if (currentHP < 0) currentHP = 0;
-            else anim.SetTrigger(AnimationHandler.HurtTrigger);
-
-            if (unit.isCrit && unit != this)
-            {
-                unit.isCrit = false;
-                if (!critDamagePrefab.activeSelf) { critDamageText.text = dmg.ToString(); critDamagePrefab.SetActive(true); }
-                else { critDamageText2.text = dmg.ToString(); critDamagePrefab2.SetActive(true); }
-            }
-
-            else
-            {
-                if (!damagePrefab.activeSelf) { damageText.text = dmg.ToString(); damagePrefab.SetActive(true);}
-                else { damageText2.text = dmg.ToString(); damagePrefab2.SetActive(true); }
-            }
-
-            SetColor();
-            CurrentHP = currentHP;
-
-            if (colorHasChanged) StartCoroutine(ResetDamageColor());
-            
-            if (currentHP > 0) return;
-            StartCoroutine(Die());
-        }
+        private Color normalHealthColor;
+        private Color midHealthColor;
+        private Color lowHealthColor;
 
         private void Awake()
         {
@@ -134,67 +82,100 @@ namespace Characters
             button = GetComponent<Button>();
             animationHandler = GetComponent<AnimationHandler>();
             
-            currentColor = Color.green;
+            normalHealthColor = Color.green;
+            midHealthColor = Color.yellow;
+            lowHealthColor = Color.red;
+            
             outline.enabled = false;
-            nameText.renderer.enabled = false;
+            //nameText.renderer.enabled = false;
         }
 
         private void Update()
         {
-            // Shows the name text above the character's heads when choosing a target
             //nameText.gameObject.SetActive(BattleHandler.choosingTarget);
             button.enabled = BattleHandler.choosingTarget;
-            
+
             if (!battlePanelIsSet) return;
-            // Activates the camera during that member's turn
             closeUpCam.SetActive(battlePanelRef.activeSelf && battlePanelRef.transform.GetChild(0).gameObject.activeSelf);
         }
 
-        private void InflictStatusEffect(StatusEffect effect)
+        public void TakeDamage(int dmg, Unit unit)
         {
-            if ((from statusEffect in currentTarget.statusEffects where statusEffect.name == effect.name select statusEffect).Any()) return;
+            CurrentHP = currentHP - dmg;
+
+            var position = gameObject.transform.position;
+            var newPosition = new Vector3(position.x, position.y + 3, position.z);
+            
+            var damage = DamagePrefabManager.Instance.ShowDamage(dmg, unit.isCrit);
+            damage.transform.position = newPosition;
+
+            if (unit.isCrit) unit.isCrit = false;
+            
+            if (currentHP > 0) anim.SetTrigger(AnimationHandler.HurtTrigger);
+            else Die();
+        }
+
+        private void InflictStatusEffectOnTarget(StatusEffect effect)
+        {
+            if ((from statusEffect in currentTarget.statusEffects
+                where statusEffect.name == effect.name select statusEffect).Any()) return;
             
             var randomValue = Random.value;
             if (randomValue > currentAbility.chanceOfInfliction) return;
             
+            Debug.Log(currentTarget.unitName + " is inflicted with " + effect.name);
             effect.OnAdded(currentTarget);
             currentTarget.statusEffects.Add(effect);
                 
-            var timer = new Timer(effect, currentTarget);
-            BattleHandler.newRound.AddListener(() => timer.DecrementTimer());
+            //var timer = statusEffectGO.AddComponent<StatusEffectTimer>();
+            //BattleHandler.newRound.AddListener(() => timer.DecrementTimer());
         }
 
-        private void SetColor()
+        public void RemoveStatusEffect(StatusEffect effect)
         {
-            if (currentHP <= 0.25f * maxHealthRef) currentColor = Color.red;
-            else if (currentHP <= 0.5f * maxHealthRef) currentColor = Color.yellow;
+            if (!(from statEffect in statusEffects
+                where effect.name == statEffect.name select effect).Any()) return;
+            
+            statusEffects.Remove(effect);
+            effect.OnRemoval(this);
         }
 
         private void OnHpValueChanged()
         {
+            if (currentHP <= 0.25f * maxHealthRef) outline.color = lowHealthColor;
+            else if (currentHP <= 0.5f * maxHealthRef) outline.color = midHealthColor;
+            else outline.color = normalHealthColor;
+            
             if (id != 1) return;
+            fillRect.color = outline.color;
             slider.value = currentHP;
             healthText.text = "HP: " + currentHP;
-            fillRect.color = currentColor;
         }
 
-        private IEnumerator ResetDamageColor()
+        private void Die() // If i want to make special death sequences, just make it an event or cutscene
         {
-            yield return new WaitForSeconds(1);
-            damageText.color = Color.white;
-        }
-        
-        private IEnumerator Die()
-        {
+            status = Status.Dead;
             statusEffects = new List<StatusEffect>();
             BattleHandler.RemoveFromBattle(unitRef, id);
             anim.SetBool(AnimationHandler.DeathTrigger, true);
-            status = Status.Dead;
-
-            yield return new WaitForSeconds(2);
         }
 
-        public void OnSelect(BaseEventData eventData) => outline.enabled = true;
-        public void OnDeselect(BaseEventData eventData) => outline.enabled = false;
+        // These functions are called from the animator
+        [UsedImplicitly] public void TryToInflictStatusEffect() { if (isAbility && currentAbility.hasStatusEffect) 
+            InflictStatusEffectOnTarget(currentAbility.statusEffect); }
+        [UsedImplicitly] public void TargetTakeDamage() => currentTarget.TakeDamage(currentDamage, this);
+        [UsedImplicitly] public void RecalculateDamage() => currentDamage = DamageCalculator.CalculateAttackDamage(unitRef);
+
+        public void OnSelect(BaseEventData eventData)
+        {
+            outline.enabled = true;
+            if (id != 1) statusBox.GetComponent<CanvasGroup>().alpha = 1;
+        }
+
+        public void OnDeselect(BaseEventData eventData)
+        {
+            outline.enabled = false;
+            if (id != 1) statusBox.GetComponent<CanvasGroup>().alpha = 0;
+        }
     }
 }

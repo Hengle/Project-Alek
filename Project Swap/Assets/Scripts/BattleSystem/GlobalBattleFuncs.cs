@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using Abilities;
+using Abilities.Ranged_Attacks;
 using JetBrains.Annotations;
 using Animations;
 using Calculator;
@@ -21,13 +22,13 @@ namespace BattleSystem
         private bool endFunction;
         private bool specialSwap;
         private bool executing;
-        //private bool isAbility;
+        
         public bool slowTime;
         public bool slowTimeCrit;
         
         private Vector3 originPosition, targetPosition;
         private AnimationHandler animHandler;
-        private Ability ability;
+        //private Ability ability;
 
         private UnitBase unitBase;
         private Unit unit, currentTarget;
@@ -54,7 +55,7 @@ namespace BattleSystem
                 Time.timeScale = 1;
                 Time.fixedDeltaTime = 0.02F * Time.timeScale;
                 
-                swapSpeed = 25;
+                swapSpeed = 30;
                 moveSpeed = 45;
             }
         }
@@ -99,16 +100,17 @@ namespace BattleSystem
         
         [UsedImplicitly] private IEnumerator AbilityAction()
         {
-            ability = unitBase.GetAndSetAbility(unit.commandActionOption);
+            unit.currentAbility = unitBase.GetAndSetAbility(unit.commandActionOption);
             unit.isAbility = true;
 
-            switch (ability.abilityType)
+            switch (unit.currentAbility.abilityType)
             {
                 case AbilityType.Physical: StartCoroutine(PhysicalAttack());
+                    Debug.Log(unit.unitName + " is using " + unit.currentAbility.name);
                     break;
                 case AbilityType.Ranged: StartCoroutine(RangedAttack());
                     break;
-                case AbilityType.NonAttack: Debug.Log("Non-Attack: " + ability.name);
+                case AbilityType.NonAttack: Debug.Log("Non-Attack: " + unit.currentAbility.name);
                     break;
                 default: Debug.Log("This message should not be displaying...");
                     break;
@@ -140,6 +142,8 @@ namespace BattleSystem
         private IEnumerator Swap()
         {
             if (!specialSwap) isMoving = true;
+            if (!BattleHandler.performingAction) BattleHandler.performingAction = true;
+            
             currentSwapTarget = iUnitCharacterSwappingPosition.CheckTargetStatus(true);
             
             var originalTargetPosition1 = characterSwappingPositionUnit.spriteParentObject.transform.position;
@@ -165,8 +169,7 @@ namespace BattleSystem
                 
                 characterSwapping.position = Vector3.MoveTowards
                     (characterSwapping.position, targetPosition2, swapSpeed * Time.deltaTime);
-
-
+                
                 currentSwapTarg.position = Vector3.MoveTowards
                     (currentSwapTarg.position, targetPosition1, swapSpeed * Time.deltaTime);
 
@@ -185,7 +188,8 @@ namespace BattleSystem
             }
 
             if (specialSwap) yield break;
-            isMoving = false; BattleHandler.performingAction = false;
+            isMoving = false;
+            BattleHandler.performingAction = false;
         }
         
         private IEnumerator MoveToTargetPosition()
@@ -237,17 +241,21 @@ namespace BattleSystem
             executing = true;
             if (unit.isCrit && unit.id == 1) slowTimeCrit = true;
             
-            if (unit.isAbility) unit.anim.SetInteger(AnimationHandler.PhysAttackState, ability.attackState);
+            if (unit.isAbility) unit.anim.SetInteger(AnimationHandler.PhysAttackState, unit.currentAbility.attackState);
             unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
             yield return new WaitForEndOfFrame();
             while (animHandler.isAttacking) yield return null;
             
             slowTime = false;
             slowTimeCrit = false;
-            
+
             foreach (var statusEffect in from statusEffect in currentTarget.statusEffects
-                where statusEffect.rateOfInfliction == RateOfInfliction.AfterAttacked
-                select statusEffect) statusEffect.InflictStatus(currentTarget);
+                where statusEffect.rateOfInfliction.Contains(RateOfInfliction.AfterAttacked)
+                select statusEffect)
+            {
+                yield return new WaitForSeconds(0.25f);
+                statusEffect.InflictStatus(currentTarget);
+            }
 
             executing = false;
         }
@@ -279,7 +287,7 @@ namespace BattleSystem
             var originalRotation = unit.transform.rotation;
             var lookAtPosition = currentTarget.transform.position;
 
-            var rangeAbility = (RangedAttack) ability;
+            var rangeAbility = (RangedAttack) unit.currentAbility;
             if (rangeAbility.lookAtTarget) 
             {
                 unit.transform.LookAt(lookAtPosition);

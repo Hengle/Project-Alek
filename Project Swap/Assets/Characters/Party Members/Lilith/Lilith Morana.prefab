@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 915347324334117536}
   - component: {fileID: 3083832404750006354}
   - component: {fileID: 4347508395630985930}
+  - component: {fileID: 7746142154120565516}
   m_Layer: 0
   m_Name: Lilith Morana
   m_TagString: Untagged
@@ -121,22 +122,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a35d465435e2d2478d6cc7424f3de5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSwapping: 0
-  isCrit: 0
-  isAbility: 0
-  battlePanelIsSet: 0
   healthText: {fileID: 0}
   nameText: {fileID: 1908044061140127015, guid: fad630881272faf49b87a7d24300b057,
     type: 3}
-  damageText: {fileID: 0}
-  damageText2: {fileID: 0}
-  critDamageText: {fileID: 0}
-  critDamageText2: {fileID: 0}
   spriteParentObject: {fileID: 0}
-  damagePrefab: {fileID: 0}
-  damagePrefab2: {fileID: 0}
-  critDamagePrefab: {fileID: 0}
-  critDamagePrefab2: {fileID: 0}
   closeUpCam: {fileID: 0}
   closeUpCamCrit: {fileID: 0}
   battlePanelRef: {fileID: 0}
@@ -147,13 +136,15 @@ MonoBehaviour:
   animationHandler: {fileID: 0}
   outline: {fileID: 0}
   characterPanelRef: {fileID: 0}
-  showDamageSO: {fileID: 11400000, guid: 087577be0da3dae499973e25a8d88b04, type: 2}
   unitRef: {fileID: 0}
   currentTarget: {fileID: 0}
   currentAbility: {fileID: 0}
   button: {fileID: 0}
   fillRect: {fileID: 0}
-  currentColor: {r: 0, g: 0, b: 0, a: 0}
+  isSwapping: 0
+  isCrit: 0
+  isAbility: 0
+  battlePanelIsSet: 0
   id: 1
   maxHealthRef: 1750
   commandActionOption: 0
@@ -164,14 +155,14 @@ MonoBehaviour:
   commandActionName: 
   unitName: 
   status: 0
-  level: 19
-  currentHP: 1750
-  currentStrength: 60
-  currentMagic: 60
-  currentAccuracy: 60
-  currentInitiative: 6
+  level: 0
+  currentHP: 0
+  currentStrength: 0
+  currentMagic: 0
+  currentAccuracy: 0
+  currentInitiative: 0
   currentCrit: 0
-  currentDefense: 60
+  currentDefense: 0
   currentResistance: 0
   statusEffects: []
 --- !u!114 &4243244753647906
@@ -307,3 +298,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7746142154120565516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526218485019349028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9be7d15c3a8f490283f34d2cbdd124a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: 8f38513bd544ae342aa119387dace04e, type: 3}
+  - {fileID: 8300000, guid: 86fd791bb27a13542b1a88ececc212fd, type: 3}
