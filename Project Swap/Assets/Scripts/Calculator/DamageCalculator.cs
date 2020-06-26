@@ -16,6 +16,10 @@ namespace Calculator
             var targetUnit = damageDealer.unit.currentTarget;
             if (damageDealer.unit == targetUnit) return 0;
 
+            var hitChance = CalculateAccuracy(dealerUnit);
+            if (!hitChance) { dealerUnit.missed = true; return -1; }
+            dealerUnit.missed = false;
+            
             float dealerDamage = 0;
             int targetDefense = 0;
             
@@ -43,7 +47,7 @@ namespace Calculator
 
             var totalDamage = (int) dealerDamage - targetDefense;
 
-            var critical = CalculateCritChance(damageDealer);
+            var critical = CalculateCritChance(dealerUnit);
             if (!critical) return totalDamage < 0 ? 0 : Random.Range((int) (0.95f * totalDamage), (int) (1.05f * totalDamage));
 
             dealerUnit.anim.SetInteger(AnimationHandler.PhysAttackState, 1);
@@ -53,12 +57,22 @@ namespace Calculator
             return totalDamage < 0 ? 0 : Random.Range((int)(0.95f * totalDamage), (int)(1.05f * totalDamage));
         }
         
-        private static bool CalculateCritChance(UnitBase damageDealer)
+        private static bool CalculateCritChance(Unit damageDealer)
         {
-            var critChance = (float) damageDealer.unit.currentCrit / 100;
+            var critChance = (float) damageDealer.currentCrit / 100;
             var randomValue = Random.value;
 
             return randomValue <= critChance;
+        }
+
+        private static bool CalculateAccuracy(Unit damageDealer)
+        {
+            var hitChance = (float) (damageDealer.currentAccuracy + 80 /*placeholder for wpn accuracy*/ -
+                            damageDealer.currentTarget.currentInitiative) / 100;
+            var randomValue = Random.value;
+
+            Debug.Log("Chance of hitting: " + hitChance);
+            return randomValue <= hitChance;
         }
     }
 }

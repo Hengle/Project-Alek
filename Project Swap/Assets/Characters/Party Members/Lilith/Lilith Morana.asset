@@ -19,15 +19,15 @@ MonoBehaviour:
   id: 1
   characterName: Lilith Morana
   description: 
-  level: 32
-  health: 3180
-  strength: 30
-  magic: 19
-  accuracy: 44
-  initiative: 26
+  level: 20
+  health: 2080
+  strength: 22
+  magic: 11
+  accuracy: 29
+  initiative: 21
   defense: 14
   resistance: 10
-  criticalChance: 14
+  criticalChance: 12
   maxAP: 6
   unit: {fileID: 0}
   abilities:

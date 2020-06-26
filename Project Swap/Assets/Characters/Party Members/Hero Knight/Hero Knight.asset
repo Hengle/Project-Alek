@@ -19,15 +19,15 @@ MonoBehaviour:
   id: 1
   characterName: Hero Knight
   description: Hes a hero!
-  level: 36
-  health: 2860
-  strength: 33
-  magic: 20
-  accuracy: 40
-  initiative: 22
-  defense: 20
-  resistance: 11
-  criticalChance: 5
+  level: 20
+  health: 2660
+  strength: 19
+  magic: 9
+  accuracy: 24
+  initiative: 16
+  defense: 22
+  resistance: 14
+  criticalChance: 6
   maxAP: 6
   unit: {fileID: 0}
   abilities:

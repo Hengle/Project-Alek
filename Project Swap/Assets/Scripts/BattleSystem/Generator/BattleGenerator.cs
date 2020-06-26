@@ -27,8 +27,7 @@ namespace BattleSystem.Generator
         private void SetupParty()
         {
             var i = 0;
-            foreach (PartyMember character in PartyManager.instance.partyMembers)
-            {
+            foreach (PartyMember character in PartyManager.instance.partyMembers) {
                 SetupPartyMemberPanel(character, i);
                 SpawnThisMember(character, i);
                 i++;
@@ -37,9 +36,8 @@ namespace BattleSystem.Generator
 
         private void SetupPartyMenuController()
         {
-            foreach (var member in BattleHandler.membersForThisBattle)
-            {
-                foreach (var partyMember in BattleHandler.membersForThisBattle) 
+            foreach (var member in BattleHandler.membersForThisBattle) {
+                foreach (var partyMember in BattleHandler.membersForThisBattle)
                     member.battlePanel.GetComponent<MenuController>().memberSelectable.Add(partyMember.unit.gameObject);
             }
         }

@@ -19,15 +19,15 @@ MonoBehaviour:
   id: 1
   characterName: Leandra Valentina
   description: 
-  level: 38
-  health: 3370
-  strength: 29
-  magic: 22
-  accuracy: 55
-  initiative: 26
-  defense: 13
-  resistance: 6
-  criticalChance: 9
+  level: 20
+  health: 2470
+  strength: 23
+  magic: 12
+  accuracy: 26
+  initiative: 24
+  defense: 17
+  resistance: 10
+  criticalChance: 11
   maxAP: 6
   unit: {fileID: 0}
   abilities:

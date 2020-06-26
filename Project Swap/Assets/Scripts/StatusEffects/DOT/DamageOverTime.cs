@@ -12,7 +12,7 @@ namespace StatusEffects.DOT
         
         public override void InflictStatus(Unit unit)
         {
-            DamagePrefabManager.Instance.SetColor(color);
+            DamagePrefabManager.Instance.DamageTextColor = color;
             var dmg = (int) ((damagePercentage) * unit.maxHealthRef);
             dmg = Random.Range((int)(0.98f * dmg), (int)(1.02f * dmg));
             unit.TakeDamage(dmg, unit);

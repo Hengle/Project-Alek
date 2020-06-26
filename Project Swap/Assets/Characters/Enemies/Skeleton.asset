@@ -19,16 +19,16 @@ MonoBehaviour:
   id: 0
   characterName: Skeleton
   description: I mean, he's a...
-  level: 36
-  health: 2980
-  strength: 29
+  level: 24
+  health: 2580
+  strength: 27
   magic: 12
-  accuracy: 33
+  accuracy: 26
   initiative: 18
-  defense: 12
+  defense: 14
   resistance: 9
-  criticalChance: 21
+  criticalChance: 10
   maxAP: 6
   unit: {fileID: 0}
   abilities:
-  - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}
+  - {fileID: 11400000, guid: 8697ec229a0734b4b9c69d6087505ba9, type: 2}

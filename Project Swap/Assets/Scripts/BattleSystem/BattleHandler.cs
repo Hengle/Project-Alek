@@ -12,6 +12,7 @@ using Characters.PartyMembers;
 using StatusEffects;
 using UnityEngine.Events;
 using UnityEngine.InputSystem.UI;
+using DG.Tweening;
 
 namespace BattleSystem
 {
@@ -37,10 +38,12 @@ namespace BattleSystem
             choosingAbility,
             allMembersDead,
             allEnemiesDead,
+            shouldGiveCommand,
             partyHasChosenSwap;
 
         public static BattleState state;
         public static UnityEvent newRound;
+        //public static UnityEvent disableSwap;
         public static InputSystemUIInputModule inputModule;
         
         public BattleOptionsPanel battlePanel;
@@ -49,21 +52,30 @@ namespace BattleSystem
         private Camera cam;
         
         private bool canPressBack;
-        private bool performingRound;
-        private bool performingSwap;
-        
+        private bool CancelCondition => inputModule.cancel.action.triggered && canPressBack;
+        private bool CheckDeathStatus {
+            get
+            {
+                if (allEnemiesDead) state = BattleState.Won;
+                else if (allMembersDead) state = BattleState.Lost;
+                return allMembersDead || allEnemiesDead;
+            }
+        }
+
         private int roundCount; // use this for bonuses based on how many rounds it took
 
         private void Start()
         {
+            DOTween.Init();
             newRound = new UnityEvent();
+            //disableSwap = new UnityEvent();
+            
             inputModule = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<InputSystemUIInputModule>();
 
             generator = GetComponent<BattleGenerator>();
             battleFuncs = GetComponent<GlobalBattleFuncs>();
 
             ResetStaticVariables();
-
             StartCoroutine(SetupBattle());
             state = BattleState.Start;
         }
@@ -89,28 +101,24 @@ namespace BattleSystem
             foreach (var character in from character in membersAndEnemies
                 let checkMemberStatus = character.CheckUnitStatus() where checkMemberStatus select character)
             {
-                if (allMembersDead || allEnemiesDead) break;
-                
-                foreach (var statusEffect in from statusEffect in character.unit.statusEffects
-                    where statusEffect.rateOfInfliction.Contains(RateOfInfliction.EveryTurn)
-                    select statusEffect)
-                {
-                    statusEffect.InflictStatus(character.unit);
-                    yield return new WaitForSeconds(1);
-                    if (character.unit.status == Status.Dead) break;
-                }
-                
-                if (allMembersDead || allEnemiesDead) break;
-                
-                StartCoroutine(character.unit.id == 1 ? ThisPlayerTurn((PartyMember) character) : ThisEnemyTurn((Enemy) character));
-                while (performingRound) yield return null;
-            }
-            
-            if (allEnemiesDead) state = BattleState.Won;
-            else if (allMembersDead) state = BattleState.Lost;
+                if (CheckDeathStatus) break;
 
-            // StartCoroutine(ExecuteSwap());
-            // while (performingSwap) yield return null;
+                var coroutine = StartCoroutine
+                    (StatusEffectManager.TriggerStatusEffects
+                    (character.unit, RateOfInfliction.EveryTurn, new WaitForSeconds(1), true));
+                
+                yield return coroutine;
+                
+                if (CheckDeathStatus || character.unit.status == Status.Dead) break;
+                
+                var round = StartCoroutine(character.unit.id == 1 ?
+                    ThisPlayerTurn((PartyMember) character) : ThisEnemyTurn((Enemy) character));
+                
+                yield return round;
+            }
+
+            var swap = StartCoroutine(ExecuteSwap());
+            yield return swap;
 
             switch (state)
             {
@@ -129,7 +137,6 @@ namespace BattleSystem
 
         private IEnumerator ThisPlayerTurn(PartyMember character)
         {
-            performingRound = true;
             state = BattleState.PartyTurn;
             character.ResetCommandsAndAP();
             
@@ -140,17 +147,14 @@ namespace BattleSystem
             while (choosingOption) yield return null;
             yield return new WaitForSeconds(0.5f);
                 
-            while (choosingAbility)
-            {
+            while (choosingAbility) {
                 canPressBack = true;
-                if (inputModule.cancel.action.triggered && canPressBack) goto main_menu;
+                if (CancelCondition) goto main_menu;
                 yield return null;
             }
 
-            if (endThisMembersTurn)
-            {
+            if (endThisMembersTurn) {
                 endThisMembersTurn = false;
-                performingRound = false;
                 yield break;
             }
                 
@@ -160,35 +164,31 @@ namespace BattleSystem
             while (choosingTarget)
             {
                 canPressBack = true;
-                if (inputModule.cancel.action.triggered && canPressBack) goto main_menu;
+                if (CancelCondition) goto main_menu;
                 yield return null;
             }
                 
             character.unit.currentAP -= character.unit.actionCost;
             character.unit.actionPointAnim.SetInteger(AnimationHandler.APVal, character.unit.currentAP);
 
-            if (partyHasChosenSwap) partyHasChosenSwap = false;
+            if (!shouldGiveCommand) shouldGiveCommand = true;
             else character.GiveCommand(false);
             while (performingAction) yield return null;
 
             character.ResetAnimationStates();
 
-            foreach (var statusEffect in from statusEffect in character.unit.statusEffects
-                where statusEffect.rateOfInfliction.Contains(RateOfInfliction.EveryAction)
-                select statusEffect)
-            {
-                statusEffect.InflictStatus(character.unit);
-                yield return new WaitForSeconds(1);
-            }
+            var coroutine = StartCoroutine
+                (StatusEffectManager.TriggerStatusEffects
+                (character.unit, RateOfInfliction.EveryAction, new WaitForSeconds(1), true));
             
-            if (allMembersDead || allEnemiesDead || character.unit.status == Status.Dead) { performingRound = false; yield break; }
+            yield return coroutine;
+
+            if (CheckDeathStatus || character.unit.status == Status.Dead) yield break;
             if (character.unit.currentAP > 0) goto main_menu;
-            performingRound = false;
         }
 
         private IEnumerator ThisEnemyTurn(Enemy enemy)
         {
-            performingRound = true;
             state = BattleState.EnemyTurn;
             enemy.ResetCommandsAndAP();
 
@@ -203,36 +203,26 @@ namespace BattleSystem
 
                 enemy.GiveCommand(false);
                 while (performingAction) yield return null;
-
-                foreach (var statusEffect in from statusEffect in enemy.unit.statusEffects
-                    where statusEffect.rateOfInfliction.Contains(RateOfInfliction.EveryAction) select statusEffect)
-                {
-                    statusEffect.InflictStatus(enemy.unit);
-                    yield return new WaitForSeconds(1f);
-                    if (enemy.unit.status == Status.Dead) break;
-                }
                 
-                if (enemy.unit.status == Status.Dead) break;
-
-                if (!allMembersDead && !allEnemiesDead) continue;
-                performingRound = false; break;
+                var coroutine = StartCoroutine
+                    (StatusEffectManager.TriggerStatusEffects
+                    (enemy.unit, RateOfInfliction.EveryAction, new WaitForSeconds(1), true));
+                
+                yield return coroutine;
+                
+                if (CheckDeathStatus || enemy.unit.status == Status.Dead) break;
             }
-            performingRound = false;
         }
 
-        private IEnumerator ExecuteSwap() // Needs to be fixed
+        private static IEnumerator ExecuteSwap()
         {
-            performingSwap = true;
+            if (partyMemberWhoChoseSwap == null || !partyMemberWhoChoseSwap.unit.isSwapping) yield break;
             
-            if (partyMemberWhoChoseSwap != null && partyMemberWhoChoseSwap.unit.isSwapping)
-            {
-                partyMemberWhoChoseSwap.unit.isSwapping = false;
-                partyMemberWhoChoseSwap.unit.currentTarget = partySwapTarget;
-                partyMemberWhoChoseSwap.GiveCommand(true);
-                while (performingAction) yield return null;
-            }
+            partyMemberWhoChoseSwap.unit.isSwapping = false;
+            partyMemberWhoChoseSwap.unit.currentTarget = partySwapTarget;
             
-            performingSwap = false;
+            partyMemberWhoChoseSwap.GiveCommand(true);
+            while (performingAction) yield return null;
         }
 
         private IEnumerator WonBattleSequence()

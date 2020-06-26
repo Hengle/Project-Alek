@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Linq;
+using JetBrains.Annotations;
+using UnityEngine;
 using Abilities;
 using Abilities.Ranged_Attacks;
-using JetBrains.Annotations;
 using Animations;
 using Calculator;
 using Characters;
 using StatusEffects;
-using UnityEngine;
 
 // This script stores all of the battle functions that are shared between every party member and/or enemy
 namespace BattleSystem
@@ -17,19 +16,15 @@ namespace BattleSystem
     {
         public int moveSpeed = 45;
         public int swapSpeed = 25;
-
-        private static bool isMoving;
-        private bool endFunction;
-        private bool specialSwap;
-        private bool executing;
         
+        private bool specialSwap;
         public bool slowTime;
         public bool slowTimeCrit;
         
         private Vector3 originPosition, targetPosition;
+        
         private AnimationHandler animHandler;
-        //private Ability ability;
-
+        
         private UnitBase unitBase;
         private Unit unit, currentTarget;
         private UnitBase iUnitCharacterSwappingPosition;
@@ -45,11 +40,12 @@ namespace BattleSystem
                 swapSpeed = 80;
                 moveSpeed = 20;
             }
-            else if (slowTimeCrit)
-            {
+            
+            else if (slowTimeCrit) {
                 Time.timeScale = 0.50f;
                 Time.fixedDeltaTime = 0.02F * Time.timeScale;
             }
+            
             else
             {
                 Time.timeScale = 1;
@@ -107,16 +103,14 @@ namespace BattleSystem
             {
                 case AbilityType.Physical: StartCoroutine(PhysicalAttack());
                     Debug.Log(unit.unitName + " is using " + unit.currentAbility.name);
-                    break;
+                    yield break;;
                 case AbilityType.Ranged: StartCoroutine(RangedAttack());
-                    break;
+                    yield break;;
                 case AbilityType.NonAttack: Debug.Log("Non-Attack: " + unit.currentAbility.name);
-                    break;
+                    yield break;;
                 default: Debug.Log("This message should not be displaying...");
-                    break;
+                    yield break;;
             }
-
-            yield return new WaitForSeconds(1);
         }
 
         private void SetupSpecialSwap()
@@ -141,9 +135,6 @@ namespace BattleSystem
 
         private IEnumerator Swap()
         {
-            if (!specialSwap) isMoving = true;
-            if (!BattleHandler.performingAction) BattleHandler.performingAction = true;
-            
             currentSwapTarget = iUnitCharacterSwappingPosition.CheckTargetStatus(true);
             
             var originalTargetPosition1 = characterSwappingPositionUnit.spriteParentObject.transform.position;
@@ -161,8 +152,7 @@ namespace BattleSystem
                 var characterSwapping = characterSwappingPositionUnit.spriteParentObject.transform;
                 var currentSwapTarg = currentSwapTarget.spriteParentObject.transform;
                 
-                if (Mathf.Abs((characterSwapping.position - currentSwapTarg.position).x) <= 0.2f)
-                {
+                if (Mathf.Abs((characterSwapping.position - currentSwapTarg.position).x) <= 0.2f) {
                     targetPosition1 = originalTargetPosition1;
                     targetPosition2 = originalTargetPosition2;
                 }
@@ -188,19 +178,17 @@ namespace BattleSystem
             }
 
             if (specialSwap) yield break;
-            isMoving = false;
             BattleHandler.performingAction = false;
         }
         
         private IEnumerator MoveToTargetPosition()
         {
-            isMoving = true;
-            
             originPosition = unit.spriteParentObject.transform.position;
             var position = currentTarget.transform.position;
             
             targetPosition = unit.id == 1 ? 
-                new Vector3(position.x, originPosition.y, position.z - 2) : new Vector3(position.x, position.y, position.z + 2);
+                new Vector3(position.x, originPosition.y, position.z - 2) :
+                new Vector3(position.x, position.y, position.z + 2);
             
             while (unit.spriteParentObject.transform.position != targetPosition)
             {
@@ -214,14 +202,10 @@ namespace BattleSystem
 
             yield return new WaitForSeconds(0.5f);
             if (unit.id == 1 && unit.isCrit) unit.closeUpCamCrit.SetActive(true);
-            
-            isMoving = false;
         }
 
         private IEnumerator MoveBackToOriginPosition()
         {
-            isMoving = true;
-
             if (unit.id == 1) unit.closeUpCamCrit.SetActive(false);
             
             while (unit.spriteParentObject.transform.position != originPosition)
@@ -233,12 +217,10 @@ namespace BattleSystem
             }
 
             yield return new WaitForSeconds(1);
-            isMoving = false;
         }
 
         private IEnumerator ExecuteAttack()
         {
-            executing = true;
             if (unit.isCrit && unit.id == 1) slowTimeCrit = true;
             
             if (unit.isAbility) unit.anim.SetInteger(AnimationHandler.PhysAttackState, unit.currentAbility.attackState);
@@ -248,16 +230,14 @@ namespace BattleSystem
             
             slowTime = false;
             slowTimeCrit = false;
-
-            foreach (var statusEffect in from statusEffect in currentTarget.statusEffects
-                where statusEffect.rateOfInfliction.Contains(RateOfInfliction.AfterAttacked)
-                select statusEffect)
-            {
-                yield return new WaitForSeconds(0.25f);
-                statusEffect.InflictStatus(currentTarget);
-            }
-
-            executing = false;
+            
+            if (unit.missed) yield break;
+            
+            var coroutine = StartCoroutine
+                (StatusEffectManager.TriggerStatusEffects
+                (currentTarget, RateOfInfliction.AfterAttacked, new WaitForSeconds(0.25f), false));
+            
+            yield return coroutine;
         }
         
         private IEnumerator PhysicalAttack()
@@ -265,14 +245,14 @@ namespace BattleSystem
             currentTarget = unitBase.CheckTargetStatus(false);
             unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase);
 
-            StartCoroutine(MoveToTargetPosition());
-            while (isMoving) yield return null;
+            var move = StartCoroutine(MoveToTargetPosition());
+            yield return move;
 
-            StartCoroutine(ExecuteAttack());
-            while (executing) yield return null;
+            var attack = StartCoroutine(ExecuteAttack());
+            yield return attack;
 
-            StartCoroutine(MoveBackToOriginPosition());
-            while (isMoving) yield return null;
+            var moveBack = StartCoroutine(MoveBackToOriginPosition());
+            yield return moveBack;
 
             BattleHandler.performingAction = false;
         }
@@ -288,15 +268,14 @@ namespace BattleSystem
             var lookAtPosition = currentTarget.transform.position;
 
             var rangeAbility = (RangedAttack) unit.currentAbility;
-            if (rangeAbility.lookAtTarget) 
-            {
+            if (rangeAbility.lookAtTarget) {
                 unit.transform.LookAt(lookAtPosition);
                 unit.transform.rotation *= Quaternion.FromToRotation(Vector3.right, Vector3.forward); 
             }
 
-            StartCoroutine(ExecuteAttack());
-            while (executing) yield return null;
-            
+            var attack = StartCoroutine(ExecuteAttack());
+            yield return attack;
+
             unit.transform.rotation = originalRotation;
 
             BattleHandler.performingAction = false;

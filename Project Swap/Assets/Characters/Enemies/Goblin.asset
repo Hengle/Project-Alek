@@ -19,15 +19,15 @@ MonoBehaviour:
   id: 0
   characterName: Goblin
   description: What's a goon to a...
-  level: 41
-  health: 2770
-  strength: 35
-  magic: 16
-  accuracy: 52
+  level: 21
+  health: 2270
+  strength: 19
+  magic: 8
+  accuracy: 29
   initiative: 23
   defense: 13
   resistance: 7
-  criticalChance: 30
+  criticalChance: 8
   maxAP: 6
   unit: {fileID: 0}
   abilities:

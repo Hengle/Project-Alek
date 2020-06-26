@@ -11,20 +11,17 @@ namespace Characters.PartyMembers
     {
         [HideInInspector] public List<GameObject> enemySelectable = new List<GameObject>();
         [HideInInspector] public List<GameObject> memberSelectable = new List<GameObject>();
-    
-        [SerializeField]
-        private GameObject mainMenu;
-        [SerializeField]
-        private GameObject abilityMenu;
-        [SerializeField]
-        private GameObject mainMenuFirstSelected;
-        [SerializeField]
-        private GameObject abilityMenuFirstSelected;
-    
-        private GameObject currentlySelected;
-        private GameObject swapButtonGO;
-        private Button swapButton;
 
+        public Button swapButton;
+        private static bool Null => EventSystem.current.currentSelectedGameObject == null;
+        private static bool CanSwap => !BattleHandler.partyHasChosenSwap;
+
+        [SerializeField] private GameObject mainMenu;
+        [SerializeField] private GameObject abilityMenu;
+        [SerializeField] private GameObject mainMenuFirstSelected;
+        [SerializeField] private GameObject abilityMenuFirstSelected;
+
+        private GameObject currentlySelected;
         private Animator anim;
 
         private void Awake()
@@ -36,42 +33,43 @@ namespace Characters.PartyMembers
             abilityMenu = transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
             abilityMenuFirstSelected = abilityMenu.transform.GetChild(0).gameObject;
             swapButton = abilityMenu.transform.GetChild(0).GetComponent<Button>();
-            swapButtonGO = swapButton.transform.GetChild(1).gameObject;
-        
+
+            BattleHandler.newRound.AddListener(EnableSwap);
+            
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
         }
 
-        private void Update()
-        {
-            swapButton.enabled = !BattleHandler.partyHasChosenSwap;
+        private void Update() {
             if (!BattleHandler.inputModule.move && !BattleHandler.inputModule.submit) return;
-            if (EventSystem.current.currentSelectedGameObject == null) EventSystem.current.SetSelectedGameObject(currentlySelected);
+            if (Null) EventSystem.current.SetSelectedGameObject(currentlySelected);
         }
 
         private void OnEnable()
         {
+            swapButton.interactable = CanSwap;
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
             currentlySelected = mainMenuFirstSelected;
-
-            if (BattleHandler.partyHasChosenSwap) swapButton.enabled = false;
         }
+        
+        private void EnableSwap() => swapButton.interactable = true;
+        [UsedImplicitly] public void DisableInput() => BattleHandler.inputModule.enabled = false;
     
         [UsedImplicitly] public void SetMainMenuFirstSelected()
         {
-            swapButtonGO.SetActive(false);
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
             currentlySelected = mainMenuFirstSelected;
+            BattleHandler.inputModule.enabled = true;
         }
 
         [UsedImplicitly] public void SetAbilityMenuFirstSelected()
         {
-            swapButtonGO.SetActive(!swapButton.enabled);
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(abilityMenuFirstSelected);
             currentlySelected = abilityMenuFirstSelected;
+            BattleHandler.inputModule.enabled = true;
         }
 
         public void SetTargetFirstSelected()
@@ -91,6 +89,7 @@ namespace Characters.PartyMembers
                 case 2:
                     break;
             }
+            BattleHandler.inputModule.enabled = true;
         }
 
         public bool SetSelectables()

@@ -19,6 +19,6 @@ MonoBehaviour:
   targetOptions: 0
   hasStatusEffect: 1
   statusEffect: {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
-  chanceOfInfliction: 1
+  chanceOfInfliction: 0.9
   damageMultiplier: 1
   attackState: 2

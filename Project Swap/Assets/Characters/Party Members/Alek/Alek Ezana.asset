@@ -19,15 +19,15 @@ MonoBehaviour:
   id: 1
   characterName: Alek Ezana
   description: 
-  level: 37
-  health: 3520
-  strength: 31
-  magic: 24
-  accuracy: 42
-  initiative: 24
-  defense: 16
-  resistance: 9
-  criticalChance: 11
+  level: 20
+  health: 2280
+  strength: 26
+  magic: 14
+  accuracy: 22
+  initiative: 18
+  defense: 19
+  resistance: 13
+  criticalChance: 9
   maxAP: 6
   unit: {fileID: 0}
   abilities:

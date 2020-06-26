@@ -71,6 +71,8 @@ namespace Characters
 
         public List<StatusEffect> statusEffects = new List<StatusEffect>();
 
+        public bool missed;
+
         private Color normalHealthColor;
         private Color midHealthColor;
         private Color lowHealthColor;
@@ -87,21 +89,18 @@ namespace Characters
             lowHealthColor = Color.red;
             
             outline.enabled = false;
-            //nameText.renderer.enabled = false;
         }
 
-        private void Update()
-        {
-            //nameText.gameObject.SetActive(BattleHandler.choosingTarget);
+        private void Update() {
             button.enabled = BattleHandler.choosingTarget;
-
+            
             if (!battlePanelIsSet) return;
             closeUpCam.SetActive(battlePanelRef.activeSelf && battlePanelRef.transform.GetChild(0).gameObject.activeSelf);
         }
 
         public void TakeDamage(int dmg, Unit unit)
         {
-            CurrentHP = currentHP - dmg;
+            CurrentHP = currentHP - (dmg < 0 ? 0 : dmg);
 
             var position = gameObject.transform.position;
             var newPosition = new Vector3(position.x, position.y + 3, position.z);
@@ -110,13 +109,15 @@ namespace Characters
             damage.transform.position = newPosition;
 
             if (unit.isCrit) unit.isCrit = false;
-            
+
+            if (dmg == -1 && currentHP > 0) return;
             if (currentHP > 0) anim.SetTrigger(AnimationHandler.HurtTrigger);
             else Die();
         }
 
         private void InflictStatusEffectOnTarget(StatusEffect effect)
         {
+            if (missed) return;
             if ((from statusEffect in currentTarget.statusEffects
                 where statusEffect.name == effect.name select statusEffect).Any()) return;
             
@@ -126,9 +127,6 @@ namespace Characters
             Debug.Log(currentTarget.unitName + " is inflicted with " + effect.name);
             effect.OnAdded(currentTarget);
             currentTarget.statusEffects.Add(effect);
-                
-            //var timer = statusEffectGO.AddComponent<StatusEffectTimer>();
-            //BattleHandler.newRound.AddListener(() => timer.DecrementTimer());
         }
 
         public void RemoveStatusEffect(StatusEffect effect)
@@ -162,18 +160,16 @@ namespace Characters
 
         // These functions are called from the animator
         [UsedImplicitly] public void TryToInflictStatusEffect() { if (isAbility && currentAbility.hasStatusEffect) 
-            InflictStatusEffectOnTarget(currentAbility.statusEffect); }
+            InflictStatusEffectOnTarget(currentAbility.statusEffect); Debug.Log(unitName + " called TryToInflictStatusEffect");}
         [UsedImplicitly] public void TargetTakeDamage() => currentTarget.TakeDamage(currentDamage, this);
         [UsedImplicitly] public void RecalculateDamage() => currentDamage = DamageCalculator.CalculateAttackDamage(unitRef);
 
-        public void OnSelect(BaseEventData eventData)
-        {
+        public void OnSelect(BaseEventData eventData) {
             outline.enabled = true;
-            if (id != 1) statusBox.GetComponent<CanvasGroup>().alpha = 1;
+            if (id != 1 && status != Status.Dead) statusBox.GetComponent<CanvasGroup>().alpha = 1;
         }
 
-        public void OnDeselect(BaseEventData eventData)
-        {
+        public void OnDeselect(BaseEventData eventData) {
             outline.enabled = false;
             if (id != 1) statusBox.GetComponent<CanvasGroup>().alpha = 0;
         }

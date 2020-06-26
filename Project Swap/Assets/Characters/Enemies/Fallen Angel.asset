@@ -19,16 +19,17 @@ MonoBehaviour:
   id: 0
   characterName: Fallen Angel
   description: what a shame...
-  level: 38
-  health: 3340
-  strength: 32
-  magic: 27
-  accuracy: 45
-  initiative: 20
+  level: 22
+  health: 2140
+  strength: 23
+  magic: 25
+  accuracy: 24
+  initiative: 17
   defense: 13
-  resistance: 16
-  criticalChance: 22
+  resistance: 18
+  criticalChance: 7
   maxAP: 6
   unit: {fileID: 0}
   abilities:
   - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
+  - {fileID: 11400000, guid: e558d404ab0ced340bb9314e1e677569, type: 2}

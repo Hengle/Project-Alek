@@ -78,8 +78,11 @@ namespace BattleSystem
             if (thisUnit.status == Status.Dead) return;
             isSwapOption = false;
             memberCurrentlyChoosingTarget.isSwapping = true;
+
+            menuController.swapButton.interactable = false;
             
             BattleHandler.partyHasChosenSwap = true;
+            BattleHandler.shouldGiveCommand = false;
             BattleHandler.partyMemberWhoChoseSwap = character;
             BattleHandler.partySwapTarget = thisUnit;
             BattleHandler.choosingTarget = false;

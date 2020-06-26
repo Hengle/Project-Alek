@@ -1907,10 +1907,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618828660cdc4c048a96e85a472b78dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damagePool: []
   damagePrefab: {fileID: 8969152545699550996, guid: 550389b2b634b0f40a6d9f4ab65535e0,
     type: 3}
   prefabParent: {fileID: 912919872}
-  damagePool: []
   damageTextColor: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 0}
   criticalTextColor: {r: 0, g: 0.85568786, b: 1, a: 0}
 --- !u!4 &1717918459
