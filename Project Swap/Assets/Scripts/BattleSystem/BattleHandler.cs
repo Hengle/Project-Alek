@@ -66,10 +66,11 @@ namespace BattleSystem
 
         private void Start()
         {
+            var test = Instantiate(new GameObject(), transform);
+            test.name = "TESTING";
             DOTween.Init();
             newRound = new UnityEvent();
-            //disableSwap = new UnityEvent();
-            
+
             inputModule = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<InputSystemUIInputModule>();
 
             generator = GetComponent<BattleGenerator>();
@@ -93,6 +94,7 @@ namespace BattleSystem
         private IEnumerator PerformThisRound()
         {
             newRound.Invoke();
+            partyHasChosenSwap = false;
             yield return new WaitForSeconds(1);
 
             StartCoroutine(SortingCalculator.SortAndCombine());
@@ -153,16 +155,12 @@ namespace BattleSystem
                 yield return null;
             }
 
-            if (endThisMembersTurn) {
-                endThisMembersTurn = false;
-                yield break;
-            }
+            if (endThisMembersTurn) { endThisMembersTurn = false; yield break; }
                 
             ChooseTarget.GetPartyMember(character);
             yield return new WaitForSeconds(0.5f);
 
-            while (choosingTarget)
-            {
+            while (choosingTarget) {
                 canPressBack = true;
                 if (CancelCondition) goto main_menu;
                 yield return null;
@@ -172,7 +170,7 @@ namespace BattleSystem
             character.unit.actionPointAnim.SetInteger(AnimationHandler.APVal, character.unit.currentAP);
 
             if (!shouldGiveCommand) shouldGiveCommand = true;
-            else character.GiveCommand(false);
+            else character.GiveCommand();
             while (performingAction) yield return null;
 
             character.ResetAnimationStates();
@@ -201,7 +199,7 @@ namespace BattleSystem
 
                 enemy.unit.currentAP -= enemy.unit.actionCost;
 
-                enemy.GiveCommand(false);
+                enemy.GiveCommand();
                 while (performingAction) yield return null;
                 
                 var coroutine = StartCoroutine
@@ -220,9 +218,13 @@ namespace BattleSystem
             
             partyMemberWhoChoseSwap.unit.isSwapping = false;
             partyMemberWhoChoseSwap.unit.currentTarget = partySwapTarget;
-            
-            partyMemberWhoChoseSwap.GiveCommand(true);
-            while (performingAction) yield return null;
+            partyMemberWhoChoseSwap.unit.currentTarget = partyMemberWhoChoseSwap.CheckTargetStatus();
+
+            var memberWhoChoseSwap = partyMemberWhoChoseSwap.unit.spriteParentObject;
+            var target = partyMemberWhoChoseSwap.unit.currentTarget.spriteParentObject.transform;
+
+            yield return memberWhoChoseSwap.transform.SwapPosition(target, 30);
+            partyMemberWhoChoseSwap.unit.characterPanelRef.SwapSiblingIndex(partyMemberWhoChoseSwap.unit.currentTarget.characterPanelRef);
         }
 
         private IEnumerator WonBattleSequence()
@@ -256,6 +258,7 @@ namespace BattleSystem
             allMembersDead = false;
             allEnemiesDead = false;
             partyHasChosenSwap = false;
+            shouldGiveCommand = true;
             roundCount = 0;
         }
     }

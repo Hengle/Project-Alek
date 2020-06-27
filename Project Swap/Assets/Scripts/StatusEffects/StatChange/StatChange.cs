@@ -5,16 +5,21 @@ using UnityEngine;
 
 namespace StatusEffects.StatChange
 {
-    public enum AffectedStat { MaxHP, Strength, Magic, Accuracy, Initiative, CriticalChance, Defense, Resistance }
-    public enum Multiplier { Slight, Moderate, Significant}
+    public enum AffectedStat { None, MaxHP, Strength, Magic, Accuracy, Initiative, CriticalChance, Defense, Resistance }
+    public enum Multiplier { None, Slight, Moderate, Significant}
     [CreateAssetMenu(fileName = "Stat Effect", menuName = "Status Effect/Stat Change")]
     public class StatChange : StatusEffect
     {
+        // Needs to be controlled by abilities
+        public AffectedStat buffedStat;
         public Multiplier buffMultiplier;
-        public Multiplier debuffMultiplier;
         
-        public List<AffectedStat> buffedStats = new List<AffectedStat>();
-        public List<AffectedStat> debuffedStats = new List<AffectedStat>();
+        public AffectedStat debuffedStat;
+        public Multiplier debuffMultiplier;
+
+
+        // public List<AffectedStat> buffedStats = new List<AffectedStat>();
+        // public List<AffectedStat> debuffedStats = new List<AffectedStat>();
 
         private const float SlightBuff = 1.10f;
         private const float SlightDebuff = 0.90f;
@@ -34,6 +39,7 @@ namespace StatusEffects.StatChange
                     case Multiplier.Slight: return SlightBuff;
                     case Multiplier.Moderate: return ModerateBuff;
                     case Multiplier.Significant: return SignificantBuff;
+                    case Multiplier.None: return 1;
                     default: return 1;
                 }
             }
@@ -47,6 +53,7 @@ namespace StatusEffects.StatChange
                     case Multiplier.Slight: return SlightDebuff;
                     case Multiplier.Moderate: return ModerateDebuff;
                     case Multiplier.Significant: return SignificantDebuff;
+                    case Multiplier.None: return 1;
                     default: return 1;
                 }
             }
@@ -61,24 +68,24 @@ namespace StatusEffects.StatChange
         
         public override void OnAdded(Unit target)
         {
-            //if (target.statusEffects.Contains(this)) return; 
-            foreach (var stat in buffedStats) AffectThisStat(stat, target, true, false);
-            foreach (var stat in debuffedStats) AffectThisStat(stat, target, false, false);
+            // foreach (var stat in buffedStats) AffectThisStat(stat, target, true, false);
+            // foreach (var stat in debuffedStats) AffectThisStat(stat, target, false, false);
+            AffectThisStat(buffedStat, target, true, false);
+            AffectThisStat(debuffedStat, target, false, false);
             
             if (target.statusBox == null) return;
             
             var alreadyHasIcon = target.id == 0 ? target.statusBox.GetChild(0).Find(name) : target.statusBox.Find(name);
             if (icon != null && alreadyHasIcon == null)
             {
-                var iconGO = new GameObject { name = name };
-                iconGO = Instantiate(iconGO, target.id == 0 ?
-                        target.statusBox.transform.GetChild(0) : target.statusBox, false);
+                var iconGO = Instantiate(icon, target.id == 0 ?
+                    target.statusBox.GetChild(0).transform : target.statusBox.transform);
                 
-                iconGO.AddComponent<StatusEffectTimer>().SetTimer(this, target);
+                iconGO.name = name;
+                iconGO.GetComponent<StatusEffectTimer>().SetTimer(this, target);
             }
             
-            else if (icon != null && alreadyHasIcon != null)
-            {
+            else if (icon != null && alreadyHasIcon != null) {
                 alreadyHasIcon.gameObject.SetActive(true);
                 alreadyHasIcon.GetComponent<StatusEffectTimer>().SetTimer(this, target);
             }
@@ -86,8 +93,11 @@ namespace StatusEffects.StatChange
         
         public override void OnRemoval(Unit unit)
         {
-            foreach (var stat in buffedStats) AffectThisStat(stat, unit, true, true);
-            foreach (var stat in debuffedStats) AffectThisStat(stat, unit, false, true);
+            Debug.Log("Stat Change has been removed from " + unit);
+            // foreach (var stat in buffedStats) AffectThisStat(stat, unit, true, true);
+            // foreach (var stat in debuffedStats) AffectThisStat(stat, unit, false, true);
+            AffectThisStat(buffedStat, unit, true, true);
+            AffectThisStat(debuffedStat, unit, false, true);
             
             if (unit.statusBox == null) return;
             
@@ -154,6 +164,10 @@ namespace StatusEffects.StatChange
                     else resistance *= isBuff ? BuffMultiplier : DebuffMultiplier;
                     unit.currentResistance = (int) resistance;
                     break;
+                case AffectedStat.None:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(stat), stat, null);
             }
         }
     }

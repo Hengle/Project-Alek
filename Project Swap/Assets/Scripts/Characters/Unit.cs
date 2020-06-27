@@ -95,7 +95,7 @@ namespace Characters
             button.enabled = BattleHandler.choosingTarget;
             
             if (!battlePanelIsSet) return;
-            closeUpCam.SetActive(battlePanelRef.activeSelf && battlePanelRef.transform.GetChild(0).gameObject.activeSelf);
+            closeUpCam.SetActive(battlePanelRef.activeSelf && battlePanelRef.transform.GetChild(1).gameObject.activeSelf);
         }
 
         public void TakeDamage(int dmg, Unit unit)
@@ -159,9 +159,16 @@ namespace Characters
         }
 
         // These functions are called from the animator
-        [UsedImplicitly] public void TryToInflictStatusEffect() { if (isAbility && currentAbility.hasStatusEffect) 
-            InflictStatusEffectOnTarget(currentAbility.statusEffect); Debug.Log(unitName + " called TryToInflictStatusEffect");}
+        [UsedImplicitly] public void TryToInflictStatusEffect()
+        {
+            if (!isAbility || !currentAbility.hasStatusEffect) return;
+            
+            foreach (var statusEffect in currentAbility.statusEffects)
+                InflictStatusEffectOnTarget(statusEffect);
+        }
+        
         [UsedImplicitly] public void TargetTakeDamage() => currentTarget.TakeDamage(currentDamage, this);
+        
         [UsedImplicitly] public void RecalculateDamage() => currentDamage = DamageCalculator.CalculateAttackDamage(unitRef);
 
         public void OnSelect(BaseEventData eventData) {

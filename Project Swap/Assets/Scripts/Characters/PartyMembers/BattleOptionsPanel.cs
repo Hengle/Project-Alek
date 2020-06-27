@@ -24,15 +24,13 @@ namespace Characters.PartyMembers
             if (!thisCharacter.battlePanel.activeSelf) { thisCharacter.battlePanel.SetActive(true); }
             
             // This is triggered when going back to main menu from the ability menu
-            else if (BattleHandler.choosingAbility)
-            {
+            else if (BattleHandler.choosingAbility) {
                 character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.AbilityMenu);
                 BattleHandler.choosingAbility = false;
             }
             
             // This is triggered when going back while choosing a target from the ability menu
-            else if (BattleHandler.choosingTarget && BattleHandler.choosingAbility)
-            {
+            else if (BattleHandler.choosingTarget && BattleHandler.choosingAbility) {
                 BattleHandler.choosingTarget = false;
                 character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
             }

@@ -21,7 +21,7 @@ namespace Calculator
             dealerUnit.missed = false;
             
             float dealerDamage = 0;
-            int targetDefense = 0;
+            var targetDefense = 0;
             
             if (damageDealer.unit.isAbility)
             {

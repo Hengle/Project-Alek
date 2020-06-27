@@ -12,9 +12,8 @@ namespace Characters.PartyMembers
         [HideInInspector] public GameObject battlePanel;
         private GameObject unitGO;
 
-        public override void GiveCommand(bool isSwapping)
-        {
-            BattleHandler.battleFuncs.GetCommand(this, isSwapping);
+        public override void GiveCommand() {
+            BattleHandler.battleFuncs.GetCommand(this);
             BattleHandler.performingAction = true;
         }
 
@@ -26,7 +25,7 @@ namespace Characters.PartyMembers
 
         public void SetAbilityMenuOptions(BattleOptionsPanel battleOptionsPanel)
         {
-            var abilityMenu = battlePanel.transform.GetChild(0).transform.GetChild(1).transform;
+            var abilityMenu = battlePanel.transform.Find("Battle Menu").transform.Find("Ability Menu").transform;
             var abilityListIndex = 0;
             
             while (abilities.Count > 5) abilities.Remove(abilities[abilities.Count-1]);
@@ -57,8 +56,7 @@ namespace Characters.PartyMembers
             unit.healthText = healthText;
         }
 
-        public void SetCameras()
-        {
+        public void SetCameras() {
             unit.closeUpCam = unit.spriteParentObject.transform.GetChild(0).gameObject;
             unit.closeUpCamCrit = unit.spriteParentObject.transform.GetChild(1).gameObject;
         }

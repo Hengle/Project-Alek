@@ -77,7 +77,7 @@ namespace BattleSystem.Generator
             character.battlePanel.SetActive(false);
             
             character.unit.actionPointAnim =
-                character.unit.battlePanelRef.transform.GetChild(1).GetComponent<Animator>();
+                character.unit.battlePanelRef.transform.Find("AP Box").GetComponent<Animator>();
         }
 
         private void SpawnThisMember(PartyMember character, int i)

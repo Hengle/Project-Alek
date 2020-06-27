@@ -5,7 +5,7 @@ using UnityEngine;
 namespace StatusEffects
 {
     public enum EffectType { DamageOverTime, Inhibiting, AI, StatChange }
-    public enum RateOfInfliction { EveryTurn, EveryAction, AfterAttacked, Once }
+    public enum RateOfInfliction { EveryTurn, EveryAction, AfterAttacked, BeforeAttacked, Once }
     public abstract class StatusEffect : ScriptableObject
     {
         public GameObject icon;

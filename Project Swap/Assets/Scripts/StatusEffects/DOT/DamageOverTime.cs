@@ -18,7 +18,6 @@ namespace StatusEffects.DOT
             unit.TakeDamage(dmg, unit);
         }
         
-        // Could maybe show this in the info box
         public override void OnAdded(Unit target)
         {
             Debug.Log( $"{target.unitName} is inflicted with {name.ToLower()}");
@@ -33,8 +32,7 @@ namespace StatusEffects.DOT
                 iconGO.GetComponent<StatusEffectTimer>().SetTimer(this, target);
             }
             
-            else if (icon != null && alreadyHasIcon != null)
-            {
+            else if (icon != null && alreadyHasIcon != null) {
                 alreadyHasIcon.gameObject.SetActive(true);
                 alreadyHasIcon.GetComponent<StatusEffectTimer>().SetTimer(this, target);
             }

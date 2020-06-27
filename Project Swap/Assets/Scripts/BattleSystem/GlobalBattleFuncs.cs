@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -7,6 +8,7 @@ using Abilities.Ranged_Attacks;
 using Animations;
 using Calculator;
 using Characters;
+using DG.Tweening;
 using StatusEffects;
 
 // This script stores all of the battle functions that are shared between every party member and/or enemy
@@ -29,7 +31,9 @@ namespace BattleSystem
         private Unit unit, currentTarget;
         private UnitBase iUnitCharacterSwappingPosition;
         private Unit characterSwappingPositionUnit, currentSwapTarget;
-        
+
+        private void Start() => DOTween.Init();
+
         private void Update()
         {
             if (slowTime)
@@ -37,7 +41,7 @@ namespace BattleSystem
                 Time.timeScale = 0.05f;
                 Time.fixedDeltaTime = 0.02F * Time.timeScale;
 
-                swapSpeed = 80;
+                swapSpeed = 100;
                 moveSpeed = 20;
             }
             
@@ -56,26 +60,32 @@ namespace BattleSystem
             }
         }
         
-        public void GetCommand(UnitBase unitBaseParam, bool isSwapping)
+        public void GetCommand(UnitBase unitBaseParam)
         {
-            if (!isSwapping)
-            {
-                unitBase = unitBaseParam;
-                unit = unitBaseParam.unit;
-                currentTarget = unit.currentTarget;
-                
-                animHandler = unitBaseParam.unit.animationHandler;
-                StartCoroutine(unit.commandActionName);
-                return;
-            }
-            
-            iUnitCharacterSwappingPosition = unitBaseParam;
-            characterSwappingPositionUnit = unitBaseParam.unit;
-            characterSwappingPositionUnit.currentTarget = BattleHandler.partySwapTarget;
-            currentSwapTarget = characterSwappingPositionUnit.currentTarget;
+            // if (!isSwapping)
+            // {
+            //     unitBase = unitBaseParam;
+            //     unit = unitBaseParam.unit;
+            //     currentTarget = unit.currentTarget;
+            //     
+            //     animHandler = unitBaseParam.unit.animationHandler;
+            //     StartCoroutine(unit.commandActionName);
+            //     return;
+            // }
+            unitBase = unitBaseParam;
+            unit = unitBaseParam.unit;
+            currentTarget = unit.currentTarget;
                 
             animHandler = unitBaseParam.unit.animationHandler;
-            StartCoroutine(Swap());
+            StartCoroutine(unit.commandActionName);
+            
+            // iUnitCharacterSwappingPosition = unitBaseParam;
+            // characterSwappingPositionUnit = unitBaseParam.unit;
+            // characterSwappingPositionUnit.currentTarget = BattleHandler.partySwapTarget;
+            // currentSwapTarget = characterSwappingPositionUnit.currentTarget;
+            //     
+            // animHandler = unitBaseParam.unit.animationHandler;
+            // StartCoroutine(Swap());
         }
 
         // Called from GetCommand with unit.commandActionName
@@ -135,47 +145,15 @@ namespace BattleSystem
 
         private IEnumerator Swap()
         {
-            currentSwapTarget = iUnitCharacterSwappingPosition.CheckTargetStatus(true);
+            currentSwapTarget = iUnitCharacterSwappingPosition.CheckTargetStatus();
             
-            var originalTargetPosition1 = characterSwappingPositionUnit.spriteParentObject.transform.position;
-            var originalTargetPosition2 = currentSwapTarget.spriteParentObject.transform.position;
-            
-            var offsetPosition1 = new Vector3(originalTargetPosition1.x, originalTargetPosition1.y, originalTargetPosition1.z + 4);
-            var offsetPosition2 = new Vector3(originalTargetPosition2.x, originalTargetPosition2.y, originalTargetPosition2.z - 4);
+            yield return characterSwappingPositionUnit.spriteParentObject.transform.SwapPosition(currentSwapTarget.spriteParentObject.transform, swapSpeed);
 
-            var targetPosition1 = offsetPosition1;
-            var targetPosition2 = offsetPosition2;
-            
-            while (characterSwappingPositionUnit.spriteParentObject.transform.position != targetPosition2 
-                   && currentSwapTarget.spriteParentObject.transform.position != targetPosition1)
-            {
-                var characterSwapping = characterSwappingPositionUnit.spriteParentObject.transform;
-                var currentSwapTarg = currentSwapTarget.spriteParentObject.transform;
-                
-                if (Mathf.Abs((characterSwapping.position - currentSwapTarg.position).x) <= 0.2f) {
-                    targetPosition1 = originalTargetPosition1;
-                    targetPosition2 = originalTargetPosition2;
-                }
-                
-                characterSwapping.position = Vector3.MoveTowards
-                    (characterSwapping.position, targetPosition2, swapSpeed * Time.deltaTime);
-                
-                currentSwapTarg.position = Vector3.MoveTowards
-                    (currentSwapTarg.position, targetPosition1, swapSpeed * Time.deltaTime);
-
-                yield return new WaitForEndOfFrame();
-            }
             
             slowTime = false;
             
             if (characterSwappingPositionUnit.id == 1 && characterSwappingPositionUnit != currentSwapTarget)
-            {
-                var unitIndex = characterSwappingPositionUnit.characterPanelRef.GetSiblingIndex();
-                var targetIndex = currentSwapTarget.characterPanelRef.GetSiblingIndex();
-                
-                characterSwappingPositionUnit.characterPanelRef.SetSiblingIndex(targetIndex);
-                currentSwapTarget.characterPanelRef.SetSiblingIndex(unitIndex);
-            }
+                characterSwappingPositionUnit.characterPanelRef.SwapSiblingIndex(currentSwapTarget.characterPanelRef);
 
             if (specialSwap) yield break;
             BattleHandler.performingAction = false;
@@ -222,8 +200,8 @@ namespace BattleSystem
         private IEnumerator ExecuteAttack()
         {
             if (unit.isCrit && unit.id == 1) slowTimeCrit = true;
-            
             if (unit.isAbility) unit.anim.SetInteger(AnimationHandler.PhysAttackState, unit.currentAbility.attackState);
+            
             unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
             yield return new WaitForEndOfFrame();
             while (animHandler.isAttacking) yield return null;
@@ -242,7 +220,7 @@ namespace BattleSystem
         
         private IEnumerator PhysicalAttack()
         {
-            currentTarget = unitBase.CheckTargetStatus(false);
+            currentTarget = unitBase.CheckTargetStatus();
             unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase);
 
             var move = StartCoroutine(MoveToTargetPosition());
@@ -261,7 +239,7 @@ namespace BattleSystem
         // Gonna have to update this to account for multi-target attacks
         private IEnumerator RangedAttack()
         {
-            currentTarget = unitBase.CheckTargetStatus(false);
+            currentTarget = unitBase.CheckTargetStatus();
             unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase);
             
             var originalRotation = unit.transform.rotation;

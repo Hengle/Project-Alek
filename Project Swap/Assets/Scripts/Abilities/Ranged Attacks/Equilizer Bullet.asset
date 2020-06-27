@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 1
   damageType: 0
-  description: It's big bang, but better (1 AP)
+  description: Moderately lowers STR and slightly lowers CRIT (1 AP)
   actionCost: 1
   targetOptions: 0
   hasStatusEffect: 1
-  statusEffect: {fileID: 11400000, guid: 0ff3b9db0fb99ba4fb5a97889f4d065e, type: 2}
+  statusEffects:
+  - {fileID: 11400000, guid: 86eb9e2e2ae0507478bc348c4d901c29, type: 2}
+  - {fileID: 11400000, guid: 7eb214ed7c78d8145b6e1063cff34ef2, type: 2}
   chanceOfInfliction: 1
   damageMultiplier: 1.25
   attackState: 2

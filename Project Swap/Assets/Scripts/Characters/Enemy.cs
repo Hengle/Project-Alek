@@ -8,9 +8,8 @@ namespace Characters
     [CreateAssetMenu(fileName = "New Enemy", menuName = "Character/Enemy")]
     public class Enemy : UnitBase
     {
-        public override void GiveCommand(bool isSwapping)
-        {
-            BattleHandler.battleFuncs.GetCommand(this,false);
+        public override void GiveCommand() {
+            BattleHandler.battleFuncs.GetCommand(this);
             BattleHandler.performingAction = true;
         }
         

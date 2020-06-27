@@ -15,7 +15,7 @@ namespace Characters
         public string characterName;
         [TextArea(5,15)] public string  description;
         [Range(0,99)] public int level;
-        [Range(0,9999)] public int health;
+        [Range(0,99999)] public int health;
         [Range(0,99)] public int strength;
         [Range(0,99)] public int magic;
         [Range(0,99)] public int accuracy;
@@ -29,7 +29,7 @@ namespace Characters
         
         public List<Ability> abilities = new List<Ability>();
         
-        public abstract void GiveCommand(bool isSwapping);
+        public abstract void GiveCommand();
 
         public Ability GetAndSetAbility(int index)
         {
@@ -58,7 +58,7 @@ namespace Characters
             }
         }
         
-        public Unit CheckTargetStatus(bool isSwap)
+        public Unit CheckTargetStatus()
         {
             return unit.currentTarget.status != Status.Dead ? unit.currentTarget : unit;
         }

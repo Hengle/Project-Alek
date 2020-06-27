@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2407d836efeb419c811cc8d2bfd001dc, type: 3}
+  m_Name: ResDebuffModerate
+  m_EditorClassIdentifier: 
+  icon: {fileID: 6377904230404883206, guid: 7d6682148f995b048b3f815f933cdbe6, type: 3}
+  effectType: 3
+  rateOfInfliction: 
+  color: {r: 0, g: 0, b: 0, a: 0}
+  duration: 3
+  buffedStat: 0
+  buffMultiplier: 0
+  debuffedStat: 8
+  debuffMultiplier: 2

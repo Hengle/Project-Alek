@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using BattleSystem;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using BattleSystem;
 
 namespace Characters.PartyMembers
 {
@@ -28,32 +28,30 @@ namespace Characters.PartyMembers
         {
             anim = GetComponent<Animator>();
 
-            mainMenu = transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+            mainMenu = transform.Find("Battle Menu").gameObject.transform.Find("Main Options").gameObject;
             mainMenuFirstSelected = mainMenu.transform.GetChild(0).gameObject;
-            abilityMenu = transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
+            
+            abilityMenu = transform.Find("Battle Menu").gameObject.transform.Find("Ability Menu").gameObject;
             abilityMenuFirstSelected = abilityMenu.transform.GetChild(0).gameObject;
+            
             swapButton = abilityMenu.transform.GetChild(0).GetComponent<Button>();
 
-            BattleHandler.newRound.AddListener(EnableSwap);
-            
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
         }
 
         private void Update() {
+            swapButton.interactable = CanSwap;
             if (!BattleHandler.inputModule.move && !BattleHandler.inputModule.submit) return;
             if (Null) EventSystem.current.SetSelectedGameObject(currentlySelected);
         }
 
-        private void OnEnable()
-        {
-            swapButton.interactable = CanSwap;
+        private void OnEnable() {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
             currentlySelected = mainMenuFirstSelected;
         }
-        
-        private void EnableSwap() => swapButton.interactable = true;
+
         [UsedImplicitly] public void DisableInput() => BattleHandler.inputModule.enabled = false;
     
         [UsedImplicitly] public void SetMainMenuFirstSelected()
@@ -89,6 +87,7 @@ namespace Characters.PartyMembers
                 case 2:
                     break;
             }
+            
             BattleHandler.inputModule.enabled = true;
         }
 

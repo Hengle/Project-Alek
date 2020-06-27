@@ -1,4 +1,5 @@
-﻿using StatusEffects;
+﻿using System.Collections.Generic;
+using StatusEffects;
 using UnityEngine;
 
 namespace Abilities
@@ -16,7 +17,8 @@ namespace Abilities
         [Range(0, 2)] public int targetOptions;
         
         public bool hasStatusEffect;
-        public StatusEffect statusEffect;
+        public List<StatusEffect> statusEffects = new List<StatusEffect>();
+        //public StatusEffect statusEffect;
         [Range(0, 1)] public float chanceOfInfliction;
         [Range(0,3)] public float damageMultiplier = 1f;
         public int attackState = 2;

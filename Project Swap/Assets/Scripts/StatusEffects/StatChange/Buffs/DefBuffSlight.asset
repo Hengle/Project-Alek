@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2407d836efeb419c811cc8d2bfd001dc, type: 3}
-  m_Name: Equalizer
+  m_Name: DefBuffSlight
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 6377904230404883206, guid: 7d6682148f995b048b3f815f933cdbe6, type: 3}
   effectType: 3
   rateOfInfliction: 
   color: {r: 0, g: 0, b: 0, a: 0}
-  duration: 1
-  buffMultiplier: 0
-  debuffMultiplier: 1
-  buffedStats: 
-  debuffedStats: 0100000004000000
+  duration: 3
+  buffedStat: 7
+  buffMultiplier: 1
+  debuffedStat: 0
+  debuffMultiplier: 0
