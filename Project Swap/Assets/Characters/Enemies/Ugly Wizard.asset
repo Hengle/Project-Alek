@@ -16,7 +16,7 @@ MonoBehaviour:
   characterPrefab: {fileID: 1109450531332189788, guid: 855eb21ea4a7ba14a850a0f6daae31c5,
     type: 3}
   icon: {fileID: 0}
-  id: 0
+  id: 1
   characterName: Ugly Wizard
   description: ewww
   level: 21
@@ -28,6 +28,7 @@ MonoBehaviour:
   defense: 12
   resistance: 20
   criticalChance: 6
+  profileBoxColor: {r: 0.8298994, g: 0.2216981, b: 1, a: 0.78431374}
   maxAP: 6
   unit: {fileID: 0}
   abilities:

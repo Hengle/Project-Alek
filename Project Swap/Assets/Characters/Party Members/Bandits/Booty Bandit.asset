@@ -16,7 +16,7 @@ MonoBehaviour:
   characterPrefab: {fileID: 1526218485019349028, guid: 0a959e7dcdfb2a14485d8d29d933b392,
     type: 3}
   icon: {fileID: 21300008, guid: 317b8365a4649ab459f6cb58ec8f9f18, type: 3}
-  id: 1
+  id: 0
   characterName: Booty Bandit
   description: He wants da booty
   level: 31

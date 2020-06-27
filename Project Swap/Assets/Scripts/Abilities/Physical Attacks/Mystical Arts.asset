@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe0785f3733400495ac195eb98ba710, type: 3}
+  m_Name: Mystical Arts
+  m_EditorClassIdentifier: 
+  abilityType: 0
+  damageType: 1
+  description: OoOoH MaAgic (3 AP)
+  actionCost: 3
+  targetOptions: 0
+  hasStatusEffect: 1
+  statusEffects:
+  - {fileID: 11400000, guid: 69edb0df81ead1c4fb7df7bfa4cd9381, type: 2}
+  chanceOfInfliction: 0.8
+  damageMultiplier: 1.25
+  attackState: 2

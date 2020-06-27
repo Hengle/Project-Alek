@@ -16,9 +16,10 @@ MonoBehaviour:
   characterPrefab: {fileID: 1526218485019349028, guid: c480ece643ae0c54099692d3bbb9649d,
     type: 3}
   icon: {fileID: 21300000, guid: 53ffa75a1222255418c13ded5bac1730, type: 3}
-  id: 1
+  id: 0
   characterName: Lilith Morana
-  description: 
+  description: A very long description about an amazing girl named Lilith. I tell
+    you when I come up with a good description, it will be legendary!
   level: 20
   health: 2080
   strength: 22
@@ -28,11 +29,13 @@ MonoBehaviour:
   defense: 14
   resistance: 10
   criticalChance: 12
+  profileBoxColor: {r: 0, g: 0.6316395, b: 1, a: 0.78431374}
   maxAP: 6
   unit: {fileID: 0}
   abilities:
   - {fileID: 11400000, guid: 8e151e58900d509469c607fa4066a172, type: 2}
   - {fileID: 11400000, guid: c957cd31b21e04e49b65806efd6ba04e, type: 2}
   - {fileID: 11400000, guid: ee9a142c4223d434e863f4e4e1758255, type: 2}
+  - {fileID: 11400000, guid: 3499fec825fc18c438ede820b9be0e0e, type: 2}
   positionInParty: 4
   battlePanel: {fileID: 0}

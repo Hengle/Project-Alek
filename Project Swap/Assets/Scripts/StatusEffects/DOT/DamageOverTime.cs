@@ -23,10 +23,11 @@ namespace StatusEffects.DOT
             Debug.Log( $"{target.unitName} is inflicted with {name.ToLower()}");
             if (target.statusBox == null) return;
             
-            var alreadyHasIcon = target.id == 0 ? target.statusBox.GetChild(0).Find(name) : target.statusBox.Find(name);
+            // Move this to base script
+            var alreadyHasIcon = target.id == Type.Enemy ? target.statusBox.GetChild(0).Find(name) : target.statusBox.Find(name);
             if (icon != null && alreadyHasIcon == null) {
                 var iconGO = 
-                    Instantiate(icon, target.id == 0 ? target.statusBox.transform.GetChild(0) : target.statusBox, false);
+                    Instantiate(icon, target.id == Type.Enemy ? target.statusBox.transform.GetChild(0) : target.statusBox, false);
                 
                 iconGO.name = name;
                 iconGO.GetComponent<StatusEffectTimer>().SetTimer(this, target);
@@ -43,7 +44,7 @@ namespace StatusEffects.DOT
             Debug.Log($"{unit.unitName} is no longer inflicted with {name}.");
             if (unit.statusBox == null) return;
             
-            var iconGO = unit.id == 0 ? unit.statusBox.GetChild(0).Find(name) : unit.statusBox.Find(name);
+            var iconGO = unit.id == Type.Enemy ? unit.statusBox.GetChild(0).Find(name) : unit.statusBox.Find(name);
             if (iconGO != null) iconGO.gameObject.SetActive(false);
         }
     }

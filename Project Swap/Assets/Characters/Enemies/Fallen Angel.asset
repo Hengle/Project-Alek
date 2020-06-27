@@ -16,7 +16,7 @@ MonoBehaviour:
   characterPrefab: {fileID: 1109450531332189788, guid: 4c66f5057c296d34987d4b8965774b8f,
     type: 3}
   icon: {fileID: 0}
-  id: 0
+  id: 1
   characterName: Fallen Angel
   description: what a shame...
   level: 22
@@ -28,6 +28,7 @@ MonoBehaviour:
   defense: 13
   resistance: 18
   criticalChance: 7
+  profileBoxColor: {r: 1, g: 1, b: 1, a: 0.78431374}
   maxAP: 6
   unit: {fileID: 0}
   abilities:

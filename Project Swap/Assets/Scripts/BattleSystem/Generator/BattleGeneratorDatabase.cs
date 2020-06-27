@@ -15,5 +15,6 @@ namespace BattleSystem.Generator
         public List<Enemy> enemies = new List<Enemy>();
         public BattleOptionsPanel boPanel;
         public Transform statusBox;
+        public Transform profileBox;
     }
 }

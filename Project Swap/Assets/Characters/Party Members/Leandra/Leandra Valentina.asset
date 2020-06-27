@@ -16,9 +16,10 @@ MonoBehaviour:
   characterPrefab: {fileID: 1526218485019349028, guid: 55418c9ff21905d4c9ac6a87a12001cb,
     type: 3}
   icon: {fileID: 21300000, guid: 9ffa2a80407c9364db839b73e127de83, type: 3}
-  id: 1
+  id: 0
   characterName: Leandra Valentina
-  description: 
+  description: This is a description for yah girl Leandra. She is boss and won't
+    take anyone's crap. Uggghhh extra stuff to increase text count.
   level: 20
   health: 2470
   strength: 23
@@ -28,6 +29,7 @@ MonoBehaviour:
   defense: 17
   resistance: 10
   criticalChance: 11
+  profileBoxColor: {r: 0.95781577, g: 0.5424528, b: 1, a: 0.78431374}
   maxAP: 6
   unit: {fileID: 0}
   abilities:

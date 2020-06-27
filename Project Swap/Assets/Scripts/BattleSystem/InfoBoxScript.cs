@@ -10,7 +10,7 @@ namespace BattleSystem
         [SerializeField] private TextMeshProUGUI infoText;
 
         private void Awake() => infoText = 
-            GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(3).GetComponentInChildren<TextMeshProUGUI>();
+            GameObject.FindGameObjectWithTag("Canvas").transform.Find("Info Box").GetComponentInChildren<TextMeshProUGUI>();
         
         public void OnSelect(BaseEventData eventData) => infoText.text = information;
     }

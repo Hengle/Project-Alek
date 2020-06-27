@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Characters;
 using UnityEngine;
+using Type = Characters.Type;
 
 namespace StatusEffects.StatChange
 {
@@ -10,16 +11,11 @@ namespace StatusEffects.StatChange
     [CreateAssetMenu(fileName = "Stat Effect", menuName = "Status Effect/Stat Change")]
     public class StatChange : StatusEffect
     {
-        // Needs to be controlled by abilities
         public AffectedStat buffedStat;
         public Multiplier buffMultiplier;
         
         public AffectedStat debuffedStat;
         public Multiplier debuffMultiplier;
-
-
-        // public List<AffectedStat> buffedStats = new List<AffectedStat>();
-        // public List<AffectedStat> debuffedStats = new List<AffectedStat>();
 
         private const float SlightBuff = 1.10f;
         private const float SlightDebuff = 0.90f;
@@ -68,17 +64,15 @@ namespace StatusEffects.StatChange
         
         public override void OnAdded(Unit target)
         {
-            // foreach (var stat in buffedStats) AffectThisStat(stat, target, true, false);
-            // foreach (var stat in debuffedStats) AffectThisStat(stat, target, false, false);
             AffectThisStat(buffedStat, target, true, false);
             AffectThisStat(debuffedStat, target, false, false);
             
             if (target.statusBox == null) return;
             
-            var alreadyHasIcon = target.id == 0 ? target.statusBox.GetChild(0).Find(name) : target.statusBox.Find(name);
+            var alreadyHasIcon = target.id == Type.Enemy ? target.statusBox.GetChild(0).Find(name) : target.statusBox.Find(name);
             if (icon != null && alreadyHasIcon == null)
             {
-                var iconGO = Instantiate(icon, target.id == 0 ?
+                var iconGO = Instantiate(icon, target.id == Type.Enemy ?
                     target.statusBox.GetChild(0).transform : target.statusBox.transform);
                 
                 iconGO.name = name;
@@ -94,14 +88,12 @@ namespace StatusEffects.StatChange
         public override void OnRemoval(Unit unit)
         {
             Debug.Log("Stat Change has been removed from " + unit);
-            // foreach (var stat in buffedStats) AffectThisStat(stat, unit, true, true);
-            // foreach (var stat in debuffedStats) AffectThisStat(stat, unit, false, true);
             AffectThisStat(buffedStat, unit, true, true);
             AffectThisStat(debuffedStat, unit, false, true);
             
             if (unit.statusBox == null) return;
             
-            var iconGO = unit.id == 0 ? unit.statusBox.GetChild(0).Find(name) : unit.statusBox.Find(name);
+            var iconGO = unit.id == Type.Enemy ? unit.statusBox.GetChild(0).Find(name) : unit.statusBox.Find(name);
             if (iconGO != null) iconGO.gameObject.SetActive(false);
         }
 

@@ -70,8 +70,7 @@ namespace Calculator
             var hitChance = (float) (damageDealer.currentAccuracy + 80 /*placeholder for wpn accuracy*/ -
                             damageDealer.currentTarget.currentInitiative) / 100;
             var randomValue = Random.value;
-
-            Debug.Log("Chance of hitting: " + hitChance);
+            
             return randomValue <= hitChance;
         }
     }

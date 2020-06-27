@@ -41,6 +41,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""TopButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""872e4d26-f3e6-4eb0-a597-29ee3d39911e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -153,6 +161,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43a66995-8423-4f0d-b805-b2db92f04691"",
+                    ""path"": ""<SwitchProControllerHID>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TopButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -715,6 +734,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Menu_Confirm = m_Menu.FindAction("Confirm", throwIfNotFound: true);
         m_Menu_Back = m_Menu.FindAction("Back", throwIfNotFound: true);
         m_Menu_Move = m_Menu.FindAction("Move", throwIfNotFound: true);
+        m_Menu_TopButton = m_Menu.FindAction("TopButton", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -779,6 +799,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Menu_Confirm;
     private readonly InputAction m_Menu_Back;
     private readonly InputAction m_Menu_Move;
+    private readonly InputAction m_Menu_TopButton;
     public struct MenuActions
     {
         private @Controls m_Wrapper;
@@ -786,6 +807,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Confirm => m_Wrapper.m_Menu_Confirm;
         public InputAction @Back => m_Wrapper.m_Menu_Back;
         public InputAction @Move => m_Wrapper.m_Menu_Move;
+        public InputAction @TopButton => m_Wrapper.m_Menu_TopButton;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -804,6 +826,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnMove;
+                @TopButton.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnTopButton;
+                @TopButton.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnTopButton;
+                @TopButton.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnTopButton;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -817,6 +842,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @TopButton.started += instance.OnTopButton;
+                @TopButton.performed += instance.OnTopButton;
+                @TopButton.canceled += instance.OnTopButton;
             }
         }
     }
@@ -940,6 +968,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnConfirm(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
+        void OnTopButton(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

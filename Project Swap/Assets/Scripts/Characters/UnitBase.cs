@@ -1,17 +1,19 @@
 ﻿using System.Collections.Generic;
 using Abilities;
 using Animations;
+using BattleSystem;
 using UnityEngine;
 
 namespace Characters
 {
+    public enum Type { PartyMember, Enemy }
     public abstract class UnitBase : ScriptableObject
     {
         public Vector3 scale = Vector3.one;
         public GameObject characterPrefab;
         public Sprite icon;
 
-        public int id; // change this to enum later
+        public Type id;
         public string characterName;
         [TextArea(5,15)] public string  description;
         [Range(0,99)] public int level;
@@ -23,22 +25,22 @@ namespace Characters
         [Range(0,99)] public int defense;
         [Range(0,99)] public int resistance;
         [Range(0,99)] public int criticalChance;
+
+        public Color profileBoxColor;
         
         [HideInInspector] public int maxAP = 6;
         [HideInInspector] public Unit unit;
         
         public List<Ability> abilities = new List<Ability>();
-        
-        public abstract void GiveCommand();
 
-        public Ability GetAndSetAbility(int index)
-        {
-            //unit.currentAbility = abilities[index]; // redundant??
-            return abilities[index];
+        public void GiveCommand() {
+            BattleHandler.battleFuncs.GetCommand(this);
+            BattleHandler.performingAction = true;
         }
+
+        public Ability GetAndSetAbility(int index) => abilities[index];
         
-        public void ResetCommandsAndAP()
-        {
+        public void ResetCommandsAndAP() {
             unit.currentAP += 2;
             if (unit.currentAP > 6) unit.currentAP = 6;
         }
@@ -50,18 +52,14 @@ namespace Characters
         
         public bool CheckUnitStatus()
         {
-            switch (unit.status)
-            {
+            switch (unit.status) {
                 case Status.Normal: return true;
                 case Status.Dead: return false;
                 default: return true;
             }
         }
         
-        public Unit CheckTargetStatus()
-        {
-            return unit.currentTarget.status != Status.Dead ? unit.currentTarget : unit;
-        }
+        public Unit CheckTargetStatus() => unit.currentTarget.status != Status.Dead ? unit.currentTarget : unit;
         
         public void SetupUnit(UnitBase reference)
         {
@@ -69,7 +67,6 @@ namespace Characters
             unit.level = level;
             unit.status = Status.Normal;
             unit.unitName = characterName;
-            //unit.nameText.text = characterName.ToUpper();
             unit.maxHealthRef = health;
             unit.CurrentHP = health;
             unit.currentStrength = strength;

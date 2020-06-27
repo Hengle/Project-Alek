@@ -16,7 +16,7 @@ MonoBehaviour:
   characterPrefab: {fileID: 1109450531332189788, guid: 46c69567f6d4d924ca3cfc4c96675443,
     type: 3}
   icon: {fileID: 0}
-  id: 0
+  id: 1
   characterName: Skeleton
   description: I mean, he's a...
   level: 24
@@ -28,6 +28,7 @@ MonoBehaviour:
   defense: 14
   resistance: 9
   criticalChance: 10
+  profileBoxColor: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 0.78431374}
   maxAP: 6
   unit: {fileID: 0}
   abilities:

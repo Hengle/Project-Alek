@@ -13,6 +13,7 @@ using StatusEffects;
 using UnityEngine.Events;
 using UnityEngine.InputSystem.UI;
 using DG.Tweening;
+using Type = Characters.Type;
 
 namespace BattleSystem
 {
@@ -36,21 +37,20 @@ namespace BattleSystem
             performingAction,
             endThisMembersTurn,
             choosingAbility,
-            allMembersDead,
-            allEnemiesDead,
             shouldGiveCommand,
             partyHasChosenSwap;
-
+        
         public static BattleState state;
         public static UnityEvent newRound;
-        //public static UnityEvent disableSwap;
         public static InputSystemUIInputModule inputModule;
-        
-        public BattleOptionsPanel battlePanel;
+        public static Controls controls;
 
+        public BattleOptionsPanel battlePanel;
+        
         private BattleGenerator generator;
         private Camera cam;
-        
+
+        private static bool allMembersDead, allEnemiesDead;
         private bool canPressBack;
         private bool CancelCondition => inputModule.cancel.action.triggered && canPressBack;
         private bool CheckDeathStatus {
@@ -66,10 +66,10 @@ namespace BattleSystem
 
         private void Start()
         {
-            var test = Instantiate(new GameObject(), transform);
-            test.name = "TESTING";
             DOTween.Init();
             newRound = new UnityEvent();
+            controls = new Controls();
+            controls.Enable();
 
             inputModule = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<InputSystemUIInputModule>();
 
@@ -113,7 +113,7 @@ namespace BattleSystem
                 
                 if (CheckDeathStatus || character.unit.status == Status.Dead) break;
                 
-                var round = StartCoroutine(character.unit.id == 1 ?
+                var round = StartCoroutine(character.unit.id == Type.PartyMember ?
                     ThisPlayerTurn((PartyMember) character) : ThisEnemyTurn((Enemy) character));
                 
                 yield return round;
@@ -239,9 +239,9 @@ namespace BattleSystem
             Debug.Log("you lost idiot");
         }
 
-        public static void RemoveFromBattle(UnitBase unit, int id)
+        public static void RemoveFromBattle(UnitBase unit, Type id)
         {
-            if (id == 0) enemiesForThisBattle.Remove((Enemy) unit);
+            if (id == Type.Enemy) enemiesForThisBattle.Remove((Enemy) unit);
             else membersForThisBattle.Remove((PartyMember) unit);
 
             if (membersForThisBattle.Count == 0) allMembersDead = true;

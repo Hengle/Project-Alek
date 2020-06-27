@@ -13,7 +13,7 @@ namespace Characters.PartyMembers
         [HideInInspector] public List<GameObject> memberSelectable = new List<GameObject>();
 
         public Button swapButton;
-        private static bool Null => EventSystem.current.currentSelectedGameObject == null;
+        //private static bool Null => EventSystem.current.currentSelectedGameObject == null;
         private static bool CanSwap => !BattleHandler.partyHasChosenSwap;
 
         [SerializeField] private GameObject mainMenu;
@@ -42,8 +42,8 @@ namespace Characters.PartyMembers
 
         private void Update() {
             swapButton.interactable = CanSwap;
-            if (!BattleHandler.inputModule.move && !BattleHandler.inputModule.submit) return;
-            if (Null) EventSystem.current.SetSelectedGameObject(currentlySelected);
+            // if (!BattleHandler.inputModule.move && !BattleHandler.inputModule.submit) return;
+            // if (Null) EventSystem.current.SetSelectedGameObject(currentlySelected);
         }
 
         private void OnEnable() {

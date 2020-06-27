@@ -22,6 +22,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 86eb9e2e2ae0507478bc348c4d901c29, type: 2}
   - {fileID: 11400000, guid: 7eb214ed7c78d8145b6e1063cff34ef2, type: 2}
   chanceOfInfliction: 1
-  damageMultiplier: 1.25
+  damageMultiplier: 1.05
   attackState: 2
   lookAtTarget: 1

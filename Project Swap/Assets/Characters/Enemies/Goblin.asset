@@ -16,7 +16,7 @@ MonoBehaviour:
   characterPrefab: {fileID: 1109450531332189788, guid: a8ec9d4fb47d1b241981a2a4e89f88f2,
     type: 3}
   icon: {fileID: 0}
-  id: 0
+  id: 1
   characterName: Goblin
   description: What's a goon to a...
   level: 21
@@ -28,6 +28,7 @@ MonoBehaviour:
   defense: 13
   resistance: 7
   criticalChance: 8
+  profileBoxColor: {r: 0, g: 0.5377358, b: 0.074825116, a: 0.78431374}
   maxAP: 6
   unit: {fileID: 0}
   abilities:

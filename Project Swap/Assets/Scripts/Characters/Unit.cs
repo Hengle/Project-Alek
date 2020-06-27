@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Abilities;
 using Animations;
@@ -44,7 +43,7 @@ namespace Characters
         [HideInInspector] public bool isAbility;
         [HideInInspector] public bool battlePanelIsSet;
 
-        [HideInInspector] public int id;
+        [HideInInspector] public Type id;
         [HideInInspector] public int maxHealthRef;
         [HideInInspector] public int commandActionOption;
         [HideInInspector] public int currentAP;
@@ -94,6 +93,9 @@ namespace Characters
         private void Update() {
             button.enabled = BattleHandler.choosingTarget;
             
+            if (BattleHandler.controls.Menu.TopButton.triggered && outline.enabled) ProfileBoxManager.ShowProfileBox(unitRef);
+            if (BattleHandler.controls.Menu.Back.triggered && ProfileBoxManager.isOpen) ProfileBoxManager.CloseProfileBox();
+
             if (!battlePanelIsSet) return;
             closeUpCam.SetActive(battlePanelRef.activeSelf && battlePanelRef.transform.GetChild(1).gameObject.activeSelf);
         }
@@ -124,7 +126,6 @@ namespace Characters
             var randomValue = Random.value;
             if (randomValue > currentAbility.chanceOfInfliction) return;
             
-            Debug.Log(currentTarget.unitName + " is inflicted with " + effect.name);
             effect.OnAdded(currentTarget);
             currentTarget.statusEffects.Add(effect);
         }
@@ -144,7 +145,7 @@ namespace Characters
             else if (currentHP <= 0.5f * maxHealthRef) outline.color = midHealthColor;
             else outline.color = normalHealthColor;
             
-            if (id != 1) return;
+            if (id != Type.PartyMember) return;
             fillRect.color = outline.color;
             slider.value = currentHP;
             healthText.text = "HP: " + currentHP;
@@ -173,12 +174,12 @@ namespace Characters
 
         public void OnSelect(BaseEventData eventData) {
             outline.enabled = true;
-            if (id != 1 && status != Status.Dead) statusBox.GetComponent<CanvasGroup>().alpha = 1;
+            if (id != Type.PartyMember && status != Status.Dead) statusBox.GetComponent<CanvasGroup>().alpha = 1;
         }
 
         public void OnDeselect(BaseEventData eventData) {
             outline.enabled = false;
-            if (id != 1) statusBox.GetComponent<CanvasGroup>().alpha = 0;
+            if (id != Type.PartyMember) statusBox.GetComponent<CanvasGroup>().alpha = 0;
         }
     }
 }

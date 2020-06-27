@@ -16,9 +16,10 @@ MonoBehaviour:
   characterPrefab: {fileID: 1526218485019349028, guid: d31dfb895a5ac204485d636d12c3ffff,
     type: 3}
   icon: {fileID: 21300000, guid: f2ea487f62fd65944b6389c00e56eb6b, type: 3}
-  id: 1
+  id: 0
   characterName: Hero Knight
-  description: Hes a hero!
+  description: 'Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a
+    hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! '
   level: 20
   health: 2660
   strength: 19
@@ -28,6 +29,7 @@ MonoBehaviour:
   defense: 22
   resistance: 14
   criticalChance: 6
+  profileBoxColor: {r: 1, g: 0.3066038, b: 0.3066038, a: 0.78431374}
   maxAP: 6
   unit: {fileID: 0}
   abilities:

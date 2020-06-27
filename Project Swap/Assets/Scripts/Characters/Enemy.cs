@@ -1,5 +1,4 @@
-﻿using Abilities;
-using BattleSystem;
+﻿using BattleSystem;
 using UnityEngine;
 
 namespace Characters
@@ -8,11 +7,6 @@ namespace Characters
     [CreateAssetMenu(fileName = "New Enemy", menuName = "Character/Enemy")]
     public class Enemy : UnitBase
     {
-        public override void GiveCommand() {
-            BattleHandler.battleFuncs.GetCommand(this);
-            BattleHandler.performingAction = true;
-        }
-        
         public bool SetAI()
         {
             if (unit.currentAP <= 2) return false;

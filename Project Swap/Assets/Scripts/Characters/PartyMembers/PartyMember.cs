@@ -11,14 +11,8 @@ namespace Characters.PartyMembers
         [Range(0,4)] public int positionInParty;
         [HideInInspector] public GameObject battlePanel;
         private GameObject unitGO;
-
-        public override void GiveCommand() {
-            BattleHandler.battleFuncs.GetCommand(this);
-            BattleHandler.performingAction = true;
-        }
-
-        public bool SetAI()
-        {
+        
+        public bool SetAI() {
             // Empty for now
             return true;
         }

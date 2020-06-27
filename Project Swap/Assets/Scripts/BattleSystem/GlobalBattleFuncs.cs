@@ -10,6 +10,7 @@ using Calculator;
 using Characters;
 using DG.Tweening;
 using StatusEffects;
+using Type = Characters.Type;
 
 // This script stores all of the battle functions that are shared between every party member and/or enemy
 namespace BattleSystem
@@ -62,30 +63,12 @@ namespace BattleSystem
         
         public void GetCommand(UnitBase unitBaseParam)
         {
-            // if (!isSwapping)
-            // {
-            //     unitBase = unitBaseParam;
-            //     unit = unitBaseParam.unit;
-            //     currentTarget = unit.currentTarget;
-            //     
-            //     animHandler = unitBaseParam.unit.animationHandler;
-            //     StartCoroutine(unit.commandActionName);
-            //     return;
-            // }
             unitBase = unitBaseParam;
             unit = unitBaseParam.unit;
             currentTarget = unit.currentTarget;
                 
             animHandler = unitBaseParam.unit.animationHandler;
             StartCoroutine(unit.commandActionName);
-            
-            // iUnitCharacterSwappingPosition = unitBaseParam;
-            // characterSwappingPositionUnit = unitBaseParam.unit;
-            // characterSwappingPositionUnit.currentTarget = BattleHandler.partySwapTarget;
-            // currentSwapTarget = characterSwappingPositionUnit.currentTarget;
-            //     
-            // animHandler = unitBaseParam.unit.animationHandler;
-            // StartCoroutine(Swap());
         }
 
         // Called from GetCommand with unit.commandActionName
@@ -112,7 +95,6 @@ namespace BattleSystem
             switch (unit.currentAbility.abilityType)
             {
                 case AbilityType.Physical: StartCoroutine(PhysicalAttack());
-                    Debug.Log(unit.unitName + " is using " + unit.currentAbility.name);
                     yield break;;
                 case AbilityType.Ranged: StartCoroutine(RangedAttack());
                     yield break;;
@@ -152,7 +134,7 @@ namespace BattleSystem
             
             slowTime = false;
             
-            if (characterSwappingPositionUnit.id == 1 && characterSwappingPositionUnit != currentSwapTarget)
+            if (characterSwappingPositionUnit.id == Type.PartyMember && characterSwappingPositionUnit != currentSwapTarget)
                 characterSwappingPositionUnit.characterPanelRef.SwapSiblingIndex(currentSwapTarget.characterPanelRef);
 
             if (specialSwap) yield break;
@@ -164,7 +146,7 @@ namespace BattleSystem
             originPosition = unit.spriteParentObject.transform.position;
             var position = currentTarget.transform.position;
             
-            targetPosition = unit.id == 1 ? 
+            targetPosition = unit.id == Type.PartyMember ? 
                 new Vector3(position.x, originPosition.y, position.z - 2) :
                 new Vector3(position.x, position.y, position.z + 2);
             
@@ -179,12 +161,12 @@ namespace BattleSystem
             }
 
             yield return new WaitForSeconds(0.5f);
-            if (unit.id == 1 && unit.isCrit) unit.closeUpCamCrit.SetActive(true);
+            if (unit.id == Type.PartyMember && unit.isCrit) unit.closeUpCamCrit.SetActive(true);
         }
 
         private IEnumerator MoveBackToOriginPosition()
         {
-            if (unit.id == 1) unit.closeUpCamCrit.SetActive(false);
+            if (unit.id == Type.PartyMember) unit.closeUpCamCrit.SetActive(false);
             
             while (unit.spriteParentObject.transform.position != originPosition)
             {
@@ -199,7 +181,7 @@ namespace BattleSystem
 
         private IEnumerator ExecuteAttack()
         {
-            if (unit.isCrit && unit.id == 1) slowTimeCrit = true;
+            if (unit.isCrit && unit.id == Type.PartyMember) slowTimeCrit = true;
             if (unit.isAbility) unit.anim.SetInteger(AnimationHandler.PhysAttackState, unit.currentAbility.attackState);
             
             unit.anim.SetTrigger(AnimationHandler.AttackTrigger);

@@ -40,12 +40,12 @@ namespace BattleSystem
             
             switch (targetOptions)
             {
-                case 0 when thisUnit.id == 0 && thisUnit.status != Status.Dead:
+                case 0 when thisUnit.id == Type.Enemy && thisUnit.status != Status.Dead:
                     thisUnit.outline.enabled = true;
                     if (Input.GetMouseButtonUp(0)) AddCommand();
                     break;
                 
-                case 1 when thisUnit.id == 1 && thisUnit != memberCurrentlyChoosingTarget:
+                case 1 when thisUnit.id == Type.PartyMember && thisUnit != memberCurrentlyChoosingTarget:
                     thisUnit.outline.enabled = true;
                     if (Input.GetMouseButtonUp(0))
                     {
