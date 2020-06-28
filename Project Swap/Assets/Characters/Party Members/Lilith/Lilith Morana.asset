@@ -37,5 +37,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c957cd31b21e04e49b65806efd6ba04e, type: 2}
   - {fileID: 11400000, guid: ee9a142c4223d434e863f4e4e1758255, type: 2}
   - {fileID: 11400000, guid: 3499fec825fc18c438ede820b9be0e0e, type: 2}
+  - {fileID: 11400000, guid: 47015355f94fcc74bbb9c212781f9416, type: 2}
   positionInParty: 4
   battlePanel: {fileID: 0}

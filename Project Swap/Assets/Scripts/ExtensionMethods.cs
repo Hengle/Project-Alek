@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Characters.PartyMembers;
 using UnityEngine;
 
 public static class ExtensionMethods
@@ -26,13 +27,21 @@ public static class ExtensionMethods
             }
                 
             characterSwapping.position = Vector3.MoveTowards
-                (characterSwapping.position, targetPosition2, swapSpeed * Time.deltaTime);
+                (characterSwapping.position, targetPosition2, swapSpeed * Time.fixedDeltaTime);
                 
             currentSwapTarg.position = Vector3.MoveTowards
-                (currentSwapTarg.position, targetPosition1, swapSpeed * Time.deltaTime);
+                (currentSwapTarg.position, targetPosition1, swapSpeed * Time.fixedDeltaTime);
             
             yield return new WaitForEndOfFrame();
         }
+        
+        var thisIndex = transform.GetSiblingIndex();
+        var targetIndex = target.GetSiblingIndex();
+
+        transform.SetSiblingIndex(targetIndex);
+        target.SetSiblingIndex(thisIndex);
+        
+        MenuController.updateSelectables.Invoke();
     }
 
     public static void SwapSiblingIndex(this Transform transform, Transform target)

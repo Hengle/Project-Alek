@@ -1,15 +1,19 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Characters;
 using Characters.PartyMembers;
+using Type = Characters.Type;
 
 namespace BattleSystem
 {
     public class ChooseTarget : MonoBehaviour
     {
         public static int targetOptions = 0; // 1 = party member, 0 = enemy, 2 = all
+        public static Type targetOptionsType;
         private static int classOption;
         private static string className;
         private static bool isSwapOption;
+        public static bool isMultiTarget;
         private static MenuController menuController;
         private static Unit memberCurrentlyChoosingTarget;
         private static PartyMember character;
@@ -17,7 +21,29 @@ namespace BattleSystem
 
         private void Start() => thisUnit = GetComponent<Unit>();
 
-        public static void GetPartyMember(PartyMember member)
+        private void Update()
+        {
+            if (!BattleHandler.choosingTarget || !isMultiTarget || thisUnit.id != targetOptionsType) return;
+            
+            thisUnit.outline.enabled = true;
+            thisUnit.button.interactable = false;
+
+            if (BattleHandler.inputModule.cancel.action.triggered) {
+                //thisUnit.outline.enabled = false;
+                thisUnit.button.interactable = true;
+                isMultiTarget = false;
+                return;
+            }
+            
+            if (!BattleHandler.inputModule.submit.action.triggered) return;
+                
+            AddMultiHitCommand();
+            thisUnit.outline.enabled = false;
+            thisUnit.button.interactable = true;
+            isMultiTarget = false;
+        }
+
+        public static void ForThisMember(PartyMember member)
         {
             BattleHandler.choosingTarget = true;
             character = member;
@@ -32,6 +58,14 @@ namespace BattleSystem
             className = name;
             classOption = option;
             isSwapOption = isSwap;
+            
+            switch (targetOptions)
+            {
+                case 0: targetOptionsType = Type.Enemy;
+                    break;
+                case 1: targetOptionsType = Type.PartyMember;
+                    break;
+            }
         }
         
         private void OnMouseOver()
@@ -68,6 +102,12 @@ namespace BattleSystem
             if (thisUnit.status == Status.Dead) return;
             
             memberCurrentlyChoosingTarget.currentTarget = thisUnit;
+            memberCurrentlyChoosingTarget.commandActionName = className;
+            memberCurrentlyChoosingTarget.commandActionOption = classOption;
+            BattleHandler.choosingTarget = false;
+        }
+
+        public void AddMultiHitCommand() {
             memberCurrentlyChoosingTarget.commandActionName = className;
             memberCurrentlyChoosingTarget.commandActionOption = classOption;
             BattleHandler.choosingTarget = false;

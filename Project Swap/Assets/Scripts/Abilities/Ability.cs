@@ -13,12 +13,12 @@ namespace Abilities
         
         [TextArea(5,15)] public string  description = "Insert description for this ability";
         [Range(0, 6)] public int actionCost;
-        [Tooltip("0 = Enemy, 1 = Party Member, 2 = All")]    
+        [Tooltip("0 = Enemy, 1 = Party Member, 2 = All")]
         [Range(0, 2)] public int targetOptions;
-        
+
+        public bool isMultiHit;
         public bool hasStatusEffect;
         public List<StatusEffect> statusEffects = new List<StatusEffect>();
-        //public StatusEffect statusEffect;
         [Range(0, 1)] public float chanceOfInfliction;
         [Range(0,3)] public float damageMultiplier = 1f;
         public int attackState = 2;

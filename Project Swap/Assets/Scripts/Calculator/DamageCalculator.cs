@@ -10,7 +10,7 @@ namespace Calculator
     public static class DamageCalculator
     {
         // Make this the base function that is called for everything and delegate to correct function based on action type
-        public static int CalculateAttackDamage(UnitBase damageDealer)
+        public static int CalculateAttackDamage(UnitBase damageDealer, Unit target)
         {
             var dealerUnit = damageDealer.unit;
             var targetUnit = damageDealer.unit.currentTarget;

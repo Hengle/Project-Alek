@@ -28,7 +28,7 @@ MonoBehaviour:
   initiative: 24
   defense: 17
   resistance: 10
-  criticalChance: 11
+  criticalChance: 31
   profileBoxColor: {r: 0.95781577, g: 0.5424528, b: 1, a: 0.78431374}
   maxAP: 6
   unit: {fileID: 0}

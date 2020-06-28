@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 0
   damageType: 0
-  description: Attack twice at 75% strength (3 AP)
+  description: Attack twice at 75% strength
   actionCost: 3
   targetOptions: 0
   hasStatusEffect: 0
-  statusEffect: {fileID: 0}
+  statusEffects: []
   chanceOfInfliction: 0
   damageMultiplier: 0.75
   attackState: 2

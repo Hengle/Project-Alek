@@ -19,5 +19,24 @@ namespace StatusEffects
         public abstract void InflictStatus(Unit unit);
         public abstract void OnAdded(Unit target);
         public abstract void OnRemoval(Unit unit);
+
+        protected void SetIconAndTimer(Unit target)
+        {
+            if (target.statusBox == null) return;
+            
+            var alreadyHasIcon = target.id == Type.Enemy ? target.statusBox.GetChild(0).Find(name) : target.statusBox.Find(name);
+            if (icon != null && alreadyHasIcon == null) {
+                var iconGO = 
+                    Instantiate(icon, target.id == Type.Enemy ? target.statusBox.transform.GetChild(0) : target.statusBox, false);
+                
+                iconGO.name = name;
+                iconGO.GetComponent<StatusEffectTimer>().SetTimer(this, target);
+            }
+            
+            else if (icon != null && alreadyHasIcon != null) {
+                alreadyHasIcon.gameObject.SetActive(true);
+                alreadyHasIcon.GetComponent<StatusEffectTimer>().SetTimer(this, target);
+            }
+        }
     }
 }

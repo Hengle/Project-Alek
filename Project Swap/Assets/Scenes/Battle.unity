@@ -288,6 +288,50 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1850258630}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &172451492
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 172451494}
+  - component: {fileID: 172451493}
+  m_Layer: 0
+  m_Name: Logger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &172451493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172451492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfe4cf8ae0e54bb1a89e58bc1d118220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showLogs: 0
+--- !u!4 &172451494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172451492}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &220336985
 GameObject:
   m_ObjectHideFlags: 0
@@ -3380,12 +3424,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1849992117}
+  - component: {fileID: 1849992122}
   - component: {fileID: 1849992121}
   - component: {fileID: 1849992116}
   - component: {fileID: 1849992118}
   - component: {fileID: 1849992120}
   - component: {fileID: 1849992119}
-  - component: {fileID: 1849992122}
   m_Layer: 0
   m_Name: Battle Manager
   m_TagString: Untagged
@@ -3543,8 +3587,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 45
   swapSpeed: 25
-  slowTime: 0
-  slowTimeCrit: 0
 --- !u!114 &1849992121
 MonoBehaviour:
   m_ObjectHideFlags: 0

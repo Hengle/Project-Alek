@@ -18,30 +18,14 @@ namespace StatusEffects.DOT
             unit.TakeDamage(dmg, unit);
         }
         
-        public override void OnAdded(Unit target)
-        {
-            Debug.Log( $"{target.unitName} is inflicted with {name.ToLower()}");
-            if (target.statusBox == null) return;
-            
-            // Move this to base script
-            var alreadyHasIcon = target.id == Type.Enemy ? target.statusBox.GetChild(0).Find(name) : target.statusBox.Find(name);
-            if (icon != null && alreadyHasIcon == null) {
-                var iconGO = 
-                    Instantiate(icon, target.id == Type.Enemy ? target.statusBox.transform.GetChild(0) : target.statusBox, false);
-                
-                iconGO.name = name;
-                iconGO.GetComponent<StatusEffectTimer>().SetTimer(this, target);
-            }
-            
-            else if (icon != null && alreadyHasIcon != null) {
-                alreadyHasIcon.gameObject.SetActive(true);
-                alreadyHasIcon.GetComponent<StatusEffectTimer>().SetTimer(this, target);
-            }
+        public override void OnAdded(Unit target) {
+            Logger.Log($"{target.unitName} is inflicted with {name}.");
+            SetIconAndTimer(target);
         }
         
         public override void OnRemoval(Unit unit)
         {
-            Debug.Log($"{unit.unitName} is no longer inflicted with {name}.");
+            Logger.Log($"{unit.unitName} is no longer inflicted with {name}.");
             if (unit.statusBox == null) return;
             
             var iconGO = unit.id == Type.Enemy ? unit.statusBox.GetChild(0).Find(name) : unit.statusBox.Find(name);

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem.UI;
 using System.Linq;
 using Calculator;
 using Characters;
@@ -11,7 +12,6 @@ using BattleSystem.Generator;
 using Characters.PartyMembers;
 using StatusEffects;
 using UnityEngine.Events;
-using UnityEngine.InputSystem.UI;
 using DG.Tweening;
 using Type = Characters.Type;
 
@@ -53,7 +53,7 @@ namespace BattleSystem
         private static bool allMembersDead, allEnemiesDead;
         private bool canPressBack;
         private bool CancelCondition => inputModule.cancel.action.triggered && canPressBack;
-        private bool CheckDeathStatus {
+        private static bool PartyOrEnemyTeamIsDead {
             get
             {
                 if (allEnemiesDead) state = BattleState.Won;
@@ -85,14 +85,17 @@ namespace BattleSystem
         {
             yield return new WaitWhile(generator.SetupBattle);
 
-            foreach (var partyMember in membersForThisBattle)
-                yield return new WaitUntil(partyMember.battlePanel.GetComponent<MenuController>().SetSelectables);
-            
+            foreach (var partyMember in membersForThisBattle) {
+                yield return new WaitUntil(partyMember.battlePanel.GetComponent<MenuController>().SetEnemySelectables);
+                yield return new WaitUntil(partyMember.battlePanel.GetComponent<MenuController>().SetPartySelectables);
+            }
+
             StartCoroutine(PerformThisRound());
         }
 
         private IEnumerator PerformThisRound()
         {
+            Logger.Log("Round: " + roundCount);
             newRound.Invoke();
             partyHasChosenSwap = false;
             yield return new WaitForSeconds(1);
@@ -103,15 +106,15 @@ namespace BattleSystem
             foreach (var character in from character in membersAndEnemies
                 let checkMemberStatus = character.CheckUnitStatus() where checkMemberStatus select character)
             {
-                if (CheckDeathStatus) break;
+                if (PartyOrEnemyTeamIsDead) break;
 
-                var coroutine = StartCoroutine
-                    (StatusEffectManager.TriggerStatusEffects
-                    (character.unit, RateOfInfliction.EveryTurn, new WaitForSeconds(1), true));
+                var inflictStatusEffects = StartCoroutine
+                    (StatusEffectManager.Trigger
+                    (character.unit, RateOfInfliction.EveryTurn, 1,true));
                 
-                yield return coroutine;
+                yield return inflictStatusEffects;
                 
-                if (CheckDeathStatus || character.unit.status == Status.Dead) break;
+                if (PartyOrEnemyTeamIsDead || character.unit.status == Status.Dead) break;
                 
                 var round = StartCoroutine(character.unit.id == Type.PartyMember ?
                     ThisPlayerTurn((PartyMember) character) : ThisEnemyTurn((Enemy) character));
@@ -141,7 +144,7 @@ namespace BattleSystem
         {
             state = BattleState.PartyTurn;
             character.ResetCommandsAndAP();
-            
+
             main_menu:
             canPressBack = false;
             battlePanel.ShowBattlePanel(character);
@@ -157,7 +160,7 @@ namespace BattleSystem
 
             if (endThisMembersTurn) { endThisMembersTurn = false; yield break; }
                 
-            ChooseTarget.GetPartyMember(character);
+            ChooseTarget.ForThisMember(character);
             yield return new WaitForSeconds(0.5f);
 
             while (choosingTarget) {
@@ -175,13 +178,13 @@ namespace BattleSystem
 
             character.ResetAnimationStates();
 
-            var coroutine = StartCoroutine
-                (StatusEffectManager.TriggerStatusEffects
-                (character.unit, RateOfInfliction.EveryAction, new WaitForSeconds(1), true));
+            var inflictStatusEffects = StartCoroutine
+                (StatusEffectManager.Trigger
+                (character.unit, RateOfInfliction.EveryAction, 1,true));
             
-            yield return coroutine;
+            yield return inflictStatusEffects;
 
-            if (CheckDeathStatus || character.unit.status == Status.Dead) yield break;
+            if (PartyOrEnemyTeamIsDead || character.unit.status == Status.Dead) yield break;
             if (character.unit.currentAP > 0) goto main_menu;
         }
 
@@ -202,13 +205,13 @@ namespace BattleSystem
                 enemy.GiveCommand();
                 while (performingAction) yield return null;
                 
-                var coroutine = StartCoroutine
-                    (StatusEffectManager.TriggerStatusEffects
-                    (enemy.unit, RateOfInfliction.EveryAction, new WaitForSeconds(1), true));
+                var inflictStatusEffects = StartCoroutine
+                    (StatusEffectManager.Trigger
+                    (enemy.unit, RateOfInfliction.EveryAction, 1,true));
                 
-                yield return coroutine;
+                yield return inflictStatusEffects;
                 
-                if (CheckDeathStatus || enemy.unit.status == Status.Dead) break;
+                if (PartyOrEnemyTeamIsDead || enemy.unit.status == Status.Dead) break;
             }
         }
 
@@ -230,13 +233,13 @@ namespace BattleSystem
         private IEnumerator WonBattleSequence()
         {
             yield return new WaitForSeconds(0.5f);
-            Debug.Log("yay, you won");
+            Logger.Log("yay, you won");
         }
 
         private IEnumerator LostBattleSequence()
         {
             yield return new WaitForSeconds(0.5f);
-            Debug.Log("you lost idiot");
+            Logger.Log("you lost idiot");
         }
 
         public static void RemoveFromBattle(UnitBase unit, Type id)

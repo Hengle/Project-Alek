@@ -9,18 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fe0785f3733400495ac195eb98ba710, type: 3}
-  m_Name: Cutting Edge
+  m_Script: {fileID: 11500000, guid: c89647cb589c4c46adccd11c07fb607c, type: 3}
+  m_Name: MultiHit Bullet
   m_EditorClassIdentifier: 
-  abilityType: 0
+  abilityType: 1
   damageType: 0
-  description: It cuts them.. at an edge
-  actionCost: 2
+  description: Everybody catchin' these hands, i mean this bullet
+  actionCost: 1
   targetOptions: 0
+  isMultiHit: 1
   hasStatusEffect: 1
   statusEffects:
-  - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
-  - {fileID: 11400000, guid: dc3354b88e04517429c9440c76843928, type: 2}
-  chanceOfInfliction: 0.75
+  - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
+  chanceOfInfliction: 1
   damageMultiplier: 1
   attackState: 2
+  lookAtTarget: 0

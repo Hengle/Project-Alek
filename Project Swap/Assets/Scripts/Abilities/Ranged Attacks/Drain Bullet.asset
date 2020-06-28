@@ -10,17 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c89647cb589c4c46adccd11c07fb607c, type: 3}
-  m_Name: Incendiary Bullet
+  m_Name: Drain Bullet
   m_EditorClassIdentifier: 
   abilityType: 1
   damageType: 0
-  description: Burn baby burn!
+  description: Drain all of the enemie's strength
   actionCost: 1
   targetOptions: 0
   hasStatusEffect: 1
   statusEffects:
-  - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
+  - {fileID: 11400000, guid: 5b78aaf94fa3c224c82d9dc641cad28e, type: 2}
+  - {fileID: 11400000, guid: 86eb9e2e2ae0507478bc348c4d901c29, type: 2}
+  - {fileID: 11400000, guid: 44dd6fe786b69c042827684d206f2972, type: 2}
   chanceOfInfliction: 1
-  damageMultiplier: 1.1
+  damageMultiplier: 1
   attackState: 2
   lookAtTarget: 1

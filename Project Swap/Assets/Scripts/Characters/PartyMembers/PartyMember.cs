@@ -32,7 +32,12 @@ namespace Characters.PartyMembers
                 
                 var param = abilities[abilityListIndex].GetParameters(abilityListIndex);
                 optionButton.GetComponent<Button>().onClick.AddListener(delegate { battleOptionsPanel.GetCommandInformation(param); });
-                optionButton.GetComponent<InfoBoxScript>().information = abilities[abilityListIndex].description;
+
+                if (abilities[abilityListIndex].isMultiHit)
+                    optionButton.GetComponent<Button>().onClick.AddListener(delegate { ChooseTarget.isMultiTarget = true; });
+                    
+                optionButton.GetComponent<InfoBoxScript>().information = 
+                    $"{abilities[abilityListIndex].description} ({abilities[abilityListIndex].actionCost} AP)";
                 abilityListIndex++;
             }
         }

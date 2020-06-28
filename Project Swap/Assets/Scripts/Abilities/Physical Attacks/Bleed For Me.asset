@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 0
   damageType: 0
-  description: Big Brain plays (1 AP)
+  description: Big Brain plays
   actionCost: 3
   targetOptions: 0
   hasStatusEffect: 1

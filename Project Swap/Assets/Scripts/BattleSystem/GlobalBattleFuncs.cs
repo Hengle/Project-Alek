@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Linq;
+﻿using System.Collections;
 using JetBrains.Annotations;
 using UnityEngine;
 using Abilities;
@@ -8,6 +6,7 @@ using Abilities.Ranged_Attacks;
 using Animations;
 using Calculator;
 using Characters;
+using Characters.PartyMembers;
 using DG.Tweening;
 using StatusEffects;
 using Type = Characters.Type;
@@ -21,8 +20,8 @@ namespace BattleSystem
         public int swapSpeed = 25;
         
         private bool specialSwap;
-        public bool slowTime;
-        public bool slowTimeCrit;
+        public static bool slowTime;
+        public static bool slowTimeCrit;
         
         private Vector3 originPosition, targetPosition;
         
@@ -42,7 +41,7 @@ namespace BattleSystem
                 Time.timeScale = 0.05f;
                 Time.fixedDeltaTime = 0.02F * Time.timeScale;
 
-                swapSpeed = 100;
+                swapSpeed = 150;
                 moveSpeed = 20;
             }
             
@@ -98,9 +97,9 @@ namespace BattleSystem
                     yield break;;
                 case AbilityType.Ranged: StartCoroutine(RangedAttack());
                     yield break;;
-                case AbilityType.NonAttack: Debug.Log("Non-Attack: " + unit.currentAbility.name);
+                case AbilityType.NonAttack: Logger.Log("Non-Attack: " + unit.currentAbility.name);
                     yield break;;
-                default: Debug.Log("This message should not be displaying...");
+                default: Logger.Log("This message should not be displaying...");
                     yield break;;
             }
         }
@@ -122,18 +121,18 @@ namespace BattleSystem
             currentTarget = currentSwapTarget;
             unit.currentTarget = currentSwapTarget;
 
-            unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase);
+            unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase, currentTarget);
         }
 
         private IEnumerator Swap()
         {
             currentSwapTarget = iUnitCharacterSwappingPosition.CheckTargetStatus();
             
-            yield return characterSwappingPositionUnit.spriteParentObject.transform.SwapPosition(currentSwapTarget.spriteParentObject.transform, swapSpeed);
-
+            yield return characterSwappingPositionUnit.spriteParentObject.transform.SwapPosition
+                (currentSwapTarget.spriteParentObject.transform, swapSpeed);
             
             slowTime = false;
-            
+
             if (characterSwappingPositionUnit.id == Type.PartyMember && characterSwappingPositionUnit != currentSwapTarget)
                 characterSwappingPositionUnit.characterPanelRef.SwapSiblingIndex(currentSwapTarget.characterPanelRef);
 
@@ -194,8 +193,8 @@ namespace BattleSystem
             if (unit.missed) yield break;
             
             var coroutine = StartCoroutine
-                (StatusEffectManager.TriggerStatusEffects
-                (currentTarget, RateOfInfliction.AfterAttacked, new WaitForSeconds(0.25f), false));
+                (StatusEffectManager.Trigger
+                (currentTarget, RateOfInfliction.AfterAttacked, 0.25f, false));
             
             yield return coroutine;
         }
@@ -203,7 +202,7 @@ namespace BattleSystem
         private IEnumerator PhysicalAttack()
         {
             currentTarget = unitBase.CheckTargetStatus();
-            unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase);
+            unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase, currentTarget);
 
             var move = StartCoroutine(MoveToTargetPosition());
             yield return move;
@@ -222,7 +221,22 @@ namespace BattleSystem
         private IEnumerator RangedAttack()
         {
             currentTarget = unitBase.CheckTargetStatus();
-            unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase);
+            
+            if (unit.currentAbility.isMultiHit)
+            {
+                switch (unit.currentAbility.targetOptions)
+                {
+                    case 0: foreach (var enemy in BattleHandler.enemiesForThisBattle)
+                            unit.damageValueList.Add(DamageCalculator.CalculateAttackDamage(unitBase, enemy.unit));
+                        break;
+                    case 1: foreach (var member in BattleHandler.membersForThisBattle)
+                            unit.damageValueList.Add(DamageCalculator.CalculateAttackDamage(unitBase, member.unit));
+                        break;
+                    case 2: break;
+                }
+            }
+            
+            else unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase, currentTarget);
             
             var originalRotation = unit.transform.rotation;
             var lookAtPosition = currentTarget.transform.position;

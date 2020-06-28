@@ -23,8 +23,8 @@ namespace Calculator
 
             isFinished = true;
         }
-        
-        public static void SortByInitiative()
+
+        private static void SortByInitiative()
         {
             isCalculating = true;
             

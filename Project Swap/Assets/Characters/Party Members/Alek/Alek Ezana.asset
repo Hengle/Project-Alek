@@ -29,7 +29,7 @@ MonoBehaviour:
   defense: 19
   resistance: 13
   criticalChance: 9
-  profileBoxColor: {r: 1, g: 0.46670002, b: 0.21226418, a: 0.78431374}
+  profileBoxColor: {r: 0.6415094, g: 0.54118514, b: 0.493236, a: 0.78431374}
   maxAP: 6
   unit: {fileID: 0}
   abilities:

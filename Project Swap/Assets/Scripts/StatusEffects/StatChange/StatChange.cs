@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Characters;
+﻿using Characters;
 using UnityEngine;
 using Type = Characters.Type;
 
@@ -17,14 +15,14 @@ namespace StatusEffects.StatChange
         public AffectedStat debuffedStat;
         public Multiplier debuffMultiplier;
 
-        private const float SlightBuff = 1.10f;
-        private const float SlightDebuff = 0.90f;
+        private const float SlightBuff = 1.05f;
+        private const float SlightDebuff = 0.95f;
 
-        private const float ModerateBuff = 1.20f;
-        private const float ModerateDebuff = 0.80f;
+        private const float ModerateBuff = 1.10f;
+        private const float ModerateDebuff = 0.90f;
 
-        private const float SignificantBuff = 1.35f;
-        private const float SignificantDebuff = 0.65f;
+        private const float SignificantBuff = 1.20f;
+        private const float SignificantDebuff = 0.80f;
 
         private float BuffMultiplier
         {
@@ -57,37 +55,18 @@ namespace StatusEffects.StatChange
 
         private void Awake() => effectType = EffectType.StatChange;
 
-        public override void InflictStatus(Unit unit)
-        {
-            // Do nothing
-        }
+        public override void InflictStatus(Unit unit) { /*Do nothing*/ }
         
-        public override void OnAdded(Unit target)
-        {
+        public override void OnAdded(Unit target) {
+            Logger.Log(target.unitName + " is inflicted with " + name);
             AffectThisStat(buffedStat, target, true, false);
             AffectThisStat(debuffedStat, target, false, false);
-            
-            if (target.statusBox == null) return;
-            
-            var alreadyHasIcon = target.id == Type.Enemy ? target.statusBox.GetChild(0).Find(name) : target.statusBox.Find(name);
-            if (icon != null && alreadyHasIcon == null)
-            {
-                var iconGO = Instantiate(icon, target.id == Type.Enemy ?
-                    target.statusBox.GetChild(0).transform : target.statusBox.transform);
-                
-                iconGO.name = name;
-                iconGO.GetComponent<StatusEffectTimer>().SetTimer(this, target);
-            }
-            
-            else if (icon != null && alreadyHasIcon != null) {
-                alreadyHasIcon.gameObject.SetActive(true);
-                alreadyHasIcon.GetComponent<StatusEffectTimer>().SetTimer(this, target);
-            }
+            SetIconAndTimer(target);
         }
         
         public override void OnRemoval(Unit unit)
         {
-            Debug.Log("Stat Change has been removed from " + unit);
+            Logger.Log("Stat Change has been removed from " + unit);
             AffectThisStat(buffedStat, unit, true, true);
             AffectThisStat(debuffedStat, unit, false, true);
             
@@ -156,10 +135,9 @@ namespace StatusEffects.StatChange
                     else resistance *= isBuff ? BuffMultiplier : DebuffMultiplier;
                     unit.currentResistance = (int) resistance;
                     break;
-                case AffectedStat.None:
+                case AffectedStat.None: break;
+                default: Logger.Log("Could not find the stat to remove");
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(stat), stat, null);
             }
         }
     }

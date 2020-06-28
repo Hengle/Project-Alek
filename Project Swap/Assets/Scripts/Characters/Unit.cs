@@ -69,6 +69,7 @@ namespace Characters
         public int CurrentHP { set { currentHP = value < 0 ? 0 : value; OnHpValueChanged(); } }
 
         public List<StatusEffect> statusEffects = new List<StatusEffect>();
+        public List<int> damageValueList = new List<int>();
 
         public bool missed;
 
@@ -92,7 +93,8 @@ namespace Characters
 
         private void Update() {
             button.enabled = BattleHandler.choosingTarget;
-            
+
+            if (!BattleHandler.choosingTarget) outline.enabled = false;
             if (BattleHandler.controls.Menu.TopButton.triggered && outline.enabled) ProfileBoxManager.ShowProfileBox(unitRef);
             if (BattleHandler.controls.Menu.Back.triggered && ProfileBoxManager.isOpen) ProfileBoxManager.CloseProfileBox();
 
@@ -167,10 +169,33 @@ namespace Characters
             foreach (var statusEffect in currentAbility.statusEffects)
                 InflictStatusEffectOnTarget(statusEffect);
         }
-        
-        [UsedImplicitly] public void TargetTakeDamage() => currentTarget.TakeDamage(currentDamage, this);
-        
-        [UsedImplicitly] public void RecalculateDamage() => currentDamage = DamageCalculator.CalculateAttackDamage(unitRef);
+
+        [UsedImplicitly] public void TargetTakeDamage()
+        {
+            if (!currentAbility.isMultiHit) {
+                currentTarget.TakeDamage(currentDamage, this);
+                return;
+            }
+
+            switch (currentAbility.targetOptions)
+            {
+                case 0: for (var i = 0; i < BattleHandler.enemiesForThisBattle.Count; i++)
+                        BattleHandler.enemiesForThisBattle[i].unit.TakeDamage(damageValueList[i], this);
+                    break;
+                case 1: for (var i = 0; i < BattleHandler.membersForThisBattle.Count; i++)
+                        BattleHandler.membersForThisBattle[i].unit.TakeDamage(damageValueList[i], this);
+                    break;
+                case 2:
+                    break;
+            }
+        }
+
+        [UsedImplicitly] public void RecalculateDamage() {
+            currentDamage = DamageCalculator.CalculateAttackDamage(unitRef, currentTarget);
+            if (id != Type.PartyMember || !isCrit) return;
+            closeUpCamCrit.SetActive(true);
+            GlobalBattleFuncs.slowTimeCrit = true;
+        }
 
         public void OnSelect(BaseEventData eventData) {
             outline.enabled = true;

@@ -66,8 +66,8 @@ namespace Characters.PartyMembers
             if (notEnoughAP) return;
         
             // Store the information
-            ChooseTarget.GetCurrentCommand(commandActionName, commandActionOption, false);
             ChooseTarget.targetOptions = commandTargetOptions;
+            ChooseTarget.GetCurrentCommand(commandActionName, commandActionOption, false);
             character.unit.actionCost = commandCost;
 
             // Close the panel
