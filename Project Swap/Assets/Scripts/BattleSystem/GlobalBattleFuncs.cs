@@ -106,10 +106,10 @@ namespace BattleSystem
 
         private void SetupSpecialSwap()
         {
-            if (unit.currentAbility.isMultiHit) {
-                currentTarget.isSwapping = false;
-                return;
-            }
+            // if (unit.isAbility && unit.currentAbility.isMultiHit) {
+            //     currentTarget.isSwapping = false;
+            //     return;
+            // }
             
             currentTarget.isSwapping = false;
             slowTime = true;
@@ -156,7 +156,11 @@ namespace BattleSystem
             
             while (unit.spriteParentObject.transform.position != targetPosition)
             {
-                if (currentTarget.isSwapping && BattleHandler.partySwapTarget.status != Status.Dead) SetupSpecialSwap();
+                if (currentTarget.isSwapping && BattleHandler.partySwapTarget.status != Status.Dead)
+                {
+                    Logger.Log("Please swap asshole!!!");
+                    SetupSpecialSwap();
+                }
                 
                 unit.spriteParentObject.transform.position = Vector3.MoveTowards
                     (unit.spriteParentObject.transform.position, targetPosition, moveSpeed * Time.deltaTime);
@@ -197,7 +201,7 @@ namespace BattleSystem
             
             if (unit.missed) yield break;
             
-            if (unit.currentAbility.isMultiHit)
+            if (unit.isAbility && unit.currentAbility.isMultiHit)
             {
                 foreach (var target in unit.multiHitTargets)
                 {
@@ -238,20 +242,10 @@ namespace BattleSystem
         // Gonna have to update this to account for multi-target attacks
         private IEnumerator RangedAttack()
         {
-            if (unit.currentAbility.isMultiHit)
+            if (unit.isAbility && unit.currentAbility.isMultiHit)
             {
                 foreach (var target in unit.multiHitTargets) 
                     unit.damageValueList.Add(DamageCalculator.CalculateAttackDamage(unitBase, target.unit));
-                // switch (unit.currentAbility.targetOptions)
-                // {
-                //     case 0: foreach (var enemy in BattleHandler.enemiesForThisBattle)
-                //             unit.damageValueList.Add(DamageCalculator.CalculateAttackDamage(unitBase, enemy.unit));
-                //         break;
-                //     case 1: foreach (var member in BattleHandler.membersForThisBattle)
-                //             unit.damageValueList.Add(DamageCalculator.CalculateAttackDamage(unitBase, member.unit));
-                //         break;
-                //     case 2: break;
-                // }
             }
 
             else {

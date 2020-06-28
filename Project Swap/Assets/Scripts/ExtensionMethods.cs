@@ -6,6 +6,7 @@ public static class ExtensionMethods
 {
     public static IEnumerator SwapPosition(this Transform transform, Transform target, float swapSpeed)
     {
+        Logger.Log("Should be swapping right about now...");
         var position = transform.position;
         var offsetPosition1 = new Vector3(position.x, position.y, position.z + 4);
         

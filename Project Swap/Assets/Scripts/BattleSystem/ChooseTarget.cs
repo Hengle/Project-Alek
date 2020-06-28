@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Characters;
 using Characters.PartyMembers;
@@ -10,7 +9,7 @@ namespace BattleSystem
     public class ChooseTarget : MonoBehaviour
     {
         public static int targetOptions = 0; // 1 = party member, 0 = enemy, 2 = all
-        public static Type targetOptionsType;
+        private static Type targetOptionsType;
         private static int classOption;
         private static string className;
         private static bool isSwapOption;
@@ -24,24 +23,28 @@ namespace BattleSystem
 
         private void Update()
         {
-            if (!BattleHandler.choosingTarget || !isMultiTarget || thisUnit.id != targetOptionsType) return;
+            if (!BattleHandler.choosingTarget || !isMultiTarget || thisUnit.id != targetOptionsType) {
+                thisUnit.button.interactable = true;
+                return;
+            }
             
             thisUnit.outline.enabled = true;
             thisUnit.button.interactable = false;
-
+                
             if (BattleHandler.inputModule.cancel.action.triggered) {
-                //thisUnit.outline.enabled = false;
                 thisUnit.button.interactable = true;
                 isMultiTarget = false;
                 return;
             }
-            
+                
             if (!BattleHandler.inputModule.submit.action.triggered) return;
                 
             AddMultiHitCommand();
             thisUnit.outline.enabled = false;
             thisUnit.button.interactable = true;
             isMultiTarget = false;
+
+
         }
 
         public static void ForThisMember(PartyMember member)
@@ -108,9 +111,10 @@ namespace BattleSystem
             BattleHandler.choosingTarget = false;
         }
 
-        public void AddMultiHitCommand() 
+        private void AddMultiHitCommand() 
         {
             memberCurrentlyChoosingTarget.multiHitTargets = new List<UnitBase>();
+            memberCurrentlyChoosingTarget.damageValueList = new List<int>();
             
             switch (targetOptions)
             {

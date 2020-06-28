@@ -123,6 +123,8 @@ namespace Characters
         private void InflictStatusEffectOnTarget(StatusEffect effect)
         {
             if (missed) return;
+            if (!isAbility) return;
+            
             if (!currentAbility.isMultiHit)
             {
                 if ((from statusEffect in currentTarget.statusEffects
@@ -134,6 +136,7 @@ namespace Characters
 
                 effect.OnAdded(currentTarget);
                 currentTarget.statusEffects.Add(effect);
+                return;
             }
 
             foreach (var target in multiHitTargets)
@@ -190,28 +193,25 @@ namespace Characters
 
         [UsedImplicitly] public void TargetTakeDamage()
         {
-            if (!currentAbility.isMultiHit) {
+            if (!isAbility || !currentAbility.isMultiHit) {
                 currentTarget.TakeDamage(currentDamage, this);
                 return;
             }
 
             for (var i = 0; i < multiHitTargets.Count; i++)
                 multiHitTargets[i].unit.TakeDamage(damageValueList[i], this);
-            
-            // switch (currentAbility.targetOptions)
-            // {
-            //     case 0: for (var i = 0; i < BattleHandler.enemiesForThisBattle.Count; i++)
-            //             BattleHandler.enemiesForThisBattle[i].unit.TakeDamage(damageValueList[i], this);
-            //         break;
-            //     case 1: for (var i = 0; i < BattleHandler.membersForThisBattle.Count; i++)
-            //             BattleHandler.membersForThisBattle[i].unit.TakeDamage(damageValueList[i], this);
-            //         break;
-            //     case 2:
-            //         break;
-            // }
         }
 
-        [UsedImplicitly] public void RecalculateDamage() {
+        [UsedImplicitly] public void RecalculateDamage() 
+        {
+            if (isAbility && currentAbility.isMultiHit)
+            {
+                damageValueList = new List<int>();
+                foreach (var target in multiHitTargets) 
+                    damageValueList.Add(DamageCalculator.CalculateAttackDamage(unitRef, target.unit));
+                return;
+            }
+            
             currentDamage = DamageCalculator.CalculateAttackDamage(unitRef, currentTarget);
             if (id != Type.PartyMember || !isCrit) return;
             closeUpCamCrit.SetActive(true);

@@ -204,7 +204,7 @@ namespace BattleSystem
 
                 enemy.GiveCommand();
                 while (performingAction) yield return null;
-                
+
                 var inflictStatusEffects = StartCoroutine
                     (StatusEffectManager.Trigger
                     (enemy.unit, RateOfInfliction.EveryAction, 1,true));
