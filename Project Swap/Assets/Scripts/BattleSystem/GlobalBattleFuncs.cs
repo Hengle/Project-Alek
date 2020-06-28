@@ -106,6 +106,11 @@ namespace BattleSystem
 
         private void SetupSpecialSwap()
         {
+            if (unit.currentAbility.isMultiHit) {
+                currentTarget.isSwapping = false;
+                return;
+            }
+            
             currentTarget.isSwapping = false;
             slowTime = true;
 
@@ -126,7 +131,7 @@ namespace BattleSystem
 
         private IEnumerator Swap()
         {
-            currentSwapTarget = iUnitCharacterSwappingPosition.CheckTargetStatus();
+            currentSwapTarget = iUnitCharacterSwappingPosition.CheckTargetStatus(unit.currentTarget);
             
             yield return characterSwappingPositionUnit.spriteParentObject.transform.SwapPosition
                 (currentSwapTarget.spriteParentObject.transform, swapSpeed);
@@ -192,16 +197,29 @@ namespace BattleSystem
             
             if (unit.missed) yield break;
             
-            var coroutine = StartCoroutine
+            if (unit.currentAbility.isMultiHit)
+            {
+                foreach (var target in unit.multiHitTargets)
+                {
+                    var coroutine = StartCoroutine
+                    (StatusEffectManager.Trigger
+                        (target.unit, RateOfInfliction.AfterAttacked, 0.25f, false));
+                }
+            }
+            
+            else {
+                var coroutine = StartCoroutine
                 (StatusEffectManager.Trigger
                 (currentTarget, RateOfInfliction.AfterAttacked, 0.25f, false));
+                yield return coroutine;
+            }
             
-            yield return coroutine;
+            //yield return coroutine;
         }
         
         private IEnumerator PhysicalAttack()
         {
-            currentTarget = unitBase.CheckTargetStatus();
+            currentTarget = unitBase.CheckTargetStatus(unit.currentTarget);
             unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase, currentTarget);
 
             var move = StartCoroutine(MoveToTargetPosition());
@@ -220,28 +238,33 @@ namespace BattleSystem
         // Gonna have to update this to account for multi-target attacks
         private IEnumerator RangedAttack()
         {
-            currentTarget = unitBase.CheckTargetStatus();
-            
             if (unit.currentAbility.isMultiHit)
             {
-                switch (unit.currentAbility.targetOptions)
-                {
-                    case 0: foreach (var enemy in BattleHandler.enemiesForThisBattle)
-                            unit.damageValueList.Add(DamageCalculator.CalculateAttackDamage(unitBase, enemy.unit));
-                        break;
-                    case 1: foreach (var member in BattleHandler.membersForThisBattle)
-                            unit.damageValueList.Add(DamageCalculator.CalculateAttackDamage(unitBase, member.unit));
-                        break;
-                    case 2: break;
-                }
+                foreach (var target in unit.multiHitTargets) 
+                    unit.damageValueList.Add(DamageCalculator.CalculateAttackDamage(unitBase, target.unit));
+                // switch (unit.currentAbility.targetOptions)
+                // {
+                //     case 0: foreach (var enemy in BattleHandler.enemiesForThisBattle)
+                //             unit.damageValueList.Add(DamageCalculator.CalculateAttackDamage(unitBase, enemy.unit));
+                //         break;
+                //     case 1: foreach (var member in BattleHandler.membersForThisBattle)
+                //             unit.damageValueList.Add(DamageCalculator.CalculateAttackDamage(unitBase, member.unit));
+                //         break;
+                //     case 2: break;
+                // }
             }
-            
-            else unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase, currentTarget);
-            
-            var originalRotation = unit.transform.rotation;
-            var lookAtPosition = currentTarget.transform.position;
+
+            else {
+                currentTarget = unitBase.CheckTargetStatus(unit.currentTarget);
+                unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase, currentTarget);
+            }
 
             var rangeAbility = (RangedAttack) unit.currentAbility;
+
+            var transform1 = unit.transform;
+            var originalRotation = transform1.rotation;
+            var lookAtPosition = rangeAbility.lookAtTarget ? currentTarget.transform.position : transform1.position;
+
             if (rangeAbility.lookAtTarget) {
                 unit.transform.LookAt(lookAtPosition);
                 unit.transform.rotation *= Quaternion.FromToRotation(Vector3.right, Vector3.forward); 

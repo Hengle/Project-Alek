@@ -59,8 +59,11 @@ namespace Characters
             }
         }
         
-        public Unit CheckTargetStatus() => unit.currentTarget.status != Status.Dead ? unit.currentTarget : unit;
-        
+        public Unit CheckTargetStatus(Unit target) {
+            if (target != null) return unit.currentTarget.status != Status.Dead ? target : unit;
+            return unit;
+        }
+
         public void SetupUnit(UnitBase reference)
         {
             unit.id = id;

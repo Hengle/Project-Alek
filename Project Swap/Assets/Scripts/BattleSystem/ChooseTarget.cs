@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Characters;
 using Characters.PartyMembers;
@@ -107,7 +108,23 @@ namespace BattleSystem
             BattleHandler.choosingTarget = false;
         }
 
-        public void AddMultiHitCommand() {
+        public void AddMultiHitCommand() 
+        {
+            memberCurrentlyChoosingTarget.multiHitTargets = new List<UnitBase>();
+            
+            switch (targetOptions)
+            {
+                case 0: foreach (var enemy in BattleHandler.enemiesForThisBattle) 
+                        memberCurrentlyChoosingTarget.multiHitTargets.Add(enemy);
+                    break;
+                
+                case 1: foreach (var member in BattleHandler.membersForThisBattle)
+                        memberCurrentlyChoosingTarget.multiHitTargets.Add(member);
+                    break;
+                
+                case 2:
+                    break;
+            }
             memberCurrentlyChoosingTarget.commandActionName = className;
             memberCurrentlyChoosingTarget.commandActionOption = classOption;
             BattleHandler.choosingTarget = false;

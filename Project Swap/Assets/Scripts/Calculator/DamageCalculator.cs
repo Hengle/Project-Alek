@@ -13,10 +13,10 @@ namespace Calculator
         public static int CalculateAttackDamage(UnitBase damageDealer, Unit target)
         {
             var dealerUnit = damageDealer.unit;
-            var targetUnit = damageDealer.unit.currentTarget;
+            var targetUnit = target;
             if (damageDealer.unit == targetUnit) return 0;
 
-            var hitChance = CalculateAccuracy(dealerUnit);
+            var hitChance = CalculateAccuracy(dealerUnit, targetUnit);
             if (!hitChance) { dealerUnit.missed = true; return -1; }
             dealerUnit.missed = false;
             
@@ -59,16 +59,20 @@ namespace Calculator
         
         private static bool CalculateCritChance(Unit damageDealer)
         {
+            //if (damageDealer.currentAbility.isMultiHit) return false; // temporary
+            
             var critChance = (float) damageDealer.currentCrit / 100;
             var randomValue = Random.value;
 
             return randomValue <= critChance;
         }
 
-        private static bool CalculateAccuracy(Unit damageDealer)
+        private static bool CalculateAccuracy(Unit damageDealer, Unit target)
         {
+            //if (damageDealer.currentAbility.isMultiHit) return true; // temporary
+            
             var hitChance = (float) (damageDealer.currentAccuracy + 80 /*placeholder for wpn accuracy*/ -
-                            damageDealer.currentTarget.currentInitiative) / 100;
+                                     target.currentInitiative) / 100;
             var randomValue = Random.value;
             
             return randomValue <= hitChance;

@@ -69,6 +69,7 @@ namespace Characters
         public int CurrentHP { set { currentHP = value < 0 ? 0 : value; OnHpValueChanged(); } }
 
         public List<StatusEffect> statusEffects = new List<StatusEffect>();
+        public List<UnitBase> multiHitTargets = new List<UnitBase>();
         public List<int> damageValueList = new List<int>();
 
         public bool missed;
@@ -122,14 +123,31 @@ namespace Characters
         private void InflictStatusEffectOnTarget(StatusEffect effect)
         {
             if (missed) return;
-            if ((from statusEffect in currentTarget.statusEffects
-                where statusEffect.name == effect.name select statusEffect).Any()) return;
-            
-            var randomValue = Random.value;
-            if (randomValue > currentAbility.chanceOfInfliction) return;
-            
-            effect.OnAdded(currentTarget);
-            currentTarget.statusEffects.Add(effect);
+            if (!currentAbility.isMultiHit)
+            {
+                if ((from statusEffect in currentTarget.statusEffects
+                    where statusEffect.name == effect.name
+                    select statusEffect).Any()) return;
+
+                var randomValue = Random.value;
+                if (randomValue > currentAbility.chanceOfInfliction) return;
+
+                effect.OnAdded(currentTarget);
+                currentTarget.statusEffects.Add(effect);
+            }
+
+            foreach (var target in multiHitTargets)
+            {
+                if ((from statusEffect in target.unit.statusEffects
+                    where statusEffect.name == effect.name
+                    select statusEffect).Any()) return;
+
+                var randomValue = Random.value;
+                if (randomValue > currentAbility.chanceOfInfliction) return;
+
+                effect.OnAdded(target.unit);
+                target.unit.statusEffects.Add(effect);
+            }
         }
 
         public void RemoveStatusEffect(StatusEffect effect)
@@ -177,17 +195,20 @@ namespace Characters
                 return;
             }
 
-            switch (currentAbility.targetOptions)
-            {
-                case 0: for (var i = 0; i < BattleHandler.enemiesForThisBattle.Count; i++)
-                        BattleHandler.enemiesForThisBattle[i].unit.TakeDamage(damageValueList[i], this);
-                    break;
-                case 1: for (var i = 0; i < BattleHandler.membersForThisBattle.Count; i++)
-                        BattleHandler.membersForThisBattle[i].unit.TakeDamage(damageValueList[i], this);
-                    break;
-                case 2:
-                    break;
-            }
+            for (var i = 0; i < multiHitTargets.Count; i++)
+                multiHitTargets[i].unit.TakeDamage(damageValueList[i], this);
+            
+            // switch (currentAbility.targetOptions)
+            // {
+            //     case 0: for (var i = 0; i < BattleHandler.enemiesForThisBattle.Count; i++)
+            //             BattleHandler.enemiesForThisBattle[i].unit.TakeDamage(damageValueList[i], this);
+            //         break;
+            //     case 1: for (var i = 0; i < BattleHandler.membersForThisBattle.Count; i++)
+            //             BattleHandler.membersForThisBattle[i].unit.TakeDamage(damageValueList[i], this);
+            //         break;
+            //     case 2:
+            //         break;
+            // }
         }
 
         [UsedImplicitly] public void RecalculateDamage() {

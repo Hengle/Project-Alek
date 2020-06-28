@@ -221,7 +221,8 @@ namespace BattleSystem
             
             partyMemberWhoChoseSwap.unit.isSwapping = false;
             partyMemberWhoChoseSwap.unit.currentTarget = partySwapTarget;
-            partyMemberWhoChoseSwap.unit.currentTarget = partyMemberWhoChoseSwap.CheckTargetStatus();
+            partyMemberWhoChoseSwap.unit.currentTarget = partyMemberWhoChoseSwap.CheckTargetStatus
+                (partyMemberWhoChoseSwap.unit.currentTarget);
 
             var memberWhoChoseSwap = partyMemberWhoChoseSwap.unit.spriteParentObject;
             var target = partyMemberWhoChoseSwap.unit.currentTarget.spriteParentObject.transform;
