@@ -109,7 +109,7 @@ namespace BattleSystem
                 if (PartyOrEnemyTeamIsDead) break;
 
                 var inflictStatusEffects = StartCoroutine
-                    (StatusEffectManager.Trigger
+                    (StatusEffectManager.TriggerOnThisUnit
                     (character.unit, RateOfInfliction.EveryTurn, 1,true));
                 
                 yield return inflictStatusEffects;
@@ -178,8 +178,7 @@ namespace BattleSystem
 
             character.ResetAnimationStates();
 
-            var inflictStatusEffects = StartCoroutine
-                (StatusEffectManager.Trigger
+            var inflictStatusEffects = StartCoroutine(StatusEffectManager.TriggerOnThisUnit
                 (character.unit, RateOfInfliction.EveryAction, 1,true));
             
             yield return inflictStatusEffects;
@@ -204,9 +203,8 @@ namespace BattleSystem
 
                 enemy.GiveCommand();
                 while (performingAction) yield return null;
-
-                var inflictStatusEffects = StartCoroutine
-                    (StatusEffectManager.Trigger
+                
+                var inflictStatusEffects = StartCoroutine(StatusEffectManager.TriggerOnThisUnit
                     (enemy.unit, RateOfInfliction.EveryAction, 1,true));
                 
                 yield return inflictStatusEffects;
