@@ -16,16 +16,12 @@ namespace BattleSystem
 {
     public class GlobalBattleFuncs : MonoBehaviour
     {
-        private bool specialSwap;
-
         private Vector3 originPosition, targetPosition;
         
         private AnimationHandler animHandler;
         
         private UnitBase unitBase;
         private Unit unit, currentTarget;
-        private UnitBase iUnitCharacterSwappingPosition;
-        private Unit characterSwappingPositionUnit, currentSwapTarget;
 
         private void Start() {
             DOTween.Init();
@@ -75,47 +71,6 @@ namespace BattleSystem
             }
         }
 
-        private void SetupSpecialSwap()
-        {
-            if (unit.isAbility && unit.currentAbility.isMultiHit) {
-                currentTarget.isSwapping = false;
-                return;
-            }
-            
-            currentTarget.isSwapping = false;
-            TimeManager.slowTime = true;
-
-            iUnitCharacterSwappingPosition = currentTarget.unitRef;
-            characterSwappingPositionUnit = iUnitCharacterSwappingPosition.unit;
-            
-            currentSwapTarget = BattleHandler.partySwapTarget;
-            characterSwappingPositionUnit.currentTarget = currentSwapTarget;
-
-            specialSwap = true;
-            StartCoroutine(Swap());
-                    
-            currentTarget = currentSwapTarget;
-            unit.currentTarget = currentSwapTarget;
-
-            unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase, currentTarget);
-        }
-
-        private IEnumerator Swap()
-        {
-            currentSwapTarget = iUnitCharacterSwappingPosition.CheckTargetStatus(unit.currentTarget);
-            
-            yield return characterSwappingPositionUnit.spriteParentObject.transform.SwapPosition
-                (currentSwapTarget.spriteParentObject.transform, TimeManager.swapSpeed);
-            
-            TimeManager.slowTime = false;
-
-            if (characterSwappingPositionUnit.id == Type.PartyMember && characterSwappingPositionUnit != currentSwapTarget)
-                characterSwappingPositionUnit.characterPanelRef.SwapSiblingIndex(currentSwapTarget.characterPanelRef);
-
-            if (specialSwap) yield break;
-            BattleHandler.performingAction = false;
-        }
-        
         private IEnumerator MoveToTargetPosition()
         {
             originPosition = unit.spriteParentObject.transform.position;
@@ -127,8 +82,6 @@ namespace BattleSystem
             
             while (unit.spriteParentObject.transform.position != targetPosition)
             {
-                if (currentTarget.isSwapping && BattleHandler.partySwapTarget.status != Status.Dead) SetupSpecialSwap();
-                
                 unit.spriteParentObject.transform.position = Vector3.MoveTowards
                     (unit.spriteParentObject.transform.position, targetPosition, TimeManager.moveSpeed * Time.deltaTime);
           

@@ -12,7 +12,6 @@ namespace BattleSystem
         private static Type targetOptionsType;
         private static int classOption;
         private static string className;
-        private static bool isSwapOption;
         public static bool isMultiTarget;
         private static MenuController menuController;
         private static Unit memberCurrentlyChoosingTarget;
@@ -61,8 +60,7 @@ namespace BattleSystem
         {
             className = name;
             classOption = option;
-            isSwapOption = isSwap;
-            
+
             switch (targetOptions)
             {
                 case 0: targetOptionsType = Type.Enemy;
@@ -87,8 +85,7 @@ namespace BattleSystem
                     thisUnit.outline.enabled = true;
                     if (Input.GetMouseButtonUp(0))
                     {
-                        if (isSwapOption) AddSwapCommand();
-                        else AddCommand();
+                        AddCommand();
                     }
                     break;
                 
@@ -101,8 +98,6 @@ namespace BattleSystem
 
         public void AddCommand()
         {
-            if (isSwapOption && memberCurrentlyChoosingTarget != thisUnit) { AddSwapCommand(); return; }
-            if (isSwapOption && memberCurrentlyChoosingTarget == thisUnit) return;
             if (thisUnit.status == Status.Dead) return;
             
             memberCurrentlyChoosingTarget.currentTarget = thisUnit;
@@ -131,21 +126,6 @@ namespace BattleSystem
             }
             memberCurrentlyChoosingTarget.commandActionName = className;
             memberCurrentlyChoosingTarget.commandActionOption = classOption;
-            BattleHandler.choosingTarget = false;
-        }
-
-        private void AddSwapCommand()
-        {
-            if (thisUnit.status == Status.Dead) return;
-            isSwapOption = false;
-            memberCurrentlyChoosingTarget.isSwapping = true;
-
-            menuController.swapButton.interactable = false;
-            
-            BattleHandler.partyHasChosenSwap = true;
-            BattleHandler.shouldGiveCommand = false;
-            BattleHandler.partyMemberWhoChoseSwap = character;
-            BattleHandler.partySwapTarget = thisUnit;
             BattleHandler.choosingTarget = false;
         }
 

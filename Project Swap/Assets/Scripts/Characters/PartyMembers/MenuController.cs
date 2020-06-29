@@ -14,9 +14,6 @@ namespace Characters.PartyMembers
         public static UnityEvent updateSelectables;
         [HideInInspector] public List<GameObject> enemySelectable = new List<GameObject>();
         [HideInInspector] public List<GameObject> memberSelectable = new List<GameObject>();
-        
-        public Button swapButton;
-        private static bool CanSwap => !BattleHandler.partyHasChosenSwap;
 
         [SerializeField] private GameObject mainMenu;
         [SerializeField] private GameObject abilityMenu;
@@ -34,15 +31,11 @@ namespace Characters.PartyMembers
             mainMenuFirstSelected = mainMenu.transform.GetChild(0).gameObject;
             
             abilityMenu = transform.Find("Battle Menu").gameObject.transform.Find("Ability Menu").gameObject;
-            abilityMenuFirstSelected = abilityMenu.transform.GetChild(2).gameObject;
-            
-            swapButton = abilityMenu.transform.GetChild(0).GetComponent<Button>();
+            abilityMenuFirstSelected = abilityMenu.transform.GetChild(0).gameObject;
 
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
         }
-
-        private void Update() => swapButton.interactable = CanSwap;
 
         private void UpdateSelectables()
         {

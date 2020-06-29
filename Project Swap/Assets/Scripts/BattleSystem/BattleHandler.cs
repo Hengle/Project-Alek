@@ -27,19 +27,15 @@ namespace BattleSystem
         public static List<Enemy> enemiesForThisBattle = new List<Enemy>();
         public static List<PartyMember> membersForThisBattle = new List<PartyMember>();
         public static List<UnitBase> membersAndEnemies = new List<UnitBase>();
-
-        public static UnitBase partyMemberWhoChoseSwap;
-        public static Unit partySwapTarget;
-
+        
         public static bool
             choosingOption,
             choosingTarget,
             performingAction,
             endThisMembersTurn,
             choosingAbility,
-            shouldGiveCommand,
-            partyHasChosenSwap;
-        
+            shouldGiveCommand;
+
         public static BattleState state;
         public static UnityEvent newRound;
         public static InputSystemUIInputModule inputModule;
@@ -97,7 +93,6 @@ namespace BattleSystem
         {
             Logger.Log("Round: " + roundCount);
             newRound.Invoke();
-            partyHasChosenSwap = false;
             yield return new WaitForSeconds(1);
 
             StartCoroutine(SortingCalculator.SortAndCombine());
@@ -121,9 +116,6 @@ namespace BattleSystem
                 
                 yield return round;
             }
-
-            var swap = StartCoroutine(ExecuteSwap());
-            yield return swap;
 
             switch (state)
             {
@@ -213,22 +205,6 @@ namespace BattleSystem
             }
         }
 
-        private static IEnumerator ExecuteSwap()
-        {
-            if (partyMemberWhoChoseSwap == null || !partyMemberWhoChoseSwap.unit.isSwapping) yield break;
-            
-            partyMemberWhoChoseSwap.unit.isSwapping = false;
-            partyMemberWhoChoseSwap.unit.currentTarget = partySwapTarget;
-            partyMemberWhoChoseSwap.unit.currentTarget = partyMemberWhoChoseSwap.CheckTargetStatus
-                (partyMemberWhoChoseSwap.unit.currentTarget);
-
-            var memberWhoChoseSwap = partyMemberWhoChoseSwap.unit.spriteParentObject;
-            var target = partyMemberWhoChoseSwap.unit.currentTarget.spriteParentObject.transform;
-
-            yield return memberWhoChoseSwap.transform.SwapPosition(target, 30);
-            partyMemberWhoChoseSwap.unit.characterPanelRef.SwapSiblingIndex(partyMemberWhoChoseSwap.unit.currentTarget.characterPanelRef);
-        }
-
         private IEnumerator WonBattleSequence()
         {
             yield return new WaitForSeconds(0.5f);
@@ -259,7 +235,6 @@ namespace BattleSystem
             choosingAbility = false;
             allMembersDead = false;
             allEnemiesDead = false;
-            partyHasChosenSwap = false;
             shouldGiveCommand = true;
             roundCount = 0;
         }

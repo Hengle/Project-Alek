@@ -38,7 +38,6 @@ namespace Characters
         [HideInInspector] public Button button;
         [HideInInspector] public Image fillRect;
         
-        [HideInInspector] public bool isSwapping;
         [HideInInspector] public bool isCrit;
         [HideInInspector] public bool isAbility;
         [HideInInspector] public bool battlePanelIsSet;

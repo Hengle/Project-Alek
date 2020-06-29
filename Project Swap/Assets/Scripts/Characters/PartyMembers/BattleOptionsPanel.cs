@@ -82,18 +82,6 @@ namespace Characters.PartyMembers
             BattleHandler.choosingAbility = true;
             BattleHandler.choosingOption = false;
         }
-        
-        public void OnSwapButton()
-        {
-            // First 2 parameters don't matter
-            ChooseTarget.GetCurrentCommand("UniversalAction", 2, true);
-            ChooseTarget.targetOptions = 1;
-            character.unit.actionCost = 1;
-            
-            character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
-            if (!BattleHandler.choosingOption) BattleHandler.choosingAbility = false;
-            BattleHandler.choosingOption = false;
-        }
 
         public void OnEndTurnButton()
         {

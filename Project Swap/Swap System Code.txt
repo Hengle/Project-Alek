@@ -1,0 +1,220 @@
+	private void SetupSpecialSwap()
+        {
+            if (unit.isAbility && unit.currentAbility.isMultiHit) {
+                currentTarget.isSwapping = false;
+                return;
+            }
+            
+            currentTarget.isSwapping = false;
+            TimeManager.slowTime = true;
+
+            iUnitCharacterSwappingPosition = currentTarget.unitRef;
+            characterSwappingPositionUnit = iUnitCharacterSwappingPosition.unit;
+            
+            currentSwapTarget = BattleHandler.partySwapTarget;
+            characterSwappingPositionUnit.currentTarget = currentSwapTarget;
+
+            specialSwap = true;
+            StartCoroutine(Swap());
+                    
+            currentTarget = currentSwapTarget;
+            unit.currentTarget = currentSwapTarget;
+
+            unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase, currentTarget);
+        }
+
+        private IEnumerator Swap()
+        {
+            currentSwapTarget = iUnitCharacterSwappingPosition.CheckTargetStatus(unit.currentTarget);
+            
+            yield return characterSwappingPositionUnit.spriteParentObject.transform.SwapPosition
+                (currentSwapTarget.spriteParentObject.transform, TimeManager.swapSpeed);
+            
+            TimeManager.slowTime = false;
+
+            if (characterSwappingPositionUnit.id == Type.PartyMember && characterSwappingPositionUnit != currentSwapTarget)
+                characterSwappingPositionUnit.characterPanelRef.SwapSiblingIndex(currentSwapTarget.characterPanelRef);
+
+            if (specialSwap) yield break;
+            BattleHandler.performingAction = false;
+        }
+
+
+var swap = StartCoroutine(ExecuteSwap());
+            yield return swap;
+
+private static IEnumerator ExecuteSwap()
+        {
+            if (partyMemberWhoChoseSwap == null || !partyMemberWhoChoseSwap.unit.isSwapping) yield break;
+            
+            partyMemberWhoChoseSwap.unit.isSwapping = false;
+            partyMemberWhoChoseSwap.unit.currentTarget = partySwapTarget;
+            partyMemberWhoChoseSwap.unit.currentTarget = partyMemberWhoChoseSwap.CheckTargetStatus
+                (partyMemberWhoChoseSwap.unit.currentTarget);
+
+            var memberWhoChoseSwap = partyMemberWhoChoseSwap.unit.spriteParentObject;
+            var target = partyMemberWhoChoseSwap.unit.currentTarget.spriteParentObject.transform;
+
+            yield return memberWhoChoseSwap.transform.SwapPosition(target, 30);
+            partyMemberWhoChoseSwap.unit.characterPanelRef.SwapSiblingIndex(partyMemberWhoChoseSwap.unit.currentTarget.characterPanelRef);
+        }
+
+
+
+
+using System.Collections;
+using Characters.PartyMembers;
+using UnityEngine;
+
+public static class ExtensionMethods
+{
+    public static IEnumerator SwapPosition(this Transform transform, Transform target, float swapSpeed)
+    {
+        Logger.Log("Should be swapping");
+        var position = transform.position;
+        var offsetPosition1 = new Vector3(position.x, position.y, position.z + 4);
+        
+        var position1 = target.position;
+        var offsetPosition2 = new Vector3(position1.x, position1.y, position1.z - 4);
+
+        var targetPosition1 = offsetPosition1;
+        var targetPosition2 = offsetPosition2;
+
+        while (transform.position != targetPosition2 
+               && target.position != targetPosition1)
+        {
+            var characterSwapping = transform;
+            var currentSwapTarg = target;
+                
+            if (Mathf.Abs((characterSwapping.position - currentSwapTarg.position).x) <= 0.3f) {
+                targetPosition1 = position;
+                targetPosition2 = position1;
+            }
+                
+            characterSwapping.position = Vector3.MoveTowards
+                (characterSwapping.position, targetPosition2, swapSpeed * Time.fixedDeltaTime);
+                
+            currentSwapTarg.position = Vector3.MoveTowards
+                (currentSwapTarg.position, targetPosition1, swapSpeed * Time.fixedDeltaTime);
+            
+            yield return new WaitForEndOfFrame();
+        }
+        
+        var thisIndex = transform.GetSiblingIndex();
+        var targetIndex = target.GetSiblingIndex();
+
+        transform.SetSiblingIndex(targetIndex);
+        target.SetSiblingIndex(thisIndex);
+        
+        MenuController.updateSelectables.Invoke();
+    }
+
+    public static void SwapSiblingIndex(this Transform transform, Transform target)
+    {
+        var unitIndex = transform.GetSiblingIndex();
+        var targetIndex = target.GetSiblingIndex();
+                
+        transform.SetSiblingIndex(targetIndex);
+        target.SetSiblingIndex(unitIndex);
+    }
+} 
+
+
+// BattleOptionsPanel Script
+public void OnSwapButton()
+        {
+            // First 2 parameters don't matter
+            ChooseTarget.GetCurrentCommand("UniversalAction", 2, true);
+            ChooseTarget.targetOptions = 1;
+            character.unit.actionCost = 1;
+            
+            character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
+            if (!BattleHandler.choosingOption) BattleHandler.choosingAbility = false;
+            BattleHandler.choosingOption = false;
+        }
+
+
+// Choose Target Script
+private void AddSwapCommand()
+        {
+            if (thisUnit.status == Status.Dead) return;
+            isSwapOption = false;
+            memberCurrentlyChoosingTarget.isSwapping = true;
+        
+            menuController.swapButton.interactable = false;
+            
+            BattleHandler.partyHasChosenSwap = true;
+            BattleHandler.shouldGiveCommand = false;
+            BattleHandler.partyMemberWhoChoseSwap = character;
+            BattleHandler.partySwapTarget = thisUnit;
+            BattleHandler.choosingTarget = false;
+        }
+
+// Under the add command script in choose target
+// if (isSwapOption && memberCurrentlyChoosingTarget != thisUnit) { AddSwapCommand(); return; }
+// if (isSwapOption && memberCurrentlyChoosingTarget == thisUnit) return;
+
+// MenuController
+//public Button swapButton;
+//private static bool CanSwap => !BattleHandler.partyHasChosenSwap;
+
+//private void Update() => swapButton.interactable = CanSwap;
+
+
+// GlobalBattleFuncs
+private UnitBase iUnitCharacterSwappingPosition;
+private Unit characterSwappingPositionUnit, currentSwapTarget;
+
+
+// BattleHandler
+public static UnitBase partyMemberWhoChoseSwap;
+public static Unit partySwapTarget;
+
+public static bool partyHasChosenSwap;
+
+
+// Unit script
+[HideInInspector] public bool isSwapping;
+
+
+public class TimeManager : MonoBehaviour
+{
+    public static int moveSpeed = 45;
+    public static int swapSpeed = 25;
+    public static bool slowTime;
+    public static bool slowTimeCrit;
+
+    private void Start()
+    {
+        moveSpeed = 45;
+        swapSpeed = 25;
+        slowTime = false;
+        slowTimeCrit = false;
+    }
+
+    private void Update()
+    {
+        if (slowTime)
+        {
+            Time.timeScale = 0.05f;
+            Time.fixedDeltaTime = 0.02F * Time.timeScale;
+
+            swapSpeed = 150;
+            moveSpeed = 20;
+        }
+            
+        else if (slowTimeCrit) {
+            Time.timeScale = 0.50f;
+            Time.fixedDeltaTime = 0.02F * Time.timeScale;
+        }
+            
+        else
+        {
+            Time.timeScale = 1;
+            Time.fixedDeltaTime = 0.02F * Time.timeScale;
+                
+            swapSpeed = 30;
+            moveSpeed = 45;
+        }
+    }
+}

@@ -24,7 +24,7 @@ namespace Characters.PartyMembers
             
             while (abilities.Count > 5) abilities.Remove(abilities[abilities.Count-1]);
 
-            for (var buttonIndex = 2; buttonIndex < abilities.Count + 2; buttonIndex++)
+            for (var buttonIndex = 0; buttonIndex < abilities.Count; buttonIndex++)
             {
                 var optionButton = abilityMenu.GetChild(buttonIndex).gameObject;
                 optionButton.GetComponentInChildren<TextMeshPro>().text = abilities[abilityListIndex].name;
