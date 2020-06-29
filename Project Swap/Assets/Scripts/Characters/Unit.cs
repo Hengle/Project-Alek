@@ -215,7 +215,7 @@ namespace Characters
             currentDamage = DamageCalculator.CalculateAttackDamage(unitRef, currentTarget);
             if (id != Type.PartyMember || !isCrit) return;
             closeUpCamCrit.SetActive(true);
-            GlobalBattleFuncs.slowTimeCrit = true;
+            TimeManager.slowTimeCrit = true;
         }
 
         public void OnSelect(BaseEventData eventData) {

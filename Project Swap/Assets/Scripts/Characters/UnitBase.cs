@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using Abilities;
+using Abilities.Ranged_Attacks;
 using Animations;
 using BattleSystem;
+using Calculator;
 using UnityEngine;
 
 namespace Characters
@@ -38,15 +40,43 @@ namespace Characters
             BattleHandler.performingAction = true;
         }
 
+        public Quaternion LookAtTarget()
+        {
+            var rangeAbility = (RangedAttack) unit.currentAbility;
+
+            var transform1 = unit.transform;
+            var originalRotation = transform1.rotation;
+            var lookAtPosition = rangeAbility.lookAtTarget ? unit.currentTarget.transform.position : transform1.position;
+
+            if (!rangeAbility.lookAtTarget) return originalRotation;
+            
+            unit.transform.LookAt(lookAtPosition);
+            unit.transform.rotation *= Quaternion.FromToRotation(Vector3.right, Vector3.forward);
+
+            return originalRotation;
+        }
+
         public Ability GetAndSetAbility(int index) => abilities[index];
+
+        public void GetDamageValues()
+        {
+            if (unit.isAbility && unit.currentAbility.isMultiHit) {
+                foreach (var target in unit.multiHitTargets) 
+                    unit.damageValueList.Add(DamageCalculator.CalculateAttackDamage(this, target.unit));
+            }
+
+            else {
+                unit.currentTarget = CheckTargetStatus(unit.currentTarget);
+                unit.currentDamage = DamageCalculator.CalculateAttackDamage(this, unit.currentTarget);
+            }
+        }
         
         public void ResetCommandsAndAP() {
             unit.currentAP += 2;
             if (unit.currentAP > 6) unit.currentAP = 6;
         }
 
-        public void ResetAnimationStates()
-        {
+        public void ResetAnimationStates() {
             unit.anim.SetInteger(AnimationHandler.PhysAttackState, 0);
         }
         

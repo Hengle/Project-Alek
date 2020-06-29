@@ -16,13 +16,13 @@ namespace BattleSystem
 {
     public class GlobalBattleFuncs : MonoBehaviour
     {
-        public int moveSpeed = 45;
-        public int swapSpeed = 25;
-        
+        // public int moveSpeed = 45;
+        // public int swapSpeed = 25;
+
+        // public static bool slowTime;
+        // public static bool slowTimeCrit;
         private bool specialSwap;
-        public static bool slowTime;
-        public static bool slowTimeCrit;
-        
+
         private Vector3 originPosition, targetPosition;
         
         private AnimationHandler animHandler;
@@ -32,33 +32,37 @@ namespace BattleSystem
         private UnitBase iUnitCharacterSwappingPosition;
         private Unit characterSwappingPositionUnit, currentSwapTarget;
 
-        private void Start() => DOTween.Init();
-
-        private void Update()
-        {
-            if (slowTime)
-            {
-                Time.timeScale = 0.05f;
-                Time.fixedDeltaTime = 0.02F * Time.timeScale;
-
-                swapSpeed = 150;
-                moveSpeed = 20;
-            }
-            
-            else if (slowTimeCrit) {
-                Time.timeScale = 0.50f;
-                Time.fixedDeltaTime = 0.02F * Time.timeScale;
-            }
-            
-            else
-            {
-                Time.timeScale = 1;
-                Time.fixedDeltaTime = 0.02F * Time.timeScale;
-                
-                swapSpeed = 30;
-                moveSpeed = 45;
-            }
+        private void Start() {
+            // slowTime = false;
+            // slowTimeCrit = false;
+            DOTween.Init();
         }
+
+        // private void Update()
+        // {
+        //     if (slowTime)
+        //     {
+        //         Time.timeScale = 0.05f;
+        //         Time.fixedDeltaTime = 0.02F * Time.timeScale;
+        //
+        //         swapSpeed = 150;
+        //         moveSpeed = 20;
+        //     }
+        //     
+        //     else if (slowTimeCrit) {
+        //         Time.timeScale = 0.50f;
+        //         Time.fixedDeltaTime = 0.02F * Time.timeScale;
+        //     }
+        //     
+        //     else
+        //     {
+        //         Time.timeScale = 1;
+        //         Time.fixedDeltaTime = 0.02F * Time.timeScale;
+        //         
+        //         swapSpeed = 30;
+        //         moveSpeed = 45;
+        //     }
+        // }
         
         public void GetCommand(UnitBase unitBaseParam)
         {
@@ -106,13 +110,17 @@ namespace BattleSystem
 
         private void SetupSpecialSwap()
         {
+<<<<<<< Updated upstream
             if (unit.currentAbility.isMultiHit) {
+=======
+            if (unit.isAbility && unit.currentAbility.isMultiHit) {
+>>>>>>> Stashed changes
                 currentTarget.isSwapping = false;
                 return;
             }
             
             currentTarget.isSwapping = false;
-            slowTime = true;
+            TimeManager.slowTime = true;
 
             iUnitCharacterSwappingPosition = currentTarget.unitRef;
             characterSwappingPositionUnit = iUnitCharacterSwappingPosition.unit;
@@ -134,9 +142,9 @@ namespace BattleSystem
             currentSwapTarget = iUnitCharacterSwappingPosition.CheckTargetStatus(unit.currentTarget);
             
             yield return characterSwappingPositionUnit.spriteParentObject.transform.SwapPosition
-                (currentSwapTarget.spriteParentObject.transform, swapSpeed);
+                (currentSwapTarget.spriteParentObject.transform, TimeManager.swapSpeed);
             
-            slowTime = false;
+            TimeManager.slowTime = false;
 
             if (characterSwappingPositionUnit.id == Type.PartyMember && characterSwappingPositionUnit != currentSwapTarget)
                 characterSwappingPositionUnit.characterPanelRef.SwapSiblingIndex(currentSwapTarget.characterPanelRef);
@@ -159,7 +167,7 @@ namespace BattleSystem
                 if (currentTarget.isSwapping && BattleHandler.partySwapTarget.status != Status.Dead) SetupSpecialSwap();
                 
                 unit.spriteParentObject.transform.position = Vector3.MoveTowards
-                    (unit.spriteParentObject.transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                    (unit.spriteParentObject.transform.position, targetPosition, TimeManager.moveSpeed * Time.deltaTime);
           
                 yield return new WaitForEndOfFrame();
             }
@@ -175,7 +183,7 @@ namespace BattleSystem
             while (unit.spriteParentObject.transform.position != originPosition)
             {
                 unit.spriteParentObject.transform.position = Vector3.MoveTowards
-                    (unit.spriteParentObject.transform.position, originPosition, moveSpeed * Time.deltaTime);
+                    (unit.spriteParentObject.transform.position, originPosition, TimeManager.moveSpeed * Time.deltaTime);
   
                 yield return new WaitForEndOfFrame();
             }
@@ -185,18 +193,20 @@ namespace BattleSystem
 
         private IEnumerator ExecuteAttack()
         {
-            if (unit.isCrit && unit.id == Type.PartyMember) slowTimeCrit = true;
-            if (unit.isAbility) unit.anim.SetInteger(AnimationHandler.PhysAttackState, unit.currentAbility.attackState);
+            TimeManager.slowTimeCrit = unit.isCrit;
             
+            if (unit.isAbility) unit.anim.SetInteger(AnimationHandler.PhysAttackState, unit.currentAbility.attackState);
             unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
+            
             yield return new WaitForEndOfFrame();
             while (animHandler.isAttacking) yield return null;
             
-            slowTime = false;
-            slowTimeCrit = false;
+            TimeManager.slowTime = false;
+            TimeManager.slowTimeCrit = false;
             
             if (unit.missed) yield break;
             
+<<<<<<< Updated upstream
             if (unit.currentAbility.isMultiHit)
             {
                 foreach (var target in unit.multiHitTargets)
@@ -213,14 +223,17 @@ namespace BattleSystem
                 (currentTarget, RateOfInfliction.AfterAttacked, 0.25f, false));
                 yield return coroutine;
             }
+=======
+            var coroutine = StartCoroutine(StatusEffectManager.TriggerOnTargetsOfUnit
+                (unit, RateOfInfliction.AfterAttacked, 0.25f, false));
+>>>>>>> Stashed changes
             
-            //yield return coroutine;
+            yield return coroutine;
         }
         
-        private IEnumerator PhysicalAttack()
+        private IEnumerator PhysicalAttack() // Maybe change name to CloseRangeAttack 
         {
-            currentTarget = unitBase.CheckTargetStatus(unit.currentTarget);
-            unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase, currentTarget);
+            unitBase.GetDamageValues();
 
             var move = StartCoroutine(MoveToTargetPosition());
             yield return move;
@@ -235,9 +248,9 @@ namespace BattleSystem
         }
 
         
-        // Gonna have to update this to account for multi-target attacks
         private IEnumerator RangedAttack()
         {
+<<<<<<< Updated upstream
             if (unit.currentAbility.isMultiHit)
             {
                 foreach (var target in unit.multiHitTargets) 
@@ -260,15 +273,11 @@ namespace BattleSystem
             }
 
             var rangeAbility = (RangedAttack) unit.currentAbility;
+=======
+            unitBase.GetDamageValues();
+>>>>>>> Stashed changes
 
-            var transform1 = unit.transform;
-            var originalRotation = transform1.rotation;
-            var lookAtPosition = rangeAbility.lookAtTarget ? currentTarget.transform.position : transform1.position;
-
-            if (rangeAbility.lookAtTarget) {
-                unit.transform.LookAt(lookAtPosition);
-                unit.transform.rotation *= Quaternion.FromToRotation(Vector3.right, Vector3.forward); 
-            }
+            var originalRotation = unitBase.LookAtTarget();
 
             var attack = StartCoroutine(ExecuteAttack());
             yield return attack;
