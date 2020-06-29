@@ -190,25 +190,13 @@ namespace Characters
 
         [UsedImplicitly] public void TargetTakeDamage()
         {
-            if (!currentAbility.isMultiHit) {
+            if (!isAbility || !currentAbility.isMultiHit) {
                 currentTarget.TakeDamage(currentDamage, this);
                 return;
             }
 
             for (var i = 0; i < multiHitTargets.Count; i++)
                 multiHitTargets[i].unit.TakeDamage(damageValueList[i], this);
-            
-            // switch (currentAbility.targetOptions)
-            // {
-            //     case 0: for (var i = 0; i < BattleHandler.enemiesForThisBattle.Count; i++)
-            //             BattleHandler.enemiesForThisBattle[i].unit.TakeDamage(damageValueList[i], this);
-            //         break;
-            //     case 1: for (var i = 0; i < BattleHandler.membersForThisBattle.Count; i++)
-            //             BattleHandler.membersForThisBattle[i].unit.TakeDamage(damageValueList[i], this);
-            //         break;
-            //     case 2:
-            //         break;
-            // }
         }
 
         [UsedImplicitly] public void RecalculateDamage() {

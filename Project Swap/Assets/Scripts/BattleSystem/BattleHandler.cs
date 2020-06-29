@@ -203,14 +203,8 @@ namespace BattleSystem
 
                 enemy.GiveCommand();
                 while (performingAction) yield return null;
-<<<<<<< Updated upstream
                 
-                var inflictStatusEffects = StartCoroutine
-                    (StatusEffectManager.Trigger
-=======
-
                 var inflictStatusEffects = StartCoroutine(StatusEffectManager.TriggerOnThisUnit
->>>>>>> Stashed changes
                     (enemy.unit, RateOfInfliction.EveryAction, 1,true));
                 
                 yield return inflictStatusEffects;

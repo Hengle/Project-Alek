@@ -30,7 +30,6 @@ namespace BattleSystem
             thisUnit.button.interactable = false;
 
             if (BattleHandler.inputModule.cancel.action.triggered) {
-                //thisUnit.outline.enabled = false;
                 thisUnit.button.interactable = true;
                 isMultiTarget = false;
                 return;
@@ -108,7 +107,7 @@ namespace BattleSystem
             BattleHandler.choosingTarget = false;
         }
 
-        public void AddMultiHitCommand() 
+        private void AddMultiHitCommand() 
         {
             memberCurrentlyChoosingTarget.multiHitTargets = new List<UnitBase>();
             

@@ -59,8 +59,6 @@ namespace Calculator
         
         private static bool CalculateCritChance(Unit damageDealer)
         {
-            //if (damageDealer.currentAbility.isMultiHit) return false; // temporary
-            
             var critChance = (float) damageDealer.currentCrit / 100;
             var randomValue = Random.value;
 
@@ -69,8 +67,6 @@ namespace Calculator
 
         private static bool CalculateAccuracy(Unit damageDealer, Unit target)
         {
-            //if (damageDealer.currentAbility.isMultiHit) return true; // temporary
-            
             var hitChance = (float) (damageDealer.currentAccuracy + 80 /*placeholder for wpn accuracy*/ -
                                      target.currentInitiative) / 100;
             var randomValue = Random.value;

@@ -34,7 +34,7 @@ namespace Characters.PartyMembers
             mainMenuFirstSelected = mainMenu.transform.GetChild(0).gameObject;
             
             abilityMenu = transform.Find("Battle Menu").gameObject.transform.Find("Ability Menu").gameObject;
-            abilityMenuFirstSelected = abilityMenu.transform.GetChild(0).gameObject;
+            abilityMenuFirstSelected = abilityMenu.transform.GetChild(2).gameObject;
             
             swapButton = abilityMenu.transform.GetChild(0).GetComponent<Button>();
 

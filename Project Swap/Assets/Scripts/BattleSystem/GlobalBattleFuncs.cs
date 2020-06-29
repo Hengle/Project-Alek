@@ -16,11 +16,6 @@ namespace BattleSystem
 {
     public class GlobalBattleFuncs : MonoBehaviour
     {
-        // public int moveSpeed = 45;
-        // public int swapSpeed = 25;
-
-        // public static bool slowTime;
-        // public static bool slowTimeCrit;
         private bool specialSwap;
 
         private Vector3 originPosition, targetPosition;
@@ -33,37 +28,9 @@ namespace BattleSystem
         private Unit characterSwappingPositionUnit, currentSwapTarget;
 
         private void Start() {
-            // slowTime = false;
-            // slowTimeCrit = false;
             DOTween.Init();
         }
 
-        // private void Update()
-        // {
-        //     if (slowTime)
-        //     {
-        //         Time.timeScale = 0.05f;
-        //         Time.fixedDeltaTime = 0.02F * Time.timeScale;
-        //
-        //         swapSpeed = 150;
-        //         moveSpeed = 20;
-        //     }
-        //     
-        //     else if (slowTimeCrit) {
-        //         Time.timeScale = 0.50f;
-        //         Time.fixedDeltaTime = 0.02F * Time.timeScale;
-        //     }
-        //     
-        //     else
-        //     {
-        //         Time.timeScale = 1;
-        //         Time.fixedDeltaTime = 0.02F * Time.timeScale;
-        //         
-        //         swapSpeed = 30;
-        //         moveSpeed = 45;
-        //     }
-        // }
-        
         public void GetCommand(UnitBase unitBaseParam)
         {
             unitBase = unitBaseParam;
@@ -110,11 +77,7 @@ namespace BattleSystem
 
         private void SetupSpecialSwap()
         {
-<<<<<<< Updated upstream
-            if (unit.currentAbility.isMultiHit) {
-=======
             if (unit.isAbility && unit.currentAbility.isMultiHit) {
->>>>>>> Stashed changes
                 currentTarget.isSwapping = false;
                 return;
             }
@@ -206,28 +169,9 @@ namespace BattleSystem
             
             if (unit.missed) yield break;
             
-<<<<<<< Updated upstream
-            if (unit.currentAbility.isMultiHit)
-            {
-                foreach (var target in unit.multiHitTargets)
-                {
-                    var coroutine = StartCoroutine
-                    (StatusEffectManager.Trigger
-                        (target.unit, RateOfInfliction.AfterAttacked, 0.25f, false));
-                }
-            }
-            
-            else {
-                var coroutine = StartCoroutine
-                (StatusEffectManager.Trigger
-                (currentTarget, RateOfInfliction.AfterAttacked, 0.25f, false));
-                yield return coroutine;
-            }
-=======
             var coroutine = StartCoroutine(StatusEffectManager.TriggerOnTargetsOfUnit
                 (unit, RateOfInfliction.AfterAttacked, 0.25f, false));
->>>>>>> Stashed changes
-            
+
             yield return coroutine;
         }
         
@@ -250,32 +194,7 @@ namespace BattleSystem
         
         private IEnumerator RangedAttack()
         {
-<<<<<<< Updated upstream
-            if (unit.currentAbility.isMultiHit)
-            {
-                foreach (var target in unit.multiHitTargets) 
-                    unit.damageValueList.Add(DamageCalculator.CalculateAttackDamage(unitBase, target.unit));
-                // switch (unit.currentAbility.targetOptions)
-                // {
-                //     case 0: foreach (var enemy in BattleHandler.enemiesForThisBattle)
-                //             unit.damageValueList.Add(DamageCalculator.CalculateAttackDamage(unitBase, enemy.unit));
-                //         break;
-                //     case 1: foreach (var member in BattleHandler.membersForThisBattle)
-                //             unit.damageValueList.Add(DamageCalculator.CalculateAttackDamage(unitBase, member.unit));
-                //         break;
-                //     case 2: break;
-                // }
-            }
-
-            else {
-                currentTarget = unitBase.CheckTargetStatus(unit.currentTarget);
-                unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase, currentTarget);
-            }
-
-            var rangeAbility = (RangedAttack) unit.currentAbility;
-=======
             unitBase.GetDamageValues();
->>>>>>> Stashed changes
 
             var originalRotation = unitBase.LookAtTarget();
 

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 using Abilities;
 using Abilities.Ranged_Attacks;
 using Animations;
 using BattleSystem;
 using Calculator;
-using UnityEngine;
 
 namespace Characters
 {

@@ -15,9 +15,14 @@ namespace BattleSystem.Generator
         [SerializeField] private BattleGeneratorDatabase battleGeneratorDatabase;
         private Slider slider;
         private TextMeshProUGUI healthText;
+        private int offset;
+        private int enemyOffset;
         
         public bool SetupBattle()
         {
+            offset = PartyManager.instance.partyMembers.Count == 2 ? 1 : 0;
+            enemyOffset = battleGeneratorDatabase.enemies.Count == 2 ? 1 : 0;
+            
             SetupParty();
             SpawnEnemyTeam();
             SetupPartyMenuController();
@@ -44,21 +49,21 @@ namespace BattleSystem.Generator
 
         private void SetupPartyMemberPanel(PartyMember character, int i)
         {
-            battleGeneratorDatabase.characterPanels[i].gameObject.SetActive(true);
+            battleGeneratorDatabase.characterPanels[i+offset].gameObject.SetActive(true);
 
-            var iconImage = battleGeneratorDatabase.characterPanels[i].transform.GetChild(0).GetComponent<Image>();
+            var iconImage = battleGeneratorDatabase.characterPanels[i+offset].transform.GetChild(0).GetComponent<Image>();
             iconImage.sprite = character.icon;
 
-            var nameUgui = battleGeneratorDatabase.characterPanels[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+            var nameUgui = battleGeneratorDatabase.characterPanels[i+offset].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             nameUgui.text = character.characterName.ToUpper();
 
-            slider = battleGeneratorDatabase.characterPanels[i].transform.GetChild(2).GetComponent<Slider>();
+            slider = battleGeneratorDatabase.characterPanels[i+offset].transform.GetChild(2).GetComponent<Slider>();
 
-            healthText = battleGeneratorDatabase.characterPanels[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+            healthText = battleGeneratorDatabase.characterPanels[i+offset].transform.GetChild(3).GetComponent<TextMeshProUGUI>();
             healthText.text = "HP: " + character.health;
         }
 
-        private void SetupBattlePanel(PartyMember character, int i)
+        private void SetupBattlePanel(PartyMember character)
         {
             var position = character.unit.transform.position;
             var newPosition = new Vector3(position.x, position.y + 1.5f, position.z + 3);
@@ -82,19 +87,19 @@ namespace BattleSystem.Generator
 
         private void SpawnThisMember(PartyMember character, int i)
         {
-            var memberGo = Instantiate(character.characterPrefab, battleGeneratorDatabase.characterSpawnPoints[i].transform);
+            var memberGo = Instantiate(character.characterPrefab, battleGeneratorDatabase.characterSpawnPoints[i+offset].transform);
 
             character.SetUnitGO(memberGo, slider, healthText);
-            SetupBattlePanel(character, i);
+            SetupBattlePanel(character);
             character.SetupUnit(character);
 
             memberGo.transform.localScale = character.scale;
 
-            character.unit.characterPanelRef = battleGeneratorDatabase.characterPanels[i].transform;
+            character.unit.characterPanelRef = battleGeneratorDatabase.characterPanels[i+offset].transform;
             character.unit.statusBox =
                 character.unit.characterPanelRef.GetChild(character.unit.characterPanelRef.childCount - 1);
             
-            character.unit.spriteParentObject = battleGeneratorDatabase.characterSpawnPoints[i];
+            character.unit.spriteParentObject = battleGeneratorDatabase.characterSpawnPoints[i+offset];
 
             character.SetCameras();
             
@@ -108,7 +113,7 @@ namespace BattleSystem.Generator
             var i = 0;
             foreach (Enemy enemy in battleGeneratorDatabase.enemies)
             {
-                var enemyGo = Instantiate(enemy.characterPrefab, battleGeneratorDatabase.enemySpawnPoints[i].transform);
+                var enemyGo = Instantiate(enemy.characterPrefab, battleGeneratorDatabase.enemySpawnPoints[i+enemyOffset].transform);
                 enemyGo.name = enemy.name;
                 enemyGo.transform.localScale = enemy.scale;
 
@@ -118,7 +123,7 @@ namespace BattleSystem.Generator
                 enemy.SetUnitGO(enemyGo);
                 enemy.SetupUnit(enemy);
 
-                enemy.unit.spriteParentObject = battleGeneratorDatabase.enemySpawnPoints[i];
+                enemy.unit.spriteParentObject = battleGeneratorDatabase.enemySpawnPoints[i+enemyOffset];
 
                 var position = enemyGo.transform.position;
                 var newPosition = new Vector3(position.x, position.y + 1.5f, position.z);
