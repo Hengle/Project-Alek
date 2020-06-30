@@ -2,39 +2,27 @@
 using JetBrains.Annotations;
 using UnityEngine;
 using Abilities;
-using Abilities.Ranged_Attacks;
 using Animations;
-using Calculator;
 using Characters;
 using Characters.PartyMembers;
-using DG.Tweening;
 using StatusEffects;
 using Type = Characters.Type;
 
-// This script stores all of the battle functions that are shared between every party member and/or enemy
 namespace BattleSystem
 {
     public class GlobalBattleFuncs : MonoBehaviour
     {
         private Vector3 originPosition, targetPosition;
-        
         private AnimationHandler animHandler;
-        
         private UnitBase unitBase;
-        //private Unit unit; 
         private UnitBase currentTarget;
-
-        private void Start() {
-            DOTween.Init();
-        }
 
         public void GetCommand(UnitBase unitBaseParam)
         {
             unitBase = unitBaseParam;
-            //unit = unitBaseParam.unit;
             currentTarget = unitBase.Unit.currentTarget;
-                
-            animHandler = unitBaseParam.Unit.animationHandler;
+            animHandler = unitBase.Unit.animationHandler;
+            
             StartCoroutine(unitBase.Unit.commandActionName);
         }
 
@@ -45,7 +33,7 @@ namespace BattleSystem
             
             switch (unitBase.Unit.commandActionOption)
             {
-                case 1: StartCoroutine(PhysicalAttack());
+                case 1: StartCoroutine(CloseRangeAttack());
                     yield break;
                 case 2: // Item
                     yield break;
@@ -61,7 +49,7 @@ namespace BattleSystem
 
             switch (unitBase.Unit.currentAbility.abilityType)
             {
-                case AbilityType.Physical: StartCoroutine(PhysicalAttack());
+                case AbilityType.Physical: StartCoroutine(CloseRangeAttack());
                     yield break;;
                 case AbilityType.Ranged: StartCoroutine(RangedAttack());
                     yield break;;
@@ -72,64 +60,7 @@ namespace BattleSystem
             }
         }
 
-        private IEnumerator MoveToTargetPosition()
-        {
-            originPosition = unitBase.Unit.parent.transform.position;
-            var position = currentTarget.Unit.transform.position;
-            
-            targetPosition = unitBase.id == Type.PartyMember ? 
-                new Vector3(position.x, originPosition.y, position.z - 2) :
-                new Vector3(position.x, position.y, position.z + 2);
-            
-            while (unitBase.Unit.parent.transform.position != targetPosition)
-            {
-                unitBase.Unit.parent.transform.position = Vector3.MoveTowards
-                    (unitBase.Unit.parent.transform.position, targetPosition, TimeManager.moveSpeed * Time.deltaTime);
-          
-                yield return new WaitForEndOfFrame();
-            }
-
-            yield return new WaitForSeconds(0.5f);
-            if (unitBase.id == Type.PartyMember && unitBase.Unit.isCrit) unitBase.Unit.closeUpCamCrit.SetActive(true);
-        }
-
-        private IEnumerator MoveBackToOriginPosition()
-        {
-            if (unitBase.id == Type.PartyMember) unitBase.Unit.closeUpCamCrit.SetActive(false);
-            
-            while (unitBase.Unit.parent.transform.position != originPosition)
-            {
-                unitBase.Unit.parent.transform.position = Vector3.MoveTowards
-                    (unitBase.Unit.parent.transform.position, originPosition, TimeManager.moveSpeed * Time.deltaTime);
-  
-                yield return new WaitForEndOfFrame();
-            }
-
-            yield return new WaitForSeconds(1);
-        }
-
-        private IEnumerator ExecuteAttack()
-        {
-            TimeManager.slowTimeCrit = unitBase.Unit.isCrit;
-            
-            if (unitBase.Unit.isAbility) unitBase.Unit.anim.SetInteger(AnimationHandler.PhysAttackState, unitBase.Unit.currentAbility.attackState);
-            unitBase.Unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
-            
-            yield return new WaitForEndOfFrame();
-            while (animHandler.isAttacking) yield return null;
-            
-            TimeManager.slowTime = false;
-            TimeManager.slowTimeCrit = false;
-            
-            //if (unitBase.Unit.missed) yield break;
-            
-            var coroutine = StartCoroutine(StatusEffectManager.TriggerOnTargetsOfUnit
-                (unitBase, RateOfInfliction.AfterAttacked, 0.25f, false));
-
-            yield return coroutine;
-        }
-        
-        private IEnumerator PhysicalAttack() // Maybe change name to CloseRangeAttack 
+        private IEnumerator CloseRangeAttack()
         {
             unitBase.GetDamageValues();
 
@@ -144,7 +75,6 @@ namespace BattleSystem
 
             BattleManager.performingAction = false;
         }
-
         
         private IEnumerator RangedAttack()
         {
@@ -158,6 +88,62 @@ namespace BattleSystem
             unitBase.Unit.transform.rotation = originalRotation;
 
             BattleManager.performingAction = false;
+        }
+
+        private IEnumerator ExecuteAttack()
+        {
+            TimeManager.slowTimeCrit = unitBase.Unit.isCrit;
+            
+            if (unitBase.Unit.isAbility) unitBase.Unit.anim.SetInteger
+                (AnimationHandler.PhysAttackState, unitBase.Unit.currentAbility.attackState);
+            
+            unitBase.Unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
+            
+            yield return new WaitForEndOfFrame();
+            while (animHandler.isAttacking) yield return null;
+            
+            TimeManager.slowTime = false;
+            TimeManager.slowTimeCrit = false;
+
+            var coroutine = StartCoroutine(StatusEffectManager.TriggerOnTargetsOfUnit
+                (unitBase, RateOfInfliction.AfterAttacked, 0.25f, false));
+            
+            yield return coroutine;
+        }
+
+        private IEnumerator MoveToTargetPosition()
+        {
+            originPosition = unitBase.Unit.parent.transform.position;
+            var position = currentTarget.Unit.transform.position;
+            
+            targetPosition = unitBase.id == Type.PartyMember ? 
+                new Vector3(position.x, originPosition.y, position.z - 2) :
+                new Vector3(position.x, position.y, position.z + 2);
+
+            var parent = unitBase.Unit.parent.transform;
+            while (parent.position != targetPosition)
+            {
+                parent.position = Vector3.MoveTowards
+                    (parent.position, targetPosition, TimeManager.moveSpeed * Time.deltaTime);
+                yield return new WaitForEndOfFrame();
+            }
+            
+            yield return new WaitForSeconds(0.5f);
+            if (unitBase.Unit.isCrit) CriticalCamController.onCritical(unitBase);
+        }
+
+        private IEnumerator MoveBackToOriginPosition()
+        {
+            CriticalCamController.disableCam(unitBase);
+            
+            var parent = unitBase.Unit.parent.transform;
+            while (parent.position != originPosition)
+            {
+                parent.position = Vector3.MoveTowards
+                    (parent.position, originPosition, TimeManager.moveSpeed * Time.deltaTime);
+                yield return new WaitForEndOfFrame();
+            }
+            yield return new WaitForSeconds(1);
         }
     }
 }

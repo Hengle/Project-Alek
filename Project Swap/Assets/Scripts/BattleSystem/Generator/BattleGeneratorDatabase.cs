@@ -6,9 +6,11 @@ using UnityEngine;
 namespace BattleSystem.Generator
 {
     // For random encounters, consider separating enemy list into own script and making it an instance like party members
-    // Consider making this a script object
+    // Consider making this a scriptable object
     public class BattleGeneratorDatabase : MonoBehaviour
     {
+        public List<GameObject> closeUpCameras = new List<GameObject>();
+        public List<GameObject> criticalCameras = new List<GameObject>();
         public List<GameObject> characterPanels = new List<GameObject>();
         public List<GameObject> characterSpawnPoints = new List<GameObject>();
         public List<GameObject> enemySpawnPoints = new List<GameObject>();

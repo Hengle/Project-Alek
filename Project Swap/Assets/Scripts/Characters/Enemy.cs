@@ -1,12 +1,22 @@
-﻿using BattleSystem;
-using UnityEngine;
+﻿using UnityEngine;
+using BattleSystem;
 
 namespace Characters
 {
-    // Update this later so that each enemy type is a different script obj, not just EnemyData
+    // Update this later so that each enemy type is a different script obj, not just Enemy
     [CreateAssetMenu(fileName = "New Enemy", menuName = "Character/Enemy")]
     public class Enemy : UnitBase
     {
+        public int CurrentAP {
+            get => Unit.currentAP;
+            set => Unit.currentAP = value;
+        }
+
+        public override void OnThisUnitTurn(UnitBase unitBase)
+        {
+            
+        }
+
         public bool SetAI()
         {
             if (Unit.currentAP <= 2) return false;
@@ -25,12 +35,5 @@ namespace Characters
 
         // Probably unnecessary. should do this automatically i think
         public void SetUnitGO(GameObject enemyGO) => Unit = enemyGO.GetComponent<Unit>();
-        
-        public override void OnHpValueChanged()
-        {
-            if (Unit.currentHP <= 0.25f * Unit.maxHealthRef) Unit.outline.color = lowHealthColor;
-            else if (Unit.currentHP <= 0.5f * Unit.maxHealthRef) Unit.outline.color = midHealthColor;
-            else Unit.outline.color = normalHealthColor;
-        }
     }
 }

@@ -483,3 +483,33 @@ old swap method
             //
             //     yield return new WaitForEndOfFrame();
             // }
+
+
+
+private void OnMouseOver()
+        {
+            if (!BattleManager.choosingTarget) return;
+            
+            switch (targetOptions)
+            {
+                case 0 when thisUnitBase.id == Type.Enemy && thisUnitBase.Unit.status != Status.Dead:
+                    thisUnitBase.Unit.outline.enabled = true;
+                    if (BattleManager.controls.UI.Click.triggered) AddCommand();
+                    break;
+                
+                case 1 when thisUnitBase.id == Type.PartyMember && thisUnitBase.Unit != memberCurrentlyChoosingTarget.Unit:
+                    thisUnitBase.Unit.outline.enabled = true;
+                    if (BattleManager.controls.UI.Click.triggered)
+                    {
+                        AddCommand();
+                    }
+                    break;
+                
+                case 2 when thisUnitBase.Unit != memberCurrentlyChoosingTarget.Unit && thisUnitBase.Unit.status != Status.Dead:
+                    thisUnitBase.Unit.outline.enabled = true;
+                    if (BattleManager.controls.UI.Click.triggered) AddCommand();
+                    break;
+            }
+        }
+
+private void OnMouseExit() => thisUnitBase.Unit.outline.enabled = false;

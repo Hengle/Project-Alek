@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Abilities;
@@ -8,10 +9,11 @@ using BattleSystem;
 using BattleSystem.DamagePrefab;
 using Calculator;
 using StatusEffects;
+using UnityEngine.Serialization;
 
 namespace Characters
 {
-    public enum Type { PartyMember, Enemy }
+    public enum Type { PartyMember, Enemy, All }
     public abstract class UnitBase : ScriptableObject
     {
         public Vector3 scale = Vector3.one;
@@ -30,24 +32,46 @@ namespace Characters
         [Range(0,99)] public int defense;
         [Range(0,99)] public int resistance;
         [Range(0,99)] public int criticalChance;
-        public int CurrentHP { set { unit.currentHP = value < 0 ? 0 : value; OnHpValueChanged(); } }
 
         public Color profileBoxColor;
-        public Color normalHealthColor = Color.green;
-        public Color midHealthColor = Color.yellow;
-        public Color lowHealthColor = Color.red;
+        [HideInInspector] public Color normalHealthColor = Color.green;
+        [HideInInspector] public Color midHealthColor = Color.yellow;
+        [HideInInspector] public Color lowHealthColor = Color.red;
+
+        public Color Color {
+            get
+            {
+                if (Unit.currentHP <= 0.25f * Unit.maxHealthRef) {
+                    Unit.outline.color = lowHealthColor;
+                    return lowHealthColor;
+                }
+                if (Unit.currentHP <= 0.5f * Unit.maxHealthRef) {
+                    Unit.outline.color = midHealthColor;
+                    return midHealthColor;
+                } 
+                Unit.outline.color = normalHealthColor;
+                return normalHealthColor;
+            }
+        }
         
         [HideInInspector] public int maxAP = 6;
-        private Unit unit;
-
-        public Unit Unit {
-            get => unit;
-            protected set => unit = value;
-        }
-
+        public Unit Unit { get; protected set; }
         public List<Ability> abilities = new List<Ability>();
 
-        public bool IsDead => unit.status == Status.Dead;
+        public Action<int> onHpValueChanged;
+        public bool IsDead => Unit.status == Status.Dead;
+        
+        private int CurrentHP 
+        {
+            set { 
+                Unit.currentHP = value < 0 ? 0 : value;
+                onHpValueChanged?.Invoke(Unit.currentHP);
+                Unit.outline.color = Color;
+            } 
+        }
+        
+
+        public abstract void OnThisUnitTurn(UnitBase unitBase);
 
         public void GiveCommand() {
             BattleManager.battleFuncs.GetCommand(this);
@@ -56,40 +80,41 @@ namespace Characters
 
         public Quaternion LookAtTarget()
         {
-            var rangeAbility = (RangedAttack) unit.currentAbility;
+            var rangeAbility = (RangedAttack) Unit.currentAbility;
 
-            var transform1 = unit.transform;
+            var transform1 = Unit.transform;
             var originalRotation = transform1.rotation;
-            var lookAtPosition = rangeAbility.lookAtTarget ? unit.currentTarget.Unit.transform.position : transform1.position;
+            var lookAtPosition = rangeAbility.lookAtTarget?
+                Unit.currentTarget.Unit.transform.position : transform1.position;
 
             if (!rangeAbility.lookAtTarget) return originalRotation;
             
-            unit.transform.LookAt(lookAtPosition);
-            unit.transform.rotation *= Quaternion.FromToRotation(Vector3.right, Vector3.forward);
+            Unit.transform.LookAt(lookAtPosition);
+            Unit.transform.rotation *= Quaternion.FromToRotation(Vector3.right, Vector3.forward);
 
             return originalRotation;
         }
 
         public Ability GetAndSetAbility(int index) => abilities[index];
-
+        
         public void GetDamageValues()
         {
-            if (unit.isAbility && unit.currentAbility.isMultiTarget) {
-                foreach (var target in unit.multiHitTargets) 
-                    unit.damageValueList.Add(DamageCalculator.CalculateAttackDamage(this, target));
+            if (Unit.isAbility && Unit.currentAbility.isMultiTarget) {
+                foreach (var target in Unit.multiHitTargets) 
+                    Unit.damageValueList.Add(DamageCalculator.CalculateAttackDamage(this, target));
             }
 
             else {
-                unit.currentTarget = CheckTargetStatus(unit.currentTarget);
-                unit.currentDamage = DamageCalculator.CalculateAttackDamage(this, unit.currentTarget);
+                Unit.currentTarget = CheckTargetStatus(Unit.currentTarget);
+                Unit.currentDamage = DamageCalculator.CalculateAttackDamage(this, Unit.currentTarget);
             }
         }
-        
+
         public void TakeDamage(int dmg)
         {
-            CurrentHP = unit.currentHP - (dmg < 0 ? 0 : dmg);
+            CurrentHP = Unit.currentHP - (dmg < 0 ? 0 : dmg);
 
-            var position = unit.gameObject.transform.position;
+            var position = Unit.gameObject.transform.position;
             var newPosition = new Vector3(position.x, position.y + 3, position.z);
             
             var damage = DamagePrefabManager.Instance.ShowDamage(dmg, Unit.targetHasCrit);
@@ -97,11 +122,11 @@ namespace Characters
 
             if (Unit.targetHasCrit) Unit.targetHasCrit = false;
 
-            if (dmg == -1 && unit.currentHP > 0) return;
-            if (unit.currentHP > 0) unit.anim.SetTrigger(AnimationHandler.HurtTrigger);
+            if (dmg == -1 && Unit.currentHP > 0) return;
+            if (Unit.currentHP > 0) Unit.anim.SetTrigger(AnimationHandler.HurtTrigger);
             else Die();
         }
-        
+
         private void Die() // If i want to make special death sequences, just make it an event or cutscene
         {
             Unit.status = Status.Dead;
@@ -109,7 +134,7 @@ namespace Characters
             BattleManager.RemoveFromBattle(this, id);
             Unit.anim.SetBool(AnimationHandler.DeathTrigger, true);
         }
-        
+
         public void RemoveStatusEffect(StatusEffect effect)
         {
             if (!(from statEffect in Unit.statusEffects
@@ -118,19 +143,19 @@ namespace Characters
             Unit.statusEffects.Remove(effect);
             effect.OnRemoval(this);
         }
-        
+
         public void ResetCommandsAndAP() {
-            unit.currentAP += 2;
-            if (unit.currentAP > 6) unit.currentAP = 6;
+            Unit.currentAP += 2;
+            if (Unit.currentAP > 6) Unit.currentAP = 6;
         }
 
         public void ResetAnimationStates() {
-            unit.anim.SetInteger(AnimationHandler.PhysAttackState, 0);
+            Unit.anim.SetInteger(AnimationHandler.PhysAttackState, 0);
         }
-        
+
         public bool CheckUnitStatus()
         {
-            switch (unit.status) {
+            switch (Unit.status) {
                 case Status.Normal: return true;
                 case Status.Dead: return false;
                 default: return true;
@@ -138,7 +163,7 @@ namespace Characters
         }
 
         private UnitBase CheckTargetStatus(UnitBase target) {
-            if (target != null) return unit.currentTarget.Unit.status != Status.Dead ? target : this;
+            if (target != null) return Unit.currentTarget.Unit.status != Status.Dead? target : this;
             return this;
         }
 
@@ -148,7 +173,7 @@ namespace Characters
             Unit.level = level;
             Unit.status = Status.Normal;
             Unit.maxHealthRef = health;
-            CurrentHP = health;
+            Unit.currentHP = health;
             Unit.currentStrength = strength;
             Unit.currentMagic = magic;
             Unit.currentAccuracy = accuracy;
@@ -157,13 +182,12 @@ namespace Characters
             Unit.currentDefense = defense;
             Unit.currentResistance = resistance;
             Unit.currentAP = maxAP;
+            Unit.outline.color = Color;
             Unit.unitRef = reference;
             var chooseTarget = Unit.gameObject.GetComponent<ChooseTarget>();
             chooseTarget.thisUnitBase = this;
             chooseTarget.enabled = true;
 
         }
-
-        public abstract void OnHpValueChanged();
     }
 }

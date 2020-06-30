@@ -5,13 +5,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using BattleSystem;
-using UnityEngine.Events;
 
 namespace Characters.PartyMembers
 {
     public class MenuController : MonoBehaviour
     {
-        public static UnityEvent updateSelectables;
         [HideInInspector] public List<GameObject> enemySelectable = new List<GameObject>();
         [HideInInspector] public List<GameObject> memberSelectable = new List<GameObject>();
 
@@ -24,9 +22,6 @@ namespace Characters.PartyMembers
 
         private void Awake()
         {
-            updateSelectables = new UnityEvent();
-            updateSelectables.AddListener(UpdateSelectables);
-
             mainMenu = transform.Find("Battle Menu").gameObject.transform.Find("Main Options").gameObject;
             mainMenuFirstSelected = mainMenu.transform.GetChild(0).gameObject;
             
@@ -36,9 +31,8 @@ namespace Characters.PartyMembers
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
         }
-
-        // Will keep this for now since it could be used for cases where a boss spawns another minion after they die
-        private void UpdateSelectables()
+        
+        private void UpdateSelectables() // If I use this later, remember to make an event for it
         {
             memberSelectable = memberSelectable.OrderBy
                 (go => go.transform.parent.GetSiblingIndex()).ToList();

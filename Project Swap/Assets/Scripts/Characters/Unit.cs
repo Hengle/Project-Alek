@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Abilities;
-using Animations;
-using BattleSystem;
-using BattleSystem.DamagePrefab;
-using Calculator;
 using JetBrains.Annotations;
-using StatusEffects;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using TMPro;
+using Abilities;
+using Animations;
+using BattleSystem;
+using Calculator;
+using StatusEffects;
 
 namespace Characters
 {
@@ -21,34 +20,28 @@ namespace Characters
         //  EVERYTHING THAT NEEDS TO BE REMOVED ------------------------------------------------------------------
 
         [HideInInspector] public GameObject battlePanelRef; // Rework camera system so i can get rid of this
-        [HideInInspector] public Animator actionPointAnim; // Move to PartyMember
-        [HideInInspector] public Image fillRect; // Remove when onhpchanged is moved
-        [HideInInspector] public bool battlePanelIsSet; // can rid of this after battlePanelRef
+        //[HideInInspector] public Animator actionPointAnim; // Move to PartyMember
         [HideInInspector] public Type id; // Redundant. base class has type already. remove this
 
         //  EVERYTHING THAT CAN STAY IN THIS SCRIPT ----------------------------------------------------------
-
-        [HideInInspector] public TextMeshProUGUI healthText;
-        [HideInInspector] public Slider slider;
-
+        
         [FormerlySerializedAs("spriteParentObject")]
         [HideInInspector] public GameObject parent;
-        [HideInInspector] public GameObject closeUpCam;
-        [HideInInspector] public GameObject closeUpCamCrit;
 
         [HideInInspector] public UnitBase unitRef; // Get rid of this
-        [HideInInspector] public UnitBase currentTarget; // change to unitbase
+        [HideInInspector] public UnitBase currentTarget;
         [HideInInspector] public Ability currentAbility;
         [HideInInspector] public Animator anim; // could maybe keep, but remove direct access
         [HideInInspector] public AnimationHandler animationHandler;
-        [HideInInspector] public SpriteOutline outline;
+        [HideInInspector] public SpriteOutline outline; // could get rid of and move logic to outline script
         [HideInInspector] public Transform statusBox;
         [HideInInspector] public Button button;
 
         [HideInInspector] public bool targetHasCrit;
         [HideInInspector] public bool isCrit;
         [HideInInspector] public bool isAbility;
-        [HideInInspector] public bool targetHasMissed;
+        [FormerlySerializedAs("targetHasMissed")]
+        public bool attackerHasMissed;
 
         [HideInInspector] public int commandActionOption;
         [HideInInspector] public int maxHealthRef;
@@ -89,53 +82,47 @@ namespace Characters
             if (!BattleManager.choosingTarget) outline.enabled = false;
             if (BattleManager.controls.Menu.TopButton.triggered && outline.enabled) ProfileBoxManager.ShowProfileBox(unitRef);
             if (BattleManager.controls.Menu.Back.triggered && ProfileBoxManager.isOpen) ProfileBoxManager.CloseProfileBox();
-
-            if (!battlePanelIsSet) return;
-            closeUpCam.SetActive(battlePanelRef.activeSelf && battlePanelRef.transform.GetChild(1).gameObject.activeSelf);
         }
         
-
-        private void InflictStatusEffectOnTarget(StatusEffect effect)
-        {
-            if (!isAbility) return;
-            
-            if (!currentAbility.isMultiTarget)
-            {
-                if (currentTarget.Unit.targetHasMissed) return;
-                
-                if ((from statusEffect in currentTarget.Unit.statusEffects
-                    where statusEffect.name == effect.name select statusEffect).Any()) return;
-
-                var randomValue = Random.value;
-                if (randomValue > currentAbility.chanceOfInfliction) return;
-
-                effect.OnAdded(currentTarget);
-                currentTarget.Unit.statusEffects.Add(effect);
-                return;
-            }
-
-            foreach (var target in multiHitTargets.Where(target => !target.Unit.targetHasMissed))
-            {
-                if ((from statusEffect in target.Unit.statusEffects
-                    where statusEffect.name == effect.name select statusEffect).Any()) return;
-
-                var randomValue = Random.value;
-                if (randomValue > currentAbility.chanceOfInfliction) return;
-
-                effect.OnAdded(target);
-                target.Unit.statusEffects.Add(effect);
-            }
-        }
         
         // These functions are called from the animator. I could just fire off an event from the animation that the UnitBase listens to
         // And remove these functions from this class. Each unit could have its own event (So it doesn't trigger other units).
         // That way i can have different logic for these functions (if needed). A boss could have special logic for these functions
+        
         [UsedImplicitly] public void TryToInflictStatusEffect()
         {
             if (!isAbility || !currentAbility.hasStatusEffect) return;
             
-            foreach (var statusEffect in currentAbility.statusEffects)
-                InflictStatusEffectOnTarget(statusEffect);
+            if (!currentAbility.isMultiTarget)
+            {
+                if (currentTarget.Unit.attackerHasMissed) return;
+
+                foreach (var effect in from effect in currentAbility.statusEffects
+                    where !(from statusEffect in currentTarget.Unit.statusEffects
+                    where statusEffect.name == effect.name select statusEffect).Any()
+                    
+                    let randomValue = Random.value 
+                    where !(randomValue > currentAbility.chanceOfInfliction) select effect)
+                {
+                    effect.OnAdded(currentTarget);
+                    currentTarget.Unit.statusEffects.Add(effect);
+                    return;
+                }
+            }
+            
+            foreach (var target in multiHitTargets.Where(target => !target.Unit.attackerHasMissed))
+            {
+                foreach (var effect in from effect in currentAbility.statusEffects
+                    where !(from statusEffect in target.Unit.statusEffects
+                    where statusEffect.name == effect.name select statusEffect).Any() 
+                    
+                    let randomValue = Random.value 
+                    where !(randomValue > currentAbility.chanceOfInfliction) select effect)
+                {
+                    effect.OnAdded(target);
+                    target.Unit.statusEffects.Add(effect);
+                }
+            }
         }
 
         [UsedImplicitly] public void TargetTakeDamage()
@@ -164,7 +151,7 @@ namespace Characters
             
             currentDamage = DamageCalculator.CalculateAttackDamage(unitRef, currentTarget);
             if (id != Type.PartyMember || !isCrit) return;
-            closeUpCamCrit.SetActive(true);
+            //closeUpCamCrit.SetActive(true);
             TimeManager.slowTimeCrit = true;
         }
 

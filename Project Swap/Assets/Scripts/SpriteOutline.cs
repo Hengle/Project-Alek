@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using Characters;
+﻿using UnityEngine;
 
 [ExecuteInEditMode]
 public class SpriteOutline : MonoBehaviour

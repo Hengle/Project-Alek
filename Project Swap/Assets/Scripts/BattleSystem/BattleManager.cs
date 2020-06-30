@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.UI;
@@ -19,9 +20,11 @@ namespace BattleSystem
     [RequireComponent(typeof(InputSystemUIInputModule))]
     public class BattleManager : MonoBehaviour
     {
-        public static BattleState state;
+        private static BattleState state;
         public delegate void BattleSystemEvent();
         public static event BattleSystemEvent NewRound;
+        public static Action<UnitBase> thisUnitTurn;
+
         public static GlobalBattleFuncs battleFuncs;
 
         public static InputSystemUIInputModule inputModule;
@@ -37,14 +40,15 @@ namespace BattleSystem
         public static bool endThisMembersTurn;
         public static bool choosingAbility;
         public static bool shouldGiveCommand;
-
+        
         public BattleOptionsPanel battlePanel;
         private BattleGenerator generator;
         private Camera cam;
 
         private static bool allMembersDead;
         private static bool allEnemiesDead;
-        private static bool PartyOrEnemyTeamIsDead {
+        private static bool PartyOrEnemyTeamIsDead 
+        {
             get
             {
                 if (allEnemiesDead) state = BattleState.Won;
@@ -56,7 +60,7 @@ namespace BattleSystem
         private bool CancelCondition => inputModule.cancel.action.triggered && canPressBack;
         private bool canPressBack;
 
-        private int roundCount; // use this for bonuses based on how many rounds it took
+        private int roundCount;
 
         private void Start()
         {
@@ -66,7 +70,7 @@ namespace BattleSystem
 
             inputModule = GameObject.FindGameObjectWithTag
                 ("EventSystem").GetComponent<InputSystemUIInputModule>();
-
+            
             generator = GetComponent<BattleGenerator>();
             battleFuncs = GetComponent<GlobalBattleFuncs>();
 
@@ -90,7 +94,7 @@ namespace BattleSystem
         private IEnumerator PerformThisRound()
         {
             NewRound?.Invoke();
-            
+
             StartCoroutine(SortingCalculator.SortAndCombine());
             while (!SortingCalculator.isFinished) yield return null;
             
@@ -98,12 +102,12 @@ namespace BattleSystem
                 let checkMemberStatus = character.CheckUnitStatus() where checkMemberStatus select character)
             {
                 if (PartyOrEnemyTeamIsDead) break;
-
+                
                 var inflictStatusEffects = StartCoroutine(StatusEffectManager.TriggerOnThisUnit
                     (character, RateOfInfliction.EveryTurn, 1,true));
                 
                 yield return inflictStatusEffects;
-                
+
                 if (PartyOrEnemyTeamIsDead || character.IsDead) break;
                 
                 var round = StartCoroutine(character.id == Type.PartyMember ?
@@ -157,14 +161,15 @@ namespace BattleSystem
                 yield return null;
             }
                 
-            character.Unit.currentAP -= character.Unit.actionCost;
-            character.Unit.actionPointAnim.SetInteger(AnimationHandler.APVal, character.Unit.currentAP);
+            //character.Unit.currentAP -= character.Unit.actionCost;
+            character.CurrentAP -= character.Unit.actionCost;
+            //character.actionPointAnim.SetInteger(AnimationHandler.APVal, character.Unit.currentAP);
 
             var inflictStatusEffectsBefore = StartCoroutine(StatusEffectManager.TriggerOnThisUnit
                 (character, RateOfInfliction.BeforeEveryAction, 1,true));
-
-            yield return inflictStatusEffectsBefore;
             
+            yield return inflictStatusEffectsBefore;
+
             if (!shouldGiveCommand) shouldGiveCommand = true;
             else character.GiveCommand();
             while (performingAction) yield return null;
@@ -175,9 +180,9 @@ namespace BattleSystem
                 (character, RateOfInfliction.AfterEveryAction, 1,true));
             
             yield return inflictStatusEffectsAfter;
-
+            
             if (PartyOrEnemyTeamIsDead || character.IsDead) yield break;
-            if (character.Unit.currentAP > 0) goto main_menu;
+            if (character.CurrentAP > 0) goto main_menu;
         }
 
         private IEnumerator ThisEnemyTurn(Enemy enemy)
@@ -185,18 +190,18 @@ namespace BattleSystem
             state = BattleState.EnemyTurn;
             enemy.ResetCommandsAndAP();
 
-            while (enemy.Unit.currentAP > 0)
+            while (enemy.CurrentAP > 0)
             {
                 if (enemy.IsDead) break;
 
                 var shouldAttack = enemy.SetAI();
                 if (!shouldAttack) break;
 
-                enemy.Unit.currentAP -= enemy.Unit.actionCost;
+                enemy.CurrentAP -= enemy.Unit.actionCost;
                 
                 var inflictStatusEffectsBefore = StartCoroutine(StatusEffectManager.TriggerOnThisUnit
                     (enemy, RateOfInfliction.BeforeEveryAction, 1,true));
-
+                
                 yield return inflictStatusEffectsBefore;
 
                 if (!shouldGiveCommand) shouldGiveCommand = true;
@@ -207,7 +212,7 @@ namespace BattleSystem
                     (enemy, RateOfInfliction.AfterEveryAction, 1,true));
                 
                 yield return inflictStatusEffectsAfter;
-                
+
                 if (PartyOrEnemyTeamIsDead || enemy.IsDead) break;
             }
         }

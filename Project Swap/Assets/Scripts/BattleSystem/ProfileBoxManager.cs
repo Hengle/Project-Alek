@@ -9,13 +9,15 @@ namespace BattleSystem
 {
     public class ProfileBoxManager : MonoBehaviour
     {
-        [SerializeField] private BattleGeneratorDatabase battleGeneratorDatabase;
+        public static bool isOpen;
+
         private static Transform profileBox;
-        private static Image background;
-        private static Image spriteImage;
         private static TextMeshProUGUI description;
         private static TextMeshProUGUI stats;
-        public static bool isOpen;
+        private static Image background;
+        private static Image spriteImage;
+
+        [SerializeField] private BattleGeneratorDatabase battleGeneratorDatabase;
 
         private void Start() 
         {
@@ -57,7 +59,9 @@ namespace BattleSystem
 
         public static void CloseProfileBox()
         {
-            profileBox.DOScale(0.1f, 0.15f).OnComplete(() => profileBox.gameObject.SetActive(false));
+            profileBox.DOScale(0.1f, 0.15f).
+                OnComplete(() => profileBox.gameObject.SetActive(false));
+            
             BattleManager.inputModule.move.action.Enable();
             BattleManager.inputModule.submit.action.Enable();
             BattleManager.inputModule.cancel.action.Enable();

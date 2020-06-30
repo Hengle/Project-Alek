@@ -1,21 +1,33 @@
-﻿using BattleSystem;
+﻿using Animations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using BattleSystem;
 
 namespace Characters.PartyMembers
 {
     [CreateAssetMenu(fileName = "New Party Member", menuName = "Character/Party Member")]
     public class PartyMember : UnitBase
     {
+        [HideInInspector] public Animator actionPointAnim;
         [Range(0,4)] public int positionInParty;
         [HideInInspector] public GameObject battlePanel; // Could set this in inspector and just instantiate it and remove it from database
         private GameObject unitGO;
         
-        public bool SetAI() {
-            // Empty for now
-            return true;
+        public int CurrentAP {
+            get => Unit.currentAP;
+            set {
+                Unit.currentAP = value;
+                actionPointAnim.SetInteger(AnimationHandler.APVal, Unit.currentAP);
+            }
+    }
+        
+        public override void OnThisUnitTurn(UnitBase unitBase)
+        {
+            
         }
+
+        public bool SetAI() => true;
 
         public void SetAbilityMenuOptions(BattleOptionsPanel battleOptionsPanel)
         {
@@ -54,34 +66,17 @@ namespace Characters.PartyMembers
             }
         }
 
-        public void SetUnitGO(GameObject memberGO, Slider slider, TextMeshProUGUI healthText)
+        public void SetUnitGO(GameObject memberGO)
         {
             memberGO.name = characterName;
             Unit = memberGO.GetComponent<Unit>();
             
-            Unit.slider = slider;
-            Unit.slider.maxValue = health;
-            Unit.slider.value = health;
-            Unit.fillRect = slider.fillRect.GetComponent<Image>();
+            // Unit.slider = slider;
+            // Unit.slider.maxValue = health;
+            // Unit.slider.value = health;
+            // Unit.fillRect = slider.fillRect.GetComponent<Image>();
             
-            Unit.healthText = healthText;
-        }
-
-        public void SetCameras() {
-            Unit.closeUpCam = Unit.parent.transform.GetChild(0).gameObject;
-            Unit.closeUpCamCrit = Unit.parent.transform.GetChild(1).gameObject;
-        }
-
-        public override void OnHpValueChanged()
-        {
-            if (Unit.currentHP <= 0.25f * Unit.maxHealthRef) Unit.outline.color = lowHealthColor;
-            else if (Unit.currentHP <= 0.5f * Unit.maxHealthRef) Unit.outline.color = midHealthColor;
-            else Unit.outline.color = normalHealthColor;
-            
-            //if (id != Type.PartyMember) return;
-            Unit.fillRect.color = Unit.outline.color;
-            Unit.slider.value = Unit.currentHP;
-            Unit.healthText.text = "HP: " + Unit.currentHP;
+            //Unit.healthText = healthText;
         }
     }
 }

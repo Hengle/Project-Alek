@@ -28,7 +28,9 @@ namespace StatusEffects.DOT
             Logger.Log($"{unitBase.characterName} is no longer inflicted with {name}.");
             if (unitBase.Unit.statusBox == null) return;
             
-            var iconGO = unitBase.id == Type.Enemy ? unitBase.Unit.statusBox.GetChild(0).Find(name) : unitBase.Unit.statusBox.Find(name);
+            var iconGO = unitBase.id == Type.Enemy?
+                unitBase.Unit.statusBox.GetChild(0).Find(name) : unitBase.Unit.statusBox.Find(name);
+            
             if (iconGO != null) iconGO.gameObject.SetActive(false);
         }
     }

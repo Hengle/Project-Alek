@@ -14,8 +14,8 @@ namespace BattleSystem.Generator
     public class BattleGenerator : MonoBehaviour
     {
         [SerializeField] private BattleGeneratorDatabase battleGeneratorDatabase;
-        private Slider slider;
-        private TextMeshProUGUI healthText;
+        //private Slider slider;
+        //private TextMeshProUGUI healthText;
         private int offset;
         private int enemyOffset;
         
@@ -34,7 +34,7 @@ namespace BattleSystem.Generator
         {
             var i = 0;
             foreach (PartyMember character in PartyManager.instance.partyMembers) {
-                SetupPartyMemberPanel(character, i);
+                //SetupPartyMemberPanel(character, i);
                 SpawnThisMember(character, i);
                 i++;
             }
@@ -48,21 +48,21 @@ namespace BattleSystem.Generator
             }
         }
 
-        private void SetupPartyMemberPanel(PartyMember character, int i)
-        {
-            battleGeneratorDatabase.characterPanels[i+offset].gameObject.SetActive(true);
-
-            var iconImage = battleGeneratorDatabase.characterPanels[i+offset].transform.GetChild(0).GetComponent<Image>();
-            iconImage.sprite = character.icon;
-
-            var nameUgui = battleGeneratorDatabase.characterPanels[i+offset].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-            nameUgui.text = character.characterName.ToUpper();
-
-            slider = battleGeneratorDatabase.characterPanels[i+offset].transform.GetChild(2).GetComponent<Slider>();
-
-            healthText = battleGeneratorDatabase.characterPanels[i+offset].transform.GetChild(3).GetComponent<TextMeshProUGUI>();
-            healthText.text = "HP: " + character.health;
-        }
+        // private void SetupPartyMemberPanel(PartyMember character, int i)
+        // {
+        //     battleGeneratorDatabase.characterPanels[i+offset].gameObject.SetActive(true);
+        //
+        //     var iconImage = battleGeneratorDatabase.characterPanels[i+offset].transform.GetChild(0).GetComponent<Image>();
+        //     iconImage.sprite = character.icon;
+        //
+        //     var nameUgui = battleGeneratorDatabase.characterPanels[i+offset].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        //     nameUgui.text = character.characterName.ToUpper();
+        //
+        //     slider = battleGeneratorDatabase.characterPanels[i+offset].transform.GetChild(2).GetComponent<Slider>();
+        //
+        //     healthText = battleGeneratorDatabase.characterPanels[i+offset].transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+        //     healthText.text = "HP: " + character.health;
+        // }
 
         private void SetupBattlePanel(PartyMember character)
         {
@@ -79,30 +79,34 @@ namespace BattleSystem.Generator
             character.SetAbilityMenuOptions(battleGeneratorDatabase.boPanel);
             
             character.Unit.battlePanelRef = character.battlePanel;
-            character.Unit.battlePanelIsSet = true;
             character.battlePanel.SetActive(false);
             
-            character.Unit.actionPointAnim =
-                character.Unit.battlePanelRef.transform.Find("AP Box").GetComponent<Animator>();
+            character.actionPointAnim = character.Unit.battlePanelRef.transform.Find("AP Box").GetComponent<Animator>();
         }
 
         private void SpawnThisMember(PartyMember character, int i)
         {
             var memberGo = Instantiate(character.characterPrefab, battleGeneratorDatabase.characterSpawnPoints[i+offset].transform);
 
-            character.SetUnitGO(memberGo, slider, healthText);
+            character.SetUnitGO(memberGo);
             SetupBattlePanel(character);
             character.SetupUnit(character);
 
             memberGo.transform.localScale = character.scale;
 
-            var panel = battleGeneratorDatabase.characterPanels[i + offset].transform;
-            character.Unit.statusBox = panel.GetChild(panel.childCount - 1);
+            // Could add this functionality to panel controller
+            var panel = battleGeneratorDatabase.characterPanels[i + offset];
+            character.Unit.statusBox = panel.transform.GetChild(panel.transform.childCount - 1);
+
+            panel.GetComponent<CharacterPanelController>().member = character;
+            panel.SetActive(true);
             
             character.Unit.parent = battleGeneratorDatabase.characterSpawnPoints[i+offset];
 
-            character.SetCameras();
-            
+            battleGeneratorDatabase.closeUpCameras[i + offset].SetActive(true);
+            battleGeneratorDatabase.criticalCameras[i + offset].SetActive(true);
+
+            BattleManager.thisUnitTurn += character.OnThisUnitTurn;
             BattleManager.membersForThisBattle.Add(character);
         }
 
@@ -138,6 +142,7 @@ namespace BattleSystem.Generator
                 clone.Unit.statusBox.transform.SetParent(clone.Unit.transform);
                 clone.Unit.statusBox.GetComponent<CanvasGroup>().alpha = 0;
                 
+                BattleManager.thisUnitTurn += clone.OnThisUnitTurn;
                 BattleManager.enemiesForThisBattle.Add(clone);
                 i++;
             }

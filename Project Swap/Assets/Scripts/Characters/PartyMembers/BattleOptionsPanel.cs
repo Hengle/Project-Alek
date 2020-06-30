@@ -18,7 +18,7 @@ namespace Characters.PartyMembers
         {
             character = thisCharacter;
             BattleManager.choosingOption = true;
-            thisCharacter.Unit.actionPointAnim.SetInteger(AnimationHandler.APVal, thisCharacter.Unit.currentAP);
+            thisCharacter.actionPointAnim.SetInteger(AnimationHandler.APVal, thisCharacter.CurrentAP);
             
             // This is triggered at the start of a party member's turn
             if (!thisCharacter.battlePanel.activeSelf) { thisCharacter.battlePanel.SetActive(true); }
@@ -36,8 +36,7 @@ namespace Characters.PartyMembers
             }
             
             // This is triggered when going back while choosing a target from the main menu (attack button)
-            else
-            {
+            else {
                 BattleManager.choosingTarget = false;
                 character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
             }
@@ -48,7 +47,7 @@ namespace Characters.PartyMembers
         public void GetCommandInformation(string parameters)
         {
             // Split the parameters into a list
-            string[] splitParams = parameters.Split(',');
+            var splitParams = parameters.Split(',');
         
             // Store each parameter into separate variables
             var commandActionName = splitParams[0];
@@ -62,7 +61,7 @@ namespace Characters.PartyMembers
             var commandCost = int.Parse(commandCostString);
 
             // Check to see if the action costs more than current AP
-            var notEnoughAP = character.Unit.currentAP - commandCost < 0;
+            var notEnoughAP = character.CurrentAP - commandCost < 0;
             if (notEnoughAP) return;
         
             // Store the information

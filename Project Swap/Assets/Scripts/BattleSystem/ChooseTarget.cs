@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Characters;
 using Characters.PartyMembers;
 using Type = Characters.Type;
@@ -8,16 +9,17 @@ namespace BattleSystem
 {
     public class ChooseTarget : MonoBehaviour
     {
-        public static int targetOptions = 0; // 1 = party member, 0 = enemy, 2 = all
-        public UnitBase thisUnitBase;
-        private static Type targetOptionsType;
-        private static int classOption;
-        private static string className;
+        public static int targetOptions = 0;
         public static bool isMultiTarget;
+        [HideInInspector] public UnitBase thisUnitBase;
+
+        private static Type targetOptionsType;
         private static MenuController menuController;
         private static UnitBase memberCurrentlyChoosingTarget;
         private static PartyMember character;
-        //private Unit thisUnit;
+
+        private static int classOption;
+        private static string className;
 
         private void Update()
         {
@@ -41,8 +43,6 @@ namespace BattleSystem
             thisUnitBase.Unit.outline.enabled = false;
             thisUnitBase.Unit.button.interactable = true;
             isMultiTarget = false;
-
-
         }
 
         public static void ForThisMember(PartyMember member)
@@ -66,31 +66,7 @@ namespace BattleSystem
                     break;
                 case 1: targetOptionsType = Type.PartyMember;
                     break;
-            }
-        }
-        
-        private void OnMouseOver()
-        {
-            if (!BattleManager.choosingTarget) return;
-            
-            switch (targetOptions)
-            {
-                case 0 when thisUnitBase.id == Type.Enemy && thisUnitBase.Unit.status != Status.Dead:
-                    thisUnitBase.Unit.outline.enabled = true;
-                    if (Input.GetMouseButtonUp(0)) AddCommand();
-                    break;
-                
-                case 1 when thisUnitBase.id == Type.PartyMember && thisUnitBase.Unit != memberCurrentlyChoosingTarget.Unit:
-                    thisUnitBase.Unit.outline.enabled = true;
-                    if (Input.GetMouseButtonUp(0))
-                    {
-                        AddCommand();
-                    }
-                    break;
-                
-                case 2 when thisUnitBase.Unit != memberCurrentlyChoosingTarget.Unit && thisUnitBase.Unit.status != Status.Dead:
-                    thisUnitBase.Unit.outline.enabled = true;
-                    if (Input.GetMouseButtonUp(0)) AddCommand();
+                case 2: targetOptionsType = Type.All;
                     break;
             }
         }
@@ -103,9 +79,10 @@ namespace BattleSystem
             memberCurrentlyChoosingTarget.Unit.commandActionName = className;
             memberCurrentlyChoosingTarget.Unit.commandActionOption = classOption;
             BattleManager.choosingTarget = false;
+            EventSystem.current.SetSelectedGameObject(null);
         }
 
-        private void AddMultiHitCommand() 
+        private static void AddMultiHitCommand() 
         {
             memberCurrentlyChoosingTarget.Unit.multiHitTargets = new List<UnitBase>();
             memberCurrentlyChoosingTarget.Unit.damageValueList = new List<int>();
@@ -115,19 +92,16 @@ namespace BattleSystem
                 case 0: foreach (var enemy in BattleManager.enemiesForThisBattle) 
                         memberCurrentlyChoosingTarget.Unit.multiHitTargets.Add(enemy);
                     break;
-                
                 case 1: foreach (var member in BattleManager.membersForThisBattle)
                         memberCurrentlyChoosingTarget.Unit.multiHitTargets.Add(member);
                     break;
-                
-                case 2:
-                    break;
+                case 2: break;
             }
+            
             memberCurrentlyChoosingTarget.Unit.commandActionName = className;
             memberCurrentlyChoosingTarget.Unit.commandActionOption = classOption;
             BattleManager.choosingTarget = false;
+            EventSystem.current.SetSelectedGameObject(null);
         }
-
-        private void OnMouseExit() => thisUnitBase.Unit.outline.enabled = false;
     }
 }

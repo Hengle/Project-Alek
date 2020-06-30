@@ -84,6 +84,17 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "4137d58a-06d4-40c0-94f0-ea8437eda5a1",
+                    "path": "<Keyboard>/backspace",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "Vertical",
                     "id": "e355ae09-ae19-4fba-922c-71e2a392be50",
                     "path": "1DAxis",

@@ -1,23 +1,21 @@
-﻿using System;
+﻿using Random = UnityEngine.Random;
 using Abilities;
 using Animations;
 using Characters;
-using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Calculator
 {
     public static class DamageCalculator
     {
+        private const int WeaponAccPlaceholder = 80;
         // Make this the base function that is called for everything and delegate to correct function based on action type
         public static int CalculateAttackDamage(UnitBase damageDealer, UnitBase target)
         {
             if (damageDealer.Unit == target.Unit) return 0;
             
             var hitChance = CalculateAccuracy(damageDealer, target);
-            if (!hitChance) { damageDealer.Unit.targetHasMissed = true; return -1; }
-            //damageDealer.Unit.missed = false;
-            
+            if (!hitChance) { target.Unit.attackerHasMissed = true; return -1; }
+
             float dealerDamage = 0;
             var targetDefense = 0;
             
@@ -37,8 +35,7 @@ namespace Calculator
                 }
             }
 
-            else
-            {
+            else {
                 dealerDamage = damageDealer.Unit.currentStrength * damageDealer.Unit.weaponMT;
                 targetDefense = target.Unit.currentDefense * (target.Unit.level / 2);
             }
@@ -66,9 +63,9 @@ namespace Calculator
 
         private static bool CalculateAccuracy(UnitBase damageDealer, UnitBase target)
         {
-            target.Unit.targetHasMissed = false;
-            var hitChance = (float) (damageDealer.Unit.currentAccuracy + 80 /*placeholder for wpn accuracy*/ -
-                                     target.Unit.currentInitiative) / 100;
+            target.Unit.attackerHasMissed = false;
+            var hitChance = 
+                (float) (damageDealer.Unit.currentAccuracy + WeaponAccPlaceholder - target.Unit.currentInitiative) / 100;
             var randomValue = Random.value;
             
             return randomValue <= hitChance;
