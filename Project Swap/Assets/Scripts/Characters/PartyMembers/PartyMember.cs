@@ -9,7 +9,7 @@ namespace Characters.PartyMembers
     public class PartyMember : UnitBase
     {
         [Range(0,4)] public int positionInParty;
-        [HideInInspector] public GameObject battlePanel;
+        [HideInInspector] public GameObject battlePanel; // Could set this in inspector and just instantiate it and remove it from database
         private GameObject unitGO;
         
         public bool SetAI() {
@@ -33,31 +33,55 @@ namespace Characters.PartyMembers
                 var param = abilities[abilityListIndex].GetParameters(abilityListIndex);
                 optionButton.GetComponent<Button>().onClick.AddListener(delegate { battleOptionsPanel.GetCommandInformation(param); });
 
-                if (abilities[abilityListIndex].isMultiHit)
+                if (abilities[abilityListIndex].isMultiTarget)
                     optionButton.GetComponent<Button>().onClick.AddListener(delegate { ChooseTarget.isMultiTarget = true; });
                     
                 optionButton.GetComponent<InfoBoxScript>().information = 
                     $"{abilities[abilityListIndex].description} ({abilities[abilityListIndex].actionCost} AP)";
                 abilityListIndex++;
+
+                if (buttonIndex != abilities.Count - 1) continue;
+
+                var firstOption = abilityMenu.GetChild(0).gameObject;
+                var firstOpNav = firstOption.GetComponent<Selectable>().navigation;
+                var nav = optionButton.GetComponent<Selectable>().navigation;
+
+                nav.selectOnDown = firstOption.GetComponent<Button>();
+                optionButton.GetComponent<Selectable>().navigation = nav;
+
+                firstOpNav.selectOnUp = optionButton.GetComponent<Button>();
+                firstOption.GetComponent<Selectable>().navigation = firstOpNav;
             }
         }
 
         public void SetUnitGO(GameObject memberGO, Slider slider, TextMeshProUGUI healthText)
         {
             memberGO.name = characterName;
-            unit = memberGO.GetComponent<Unit>();
+            Unit = memberGO.GetComponent<Unit>();
             
-            unit.slider = slider;
-            unit.slider.maxValue = health;
-            unit.slider.value = health;
-            unit.fillRect = slider.fillRect.GetComponent<Image>();
+            Unit.slider = slider;
+            Unit.slider.maxValue = health;
+            Unit.slider.value = health;
+            Unit.fillRect = slider.fillRect.GetComponent<Image>();
             
-            unit.healthText = healthText;
+            Unit.healthText = healthText;
         }
 
         public void SetCameras() {
-            unit.closeUpCam = unit.spriteParentObject.transform.GetChild(0).gameObject;
-            unit.closeUpCamCrit = unit.spriteParentObject.transform.GetChild(1).gameObject;
+            Unit.closeUpCam = Unit.parent.transform.GetChild(0).gameObject;
+            Unit.closeUpCamCrit = Unit.parent.transform.GetChild(1).gameObject;
+        }
+
+        public override void OnHpValueChanged()
+        {
+            if (Unit.currentHP <= 0.25f * Unit.maxHealthRef) Unit.outline.color = lowHealthColor;
+            else if (Unit.currentHP <= 0.5f * Unit.maxHealthRef) Unit.outline.color = midHealthColor;
+            else Unit.outline.color = normalHealthColor;
+            
+            //if (id != Type.PartyMember) return;
+            Unit.fillRect.color = Unit.outline.color;
+            Unit.slider.value = Unit.currentHP;
+            Unit.healthText.text = "HP: " + Unit.currentHP;
         }
     }
 }

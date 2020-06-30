@@ -10,6 +10,7 @@ using StatusEffects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Characters
@@ -17,41 +18,45 @@ namespace Characters
     public enum Status { Normal, Dead }
     public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
     {
-        [HideInInspector] public TextMeshProUGUI healthText;
-        [HideInInspector] public TextMeshPro nameText;
+        //  EVERYTHING THAT NEEDS TO BE REMOVED ------------------------------------------------------------------
 
-        [HideInInspector] public GameObject spriteParentObject;
+        [HideInInspector] public GameObject battlePanelRef; // Rework camera system so i can get rid of this
+        [HideInInspector] public Animator actionPointAnim; // Move to PartyMember
+        [HideInInspector] public Image fillRect; // Remove when onhpchanged is moved
+        [HideInInspector] public bool battlePanelIsSet; // can rid of this after battlePanelRef
+        [HideInInspector] public Type id; // Redundant. base class has type already. remove this
+
+        //  EVERYTHING THAT CAN STAY IN THIS SCRIPT ----------------------------------------------------------
+
+        [HideInInspector] public TextMeshProUGUI healthText;
+        [HideInInspector] public Slider slider;
+
+        [FormerlySerializedAs("spriteParentObject")]
+        [HideInInspector] public GameObject parent;
         [HideInInspector] public GameObject closeUpCam;
         [HideInInspector] public GameObject closeUpCamCrit;
-        [HideInInspector] public GameObject battlePanelRef;
 
-        [HideInInspector] public Slider slider;
-        [HideInInspector] public Animator actionPointAnim;
-        [HideInInspector] public Animator anim;
+        [HideInInspector] public UnitBase unitRef; // Get rid of this
+        [HideInInspector] public UnitBase currentTarget; // change to unitbase
+        [HideInInspector] public Ability currentAbility;
+        [HideInInspector] public Animator anim; // could maybe keep, but remove direct access
         [HideInInspector] public AnimationHandler animationHandler;
         [HideInInspector] public SpriteOutline outline;
-        [HideInInspector] public Transform characterPanelRef;
-        public Transform statusBox;
-        [HideInInspector] public UnitBase unitRef;
-        public Unit currentTarget; // Might have to make list again. Did not think about how multi-target attacks will work;
-        public Ability currentAbility;
+        [HideInInspector] public Transform statusBox;
         [HideInInspector] public Button button;
-        [HideInInspector] public Image fillRect;
-        
+
+        [HideInInspector] public bool targetHasCrit;
         [HideInInspector] public bool isCrit;
         [HideInInspector] public bool isAbility;
-        [HideInInspector] public bool battlePanelIsSet;
+        [HideInInspector] public bool targetHasMissed;
 
-        [HideInInspector] public Type id;
-        [HideInInspector] public int maxHealthRef;
         [HideInInspector] public int commandActionOption;
+        [HideInInspector] public int maxHealthRef;
         [HideInInspector] public int currentAP;
         [HideInInspector] public int weaponMT = 20; // temporary, just for testing
         [HideInInspector] public int actionCost;
         [HideInInspector] public int currentDamage;
-
         [HideInInspector] public string commandActionName;
-        public string unitName;
 
         public Status status = Status.Normal;
 
@@ -65,17 +70,9 @@ namespace Characters
         public int currentDefense;
         public int currentResistance;
 
-        public int CurrentHP { set { currentHP = value < 0 ? 0 : value; OnHpValueChanged(); } }
-
         public List<StatusEffect> statusEffects = new List<StatusEffect>();
         public List<UnitBase> multiHitTargets = new List<UnitBase>();
         public List<int> damageValueList = new List<int>();
-
-        public bool missed;
-
-        private Color normalHealthColor;
-        private Color midHealthColor;
-        private Color lowHealthColor;
 
         private void Awake()
         {
@@ -83,105 +80,56 @@ namespace Characters
             outline = GetComponent<SpriteOutline>();
             button = GetComponent<Button>();
             animationHandler = GetComponent<AnimationHandler>();
-            
-            normalHealthColor = Color.green;
-            midHealthColor = Color.yellow;
-            lowHealthColor = Color.red;
-            
             outline.enabled = false;
         }
 
         private void Update() {
-            button.enabled = BattleHandler.choosingTarget;
+            button.enabled = BattleManager.choosingTarget;
 
-            if (!BattleHandler.choosingTarget) outline.enabled = false;
-            if (BattleHandler.controls.Menu.TopButton.triggered && outline.enabled) ProfileBoxManager.ShowProfileBox(unitRef);
-            if (BattleHandler.controls.Menu.Back.triggered && ProfileBoxManager.isOpen) ProfileBoxManager.CloseProfileBox();
+            if (!BattleManager.choosingTarget) outline.enabled = false;
+            if (BattleManager.controls.Menu.TopButton.triggered && outline.enabled) ProfileBoxManager.ShowProfileBox(unitRef);
+            if (BattleManager.controls.Menu.Back.triggered && ProfileBoxManager.isOpen) ProfileBoxManager.CloseProfileBox();
 
             if (!battlePanelIsSet) return;
             closeUpCam.SetActive(battlePanelRef.activeSelf && battlePanelRef.transform.GetChild(1).gameObject.activeSelf);
         }
-
-        public void TakeDamage(int dmg, Unit unit)
-        {
-            CurrentHP = currentHP - (dmg < 0 ? 0 : dmg);
-
-            var position = gameObject.transform.position;
-            var newPosition = new Vector3(position.x, position.y + 3, position.z);
-            
-            var damage = DamagePrefabManager.Instance.ShowDamage(dmg, unit.isCrit);
-            damage.transform.position = newPosition;
-
-            if (unit.isCrit) unit.isCrit = false;
-
-            if (dmg == -1 && currentHP > 0) return;
-            if (currentHP > 0) anim.SetTrigger(AnimationHandler.HurtTrigger);
-            else Die();
-        }
+        
 
         private void InflictStatusEffectOnTarget(StatusEffect effect)
         {
-            if (missed) return;
             if (!isAbility) return;
             
-            if (!currentAbility.isMultiHit)
+            if (!currentAbility.isMultiTarget)
             {
-                if ((from statusEffect in currentTarget.statusEffects
-                    where statusEffect.name == effect.name
-                    select statusEffect).Any()) return;
+                if (currentTarget.Unit.targetHasMissed) return;
+                
+                if ((from statusEffect in currentTarget.Unit.statusEffects
+                    where statusEffect.name == effect.name select statusEffect).Any()) return;
 
                 var randomValue = Random.value;
                 if (randomValue > currentAbility.chanceOfInfliction) return;
 
                 effect.OnAdded(currentTarget);
-                currentTarget.statusEffects.Add(effect);
+                currentTarget.Unit.statusEffects.Add(effect);
                 return;
             }
 
-            foreach (var target in multiHitTargets)
+            foreach (var target in multiHitTargets.Where(target => !target.Unit.targetHasMissed))
             {
-                if ((from statusEffect in target.unit.statusEffects
-                    where statusEffect.name == effect.name
-                    select statusEffect).Any()) return;
+                if ((from statusEffect in target.Unit.statusEffects
+                    where statusEffect.name == effect.name select statusEffect).Any()) return;
 
                 var randomValue = Random.value;
                 if (randomValue > currentAbility.chanceOfInfliction) return;
 
-                effect.OnAdded(target.unit);
-                target.unit.statusEffects.Add(effect);
+                effect.OnAdded(target);
+                target.Unit.statusEffects.Add(effect);
             }
         }
-
-        public void RemoveStatusEffect(StatusEffect effect)
-        {
-            if (!(from statEffect in statusEffects
-                where effect.name == statEffect.name select effect).Any()) return;
-            
-            statusEffects.Remove(effect);
-            effect.OnRemoval(this);
-        }
-
-        private void OnHpValueChanged()
-        {
-            if (currentHP <= 0.25f * maxHealthRef) outline.color = lowHealthColor;
-            else if (currentHP <= 0.5f * maxHealthRef) outline.color = midHealthColor;
-            else outline.color = normalHealthColor;
-            
-            if (id != Type.PartyMember) return;
-            fillRect.color = outline.color;
-            slider.value = currentHP;
-            healthText.text = "HP: " + currentHP;
-        }
-
-        private void Die() // If i want to make special death sequences, just make it an event or cutscene
-        {
-            status = Status.Dead;
-            statusEffects = new List<StatusEffect>();
-            BattleHandler.RemoveFromBattle(unitRef, id);
-            anim.SetBool(AnimationHandler.DeathTrigger, true);
-        }
-
-        // These functions are called from the animator
+        
+        // These functions are called from the animator. I could just fire off an event from the animation that the UnitBase listens to
+        // And remove these functions from this class. Each unit could have its own event (So it doesn't trigger other units).
+        // That way i can have different logic for these functions (if needed). A boss could have special logic for these functions
         [UsedImplicitly] public void TryToInflictStatusEffect()
         {
             if (!isAbility || !currentAbility.hasStatusEffect) return;
@@ -192,22 +140,25 @@ namespace Characters
 
         [UsedImplicitly] public void TargetTakeDamage()
         {
-            if (!isAbility || !currentAbility.isMultiHit) {
-                currentTarget.TakeDamage(currentDamage, this);
+            if (!isAbility || !currentAbility.isMultiTarget) {
+                currentTarget.TakeDamage(currentDamage);
+                isCrit = false;
                 return;
             }
 
             for (var i = 0; i < multiHitTargets.Count; i++)
-                multiHitTargets[i].unit.TakeDamage(damageValueList[i], this);
+                multiHitTargets[i].TakeDamage(damageValueList[i]);
+
+            isCrit = false;
         }
 
         [UsedImplicitly] public void RecalculateDamage() 
         {
-            if (isAbility && currentAbility.isMultiHit)
+            if (isAbility && currentAbility.isMultiTarget)
             {
                 damageValueList = new List<int>();
                 foreach (var target in multiHitTargets) 
-                    damageValueList.Add(DamageCalculator.CalculateAttackDamage(unitRef, target.unit));
+                    damageValueList.Add(DamageCalculator.CalculateAttackDamage(unitRef, target));
                 return;
             }
             

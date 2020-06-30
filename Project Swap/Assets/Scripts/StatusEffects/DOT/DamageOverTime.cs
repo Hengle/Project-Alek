@@ -10,25 +10,25 @@ namespace StatusEffects.DOT
         [Range(0, 1)] public float damagePercentage;
         private void Awake() => effectType = EffectType.DamageOverTime;
         
-        public override void InflictStatus(Unit unit)
+        public override void InflictStatus(UnitBase unitBase)
         {
             DamagePrefabManager.Instance.DamageTextColor = color;
-            var dmg = (int) ((damagePercentage) * unit.maxHealthRef);
+            var dmg = (int) (damagePercentage * unitBase.Unit.maxHealthRef);
             dmg = Random.Range((int)(0.98f * dmg), (int)(1.02f * dmg));
-            unit.TakeDamage(dmg, unit);
+            unitBase.TakeDamage(dmg);
         }
         
-        public override void OnAdded(Unit target) {
-            Logger.Log($"{target.unitName} is inflicted with {name}.");
+        public override void OnAdded(UnitBase target) {
+            Logger.Log($"{target.characterName} is inflicted with {name}.");
             SetIconAndTimer(target);
         }
         
-        public override void OnRemoval(Unit unit)
+        public override void OnRemoval(UnitBase unitBase)
         {
-            Logger.Log($"{unit.unitName} is no longer inflicted with {name}.");
-            if (unit.statusBox == null) return;
+            Logger.Log($"{unitBase.characterName} is no longer inflicted with {name}.");
+            if (unitBase.Unit.statusBox == null) return;
             
-            var iconGO = unit.id == Type.Enemy ? unit.statusBox.GetChild(0).Find(name) : unit.statusBox.Find(name);
+            var iconGO = unitBase.id == Type.Enemy ? unitBase.Unit.statusBox.GetChild(0).Find(name) : unitBase.Unit.statusBox.Find(name);
             if (iconGO != null) iconGO.gameObject.SetActive(false);
         }
     }

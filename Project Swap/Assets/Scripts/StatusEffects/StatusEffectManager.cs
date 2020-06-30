@@ -7,53 +7,54 @@ namespace StatusEffects
 {
     public class StatusEffectManager : MonoBehaviour
     {
-        public static IEnumerator TriggerOnThisUnit(Unit unit, RateOfInfliction rate, float delay, bool delayAfterInfliction)
+        // Update so that if there are multiple BeforeEveryAction effects, it will break after the first one triggers
+        public static IEnumerator TriggerOnThisUnit(UnitBase unitBase, RateOfInfliction rate, float delay, bool delayAfterInfliction)
         {
-            foreach (var statusEffect in from statusEffect in unit.statusEffects
+            foreach (var statusEffect in from statusEffect in unitBase.Unit.statusEffects
                 where statusEffect.rateOfInfliction.Contains(rate)
                 select statusEffect)
             {
                 if (!delayAfterInfliction) yield return new WaitForSeconds(delay);
                 
-                statusEffect.InflictStatus(unit);
+                statusEffect.InflictStatus(unitBase);
                 
                 if (delayAfterInfliction) yield return new WaitForSeconds(delay);
-                if (unit.status == Status.Dead) break;
+                if (unitBase.Unit.status == Status.Dead) break;
             }
         }
 
-        public static IEnumerator TriggerOnTargetsOfUnit(Unit attacker, RateOfInfliction rate, float delay, bool delayAfterInfliction)
+        public static IEnumerator TriggerOnTargetsOfUnit(UnitBase attacker, RateOfInfliction rate, float delay, bool delayAfterInfliction)
         {
-            if (attacker.isAbility && attacker.currentAbility.isMultiHit)
+            if (attacker.Unit.isAbility && attacker.Unit.currentAbility.isMultiTarget)
             {
-                foreach (var target in attacker.multiHitTargets)
+                foreach (var target in attacker.Unit.multiHitTargets)
                 {
-                    foreach (var statusEffect in from statusEffect in target.unit.statusEffects
+                    foreach (var statusEffect in from statusEffect in target.Unit.statusEffects
                         where statusEffect.rateOfInfliction.Contains(rate)
                         select statusEffect)
                     {
                         if (!delayAfterInfliction) yield return new WaitForSeconds(delay);
                 
-                        statusEffect.InflictStatus(target.unit);
+                        statusEffect.InflictStatus(target);
                 
                         if (delayAfterInfliction) yield return new WaitForSeconds(delay);
-                        if (attacker.status == Status.Dead) break;
+                        if (attacker.Unit.status == Status.Dead) break;
                     }
                 }
 
                 yield break;
             }
 
-            foreach (var statusEffect in from statusEffect in attacker.currentTarget.statusEffects
+            foreach (var statusEffect in from statusEffect in attacker.Unit.currentTarget.Unit.statusEffects
                 where statusEffect.rateOfInfliction.Contains(rate)
                 select statusEffect)
             {
                 if (!delayAfterInfliction) yield return new WaitForSeconds(delay);
                 
-                statusEffect.InflictStatus(attacker.currentTarget);
+                statusEffect.InflictStatus(attacker.Unit.currentTarget);
                 
                 if (delayAfterInfliction) yield return new WaitForSeconds(delay);
-                if (attacker.status == Status.Dead) break;
+                if (attacker.Unit.status == Status.Dead) break;
             }
         }
     }

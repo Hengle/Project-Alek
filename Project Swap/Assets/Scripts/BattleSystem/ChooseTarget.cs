@@ -9,38 +9,37 @@ namespace BattleSystem
     public class ChooseTarget : MonoBehaviour
     {
         public static int targetOptions = 0; // 1 = party member, 0 = enemy, 2 = all
+        public UnitBase thisUnitBase;
         private static Type targetOptionsType;
         private static int classOption;
         private static string className;
         public static bool isMultiTarget;
         private static MenuController menuController;
-        private static Unit memberCurrentlyChoosingTarget;
+        private static UnitBase memberCurrentlyChoosingTarget;
         private static PartyMember character;
-        private Unit thisUnit;
-
-        private void Start() => thisUnit = GetComponent<Unit>();
+        //private Unit thisUnit;
 
         private void Update()
         {
-            if (!BattleHandler.choosingTarget || !isMultiTarget || thisUnit.id != targetOptionsType) {
-                thisUnit.button.interactable = true;
+            if (!BattleManager.choosingTarget || !isMultiTarget || thisUnitBase.id != targetOptionsType) {
+                thisUnitBase.Unit.button.interactable = true;
                 return;
             }
             
-            thisUnit.outline.enabled = true;
-            thisUnit.button.interactable = false;
+            thisUnitBase.Unit.outline.enabled = true;
+            thisUnitBase.Unit.button.interactable = false;
                 
-            if (BattleHandler.inputModule.cancel.action.triggered) {
-                thisUnit.button.interactable = true;
+            if (BattleManager.inputModule.cancel.action.triggered) {
+                thisUnitBase.Unit.button.interactable = true;
                 isMultiTarget = false;
                 return;
             }
                 
-            if (!BattleHandler.inputModule.submit.action.triggered) return;
+            if (!BattleManager.inputModule.submit.action.triggered) return;
                 
             AddMultiHitCommand();
-            thisUnit.outline.enabled = false;
-            thisUnit.button.interactable = true;
+            thisUnitBase.Unit.outline.enabled = false;
+            thisUnitBase.Unit.button.interactable = true;
             isMultiTarget = false;
 
 
@@ -48,15 +47,15 @@ namespace BattleSystem
 
         public static void ForThisMember(PartyMember member)
         {
-            BattleHandler.choosingTarget = true;
+            BattleManager.choosingTarget = true;
             character = member;
-            memberCurrentlyChoosingTarget = member.unit;
+            memberCurrentlyChoosingTarget = member;
             
             menuController = character.battlePanel.GetComponent<MenuController>();
             menuController.SetTargetFirstSelected();
         }
 
-        public static void GetCurrentCommand(string name, int option, bool isSwap)
+        public static void GetCurrentCommand(string name, int option)
         {
             className = name;
             classOption = option;
@@ -72,25 +71,25 @@ namespace BattleSystem
         
         private void OnMouseOver()
         {
-            if (!BattleHandler.choosingTarget) return;
+            if (!BattleManager.choosingTarget) return;
             
             switch (targetOptions)
             {
-                case 0 when thisUnit.id == Type.Enemy && thisUnit.status != Status.Dead:
-                    thisUnit.outline.enabled = true;
+                case 0 when thisUnitBase.id == Type.Enemy && thisUnitBase.Unit.status != Status.Dead:
+                    thisUnitBase.Unit.outline.enabled = true;
                     if (Input.GetMouseButtonUp(0)) AddCommand();
                     break;
                 
-                case 1 when thisUnit.id == Type.PartyMember && thisUnit != memberCurrentlyChoosingTarget:
-                    thisUnit.outline.enabled = true;
+                case 1 when thisUnitBase.id == Type.PartyMember && thisUnitBase.Unit != memberCurrentlyChoosingTarget.Unit:
+                    thisUnitBase.Unit.outline.enabled = true;
                     if (Input.GetMouseButtonUp(0))
                     {
                         AddCommand();
                     }
                     break;
                 
-                case 2 when thisUnit != memberCurrentlyChoosingTarget && thisUnit.status != Status.Dead:
-                    thisUnit.outline.enabled = true;
+                case 2 when thisUnitBase.Unit != memberCurrentlyChoosingTarget.Unit && thisUnitBase.Unit.status != Status.Dead:
+                    thisUnitBase.Unit.outline.enabled = true;
                     if (Input.GetMouseButtonUp(0)) AddCommand();
                     break;
             }
@@ -98,37 +97,37 @@ namespace BattleSystem
 
         public void AddCommand()
         {
-            if (thisUnit.status == Status.Dead) return;
+            if (thisUnitBase.Unit.status == Status.Dead) return;
             
-            memberCurrentlyChoosingTarget.currentTarget = thisUnit;
-            memberCurrentlyChoosingTarget.commandActionName = className;
-            memberCurrentlyChoosingTarget.commandActionOption = classOption;
-            BattleHandler.choosingTarget = false;
+            memberCurrentlyChoosingTarget.Unit.currentTarget = thisUnitBase;
+            memberCurrentlyChoosingTarget.Unit.commandActionName = className;
+            memberCurrentlyChoosingTarget.Unit.commandActionOption = classOption;
+            BattleManager.choosingTarget = false;
         }
 
         private void AddMultiHitCommand() 
         {
-            memberCurrentlyChoosingTarget.multiHitTargets = new List<UnitBase>();
-            memberCurrentlyChoosingTarget.damageValueList = new List<int>();
+            memberCurrentlyChoosingTarget.Unit.multiHitTargets = new List<UnitBase>();
+            memberCurrentlyChoosingTarget.Unit.damageValueList = new List<int>();
             
             switch (targetOptions)
             {
-                case 0: foreach (var enemy in BattleHandler.enemiesForThisBattle) 
-                        memberCurrentlyChoosingTarget.multiHitTargets.Add(enemy);
+                case 0: foreach (var enemy in BattleManager.enemiesForThisBattle) 
+                        memberCurrentlyChoosingTarget.Unit.multiHitTargets.Add(enemy);
                     break;
                 
-                case 1: foreach (var member in BattleHandler.membersForThisBattle)
-                        memberCurrentlyChoosingTarget.multiHitTargets.Add(member);
+                case 1: foreach (var member in BattleManager.membersForThisBattle)
+                        memberCurrentlyChoosingTarget.Unit.multiHitTargets.Add(member);
                     break;
                 
                 case 2:
                     break;
             }
-            memberCurrentlyChoosingTarget.commandActionName = className;
-            memberCurrentlyChoosingTarget.commandActionOption = classOption;
-            BattleHandler.choosingTarget = false;
+            memberCurrentlyChoosingTarget.Unit.commandActionName = className;
+            memberCurrentlyChoosingTarget.Unit.commandActionOption = classOption;
+            BattleManager.choosingTarget = false;
         }
 
-        private void OnMouseExit() => thisUnit.outline.enabled = false;
+        private void OnMouseExit() => thisUnitBase.Unit.outline.enabled = false;
     }
 }

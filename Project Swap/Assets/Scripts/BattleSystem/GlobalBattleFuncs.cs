@@ -21,7 +21,8 @@ namespace BattleSystem
         private AnimationHandler animHandler;
         
         private UnitBase unitBase;
-        private Unit unit, currentTarget;
+        //private Unit unit; 
+        private UnitBase currentTarget;
 
         private void Start() {
             DOTween.Init();
@@ -30,19 +31,19 @@ namespace BattleSystem
         public void GetCommand(UnitBase unitBaseParam)
         {
             unitBase = unitBaseParam;
-            unit = unitBaseParam.unit;
-            currentTarget = unit.currentTarget;
+            //unit = unitBaseParam.unit;
+            currentTarget = unitBase.Unit.currentTarget;
                 
-            animHandler = unitBaseParam.unit.animationHandler;
-            StartCoroutine(unit.commandActionName);
+            animHandler = unitBaseParam.Unit.animationHandler;
+            StartCoroutine(unitBase.Unit.commandActionName);
         }
 
         // Called from GetCommand with unit.commandActionName
         [UsedImplicitly] private IEnumerator UniversalAction()
         {
-            unit.isAbility = false;
+            unitBase.Unit.isAbility = false;
             
-            switch (unit.commandActionOption)
+            switch (unitBase.Unit.commandActionOption)
             {
                 case 1: StartCoroutine(PhysicalAttack());
                     yield break;
@@ -55,16 +56,16 @@ namespace BattleSystem
         
         [UsedImplicitly] private IEnumerator AbilityAction()
         {
-            unit.currentAbility = unitBase.GetAndSetAbility(unit.commandActionOption);
-            unit.isAbility = true;
+            unitBase.Unit.currentAbility = unitBase.GetAndSetAbility(unitBase.Unit.commandActionOption);
+            unitBase.Unit.isAbility = true;
 
-            switch (unit.currentAbility.abilityType)
+            switch (unitBase.Unit.currentAbility.abilityType)
             {
                 case AbilityType.Physical: StartCoroutine(PhysicalAttack());
                     yield break;;
                 case AbilityType.Ranged: StartCoroutine(RangedAttack());
                     yield break;;
-                case AbilityType.NonAttack: Logger.Log("Non-Attack: " + unit.currentAbility.name);
+                case AbilityType.NonAttack: Logger.Log("Non-Attack: " + unitBase.Unit.currentAbility.name);
                     yield break;;
                 default: Logger.Log("This message should not be displaying...");
                     yield break;;
@@ -73,33 +74,33 @@ namespace BattleSystem
 
         private IEnumerator MoveToTargetPosition()
         {
-            originPosition = unit.spriteParentObject.transform.position;
-            var position = currentTarget.transform.position;
+            originPosition = unitBase.Unit.parent.transform.position;
+            var position = currentTarget.Unit.transform.position;
             
-            targetPosition = unit.id == Type.PartyMember ? 
+            targetPosition = unitBase.id == Type.PartyMember ? 
                 new Vector3(position.x, originPosition.y, position.z - 2) :
                 new Vector3(position.x, position.y, position.z + 2);
             
-            while (unit.spriteParentObject.transform.position != targetPosition)
+            while (unitBase.Unit.parent.transform.position != targetPosition)
             {
-                unit.spriteParentObject.transform.position = Vector3.MoveTowards
-                    (unit.spriteParentObject.transform.position, targetPosition, TimeManager.moveSpeed * Time.deltaTime);
+                unitBase.Unit.parent.transform.position = Vector3.MoveTowards
+                    (unitBase.Unit.parent.transform.position, targetPosition, TimeManager.moveSpeed * Time.deltaTime);
           
                 yield return new WaitForEndOfFrame();
             }
 
             yield return new WaitForSeconds(0.5f);
-            if (unit.id == Type.PartyMember && unit.isCrit) unit.closeUpCamCrit.SetActive(true);
+            if (unitBase.id == Type.PartyMember && unitBase.Unit.isCrit) unitBase.Unit.closeUpCamCrit.SetActive(true);
         }
 
         private IEnumerator MoveBackToOriginPosition()
         {
-            if (unit.id == Type.PartyMember) unit.closeUpCamCrit.SetActive(false);
+            if (unitBase.id == Type.PartyMember) unitBase.Unit.closeUpCamCrit.SetActive(false);
             
-            while (unit.spriteParentObject.transform.position != originPosition)
+            while (unitBase.Unit.parent.transform.position != originPosition)
             {
-                unit.spriteParentObject.transform.position = Vector3.MoveTowards
-                    (unit.spriteParentObject.transform.position, originPosition, TimeManager.moveSpeed * Time.deltaTime);
+                unitBase.Unit.parent.transform.position = Vector3.MoveTowards
+                    (unitBase.Unit.parent.transform.position, originPosition, TimeManager.moveSpeed * Time.deltaTime);
   
                 yield return new WaitForEndOfFrame();
             }
@@ -109,10 +110,10 @@ namespace BattleSystem
 
         private IEnumerator ExecuteAttack()
         {
-            TimeManager.slowTimeCrit = unit.isCrit;
+            TimeManager.slowTimeCrit = unitBase.Unit.isCrit;
             
-            if (unit.isAbility) unit.anim.SetInteger(AnimationHandler.PhysAttackState, unit.currentAbility.attackState);
-            unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
+            if (unitBase.Unit.isAbility) unitBase.Unit.anim.SetInteger(AnimationHandler.PhysAttackState, unitBase.Unit.currentAbility.attackState);
+            unitBase.Unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
             
             yield return new WaitForEndOfFrame();
             while (animHandler.isAttacking) yield return null;
@@ -120,10 +121,10 @@ namespace BattleSystem
             TimeManager.slowTime = false;
             TimeManager.slowTimeCrit = false;
             
-            if (unit.missed) yield break;
+            //if (unitBase.Unit.missed) yield break;
             
             var coroutine = StartCoroutine(StatusEffectManager.TriggerOnTargetsOfUnit
-                (unit, RateOfInfliction.AfterAttacked, 0.25f, false));
+                (unitBase, RateOfInfliction.AfterAttacked, 0.25f, false));
 
             yield return coroutine;
         }
@@ -141,7 +142,7 @@ namespace BattleSystem
             var moveBack = StartCoroutine(MoveBackToOriginPosition());
             yield return moveBack;
 
-            BattleHandler.performingAction = false;
+            BattleManager.performingAction = false;
         }
 
         
@@ -154,9 +155,9 @@ namespace BattleSystem
             var attack = StartCoroutine(ExecuteAttack());
             yield return attack;
 
-            unit.transform.rotation = originalRotation;
+            unitBase.Unit.transform.rotation = originalRotation;
 
-            BattleHandler.performingAction = false;
+            BattleManager.performingAction = false;
         }
     }
 }

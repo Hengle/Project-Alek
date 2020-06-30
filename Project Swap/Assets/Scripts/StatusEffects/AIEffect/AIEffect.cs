@@ -8,17 +8,17 @@ namespace StatusEffects.AIEffect
     {
         private void Awake() => effectType = EffectType.AI;
         
-        public override void InflictStatus(Unit unit)
+        public override void InflictStatus(UnitBase unit)
         {
             
         }
 
-        public override void OnAdded(Unit target)
+        public override void OnAdded(UnitBase target)
         {
             
         }
 
-        public override void OnRemoval(Unit unit)
+        public override void OnRemoval(UnitBase unit)
         {
             
         }

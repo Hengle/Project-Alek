@@ -1,4 +1,5 @@
-﻿using Characters;
+﻿using System.Linq;
+using Characters;
 using Characters.PartyMembers;
 using TMPro;
 using UnityEngine;
@@ -41,9 +42,9 @@ namespace BattleSystem.Generator
 
         private void SetupPartyMenuController()
         {
-            foreach (var member in BattleHandler.membersForThisBattle) {
-                foreach (var partyMember in BattleHandler.membersForThisBattle)
-                    member.battlePanel.GetComponent<MenuController>().memberSelectable.Add(partyMember.unit.gameObject);
+            foreach (var member in BattleManager.membersForThisBattle) {
+                foreach (var partyMember in BattleManager.membersForThisBattle)
+                    member.battlePanel.GetComponent<MenuController>().memberSelectable.Add(partyMember.Unit.gameObject);
             }
         }
 
@@ -65,7 +66,7 @@ namespace BattleSystem.Generator
 
         private void SetupBattlePanel(PartyMember character)
         {
-            var position = character.unit.transform.position;
+            var position = character.Unit.transform.position;
             var newPosition = new Vector3(position.x, position.y + 1.5f, position.z + 3);
             var rotation = battleGeneratorDatabase.boPanel.battlePanel.transform.rotation;
             
@@ -73,16 +74,16 @@ namespace BattleSystem.Generator
                 (battleGeneratorDatabase.boPanel.battlePanel, newPosition, rotation);
 
             character.battlePanel.transform.position = newPosition;
-            character.battlePanel.transform.SetParent(character.unit.transform.parent, true);
+            character.battlePanel.transform.SetParent(character.Unit.transform.parent, true);
 
             character.SetAbilityMenuOptions(battleGeneratorDatabase.boPanel);
             
-            character.unit.battlePanelRef = character.battlePanel;
-            character.unit.battlePanelIsSet = true;
+            character.Unit.battlePanelRef = character.battlePanel;
+            character.Unit.battlePanelIsSet = true;
             character.battlePanel.SetActive(false);
             
-            character.unit.actionPointAnim =
-                character.unit.battlePanelRef.transform.Find("AP Box").GetComponent<Animator>();
+            character.Unit.actionPointAnim =
+                character.Unit.battlePanelRef.transform.Find("AP Box").GetComponent<Animator>();
         }
 
         private void SpawnThisMember(PartyMember character, int i)
@@ -95,15 +96,14 @@ namespace BattleSystem.Generator
 
             memberGo.transform.localScale = character.scale;
 
-            character.unit.characterPanelRef = battleGeneratorDatabase.characterPanels[i+offset].transform;
-            character.unit.statusBox =
-                character.unit.characterPanelRef.GetChild(character.unit.characterPanelRef.childCount - 1);
+            var panel = battleGeneratorDatabase.characterPanels[i + offset].transform;
+            character.Unit.statusBox = panel.GetChild(panel.childCount - 1);
             
-            character.unit.spriteParentObject = battleGeneratorDatabase.characterSpawnPoints[i+offset];
+            character.Unit.parent = battleGeneratorDatabase.characterSpawnPoints[i+offset];
 
             character.SetCameras();
             
-            BattleHandler.membersForThisBattle.Add(character);
+            BattleManager.membersForThisBattle.Add(character);
         }
 
         private void SpawnEnemyTeam()
@@ -111,29 +111,34 @@ namespace BattleSystem.Generator
             // Spawning normal encounters needs to draw from a random list of enemies based on the overworld enemy that initiates battle
 
             var i = 0;
-            foreach (Enemy enemy in battleGeneratorDatabase.enemies)
+            foreach (var clone in battleGeneratorDatabase.enemies.Select(Instantiate))
             {
-                var enemyGo = Instantiate(enemy.characterPrefab, battleGeneratorDatabase.enemySpawnPoints[i+enemyOffset].transform);
-                enemyGo.name = enemy.name;
-                enemyGo.transform.localScale = enemy.scale;
+                /* I could just do this, but for all stats with a slight level randomizer. The personas in P5 stay at the level
+                 you encounter them (jack frost is only really at the beginning) so this could be the same way. If i want a higher
+                 level version of an enemy, create a new enemy that is a variant of the original
+                 */
+                clone.initiative = Random.Range(clone.initiative - 2, clone.initiative + 2); // Temporary until i make a randomizer
+                
+                var enemyGo = Instantiate(clone.characterPrefab, battleGeneratorDatabase.enemySpawnPoints[i+enemyOffset].transform);
+                enemyGo.name = clone.name;
+                enemyGo.transform.localScale = clone.scale;
 
-                foreach (var partyMember in BattleHandler.membersForThisBattle) 
+                foreach (var partyMember in BattleManager.membersForThisBattle) 
                     partyMember.battlePanel.GetComponent<MenuController>().enemySelectable.Add(enemyGo);
 
-                enemy.SetUnitGO(enemyGo);
-                enemy.SetupUnit(enemy);
+                clone.SetUnitGO(enemyGo);
+                clone.SetupUnit(clone);
 
-                enemy.unit.spriteParentObject = battleGeneratorDatabase.enemySpawnPoints[i+enemyOffset];
+                clone.Unit.parent = battleGeneratorDatabase.enemySpawnPoints[i+enemyOffset];
 
                 var position = enemyGo.transform.position;
                 var newPosition = new Vector3(position.x, position.y + 1.5f, position.z);
                 
-                enemy.unit.statusBox = Instantiate(battleGeneratorDatabase.statusBox, newPosition, battleGeneratorDatabase.statusBox.rotation);
-                enemy.unit.statusBox.transform.SetParent(enemy.unit.transform);
-                enemy.unit.statusBox.GetComponent<CanvasGroup>().alpha = 0;
-
-
-                BattleHandler.enemiesForThisBattle.Add(enemy);
+                clone.Unit.statusBox = Instantiate(battleGeneratorDatabase.statusBox, newPosition, battleGeneratorDatabase.statusBox.rotation);
+                clone.Unit.statusBox.transform.SetParent(clone.Unit.transform);
+                clone.Unit.statusBox.GetComponent<CanvasGroup>().alpha = 0;
+                
+                BattleManager.enemiesForThisBattle.Add(clone);
                 i++;
             }
         }

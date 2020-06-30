@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using StatusEffects;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Abilities
 {
@@ -16,7 +17,7 @@ namespace Abilities
         [Tooltip("0 = Enemy, 1 = Party Member, 2 = All")]
         [Range(0, 2)] public int targetOptions;
 
-        public bool isMultiHit;
+        [FormerlySerializedAs("isMultiHit")] public bool isMultiTarget;
         public bool hasStatusEffect;
         public List<StatusEffect> statusEffects = new List<StatusEffect>();
         [Range(0, 1)] public float chanceOfInfliction;

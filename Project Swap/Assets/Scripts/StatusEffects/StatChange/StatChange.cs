@@ -55,24 +55,24 @@ namespace StatusEffects.StatChange
 
         private void Awake() => effectType = EffectType.StatChange;
 
-        public override void InflictStatus(Unit unit) { /*Do nothing*/ }
+        public override void InflictStatus(UnitBase unitBase) { /*Do nothing*/ }
         
-        public override void OnAdded(Unit target) {
-            Logger.Log(target.unitName + " is inflicted with " + name);
-            AffectThisStat(buffedStat, target, true, false);
-            AffectThisStat(debuffedStat, target, false, false);
+        public override void OnAdded(UnitBase target) {
+            Logger.Log(target.characterName + " is inflicted with " + name);
+            AffectThisStat(buffedStat, target.Unit, true, false);
+            AffectThisStat(debuffedStat, target.Unit, false, false);
             SetIconAndTimer(target);
         }
         
-        public override void OnRemoval(Unit unit)
+        public override void OnRemoval(UnitBase unitBase)
         {
-            Logger.Log("Stat Change has been removed from " + unit);
-            AffectThisStat(buffedStat, unit, true, true);
-            AffectThisStat(debuffedStat, unit, false, true);
+            Logger.Log("Stat Change has been removed from " + unitBase);
+            AffectThisStat(buffedStat, unitBase.Unit, true, true);
+            AffectThisStat(debuffedStat, unitBase.Unit, false, true);
             
-            if (unit.statusBox == null) return;
+            if (unitBase.Unit.statusBox == null) return;
             
-            var iconGO = unit.id == Type.Enemy ? unit.statusBox.GetChild(0).Find(name) : unit.statusBox.Find(name);
+            var iconGO = unitBase.id == Type.Enemy ? unitBase.Unit.statusBox.GetChild(0).Find(name) : unitBase.Unit.statusBox.Find(name);
             if (iconGO != null) iconGO.gameObject.SetActive(false);
         }
 

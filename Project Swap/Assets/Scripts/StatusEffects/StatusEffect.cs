@@ -5,7 +5,7 @@ using UnityEngine;
 namespace StatusEffects
 {
     public enum EffectType { DamageOverTime, Inhibiting, AI, StatChange }
-    public enum RateOfInfliction { EveryTurn, EveryAction, AfterAttacked, BeforeAttacked, Once }
+    public enum RateOfInfliction { EveryTurn, BeforeEveryAction, AfterEveryAction, AfterAttacked, Once }
     public abstract class StatusEffect : ScriptableObject
     {
         public GameObject icon;
@@ -16,18 +16,20 @@ namespace StatusEffects
         public Color color;
         [Tooltip("Number of turns that the effect lasts")] 
         public int duration;
-        public abstract void InflictStatus(Unit unit);
-        public abstract void OnAdded(Unit target);
-        public abstract void OnRemoval(Unit unit);
+        public abstract void InflictStatus(UnitBase unitBase);
+        public abstract void OnAdded(UnitBase target);
+        public abstract void OnRemoval(UnitBase unitBase);
 
-        protected void SetIconAndTimer(Unit target)
+        protected void SetIconAndTimer(UnitBase target)
         {
-            if (target.statusBox == null) return;
+            if (target.Unit.statusBox == null) return;
             
-            var alreadyHasIcon = target.id == Type.Enemy ? target.statusBox.GetChild(0).Find(name) : target.statusBox.Find(name);
+            var alreadyHasIcon = target.id == Type.Enemy ? 
+                target.Unit.statusBox.GetChild(0).Find(name) : target.Unit.statusBox.Find(name);
+            
             if (icon != null && alreadyHasIcon == null) {
-                var iconGO = 
-                    Instantiate(icon, target.id == Type.Enemy ? target.statusBox.transform.GetChild(0) : target.statusBox, false);
+                var iconGO = Instantiate(icon, target.id == Type.Enemy ? 
+                        target.Unit.statusBox.transform.GetChild(0) : target.Unit.statusBox, false);
                 
                 iconGO.name = name;
                 iconGO.GetComponent<StatusEffectTimer>().SetTimer(this, target);

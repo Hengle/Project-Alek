@@ -2383,7 +2383,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySelectable: []
   memberSelectable: []
-  swapButton: {fileID: 0}
   mainMenu: {fileID: 0}
   abilityMenu: {fileID: 0}
   mainMenuFirstSelected: {fileID: 0}
@@ -3041,7 +3040,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_SelectOnUp: {fileID: 0}
+    m_SelectOnUp: {fileID: 157044445999247368}
     m_SelectOnDown: {fileID: 4001414761336849926}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -3683,7 +3682,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_SelectOnUp: {fileID: 5406968756258219112}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 7853920106426766190}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1

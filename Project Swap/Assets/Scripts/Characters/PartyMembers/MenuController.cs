@@ -37,6 +37,7 @@ namespace Characters.PartyMembers
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
         }
 
+        // Will keep this for now since it could be used for cases where a boss spawns another minion after they die
         private void UpdateSelectables()
         {
             memberSelectable = memberSelectable.OrderBy
@@ -50,20 +51,20 @@ namespace Characters.PartyMembers
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
         }
 
-        [UsedImplicitly] public void DisableInput() => BattleHandler.inputModule.enabled = false;
+        [UsedImplicitly] public void DisableInput() => BattleManager.inputModule.enabled = false;
     
         [UsedImplicitly] public void SetMainMenuFirstSelected()
         {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
-            BattleHandler.inputModule.enabled = true;
+            BattleManager.inputModule.enabled = true;
         }
 
         [UsedImplicitly] public void SetAbilityMenuFirstSelected()
         {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(abilityMenuFirstSelected);
-            BattleHandler.inputModule.enabled = true;
+            BattleManager.inputModule.enabled = true;
         }
 
         public void SetTargetFirstSelected()
@@ -82,7 +83,7 @@ namespace Characters.PartyMembers
                     break;
             }
             
-            BattleHandler.inputModule.enabled = true;
+            BattleManager.inputModule.enabled = true;
         }
 
         public bool SetPartySelectables()

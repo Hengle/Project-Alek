@@ -3658,6 +3658,8 @@ MonoBehaviour:
   enemies:
   - {fileID: 11400000, guid: 1df9f50e46e40b9468aa47faa3e8d642, type: 2}
   - {fileID: 11400000, guid: 168e2ee240bc6774a9b0a0910072d4e8, type: 2}
+  - {fileID: 11400000, guid: cedfc901c08aaf64db9d5d3d449ec512, type: 2}
+  - {fileID: 11400000, guid: cedfc901c08aaf64db9d5d3d449ec512, type: 2}
   boPanel: {fileID: 11400000, guid: edd3f92f7919c58458f2e4f297327c4d, type: 2}
   statusBox: {fileID: 4792203347304205839, guid: d1b0d1817473ff14882a6febe1ab5156,
     type: 3}

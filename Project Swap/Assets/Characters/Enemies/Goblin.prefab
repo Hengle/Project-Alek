@@ -121,42 +121,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a35d465435e2d2478d6cc7424f3de5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSwapping: 0
-  isCrit: 0
-  battlePanelIsSet: 0
+  unitName: 
   healthText: {fileID: 0}
-  nameText: {fileID: 1908044061140127015, guid: fad630881272faf49b87a7d24300b057,
-    type: 3}
-  damageText: {fileID: 0}
-  damageText2: {fileID: 0}
-  critDamageText: {fileID: 0}
-  critDamageText2: {fileID: 0}
-  spriteParentObject: {fileID: 0}
-  damagePrefab: {fileID: 0}
-  damagePrefab2: {fileID: 0}
-  critDamagePrefab: {fileID: 0}
-  critDamagePrefab2: {fileID: 0}
-  closeUpCam: {fileID: 0}
-  closeUpCamCrit: {fileID: 0}
   battlePanelRef: {fileID: 0}
-  statusEffectGO: {fileID: 0}
   slider: {fileID: 0}
   actionPointAnim: {fileID: 0}
-  anim: {fileID: 0}
-  outline: {fileID: 0}
-  characterPanelRef: {fileID: 0}
-  showDamageSO: {fileID: 11400000, guid: 087577be0da3dae499973e25a8d88b04, type: 2}
+  unitRef: {fileID: 0}
+  fillRect: {fileID: 0}
+  battlePanelIsSet: 0
+  id: 0
+  parent: {fileID: 0}
+  closeUpCam: {fileID: 0}
+  closeUpCamCrit: {fileID: 0}
   currentTarget: {fileID: 0}
   currentAbility: {fileID: 0}
-  id: 0
-  maxHealthRef: 20000
+  anim: {fileID: 0}
+  animationHandler: {fileID: 0}
+  outline: {fileID: 0}
+  statusBox: {fileID: 0}
+  button: {fileID: 0}
+  isCrit: 0
+  isAbility: 0
+  missed: 0
   commandActionOption: 0
+  maxHealthRef: 20000
   currentAP: 6
   weaponMT: 20
   actionCost: 0
   currentDamage: 0
   commandActionName: 
-  unitName: 
   status: 0
   level: 23
   currentHP: 20000
@@ -166,8 +159,10 @@ MonoBehaviour:
   currentInitiative: 2
   currentCrit: 0
   currentDefense: 21
+  currentResistance: 0
   statusEffects: []
-  button: {fileID: 0}
+  multiHitTargets: []
+  damageValueList: 
 --- !u!114 &8809269014472016896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,11 +183,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109450531332189788}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d160996f11afd0d468f00cb61d4715e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisUnitBase: {fileID: 0}
 --- !u!65 &2191956961784660796
 BoxCollider:
   m_ObjectHideFlags: 0

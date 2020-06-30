@@ -25,7 +25,7 @@ MonoBehaviour:
   strength: 19
   magic: 9
   accuracy: 24
-  initiative: 16
+  initiative: 18
   defense: 22
   resistance: 14
   criticalChance: 6

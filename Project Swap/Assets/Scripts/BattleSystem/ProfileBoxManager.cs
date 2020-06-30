@@ -38,18 +38,18 @@ namespace BattleSystem
             stats.text =
                 $"Name: {unitBase.characterName}\n" +
                 $"Level: {unitBase.level}\n" +
-                $"Health: {unitBase.unit.currentHP}\n" +
-                $"STR: {unitBase.unit.currentStrength}\n" +
-                $"MAG: {unitBase.unit.currentMagic}\n" +
-                $"ACC: {unitBase.unit.currentAccuracy}\n" +
-                $"INIT: {unitBase.unit.currentInitiative}\n" +
-                $"DEF: {unitBase.unit.currentDefense}\n" +
-                $"RES: {unitBase.unit.currentResistance}\n" +
-                $"CRIT: {unitBase.unit.currentCrit}";
+                $"Health: {unitBase.Unit.currentHP}\n" +
+                $"STR: {unitBase.Unit.currentStrength}\n" +
+                $"MAG: {unitBase.Unit.currentMagic}\n" +
+                $"ACC: {unitBase.Unit.currentAccuracy}\n" +
+                $"INIT: {unitBase.Unit.currentInitiative}\n" +
+                $"DEF: {unitBase.Unit.currentDefense}\n" +
+                $"RES: {unitBase.Unit.currentResistance}\n" +
+                $"CRIT: {unitBase.Unit.currentCrit}";
 
-            BattleHandler.inputModule.move.action.Disable();
-            BattleHandler.inputModule.submit.action.Disable();
-            BattleHandler.inputModule.cancel.action.Disable();
+            BattleManager.inputModule.move.action.Disable();
+            BattleManager.inputModule.submit.action.Disable();
+            BattleManager.inputModule.cancel.action.Disable();
             
             profileBox.gameObject.SetActive(true);
             profileBox.DOScale(1, 0.5f);
@@ -58,9 +58,9 @@ namespace BattleSystem
         public static void CloseProfileBox()
         {
             profileBox.DOScale(0.1f, 0.15f).OnComplete(() => profileBox.gameObject.SetActive(false));
-            BattleHandler.inputModule.move.action.Enable();
-            BattleHandler.inputModule.submit.action.Enable();
-            BattleHandler.inputModule.cancel.action.Enable();
+            BattleManager.inputModule.move.action.Enable();
+            BattleManager.inputModule.submit.action.Enable();
+            BattleManager.inputModule.cancel.action.Enable();
             isOpen = false;
         }
     }

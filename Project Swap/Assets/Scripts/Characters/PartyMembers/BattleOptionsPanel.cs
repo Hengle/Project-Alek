@@ -17,28 +17,28 @@ namespace Characters.PartyMembers
         public void ShowBattlePanel(PartyMember thisCharacter)
         {
             character = thisCharacter;
-            BattleHandler.choosingOption = true;
-            thisCharacter.unit.actionPointAnim.SetInteger(AnimationHandler.APVal, thisCharacter.unit.currentAP);
+            BattleManager.choosingOption = true;
+            thisCharacter.Unit.actionPointAnim.SetInteger(AnimationHandler.APVal, thisCharacter.Unit.currentAP);
             
             // This is triggered at the start of a party member's turn
             if (!thisCharacter.battlePanel.activeSelf) { thisCharacter.battlePanel.SetActive(true); }
             
             // This is triggered when going back to main menu from the ability menu
-            else if (BattleHandler.choosingAbility) {
+            else if (BattleManager.choosingAbility) {
                 character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.AbilityMenu);
-                BattleHandler.choosingAbility = false;
+                BattleManager.choosingAbility = false;
             }
             
             // This is triggered when going back while choosing a target from the ability menu
-            else if (BattleHandler.choosingTarget && BattleHandler.choosingAbility) {
-                BattleHandler.choosingTarget = false;
+            else if (BattleManager.choosingTarget && BattleManager.choosingAbility) {
+                BattleManager.choosingTarget = false;
                 character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
             }
             
             // This is triggered when going back while choosing a target from the main menu (attack button)
             else
             {
-                BattleHandler.choosingTarget = false;
+                BattleManager.choosingTarget = false;
                 character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
             }
         }
@@ -62,32 +62,32 @@ namespace Characters.PartyMembers
             var commandCost = int.Parse(commandCostString);
 
             // Check to see if the action costs more than current AP
-            var notEnoughAP = character.unit.currentAP - commandCost < 0;
+            var notEnoughAP = character.Unit.currentAP - commandCost < 0;
             if (notEnoughAP) return;
         
             // Store the information
             ChooseTarget.targetOptions = commandTargetOptions;
-            ChooseTarget.GetCurrentCommand(commandActionName, commandActionOption, false);
-            character.unit.actionCost = commandCost;
+            ChooseTarget.GetCurrentCommand(commandActionName, commandActionOption);
+            character.Unit.actionCost = commandCost;
 
             // Close the panel
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
-            if (!BattleHandler.choosingOption) BattleHandler.choosingAbility = false;
-            else BattleHandler.choosingOption = false;
+            if (!BattleManager.choosingOption) BattleManager.choosingAbility = false;
+            else BattleManager.choosingOption = false;
         }
 
         public void OnAbilityMenuButton()
         {
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.AbilityMenu);
-            BattleHandler.choosingAbility = true;
-            BattleHandler.choosingOption = false;
+            BattleManager.choosingAbility = true;
+            BattleManager.choosingOption = false;
         }
 
         public void OnEndTurnButton()
         {
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
-            BattleHandler.endThisMembersTurn = true;
-            BattleHandler.choosingOption = false;
+            BattleManager.endThisMembersTurn = true;
+            BattleManager.choosingOption = false;
         }
     }
 }
