@@ -9,6 +9,7 @@ using Calculator;
 using Characters;
 using BattleSystem.Generator;
 using Characters.PartyMembers;
+using MoreMountains.InventoryEngine;
 using StatusEffects;
 using Type = Characters.Type;
 
@@ -27,6 +28,7 @@ namespace BattleSystem
         public static GlobalBattleFuncs battleFuncs;
 
         public static InputSystemUIInputModule inputModule;
+        public static InventoryInputManager inventoryInputManager;
         public static Controls controls;
 
         public static List<Enemy> enemiesForThisBattle = new List<Enemy>();
@@ -39,12 +41,15 @@ namespace BattleSystem
         public static bool endThisMembersTurn;
         public static bool choosingAbility;
         public static bool shouldGiveCommand;
-        
+
         private BattleGenerator generator;
+
+
         //private Camera cam;
 
         private static bool allMembersDead;
         private static bool allEnemiesDead;
+
         private static bool PartyOrEnemyTeamIsDead 
         {
             get
@@ -60,14 +65,15 @@ namespace BattleSystem
 
         private int roundCount;
 
+
         private void Start()
         {
             DOTween.Init();
             controls = new Controls();
             controls.Enable();
 
-            inputModule = GameObject.FindGameObjectWithTag
-                ("EventSystem").GetComponent<InputSystemUIInputModule>();
+            inputModule = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<InputSystemUIInputModule>();
+            inventoryInputManager = FindObjectOfType<InventoryInputManager>();
             
             generator = GetComponent<BattleGenerator>();
             battleFuncs = GetComponent<GlobalBattleFuncs>();
@@ -159,7 +165,9 @@ namespace BattleSystem
             ChooseTarget.ForThisMember(character);
             yield return new WaitForSeconds(0.5f);
 
-            while (choosingTarget) {
+            while (choosingTarget)
+            {
+                //inventoryInputManager.enabled = false;
                 canPressBack = true;
                 if (CancelCondition) goto main_menu;
                 yield return null;

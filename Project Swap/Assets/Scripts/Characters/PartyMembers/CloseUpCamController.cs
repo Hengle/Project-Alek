@@ -13,8 +13,9 @@ namespace Characters.PartyMembers
             unit = transform.parent.GetComponentInChildren<Unit>();
         }
 
-        private void Update() => cvCamera.enabled =
-            unit.battlePanelRef.activeSelf &&
-            unit.battlePanelRef.transform.GetChild(1).gameObject.activeSelf;
+        private void Update() {
+            if (MenuController.inventoryOpen) return;
+            cvCamera.enabled = unit.battlePanelRef.activeSelf && unit.battlePanelRef.transform.GetChild(1).gameObject.activeSelf;
+        }
     }
 }

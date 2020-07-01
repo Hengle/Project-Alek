@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Animations;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -14,7 +15,7 @@ namespace Characters.PartyMembers
 {
     public class MenuController : MonoBehaviour, MMEventListener<MMInventoryEvent>
     {
-        public InventoryInputManager inventoryInputManager;
+        public static bool inventoryOpen;
         [HideInInspector] public List<GameObject> enemySelectable = new List<GameObject>();
         [HideInInspector] public List<GameObject> memberSelectable = new List<GameObject>();
 
@@ -28,6 +29,8 @@ namespace Characters.PartyMembers
 
         private void Awake()
         {
+            inventoryOpen = false;
+            
             mainMenu = transform.Find("Battle Menu").gameObject.transform.Find("Main Options").gameObject;
             mainMenuFirstSelected = mainMenu.transform.GetChild(0).gameObject;
             
@@ -36,24 +39,6 @@ namespace Characters.PartyMembers
 
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
-
-            inventoryInputManager = FindObjectOfType<InventoryInputManager>();
-            //inventoryInputManager.op
-            //MMGameEvent.
-            //MMEventManager.AddListener(Void Test);
-        }
-
-        private void Update()
-        {
-            // if (MMGameEvent.Trigger())
-            // {
-            //     
-            // }
-        }
-
-        private void Test()
-        {
-            Logger.Log("Menu Controller knows what's up");
         }
 
         private void UpdateSelectables() // If I use this later, remember to make an event for it
@@ -69,7 +54,6 @@ namespace Characters.PartyMembers
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
             previousFirstSelected = memberFirstSelected;
             MMEventManager.AddListener(this);
-            //MMEventStartListening<MMGameEvent>();
         }
 
         [UsedImplicitly] public void DisableInput() => BattleManager.inputModule.enabled = false;
@@ -153,10 +137,19 @@ namespace Characters.PartyMembers
         [SuppressMessage("ReSharper", "Unity.InefficientPropertyAccess")]
         public void OnMMEvent(MMInventoryEvent eventType)
         {
-            if (!isActiveAndEnabled || eventType.InventoryEventType != MMInventoryEventType.InventoryCloses) return;
+            if (isActiveAndEnabled && eventType.InventoryEventType == MMInventoryEventType.InventoryCloses)
+            {
+                GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
+                EventSystem.current.SetSelectedGameObject(previousFirstSelected);
+                EventSystem.current.sendNavigationEvents = true;
+                inventoryOpen = false;
+                return;
+            }
 
-            EventSystem.current.SetSelectedGameObject(previousFirstSelected);
-            EventSystem.current.sendNavigationEvents = true;
+            if (isActiveAndEnabled && eventType.InventoryEventType == MMInventoryEventType.InventoryOpens) {
+                GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
+                inventoryOpen = true;
+            }
         }
     }
 }

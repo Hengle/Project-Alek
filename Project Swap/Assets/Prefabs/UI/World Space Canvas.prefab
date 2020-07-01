@@ -1605,7 +1605,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ITEMS
+  m_text: INVENTORY
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7c2fb1476d550c04bb338e48d296f016, type: 2}
   m_sharedMaterial: {fileID: 8025064443183091827, guid: 7c2fb1476d550c04bb338e48d296f016,
@@ -1675,7 +1675,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 6176827650991622147}
-    characterCount: 5
+    characterCount: 9
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -1713,7 +1713,7 @@ GameObject:
   - component: {fileID: 2108762000834254969}
   - component: {fileID: 6221521595485328561}
   m_Layer: 5
-  m_Name: Items Button
+  m_Name: Inventory Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1850,7 +1850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66b757baabd24e75a5c36d66dd3ff44e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  information: Open items menu
+  information: Open inventory
   infoText: {fileID: 0}
 --- !u!1 &4792203345709095841
 GameObject:

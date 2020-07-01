@@ -68,9 +68,13 @@ namespace BattleSystem.Generator
 
             mainMenu.Find("Abilities Button").gameObject.GetComponent<Button>().onClick.AddListener
                 (delegate { character.battleOptionsPanel.OnAbilityMenuButton(); });
+            
+            mainMenu.Find("Inventory Button").gameObject.GetComponent<Button>().onClick.AddListener
+                (delegate { BattleManager.inventoryInputManager.OpenInventory(); });
 
             mainMenu.Find("End Turn Button").gameObject.GetComponent<Button>().onClick.AddListener
                 (delegate { character.battleOptionsPanel.OnEndTurnButton(); });
+            
             
             character.SetAbilityMenuOptions();
             
