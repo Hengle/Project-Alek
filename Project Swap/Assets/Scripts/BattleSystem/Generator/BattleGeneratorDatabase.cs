@@ -9,6 +9,7 @@ namespace BattleSystem.Generator
     // Consider making this a scriptable object
     public class BattleGeneratorDatabase : MonoBehaviour
     {
+        public List<GameObject> inventoryCanvases = new List<GameObject>();
         public List<GameObject> closeUpCameras = new List<GameObject>();
         public List<GameObject> criticalCameras = new List<GameObject>();
         public List<GameObject> characterPanels = new List<GameObject>();

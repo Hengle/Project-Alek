@@ -220,7 +220,7 @@ namespace MoreMountains.InventoryEngine
 		/// <summary>
 		/// Redraws the inventory display's contents when needed (usually after a change in the target inventory)
 		/// </summary>
-		protected virtual void RedrawInventoryDisplay()
+		public virtual void RedrawInventoryDisplay() // Changed from protected to public
 		{
 			InitializeSprites();
 			AddGridLayoutGroup();
@@ -806,7 +806,7 @@ namespace MoreMountains.InventoryEngine
 				case MMInventoryEventType.InventoryCloses:
 					CurrentlyBeingMovedItemIndex = -1;
 					_inventoryWindowIsOpen = false;
-					EventSystem.current.sendNavigationEvents=false;
+					//EventSystem.current.sendNavigationEvents=false;
 					SetCurrentlySelectedSlot (inventoryEvent.Slot);
 				break;
 

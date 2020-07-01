@@ -12,5 +12,6 @@
     "defineConstraints": [
         "MOREMOUNTAINS_TOOLS"
     ],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }

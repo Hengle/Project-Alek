@@ -75,27 +75,25 @@ namespace BattleSystem.Generator
             mainMenu.Find("End Turn Button").gameObject.GetComponent<Button>().onClick.AddListener
                 (delegate { character.battleOptionsPanel.OnEndTurnButton(); });
             
-            
             character.SetAbilityMenuOptions();
-            
-            //SetupInventoryDisplay(character);
-            
+
             character.Unit.battlePanelRef = character.battlePanel;
             character.battlePanel.SetActive(false);
             
             character.actionPointAnim = character.Unit.battlePanelRef.transform.Find("AP Box").GetComponent<Animator>();
         }
 
-        private void SetupInventoryDisplay(PartyMember character)
-        {
-            var inventory = Instantiate(character.inventory);
+        private void SetupInventoryDisplay(PartyMember character, int i) {
+            var inventory = Instantiate(character.inventory, character.Unit.transform, true);
             inventory.name = character.inventory.name;
 
-            var inventoryDisplay = character.battlePanel.transform.Find
-                ("Battle Menu").transform.Find("Item Inventory Display").GetComponent<InventoryDisplay>();
-            
-            inventoryDisplay.TargetInventoryName = character.inventory.name;
-            inventoryDisplay.SetupInventoryDisplay();
+            character.inventoryDisplay = battleGeneratorDatabase.inventoryCanvases[i];
+            var display = character.inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
+            display.TargetInventoryName = $"{character.inventory.name}";
+
+            var details = character.inventoryDisplay.GetComponentInChildren<InventoryDetails>();
+            details.TargetInventoryName = $"{character.inventory.name}";
+            display.SetupInventoryDisplay();
         }
 
         #endregion
@@ -108,6 +106,7 @@ namespace BattleSystem.Generator
             
             character.SetupUnit(memberGo);
             SetupBattlePanel(character);
+            SetupInventoryDisplay(character, i);
 
             memberGo.transform.localScale = character.scale;
             

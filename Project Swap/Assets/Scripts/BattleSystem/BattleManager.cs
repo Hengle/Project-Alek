@@ -44,7 +44,6 @@ namespace BattleSystem
 
         private BattleGenerator generator;
 
-
         //private Camera cam;
 
         private static bool allMembersDead;
@@ -74,7 +73,7 @@ namespace BattleSystem
 
             inputModule = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<InputSystemUIInputModule>();
             inventoryInputManager = FindObjectOfType<InventoryInputManager>();
-            
+
             generator = GetComponent<BattleGenerator>();
             battleFuncs = GetComponent<GlobalBattleFuncs>();
 
@@ -144,8 +143,15 @@ namespace BattleSystem
 
         private IEnumerator ThisPlayerTurn(PartyMember character)
         {
+            inventoryInputManager.TargetInventoryContainer = character.inventoryDisplay.GetComponent<CanvasGroup>();
+            inventoryInputManager.TargetInventoryDisplay = character.inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
+
+            yield return new WaitForSeconds(1);
+            character.inventoryDisplay.SetActive(true);
+
             state = BattleState.PartyTurn;
             character.ResetCommandsAndAP();
+
 
             main_menu:
             canPressBack = false;
@@ -160,14 +166,18 @@ namespace BattleSystem
                 yield return null;
             }
 
-            if (endThisMembersTurn) { endThisMembersTurn = false; yield break; }
+            if (endThisMembersTurn)
+            {
+                endThisMembersTurn = false;
+                character.inventoryDisplay.SetActive(false);
+                yield break;
+            }
                 
             ChooseTarget.ForThisMember(character);
             yield return new WaitForSeconds(0.5f);
 
             while (choosingTarget)
             {
-                //inventoryInputManager.enabled = false;
                 canPressBack = true;
                 if (CancelCondition) goto main_menu;
                 yield return null;
@@ -189,9 +199,14 @@ namespace BattleSystem
                 (character, RateOfInfliction.AfterEveryAction, 1,true));
             
             yield return inflictStatusEffectsAfter;
+
+            if (PartyOrEnemyTeamIsDead || character.IsDead) {
+                character.inventoryDisplay.SetActive(false);
+                yield break;
+            }
             
-            if (PartyOrEnemyTeamIsDead || character.IsDead) yield break;
             if (character.CurrentAP > 0) goto main_menu;
+            character.inventoryDisplay.SetActive(false);
         }
 
         private IEnumerator ThisEnemyTurn(Enemy enemy)

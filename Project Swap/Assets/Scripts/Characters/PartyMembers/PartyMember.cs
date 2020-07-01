@@ -15,6 +15,7 @@ namespace Characters.PartyMembers
         public Inventory inventory;
         [HideInInspector] public BattleOptionsPanel battleOptionsPanel;
         [HideInInspector] public GameObject battlePanel;
+        [HideInInspector] public GameObject inventoryDisplay;
         private GameObject unitGO;
 
         public int CurrentAP {
