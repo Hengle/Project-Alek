@@ -94,8 +94,8 @@ namespace BattleSystem
         {
             TimeManager.slowTimeCrit = unitBase.Unit.isCrit;
             
-            if (unitBase.Unit.isAbility) unitBase.Unit.anim.SetInteger
-                (AnimationHandler.PhysAttackState, unitBase.Unit.currentAbility.attackState);
+            unitBase.Unit.anim.SetInteger
+                (AnimationHandler.PhysAttackState, unitBase.Unit.isAbility? unitBase.Unit.currentAbility.attackState : 0);
             
             unitBase.Unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
             

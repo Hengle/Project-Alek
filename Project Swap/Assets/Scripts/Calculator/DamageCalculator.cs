@@ -44,8 +44,7 @@ namespace Calculator
 
             var critical = CalculateCritChance(damageDealer);
             if (!critical) return totalDamage < 0 ? 0 : Random.Range((int) (0.95f * totalDamage), (int) (1.05f * totalDamage));
-
-            damageDealer.Unit.anim.SetInteger(AnimationHandler.PhysAttackState, 1);
+            
             totalDamage = (int)(totalDamage * 1.75f);
             target.Unit.targetHasCrit = true;
             damageDealer.Unit.isCrit = true;

@@ -30,7 +30,7 @@ namespace StatusEffects
         {
             if (attacker.Unit.isAbility && attacker.Unit.currentAbility.isMultiTarget)
             {
-                foreach (var target in attacker.Unit.multiHitTargets.Where(target => !target.Unit.attackerHasMissed))
+                foreach (var target in attacker.Unit.multiHitTargets.Where(target => !target.Unit.attackerHasMissed && !target.IsDead))
                 {
                     foreach (var statusEffect in from statusEffect in target.Unit.statusEffects
                         where statusEffect.rateOfInfliction.Contains(rate)
@@ -48,7 +48,7 @@ namespace StatusEffects
                 yield break;
             }
 
-            if (attacker.Unit.currentTarget.Unit.attackerHasMissed) yield break;
+            if (attacker.Unit.currentTarget.Unit.attackerHasMissed || attacker.Unit.currentTarget.IsDead) yield break;
             foreach (var statusEffect in from statusEffect in attacker.Unit.currentTarget.Unit.statusEffects
                 where statusEffect.rateOfInfliction.Contains(rate)
                 select statusEffect)

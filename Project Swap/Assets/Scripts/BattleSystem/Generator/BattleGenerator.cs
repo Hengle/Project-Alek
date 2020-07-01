@@ -78,6 +78,18 @@ namespace BattleSystem.Generator
 
             character.SetAbilityMenuOptions(battleGeneratorDatabase.boPanel);
             
+            var mainMenu = character.battlePanel.transform.Find("Battle Menu").transform.Find("Main Options").transform;
+
+            mainMenu.Find("Attack Button").gameObject.GetComponent<Button>().onClick.AddListener
+                ( delegate { character.battleOptionsPanel.GetCommandInformation("UniversalAction,1,0,2"); });
+
+            mainMenu.Find("Abilities Button").gameObject.GetComponent<Button>().onClick.AddListener
+                (delegate { character.battleOptionsPanel.OnAbilityMenuButton(); });
+
+            mainMenu.Find("End Turn Button").gameObject.GetComponent<Button>().onClick.AddListener
+                (delegate { character.battleOptionsPanel.OnEndTurnButton(); });
+
+
             character.Unit.battlePanelRef = character.battlePanel;
             character.battlePanel.SetActive(false);
             
@@ -88,9 +100,9 @@ namespace BattleSystem.Generator
         {
             var memberGo = Instantiate(character.characterPrefab, battleGeneratorDatabase.characterSpawnPoints[i+offset].transform);
 
-            character.SetUnitGO(memberGo);
+            //character.SetUnitGO(memberGo);
+            character.SetupUnit(memberGo);
             SetupBattlePanel(character);
-            character.SetupUnit(character);
 
             memberGo.transform.localScale = character.scale;
 
@@ -105,8 +117,7 @@ namespace BattleSystem.Generator
 
             battleGeneratorDatabase.closeUpCameras[i + offset].SetActive(true);
             battleGeneratorDatabase.criticalCameras[i + offset].SetActive(true);
-
-            BattleManager.thisUnitTurn += character.OnThisUnitTurn;
+            
             BattleManager.membersForThisBattle.Add(character);
         }
 
@@ -130,8 +141,8 @@ namespace BattleSystem.Generator
                 foreach (var partyMember in BattleManager.membersForThisBattle) 
                     partyMember.battlePanel.GetComponent<MenuController>().enemySelectable.Add(enemyGo);
 
-                clone.SetUnitGO(enemyGo);
-                clone.SetupUnit(clone);
+                //clone.SetUnitGO(enemyGo);
+                clone.SetupUnit(enemyGo);
 
                 clone.Unit.parent = battleGeneratorDatabase.enemySpawnPoints[i+enemyOffset];
 
@@ -142,7 +153,6 @@ namespace BattleSystem.Generator
                 clone.Unit.statusBox.transform.SetParent(clone.Unit.transform);
                 clone.Unit.statusBox.GetComponent<CanvasGroup>().alpha = 0;
                 
-                BattleManager.thisUnitTurn += clone.OnThisUnitTurn;
                 BattleManager.enemiesForThisBattle.Add(clone);
                 i++;
             }

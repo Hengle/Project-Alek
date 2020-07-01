@@ -58,6 +58,7 @@ namespace Characters
         public Unit Unit { get; protected set; }
         public List<Ability> abilities = new List<Ability>();
 
+        public Action<UnitBase> onDeath;
         public Action<int> onHpValueChanged;
         public bool IsDead => Unit.status == Status.Dead;
         
@@ -70,8 +71,6 @@ namespace Characters
             } 
         }
         
-
-        public abstract void OnThisUnitTurn(UnitBase unitBase);
 
         public void GiveCommand() {
             BattleManager.battleFuncs.GetCommand(this);
@@ -130,8 +129,7 @@ namespace Characters
         private void Die() // If i want to make special death sequences, just make it an event or cutscene
         {
             Unit.status = Status.Dead;
-            Unit.statusEffects = new List<StatusEffect>();
-            BattleManager.RemoveFromBattle(this, id);
+            onDeath?.Invoke(this);
             Unit.anim.SetBool(AnimationHandler.DeathTrigger, true);
         }
 
@@ -148,10 +146,7 @@ namespace Characters
             Unit.currentAP += 2;
             if (Unit.currentAP > 6) Unit.currentAP = 6;
         }
-
-        public void ResetAnimationStates() {
-            Unit.anim.SetInteger(AnimationHandler.PhysAttackState, 0);
-        }
+        
 
         public bool CheckUnitStatus()
         {
@@ -167,8 +162,11 @@ namespace Characters
             return this;
         }
 
-        public void SetupUnit(UnitBase reference)
+        public void SetupUnit(GameObject unitGO)
         {
+            unitGO.name = characterName;
+            Unit = unitGO.GetComponent<Unit>();
+            
             Unit.id = id;
             Unit.level = level;
             Unit.status = Status.Normal;
@@ -183,11 +181,11 @@ namespace Characters
             Unit.currentResistance = resistance;
             Unit.currentAP = maxAP;
             Unit.outline.color = Color;
-            Unit.unitRef = reference;
+            Unit.unitRef = this;
+            
             var chooseTarget = Unit.gameObject.GetComponent<ChooseTarget>();
             chooseTarget.thisUnitBase = this;
             chooseTarget.enabled = true;
-
         }
     }
 }

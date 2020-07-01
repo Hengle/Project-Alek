@@ -13,6 +13,7 @@ namespace Characters.PartyMembers
         [Range(0,4)] public int positionInParty;
         [HideInInspector] public GameObject battlePanel; // Could set this in inspector and just instantiate it and remove it from database
         private GameObject unitGO;
+        [HideInInspector] public BattleOptionsPanel battleOptionsPanel;
         
         public int CurrentAP {
             get => Unit.currentAP;
@@ -22,15 +23,13 @@ namespace Characters.PartyMembers
             }
     }
         
-        public override void OnThisUnitTurn(UnitBase unitBase)
-        {
-            
-        }
-
         public bool SetAI() => true;
 
-        public void SetAbilityMenuOptions(BattleOptionsPanel battleOptionsPanel)
+        public void SetAbilityMenuOptions(BattleOptionsPanel panel)
         {
+            battleOptionsPanel = Instantiate(panel);
+            battleOptionsPanel.character = this;
+            
             var abilityMenu = battlePanel.transform.Find("Battle Menu").transform.Find("Ability Menu").transform;
             var abilityListIndex = 0;
             

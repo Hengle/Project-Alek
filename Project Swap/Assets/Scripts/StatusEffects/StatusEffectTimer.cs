@@ -18,21 +18,24 @@ namespace StatusEffects
             statusEffect = effect;
             timer = statusEffect.duration;
             BattleManager.NewRound += DecrementTimer;
+            targetUnit.onDeath += RemoveTimerAndEffect;
         }
 
         private void DecrementTimer()
         {
             if (targetUnit.Unit.status == Status.Dead) {
-                RemoveTimerAndEffect();
+                RemoveTimerAndEffect(targetUnit);
                 return;
             }
             if (timer > 0) timer--;
             if (timer != 0) return;
             
-            RemoveTimerAndEffect();
+            RemoveTimerAndEffect(targetUnit);
         }
 
-        private void RemoveTimerAndEffect() {
+        private void RemoveTimerAndEffect(UnitBase target) {
+            if (target != targetUnit) return;
+            Logger.Log($"Removing {statusEffect.name} for " + target.characterName);
             targetUnit.RemoveStatusEffect(statusEffect);
             BattleManager.NewRound -= DecrementTimer;
         }

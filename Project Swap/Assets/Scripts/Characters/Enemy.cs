@@ -11,11 +11,7 @@ namespace Characters
             get => Unit.currentAP;
             set => Unit.currentAP = value;
         }
-
-        public override void OnThisUnitTurn(UnitBase unitBase)
-        {
-            
-        }
+        
 
         public bool SetAI()
         {

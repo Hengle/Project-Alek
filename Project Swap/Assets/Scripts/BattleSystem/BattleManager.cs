@@ -23,7 +23,7 @@ namespace BattleSystem
         private static BattleState state;
         public delegate void BattleSystemEvent();
         public static event BattleSystemEvent NewRound;
-        public static Action<UnitBase> thisUnitTurn;
+        public static event Action<BattleState> EndOfBattle;
 
         public static GlobalBattleFuncs battleFuncs;
 
@@ -41,7 +41,7 @@ namespace BattleSystem
         public static bool choosingAbility;
         public static bool shouldGiveCommand;
         
-        public BattleOptionsPanel battlePanel;
+        //public BattleOptionsPanel battlePanel;
         private BattleGenerator generator;
         private Camera cam;
 
@@ -88,6 +88,12 @@ namespace BattleSystem
                 yield return new WaitUntil(partyMember.battlePanel.GetComponent<MenuController>().SetPartySelectables);
             }
 
+            StartCoroutine(SortingCalculator.SortAndCombine());
+            while (!SortingCalculator.isFinished) yield return null;
+
+            foreach (var character in membersForThisBattle) 
+                character.onDeath += RemoveFromBattle;
+            
             StartCoroutine(PerformThisRound());
         }
 
@@ -139,7 +145,7 @@ namespace BattleSystem
 
             main_menu:
             canPressBack = false;
-            battlePanel.ShowBattlePanel(character);
+            character.battleOptionsPanel.ShowBattlePanel();
 
             while (choosingOption) yield return null;
             yield return new WaitForSeconds(0.5f);
@@ -173,8 +179,7 @@ namespace BattleSystem
             if (!shouldGiveCommand) shouldGiveCommand = true;
             else character.GiveCommand();
             while (performingAction) yield return null;
-
-            character.ResetAnimationStates();
+            
 
             var inflictStatusEffectsAfter = StartCoroutine(StatusEffectManager.TriggerOnThisUnit
                 (character, RateOfInfliction.AfterEveryAction, 1,true));
@@ -220,22 +225,25 @@ namespace BattleSystem
         private IEnumerator WonBattleSequence()
         {
             yield return new WaitForSeconds(0.5f);
+            EndOfBattle?.Invoke(BattleState.Won);
             Logger.Log("yay, you won");
         }
 
         private IEnumerator LostBattleSequence()
         {
             yield return new WaitForSeconds(0.5f);
+            EndOfBattle?.Invoke(BattleState.Lost);
             Logger.Log("you lost idiot");
         }
 
-        public static void RemoveFromBattle(UnitBase unit, Type id)
+        private static void RemoveFromBattle(UnitBase unit)
         {
-            if (id == Type.Enemy) enemiesForThisBattle.Remove((Enemy) unit);
+            if (unit.id == Type.Enemy) enemiesForThisBattle.Remove((Enemy) unit);
+            Logger.Log($"{unit.characterName} is being removed from battle");
+            if (unit.id == Type.Enemy) enemiesForThisBattle.Remove((Enemy) unit);
             else membersForThisBattle.Remove((PartyMember) unit);
 
             if (membersForThisBattle.Count == 0) allMembersDead = true;
-            else if (enemiesForThisBattle.Count == 0) allEnemiesDead = true;
         }
 
         private void ResetStaticVariables()

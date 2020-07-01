@@ -95,7 +95,7 @@ namespace Characters
             
             if (!currentAbility.isMultiTarget)
             {
-                if (currentTarget.Unit.attackerHasMissed) return;
+                if (currentTarget.Unit.attackerHasMissed || currentTarget.IsDead) return;
 
                 foreach (var effect in from effect in currentAbility.statusEffects
                     where !(from statusEffect in currentTarget.Unit.statusEffects
@@ -110,7 +110,7 @@ namespace Characters
                 }
             }
             
-            foreach (var target in multiHitTargets.Where(target => !target.Unit.attackerHasMissed))
+            foreach (var target in multiHitTargets.Where(target => !target.Unit.attackerHasMissed && !target.IsDead))
             {
                 foreach (var effect in from effect in currentAbility.statusEffects
                     where !(from statusEffect in target.Unit.statusEffects
@@ -151,7 +151,6 @@ namespace Characters
             
             currentDamage = DamageCalculator.CalculateAttackDamage(unitRef, currentTarget);
             if (id != Type.PartyMember || !isCrit) return;
-            //closeUpCamCrit.SetActive(true);
             TimeManager.slowTimeCrit = true;
         }
 

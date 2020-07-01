@@ -480,18 +480,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3282856128961081636}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: edd3f92f7919c58458f2e4f297327c4d, type: 2}
-        m_MethodName: OnAbilityMenuButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!95 &6084725436402432880
 Animator:
   serializedVersion: 3
@@ -2189,18 +2178,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4792203346361511253}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: edd3f92f7919c58458f2e4f297327c4d, type: 2}
-        m_MethodName: GetCommandInformation
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: UniversalAction,1,0,2
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!95 &4792203346361511275
 Animator:
   serializedVersion: 3
@@ -4381,18 +4359,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7000019436240487647}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: edd3f92f7919c58458f2e4f297327c4d, type: 2}
-        m_MethodName: OnEndTurnButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!95 &7376120812843682276
 Animator:
   serializedVersion: 3

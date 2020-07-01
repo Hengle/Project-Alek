@@ -12,16 +12,16 @@ namespace Characters.PartyMembers
     public class BattleOptionsPanel : ScriptableObject
     {
         public GameObject battlePanel;
-        private PartyMember character; // This will be used to store a reference to the active party member
+        public PartyMember character; // This will be used to store a reference to the active party member
         
-        public void ShowBattlePanel(PartyMember thisCharacter)
+        public void ShowBattlePanel()
         {
-            character = thisCharacter;
+            //character = thisCharacter;
             BattleManager.choosingOption = true;
-            thisCharacter.actionPointAnim.SetInteger(AnimationHandler.APVal, thisCharacter.CurrentAP);
+            character.actionPointAnim.SetInteger(AnimationHandler.APVal, character.CurrentAP);
             
             // This is triggered at the start of a party member's turn
-            if (!thisCharacter.battlePanel.activeSelf) { thisCharacter.battlePanel.SetActive(true); }
+            if (!character.battlePanel.activeSelf) { character.battlePanel.SetActive(true); }
             
             // This is triggered when going back to main menu from the ability menu
             else if (BattleManager.choosingAbility) {
