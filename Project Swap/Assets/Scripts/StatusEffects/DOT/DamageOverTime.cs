@@ -20,18 +20,21 @@ namespace StatusEffects.DOT
         
         public override void OnAdded(UnitBase target) {
             Logger.Log($"{target.characterName} is inflicted with {name}.");
-            SetIconAndTimer(target);
+            target.onStatusEffectReceived?.Invoke(this);
+            //SetIconAndTimer(target);
         }
         
         public override void OnRemoval(UnitBase unitBase)
         {
             Logger.Log($"{unitBase.characterName} is no longer inflicted with {name}.");
-            if (unitBase.Unit.statusBox == null) return;
+            unitBase.onStatusEffectRemoved?.Invoke(this);
             
-            var iconGO = unitBase.id == Type.Enemy?
-                unitBase.Unit.statusBox.GetChild(0).Find(name) : unitBase.Unit.statusBox.Find(name);
-            
-            if (iconGO != null) iconGO.gameObject.SetActive(false);
+            // if (unitBase.Unit.statusBox == null) return;
+            //
+            // var iconGO = unitBase.id == Type.Enemy?
+            //     unitBase.Unit.statusBox.GetChild(0).Find(name) : unitBase.Unit.statusBox.Find(name);
+            //
+            // if (iconGO != null) iconGO.gameObject.SetActive(false);
         }
     }
 }

@@ -9,7 +9,6 @@ using BattleSystem;
 using BattleSystem.DamagePrefab;
 using Calculator;
 using StatusEffects;
-using UnityEngine.Serialization;
 
 namespace Characters
 {
@@ -34,9 +33,9 @@ namespace Characters
         [Range(0,99)] public int criticalChance;
 
         public Color profileBoxColor;
-        [HideInInspector] public Color normalHealthColor = Color.green;
-        [HideInInspector] public Color midHealthColor = Color.yellow;
-        [HideInInspector] public Color lowHealthColor = Color.red;
+        private readonly Color normalHealthColor = Color.green;
+        private readonly Color midHealthColor = Color.yellow;
+        private readonly Color lowHealthColor = Color.red;
 
         public Color Color {
             get
@@ -55,11 +54,14 @@ namespace Characters
         }
         
         [HideInInspector] public int maxAP = 6;
-        public Unit Unit { get; protected set; }
+        public Unit Unit { get; private set; }
         public List<Ability> abilities = new List<Ability>();
 
         public Action<UnitBase> onDeath;
         public Action<int> onHpValueChanged;
+        public Action<StatusEffect> onStatusEffectReceived;
+        public Action<StatusEffect> onStatusEffectRemoved;
+
         public bool IsDead => Unit.status == Status.Dead;
         
         private int CurrentHP 
@@ -70,7 +72,6 @@ namespace Characters
                 Unit.outline.color = Color;
             } 
         }
-        
 
         public void GiveCommand() {
             BattleManager.battleFuncs.GetCommand(this);

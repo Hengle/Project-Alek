@@ -1,16 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
-using TMPro;
 using Abilities;
 using Animations;
 using BattleSystem;
 using Calculator;
 using StatusEffects;
+using Random = UnityEngine.Random;
 
 namespace Characters
 {
@@ -34,7 +35,6 @@ namespace Characters
         [HideInInspector] public Animator anim; // could maybe keep, but remove direct access
         [HideInInspector] public AnimationHandler animationHandler;
         [HideInInspector] public SpriteOutline outline; // could get rid of and move logic to outline script
-        [HideInInspector] public Transform statusBox;
         [HideInInspector] public Button button;
 
         [HideInInspector] public bool targetHasCrit;
@@ -66,6 +66,9 @@ namespace Characters
         public List<StatusEffect> statusEffects = new List<StatusEffect>();
         public List<UnitBase> multiHitTargets = new List<UnitBase>();
         public List<int> damageValueList = new List<int>();
+        
+        public Action onSelect;
+        public Action onDeselect;
 
         private void Awake()
         {
@@ -84,11 +87,9 @@ namespace Characters
             if (BattleManager.controls.Menu.Back.triggered && ProfileBoxManager.isOpen) ProfileBoxManager.CloseProfileBox();
         }
         
-        
-        // These functions are called from the animator. I could just fire off an event from the animation that the UnitBase listens to
-        // And remove these functions from this class. Each unit could have its own event (So it doesn't trigger other units).
-        // That way i can have different logic for these functions (if needed). A boss could have special logic for these functions
-        
+
+        #region functionsCalledFromAnimator
+
         [UsedImplicitly] public void TryToInflictStatusEffect()
         {
             if (!isAbility || !currentAbility.hasStatusEffect) return;
@@ -154,14 +155,16 @@ namespace Characters
             TimeManager.slowTimeCrit = true;
         }
 
+        #endregion
+
         public void OnSelect(BaseEventData eventData) {
             outline.enabled = true;
-            if (id != Type.PartyMember && status != Status.Dead) statusBox.GetComponent<CanvasGroup>().alpha = 1;
+            onSelect?.Invoke();
         }
 
         public void OnDeselect(BaseEventData eventData) {
             outline.enabled = false;
-            if (id != Type.PartyMember) statusBox.GetComponent<CanvasGroup>().alpha = 0;
+            onDeselect?.Invoke();
         }
     }
 }

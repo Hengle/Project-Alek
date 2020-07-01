@@ -7,7 +7,7 @@ namespace Calculator
 {
     public static class DamageCalculator
     {
-        private const int WeaponAccPlaceholder = 80;
+        private const int WeaponAccPlaceholder = 90;
         // Make this the base function that is called for everything and delegate to correct function based on action type
         public static int CalculateAttackDamage(UnitBase damageDealer, UnitBase target)
         {

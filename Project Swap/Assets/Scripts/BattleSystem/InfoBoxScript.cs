@@ -10,12 +10,9 @@ namespace BattleSystem
         [HideInInspector] [SerializeField]
         private TextMeshProUGUI infoText;
 
-        private void Awake() => infoText = 
-            GameObject.FindGameObjectWithTag("Canvas").transform.Find("Info Box").GetComponentInChildren<TextMeshProUGUI>();
+        private void Awake() => infoText = GameObject.FindGameObjectWithTag("Canvas").transform.Find
+            ("Info Box").GetComponentInChildren<TextMeshProUGUI>();
 
-        public void OnSelect(BaseEventData eventData)
-        {
-            infoText.text = information;
-        }
+        public void OnSelect(BaseEventData eventData) => infoText.text = information;
     }
 }

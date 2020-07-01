@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Characters;
 using Characters.PartyMembers;
+using StatusEffects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,8 +15,7 @@ namespace BattleSystem.Generator
     public class BattleGenerator : MonoBehaviour
     {
         [SerializeField] private BattleGeneratorDatabase battleGeneratorDatabase;
-        //private Slider slider;
-        //private TextMeshProUGUI healthText;
+
         private int offset;
         private int enemyOffset;
         
@@ -32,12 +32,8 @@ namespace BattleSystem.Generator
 
         private void SetupParty()
         {
-            var i = 0;
-            foreach (PartyMember character in PartyManager.instance.partyMembers) {
-                //SetupPartyMemberPanel(character, i);
-                SpawnThisMember(character, i);
-                i++;
-            }
+            for (var i = 0; i < PartyManager.instance.partyMembers.Count; i++)
+                SpawnThisMember(PartyManager.instance.partyMembers[i], i);
         }
 
         private void SetupPartyMenuController()
@@ -48,36 +44,22 @@ namespace BattleSystem.Generator
             }
         }
 
-        // private void SetupPartyMemberPanel(PartyMember character, int i)
-        // {
-        //     battleGeneratorDatabase.characterPanels[i+offset].gameObject.SetActive(true);
-        //
-        //     var iconImage = battleGeneratorDatabase.characterPanels[i+offset].transform.GetChild(0).GetComponent<Image>();
-        //     iconImage.sprite = character.icon;
-        //
-        //     var nameUgui = battleGeneratorDatabase.characterPanels[i+offset].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        //     nameUgui.text = character.characterName.ToUpper();
-        //
-        //     slider = battleGeneratorDatabase.characterPanels[i+offset].transform.GetChild(2).GetComponent<Slider>();
-        //
-        //     healthText = battleGeneratorDatabase.characterPanels[i+offset].transform.GetChild(3).GetComponent<TextMeshProUGUI>();
-        //     healthText.text = "HP: " + character.health;
-        // }
-
         private void SetupBattlePanel(PartyMember character)
         {
+            // Set variables for the position the battle panel should be in when instantiated
             var position = character.Unit.transform.position;
             var newPosition = new Vector3(position.x, position.y + 1.5f, position.z + 3);
             var rotation = battleGeneratorDatabase.boPanel.battlePanel.transform.rotation;
             
-            character.battlePanel = Instantiate
-                (battleGeneratorDatabase.boPanel.battlePanel, newPosition, rotation);
-
-            character.battlePanel.transform.position = newPosition;
+            // Instantiate the battle panel gameObject
+            character.battlePanel = Instantiate(battleGeneratorDatabase.boPanel.battlePanel, newPosition, rotation);
             character.battlePanel.transform.SetParent(character.Unit.transform.parent, true);
 
-            character.SetAbilityMenuOptions(battleGeneratorDatabase.boPanel);
+            // Create an instance of the battle panel SO
+            character.battleOptionsPanel = Instantiate(battleGeneratorDatabase.boPanel);
+            character.battleOptionsPanel.character = character;
             
+            // Set up the menu options
             var mainMenu = character.battlePanel.transform.Find("Battle Menu").transform.Find("Main Options").transform;
 
             mainMenu.Find("Attack Button").gameObject.GetComponent<Button>().onClick.AddListener
@@ -88,8 +70,9 @@ namespace BattleSystem.Generator
 
             mainMenu.Find("End Turn Button").gameObject.GetComponent<Button>().onClick.AddListener
                 (delegate { character.battleOptionsPanel.OnEndTurnButton(); });
-
-
+            
+            character.SetAbilityMenuOptions();
+            
             character.Unit.battlePanelRef = character.battlePanel;
             character.battlePanel.SetActive(false);
             
@@ -99,20 +82,21 @@ namespace BattleSystem.Generator
         private void SpawnThisMember(PartyMember character, int i)
         {
             var memberGo = Instantiate(character.characterPrefab, battleGeneratorDatabase.characterSpawnPoints[i+offset].transform);
-
-            //character.SetUnitGO(memberGo);
+            
             character.SetupUnit(memberGo);
             SetupBattlePanel(character);
 
             memberGo.transform.localScale = character.scale;
-
-            // Could add this functionality to panel controller
+            
+            // Setup the character panel and the status effect box
             var panel = battleGeneratorDatabase.characterPanels[i + offset];
-            character.Unit.statusBox = panel.transform.GetChild(panel.transform.childCount - 1);
-
+            var statusBoxController = panel.transform.GetChild(panel.transform.childCount - 1).GetComponent<StatusEffectControllerUI>();
+            
             panel.GetComponent<CharacterPanelController>().member = character;
             panel.SetActive(true);
-            
+            statusBoxController.member = character;
+            statusBoxController.Initialize();
+
             character.Unit.parent = battleGeneratorDatabase.characterSpawnPoints[i+offset];
 
             battleGeneratorDatabase.closeUpCameras[i + offset].SetActive(true);
@@ -138,20 +122,23 @@ namespace BattleSystem.Generator
                 enemyGo.name = clone.name;
                 enemyGo.transform.localScale = clone.scale;
 
+                // Add each enemy to every party member's list of selectable objects
                 foreach (var partyMember in BattleManager.membersForThisBattle) 
                     partyMember.battlePanel.GetComponent<MenuController>().enemySelectable.Add(enemyGo);
-
-                //clone.SetUnitGO(enemyGo);
+                
                 clone.SetupUnit(enemyGo);
 
                 clone.Unit.parent = battleGeneratorDatabase.enemySpawnPoints[i+enemyOffset];
 
                 var position = enemyGo.transform.position;
                 var newPosition = new Vector3(position.x, position.y + 1.5f, position.z);
+
+                var statusBox = Instantiate(battleGeneratorDatabase.enemyStatusBox, newPosition, battleGeneratorDatabase.enemyStatusBox.rotation);
+                statusBox.transform.SetParent(clone.Unit.transform);
                 
-                clone.Unit.statusBox = Instantiate(battleGeneratorDatabase.statusBox, newPosition, battleGeneratorDatabase.statusBox.rotation);
-                clone.Unit.statusBox.transform.SetParent(clone.Unit.transform);
-                clone.Unit.statusBox.GetComponent<CanvasGroup>().alpha = 0;
+                var statusBoxController = statusBox.GetComponentInChildren<StatusEffectControllerUI>();
+                statusBoxController.member = clone;
+                statusBoxController.Initialize();
                 
                 BattleManager.enemiesForThisBattle.Add(clone);
                 i++;

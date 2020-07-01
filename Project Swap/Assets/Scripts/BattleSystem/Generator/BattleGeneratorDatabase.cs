@@ -16,7 +16,7 @@ namespace BattleSystem.Generator
         public List<GameObject> enemySpawnPoints = new List<GameObject>();
         public List<Enemy> enemies = new List<Enemy>();
         public BattleOptionsPanel boPanel;
-        public Transform statusBox;
+        public Transform enemyStatusBox;
         public Transform profileBox;
     }
 }

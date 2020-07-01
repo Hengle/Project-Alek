@@ -11,25 +11,22 @@ namespace Characters.PartyMembers
     {
         [HideInInspector] public Animator actionPointAnim;
         [Range(0,4)] public int positionInParty;
-        [HideInInspector] public GameObject battlePanel; // Could set this in inspector and just instantiate it and remove it from database
-        private GameObject unitGO;
         [HideInInspector] public BattleOptionsPanel battleOptionsPanel;
-        
+        [HideInInspector] public GameObject battlePanel;
+        private GameObject unitGO;
+
         public int CurrentAP {
             get => Unit.currentAP;
             set {
                 Unit.currentAP = value;
                 actionPointAnim.SetInteger(AnimationHandler.APVal, Unit.currentAP);
             }
-    }
+        }
         
         public bool SetAI() => true;
 
-        public void SetAbilityMenuOptions(BattleOptionsPanel panel)
+        public void SetAbilityMenuOptions()
         {
-            battleOptionsPanel = Instantiate(panel);
-            battleOptionsPanel.character = this;
-            
             var abilityMenu = battlePanel.transform.Find("Battle Menu").transform.Find("Ability Menu").transform;
             var abilityListIndex = 0;
             
@@ -63,19 +60,6 @@ namespace Characters.PartyMembers
                 firstOpNav.selectOnUp = optionButton.GetComponent<Button>();
                 firstOption.GetComponent<Selectable>().navigation = firstOpNav;
             }
-        }
-
-        public void SetUnitGO(GameObject memberGO)
-        {
-            memberGO.name = characterName;
-            Unit = memberGO.GetComponent<Unit>();
-            
-            // Unit.slider = slider;
-            // Unit.slider.maxValue = health;
-            // Unit.slider.value = health;
-            // Unit.fillRect = slider.fillRect.GetComponent<Image>();
-            
-            //Unit.healthText = healthText;
         }
     }
 }

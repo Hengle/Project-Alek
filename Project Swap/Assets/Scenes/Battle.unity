@@ -3477,7 +3477,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eae4cc1ced1eb04b8999e60ee099fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battlePanel: {fileID: 11400000, guid: edd3f92f7919c58458f2e4f297327c4d, type: 2}
 --- !u!82 &1849992119
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3629,7 +3628,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cedfc901c08aaf64db9d5d3d449ec512, type: 2}
   - {fileID: 11400000, guid: cedfc901c08aaf64db9d5d3d449ec512, type: 2}
   boPanel: {fileID: 11400000, guid: edd3f92f7919c58458f2e4f297327c4d, type: 2}
-  statusBox: {fileID: 4792203347304205839, guid: d1b0d1817473ff14882a6febe1ab5156,
+  enemyStatusBox: {fileID: 4792203347304205839, guid: d1b0d1817473ff14882a6febe1ab5156,
     type: 3}
   profileBox: {fileID: 1850258631}
 --- !u!114 &1849992122

@@ -24,25 +24,26 @@ namespace StatusEffects
         public abstract void OnAdded(UnitBase target);
         public abstract void OnRemoval(UnitBase unitBase);
 
-        protected void SetIconAndTimer(UnitBase target)
-        {
-            if (target.Unit.statusBox == null) return;
-            
-            var alreadyHasIcon = target.id == Type.Enemy ? 
-                target.Unit.statusBox.GetChild(0).Find(name) : target.Unit.statusBox.Find(name);
-            
-            if (icon != null && alreadyHasIcon == null) {
-                var iconGO = Instantiate(icon, target.id == Type.Enemy ? 
-                        target.Unit.statusBox.transform.GetChild(0) : target.Unit.statusBox, false);
-                
-                iconGO.name = name;
-                iconGO.GetComponent<StatusEffectTimer>().SetTimer(this, target);
-            }
-            
-            else if (icon != null && alreadyHasIcon != null) {
-                alreadyHasIcon.gameObject.SetActive(true);
-                alreadyHasIcon.GetComponent<StatusEffectTimer>().SetTimer(this, target);
-            }
-        }
+        // protected void SetIconAndTimer(UnitBase target)
+        // {
+        //     
+        //     if (target.Unit.statusBox == null) return;
+        //     
+        //     var alreadyHasIcon = target.id == Type.Enemy ? 
+        //         target.Unit.statusBox.GetChild(0).Find(name) : target.Unit.statusBox.Find(name);
+        //     
+        //     if (icon != null && alreadyHasIcon == null) {
+        //         var iconGO = Instantiate(icon, target.id == Type.Enemy ? 
+        //                 target.Unit.statusBox.transform.GetChild(0) : target.Unit.statusBox, false);
+        //         
+        //         iconGO.name = name;
+        //         iconGO.GetComponent<StatusEffectTimer>().SetTimer(this, target);
+        //     }
+        //     
+        //     else if (icon != null && alreadyHasIcon != null) {
+        //         alreadyHasIcon.gameObject.SetActive(true);
+        //         alreadyHasIcon.GetComponent<StatusEffectTimer>().SetTimer(this, target);
+        //     }
+        // }
     }
 }

@@ -61,7 +61,8 @@ namespace StatusEffects.StatChange
             Logger.Log(target.characterName + " is inflicted with " + name);
             AffectThisStat(buffedStat, target.Unit, true, false);
             AffectThisStat(debuffedStat, target.Unit, false, false);
-            SetIconAndTimer(target);
+            target.onStatusEffectReceived?.Invoke(this);
+            //SetIconAndTimer(target);
         }
         
         public override void OnRemoval(UnitBase unitBase)
@@ -70,11 +71,12 @@ namespace StatusEffects.StatChange
             AffectThisStat(buffedStat, unitBase.Unit, true, true);
             AffectThisStat(debuffedStat, unitBase.Unit, false, true);
             
-            if (unitBase.Unit.statusBox == null) return;
-            
-            var iconGO = unitBase.id == Type.Enemy?
-                unitBase.Unit.statusBox.GetChild(0).Find(name) : unitBase.Unit.statusBox.Find(name);
-            if (iconGO != null) iconGO.gameObject.SetActive(false);
+            unitBase.onStatusEffectRemoved?.Invoke(this);
+            // if (unitBase.Unit.statusBox == null) return;
+            //
+            // var iconGO = unitBase.id == Type.Enemy?
+            //     unitBase.Unit.statusBox.GetChild(0).Find(name) : unitBase.Unit.statusBox.Find(name);
+            // if (iconGO != null) iconGO.gameObject.SetActive(false);
         }
 
         private void AffectThisStat(AffectedStat stat, Unit unit, bool isBuff, bool removing)

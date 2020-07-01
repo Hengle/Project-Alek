@@ -17,9 +17,10 @@ MonoBehaviour:
   description: Big Brain plays
   actionCost: 3
   targetOptions: 0
+  isMultiTarget: 0
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
-  chanceOfInfliction: 0.9
+  chanceOfInfliction: 1
   damageMultiplier: 1
   attackState: 2

@@ -7,7 +7,6 @@ using DG.Tweening;
 using System.Linq;
 using Calculator;
 using Characters;
-using Animations;
 using BattleSystem.Generator;
 using Characters.PartyMembers;
 using StatusEffects;
@@ -41,9 +40,8 @@ namespace BattleSystem
         public static bool choosingAbility;
         public static bool shouldGiveCommand;
         
-        //public BattleOptionsPanel battlePanel;
         private BattleGenerator generator;
-        private Camera cam;
+        //private Camera cam;
 
         private static bool allMembersDead;
         private static bool allEnemiesDead;

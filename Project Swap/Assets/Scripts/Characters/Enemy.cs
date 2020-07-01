@@ -28,8 +28,5 @@ namespace Characters
             // Will need to update to try to find an attack that does cost less
             return Unit.currentAP - Unit.actionCost >= 0;
         }
-
-        // Probably unnecessary. should do this automatically i think
-        public void SetUnitGO(GameObject enemyGO) => Unit = enemyGO.GetComponent<Unit>();
     }
 }
