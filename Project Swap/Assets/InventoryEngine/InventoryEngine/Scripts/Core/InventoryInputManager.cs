@@ -96,7 +96,8 @@ namespace MoreMountains.InventoryEngine
             {
                 if (TargetInventoryContainer != null) { TargetInventoryContainer.alpha = 0; }
                 if (Overlay != null) { Overlay.alpha = 0; }
-                EventSystem.current.sendNavigationEvents = false;
+                // Found the culprit
+                //EventSystem.current.sendNavigationEvents = false; 
                 if (_canvasGroup != null)
                 {
                     _canvasGroup.blocksRaycasts = false;

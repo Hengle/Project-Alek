@@ -1,15 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using BattleSystem;
+using MoreMountains.InventoryEngine;
+using MoreMountains.Tools;
 
 namespace Characters.PartyMembers
 {
-    public class MenuController : MonoBehaviour
+    public class MenuController : MonoBehaviour, MMEventListener<MMInventoryEvent>
     {
+        public InventoryInputManager inventoryInputManager;
         [HideInInspector] public List<GameObject> enemySelectable = new List<GameObject>();
         [HideInInspector] public List<GameObject> memberSelectable = new List<GameObject>();
 
@@ -17,7 +22,8 @@ namespace Characters.PartyMembers
         [SerializeField] private GameObject abilityMenu;
         [SerializeField] private GameObject mainMenuFirstSelected;
         [SerializeField] private GameObject abilityMenuFirstSelected;
-        
+
+        private GameObject previousFirstSelected;
         private GameObject memberFirstSelected;
 
         private void Awake()
@@ -30,8 +36,26 @@ namespace Characters.PartyMembers
 
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
+
+            inventoryInputManager = FindObjectOfType<InventoryInputManager>();
+            //inventoryInputManager.op
+            //MMGameEvent.
+            //MMEventManager.AddListener(Void Test);
         }
-        
+
+        private void Update()
+        {
+            // if (MMGameEvent.Trigger())
+            // {
+            //     
+            // }
+        }
+
+        private void Test()
+        {
+            Logger.Log("Menu Controller knows what's up");
+        }
+
         private void UpdateSelectables() // If I use this later, remember to make an event for it
         {
             memberSelectable = memberSelectable.OrderBy
@@ -43,6 +67,9 @@ namespace Characters.PartyMembers
         private void OnEnable() {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
+            previousFirstSelected = memberFirstSelected;
+            MMEventManager.AddListener(this);
+            //MMEventStartListening<MMGameEvent>();
         }
 
         [UsedImplicitly] public void DisableInput() => BattleManager.inputModule.enabled = false;
@@ -51,6 +78,7 @@ namespace Characters.PartyMembers
         {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
+            previousFirstSelected = mainMenuFirstSelected;
             BattleManager.inputModule.enabled = true;
         }
 
@@ -58,6 +86,7 @@ namespace Characters.PartyMembers
         {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(abilityMenuFirstSelected);
+            previousFirstSelected = abilityMenuFirstSelected;
             BattleManager.inputModule.enabled = true;
         }
 
@@ -68,10 +97,12 @@ namespace Characters.PartyMembers
                 case 0:
                     EventSystem.current.SetSelectedGameObject(null);
                     EventSystem.current.SetSelectedGameObject(enemySelectable[0].gameObject);
+                    previousFirstSelected = enemySelectable[0].gameObject;
                     break;
                 case 1:
                     EventSystem.current.SetSelectedGameObject(null);
                     EventSystem.current.SetSelectedGameObject(memberFirstSelected);
+                    previousFirstSelected = memberFirstSelected;
                     break;
                 case 2:
                     break;
@@ -117,6 +148,15 @@ namespace Characters.PartyMembers
             }
 
             return true;
+        }
+
+        [SuppressMessage("ReSharper", "Unity.InefficientPropertyAccess")]
+        public void OnMMEvent(MMInventoryEvent eventType)
+        {
+            if (!isActiveAndEnabled || eventType.InventoryEventType != MMInventoryEventType.InventoryCloses) return;
+
+            EventSystem.current.SetSelectedGameObject(previousFirstSelected);
+            EventSystem.current.sendNavigationEvents = true;
         }
     }
 }

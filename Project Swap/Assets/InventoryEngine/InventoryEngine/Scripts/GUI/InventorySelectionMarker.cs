@@ -40,7 +40,7 @@ namespace MoreMountains.InventoryEngine
 		void Update () 
 		{			
 			_currentSelection = EventSystem.current.currentSelectedGameObject;
-			if (_currentSelection==null)
+			if (_currentSelection==null || _currentSelection.GetComponent<RectTransform>() == null) // Added code
 			{
 				return;
 			}
