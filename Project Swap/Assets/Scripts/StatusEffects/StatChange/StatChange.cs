@@ -62,7 +62,6 @@ namespace StatusEffects.StatChange
             AffectThisStat(buffedStat, target.Unit, true, false);
             AffectThisStat(debuffedStat, target.Unit, false, false);
             target.onStatusEffectReceived?.Invoke(this);
-            //SetIconAndTimer(target);
         }
         
         public override void OnRemoval(UnitBase unitBase)
@@ -70,13 +69,7 @@ namespace StatusEffects.StatChange
             Logger.Log("Stat Change has been removed from " + unitBase);
             AffectThisStat(buffedStat, unitBase.Unit, true, true);
             AffectThisStat(debuffedStat, unitBase.Unit, false, true);
-            
             unitBase.onStatusEffectRemoved?.Invoke(this);
-            // if (unitBase.Unit.statusBox == null) return;
-            //
-            // var iconGO = unitBase.id == Type.Enemy?
-            //     unitBase.Unit.statusBox.GetChild(0).Find(name) : unitBase.Unit.statusBox.Find(name);
-            // if (iconGO != null) iconGO.gameObject.SetActive(false);
         }
 
         private void AffectThisStat(AffectedStat stat, Unit unit, bool isBuff, bool removing)

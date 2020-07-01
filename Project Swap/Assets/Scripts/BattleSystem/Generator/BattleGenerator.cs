@@ -1,8 +1,7 @@
 ﻿using System.Linq;
-using Characters;
 using Characters.PartyMembers;
+using MoreMountains.InventoryEngine;
 using StatusEffects;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +17,9 @@ namespace BattleSystem.Generator
 
         private int offset;
         private int enemyOffset;
-        
+
+        #region Setup
+
         public bool SetupBattle()
         {
             offset = PartyManager.instance.partyMembers.Count == 2 ? 1 : 0;
@@ -73,11 +74,29 @@ namespace BattleSystem.Generator
             
             character.SetAbilityMenuOptions();
             
+            //SetupInventoryDisplay(character);
+            
             character.Unit.battlePanelRef = character.battlePanel;
             character.battlePanel.SetActive(false);
             
             character.actionPointAnim = character.Unit.battlePanelRef.transform.Find("AP Box").GetComponent<Animator>();
         }
+
+        private void SetupInventoryDisplay(PartyMember character)
+        {
+            var inventory = Instantiate(character.inventory);
+            inventory.name = character.inventory.name;
+
+            var inventoryDisplay = character.battlePanel.transform.Find
+                ("Battle Menu").transform.Find("Item Inventory Display").GetComponent<InventoryDisplay>();
+            
+            inventoryDisplay.TargetInventoryName = character.inventory.name;
+            inventoryDisplay.SetupInventoryDisplay();
+        }
+
+        #endregion
+
+        #region Spawning
 
         private void SpawnThisMember(PartyMember character, int i)
         {
@@ -144,5 +163,7 @@ namespace BattleSystem.Generator
                 i++;
             }
         }
+
+        #endregion
     }
 }

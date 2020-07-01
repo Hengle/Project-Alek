@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using BattleSystem;
+using MoreMountains.InventoryEngine;
 
 namespace Characters.PartyMembers
 {
@@ -11,6 +12,7 @@ namespace Characters.PartyMembers
     {
         [HideInInspector] public Animator actionPointAnim;
         [Range(0,4)] public int positionInParty;
+        public Inventory inventory;
         [HideInInspector] public BattleOptionsPanel battleOptionsPanel;
         [HideInInspector] public GameObject battlePanel;
         private GameObject unitGO;

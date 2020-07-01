@@ -31,9 +31,12 @@ MonoBehaviour:
   criticalChance: 31
   profileBoxColor: {r: 0.95781577, g: 0.5424528, b: 1, a: 0.78431374}
   maxAP: 6
-  unit: {fileID: 0}
   abilities:
   - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}
   - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
+  actionPointAnim: {fileID: 0}
   positionInParty: 3
+  inventory: {fileID: 2363339618168879057, guid: b9fc7790b4fba5a40ae3950891c84bcc,
+    type: 3}
+  battleOptionsPanel: {fileID: 0}
   battlePanel: {fileID: 0}

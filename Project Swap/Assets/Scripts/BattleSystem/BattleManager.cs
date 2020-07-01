@@ -164,10 +164,8 @@ namespace BattleSystem
                 if (CancelCondition) goto main_menu;
                 yield return null;
             }
-                
-            //character.Unit.currentAP -= character.Unit.actionCost;
+            
             character.CurrentAP -= character.Unit.actionCost;
-            //character.actionPointAnim.SetInteger(AnimationHandler.APVal, character.Unit.currentAP);
 
             var inflictStatusEffectsBefore = StartCoroutine(StatusEffectManager.TriggerOnThisUnit
                 (character, RateOfInfliction.BeforeEveryAction, 1,true));

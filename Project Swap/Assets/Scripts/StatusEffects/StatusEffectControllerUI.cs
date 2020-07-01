@@ -1,5 +1,4 @@
-﻿using System;
-using Characters;
+﻿using Characters;
 using UnityEngine;
 using Type = Characters.Type;
 
@@ -27,7 +26,6 @@ namespace StatusEffects
             
             if (effect.icon != null && alreadyHasIcon == null) {
                 var iconGO = Instantiate(effect.icon, transform, false);
-                
                 iconGO.name = effect.name;
                 iconGO.GetComponent<StatusEffectTimer>().SetTimer(effect, member);
             }
@@ -38,20 +36,13 @@ namespace StatusEffects
             }
         }
 
-        private void RemoveStatusEffectIcon(StatusEffect effect)
-        {
+        private void RemoveStatusEffectIcon(StatusEffect effect) {
             var iconGO = transform.Find(effect.name);
             if (iconGO != null) iconGO.gameObject.SetActive(false);
         }
 
-        private void ShowIcons()
-        {
-            group.alpha = 1;
-        }
+        private void ShowIcons() => group.alpha = 1;
 
-        private void HideIcons()
-        {
-            group.alpha = 0;
-        }
+        private void HideIcons() => group.alpha = 0;
     }
 }
