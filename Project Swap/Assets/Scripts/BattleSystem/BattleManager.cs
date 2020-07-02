@@ -10,7 +10,6 @@ using Characters.PartyMembers;
 using Characters.StatusEffects;
 using Input;
 using MoreMountains.InventoryEngine;
-using StatusEffects;
 using Type = Characters.Type;
 
 namespace BattleSystem

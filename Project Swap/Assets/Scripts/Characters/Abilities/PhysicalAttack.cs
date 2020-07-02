@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Characters.Abilities.Physical_Attacks
+namespace Characters.Abilities
 {
     [CreateAssetMenu(fileName = "Physical Attack", menuName = "Ability/Physical Attack")]
     public class PhysicalAttack : Ability

@@ -19,14 +19,9 @@ namespace Characters
     public enum Status { Normal, Dead }
     public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
     {
-        //  EVERYTHING THAT NEEDS TO BE REMOVED ------------------------------------------------------------------
-
         [HideInInspector] public GameObject battlePanelRef; // Rework camera system so i can get rid of this
-        //[HideInInspector] public Animator actionPointAnim; // Move to PartyMember
         [HideInInspector] public Type id; // Redundant. base class has type already. remove this
 
-        //  EVERYTHING THAT CAN STAY IN THIS SCRIPT ----------------------------------------------------------
-        
         [FormerlySerializedAs("spriteParentObject")]
         [HideInInspector] public GameObject parent;
 

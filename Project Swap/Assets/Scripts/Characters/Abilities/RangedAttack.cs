@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Characters.Abilities.Ranged_Attacks
+namespace Characters.Abilities
 {
     [CreateAssetMenu(fileName = "Ranged Attack", menuName = "Ability/Ranged Attack")]
     public class RangedAttack : Ability
