@@ -21,8 +21,7 @@ namespace Characters
     {
         [HideInInspector] public GameObject battlePanelRef; // Rework camera system so i can get rid of this
         [HideInInspector] public Type id; // Redundant. base class has type already. remove this
-
-        [FormerlySerializedAs("spriteParentObject")]
+        
         [HideInInspector] public GameObject parent;
 
         [HideInInspector] public UnitBase unitRef; // Get rid of this
@@ -30,13 +29,12 @@ namespace Characters
         [HideInInspector] public Ability currentAbility;
         [HideInInspector] public Animator anim; // could maybe keep, but remove direct access
         [HideInInspector] public AnimationHandler animationHandler;
-        [HideInInspector] public SpriteOutline outline; // could get rid of and move logic to outline script
+        [HideInInspector] public SpriteOutline outline;
         [HideInInspector] public Button button;
 
         [HideInInspector] public bool targetHasCrit;
         [HideInInspector] public bool isCrit;
         [HideInInspector] public bool isAbility;
-        [FormerlySerializedAs("targetHasMissed")]
         public bool attackerHasMissed;
 
         // Could convert all of this to events

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Characters.PartyMembers
 {
-    public class CloseUpCamController : MonoBehaviour
+    public class CloseUpCamController : MonoBehaviour, IGameEventListener<CharacterEvents>
     {
         private CinemachineVirtualCamera cvCamera;
         private Unit unit;
@@ -11,11 +11,21 @@ namespace Characters.PartyMembers
         private void Awake() {
             cvCamera = GetComponent<CinemachineVirtualCamera>();
             unit = transform.parent.GetComponentInChildren<Unit>();
+            cvCamera.enabled = false;
+            GameEventsManager.AddListener(this);
         }
 
-        private void Update() {
-            if (MenuController._inventoryOpen) return;
-            cvCamera.enabled = unit.battlePanelRef.activeSelf && unit.battlePanelRef.transform.GetChild(1).gameObject.activeSelf;
+        private void ToggleCloseUpCam() => cvCamera.enabled = !cvCamera.enabled;
+        
+        public void OnGameEvent(CharacterEvents eventType)
+        {
+            if (eventType._eventType != CEventType.CharacterTurn &&
+                eventType._eventType != CEventType.ChoosingTarget && 
+                eventType._eventType != CEventType.EndOfTurn) return;
+            
+            if (eventType._character.GetType() != typeof(PartyMember)) return;
+            var character = (PartyMember) eventType._character;
+            if (character.Unit == unit) ToggleCloseUpCam();
         }
     }
 }

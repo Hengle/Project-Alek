@@ -3,7 +3,6 @@ using Characters.PartyMembers;
 using Characters.StatusEffects;
 using Input;
 using MoreMountains.InventoryEngine;
-using StatusEffects;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +23,7 @@ namespace BattleSystem.Generator
 
         public bool SetupBattle()
         {
-            offset = PartyManager.instance.partyMembers.Count == 2 ? 1 : 0;
+            offset = PartyManager._instance.partyMembers.Count == 2 ? 1 : 0;
             enemyOffset = battleGeneratorDatabase.enemies.Count == 2 ? 1 : 0;
             
             SetupParty();
@@ -35,8 +34,8 @@ namespace BattleSystem.Generator
 
         private void SetupParty()
         {
-            for (var i = 0; i < PartyManager.instance.partyMembers.Count; i++)
-                SpawnThisMember(PartyManager.instance.partyMembers[i], i);
+            for (var i = 0; i < PartyManager._instance.partyMembers.Count; i++)
+                SpawnThisMember(PartyManager._instance.partyMembers[i], i);
         }
 
         private void SetupPartyMenuController()

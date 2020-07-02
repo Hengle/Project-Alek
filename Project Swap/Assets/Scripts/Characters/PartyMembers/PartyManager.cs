@@ -1,30 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Characters.PartyMembers
 {
     public class PartyManager : MonoBehaviour
     {
-        // Current list of all party members
-        [FormerlySerializedAs("PartyMembers")] public List<PartyMember> partyMembers = new List<PartyMember>();
+        public List<PartyMember> partyMembers = new List<PartyMember>();
 
-        public static PartyManager instance;
+        public static PartyManager _instance;
 
         private void Awake()
         {
-            if (instance == null)
-            {
+            if (_instance == null) {
                 DontDestroyOnLoad(gameObject);
-                instance = this;
+                _instance = this;
             }
-            else if (instance != this)
-            {
-                Destroy(gameObject);
-            }
-
-            // Sort the list by the order the party is currently in
+            
+            else if (_instance != this) Destroy(gameObject);
+            
             partyMembers = partyMembers.OrderBy(i => i.positionInParty).ToList();
         }
     }

@@ -131,9 +131,9 @@ namespace BattleSystem
 
             state = BattleState.PartyTurn;
             character.ResetCommandsAndAP();
-
-
+            
             main_menu:
+            CharacterEvents.Trigger(CEventType.CharacterTurn, character);
             BattleInputManager._canPressBack = false;
             character.battleOptionsPanel.ShowBattlePanel();
 
@@ -148,12 +148,13 @@ namespace BattleSystem
 
             if (_endThisMembersTurn)
             {
+                CharacterEvents.Trigger(CEventType.EndOfTurn, character);
                 _endThisMembersTurn = false;
                 character.inventoryDisplay.SetActive(false);
                 yield break;
             }
-                
-            ChooseTarget.ForThisMember(character);
+
+            CharacterEvents.Trigger(CEventType.ChoosingTarget, character);
             yield return new WaitForSeconds(0.5f);
 
             while (_choosingTarget)
@@ -174,18 +175,19 @@ namespace BattleSystem
             else character.GiveCommand();
             while (_performingAction) yield return null;
             
-
             var inflictStatusEffectsAfter = StartCoroutine(StatusEffectManager.TriggerOnThisUnit
                 (character, RateOfInfliction.AfterEveryAction, 1,true));
             
             yield return inflictStatusEffectsAfter;
 
             if (PartyOrEnemyTeamIsDead || character.IsDead) {
+                CharacterEvents.Trigger(CEventType.EndOfTurn, character);
                 character.inventoryDisplay.SetActive(false);
                 yield break;
             }
             
             if (character.CurrentAP > 0) goto main_menu;
+            CharacterEvents.Trigger(CEventType.EndOfTurn, character);
             character.inventoryDisplay.SetActive(false);
         }
 
