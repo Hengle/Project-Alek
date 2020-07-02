@@ -73,7 +73,7 @@ namespace BattleSystem
             var moveBack = StartCoroutine(MoveBackToOriginPosition());
             yield return moveBack;
 
-            BattleManager.performingAction = false;
+            BattleManager._performingAction = false;
         }
         
         private IEnumerator RangedAttack()
@@ -87,12 +87,12 @@ namespace BattleSystem
 
             unitBase.Unit.transform.rotation = originalRotation;
 
-            BattleManager.performingAction = false;
+            BattleManager._performingAction = false;
         }
 
         private IEnumerator ExecuteAttack()
         {
-            TimeManager.slowTimeCrit = unitBase.Unit.isCrit;
+            TimeManager._slowTimeCrit = unitBase.Unit.isCrit;
             
             unitBase.Unit.anim.SetInteger
                 (AnimationHandler.PhysAttackState, unitBase.Unit.isAbility? unitBase.Unit.currentAbility.attackState : 0);
@@ -102,8 +102,8 @@ namespace BattleSystem
             yield return new WaitForEndOfFrame();
             while (animHandler.isAttacking) yield return null;
             
-            TimeManager.slowTime = false;
-            TimeManager.slowTimeCrit = false;
+            TimeManager._slowTime = false;
+            TimeManager._slowTimeCrit = false;
 
             var coroutine = StartCoroutine(StatusEffectManager.TriggerOnTargetsOfUnit
                 (unitBase, RateOfInfliction.AfterAttacked, 0.25f, false));
@@ -124,7 +124,7 @@ namespace BattleSystem
             while (parent.position != targetPosition)
             {
                 parent.position = Vector3.MoveTowards
-                    (parent.position, targetPosition, TimeManager.moveSpeed * Time.deltaTime);
+                    (parent.position, targetPosition, TimeManager._moveSpeed * Time.deltaTime);
                 yield return new WaitForEndOfFrame();
             }
             
@@ -140,7 +140,7 @@ namespace BattleSystem
             while (parent.position != originPosition)
             {
                 parent.position = Vector3.MoveTowards
-                    (parent.position, originPosition, TimeManager.moveSpeed * Time.deltaTime);
+                    (parent.position, originPosition, TimeManager._moveSpeed * Time.deltaTime);
                 yield return new WaitForEndOfFrame();
             }
             yield return new WaitForSeconds(1);

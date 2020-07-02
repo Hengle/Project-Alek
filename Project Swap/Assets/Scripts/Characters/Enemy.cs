@@ -17,8 +17,8 @@ namespace Characters
         {
             if (Unit.currentAP <= 2) return false;
             
-            var rand = Random.Range(0, BattleManager.membersForThisBattle.Count); // Inclusive apparently
-            Unit.currentTarget = BattleManager.membersForThisBattle[rand];
+            var rand = Random.Range(0, BattleManager._membersForThisBattle.Count); // Inclusive apparently
+            Unit.currentTarget = BattleManager._membersForThisBattle[rand];
 
             rand = Random.Range(0, abilities.Count);
             Unit.commandActionName = rand < abilities.Count ? "AbilityAction" : "UniversalAction";

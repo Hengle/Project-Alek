@@ -35,6 +35,7 @@
       <Path>Library</Path>
       <Path>Logs</Path>
       <Path>Screenshots</Path>
+      <Path>Temp</Path>
       <Path>__MACOSX</Path>
       <Path>obj</Path>
     </explicitExcludes>

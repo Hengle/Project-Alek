@@ -2,27 +2,27 @@
 
 public class TimeManager : MonoBehaviour
 {
-    public static int moveSpeed = 45;
-    public static bool slowTime;
-    public static bool slowTimeCrit;
+    public static int _moveSpeed = 45;
+    public static bool _slowTime;
+    public static bool _slowTimeCrit;
 
     private void Start()
     {
-        moveSpeed = 45;
-        slowTime = false;
-        slowTimeCrit = false;
+        _moveSpeed = 45;
+        _slowTime = false;
+        _slowTimeCrit = false;
     }
 
     private void Update()
     {
-        if (slowTime)
+        if (_slowTime)
         {
             Time.timeScale = 0.05f;
             Time.fixedDeltaTime = 0.02F * Time.timeScale;
-            moveSpeed = 20;
+            _moveSpeed = 20;
         }
             
-        else if (slowTimeCrit) {
+        else if (_slowTimeCrit) {
             Time.timeScale = 0.50f;
             Time.fixedDeltaTime = 0.02F * Time.timeScale;
         }
@@ -31,7 +31,7 @@ public class TimeManager : MonoBehaviour
         {
             Time.timeScale = 1;
             Time.fixedDeltaTime = 0.02F * Time.timeScale;
-            moveSpeed = 45;
+            _moveSpeed = 45;
         }
     }
 }

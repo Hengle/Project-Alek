@@ -39,8 +39,8 @@ namespace BattleSystem.Generator
 
         private void SetupPartyMenuController()
         {
-            foreach (var member in BattleManager.membersForThisBattle) {
-                foreach (var partyMember in BattleManager.membersForThisBattle)
+            foreach (var member in BattleManager._membersForThisBattle) {
+                foreach (var partyMember in BattleManager._membersForThisBattle)
                     member.battlePanel.GetComponent<MenuController>().memberSelectable.Add(partyMember.Unit.gameObject);
             }
         }
@@ -70,7 +70,7 @@ namespace BattleSystem.Generator
                 (delegate { character.battleOptionsPanel.OnAbilityMenuButton(); });
             
             mainMenu.Find("Inventory Button").gameObject.GetComponent<Button>().onClick.AddListener
-                (delegate { BattleManager.inventoryInputManager.OpenInventory(); });
+                (delegate { BattleManager._inventoryInputManager.OpenInventory(); });
 
             mainMenu.Find("End Turn Button").gameObject.GetComponent<Button>().onClick.AddListener
                 (delegate { character.battleOptionsPanel.OnEndTurnButton(); });
@@ -124,7 +124,7 @@ namespace BattleSystem.Generator
             battleGeneratorDatabase.closeUpCameras[i + offset].SetActive(true);
             battleGeneratorDatabase.criticalCameras[i + offset].SetActive(true);
             
-            BattleManager.membersForThisBattle.Add(character);
+            BattleManager._membersForThisBattle.Add(character);
         }
 
         private void SpawnEnemyTeam()
@@ -145,7 +145,7 @@ namespace BattleSystem.Generator
                 enemyGo.transform.localScale = clone.scale;
 
                 // Add each enemy to every party member's list of selectable objects
-                foreach (var partyMember in BattleManager.membersForThisBattle) 
+                foreach (var partyMember in BattleManager._membersForThisBattle) 
                     partyMember.battlePanel.GetComponent<MenuController>().enemySelectable.Add(enemyGo);
                 
                 clone.SetupUnit(enemyGo);
@@ -162,7 +162,7 @@ namespace BattleSystem.Generator
                 statusBoxController.member = clone;
                 statusBoxController.Initialize();
                 
-                BattleManager.enemiesForThisBattle.Add(clone);
+                BattleManager._enemiesForThisBattle.Add(clone);
                 i++;
             }
         }

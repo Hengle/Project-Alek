@@ -14,7 +14,7 @@ namespace Characters.PartyMembers
         }
 
         private void Update() {
-            if (MenuController.inventoryOpen) return;
+            if (MenuController._inventoryOpen) return;
             cvCamera.enabled = unit.battlePanelRef.activeSelf && unit.battlePanelRef.transform.GetChild(1).gameObject.activeSelf;
         }
     }

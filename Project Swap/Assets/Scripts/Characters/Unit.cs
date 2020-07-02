@@ -80,11 +80,11 @@ namespace Characters
         }
 
         private void Update() {
-            button.enabled = BattleManager.choosingTarget;
+            button.enabled = BattleManager._choosingTarget;
 
-            if (!BattleManager.choosingTarget) outline.enabled = false;
-            if (BattleManager.controls.Menu.TopButton.triggered && outline.enabled) ProfileBoxManager.ShowProfileBox(unitRef);
-            if (BattleManager.controls.Menu.Back.triggered && ProfileBoxManager.isOpen) ProfileBoxManager.CloseProfileBox();
+            if (!BattleManager._choosingTarget) outline.enabled = false;
+            if (BattleManager._controls.Menu.TopButton.triggered && outline.enabled) ProfileBoxManager.ShowProfileBox(unitRef);
+            if (BattleManager._controls.Menu.Back.triggered && ProfileBoxManager._isOpen) ProfileBoxManager.CloseProfileBox();
         }
         
 
@@ -152,7 +152,7 @@ namespace Characters
             
             currentDamage = DamageCalculator.CalculateAttackDamage(unitRef, currentTarget);
             if (id != Type.PartyMember || !isCrit) return;
-            TimeManager.slowTimeCrit = true;
+            TimeManager._slowTimeCrit = true;
         }
 
         #endregion

@@ -3,6 +3,8 @@ using System.Collections;
 using MoreMountains.Tools;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 
 namespace MoreMountains.InventoryEngine
@@ -34,6 +36,7 @@ namespace MoreMountains.InventoryEngine
 
         [Header("Key Mapping")]
         [MMInformation("Here you need to set the various key bindings you prefer. There are some by default but feel free to change them.", MMInformationAttribute.InformationType.Info, false)]
+        public InputSystemUIInputModule inputModule;
         /// the key used to open/close the inventory
         public KeyCode ToggleInventoryKey = KeyCode.I;
         /// the alt key used to open/close the inventory
@@ -214,7 +217,7 @@ namespace MoreMountains.InventoryEngine
                 }
             }
 
-            if (Input.GetKeyDown(CancelKey))
+            if (Input.GetKeyDown(CancelKey) || inputModule.cancel.action.triggered)
             {
                 if (InventoryOpen)
                 {

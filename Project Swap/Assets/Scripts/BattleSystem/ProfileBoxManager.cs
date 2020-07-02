@@ -9,7 +9,7 @@ namespace BattleSystem
 {
     public class ProfileBoxManager : MonoBehaviour
     {
-        public static bool isOpen;
+        public static bool _isOpen;
 
         private static Transform profileBox;
         private static TextMeshProUGUI description;
@@ -27,12 +27,12 @@ namespace BattleSystem
             description = profileBox.Find("Description").GetChild(0).GetComponent<TextMeshProUGUI>();
             stats = profileBox.Find("Stats").GetChild(0).GetComponent<TextMeshProUGUI>();
             background = profileBox.Find("Background").GetComponent<Image>();
-            isOpen = false;
+            _isOpen = false;
         }
         
         public static void ShowProfileBox(UnitBase unitBase)
         {
-            isOpen = true;
+            _isOpen = true;
             spriteImage.sprite = unitBase.characterPrefab.GetComponent<SpriteRenderer>().sprite;
             description.text = unitBase.description;
             background.color = unitBase.profileBoxColor;
@@ -49,9 +49,9 @@ namespace BattleSystem
                 $"RES: {unitBase.Unit.currentResistance}\n" +
                 $"CRIT: {unitBase.Unit.currentCrit}";
 
-            BattleManager.inputModule.move.action.Disable();
-            BattleManager.inputModule.submit.action.Disable();
-            BattleManager.inputModule.cancel.action.Disable();
+            BattleManager._inputModule.move.action.Disable();
+            BattleManager._inputModule.submit.action.Disable();
+            BattleManager._inputModule.cancel.action.Disable();
             
             profileBox.gameObject.SetActive(true);
             profileBox.DOScale(1, 0.5f);
@@ -62,10 +62,10 @@ namespace BattleSystem
             profileBox.DOScale(0.1f, 0.15f).
                 OnComplete(() => profileBox.gameObject.SetActive(false));
             
-            BattleManager.inputModule.move.action.Enable();
-            BattleManager.inputModule.submit.action.Enable();
-            BattleManager.inputModule.cancel.action.Enable();
-            isOpen = false;
+            BattleManager._inputModule.move.action.Enable();
+            BattleManager._inputModule.submit.action.Enable();
+            BattleManager._inputModule.cancel.action.Enable();
+            _isOpen = false;
         }
     }
 }

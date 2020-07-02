@@ -26,7 +26,7 @@ namespace StatusEffects.InhibitingEffect
             dmg = Random.Range((int)(0.98f * dmg), (int)(1.02f * dmg));
             unitBase.TakeDamage(dmg);
             // show shocked visual effect
-            BattleManager.shouldGiveCommand = false;
+            BattleManager._shouldGiveCommand = false;
         }
 
         public override void OnAdded(UnitBase target)

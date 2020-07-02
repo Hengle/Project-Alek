@@ -45,7 +45,7 @@ namespace Characters.PartyMembers
                 optionButton.GetComponent<Button>().onClick.AddListener(delegate { battleOptionsPanel.GetCommandInformation(param); });
 
                 if (abilities[abilityListIndex].isMultiTarget)
-                    optionButton.GetComponent<Button>().onClick.AddListener(delegate { ChooseTarget.isMultiTarget = true; });
+                    optionButton.GetComponent<Button>().onClick.AddListener(delegate { ChooseTarget._isMultiTarget = true; });
                     
                 optionButton.GetComponent<InfoBoxScript>().information = 
                     $"{abilities[abilityListIndex].description} ({abilities[abilityListIndex].actionCost} AP)";

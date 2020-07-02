@@ -25,22 +25,22 @@ namespace BattleSystem
         public static event BattleSystemEvent NewRound;
         public static event Action<BattleState> EndOfBattle;
 
-        public static GlobalBattleFuncs battleFuncs;
+        public static GlobalBattleFuncs _battleFuncs;
 
-        public static InputSystemUIInputModule inputModule;
-        public static InventoryInputManager inventoryInputManager;
-        public static Controls controls;
+        public static InputSystemUIInputModule _inputModule;
+        public static InventoryInputManager _inventoryInputManager;
+        public static Controls _controls;
 
-        public static List<Enemy> enemiesForThisBattle = new List<Enemy>();
-        public static List<PartyMember> membersForThisBattle = new List<PartyMember>();
-        public static List<UnitBase> membersAndEnemies = new List<UnitBase>();
+        public static List<Enemy> _enemiesForThisBattle = new List<Enemy>();
+        public static List<PartyMember> _membersForThisBattle = new List<PartyMember>();
+        public static List<UnitBase> _membersAndEnemies = new List<UnitBase>();
 
-        public static bool choosingOption;
-        public static bool choosingTarget;
-        public static bool performingAction;
-        public static bool endThisMembersTurn;
-        public static bool choosingAbility;
-        public static bool shouldGiveCommand;
+        public static bool _choosingOption;
+        public static bool _choosingTarget;
+        public static bool _performingAction;
+        public static bool _endThisMembersTurn;
+        public static bool _choosingAbility;
+        public static bool _shouldGiveCommand;
 
         private BattleGenerator generator;
 
@@ -48,7 +48,6 @@ namespace BattleSystem
 
         private static bool allMembersDead;
         private static bool allEnemiesDead;
-
         private static bool PartyOrEnemyTeamIsDead 
         {
             get
@@ -59,7 +58,7 @@ namespace BattleSystem
             }
         }
 
-        private bool CancelCondition => inputModule.cancel.action.triggered && canPressBack;
+        private bool CancelCondition => _inputModule.cancel.action.triggered && canPressBack;
         private bool canPressBack;
 
         private int roundCount;
@@ -68,14 +67,14 @@ namespace BattleSystem
         private void Start()
         {
             DOTween.Init();
-            controls = new Controls();
-            controls.Enable();
+            _controls = new Controls();
+            _controls.Enable();
 
-            inputModule = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<InputSystemUIInputModule>();
-            inventoryInputManager = FindObjectOfType<InventoryInputManager>();
+            _inputModule = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<InputSystemUIInputModule>();
+            _inventoryInputManager = FindObjectOfType<InventoryInputManager>();
 
             generator = GetComponent<BattleGenerator>();
-            battleFuncs = GetComponent<GlobalBattleFuncs>();
+            _battleFuncs = GetComponent<GlobalBattleFuncs>();
 
             ResetStaticVariables();
             StartCoroutine(SetupBattle());
@@ -86,7 +85,7 @@ namespace BattleSystem
         {
             yield return new WaitWhile(generator.SetupBattle);
 
-            foreach (var partyMember in membersForThisBattle) {
+            foreach (var partyMember in _membersForThisBattle) {
                 yield return new WaitUntil(partyMember.battlePanel.GetComponent<MenuController>().SetEnemySelectables);
                 yield return new WaitUntil(partyMember.battlePanel.GetComponent<MenuController>().SetPartySelectables);
             }
@@ -94,7 +93,7 @@ namespace BattleSystem
             StartCoroutine(SortingCalculator.SortAndCombine());
             while (!SortingCalculator.isFinished) yield return null;
 
-            foreach (var character in membersForThisBattle) 
+            foreach (var character in _membersForThisBattle) 
                 character.onDeath += RemoveFromBattle;
             
             StartCoroutine(PerformThisRound());
@@ -102,12 +101,14 @@ namespace BattleSystem
 
         private IEnumerator PerformThisRound()
         {
+            BattleEvent.Trigger(BattleEventType.NewRound);
             NewRound?.Invoke();
 
+            // could be added to new round event
             StartCoroutine(SortingCalculator.SortAndCombine());
             while (!SortingCalculator.isFinished) yield return null;
             
-            foreach (var character in from character in membersAndEnemies
+            foreach (var character in from character in _membersAndEnemies
                 let checkMemberStatus = character.CheckUnitStatus() where checkMemberStatus select character)
             {
                 if (PartyOrEnemyTeamIsDead) break;
@@ -143,8 +144,8 @@ namespace BattleSystem
 
         private IEnumerator ThisPlayerTurn(PartyMember character)
         {
-            inventoryInputManager.TargetInventoryContainer = character.inventoryDisplay.GetComponent<CanvasGroup>();
-            inventoryInputManager.TargetInventoryDisplay = character.inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
+            _inventoryInputManager.TargetInventoryContainer = character.inventoryDisplay.GetComponent<CanvasGroup>();
+            _inventoryInputManager.TargetInventoryDisplay = character.inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
 
             yield return new WaitForSeconds(1);
             character.inventoryDisplay.SetActive(true);
@@ -157,18 +158,18 @@ namespace BattleSystem
             canPressBack = false;
             character.battleOptionsPanel.ShowBattlePanel();
 
-            while (choosingOption) yield return null;
+            while (_choosingOption) yield return null;
             yield return new WaitForSeconds(0.5f);
                 
-            while (choosingAbility) {
+            while (_choosingAbility) {
                 canPressBack = true;
                 if (CancelCondition) goto main_menu;
                 yield return null;
             }
 
-            if (endThisMembersTurn)
+            if (_endThisMembersTurn)
             {
-                endThisMembersTurn = false;
+                _endThisMembersTurn = false;
                 character.inventoryDisplay.SetActive(false);
                 yield break;
             }
@@ -176,7 +177,7 @@ namespace BattleSystem
             ChooseTarget.ForThisMember(character);
             yield return new WaitForSeconds(0.5f);
 
-            while (choosingTarget)
+            while (_choosingTarget)
             {
                 canPressBack = true;
                 if (CancelCondition) goto main_menu;
@@ -190,9 +191,9 @@ namespace BattleSystem
             
             yield return inflictStatusEffectsBefore;
 
-            if (!shouldGiveCommand) shouldGiveCommand = true;
+            if (!_shouldGiveCommand) _shouldGiveCommand = true;
             else character.GiveCommand();
-            while (performingAction) yield return null;
+            while (_performingAction) yield return null;
             
 
             var inflictStatusEffectsAfter = StartCoroutine(StatusEffectManager.TriggerOnThisUnit
@@ -228,9 +229,9 @@ namespace BattleSystem
                 
                 yield return inflictStatusEffectsBefore;
 
-                if (!shouldGiveCommand) shouldGiveCommand = true;
+                if (!_shouldGiveCommand) _shouldGiveCommand = true;
                 else enemy.GiveCommand();
-                while (performingAction) yield return null;
+                while (_performingAction) yield return null;
                 
                 var inflictStatusEffectsAfter = StartCoroutine(StatusEffectManager.TriggerOnThisUnit
                     (enemy, RateOfInfliction.AfterEveryAction, 1,true));
@@ -257,24 +258,24 @@ namespace BattleSystem
 
         private static void RemoveFromBattle(UnitBase unit)
         {
-            if (unit.id == Type.Enemy) enemiesForThisBattle.Remove((Enemy) unit);
+            if (unit.id == Type.Enemy) _enemiesForThisBattle.Remove((Enemy) unit);
             Logger.Log($"{unit.characterName} is being removed from battle");
-            if (unit.id == Type.Enemy) enemiesForThisBattle.Remove((Enemy) unit);
-            else membersForThisBattle.Remove((PartyMember) unit);
+            if (unit.id == Type.Enemy) _enemiesForThisBattle.Remove((Enemy) unit);
+            else _membersForThisBattle.Remove((PartyMember) unit);
 
-            if (membersForThisBattle.Count == 0) allMembersDead = true;
+            if (_membersForThisBattle.Count == 0) allMembersDead = true;
         }
 
         private void ResetStaticVariables()
         {
-            choosingOption = false;
-            choosingTarget = false;
-            performingAction = false;
-            endThisMembersTurn = false;
-            choosingAbility = false;
+            _choosingOption = false;
+            _choosingTarget = false;
+            _performingAction = false;
+            _endThisMembersTurn = false;
+            _choosingAbility = false;
             allMembersDead = false;
             allEnemiesDead = false;
-            shouldGiveCommand = true;
+            _shouldGiveCommand = true;
             roundCount = 0;
         }
     }

@@ -15,7 +15,7 @@ namespace Characters.PartyMembers
 {
     public class MenuController : MonoBehaviour, MMEventListener<MMInventoryEvent>
     {
-        public static bool inventoryOpen;
+        public static bool _inventoryOpen;
         [HideInInspector] public List<GameObject> enemySelectable = new List<GameObject>();
         [HideInInspector] public List<GameObject> memberSelectable = new List<GameObject>();
 
@@ -29,7 +29,7 @@ namespace Characters.PartyMembers
 
         private void Awake()
         {
-            inventoryOpen = false;
+            _inventoryOpen = false;
             
             mainMenu = transform.Find("Battle Menu").gameObject.transform.Find("Main Options").gameObject;
             mainMenuFirstSelected = mainMenu.transform.GetChild(0).gameObject;
@@ -56,14 +56,14 @@ namespace Characters.PartyMembers
             MMEventManager.AddListener(this);
         }
 
-        [UsedImplicitly] public void DisableInput() => BattleManager.inputModule.enabled = false;
+        [UsedImplicitly] public void DisableInput() => BattleManager._inputModule.enabled = false;
     
         [UsedImplicitly] public void SetMainMenuFirstSelected()
         {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
             previousFirstSelected = mainMenuFirstSelected;
-            BattleManager.inputModule.enabled = true;
+            BattleManager._inputModule.enabled = true;
         }
 
         [UsedImplicitly] public void SetAbilityMenuFirstSelected()
@@ -71,12 +71,12 @@ namespace Characters.PartyMembers
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(abilityMenuFirstSelected);
             previousFirstSelected = abilityMenuFirstSelected;
-            BattleManager.inputModule.enabled = true;
+            BattleManager._inputModule.enabled = true;
         }
 
         public void SetTargetFirstSelected()
         {
-            switch (ChooseTarget.targetOptions)
+            switch (ChooseTarget._targetOptions)
             {
                 case 0:
                     EventSystem.current.SetSelectedGameObject(null);
@@ -92,7 +92,7 @@ namespace Characters.PartyMembers
                     break;
             }
             
-            BattleManager.inputModule.enabled = true;
+            BattleManager._inputModule.enabled = true;
         }
 
         public bool SetPartySelectables()
@@ -142,13 +142,13 @@ namespace Characters.PartyMembers
                 GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
                 EventSystem.current.SetSelectedGameObject(previousFirstSelected);
                 EventSystem.current.sendNavigationEvents = true;
-                inventoryOpen = false;
+                _inventoryOpen = false;
                 return;
             }
 
             if (isActiveAndEnabled && eventType.InventoryEventType == MMInventoryEventType.InventoryOpens) {
                 GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
-                inventoryOpen = true;
+                _inventoryOpen = true;
             }
         }
     }

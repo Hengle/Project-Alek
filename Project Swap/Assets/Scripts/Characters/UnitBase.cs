@@ -74,8 +74,8 @@ namespace Characters
         }
 
         public void GiveCommand() {
-            BattleManager.battleFuncs.GetCommand(this);
-            BattleManager.performingAction = true;
+            BattleManager._battleFuncs.GetCommand(this);
+            BattleManager._performingAction = true;
         }
 
         public Quaternion LookAtTarget()

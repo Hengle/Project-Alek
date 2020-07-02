@@ -28,10 +28,10 @@ namespace Calculator
         {
             isCalculating = true;
             
-            BattleManager.membersForThisBattle = BattleManager.membersForThisBattle.
+            BattleManager._membersForThisBattle = BattleManager._membersForThisBattle.
                 OrderByDescending(e => e.Unit.currentInitiative).ToList();
             
-            BattleManager.enemiesForThisBattle = BattleManager.enemiesForThisBattle.
+            BattleManager._enemiesForThisBattle = BattleManager._enemiesForThisBattle.
                 OrderByDescending(f => f.Unit.currentInitiative).ToList();
             
             isCalculating = false;
@@ -45,29 +45,29 @@ namespace Calculator
             var enemyCount = 0; // enemy
 
             // Keep track of the combined count for both lists
-            var total = BattleManager.membersForThisBattle.Count + BattleManager.enemiesForThisBattle.Count;
+            var total = BattleManager._membersForThisBattle.Count + BattleManager._enemiesForThisBattle.Count;
 
-            BattleManager.membersAndEnemies = new List<UnitBase>();
+            BattleManager._membersAndEnemies = new List<UnitBase>();
 
             while (partyMemberCount + enemyCount < total)
             {
                 // Checks if the index is out of range, then assigns 0 or the initiative value appropriately
-                var memberI = partyMemberCount >= BattleManager.membersForThisBattle.Count?
-                    0 : BattleManager.membersForThisBattle[partyMemberCount].Unit.currentInitiative;
+                var memberI = partyMemberCount >= BattleManager._membersForThisBattle.Count?
+                    0 : BattleManager._membersForThisBattle[partyMemberCount].Unit.currentInitiative;
                 
-                var enemyI = enemyCount >= BattleManager.enemiesForThisBattle.Count?
-                    0 : BattleManager.enemiesForThisBattle[enemyCount].Unit.currentInitiative;
+                var enemyI = enemyCount >= BattleManager._enemiesForThisBattle.Count?
+                    0 : BattleManager._enemiesForThisBattle[enemyCount].Unit.currentInitiative;
 
                 var compare = memberI >= enemyI;
 
                 // If the party member's initiative is >= the enemy's, that member is added to the list. If not, then the enemy is added
                 if (compare) {
-                    BattleManager.membersAndEnemies.Add(BattleManager.membersForThisBattle[partyMemberCount]);
+                    BattleManager._membersAndEnemies.Add(BattleManager._membersForThisBattle[partyMemberCount]);
                     partyMemberCount++;
                 }
                 
                 else {
-                    BattleManager.membersAndEnemies.Add(BattleManager.enemiesForThisBattle[enemyCount]);
+                    BattleManager._membersAndEnemies.Add(BattleManager._enemiesForThisBattle[enemyCount]);
                     enemyCount++;
                 }
             }

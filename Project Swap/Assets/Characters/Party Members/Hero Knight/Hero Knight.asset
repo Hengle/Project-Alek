@@ -39,3 +39,4 @@ MonoBehaviour:
     type: 3}
   battleOptionsPanel: {fileID: 0}
   battlePanel: {fileID: 0}
+  inventoryDisplay: {fileID: 0}

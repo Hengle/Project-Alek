@@ -9,8 +9,8 @@ namespace BattleSystem
 {
     public class ChooseTarget : MonoBehaviour
     {
-        public static int targetOptions = 0;
-        public static bool isMultiTarget;
+        public static int _targetOptions = 0;
+        public static bool _isMultiTarget;
         [HideInInspector] public UnitBase thisUnitBase;
 
         private static Type targetOptionsType;
@@ -23,7 +23,7 @@ namespace BattleSystem
 
         private void Update()
         {
-            if (!BattleManager.choosingTarget || !isMultiTarget || thisUnitBase.id != targetOptionsType) {
+            if (!BattleManager._choosingTarget || !_isMultiTarget || thisUnitBase.id != targetOptionsType) {
                 thisUnitBase.Unit.button.interactable = true;
                 return;
             }
@@ -31,23 +31,23 @@ namespace BattleSystem
             thisUnitBase.Unit.outline.enabled = true;
             thisUnitBase.Unit.button.interactable = false;
                 
-            if (BattleManager.inputModule.cancel.action.triggered) {
+            if (BattleManager._inputModule.cancel.action.triggered) {
                 thisUnitBase.Unit.button.interactable = true;
-                isMultiTarget = false;
+                _isMultiTarget = false;
                 return;
             }
                 
-            if (!BattleManager.inputModule.submit.action.triggered) return;
+            if (!BattleManager._inputModule.submit.action.triggered) return;
                 
             AddMultiHitCommand();
             thisUnitBase.Unit.outline.enabled = false;
             thisUnitBase.Unit.button.interactable = true;
-            isMultiTarget = false;
+            _isMultiTarget = false;
         }
 
         public static void ForThisMember(PartyMember member)
         {
-            BattleManager.choosingTarget = true;
+            BattleManager._choosingTarget = true;
             character = member;
             memberCurrentlyChoosingTarget = member;
             
@@ -60,7 +60,7 @@ namespace BattleSystem
             className = name;
             classOption = option;
 
-            switch (targetOptions)
+            switch (_targetOptions)
             {
                 case 0: targetOptionsType = Type.Enemy;
                     break;
@@ -78,7 +78,7 @@ namespace BattleSystem
             memberCurrentlyChoosingTarget.Unit.currentTarget = thisUnitBase;
             memberCurrentlyChoosingTarget.Unit.commandActionName = className;
             memberCurrentlyChoosingTarget.Unit.commandActionOption = classOption;
-            BattleManager.choosingTarget = false;
+            BattleManager._choosingTarget = false;
             EventSystem.current.SetSelectedGameObject(null);
         }
 
@@ -87,12 +87,12 @@ namespace BattleSystem
             memberCurrentlyChoosingTarget.Unit.multiHitTargets = new List<UnitBase>();
             memberCurrentlyChoosingTarget.Unit.damageValueList = new List<int>();
             
-            switch (targetOptions)
+            switch (_targetOptions)
             {
-                case 0: foreach (var enemy in BattleManager.enemiesForThisBattle) 
+                case 0: foreach (var enemy in BattleManager._enemiesForThisBattle) 
                         memberCurrentlyChoosingTarget.Unit.multiHitTargets.Add(enemy);
                     break;
-                case 1: foreach (var member in BattleManager.membersForThisBattle)
+                case 1: foreach (var member in BattleManager._membersForThisBattle)
                         memberCurrentlyChoosingTarget.Unit.multiHitTargets.Add(member);
                     break;
                 case 2: break;
@@ -100,7 +100,7 @@ namespace BattleSystem
             
             memberCurrentlyChoosingTarget.Unit.commandActionName = className;
             memberCurrentlyChoosingTarget.Unit.commandActionOption = classOption;
-            BattleManager.choosingTarget = false;
+            BattleManager._choosingTarget = false;
             EventSystem.current.SetSelectedGameObject(null);
         }
     }
