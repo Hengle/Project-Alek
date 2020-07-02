@@ -204,19 +204,19 @@ namespace MoreMountains.InventoryEngine
             }
 
             // if the user presses the 'toggle inventory' key
-            if (Input.GetKeyDown(ToggleInventoryKey) || Input.GetKeyDown(ToggleInventoryAltKey))
-            {
-                // if the inventory is not open
-                if (!InventoryOpen)
-                {
-                    OpenInventory();
-                }
-                // if it's open
-                else
-                {
-                    CloseInventory();
-                }
-            }
+            // if (Input.GetKeyDown(ToggleInventoryKey) || Input.GetKeyDown(ToggleInventoryAltKey))
+            // {
+            //     // if the inventory is not open
+            //     if (!InventoryOpen)
+            //     {
+            //         OpenInventory();
+            //     }
+            //     // if it's open
+            //     else
+            //     {
+            //         CloseInventory();
+            //     }
+            // }
 
             if (Input.GetKeyDown(CancelKey) || inputModule.cancel.action.triggered)
             {

@@ -8,14 +8,15 @@ namespace Characters.PartyMembers
         private CinemachineVirtualCamera cvCamera;
         private Unit unit;
 
-        private void Awake() {
+        private void Awake()
+        {
             cvCamera = GetComponent<CinemachineVirtualCamera>();
             unit = transform.parent.GetComponentInChildren<Unit>();
             cvCamera.enabled = false;
             GameEventsManager.AddListener(this);
         }
 
-        private void ToggleCloseUpCam() => cvCamera.enabled = !cvCamera.enabled;
+        private void ToggleCloseUpCam(CEventType eventType) => cvCamera.enabled = eventType == CEventType.CharacterTurn;
         
         public void OnGameEvent(CharacterEvents eventType)
         {
@@ -24,8 +25,9 @@ namespace Characters.PartyMembers
                 eventType._eventType != CEventType.EndOfTurn) return;
             
             if (eventType._character.GetType() != typeof(PartyMember)) return;
+            
             var character = (PartyMember) eventType._character;
-            if (character.Unit == unit) ToggleCloseUpCam();
+            if (character.Unit == unit) ToggleCloseUpCam(eventType._eventType);
         }
     }
 }

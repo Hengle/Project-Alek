@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using JetBrains.Annotations;
@@ -13,25 +14,26 @@ using MoreMountains.Tools;
 
 namespace Characters.PartyMembers
 {
-    public class MenuController : MonoBehaviour, MMEventListener<MMInventoryEvent>
+    public class MenuController : MonoBehaviour, MMEventListener<MMInventoryEvent>, IGameEventListener<CharacterEvents>
     {
-        public static bool _inventoryOpen;
         [HideInInspector] public List<GameObject> enemySelectable = new List<GameObject>();
         [HideInInspector] public List<GameObject> memberSelectable = new List<GameObject>();
 
-        [SerializeField] private GameObject mainMenu;
-        [SerializeField] private GameObject abilityMenu;
-        [SerializeField] private GameObject mainMenuFirstSelected;
-        [SerializeField] private GameObject abilityMenuFirstSelected;
+        private GameObject battleMenu;
+        private GameObject mainMenu;
+        private GameObject abilityMenu;
+        private GameObject mainMenuFirstSelected;
+        private GameObject abilityMenuFirstSelected;
 
         private GameObject previousFirstSelected;
         private GameObject memberFirstSelected;
 
+        private bool isEnabled;
+        
         private void Awake()
         {
-            _inventoryOpen = false;
-            
-            mainMenu = transform.Find("Battle Menu").gameObject.transform.Find("Main Options").gameObject;
+            battleMenu = transform.Find("Battle Menu").gameObject;
+            mainMenu = battleMenu.gameObject.transform.Find("Main Options").gameObject;
             mainMenuFirstSelected = mainMenu.transform.GetChild(0).gameObject;
             
             abilityMenu = transform.Find("Battle Menu").gameObject.transform.Find("Ability Menu").gameObject;
@@ -49,11 +51,13 @@ namespace Characters.PartyMembers
             SetPartySelectables();
         }
         
-        private void OnEnable() {
+        private void OnEnable() 
+        {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
             previousFirstSelected = memberFirstSelected;
             MMEventManager.AddListener(this);
+            GameEventsManager.AddListener(this);
         }
 
         [UsedImplicitly] public void DisableInput() => BattleInputManager._inputModule.enabled = false;
@@ -137,19 +141,40 @@ namespace Characters.PartyMembers
         [SuppressMessage("ReSharper", "Unity.InefficientPropertyAccess")]
         public void OnMMEvent(MMInventoryEvent eventType)
         {
+            //if (!isEnabled) return;
+
             if (isActiveAndEnabled && eventType.InventoryEventType == MMInventoryEventType.InventoryCloses)
             {
                 GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
                 EventSystem.current.SetSelectedGameObject(previousFirstSelected);
                 EventSystem.current.sendNavigationEvents = true;
-                _inventoryOpen = false;
                 return;
             }
 
-            if (isActiveAndEnabled && eventType.InventoryEventType == MMInventoryEventType.InventoryOpens) {
+            if (isActiveAndEnabled && battleMenu.activeSelf && eventType.InventoryEventType == MMInventoryEventType.InventoryOpens) {
                 GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
-                _inventoryOpen = true;
             }
+        }
+
+        public void OnGameEvent(CharacterEvents eventType)
+        {
+            //if (!isActiveAndEnabled || eventType._eventType != CEventType.EndOfTurn || eventType._eventType != CEventType.CharacterTurn) return;
+            if (eventType._character.GetType() != typeof(PartyMember)) return;
+            Logger.Log("listening...");
+            
+            var character = (PartyMember) eventType._character;
+            if (character.battlePanel.GetComponent<MenuController>() == this) isEnabled = eventType._eventType == CEventType.CharacterTurn;
+            // switch (eventType._eventType)
+            // {
+            //     case CEventType.EndOfTurn when character.battlePanel.GetComponent<MenuController>() == this:
+            //         Logger.Log("Disabling this menu controller");
+            //         isEnabled = false;
+            //         break;
+            //     case CEventType.CharacterTurn when character.battlePanel.GetComponent<MenuController>() == this:
+            //         Logger.Log("Enabling this menu controller");
+            //         isEnabled = true;
+            //         break;
+            // }
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿using System.Linq;
-using Characters.PartyMembers;
-using Characters.StatusEffects;
-using Input;
-using MoreMountains.InventoryEngine;
 using UnityEngine;
 using UnityEngine.UI;
+using Characters.PartyMembers;
+using Characters.StatusEffects;
+using MoreMountains.InventoryEngine;
+using Input;
 
 /*
  * Note that this could be changed later to inherit from a base Script Object that has the functions to call.
@@ -23,8 +23,8 @@ namespace BattleSystem.Generator
 
         public bool SetupBattle()
         {
-            offset = PartyManager._instance.partyMembers.Count == 2 ? 1 : 0;
-            enemyOffset = battleGeneratorDatabase.enemies.Count == 2 ? 1 : 0;
+            offset = PartyManager._instance.partyMembers.Count == 2? 1 : 0;
+            enemyOffset = battleGeneratorDatabase.enemies.Count == 2? 1 : 0;
             
             SetupParty();
             SpawnEnemyTeam();
@@ -38,7 +38,7 @@ namespace BattleSystem.Generator
                 SpawnThisMember(PartyManager._instance.partyMembers[i], i);
         }
 
-        private void SetupPartyMenuController()
+        private static void SetupPartyMenuController()
         {
             foreach (var member in BattleManager._membersForThisBattle) {
                 foreach (var partyMember in BattleManager._membersForThisBattle)
