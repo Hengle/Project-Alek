@@ -19,7 +19,6 @@ namespace StatusEffects
             statusEffect = effect;
             timer = statusEffect.duration;
             GameEventsManager.AddListener(this);
-            //BattleManager.NewRound += DecrementTimer;
             targetUnit.onDeath += RemoveTimerAndEffect;
         }
 
@@ -40,13 +39,13 @@ namespace StatusEffects
             if (target != targetUnit) return;
             Logger.Log($"Removing {statusEffect.name} for " + target.characterName);
             targetUnit.RemoveStatusEffect(statusEffect);
-            //BattleManager.NewRound -= DecrementTimer;
             GameEventsManager.RemoveListener(this);
         }
 
         public void OnGameEvent(BattleEvent eventType)
         {
-            Logger.Log("Status Effect Timer has been notified of new round event");
+            if (eventType._battleEventType != BattleEventType.NewRound) return;
+            if (!targetUnit.CheckUnitStatus()) { GameEventsManager.RemoveListener(this); return; }
             DecrementTimer();
         }
     }

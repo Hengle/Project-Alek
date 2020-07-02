@@ -1,9 +1,14 @@
-﻿using System;
+﻿#if EVENTROUTER_THROWEXCEPTIONS
+//#define EVENTROUTER_REQUIRELISTENER // Uncomment this if you want listeners to be required for sending events.
+#endif
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[ExecuteAlways]
 public static class GameEventsManager
 {
     private static Dictionary<Type, List<IGameEventListenerBase>> subscribersList;
@@ -28,35 +33,63 @@ public static class GameEventsManager
     {
         var eventType = typeof(GEvent);
 
-        if (!subscribersList.ContainsKey(eventType)) return;
+        if (!subscribersList.ContainsKey(eventType))
+            #if EVENTROUTER_THROWEXCEPTIONS
+					throw new ArgumentException( string.Format( "Removing listener \"{0}\", but the event type \"{1}\" isn't registered.", listener, eventType.ToString() ) );
+            #else
+            return;
+            #endif
 
         List<IGameEventListenerBase> subscribers = subscribersList[eventType];
         
+        bool listenerFound;
+        listenerFound = false;
+
+        if (listenerFound)
+        {
+				
+        }
         
         for (var i = 0; i<subscribers.Count; i++)
         {
             if (subscribers[i] != listener) continue;
             
             subscribers.Remove( subscribers[i] );
+            listenerFound = true;
 
             if( subscribers.Count == 0 )
                 subscribersList.Remove( eventType );
             
             return;
         }
+        
+                #if EVENTROUTER_THROWEXCEPTIONS
+		        if( !listenerFound )
+		        {
+					throw new ArgumentException( string.Format( "Removing listener, but the supplied receiver isn't subscribed to event type \"{0}\".", eventType.ToString() ) );
+		        }
+                #endif
     }
     
     public static void TriggerEvent<GEvent>(GEvent @event) where GEvent : struct
     {
         List<IGameEventListenerBase> list;
         if (!subscribersList.TryGetValue(typeof(GEvent), out list)) {
-            Logger.Log("There is no listener for this type");
-            return;
+            #if EVENTROUTER_REQUIRELISTENER
+			            throw new ArgumentException( string.Format( "Attempting to send event of type \"{0}\", but no listener for this type has been found. Make sure this.Subscribe<{0}>(EventRouter) has been called, or that all listeners to this event haven't been unsubscribed.", typeof( MMEvent ).ToString() ) );
+            #else
+                return;
+            #endif
         }
 
-        foreach (var t in list)
+        
+        // foreach (var t in list)
+        // {
+        //     ( t as IGameEventListener<GEvent> )?.OnGameEvent( @event );
+        // }
+        for (var i= list.Count - 1; i >= 0; i--)
         {
-            ( t as IGameEventListener<GEvent> )?.OnGameEvent( @event );
+            ( list[i] as IGameEventListener<GEvent> )?.OnGameEvent( @event );
         }
     }
     
@@ -68,25 +101,7 @@ public static class GameEventsManager
     }
 }
 
-public enum BattleEventType { NewRound, WonBattle, LostBattle }
-public struct BattleEvent
-{
-    public BattleEventType _battleEventType;
 
-    public BattleEvent(BattleEventType eventType)
-    {
-        _battleEventType = eventType;
-    }
-
-    private static BattleEvent @event;
-
-    public static void Trigger(BattleEventType eventType)
-    {
-        @event._battleEventType = eventType;
-        GameEventsManager.TriggerEvent(@event);
-    }
-    
-}
 
 public interface IGameEventListenerBase { }
 

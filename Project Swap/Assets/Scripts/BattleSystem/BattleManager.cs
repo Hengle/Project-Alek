@@ -22,7 +22,6 @@ namespace BattleSystem
     {
         private static BattleState state;
         public delegate void BattleSystemEvent();
-        public static event BattleSystemEvent NewRound;
         public static event Action<BattleState> EndOfBattle;
 
         public static GlobalBattleFuncs _battleFuncs;
@@ -102,7 +101,6 @@ namespace BattleSystem
         private IEnumerator PerformThisRound()
         {
             BattleEvent.Trigger(BattleEventType.NewRound);
-            NewRound?.Invoke();
 
             // could be added to new round event
             StartCoroutine(SortingCalculator.SortAndCombine());
@@ -147,7 +145,7 @@ namespace BattleSystem
             _inventoryInputManager.TargetInventoryContainer = character.inventoryDisplay.GetComponent<CanvasGroup>();
             _inventoryInputManager.TargetInventoryDisplay = character.inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             character.inventoryDisplay.SetActive(true);
 
             state = BattleState.PartyTurn;
