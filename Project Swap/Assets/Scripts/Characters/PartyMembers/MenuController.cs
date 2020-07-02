@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Animations;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using BattleSystem;
+using Characters.Animations;
+using Input;
 using MoreMountains.InventoryEngine;
 using MoreMountains.Tools;
 
@@ -56,14 +56,14 @@ namespace Characters.PartyMembers
             MMEventManager.AddListener(this);
         }
 
-        [UsedImplicitly] public void DisableInput() => BattleManager._inputModule.enabled = false;
+        [UsedImplicitly] public void DisableInput() => BattleInputManager._inputModule.enabled = false;
     
         [UsedImplicitly] public void SetMainMenuFirstSelected()
         {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
             previousFirstSelected = mainMenuFirstSelected;
-            BattleManager._inputModule.enabled = true;
+            BattleInputManager._inputModule.enabled = true;
         }
 
         [UsedImplicitly] public void SetAbilityMenuFirstSelected()
@@ -71,7 +71,7 @@ namespace Characters.PartyMembers
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(abilityMenuFirstSelected);
             previousFirstSelected = abilityMenuFirstSelected;
-            BattleManager._inputModule.enabled = true;
+            BattleInputManager._inputModule.enabled = true;
         }
 
         public void SetTargetFirstSelected()
@@ -92,7 +92,7 @@ namespace Characters.PartyMembers
                     break;
             }
             
-            BattleManager._inputModule.enabled = true;
+            BattleInputManager._inputModule.enabled = true;
         }
 
         public bool SetPartySelectables()

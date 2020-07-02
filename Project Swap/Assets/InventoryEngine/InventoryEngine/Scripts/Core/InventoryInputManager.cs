@@ -113,8 +113,9 @@ namespace MoreMountains.InventoryEngine
         /// </summary>
         protected virtual void Update()
         {
+            if (!InventoryOpen) return;
             HandleInventoryInput();
-            HandleHotbarsInput();
+            //HandleHotbarsInput();
             CheckCurrentlySelectedSlot();
         }
 

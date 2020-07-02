@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -172,7 +172,7 @@ MonoBehaviour:
   manualInput: 0
   terrainObjects:
   - {fileID: 624546903}
-  util: {fileID: 1181604329}
+  util: {fileID: 0}
   workflow: 1
   resIdx: 4
   targetSize: {x: 500, y: 600, z: 500}
@@ -360,32 +360,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &1181604329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5baaf931467ff814da8d7f3d981a7c44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  workflow: 1
-  meshBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  pivotPos: {x: 0, y: 0, z: 0}
-  height: 600
-  bottom: 0
-  size: {x: 500, y: 600, z: 500}
-  centerPostion: {x: 250, y: 300, z: 250}
-  originPosition: {x: 0, y: 0, z: 0}
-  terrains:
-  - {fileID: 624546907}
-  meshes: []
-  terrainScaleOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1685132133
 GameObject:
   m_ObjectHideFlags: 0

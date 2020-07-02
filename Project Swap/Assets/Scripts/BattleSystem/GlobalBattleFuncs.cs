@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using JetBrains.Annotations;
 using UnityEngine;
-using Abilities;
-using Animations;
 using Characters;
+using Characters.Abilities;
+using Characters.Animations;
 using Characters.PartyMembers;
-using StatusEffects;
+using Characters.StatusEffects;
 using Type = Characters.Type;
 
 namespace BattleSystem
@@ -129,12 +129,12 @@ namespace BattleSystem
             }
             
             yield return new WaitForSeconds(0.5f);
-            if (unitBase.Unit.isCrit) CriticalCamController.onCritical(unitBase);
+            if (unitBase.Unit.isCrit) CriticalCamController._onCritical(unitBase);
         }
 
         private IEnumerator MoveBackToOriginPosition()
         {
-            CriticalCamController.disableCam(unitBase);
+            CriticalCamController._disableCam(unitBase);
             
             var parent = unitBase.Unit.parent.transform;
             while (parent.position != originPosition)

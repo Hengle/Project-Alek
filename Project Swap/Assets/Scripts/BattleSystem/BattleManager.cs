@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.UI;
-using DG.Tweening;
 using System.Linq;
-using Calculator;
+using BattleSystem.Calculator;
 using Characters;
 using BattleSystem.Generator;
 using Characters.PartyMembers;
+using Characters.StatusEffects;
+using Input;
 using MoreMountains.InventoryEngine;
 using StatusEffects;
 using Type = Characters.Type;
@@ -21,14 +21,7 @@ namespace BattleSystem
     public class BattleManager : MonoBehaviour
     {
         private static BattleState state;
-        public delegate void BattleSystemEvent();
-        public static event Action<BattleState> EndOfBattle;
-
         public static GlobalBattleFuncs _battleFuncs;
-
-        public static InputSystemUIInputModule _inputModule;
-        public static InventoryInputManager _inventoryInputManager;
-        public static Controls _controls;
 
         public static List<Enemy> _enemiesForThisBattle = new List<Enemy>();
         public static List<PartyMember> _membersForThisBattle = new List<PartyMember>();
@@ -40,11 +33,7 @@ namespace BattleSystem
         public static bool _endThisMembersTurn;
         public static bool _choosingAbility;
         public static bool _shouldGiveCommand;
-
-        private BattleGenerator generator;
-
-        //private Camera cam;
-
+        
         private static bool allMembersDead;
         private static bool allEnemiesDead;
         private static bool PartyOrEnemyTeamIsDead 
@@ -57,21 +46,12 @@ namespace BattleSystem
             }
         }
 
-        private bool CancelCondition => _inputModule.cancel.action.triggered && canPressBack;
-        private bool canPressBack;
+        private BattleGenerator generator;
 
         private int roundCount;
-
-
+        
         private void Start()
         {
-            DOTween.Init();
-            _controls = new Controls();
-            _controls.Enable();
-
-            _inputModule = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<InputSystemUIInputModule>();
-            _inventoryInputManager = FindObjectOfType<InventoryInputManager>();
-
             generator = GetComponent<BattleGenerator>();
             _battleFuncs = GetComponent<GlobalBattleFuncs>();
 
@@ -90,7 +70,7 @@ namespace BattleSystem
             }
 
             StartCoroutine(SortingCalculator.SortAndCombine());
-            while (!SortingCalculator.isFinished) yield return null;
+            while (!SortingCalculator._isFinished) yield return null;
 
             foreach (var character in _membersForThisBattle) 
                 character.onDeath += RemoveFromBattle;
@@ -100,11 +80,11 @@ namespace BattleSystem
 
         private IEnumerator PerformThisRound()
         {
-            BattleEvent.Trigger(BattleEventType.NewRound);
+            BattleEvents.Trigger(BattleEventType.NewRound);
 
             // could be added to new round event
             StartCoroutine(SortingCalculator.SortAndCombine());
-            while (!SortingCalculator.isFinished) yield return null;
+            while (!SortingCalculator._isFinished) yield return null;
             
             foreach (var character in from character in _membersAndEnemies
                 let checkMemberStatus = character.CheckUnitStatus() where checkMemberStatus select character)
@@ -128,9 +108,11 @@ namespace BattleSystem
             {
                 // Could make the sequences events
                 case BattleState.Won:
+                    BattleEvents.Trigger(BattleEventType.WonBattle);
                     StartCoroutine(WonBattleSequence());
                     break;
                 case BattleState.Lost:
+                    BattleEvents.Trigger(BattleEventType.LostBattle);
                     StartCoroutine(LostBattleSequence());
                     break;
                 default:
@@ -142,8 +124,8 @@ namespace BattleSystem
 
         private IEnumerator ThisPlayerTurn(PartyMember character)
         {
-            _inventoryInputManager.TargetInventoryContainer = character.inventoryDisplay.GetComponent<CanvasGroup>();
-            _inventoryInputManager.TargetInventoryDisplay = character.inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
+            BattleInputManager._inventoryInputManager.TargetInventoryContainer = character.inventoryDisplay.GetComponent<CanvasGroup>();
+            BattleInputManager._inventoryInputManager.TargetInventoryDisplay = character.inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
 
             yield return new WaitForSeconds(0.5f);
             character.inventoryDisplay.SetActive(true);
@@ -153,15 +135,15 @@ namespace BattleSystem
 
 
             main_menu:
-            canPressBack = false;
+            BattleInputManager._canPressBack = false;
             character.battleOptionsPanel.ShowBattlePanel();
 
             while (_choosingOption) yield return null;
             yield return new WaitForSeconds(0.5f);
                 
             while (_choosingAbility) {
-                canPressBack = true;
-                if (CancelCondition) goto main_menu;
+                BattleInputManager._canPressBack = true;
+                if (BattleInputManager.CancelCondition) goto main_menu;
                 yield return null;
             }
 
@@ -177,8 +159,8 @@ namespace BattleSystem
 
             while (_choosingTarget)
             {
-                canPressBack = true;
-                if (CancelCondition) goto main_menu;
+                BattleInputManager._canPressBack = true;
+                if (BattleInputManager.CancelCondition) goto main_menu;
                 yield return null;
             }
             
@@ -243,14 +225,12 @@ namespace BattleSystem
         private IEnumerator WonBattleSequence()
         {
             yield return new WaitForSeconds(0.5f);
-            EndOfBattle?.Invoke(BattleState.Won);
             Logger.Log("yay, you won");
         }
 
         private IEnumerator LostBattleSequence()
         {
             yield return new WaitForSeconds(0.5f);
-            EndOfBattle?.Invoke(BattleState.Lost);
             Logger.Log("you lost idiot");
         }
 

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Characters;
 using Characters.PartyMembers;
+using Input;
 using Type = Characters.Type;
 
 namespace BattleSystem
@@ -31,13 +32,13 @@ namespace BattleSystem
             thisUnitBase.Unit.outline.enabled = true;
             thisUnitBase.Unit.button.interactable = false;
                 
-            if (BattleManager._inputModule.cancel.action.triggered) {
+            if (BattleInputManager._inputModule.cancel.action.triggered) {
                 thisUnitBase.Unit.button.interactable = true;
                 _isMultiTarget = false;
                 return;
             }
                 
-            if (!BattleManager._inputModule.submit.action.triggered) return;
+            if (!BattleInputManager._inputModule.submit.action.triggered) return;
                 
             AddMultiHitCommand();
             thisUnitBase.Unit.outline.enabled = false;

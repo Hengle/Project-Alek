@@ -6,11 +6,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
-using Abilities;
-using Animations;
 using BattleSystem;
-using Calculator;
-using StatusEffects;
+using BattleSystem.Calculator;
+using Characters.Abilities;
+using Characters.Animations;
+using Characters.StatusEffects;
+using Input;
 using Random = UnityEngine.Random;
 
 namespace Characters
@@ -43,6 +44,7 @@ namespace Characters
         [FormerlySerializedAs("targetHasMissed")]
         public bool attackerHasMissed;
 
+        // Could convert all of this to events
         [HideInInspector] public int commandActionOption;
         [HideInInspector] public int maxHealthRef;
         [HideInInspector] public int currentAP;
@@ -83,11 +85,10 @@ namespace Characters
             button.enabled = BattleManager._choosingTarget;
 
             if (!BattleManager._choosingTarget) outline.enabled = false;
-            if (BattleManager._controls.Menu.TopButton.triggered && outline.enabled) ProfileBoxManager.ShowProfileBox(unitRef);
-            if (BattleManager._controls.Menu.Back.triggered && ProfileBoxManager._isOpen) ProfileBoxManager.CloseProfileBox();
+            if (BattleInputManager._controls.Menu.TopButton.triggered && outline.enabled) ProfileBoxManager.ShowProfileBox(unitRef);
+            if (BattleInputManager._controls.Menu.Back.triggered && ProfileBoxManager._isOpen) ProfileBoxManager.CloseProfileBox();
         }
         
-
         #region functionsCalledFromAnimator
 
         [UsedImplicitly] public void TryToInflictStatusEffect()

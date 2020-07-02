@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Abilities;
-using Abilities.Ranged_Attacks;
-using Animations;
 using BattleSystem;
+using BattleSystem.Calculator;
 using BattleSystem.DamagePrefab;
-using Calculator;
-using StatusEffects;
+using Characters.Abilities;
+using Characters.Abilities.Ranged_Attacks;
+using Characters.Animations;
+using Characters.StatusEffects;
 
 namespace Characters
 {

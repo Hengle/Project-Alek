@@ -1,6 +1,7 @@
 ﻿using BattleSystem.Generator;
 using Characters;
 using DG.Tweening;
+using Input;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -49,9 +50,9 @@ namespace BattleSystem
                 $"RES: {unitBase.Unit.currentResistance}\n" +
                 $"CRIT: {unitBase.Unit.currentCrit}";
 
-            BattleManager._inputModule.move.action.Disable();
-            BattleManager._inputModule.submit.action.Disable();
-            BattleManager._inputModule.cancel.action.Disable();
+            BattleInputManager._inputModule.move.action.Disable();
+            BattleInputManager._inputModule.submit.action.Disable();
+            BattleInputManager._inputModule.cancel.action.Disable();
             
             profileBox.gameObject.SetActive(true);
             profileBox.DOScale(1, 0.5f);
@@ -62,9 +63,9 @@ namespace BattleSystem
             profileBox.DOScale(0.1f, 0.15f).
                 OnComplete(() => profileBox.gameObject.SetActive(false));
             
-            BattleManager._inputModule.move.action.Enable();
-            BattleManager._inputModule.submit.action.Enable();
-            BattleManager._inputModule.cancel.action.Enable();
+            BattleInputManager._inputModule.move.action.Enable();
+            BattleInputManager._inputModule.submit.action.Enable();
+            BattleInputManager._inputModule.cancel.action.Enable();
             _isOpen = false;
         }
     }

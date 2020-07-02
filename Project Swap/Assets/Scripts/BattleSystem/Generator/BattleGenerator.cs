@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using Characters.PartyMembers;
+using Characters.StatusEffects;
+using Input;
 using MoreMountains.InventoryEngine;
 using StatusEffects;
 using UnityEngine;
@@ -70,7 +72,7 @@ namespace BattleSystem.Generator
                 (delegate { character.battleOptionsPanel.OnAbilityMenuButton(); });
             
             mainMenu.Find("Inventory Button").gameObject.GetComponent<Button>().onClick.AddListener
-                (delegate { BattleManager._inventoryInputManager.OpenInventory(); });
+                (delegate { BattleInputManager._inventoryInputManager.OpenInventory(); });
 
             mainMenu.Find("End Turn Button").gameObject.GetComponent<Button>().onClick.AddListener
                 (delegate { character.battleOptionsPanel.OnEndTurnButton(); });
@@ -83,7 +85,8 @@ namespace BattleSystem.Generator
             character.actionPointAnim = character.Unit.battlePanelRef.transform.Find("AP Box").GetComponent<Animator>();
         }
 
-        private void SetupInventoryDisplay(PartyMember character, int i) {
+        private void SetupInventoryDisplay(PartyMember character, int i)
+        {
             var inventory = Instantiate(character.inventory, character.Unit.transform, true);
             inventory.name = character.inventory.name;
 

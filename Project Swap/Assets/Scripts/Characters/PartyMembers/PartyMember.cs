@@ -1,8 +1,8 @@
-﻿using Animations;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using BattleSystem;
+using Characters.Animations;
 using MoreMountains.InventoryEngine;
 
 namespace Characters.PartyMembers

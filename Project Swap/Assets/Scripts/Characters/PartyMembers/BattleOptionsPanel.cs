@@ -1,5 +1,5 @@
-﻿using Animations;
-using BattleSystem;
+﻿using BattleSystem;
+using Characters.Animations;
 using UnityEngine;
 
 namespace Characters.PartyMembers

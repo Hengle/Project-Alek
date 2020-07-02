@@ -12,7 +12,6 @@ namespace Characters
             set => Unit.currentAP = value;
         }
         
-
         public bool SetAI()
         {
             if (Unit.currentAP <= 2) return false;
