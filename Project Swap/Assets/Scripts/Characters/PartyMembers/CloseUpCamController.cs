@@ -16,8 +16,6 @@ namespace Characters.PartyMembers
             GameEventsManager.AddListener(this);
         }
 
-        private void ToggleCloseUpCam(CEventType eventType) => cvCamera.enabled = eventType == CEventType.CharacterTurn;
-        
         public void OnGameEvent(CharacterEvents eventType)
         {
             if (eventType._eventType != CEventType.CharacterTurn &&
@@ -27,7 +25,7 @@ namespace Characters.PartyMembers
             if (eventType._character.GetType() != typeof(PartyMember)) return;
             
             var character = (PartyMember) eventType._character;
-            if (character.Unit == unit) ToggleCloseUpCam(eventType._eventType);
+            if (character.Unit == unit) cvCamera.enabled = eventType._eventType == CEventType.CharacterTurn;
         }
     }
 }

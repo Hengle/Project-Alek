@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using JetBrains.Annotations;
@@ -33,6 +32,7 @@ namespace Characters.PartyMembers
         private void Awake()
         {
             battleMenu = transform.Find("Battle Menu").gameObject;
+            
             mainMenu = battleMenu.gameObject.transform.Find("Main Options").gameObject;
             mainMenuFirstSelected = mainMenu.transform.GetChild(0).gameObject;
             
@@ -134,16 +134,14 @@ namespace Characters.PartyMembers
 
                 unit.button.navigation = nav;
             }
-
+            
             return true;
         }
 
         [SuppressMessage("ReSharper", "Unity.InefficientPropertyAccess")]
         public void OnMMEvent(MMInventoryEvent eventType)
         {
-            //if (!isEnabled) return;
-
-            if (isActiveAndEnabled && eventType.InventoryEventType == MMInventoryEventType.InventoryCloses)
+            if (isEnabled && isActiveAndEnabled && eventType.InventoryEventType == MMInventoryEventType.InventoryCloses)
             {
                 GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
                 EventSystem.current.SetSelectedGameObject(previousFirstSelected);
@@ -151,30 +149,22 @@ namespace Characters.PartyMembers
                 return;
             }
 
-            if (isActiveAndEnabled && battleMenu.activeSelf && eventType.InventoryEventType == MMInventoryEventType.InventoryOpens) {
+            if (isActiveAndEnabled && battleMenu.activeSelf && eventType.InventoryEventType == MMInventoryEventType.InventoryOpens) 
+            {
                 GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
             }
         }
 
         public void OnGameEvent(CharacterEvents eventType)
         {
-            //if (!isActiveAndEnabled || eventType._eventType != CEventType.EndOfTurn || eventType._eventType != CEventType.CharacterTurn) return;
+            if (eventType._eventType != CEventType.CharacterTurn && eventType._eventType != CEventType.EndOfTurn) return;
             if (eventType._character.GetType() != typeof(PartyMember)) return;
-            Logger.Log("listening...");
-            
+
             var character = (PartyMember) eventType._character;
-            if (character.battlePanel.GetComponent<MenuController>() == this) isEnabled = eventType._eventType == CEventType.CharacterTurn;
-            // switch (eventType._eventType)
-            // {
-            //     case CEventType.EndOfTurn when character.battlePanel.GetComponent<MenuController>() == this:
-            //         Logger.Log("Disabling this menu controller");
-            //         isEnabled = false;
-            //         break;
-            //     case CEventType.CharacterTurn when character.battlePanel.GetComponent<MenuController>() == this:
-            //         Logger.Log("Enabling this menu controller");
-            //         isEnabled = true;
-            //         break;
-            // }
+            if (character.battlePanel.GetComponent<MenuController>() == this)
+            {
+                isEnabled = eventType._eventType == CEventType.CharacterTurn;
+            }
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using Characters.PartyMembers;
-using MoreMountains.InventoryEngine;
+﻿using MoreMountains.InventoryEngine;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
 
 namespace Input
 {
-    public class BattleInputManager : MonoBehaviour, IGameEventListener<UIEvents>
+    public class BattleInputManager : MonoBehaviour
     {
         public static InputSystemUIInputModule _inputModule;
         public static InventoryInputManager _inventoryInputManager;
@@ -13,6 +13,8 @@ namespace Input
 
         public static bool _canPressBack;
         public static bool CancelCondition => _inputModule.cancel.action.triggered && _canPressBack;
+
+        private GameObject currentlySelected;
 
         private void Awake()
         {
@@ -22,21 +24,11 @@ namespace Input
             _inputModule = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<InputSystemUIInputModule>();
             _inventoryInputManager = FindObjectOfType<InventoryInputManager>();
         }
-
-        private void UpdateInventoryDisplay(PartyMember character)
+        
+        private void Update()
         {
-            _inventoryInputManager.TargetInventoryContainer = character.inventoryDisplay.GetComponent<CanvasGroup>();
-            _inventoryInputManager.TargetInventoryDisplay = character.inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
-            _inventoryInputManager.TargetInventoryDisplay.SetupInventoryDisplay();
-        }
-
-        public void OnGameEvent(UIEvents eventType)
-        {
-            // if (eventType._eventType != UIEventType.UpdateInventoryDisplay) return;
-            // if (eventType._character.GetType() != typeof(PartyMember)) return;
-            //
-            // var character = (PartyMember) eventType._character;
-            // UpdateInventoryDisplay(character);
+            currentlySelected = EventSystem.current.currentSelectedGameObject;
+            if (_controls.Menu.TopButton.triggered && currentlySelected) UIEvents.Trigger(UIEventType.ToggleProfileBox, currentlySelected);
         }
     }
 }

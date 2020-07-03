@@ -11459,6 +11459,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215217540}
   m_CullTransparentMesh: 0
+--- !u!1 &1216308478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1216308479}
+  m_Layer: 0
+  m_Name: Profiles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1216308479
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216308478}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1224894413
 GameObject:
   m_ObjectHideFlags: 0
@@ -16998,12 +17028,12 @@ PrefabInstance:
     - target: {fileID: 4992137948601788332, guid: 2c594efcc505a4b4f89419547e2e728a,
         type: 3}
       propertyPath: m_SelectedEdges.Array.size
-      value: 25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4992137948601788332, guid: 2c594efcc505a4b4f89419547e2e728a,
         type: 3}
       propertyPath: m_SelectedVertices.Array.size
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4992137948601788332, guid: 2c594efcc505a4b4f89419547e2e728a,
         type: 3}
@@ -18785,7 +18815,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1849992117}
-  - component: {fileID: 1849992122}
   - component: {fileID: 1849992121}
   - component: {fileID: 1849992116}
   - component: {fileID: 1849992118}
@@ -18996,20 +19025,8 @@ MonoBehaviour:
   boPanel: {fileID: 11400000, guid: edd3f92f7919c58458f2e4f297327c4d, type: 2}
   enemyStatusBox: {fileID: 4792203347304205839, guid: d1b0d1817473ff14882a6febe1ab5156,
     type: 3}
-  profileBox: {fileID: 1850258631}
---- !u!114 &1849992122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849992115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3b378a364fa45d2b80b5f72ec7bc7c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  battleGeneratorDatabase: {fileID: 1849992121}
+  profileBox: {fileID: 2069778948332721464, guid: efff5cf58c0ca674db7026a5f415ac34,
+    type: 3}
 --- !u!114 &1849992123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20016,12 +20033,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8caa1144b0ef0a940b1e21274cc4472c, type: 3}
---- !u!224 &1850258631 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4198462444861737897, guid: 8caa1144b0ef0a940b1e21274cc4472c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1850258630}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1858873649
 GameObject:
   m_ObjectHideFlags: 0
@@ -21556,7 +21567,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-59364
+  m_Name: pb_Mesh-1188
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

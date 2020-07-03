@@ -24,7 +24,7 @@ namespace Characters
         
         [HideInInspector] public GameObject parent;
 
-        [HideInInspector] public UnitBase unitRef; // Get rid of this
+        //[HideInInspector] public UnitBase unitRef; // Get rid of this
         [HideInInspector] public UnitBase currentTarget;
         [HideInInspector] public Ability currentAbility;
         [HideInInspector] public Animator anim; // could maybe keep, but remove direct access
@@ -65,6 +65,29 @@ namespace Characters
         public Action onSelect;
         public Action onDeselect;
 
+        // public Unit(UnitBase unitBase)
+        // {
+        //     id = unitBase.id;
+        //     name = unitBase.characterName;
+        //     level = unitBase.level;
+        //     status = Status.Normal;
+        //     maxHealthRef = unitBase.health;
+        //     currentHP = unitBase.health;
+        //     currentStrength = unitBase.strength;
+        //     currentMagic = unitBase.magic;
+        //     currentAccuracy = unitBase.accuracy;
+        //     currentInitiative = unitBase.initiative;
+        //     currentCrit = unitBase.criticalChance;
+        //     currentDefense = unitBase.defense;
+        //     currentResistance = unitBase.resistance;
+        //     currentAP = unitBase.maxAP;
+        //     outline.color = unitBase.Color;
+        //     
+        //     var chooseTarget = gameObject.GetComponent<ChooseTarget>();
+        //     chooseTarget.thisUnitBase = unitBase;
+        //     chooseTarget.enabled = true;
+        // }
+
         private void Awake()
         {
             anim = GetComponent<Animator>();
@@ -74,82 +97,14 @@ namespace Characters
             outline.enabled = false;
         }
 
-        private void Update() {
+        private void Update() 
+        {
             button.enabled = BattleManager._choosingTarget;
 
             if (!BattleManager._choosingTarget) outline.enabled = false;
-            if (BattleInputManager._controls.Menu.TopButton.triggered && outline.enabled) ProfileBoxManager.ShowProfileBox(unitRef);
-            if (BattleInputManager._controls.Menu.Back.triggered && ProfileBoxManager._isOpen) ProfileBoxManager.CloseProfileBox();
+            //if (BattleInputManager._controls.Menu.TopButton.triggered && outline.enabled) ProfileBoxManager.ShowProfileBox(unitRef);
+            //if (BattleInputManager._controls.Menu.Back.triggered && ProfileBoxManager._isOpen) ProfileBoxManager.CloseProfileBox();
         }
-        
-        #region functionsCalledFromAnimator
-
-        [UsedImplicitly] public void TryToInflictStatusEffect()
-        {
-            if (!isAbility || !currentAbility.hasStatusEffect) return;
-            
-            if (!currentAbility.isMultiTarget)
-            {
-                if (currentTarget.Unit.attackerHasMissed || currentTarget.IsDead) return;
-
-                foreach (var effect in from effect in currentAbility.statusEffects
-                    where !(from statusEffect in currentTarget.Unit.statusEffects
-                    where statusEffect.name == effect.name select statusEffect).Any()
-                    
-                    let randomValue = Random.value 
-                    where !(randomValue > currentAbility.chanceOfInfliction) select effect)
-                {
-                    effect.OnAdded(currentTarget);
-                    currentTarget.Unit.statusEffects.Add(effect);
-                    return;
-                }
-            }
-            
-            foreach (var target in multiHitTargets.Where(target => !target.Unit.attackerHasMissed && !target.IsDead))
-            {
-                foreach (var effect in from effect in currentAbility.statusEffects
-                    where !(from statusEffect in target.Unit.statusEffects
-                    where statusEffect.name == effect.name select statusEffect).Any() 
-                    
-                    let randomValue = Random.value 
-                    where !(randomValue > currentAbility.chanceOfInfliction) select effect)
-                {
-                    effect.OnAdded(target);
-                    target.Unit.statusEffects.Add(effect);
-                }
-            }
-        }
-
-        [UsedImplicitly] public void TargetTakeDamage()
-        {
-            if (!isAbility || !currentAbility.isMultiTarget) {
-                currentTarget.TakeDamage(currentDamage);
-                isCrit = false;
-                return;
-            }
-
-            for (var i = 0; i < multiHitTargets.Count; i++)
-                multiHitTargets[i].TakeDamage(damageValueList[i]);
-
-            isCrit = false;
-        }
-
-        [UsedImplicitly] public void RecalculateDamage() 
-        {
-            if (isAbility && currentAbility.isMultiTarget)
-            {
-                damageValueList = new List<int>();
-                foreach (var target in multiHitTargets) 
-                    damageValueList.Add(DamageCalculator.CalculateAttackDamage(unitRef, target));
-                return;
-            }
-            
-            currentDamage = DamageCalculator.CalculateAttackDamage(unitRef, currentTarget);
-            if (id != Type.PartyMember || !isCrit) return;
-            TimeManager._slowTimeCrit = true;
-        }
-
-        #endregion
 
         public void OnSelect(BaseEventData eventData) {
             outline.enabled = true;

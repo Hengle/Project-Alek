@@ -181,7 +181,7 @@ namespace Characters
             Unit.currentResistance = resistance;
             Unit.currentAP = maxAP;
             Unit.outline.color = Color;
-            Unit.unitRef = this;
+            //Unit.unitRef = this;
             
             var chooseTarget = Unit.gameObject.GetComponent<ChooseTarget>();
             chooseTarget.thisUnitBase = this;

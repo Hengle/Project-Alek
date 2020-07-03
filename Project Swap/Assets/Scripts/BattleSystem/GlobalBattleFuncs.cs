@@ -16,10 +16,12 @@ namespace BattleSystem
         private AnimationHandler animHandler;
         private UnitBase unitBase;
         private UnitBase currentTarget;
+        private Unit unit;
 
         public void GetCommand(UnitBase unitBaseParam)
         {
             unitBase = unitBaseParam;
+            unit = unitBase.Unit;
             currentTarget = unitBase.Unit.currentTarget;
             animHandler = unitBase.Unit.animationHandler;
             
@@ -44,16 +46,16 @@ namespace BattleSystem
         
         [UsedImplicitly] private IEnumerator AbilityAction()
         {
-            unitBase.Unit.currentAbility = unitBase.GetAndSetAbility(unitBase.Unit.commandActionOption);
-            unitBase.Unit.isAbility = true;
+            unit.currentAbility = unitBase.GetAndSetAbility(unit.commandActionOption);
+            unit.isAbility = true;
 
-            switch (unitBase.Unit.currentAbility.abilityType)
+            switch (unit.currentAbility.abilityType)
             {
                 case AbilityType.Physical: StartCoroutine(CloseRangeAttack());
                     yield break;;
                 case AbilityType.Ranged: StartCoroutine(RangedAttack());
                     yield break;;
-                case AbilityType.NonAttack: Logger.Log("Non-Attack: " + unitBase.Unit.currentAbility.name);
+                case AbilityType.NonAttack: Logger.Log("Non-Attack: " + unit.currentAbility.name);
                     yield break;;
                 default: Logger.Log("This message should not be displaying...");
                     yield break;;
@@ -85,7 +87,7 @@ namespace BattleSystem
             var attack = StartCoroutine(ExecuteAttack());
             yield return attack;
 
-            unitBase.Unit.transform.rotation = originalRotation;
+            unit.transform.rotation = originalRotation;
 
             BattleManager._performingAction = false;
         }
@@ -94,10 +96,9 @@ namespace BattleSystem
         {
             TimeManager._slowTimeCrit = unitBase.Unit.isCrit;
             
-            unitBase.Unit.anim.SetInteger
-                (AnimationHandler.PhysAttackState, unitBase.Unit.isAbility? unitBase.Unit.currentAbility.attackState : 0);
+            unit.anim.SetInteger(AnimationHandler.PhysAttackState, unit.isAbility? unit.currentAbility.attackState : 0);
             
-            unitBase.Unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
+            unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
             
             yield return new WaitForEndOfFrame();
             while (animHandler.isAttacking) yield return null;
@@ -113,14 +114,14 @@ namespace BattleSystem
 
         private IEnumerator MoveToTargetPosition()
         {
-            originPosition = unitBase.Unit.parent.transform.position;
+            originPosition = unit.parent.transform.position;
             var position = currentTarget.Unit.transform.position;
             
             targetPosition = unitBase.id == Type.PartyMember ? 
                 new Vector3(position.x, originPosition.y, position.z - 2) :
                 new Vector3(position.x, position.y, position.z + 2);
 
-            var parent = unitBase.Unit.parent.transform;
+            var parent = unit.parent.transform;
             while (parent.position != targetPosition)
             {
                 parent.position = Vector3.MoveTowards
@@ -129,14 +130,14 @@ namespace BattleSystem
             }
             
             yield return new WaitForSeconds(0.5f);
-            if (unitBase.Unit.isCrit) CriticalCamController._onCritical(unitBase);
+            if (unit.isCrit) CriticalCamController._onCritical(unitBase);
         }
 
         private IEnumerator MoveBackToOriginPosition()
         {
             CriticalCamController._disableCam(unitBase);
             
-            var parent = unitBase.Unit.parent.transform;
+            var parent = unit.parent.transform;
             while (parent.position != originPosition)
             {
                 parent.position = Vector3.MoveTowards

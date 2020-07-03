@@ -97,7 +97,7 @@ namespace BattleSystem
 
                 if (PartyOrEnemyTeamIsDead || character.IsDead) break;
                 
-                var round = StartCoroutine(character.id == Type.PartyMember ?
+                var round = StartCoroutine(character.id == Type.PartyMember?
                     ThisPlayerTurn((PartyMember) character) : ThisEnemyTurn((Enemy) character));
                 
                 yield return round;
@@ -125,7 +125,8 @@ namespace BattleSystem
         {
             BattleInputManager._inventoryInputManager.TargetInventoryContainer = character.inventoryDisplay.GetComponent<CanvasGroup>();
             BattleInputManager._inventoryInputManager.TargetInventoryDisplay = character.inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
-
+            // UIEvents.Trigger(UIEventType.UpdateInventoryDisplay, character);
+            
             yield return new WaitForSeconds(0.5f);
             character.inventoryDisplay.SetActive(true);
 
@@ -172,7 +173,12 @@ namespace BattleSystem
             yield return inflictStatusEffectsBefore;
 
             if (!_shouldGiveCommand) _shouldGiveCommand = true;
-            else character.GiveCommand();
+            else
+            {
+                CharacterEvents.Trigger(CEventType.CharacterAttacking, character);
+                yield return new WaitForSeconds(0.5f);
+                character.GiveCommand();
+            }
             while (_performingAction) yield return null;
             
             var inflictStatusEffectsAfter = StartCoroutine(StatusEffectManager.TriggerOnThisUnit

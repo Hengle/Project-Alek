@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Characters;
 using UnityEngine;
 using UnityEngine.UI;
 using Characters.PartyMembers;
@@ -98,6 +99,19 @@ namespace BattleSystem.Generator
             display.SetupInventoryDisplay();
         }
 
+        private void SetupProfileBox(UnitBase character)
+        {
+            var parent = GameObject.Find("Profiles").transform;
+
+            var profileBox = Instantiate(battleGeneratorDatabase.profileBox, parent, true);
+            profileBox.name = $"{character.characterName} profile";
+            
+            var manager = profileBox.GetComponent<ProfileBoxManager>();
+            manager.spriteImage.sprite = character.characterPrefab.GetComponent<SpriteRenderer>().sprite;
+            manager.description.text = character.description;
+            manager.background.color = character.profileBoxColor;
+        }
+
         #endregion
 
         #region Spawning
@@ -109,6 +123,7 @@ namespace BattleSystem.Generator
             character.SetupUnit(memberGo);
             SetupBattlePanel(character);
             SetupInventoryDisplay(character, i);
+            SetupProfileBox(character);
 
             memberGo.transform.localScale = character.scale;
             
@@ -151,6 +166,7 @@ namespace BattleSystem.Generator
                     partyMember.battlePanel.GetComponent<MenuController>().enemySelectable.Add(enemyGo);
                 
                 clone.SetupUnit(enemyGo);
+                SetupProfileBox(clone);
 
                 clone.Unit.parent = battleGeneratorDatabase.enemySpawnPoints[i+enemyOffset];
 

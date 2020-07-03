@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 915347324334117536}
   - component: {fileID: 3083832404750006354}
   - component: {fileID: 4347508395630985930}
+  - component: {fileID: 4375877797844783684}
   m_Layer: 0
   m_Name: Leandra Valentina
   m_TagString: Untagged
@@ -121,28 +122,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a35d465435e2d2478d6cc7424f3de5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: 
-  healthText: {fileID: 0}
   battlePanelRef: {fileID: 0}
-  slider: {fileID: 0}
-  actionPointAnim: {fileID: 0}
-  unitRef: {fileID: 0}
-  fillRect: {fileID: 0}
-  battlePanelIsSet: 0
   id: 1
   parent: {fileID: 0}
-  closeUpCam: {fileID: 0}
-  closeUpCamCrit: {fileID: 0}
+  unitRef: {fileID: 0}
   currentTarget: {fileID: 0}
   currentAbility: {fileID: 0}
   anim: {fileID: 0}
   animationHandler: {fileID: 0}
   outline: {fileID: 0}
-  statusBox: {fileID: 0}
   button: {fileID: 0}
+  targetHasCrit: 0
   isCrit: 0
   isAbility: 0
-  missed: 0
+  attackerHasMissed: 0
   commandActionOption: 0
   maxHealthRef: 1750
   currentAP: 0
@@ -297,3 +290,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4375877797844783684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526218485019349028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a04daac25b1f4aa1ab3aa0f2c261a0a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
