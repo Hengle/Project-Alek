@@ -36,7 +36,8 @@ namespace Characters
         private readonly Color midHealthColor = Color.yellow;
         private readonly Color lowHealthColor = Color.red;
 
-        public Color Color {
+        public Color Color
+        {
             get
             {
                 if (Unit.currentHP <= 0.25f * Unit.maxHealthRef) {
@@ -65,7 +66,8 @@ namespace Characters
         
         private int CurrentHP 
         {
-            set { 
+            set 
+            { 
                 Unit.currentHP = value < 0 ? 0 : value;
                 onHpValueChanged?.Invoke(Unit.currentHP);
                 Unit.outline.color = Color;
@@ -73,7 +75,7 @@ namespace Characters
         }
 
         public void GiveCommand() {
-            BattleManager._battleFuncs.GetCommand(this);
+            BattleManager._battleFunctions.GetCommand(this);
             BattleManager._performingAction = true;
         }
 
@@ -121,6 +123,7 @@ namespace Characters
 
             if (Unit.targetHasCrit) Unit.targetHasCrit = false;
 
+            // Damage is set to -1 when it misses
             if (dmg == -1 && Unit.currentHP > 0) return;
             if (Unit.currentHP > 0) Unit.anim.SetTrigger(AnimationHandler.HurtTrigger);
             else Die();
@@ -133,24 +136,16 @@ namespace Characters
             Unit.anim.SetBool(AnimationHandler.DeathTrigger, true);
         }
 
-        public void RemoveStatusEffect(StatusEffect effect)
-        {
-            if (!(from statEffect in Unit.statusEffects
-                where effect.name == statEffect.name select effect).Any()) return;
-            
-            Unit.statusEffects.Remove(effect);
-            effect.OnRemoval(this);
-        }
-
-        public void ResetCommandsAndAP() {
+        public void ResetAP() {
             Unit.currentAP += 2;
             if (Unit.currentAP > 6) Unit.currentAP = 6;
         }
         
 
-        public bool CheckUnitStatus()
+        public bool GetStatus()
         {
-            switch (Unit.status) {
+            switch (Unit.status)
+            {
                 case Status.Normal: return true;
                 case Status.Dead: return false;
                 default: return true;
@@ -181,8 +176,7 @@ namespace Characters
             Unit.currentResistance = resistance;
             Unit.currentAP = maxAP;
             Unit.outline.color = Color;
-            //Unit.unitRef = this;
-            
+
             var chooseTarget = Unit.gameObject.GetComponent<ChooseTarget>();
             chooseTarget.thisUnitBase = this;
             chooseTarget.enabled = true;

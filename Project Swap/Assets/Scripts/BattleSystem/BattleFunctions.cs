@@ -10,7 +10,7 @@ using Type = Characters.Type;
 
 namespace BattleSystem
 {
-    public class GlobalBattleFuncs : MonoBehaviour
+    public class BattleFunctions : MonoBehaviour
     {
         private Vector3 originPosition, targetPosition;
         private AnimationHandler animHandler;
@@ -106,8 +106,8 @@ namespace BattleSystem
             TimeManager._slowTime = false;
             TimeManager._slowTimeCrit = false;
 
-            var coroutine = StartCoroutine(StatusEffectManager.TriggerOnTargetsOfUnit
-                (unitBase, RateOfInfliction.AfterAttacked, 0.25f, false));
+            var coroutine = StartCoroutine(InflictStatus.OnTargetsOf
+                (unitBase, RateOfInfliction.AfterAttacked, 0.5f, false));
             
             yield return coroutine;
         }

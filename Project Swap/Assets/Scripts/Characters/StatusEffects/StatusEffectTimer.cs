@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 namespace Characters.StatusEffects
 {
@@ -34,14 +35,20 @@ namespace Characters.StatusEffects
 
         private void RemoveTimerAndEffect(UnitBase target) {
             if (target != targetUnit) return;
+            
+            if (!target.Unit.statusEffects.Contains(statusEffect)) return;
             Logger.Log($"Removing {statusEffect.name} for " + target.characterName);
-            targetUnit.RemoveStatusEffect(statusEffect);
+
+            target.Unit.statusEffects.Remove(statusEffect);
+            statusEffect.OnRemoval(target);
+            
+            //targetUnit.RemoveStatusEffect(statusEffect);
         }
 
         public void OnGameEvent(BattleEvents eventType)
         {
             if (eventType._battleEventType != BattleEventType.NewRound) return;
-            if (!targetUnit.CheckUnitStatus()) { GameEventsManager.RemoveListener(this); return; }
+            if (!targetUnit.GetStatus()) { GameEventsManager.RemoveListener(this); return; }
             DecrementTimer();
         }
     }

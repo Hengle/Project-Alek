@@ -20,7 +20,7 @@ namespace BattleSystem
     public class BattleManager : MonoBehaviour
     {
         private static BattleState state;
-        public static GlobalBattleFuncs _battleFuncs;
+        public static BattleFunctions _battleFunctions;
 
         public static List<Enemy> _enemiesForThisBattle = new List<Enemy>();
         public static List<PartyMember> _membersForThisBattle = new List<PartyMember>();
@@ -52,7 +52,7 @@ namespace BattleSystem
         private void Start()
         {
             generator = GetComponent<BattleGenerator>();
-            _battleFuncs = GetComponent<GlobalBattleFuncs>();
+            _battleFunctions = GetComponent<BattleFunctions>();
 
             ResetStaticVariables();
             StartCoroutine(SetupBattle());
@@ -86,11 +86,11 @@ namespace BattleSystem
             while (!SortingCalculator._isFinished) yield return null;
             
             foreach (var character in from character in _membersAndEnemies
-                let checkMemberStatus = character.CheckUnitStatus() where checkMemberStatus select character)
+                let checkMemberStatus = character.GetStatus() where checkMemberStatus select character)
             {
                 if (PartyOrEnemyTeamIsDead) break;
                 
-                var inflictStatusEffects = StartCoroutine(StatusEffectManager.TriggerOnThisUnit
+                var inflictStatusEffects = StartCoroutine(InflictStatus.OnThisUnit
                     (character, RateOfInfliction.EveryTurn, 1,true));
                 
                 yield return inflictStatusEffects;
@@ -99,7 +99,7 @@ namespace BattleSystem
                 
                 var round = StartCoroutine(character.id == Type.PartyMember?
                     ThisPlayerTurn((PartyMember) character) : ThisEnemyTurn((Enemy) character));
-                
+
                 yield return round;
             }
 
@@ -130,7 +130,7 @@ namespace BattleSystem
             character.inventoryDisplay.SetActive(true);
 
             state = BattleState.PartyTurn;
-            character.ResetCommandsAndAP();
+            character.ResetAP();
             
             main_menu:
             CharacterEvents.Trigger(CEventType.CharacterTurn, character);
@@ -166,31 +166,35 @@ namespace BattleSystem
             
             character.CurrentAP -= character.Unit.actionCost;
 
-            var inflictStatusEffectsBefore = StartCoroutine(StatusEffectManager.TriggerOnThisUnit
+            var inflictStatusEffectsBefore = StartCoroutine(InflictStatus.OnThisUnit
                 (character, RateOfInfliction.BeforeEveryAction, 1,true));
             
             yield return inflictStatusEffectsBefore;
 
             if (!_shouldGiveCommand) _shouldGiveCommand = true;
-            else {
+            
+            else 
+            {
                 CharacterEvents.Trigger(CEventType.CharacterAttacking, character);
-                yield return new WaitForSeconds(0.5f);
                 character.GiveCommand();
             }
+            
             while (_performingAction) yield return null;
             
-            var inflictStatusEffectsAfter = StartCoroutine(StatusEffectManager.TriggerOnThisUnit
+            var inflictStatusEffectsAfter = StartCoroutine(InflictStatus.OnThisUnit
                 (character, RateOfInfliction.AfterEveryAction, 1,true));
             
             yield return inflictStatusEffectsAfter;
 
-            if (PartyOrEnemyTeamIsDead || character.IsDead) {
+            if (PartyOrEnemyTeamIsDead || character.IsDead)
+            {
                 CharacterEvents.Trigger(CEventType.EndOfTurn, character);
                 character.inventoryDisplay.SetActive(false);
                 yield break;
             }
             
             if (character.CurrentAP > 0) goto main_menu;
+            
             CharacterEvents.Trigger(CEventType.EndOfTurn, character);
             character.inventoryDisplay.SetActive(false);
         }
@@ -198,7 +202,7 @@ namespace BattleSystem
         private IEnumerator ThisEnemyTurn(Enemy enemy)
         {
             state = BattleState.EnemyTurn;
-            enemy.ResetCommandsAndAP();
+            enemy.ResetAP();
 
             while (enemy.CurrentAP > 0)
             {
@@ -209,7 +213,7 @@ namespace BattleSystem
 
                 enemy.CurrentAP -= enemy.Unit.actionCost;
                 
-                var inflictStatusEffectsBefore = StartCoroutine(StatusEffectManager.TriggerOnThisUnit
+                var inflictStatusEffectsBefore = StartCoroutine(InflictStatus.OnThisUnit
                     (enemy, RateOfInfliction.BeforeEveryAction, 1,true));
                 
                 yield return inflictStatusEffectsBefore;
@@ -218,7 +222,7 @@ namespace BattleSystem
                 else enemy.GiveCommand();
                 while (_performingAction) yield return null;
                 
-                var inflictStatusEffectsAfter = StartCoroutine(StatusEffectManager.TriggerOnThisUnit
+                var inflictStatusEffectsAfter = StartCoroutine(InflictStatus.OnThisUnit
                     (enemy, RateOfInfliction.AfterEveryAction, 1,true));
                 
                 yield return inflictStatusEffectsAfter;

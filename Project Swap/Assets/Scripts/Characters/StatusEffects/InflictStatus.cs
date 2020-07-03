@@ -4,11 +4,20 @@ using UnityEngine;
 
 namespace Characters.StatusEffects
 {
-    public class StatusEffectManager : MonoBehaviour
+    public class InflictStatus : MonoBehaviour
     {
 
         // Update so that if there are multiple BeforeEveryAction effects, it will break after the first one triggers
-        public static IEnumerator TriggerOnThisUnit(UnitBase unitBase, RateOfInfliction rate, float delay, bool delayAfterInfliction)
+        
+        /// <summary>
+        /// Inflict a status effect on this unit
+        /// </summary>
+        /// <param name="unitBase"></param>
+        /// <param name="rate"></param>
+        /// <param name="delay"></param>
+        /// <param name="delayAfterInfliction"></param>
+        /// <returns></returns>
+        public static IEnumerator OnThisUnit(UnitBase unitBase, RateOfInfliction rate, float delay, bool delayAfterInfliction)
         {
             foreach (var statusEffect in from statusEffect in unitBase.Unit.statusEffects
                 where statusEffect.rateOfInfliction.Contains(rate)
@@ -23,7 +32,16 @@ namespace Characters.StatusEffects
             }
         }
 
-        public static IEnumerator TriggerOnTargetsOfUnit(UnitBase attacker, RateOfInfliction rate, float delay, bool delayAfterInfliction)
+        
+        /// <summary>
+        /// Inflict a status effect on the targets of a unit
+        /// </summary>
+        /// <param name="attacker"></param>
+        /// <param name="rate"></param>
+        /// <param name="delay"></param>
+        /// <param name="delayAfterInfliction"></param>
+        /// <returns></returns>
+        public static IEnumerator OnTargetsOf(UnitBase attacker, RateOfInfliction rate, float delay, bool delayAfterInfliction)
         {
             if (attacker.Unit.isAbility && attacker.Unit.currentAbility.isMultiTarget)
             {
