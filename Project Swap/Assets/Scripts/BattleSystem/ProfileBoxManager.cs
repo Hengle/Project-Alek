@@ -1,6 +1,4 @@
-﻿using System;
-using BattleSystem.Generator;
-using Characters;
+﻿using Characters;
 using DG.Tweening;
 using Input;
 using TMPro;
@@ -19,28 +17,26 @@ namespace BattleSystem
         public UnitBase unitBase;
         private bool isOpen;
 
-        //[SerializeField] private BattleGeneratorDatabase battleGeneratorDatabase;
-
-        private void Start() 
-        {
+        private void Start() {
             DOTween.Init();
-            //profileBox = transform.Find("Profile Box");
-            spriteImage = profileBox.Find("Sprite").GetComponent<Image>();
-            description = profileBox.Find("Description").GetChild(0).GetComponent<TextMeshProUGUI>();
-            stats = profileBox.Find("Stats").GetChild(0).GetComponent<TextMeshProUGUI>();
-            background = profileBox.Find("Background").GetComponent<Image>();
             isOpen = false;
-            GameEventsManager.AddListener(this);
         }
         
         public void SetupProfileBox(UnitBase character)
         {
+            spriteImage = profileBox.Find("Sprite").GetComponent<Image>();
+            description = profileBox.Find("Description").GetChild(0).GetComponent<TextMeshProUGUI>();
+            stats = profileBox.Find("Stats").GetChild(0).GetComponent<TextMeshProUGUI>();
+            background = profileBox.Find("Background").GetComponent<Image>();
+
             unitBase = character;
+            description.text = character.description;
+            spriteImage.sprite = character.Unit.gameObject.GetComponent<SpriteRenderer>().sprite;
+            description.text = character.description;
+            background.color = character.profileBoxColor;
             
-            Logger.Log(character.characterName);
-            // spriteImage.sprite = character.Unit.gameObject.GetComponent<SpriteRenderer>().sprite;
-            // description.text = character.description;
-            // background.color = character.profileBoxColor;
+            profileBox.gameObject.SetActive(false);
+            GameEventsManager.AddListener(this);
         }
 
         private void ShowProfileBox()

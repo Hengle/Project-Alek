@@ -173,8 +173,7 @@ namespace BattleSystem
             yield return inflictStatusEffectsBefore;
 
             if (!_shouldGiveCommand) _shouldGiveCommand = true;
-            else
-            {
+            else {
                 CharacterEvents.Trigger(CEventType.CharacterAttacking, character);
                 yield return new WaitForSeconds(0.5f);
                 character.GiveCommand();

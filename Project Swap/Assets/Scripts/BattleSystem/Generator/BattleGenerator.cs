@@ -101,15 +101,18 @@ namespace BattleSystem.Generator
 
         private void SetupProfileBox(UnitBase character)
         {
-            var parent = GameObject.Find("Profiles").transform;
+            var parent = GameObject.FindGameObjectWithTag("Canvas").transform.Find("Profiles");
 
-            var profileBox = Instantiate(battleGeneratorDatabase.profileBox, parent, true);
+            var profileBox = Instantiate(battleGeneratorDatabase.profileBox, parent, false);
             profileBox.name = $"{character.characterName} profile";
             
-            var manager = profileBox.GetComponent<ProfileBoxManager>();
-            manager.spriteImage.sprite = character.characterPrefab.GetComponent<SpriteRenderer>().sprite;
-            manager.description.text = character.description;
-            manager.background.color = character.profileBoxColor;
+            profileBox.gameObject.GetComponent<ProfileBoxManager>().SetupProfileBox(character);
+            //var manager = profileBox.gameObject.GetComponent<ProfileBoxManager>();
+            //Logger.Log(character.characterPrefab.gameObject.GetComponent<SpriteRenderer>().sprite.name);
+            
+            // manager.spriteImage.sprite = character.characterPrefab.GetComponent<SpriteRenderer>().sprite;
+            // manager.description.text = character.description;
+            // manager.background.color = character.profileBoxColor;
         }
 
         #endregion
