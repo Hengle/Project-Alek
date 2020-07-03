@@ -30,6 +30,7 @@ namespace BattleSystem
             background = profileBox.Find("Background").GetComponent<Image>();
 
             unitBase = character;
+            profileBox.name = $"{character.characterName} profile";
             description.text = character.description;
             spriteImage.sprite = character.Unit.gameObject.GetComponent<SpriteRenderer>().sprite;
             description.text = character.description;

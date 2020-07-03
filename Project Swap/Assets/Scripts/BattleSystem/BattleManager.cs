@@ -125,8 +125,7 @@ namespace BattleSystem
         {
             BattleInputManager._inventoryInputManager.TargetInventoryContainer = character.inventoryDisplay.GetComponent<CanvasGroup>();
             BattleInputManager._inventoryInputManager.TargetInventoryDisplay = character.inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
-            // UIEvents.Trigger(UIEventType.UpdateInventoryDisplay, character);
-            
+
             yield return new WaitForSeconds(0.5f);
             character.inventoryDisplay.SetActive(true);
 

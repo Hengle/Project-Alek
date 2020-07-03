@@ -7,10 +7,6 @@ using Characters.StatusEffects;
 using MoreMountains.InventoryEngine;
 using Input;
 
-/*
- * Note that this could be changed later to inherit from a base Script Object that has the functions to call.
- * This way I can make new script objects for different battle generators based on the area you are in or boss battles
- */
 namespace BattleSystem.Generator
 {
     public class BattleGenerator : MonoBehaviour
@@ -102,17 +98,8 @@ namespace BattleSystem.Generator
         private void SetupProfileBox(UnitBase character)
         {
             var parent = GameObject.FindGameObjectWithTag("Canvas").transform.Find("Profiles");
-
             var profileBox = Instantiate(battleGeneratorDatabase.profileBox, parent, false);
-            profileBox.name = $"{character.characterName} profile";
-            
             profileBox.gameObject.GetComponent<ProfileBoxManager>().SetupProfileBox(character);
-            //var manager = profileBox.gameObject.GetComponent<ProfileBoxManager>();
-            //Logger.Log(character.characterPrefab.gameObject.GetComponent<SpriteRenderer>().sprite.name);
-            
-            // manager.spriteImage.sprite = character.characterPrefab.GetComponent<SpriteRenderer>().sprite;
-            // manager.description.text = character.description;
-            // manager.background.color = character.profileBoxColor;
         }
 
         #endregion
