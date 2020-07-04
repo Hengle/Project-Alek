@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -23,7 +24,7 @@ MonoBehaviour:
   CanMoveObject: 1
   CanSwapObject: 1
   Icon: {fileID: 21300004, guid: a1fbd1aaf76d0b94e88551b7c406ee2c, type: 3}
-  Prefab: {fileID: 173960, guid: 34ef20a1c78365e4d90691ae5ce029a8, type: 2}
+  Prefab: {fileID: 173960, guid: 34ef20a1c78365e4d90691ae5ce029a8, type: 3}
   SpawnShape: 1
   PrefabDropMinDistance: {x: 2, y: 2, z: 0}
   PrefabDropMaxDistance: {x: 3, y: 3, z: 0}

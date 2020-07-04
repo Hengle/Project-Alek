@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &983391219221851450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8802428038469587639}
+  - component: {fileID: 5316050715988516554}
+  m_Layer: 0
+  m_Name: Main Inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8802428038469587639
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983391219221851450}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 183.37527, y: 239.28128, z: -0.00008392334}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5316050715988516554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983391219221851450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 286d1c3722a3a0749afb21ea8728d132, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DrawContentInInspector: 1
+  Content:
+  - {fileID: 11400000, guid: c58f83dbd7ec992468a567ad0968326e, type: 2}
+  - {fileID: 11400000, guid: 73d7843da02c41646b5d0e016d55d908, type: 2}
+  - {fileID: 11400000, guid: 2c6c3c9fc82f7484ab8b3ee19e0a0cad, type: 2}
+  - {fileID: 11400000, guid: 40876a02f1980694e94d7190565ee90c, type: 2}
+  - {fileID: 11400000, guid: 40876a02f1980694e94d7190565ee90c, type: 2}
+  - {fileID: 11400000, guid: 40876a02f1980694e94d7190565ee90c, type: 2}
+  - {fileID: 11400000, guid: 2c96dc824a5c07d499919dd781334700, type: 2}
+  - {fileID: 11400000, guid: ec069cf5eefe2b542948c9199f54518c, type: 2}
+  - {fileID: 11400000, guid: 73d7843da02c41646b5d0e016d55d908, type: 2}
+  - {fileID: 11400000, guid: c58f83dbd7ec992468a567ad0968326e, type: 2}
+  - {fileID: 11400000, guid: 0e9c3056cd0243f40bce0e8e2636b8ce, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  InventoryType: 0
+  TargetTransform: {fileID: 0}
+  Persistent: 1
+  ResetThisInventorySaveOnStart: 0

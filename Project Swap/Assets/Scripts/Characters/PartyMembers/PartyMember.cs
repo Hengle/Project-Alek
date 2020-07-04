@@ -12,15 +12,18 @@ namespace Characters.PartyMembers
     {
         [HideInInspector] public Animator actionPointAnim;
         [Range(0,4)] public int positionInParty;
-        public Inventory inventory;
+        public Inventory weaponInventory;
+        public Inventory armorInventory;
         [HideInInspector] public BattleOptionsPanel battleOptionsPanel;
         [HideInInspector] public GameObject battlePanel;
         [HideInInspector] public GameObject inventoryDisplay;
         private GameObject unitGO;
 
-        public int CurrentAP {
+        public int CurrentAP 
+        {
             get => Unit.currentAP;
-            set {
+            set
+            {
                 Unit.currentAP = value;
                 actionPointAnim.SetInteger(AnimationHandler.APVal, Unit.currentAP);
             }

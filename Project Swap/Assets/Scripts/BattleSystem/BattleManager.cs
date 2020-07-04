@@ -71,8 +71,7 @@ namespace BattleSystem
             StartCoroutine(SortingCalculator.SortAndCombine());
             while (!SortingCalculator._isFinished) yield return null;
 
-            foreach (var character in _membersForThisBattle) 
-                character.onDeath += RemoveFromBattle;
+            foreach (var character in _membersForThisBattle) character.onDeath += RemoveFromBattle;
             
             StartCoroutine(PerformThisRound());
         }
@@ -80,8 +79,7 @@ namespace BattleSystem
         private IEnumerator PerformThisRound()
         {
             BattleEvents.Trigger(BattleEventType.NewRound);
-
-            // could be added to new round event
+            
             StartCoroutine(SortingCalculator.SortAndCombine());
             while (!SortingCalculator._isFinished) yield return null;
             
@@ -140,7 +138,8 @@ namespace BattleSystem
             while (_choosingOption) yield return null;
             yield return new WaitForSeconds(0.5f);
                 
-            while (_choosingAbility) {
+            while (_choosingAbility) 
+            {
                 BattleInputManager._canPressBack = true;
                 if (BattleInputManager.CancelCondition) goto main_menu;
                 yield return null;

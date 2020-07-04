@@ -37,6 +37,17 @@ namespace BattleSystem
             }
         }
 
+        private void AddCommand()
+        {
+            if (thisUnitBase.Unit.status == Status.Dead) return;
+            
+            character.Unit.currentTarget = thisUnitBase;
+            character.Unit.commandActionName = className;
+            character.Unit.commandActionOption = classOption;
+            BattleManager._choosingTarget = false;
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+
         private static void AddMultiHitCommand() 
         {
             character.Unit.multiHitTargets = new List<UnitBase>();
@@ -44,12 +55,20 @@ namespace BattleSystem
             
             switch (_targetOptions)
             {
-                case 0: foreach (var enemy in BattleManager._enemiesForThisBattle) 
+                case 0: foreach (var enemy in BattleManager._enemiesForThisBattle)
+                    {
                         character.Unit.multiHitTargets.Add(enemy);
+                        enemy.Unit.onDeselect?.Invoke();
+                    }
                     break;
+                
                 case 1: foreach (var member in BattleManager._membersForThisBattle)
+                    {
                         character.Unit.multiHitTargets.Add(member);
+                        member.Unit.onDeselect?.Invoke();
+                    }
                     break;
+                
                 case 2: break;
             }
             
@@ -81,17 +100,6 @@ namespace BattleSystem
             thisUnitBase.Unit.outline.enabled = false;
             thisUnitBase.Unit.button.interactable = true;
             _isMultiTarget = false;
-        }
-
-        private void AddCommand()
-        {
-            if (thisUnitBase.Unit.status == Status.Dead) return;
-            
-            character.Unit.currentTarget = thisUnitBase;
-            character.Unit.commandActionName = className;
-            character.Unit.commandActionOption = classOption;
-            BattleManager._choosingTarget = false;
-            EventSystem.current.SetSelectedGameObject(null);
         }
 
         public void OnGameEvent(CharacterEvents eventType)

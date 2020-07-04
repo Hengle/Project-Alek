@@ -28,8 +28,7 @@ namespace Input
         private void Update()
         {
             currentlySelected = EventSystem.current.currentSelectedGameObject;
-            if (_controls.Menu.TopButton.triggered && currentlySelected) 
-                UIEvents.Trigger(UIEventType.ToggleProfileBox, currentlySelected);
+            if (_controls.Menu.TopButton.triggered && currentlySelected) UIEvents.Trigger(UIEventType.ToggleProfileBox, currentlySelected);
         }
     }
 }

@@ -88,7 +88,7 @@ namespace Characters
             }
             
             unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase, unit.currentTarget);
-            if (unit.id != Type.PartyMember || !unit.isCrit) return;
+            if (unitBase.id != Type.PartyMember || !unit.isCrit) return;
             TimeManager._slowTimeCrit = true;
         }
     }

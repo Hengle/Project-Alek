@@ -72,8 +72,7 @@ throw new ArgumentException( string.Format( "Attempting to send event of type \"
 #endif
         }
         
-        for (var i= list.Count - 1; i >= 0; i--) 
-            (list[i] as IGameEventListener<TGEvent>)?.OnGameEvent(@event);
+        for (var i= list.Count - 1; i >= 0; i--) (list[i] as IGameEventListener<TGEvent>)?.OnGameEvent(@event);
     }
     
     private static bool SubscriptionExists( Type type, IGameEventListenerBase receiver )

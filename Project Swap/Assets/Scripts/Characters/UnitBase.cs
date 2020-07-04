@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using BattleSystem;
 using BattleSystem.Calculator;
@@ -54,11 +53,11 @@ namespace Characters
         }
         
         [HideInInspector] public int maxAP = 6;
-        public Unit Unit { get; private set; }
+        public Unit Unit { get; set; }
         public List<Ability> abilities = new List<Ability>();
 
         public Action<UnitBase> onDeath;
-        public Action<int> onHpValueChanged;
+        public Action onHpValueChanged;
         public Action<StatusEffect> onStatusEffectReceived;
         public Action<StatusEffect> onStatusEffectRemoved;
 
@@ -69,7 +68,7 @@ namespace Characters
             set 
             { 
                 Unit.currentHP = value < 0 ? 0 : value;
-                onHpValueChanged?.Invoke(Unit.currentHP);
+                onHpValueChanged?.Invoke();
                 Unit.outline.color = Color;
             } 
         }
@@ -141,13 +140,13 @@ namespace Characters
             if (Unit.currentAP > 6) Unit.currentAP = 6;
         }
         
-
         public bool GetStatus()
         {
             switch (Unit.status)
             {
                 case Status.Normal: return true;
                 case Status.Dead: return false;
+                case Status.UnableToPerformAction: return false;
                 default: return true;
             }
         }
@@ -155,31 +154,6 @@ namespace Characters
         private UnitBase CheckTargetStatus(UnitBase target) {
             if (target != null) return Unit.currentTarget.Unit.status != Status.Dead? target : this;
             return this;
-        }
-
-        public void SetupUnit(GameObject unitGO)
-        {
-            unitGO.name = characterName;
-            Unit = unitGO.GetComponent<Unit>();
-            
-            Unit.id = id;
-            Unit.level = level;
-            Unit.status = Status.Normal;
-            Unit.maxHealthRef = health;
-            Unit.currentHP = health;
-            Unit.currentStrength = strength;
-            Unit.currentMagic = magic;
-            Unit.currentAccuracy = accuracy;
-            Unit.currentInitiative = initiative;
-            Unit.currentCrit = criticalChance;
-            Unit.currentDefense = defense;
-            Unit.currentResistance = resistance;
-            Unit.currentAP = maxAP;
-            Unit.outline.color = Color;
-
-            var chooseTarget = Unit.gameObject.GetComponent<ChooseTarget>();
-            chooseTarget.thisUnitBase = this;
-            chooseTarget.enabled = true;
         }
     }
 }

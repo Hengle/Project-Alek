@@ -75,24 +75,36 @@ namespace BattleSystem.Generator
             
             character.SetAbilityMenuOptions();
 
-            character.Unit.battlePanelRef = character.battlePanel;
+            character.actionPointAnim = character.battlePanel.transform.Find("AP Box").GetComponent<Animator>();
             character.battlePanel.SetActive(false);
-            
-            character.actionPointAnim = character.Unit.battlePanelRef.transform.Find("AP Box").GetComponent<Animator>();
         }
 
         private void SetupInventoryDisplay(PartyMember character, int i)
         {
-            var inventory = Instantiate(character.inventory, character.Unit.transform, true);
-            inventory.name = character.inventory.name;
+            var inventory = GameObject.Find("Main Inventory").GetComponent<Inventory>();
+            inventory.LoadSavedInventory();
+
+            var weaponInventory = Instantiate(character.weaponInventory, character.Unit.transform, true);
+            weaponInventory.name = character.weaponInventory.name;
+            
+            var armorInventory = Instantiate(character.armorInventory, character.Unit.transform, true);
+            armorInventory.name = character.armorInventory.name;
 
             character.inventoryDisplay = battleGeneratorDatabase.inventoryCanvases[i];
-            var display = character.inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
-            display.TargetInventoryName = $"{character.inventory.name}";
+            var mainDisplay = character.inventoryDisplay.transform.Find("InventoryDisplay").GetComponent<InventoryDisplay>();
+            mainDisplay.TargetInventoryName = $"{inventory.name}";
+            mainDisplay.SetupInventoryDisplay();
+
+            var weaponDisplay = character.inventoryDisplay.transform.Find("Weapon Display").GetComponent<InventoryDisplay>();
+            weaponDisplay.TargetInventoryName = $"{character.weaponInventory.name}";
+            weaponDisplay.SetupInventoryDisplay();
+
+            var armorDisplay = character.inventoryDisplay.transform.Find("Armor Display").GetComponent<InventoryDisplay>();
+            armorDisplay.TargetInventoryName = $"{character.armorInventory.name}";
+            armorDisplay.SetupInventoryDisplay();
 
             var details = character.inventoryDisplay.GetComponentInChildren<InventoryDetails>();
-            details.TargetInventoryName = $"{character.inventory.name}";
-            display.SetupInventoryDisplay();
+            details.TargetInventoryName = $"{inventory.name}";
         }
 
         private void SetupProfileBox(UnitBase character)
@@ -109,8 +121,8 @@ namespace BattleSystem.Generator
         private void SpawnThisMember(PartyMember character, int i)
         {
             var memberGo = Instantiate(character.characterPrefab, battleGeneratorDatabase.characterSpawnPoints[i+offset].transform);
-            
-            character.SetupUnit(memberGo);
+            memberGo.GetComponent<Unit>().Setup(character);
+
             SetupBattlePanel(character);
             SetupInventoryDisplay(character, i);
             SetupProfileBox(character);
@@ -125,8 +137,6 @@ namespace BattleSystem.Generator
             panel.SetActive(true);
             statusBoxController.member = character;
             statusBoxController.Initialize();
-
-            character.Unit.parent = battleGeneratorDatabase.characterSpawnPoints[i+offset];
 
             battleGeneratorDatabase.closeUpCameras[i + offset].SetActive(true);
             battleGeneratorDatabase.criticalCameras[i + offset].SetActive(true);
@@ -152,13 +162,10 @@ namespace BattleSystem.Generator
                 enemyGo.transform.localScale = clone.scale;
 
                 // Add each enemy to every party member's list of selectable objects
-                foreach (var partyMember in BattleManager._membersForThisBattle) 
-                    partyMember.battlePanel.GetComponent<MenuController>().enemySelectable.Add(enemyGo);
+                foreach (var partyMember in BattleManager._membersForThisBattle) partyMember.battlePanel.GetComponent<MenuController>().enemySelectable.Add(enemyGo);
                 
-                clone.SetupUnit(enemyGo);
+                enemyGo.GetComponent<Unit>().Setup(clone);
                 SetupProfileBox(clone);
-
-                clone.Unit.parent = battleGeneratorDatabase.enemySpawnPoints[i+enemyOffset];
 
                 var position = enemyGo.transform.position;
                 var newPosition = new Vector3(position.x, position.y + 1.5f, position.z);

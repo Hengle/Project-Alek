@@ -27,8 +27,7 @@ namespace BattleSystem
             
             StartCoroutine(unitBase.Unit.commandActionName);
         }
-
-        // Called from GetCommand with unit.commandActionName
+        
         [UsedImplicitly] private IEnumerator UniversalAction()
         {
             unitBase.Unit.isAbility = false;
@@ -37,7 +36,7 @@ namespace BattleSystem
             {
                 case 1: StartCoroutine(CloseRangeAttack());
                     yield break;
-                case 2: // Item
+                case 2: // Item. May not need this depending on how the inventory system integration goes
                     yield break;
                 case 3: // Flee
                     yield break;
@@ -52,13 +51,13 @@ namespace BattleSystem
             switch (unit.currentAbility.abilityType)
             {
                 case AbilityType.Physical: StartCoroutine(CloseRangeAttack());
-                    yield break;;
+                    yield break;
                 case AbilityType.Ranged: StartCoroutine(RangedAttack());
-                    yield break;;
+                    yield break;
                 case AbilityType.NonAttack: Logger.Log("Non-Attack: " + unit.currentAbility.name);
-                    yield break;;
+                    yield break;
                 default: Logger.Log("This message should not be displaying...");
-                    yield break;;
+                    yield break;
             }
         }
 
@@ -114,14 +113,15 @@ namespace BattleSystem
 
         private IEnumerator MoveToTargetPosition()
         {
-            originPosition = unit.parent.transform.position;
-            var position = currentTarget.Unit.transform.position;
+            var parent = unit.transform.parent.transform;
+            originPosition = parent.position;
             
+            var position = currentTarget.Unit.transform.position;
+
             targetPosition = unitBase.id == Type.PartyMember ? 
                 new Vector3(position.x, originPosition.y, position.z - 2) :
                 new Vector3(position.x, position.y, position.z + 2);
 
-            var parent = unit.parent.transform;
             while (parent.position != targetPosition)
             {
                 parent.position = Vector3.MoveTowards
@@ -137,7 +137,7 @@ namespace BattleSystem
         {
             CriticalCamController._disableCam(unitBase);
             
-            var parent = unit.parent.transform;
+            var parent = unit.transform.parent.transform;
             while (parent.position != originPosition)
             {
                 parent.position = Vector3.MoveTowards

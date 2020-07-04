@@ -21,12 +21,14 @@ namespace Characters.PartyMembers
             cvCamera.enabled = false;
         }
 
-        private void DisableCam(UnitBase unitBase) {
+        private void DisableCam(UnitBase unitBase)
+        {
             if (unitBase.Unit != unit) return;
             cvCamera.enabled = false;
         }
 
-        private void OnCritical(UnitBase unitBase) {
+        private void OnCritical(UnitBase unitBase)
+        {
             if (unitBase.Unit != unit) return;
             cvCamera.enabled = true;
         }

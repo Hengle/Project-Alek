@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Apple
   m_EditorClassIdentifier: 
   ItemID: Apple
-  TargetInventoryName: RogueMainInventory
+  TargetInventoryName: Main Inventory
   Usable: 1
   Equippable: 0
-  Quantity: 1
+  Quantity: 0
   ItemName: Apple
   ShortDescription: 'An apple a day keeps the doctor at bay
 
@@ -31,7 +31,7 @@ MonoBehaviour:
   PrefabDropMinDistance: {x: 2, y: 2, z: 0}
   PrefabDropMaxDistance: {x: 3, y: 3, z: 0}
   MaximumStack: 5
-  ItemClass: 3
+  ItemClass: 4
   TargetEquipmentInventoryName: 
   EquippedSound: {fileID: 0}
   UsedSound: {fileID: 8300000, guid: d6654b23983ce73439bcc32434698d3c, type: 3}

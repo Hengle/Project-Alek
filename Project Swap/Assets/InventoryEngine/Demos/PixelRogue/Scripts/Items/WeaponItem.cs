@@ -7,13 +7,10 @@ namespace MoreMountains.InventoryEngine
 {	
 	[CreateAssetMenu(fileName = "WeaponItem", menuName = "MoreMountains/InventoryEngine/WeaponItem", order = 2)]
 	[Serializable]
-	/// <summary>
-	/// Demo class for a weapon item
-	/// </summary>
 	public class WeaponItem : InventoryItem 
 	{
 		[Header("Weapon")]
-		/// the sprite to use to show the weapon when equipped
+		// the sprite to use to show the weapon when equipped
 		public Sprite WeaponSprite;
 
 		/// <summary>
@@ -22,7 +19,8 @@ namespace MoreMountains.InventoryEngine
 		public override bool Equip()
 		{
 			base.Equip();
-			InventoryDemoGameManager.Instance.Player.SetWeapon(WeaponSprite,this);
+			Debug.Log("Weapon is equipped");
+			//InventoryDemoGameManager.Instance.Player.SetWeapon(WeaponSprite,this);
             return true;
 		}
 
@@ -32,7 +30,8 @@ namespace MoreMountains.InventoryEngine
 		public override bool UnEquip()
 		{
 			base.UnEquip();
-			InventoryDemoGameManager.Instance.Player.SetWeapon(null,this);
+			Debug.Log("Weapon is unequipped");
+			//InventoryDemoGameManager.Instance.Player.SetWeapon(null,this);
             return true;
         }
 		

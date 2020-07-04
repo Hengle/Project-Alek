@@ -38,5 +38,10 @@ MonoBehaviour:
   positionInParty: 3
   inventory: {fileID: 2363339618168879057, guid: b9fc7790b4fba5a40ae3950891c84bcc,
     type: 3}
+  weaponInventory: {fileID: 2363339618168879057, guid: 3b3a696505e47b2409e90ac00429c493,
+    type: 3}
+  armorInventory: {fileID: 2363339618168879057, guid: fe5e8dd8d6dd25641a5f62d19d40ecd8,
+    type: 3}
   battleOptionsPanel: {fileID: 0}
   battlePanel: {fileID: 0}
+  inventoryDisplay: {fileID: 0}

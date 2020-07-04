@@ -25,7 +25,8 @@ namespace Characters.PartyMembers
             member.onHpValueChanged += OnHpValueChanged;
         }
 
-        private void OnHpValueChanged(int amount) {
+        private void OnHpValueChanged() 
+        {
             fillRectImage.color = member.Color;
             slider.value = member.Unit.currentHP;
             healthUGUI.text = $"HP: {member.Unit.currentHP}";

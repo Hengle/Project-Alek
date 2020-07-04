@@ -515,7 +515,7 @@ namespace MoreMountains.InventoryEngine
         /// <param name="slot">Slot.</param>
         public virtual void EquipItem(InventoryItem item, int index, InventorySlot slot = null)
         {
-            if (InventoryType == Inventory.InventoryTypes.Main)
+            if (InventoryType == InventoryTypes.Main)
             {
                 InventoryItem oldItem = null;
                 if (InventoryItem.IsNull(item))

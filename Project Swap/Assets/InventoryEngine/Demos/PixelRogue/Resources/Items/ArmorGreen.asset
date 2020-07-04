@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -12,7 +13,7 @@ MonoBehaviour:
   m_Name: ArmorGreen
   m_EditorClassIdentifier: 
   ItemID: ArmorGreen
-  TargetInventoryName: RogueMainInventory
+  TargetInventoryName: Main Inventory
   Usable: 0
   Equippable: 1
   Quantity: 1
@@ -24,7 +25,7 @@ MonoBehaviour:
   CanMoveObject: 1
   CanSwapObject: 1
   Icon: {fileID: 21300012, guid: a1fbd1aaf76d0b94e88551b7c406ee2c, type: 3}
-  Prefab: {fileID: 185068, guid: 75ead9d9c4f35e348b491055d205f968, type: 2}
+  Prefab: {fileID: 185068, guid: 75ead9d9c4f35e348b491055d205f968, type: 3}
   SpawnShape: 1
   PrefabDropMinDistance: {x: 2, y: 2, z: 0}
   PrefabDropMaxDistance: {x: 3, y: 3, z: 0}
