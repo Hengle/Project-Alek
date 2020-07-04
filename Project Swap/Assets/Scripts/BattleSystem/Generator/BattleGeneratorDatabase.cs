@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Characters;
 using Characters.PartyMembers;
+using MoreMountains.InventoryEngine;
 using UnityEngine;
 
 namespace BattleSystem.Generator
@@ -9,6 +10,7 @@ namespace BattleSystem.Generator
     // Consider making this a scriptable object
     public class BattleGeneratorDatabase : MonoBehaviour
     {
+        public List<InventoryItem> inventoryItems = new List<InventoryItem>();
         public List<GameObject> inventoryCanvases = new List<GameObject>();
         public List<GameObject> closeUpCameras = new List<GameObject>();
         public List<GameObject> criticalCameras = new List<GameObject>();

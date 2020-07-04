@@ -6,6 +6,7 @@ using Characters.PartyMembers;
 using Characters.StatusEffects;
 using MoreMountains.InventoryEngine;
 using Input;
+using MoreMountains.Tools;
 
 namespace BattleSystem.Generator
 {
@@ -23,9 +24,18 @@ namespace BattleSystem.Generator
             offset = PartyManager._instance.partyMembers.Count == 2? 1 : 0;
             enemyOffset = battleGeneratorDatabase.enemies.Count == 2? 1 : 0;
             
+            var inventory = GameObject.Find("Main Inventory").GetComponent<Inventory>();
+            foreach (var item in battleGeneratorDatabase.inventoryItems)
+            {
+                inventory.AddItem(item, 1);
+            }
+            inventory.SaveInventory();
+
             SetupParty();
             SpawnEnemyTeam();
             SetupPartyMenuController();
+            
+            //MMGameEvent.Trigger("Load");
             return false;
         }
 
@@ -82,7 +92,7 @@ namespace BattleSystem.Generator
         private void SetupInventoryDisplay(PartyMember character, int i)
         {
             var inventory = GameObject.Find("Main Inventory").GetComponent<Inventory>();
-            inventory.LoadSavedInventory();
+            //inventory.AddItem(battleGeneratorDatabase.inventoryItems[i], 1);
 
             var weaponInventory = Instantiate(character.weaponInventory, character.Unit.transform, true);
             weaponInventory.name = character.weaponInventory.name;
@@ -94,14 +104,17 @@ namespace BattleSystem.Generator
             var mainDisplay = character.inventoryDisplay.transform.Find("InventoryDisplay").GetComponent<InventoryDisplay>();
             mainDisplay.TargetInventoryName = $"{inventory.name}";
             mainDisplay.SetupInventoryDisplay();
+            //mainDisplay.RedrawInventoryDisplay();
 
             var weaponDisplay = character.inventoryDisplay.transform.Find("Weapon Display").GetComponent<InventoryDisplay>();
             weaponDisplay.TargetInventoryName = $"{character.weaponInventory.name}";
             weaponDisplay.SetupInventoryDisplay();
+            //weaponDisplay.RedrawInventoryDisplay();
 
             var armorDisplay = character.inventoryDisplay.transform.Find("Armor Display").GetComponent<InventoryDisplay>();
             armorDisplay.TargetInventoryName = $"{character.armorInventory.name}";
             armorDisplay.SetupInventoryDisplay();
+            //armorDisplay.RedrawInventoryDisplay();
 
             var details = character.inventoryDisplay.GetComponentInChildren<InventoryDetails>();
             details.TargetInventoryName = $"{inventory.name}";

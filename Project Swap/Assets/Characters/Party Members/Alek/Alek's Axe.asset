@@ -20,8 +20,8 @@ MonoBehaviour:
   ItemName: Alek's Axe
   ShortDescription: An axe given to Alek by his father
   Description: A myserious Axe gieven to Alek by his father.
-  CanMoveObject: 0
-  CanSwapObject: 0
+  CanMoveObject: 1
+  CanSwapObject: 1
   Icon: {fileID: 21300016, guid: a1fbd1aaf76d0b94e88551b7c406ee2c, type: 3}
   Prefab: {fileID: 0}
   SpawnShape: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Coin
   m_EditorClassIdentifier: 
   ItemID: Coin
-  TargetInventoryName: RogueMainInventory
+  TargetInventoryName: Main Inventory
   Usable: 0
   Equippable: 0
   Quantity: 1

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4829572fcd2f98479c803ffaf809268, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  ItemID: 
-  TargetInventoryName: Leandra Valentina Weapon Inventory
+  ItemID: Sword
+  TargetInventoryName: Main Inventory
   Usable: 0
   Equippable: 1
   Quantity: 0
