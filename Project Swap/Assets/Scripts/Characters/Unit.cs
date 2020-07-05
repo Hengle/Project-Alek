@@ -90,15 +90,27 @@ namespace Characters
             name = unitBase.characterName;
             level = unitBase.level;
             status = Status.Normal;
-            maxHealthRef = unitBase.health;
-            currentHP = unitBase.health;
-            currentStrength = unitBase.strength;
-            currentMagic = unitBase.magic;
-            currentAccuracy = unitBase.accuracy;
-            currentInitiative = unitBase.initiative;
-            currentCrit = unitBase.criticalChance;
-            currentDefense = unitBase.defense;
-            currentResistance = unitBase.resistance;
+            maxHealthRef = (int) unitBase.health2.Value;
+            currentHP = (int) unitBase.health2.Value;
+            currentStrength = (int) unitBase.strength2.Value;
+            currentMagic = (int) unitBase.magic2.Value;
+            currentAccuracy = (int) unitBase.accuracy2.Value;
+            currentInitiative = (int) unitBase.initiative2.Value;
+            currentCrit = (int) unitBase.criticalChance2.Value;
+            currentDefense = (int) unitBase.defense2.Value;
+            currentResistance = (int) unitBase.resistance2.Value;
+            
+            // maxHealthRef = unitBase.health;
+            // currentHP = unitBase.health;
+            // currentStrength = unitBase.strength;
+            // currentMagic = unitBase.magic;
+            // currentAccuracy = unitBase.accuracy;
+            // currentInitiative = unitBase.initiative;
+            // currentCrit = unitBase.criticalChance;
+            // currentDefense = unitBase.defense;
+            // currentResistance = unitBase.resistance;
+            
+            
             currentAP = unitBase.maxAP;
             outline.color = unitBase.Color;
             

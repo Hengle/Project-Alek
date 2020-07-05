@@ -7,6 +7,8 @@ using BattleSystem.DamagePrefab;
 using Characters.Abilities;
 using Characters.Animations;
 using Characters.StatusEffects;
+using Kryz.CharacterStats;
+using MoreMountains.Tools;
 
 namespace Characters
 {
@@ -32,6 +34,32 @@ namespace Characters
         [Range(0,99)] public int resistance;
         [Range(0,99)] public int criticalChance;
         
+        public CharacterStat health2;
+        public CharacterStat strength2;
+        public CharacterStat magic2;
+        public CharacterStat accuracy2;
+        public CharacterStat initiative2;
+        public CharacterStat defense2;
+        public CharacterStat resistance2;
+        public CharacterStat criticalChance2;
+
+        [InspectorButton(nameof(update))]
+        public bool updateStats;
+        
+        
+        public void update()
+        {
+
+            health2.BaseValue = health;
+            strength2.BaseValue = strength;
+            magic2.BaseValue = magic;
+            accuracy2.BaseValue = accuracy;
+            initiative2.BaseValue = initiative;
+            defense2.BaseValue = defense;
+            resistance2.BaseValue = resistance;
+            criticalChance2.BaseValue = criticalChance;
+        }
+
         [Header("Weapon Stats")]
         [Range(1,99)] public int weaponMight;
         [Range(1,99)] public int magicMight;
@@ -78,7 +106,7 @@ namespace Characters
             set 
             {
                 Unit.currentHP = value < 0 ? 0 : value;
-                if (Unit.currentHP > health) Unit.currentHP = health;
+                if (Unit.currentHP > health2.BaseValue) Unit.currentHP = (int) health2.BaseValue;
                 onHpValueChanged?.Invoke();
                 Unit.outline.color = Color;
             } 
