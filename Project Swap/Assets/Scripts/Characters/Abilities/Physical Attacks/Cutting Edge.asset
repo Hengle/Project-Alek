@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 0
   damageType: 0
+  icon: {fileID: 21300000, guid: ceeb46d7d4e44b844beca0c537f88ca1, type: 3}
   description: It cuts them.. at an edge
   actionCost: 2
   targetOptions: 0
+  isMultiTarget: 0
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}

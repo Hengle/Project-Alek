@@ -27,5 +27,11 @@ namespace Characters
             // Will need to update to try to find an attack that does cost less
             return Unit.currentAP - Unit.actionCost >= 0;
         }
+
+        public override void Heal(float amount)
+        {
+            CurrentHP += (int) amount;
+            CurrentAP -= 1;
+        }
     }
 }

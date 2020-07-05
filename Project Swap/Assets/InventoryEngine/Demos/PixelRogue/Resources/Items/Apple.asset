@@ -38,4 +38,4 @@ MonoBehaviour:
   MovedSound: {fileID: 0}
   DroppedSound: {fileID: 0}
   UseDefaultSoundsIfNull: 1
-  HealthBonus: 5
+  HealthBonus: 200

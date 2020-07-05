@@ -19,6 +19,7 @@ namespace Characters.StatusEffects
         /// <returns></returns>
         public static IEnumerator OnThisUnit(UnitBase unitBase, RateOfInfliction rate, float delay, bool delayAfterInfliction)
         {
+            //var inhibited = false;
             foreach (var statusEffect in from statusEffect in unitBase.Unit.statusEffects
                 where statusEffect.rateOfInfliction.Contains(rate)
                 select statusEffect)
@@ -31,7 +32,6 @@ namespace Characters.StatusEffects
                 if (unitBase.Unit.status == Status.Dead) break;
             }
         }
-
         
         /// <summary>
         /// Inflict a status effect on the targets of a unit

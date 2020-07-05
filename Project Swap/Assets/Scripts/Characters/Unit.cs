@@ -31,7 +31,6 @@ namespace Characters
         [HideInInspector] public int commandActionOption;
         [HideInInspector] public int maxHealthRef;
         [HideInInspector] public int currentAP;
-        [HideInInspector] public int weaponMT = 20; // temporary, just for testing
         [HideInInspector] public int actionCost;
         [HideInInspector] public int currentDamage;
         [HideInInspector] public string commandActionName;

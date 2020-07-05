@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 0
   damageType: 0
+  icon: {fileID: 21300000, guid: df306da214fdd3d4f8a67768c21a380e, type: 3}
   description: Attack twice at 75% strength
   actionCost: 3
   targetOptions: 0
+  isMultiTarget: 0
   hasStatusEffect: 0
   statusEffects: []
   chanceOfInfliction: 0

@@ -5,8 +5,8 @@ using UnityEngine.UI;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
 using MoreMountains.InventoryEngine;
-using Input;
 using MoreMountains.Tools;
+using Input;
 
 namespace BattleSystem.Generator
 {

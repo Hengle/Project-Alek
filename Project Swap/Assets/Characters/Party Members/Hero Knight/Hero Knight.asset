@@ -29,14 +29,17 @@ MonoBehaviour:
   defense: 22
   resistance: 14
   criticalChance: 6
+  weaponMight: 14
+  magicMight: 6
+  weaponAccuracy: 75
+  weaponCriticalChance: 2
   profileBoxColor: {r: 1, g: 0.3066038, b: 0.3066038, a: 0.78431374}
   maxAP: 6
   abilities:
   - {fileID: 11400000, guid: 8697ec229a0734b4b9c69d6087505ba9, type: 2}
+  - {fileID: 11400000, guid: 1306999bff8e7c14892abd85b0b028c7, type: 2}
   actionPointAnim: {fileID: 0}
   positionInParty: 1
-  inventory: {fileID: 417493762244957691, guid: 8f09fb7c90b9a44478a2200f4b73b51f,
-    type: 3}
   weaponInventory: {fileID: 417493762244957691, guid: 8dd491fe5bbd13742a4a9ed04d140e08,
     type: 3}
   armorInventory: {fileID: 417493762244957691, guid: ca6cb5b0feff6be4d82fc29d76668972,

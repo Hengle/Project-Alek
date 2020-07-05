@@ -28,9 +28,12 @@ MonoBehaviour:
   defense: 13
   resistance: 7
   criticalChance: 8
+  weaponMight: 16
+  magicMight: 7
+  weaponAccuracy: 85
+  weaponCriticalChance: 5
   profileBoxColor: {r: 0, g: 0.5377358, b: 0.074825116, a: 0.78431374}
   maxAP: 6
-  unit: {fileID: 0}
   abilities:
   - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}
   - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}

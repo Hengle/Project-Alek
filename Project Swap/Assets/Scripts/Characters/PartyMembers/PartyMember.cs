@@ -12,11 +12,8 @@ namespace Characters.PartyMembers
     {
         [HideInInspector] public Animator actionPointAnim;
         [Range(0,4)] public int positionInParty;
-        public int weaponMight;
-        public int magicMight;
-        public int weaponAccuracy;
-        public int weaponCriticalChance;
-        
+
+        [Header("Inventories")]
         public Inventory weaponInventory;
         public Inventory armorInventory;
         [HideInInspector] public BattleOptionsPanel battleOptionsPanel;
@@ -33,6 +30,12 @@ namespace Characters.PartyMembers
                 actionPointAnim.SetInteger(AnimationHandler.APVal, Unit.currentAP);
             }
         }
+
+        public override void Heal(float amount)
+        {
+            CurrentHP += (int) amount;
+            CurrentAP -= 1;
+        }
         
         public bool SetAI() => true;
 
@@ -47,17 +50,21 @@ namespace Characters.PartyMembers
             {
                 var optionButton = abilityMenu.GetChild(buttonIndex).gameObject;
                 optionButton.GetComponentInChildren<TextMeshPro>().text = abilities[abilityListIndex].name;
+                
                 optionButton.transform.Find("Icon").GetComponent<Image>().sprite = abilities[abilityListIndex].icon;
                 optionButton.SetActive(true);
                 
                 var param = abilities[abilityListIndex].GetParameters(abilityListIndex);
-                optionButton.GetComponent<Button>().onClick.AddListener(delegate { battleOptionsPanel.GetCommandInformation(param); });
+                
+                optionButton.GetComponent<Button>().onClick.
+                    AddListener(delegate { battleOptionsPanel.GetCommandInformation(param); });
 
-                if (abilities[abilityListIndex].isMultiTarget)
-                    optionButton.GetComponent<Button>().onClick.AddListener(delegate { ChooseTarget._isMultiTarget = true; });
+                if (abilities[abilityListIndex].isMultiTarget) optionButton.GetComponent<Button>().onClick.
+                    AddListener(delegate { ChooseTarget._isMultiTarget = true; });
                     
                 optionButton.GetComponent<InfoBoxScript>().information = 
-                    $"{abilities[abilityListIndex].description} ({abilities[abilityListIndex].actionCost} AP)";
+                    $"{abilities[abilityListIndex].description} ( {abilities[abilityListIndex].actionCost} AP )";
+                
                 abilityListIndex++;
 
                 if (buttonIndex != abilities.Count - 1) continue;

@@ -17,27 +17,31 @@ namespace BattleSystem.Calculator
 
             float dealerDamage = 0;
             var targetDefense = 0;
-            
+
             if (damageDealer.Unit.isAbility)
             {
                 switch (damageDealer.Unit.currentAbility.damageType)
                 {
-                    case DamageType.Str:
-                        dealerDamage = damageDealer.Unit.currentStrength * damageDealer.Unit.weaponMT * damageDealer.Unit.currentAbility.damageMultiplier;
+                    case DamageType.Str: //Logger.Log("On Str Switch");
+                        dealerDamage = damageDealer.Unit.currentStrength * damageDealer.weaponMight * damageDealer.Unit.currentAbility.damageMultiplier;
                         targetDefense = target.Unit.currentDefense * (target.Unit.level / 2);
                         break;
                     
-                    case DamageType.Mag: 
-                        dealerDamage = damageDealer.Unit.currentMagic * damageDealer.Unit.weaponMT * damageDealer.Unit.currentAbility.damageMultiplier;
+                    case DamageType.Mag: //Logger.Log("On Mag Switch");
+                        dealerDamage = damageDealer.Unit.currentMagic * damageDealer.magicMight * damageDealer.Unit.currentAbility.damageMultiplier;
                         targetDefense = target.Unit.currentResistance * (target.Unit.level / 2);
                         break;
                 }
             }
 
-            else {
-                dealerDamage = damageDealer.Unit.currentStrength * damageDealer.Unit.weaponMT;
+            else
+            {
+                //Logger.Log("Not an ability??");
+                dealerDamage = damageDealer.Unit.currentStrength * damageDealer.weaponMight;
                 targetDefense = target.Unit.currentDefense * (target.Unit.level / 2);
             }
+            
+            //Logger.Log($"{dealerDamage} - {targetDefense}");
 
             var totalDamage = (int) dealerDamage - targetDefense;
 
@@ -63,7 +67,7 @@ namespace BattleSystem.Calculator
         {
             target.Unit.attackerHasMissed = false;
             var hitChance = 
-                (float) (damageDealer.Unit.currentAccuracy + WeaponAccPlaceholder - target.Unit.currentInitiative) / 100;
+                (float) (damageDealer.Unit.currentAccuracy + damageDealer.weaponAccuracy - target.Unit.currentInitiative) / 100;
             var randomValue = Random.value;
             
             return randomValue <= hitChance;

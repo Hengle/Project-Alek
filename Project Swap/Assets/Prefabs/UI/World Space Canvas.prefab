@@ -2433,7 +2433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66b757baabd24e75a5c36d66dd3ff44e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  information: A basic attack (2 AP)
+  information: A basic attack ( 2 AP )
   infoText: {fileID: 0}
 --- !u!1 &4792203347304205827
 GameObject:

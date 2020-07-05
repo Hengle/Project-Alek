@@ -20,6 +20,8 @@ namespace Characters
         public Type id;
         public string characterName;
         [TextArea(5,15)] public string  description;
+        
+        [Header("Stats")]
         [Range(0,99)] public int level;
         [Range(0,99999)] public int health;
         [Range(0,99)] public int strength;
@@ -29,6 +31,12 @@ namespace Characters
         [Range(0,99)] public int defense;
         [Range(0,99)] public int resistance;
         [Range(0,99)] public int criticalChance;
+        
+        [Header("Weapon Stats")]
+        [Range(1,99)] public int weaponMight;
+        [Range(1,99)] public int magicMight;
+        [Range(1,99)] public int weaponAccuracy;
+        [Range(1,99)] public int weaponCriticalChance;
 
         public Color profileBoxColor;
         private readonly Color normalHealthColor = Color.green;
@@ -54,6 +62,7 @@ namespace Characters
         
         [HideInInspector] public int maxAP = 6;
         public Unit Unit { get; set; }
+        [Header("Abilities")]
         public List<Ability> abilities = new List<Ability>();
 
         public Action<UnitBase> onDeath;
@@ -62,17 +71,21 @@ namespace Characters
         public Action<StatusEffect> onStatusEffectRemoved;
 
         public bool IsDead => Unit.status == Status.Dead;
-        
-        private int CurrentHP 
+
+        protected int CurrentHP
         {
+            get => Unit.currentHP;
             set 
-            { 
+            {
                 Unit.currentHP = value < 0 ? 0 : value;
+                if (Unit.currentHP > health) Unit.currentHP = health;
                 onHpValueChanged?.Invoke();
                 Unit.outline.color = Color;
             } 
         }
 
+        public abstract void Heal(float amount);
+     
         public void GiveCommand() {
             BattleManager._battleFunctions.GetCommand(this);
             BattleManager._performingAction = true;
