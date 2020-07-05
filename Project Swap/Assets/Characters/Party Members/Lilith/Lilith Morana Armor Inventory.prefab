@@ -50,4 +50,4 @@ MonoBehaviour:
   InventoryType: 1
   TargetTransform: {fileID: 0}
   Persistent: 0
-  ResetThisInventorySaveOnStart: 0
+  ResetThisInventorySaveOnStart: 1

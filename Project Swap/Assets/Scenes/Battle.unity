@@ -11510,7 +11510,7 @@ PrefabInstance:
     - target: {fileID: 5316050715988516554, guid: 488f42d1da17549409bf95804b7f87a2,
         type: 3}
       propertyPath: ResetThisInventorySaveOnStart
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5316050715988516554, guid: 488f42d1da17549409bf95804b7f87a2,
         type: 3}
@@ -22219,11 +22219,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryItems:
-  - {fileID: 11400000, guid: ec069cf5eefe2b542948c9199f54518c, type: 2}
+  - {fileID: 11400000, guid: 40876a02f1980694e94d7190565ee90c, type: 2}
+  - {fileID: 11400000, guid: 40876a02f1980694e94d7190565ee90c, type: 2}
   - {fileID: 11400000, guid: 40876a02f1980694e94d7190565ee90c, type: 2}
   - {fileID: 11400000, guid: c58f83dbd7ec992468a567ad0968326e, type: 2}
   - {fileID: 11400000, guid: 0e9c3056cd0243f40bce0e8e2636b8ce, type: 2}
+  - {fileID: 11400000, guid: 73d7843da02c41646b5d0e016d55d908, type: 2}
+  - {fileID: 11400000, guid: 73d7843da02c41646b5d0e016d55d908, type: 2}
+  - {fileID: 11400000, guid: 2c96dc824a5c07d499919dd781334700, type: 2}
   - {fileID: 11400000, guid: 2c6c3c9fc82f7484ab8b3ee19e0a0cad, type: 2}
+  - {fileID: 11400000, guid: ec069cf5eefe2b542948c9199f54518c, type: 2}
   inventoryCanvases:
   - {fileID: 1126393794648237}
   - {fileID: 762419384}

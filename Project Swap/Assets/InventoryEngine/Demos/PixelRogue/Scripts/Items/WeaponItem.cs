@@ -37,6 +37,7 @@ namespace MoreMountains.InventoryEngine
 		/// <summary>
 		/// What happens when the object is used 
 		/// </summary>
+		
 		public override bool Equip()
 		{
 			base.Equip();
@@ -54,6 +55,8 @@ namespace MoreMountains.InventoryEngine
 			partyMember.magicMight += magicMight;
 			partyMember.weaponAccuracy += weaponAccuracy;
 			partyMember.weaponCriticalChance += weaponCriticalChance;
+
+			partyMember.equippedWeapon = this;
 
 			var activeScene = SceneManager.GetActiveScene();
 			if (activeScene.name != "Battle") return true;
@@ -90,6 +93,8 @@ namespace MoreMountains.InventoryEngine
 			partyMember.magicMight -= magicMight;
 			partyMember.weaponAccuracy -= weaponAccuracy;
 			partyMember.weaponCriticalChance -= weaponCriticalChance;
+			
+			partyMember.equippedWeapon = null;
 			
 			var activeScene = SceneManager.GetActiveScene();
 			if (activeScene.name != "Battle") return true;

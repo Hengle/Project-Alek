@@ -25,20 +25,22 @@ namespace BattleSystem.Generator
             enemyOffset = battleGeneratorDatabase.enemies.Count == 2? 1 : 0;
             
             var inventory = GameObject.Find("Main Inventory").GetComponent<Inventory>();
+            
+            // MMGameEvent.Trigger("Load");
+            // inventory.LoadSavedInventory();
+
             foreach (var item in battleGeneratorDatabase.inventoryItems)
             {
                 inventory.AddItem(item, 1);
             }
             
+            // inventory.SaveInventory();
             // MMGameEvent.Trigger("Save");
             
-            // inventory.LoadSavedInventory();
-            // MMGameEvent.Trigger("Load");
-
             SetupParty();
             SpawnEnemyTeam();
             SetupPartyMenuController();
-            
+
             return false;
         }
 
@@ -99,9 +101,11 @@ namespace BattleSystem.Generator
 
             var weaponInventory = Instantiate(character.weaponInventory, character.Unit.transform, true);
             weaponInventory.name = character.weaponInventory.name;
-            
+            //weaponInventory.SaveInventory();
+
             var armorInventory = Instantiate(character.armorInventory, character.Unit.transform, true);
             armorInventory.name = character.armorInventory.name;
+            //armorInventory.SaveInventory();
 
             character.inventoryDisplay = battleGeneratorDatabase.inventoryCanvases[i];
             var mainDisplay = character.inventoryDisplay.transform.Find("InventoryDisplay").GetComponent<InventoryDisplay>();

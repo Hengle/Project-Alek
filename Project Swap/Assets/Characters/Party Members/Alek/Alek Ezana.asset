@@ -28,7 +28,7 @@ MonoBehaviour:
   initiative: 20
   defense: 19
   resistance: 13
-  criticalChance: 9
+  criticalChance: 6
   weaponMight: 16
   magicMight: 5
   weaponAccuracy: 85
@@ -45,6 +45,7 @@ MonoBehaviour:
     type: 3}
   armorInventory: {fileID: 5917402227159465644, guid: 73160e3893c2b7843b6db9576b98ff50,
     type: 3}
+  equippedWeapon: {fileID: 0}
   battleOptionsPanel: {fileID: 0}
   battlePanel: {fileID: 0}
   inventoryDisplay: {fileID: 0}

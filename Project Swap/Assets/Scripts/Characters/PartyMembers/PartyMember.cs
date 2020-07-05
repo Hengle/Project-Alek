@@ -16,6 +16,9 @@ namespace Characters.PartyMembers
         [Header("Inventories")]
         public Inventory weaponInventory;
         public Inventory armorInventory;
+        
+        public InventoryItem equippedWeapon;
+        
         [HideInInspector] public BattleOptionsPanel battleOptionsPanel;
         [HideInInspector] public GameObject battlePanel;
         [HideInInspector] public GameObject inventoryDisplay;
