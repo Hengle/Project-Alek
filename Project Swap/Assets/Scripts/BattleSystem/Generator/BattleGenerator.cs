@@ -29,13 +29,16 @@ namespace BattleSystem.Generator
             {
                 inventory.AddItem(item, 1);
             }
-            inventory.SaveInventory();
+            
+            // MMGameEvent.Trigger("Save");
+            
+            // inventory.LoadSavedInventory();
+            // MMGameEvent.Trigger("Load");
 
             SetupParty();
             SpawnEnemyTeam();
             SetupPartyMenuController();
             
-            //MMGameEvent.Trigger("Load");
             return false;
         }
 

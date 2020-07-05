@@ -36,3 +36,16 @@ MonoBehaviour:
   DroppedSound: {fileID: 0}
   UseDefaultSoundsIfNull: 1
   WeaponSprite: {fileID: 0}
+  weaponMight: 12
+  magicMight: 5
+  weaponAccuracy: 80
+  weaponCriticalChance: 3
+  health: 0
+  strength: 3
+  magic: 0
+  accuracy: 0
+  initiative: 2
+  defense: 5
+  resistance: 0
+  criticalChance: 0
+  partyMember: {fileID: 11400000, guid: 373387c9350c0a44fb7b0f7a1b6fa996, type: 2}

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b5332d6442b4ec2a3b3429a9c47fd83, type: 3}
   m_Name: Shock
   m_EditorClassIdentifier: 
-  icon: {fileID: 6377904230404883206, guid: 7d6682148f995b048b3f815f933cdbe6, type: 3}
+  icon: {fileID: 6377904230404883206, guid: 61b657e0f61db6e4eb4a5c7d0fbd1489, type: 3}
   effectType: 1
-  rateOfInfliction: 01000000
+  rateOfInfliction: 0100000001000000
   color: {r: 0.97311616, g: 1, b: 0, a: 0}
   duration: 2
   damagePercentage: 0.1

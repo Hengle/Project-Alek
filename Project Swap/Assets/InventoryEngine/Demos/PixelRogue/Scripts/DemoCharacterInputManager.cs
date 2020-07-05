@@ -20,23 +20,23 @@ namespace MoreMountains.InventoryEngine
 		/// <summary>
 		/// Every frame, we check for input for the inventory, the hotbars and the character
 		/// </summary>
-		protected virtual void Update ()
-		{
-			HandleDemoCharacterInput();
-		}
+		// protected virtual void Update ()
+		// {
+		// 	HandleDemoCharacterInput();
+		// }
 
 		/// <summary>
 		/// Handles the demo character movement input.
 		/// </summary>
-		protected virtual void HandleDemoCharacterInput()
-		{
-			if (_pause)
-			{
-				DemoCharacter.SetMovement(0,0);
-				return;
-			}
-			DemoCharacter.SetMovement(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"));
-		}
+		// protected virtual void HandleDemoCharacterInput()
+		// {
+		// 	if (_pause)
+		// 	{
+		// 		DemoCharacter.SetMovement(0,0);
+		// 		return;
+		// 	}
+		// 	DemoCharacter.SetMovement(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"));
+		// }
 
 		/// <summary>
 		/// Catches MMInventoryEvents to detect pauses

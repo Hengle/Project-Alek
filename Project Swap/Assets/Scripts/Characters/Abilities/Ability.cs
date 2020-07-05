@@ -12,6 +12,7 @@ namespace Characters.Abilities
     {
         public AbilityType abilityType;
         public DamageType damageType;
+        public Sprite icon;
         
         [TextArea(5,15)] public string  description = "Insert description for this ability";
         [Range(0, 6)] public int actionCost;

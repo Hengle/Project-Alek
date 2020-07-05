@@ -12,6 +12,11 @@ namespace Characters.PartyMembers
     {
         [HideInInspector] public Animator actionPointAnim;
         [Range(0,4)] public int positionInParty;
+        public int weaponMight;
+        public int magicMight;
+        public int weaponAccuracy;
+        public int weaponCriticalChance;
+        
         public Inventory weaponInventory;
         public Inventory armorInventory;
         [HideInInspector] public BattleOptionsPanel battleOptionsPanel;
@@ -42,6 +47,7 @@ namespace Characters.PartyMembers
             {
                 var optionButton = abilityMenu.GetChild(buttonIndex).gameObject;
                 optionButton.GetComponentInChildren<TextMeshPro>().text = abilities[abilityListIndex].name;
+                optionButton.transform.Find("Icon").GetComponent<Image>().sprite = abilities[abilityListIndex].icon;
                 optionButton.SetActive(true);
                 
                 var param = abilities[abilityListIndex].GetParameters(abilityListIndex);

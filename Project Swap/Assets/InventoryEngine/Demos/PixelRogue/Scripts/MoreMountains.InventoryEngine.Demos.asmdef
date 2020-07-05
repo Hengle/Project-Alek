@@ -2,7 +2,8 @@
     "name": "MoreMountains.InventoryEngine.Demos",
     "references": [
         "GUID:8a258d69670d9a54d943dd0e57ffea8a",
-        "GUID:4a1cb1490dc4df8409b2580d6b44e75e"
+        "GUID:4a1cb1490dc4df8409b2580d6b44e75e",
+        "GUID:ef7cdda01e75710479ebc9d3a99a1b03"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -14,5 +15,6 @@
         "MOREMOUNTAINS_TOOLS",
         "MOREMOUNTAINS_INVENTORYENGINE"
     ],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }

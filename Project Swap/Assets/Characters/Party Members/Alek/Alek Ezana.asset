@@ -25,7 +25,7 @@ MonoBehaviour:
   strength: 26
   magic: 14
   accuracy: 22
-  initiative: 18
+  initiative: 20
   defense: 19
   resistance: 13
   criticalChance: 9
@@ -36,8 +36,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5c5fa03193734104c98ec2f8d6543cfa, type: 2}
   actionPointAnim: {fileID: 0}
   positionInParty: 2
-  inventory: {fileID: 5917402227159465644, guid: f87c6292749bc744fadf20cb7c1027e0,
-    type: 3}
+  weaponMight: 0
+  magicMight: 0
+  weaponAccuracy: 0
+  weaponCriticalChance: 0
   weaponInventory: {fileID: 5917402227159465644, guid: 1d94ebccb9928a445b4a7e1dbacb9d53,
     type: 3}
   armorInventory: {fileID: 5917402227159465644, guid: 73160e3893c2b7843b6db9576b98ff50,
