@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f4c02d75c04da0803f9381a6c4f3a3, type: 3}
   m_Name: Checkin Stats
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 5020a01ad4c184d4b809c1a88307b482, type: 3}
   abilityType: 2
   damageType: 0
-  icon: {fileID: 21300000, guid: 5020a01ad4c184d4b809c1a88307b482, type: 3}
-  description: Insert description for this ability
-  actionCost: 1
   targetOptions: 1
   isMultiTarget: 0
+  description: Insert description for this ability
+  actionCost: 1
+  damageMultiplier: 1
+  attackState: 2
   hasStatusEffect: 0
   statusEffects: []
   chanceOfInfliction: 0
-  damageMultiplier: 1
-  attackState: 2

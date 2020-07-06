@@ -73,11 +73,11 @@ namespace Characters
         {
             get
             {
-                if (Unit.currentHP <= 0.25f * Unit.maxHealthRef) {
+                if (Unit.currentHP <= 0.25f * (int) health2.BaseValue) {
                     Unit.outline.color = lowHealthColor;
                     return lowHealthColor;
                 }
-                if (Unit.currentHP <= 0.5f * Unit.maxHealthRef) {
+                if (Unit.currentHP <= 0.5f * (int) health2.BaseValue) {
                     Unit.outline.color = midHealthColor;
                     return midHealthColor;
                 } 
@@ -151,7 +151,7 @@ namespace Characters
 
         public void TakeDamage(int dmg)
         {
-            CurrentHP = Unit.currentHP - (dmg < 0 ? 0 : dmg);
+            CurrentHP -= dmg < 0 ? 0 : dmg;
 
             var position = Unit.gameObject.transform.position;
             var newPosition = new Vector3(position.x, position.y + 3, position.z);
@@ -165,6 +165,7 @@ namespace Characters
             if (dmg == -1 && Unit.currentHP > 0) return;
             if (Unit.currentHP > 0) Unit.anim.SetTrigger(AnimationHandler.HurtTrigger);
             else Die();
+            
         }
 
         private void Die() // If i want to make special death sequences, just make it an event or cutscene
