@@ -70,8 +70,7 @@ namespace BattleSystem
                 yield return new WaitUntil(partyMember.battlePanel.GetComponent<MenuController>().SetPartySelectables);
             }
 
-            SortingCalculator.SortAndCombine();
-            //while (!SortingCalculator._isFinished) yield return null;
+            SortingCalculator.SortByInitiative();
 
             foreach (var character in _membersForThisBattle) character.onDeath += RemoveFromBattle;
             
@@ -82,9 +81,8 @@ namespace BattleSystem
         {
             BattleEvents.Trigger(BattleEventType.NewRound);
             
-            SortingCalculator.SortAndCombine();
-            //while (!SortingCalculator._isFinished) yield return null;
-            
+            SortingCalculator.SortByInitiative();
+
             foreach (var character in from character in _membersAndEnemies
                 let checkMemberStatus = character.GetStatus() where checkMemberStatus select character)
             {

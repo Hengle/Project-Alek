@@ -142,12 +142,12 @@ namespace Characters
         {
             if (Unit.isAbility && Unit.currentAbility.isMultiTarget) {
                 foreach (var target in Unit.multiHitTargets) 
-                    Unit.damageValueList.Add(DamageCalculator.CalculateAttackDamage(this, target));
+                    Unit.damageValueList.Add(Calculator.CalculateAttackDamage(this, target));
             }
 
             else {
                 Unit.currentTarget = CheckTargetStatus(Unit.currentTarget);
-                Unit.currentDamage = DamageCalculator.CalculateAttackDamage(this, Unit.currentTarget);
+                Unit.currentDamage = Calculator.CalculateAttackDamage(this, Unit.currentTarget);
             }
         }
 

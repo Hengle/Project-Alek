@@ -1,12 +1,15 @@
-﻿using Characters;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Characters;
 using Characters.Abilities;
 using Random = UnityEngine.Random;
 
 namespace BattleSystem.Calculator
 {
-    public static class DamageCalculator
+    public static class Calculator
     {
         private const int WeaponAccPlaceholder = 90;
+
         // Make this the base function that is called for everything and delegate to correct function based on action type
         public static int CalculateAttackDamage(UnitBase damageDealer, UnitBase target)
         {
@@ -23,13 +26,13 @@ namespace BattleSystem.Calculator
                 switch (damageDealer.Unit.currentAbility.damageType)
                 {
                     case DamageType.Str: //Logger.Log("On Str Switch");
-                        dealerDamage = damageDealer.Unit.currentStrength * damageDealer.weaponMight * damageDealer.Unit.currentAbility.damageMultiplier;
-                        targetDefense = target.Unit.currentDefense * (target.Unit.level / 2);
+                        dealerDamage = (int) damageDealer.strength2.Value * damageDealer.weaponMight * damageDealer.Unit.currentAbility.damageMultiplier;
+                        targetDefense = (int) target.defense2.Value * (target.level / 2);
                         break;
                     
                     case DamageType.Mag: //Logger.Log("On Mag Switch");
-                        dealerDamage = damageDealer.Unit.currentMagic * damageDealer.magicMight * damageDealer.Unit.currentAbility.damageMultiplier;
-                        targetDefense = target.Unit.currentResistance * (target.Unit.level / 2);
+                        dealerDamage = (int) damageDealer.magic2.Value * damageDealer.magicMight * damageDealer.Unit.currentAbility.damageMultiplier;
+                        targetDefense = (int) target.resistance2.Value * (target.Unit.level / 2);
                         break;
                 }
             }
@@ -37,8 +40,8 @@ namespace BattleSystem.Calculator
             else
             {
                 //Logger.Log("Not an ability??");
-                dealerDamage = damageDealer.Unit.currentStrength * damageDealer.weaponMight;
-                targetDefense = target.Unit.currentDefense * (target.Unit.level / 2);
+                dealerDamage = (int) damageDealer.strength2.Value * damageDealer.weaponMight;
+                targetDefense = (int) target.defense2.Value * (target.Unit.level / 2);
             }
             
             //Logger.Log($"{dealerDamage} - {targetDefense}");
@@ -57,7 +60,7 @@ namespace BattleSystem.Calculator
         
         private static bool CalculateCritChance(UnitBase damageDealer)
         {
-            var critChance = (float) damageDealer.Unit.currentCrit / 100;
+            var critChance = damageDealer.criticalChance2.Value / 100;
             var randomValue = Random.value;
 
             return randomValue <= critChance;
@@ -66,8 +69,7 @@ namespace BattleSystem.Calculator
         private static bool CalculateAccuracy(UnitBase damageDealer, UnitBase target)
         {
             target.Unit.attackerHasMissed = false;
-            var hitChance = 
-                (float) (damageDealer.Unit.currentAccuracy + damageDealer.weaponAccuracy - target.Unit.currentInitiative) / 100;
+            var hitChance = (damageDealer.accuracy2.Value + damageDealer.weaponAccuracy - target.initiative2.Value) / 100;
             var randomValue = Random.value;
             
             return randomValue <= hitChance;

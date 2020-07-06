@@ -1,14 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Characters;
-using UnityEngine;
 
 namespace BattleSystem.Calculator
 {
     public static class SortingCalculator
     {
-        public static void SortAndCombine()
+        public static void SortByInitiative()
         {
             BattleManager._membersAndEnemies = new List<UnitBase>();
             

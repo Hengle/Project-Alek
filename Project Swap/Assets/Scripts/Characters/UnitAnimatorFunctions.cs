@@ -44,7 +44,6 @@ namespace Characters
                 {
                     effect.OnAdded(unit.currentTarget);
                     unit.currentTarget.Unit.statusEffects.Add(effect);
-                    return;
                 }
             }
             
@@ -83,11 +82,11 @@ namespace Characters
             {
                 unit.damageValueList = new List<int>();
                 foreach (var target in unit.multiHitTargets) 
-                    unit.damageValueList.Add(DamageCalculator.CalculateAttackDamage(unitBase, target));
+                    unit.damageValueList.Add(Calculator.CalculateAttackDamage(unitBase, target));
                 return;
             }
             
-            unit.currentDamage = DamageCalculator.CalculateAttackDamage(unitBase, unit.currentTarget);
+            unit.currentDamage = Calculator.CalculateAttackDamage(unitBase, unit.currentTarget);
             if (unitBase.id != Type.PartyMember || !unit.isCrit) return;
             TimeManager._slowTimeCrit = true;
         }

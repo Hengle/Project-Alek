@@ -48,13 +48,13 @@ namespace BattleSystem
                 $"Name: {unitBase.characterName}\n" +
                 $"Level: {unitBase.level}\n" +
                 $"Health: {unitBase.Unit.currentHP}\n" +
-                $"STR: {unitBase.Unit.currentStrength}\n" +
-                $"MAG: {unitBase.Unit.currentMagic}\n" +
-                $"ACC: {unitBase.Unit.currentAccuracy}\n" +
-                $"INIT: {unitBase.Unit.currentInitiative}\n" +
-                $"DEF: {unitBase.Unit.currentDefense}\n" +
-                $"RES: {unitBase.Unit.currentResistance}\n" +
-                $"CRIT: {unitBase.Unit.currentCrit}";
+                $"STR: {unitBase.strength2.Value}\n" +
+                $"MAG: {unitBase.magic2.Value}\n" +
+                $"ACC: {unitBase.accuracy2.Value}\n" +
+                $"INIT: {unitBase.initiative2.Value}\n" +
+                $"DEF: {unitBase.defense2.Value}\n" +
+                $"RES: {unitBase.resistance2.Value}\n" +
+                $"CRIT: {unitBase.criticalChance2.Value}";
             
             BattleInputManager._inputModule.move.action.Disable();
             BattleInputManager._inputModule.submit.action.Disable();
