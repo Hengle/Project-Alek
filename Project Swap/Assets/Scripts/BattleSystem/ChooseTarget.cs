@@ -32,8 +32,7 @@ namespace BattleSystem
                     break;
                 case 1: targetOptionsType = Type.PartyMember;
                     break;
-                case 2: targetOptionsType = Type.All;
-                    break;
+                case 2: break;
             }
         }
 
@@ -55,14 +54,14 @@ namespace BattleSystem
             
             switch (_targetOptions)
             {
-                case 0: foreach (var enemy in BattleManager._enemiesForThisBattle)
+                case 0: foreach (var enemy in BattleManager.EnemiesForThisBattle)
                     {
                         character.Unit.multiHitTargets.Add(enemy);
                         enemy.Unit.onDeselect?.Invoke();
                     }
                     break;
                 
-                case 1: foreach (var member in BattleManager._membersForThisBattle)
+                case 1: foreach (var member in BattleManager.MembersForThisBattle)
                     {
                         character.Unit.multiHitTargets.Add(member);
                         member.Unit.onDeselect?.Invoke();
@@ -80,6 +79,7 @@ namespace BattleSystem
 
         private void Update()
         {
+            // Need to update the last parameter if when/if I implement target option for everyone
             if (!BattleManager._choosingTarget || !_isMultiTarget || thisUnitBase.id != targetOptionsType) {
                 thisUnitBase.Unit.button.interactable = true;
                 return;

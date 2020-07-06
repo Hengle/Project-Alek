@@ -8,11 +8,10 @@ using Characters.Abilities;
 using Characters.Animations;
 using Characters.StatusEffects;
 using Kryz.CharacterStats;
-using MoreMountains.Tools;
 
 namespace Characters
 {
-    public enum Type { PartyMember, Enemy, All }
+    public enum Type { PartyMember, Enemy }
     public abstract class UnitBase : ScriptableObject
     {
         public Vector3 scale = Vector3.one;
@@ -34,18 +33,17 @@ namespace Characters
         [Range(0,99)] public int resistance;
         [Range(0,99)] public int criticalChance;
         
-        public CharacterStat health2;
-        public CharacterStat strength2;
-        public CharacterStat magic2;
-        public CharacterStat accuracy2;
-        public CharacterStat initiative2;
-        public CharacterStat defense2;
-        public CharacterStat resistance2;
-        public CharacterStat criticalChance2;
+        [SerializeField] public CharacterStat health2;
+        [SerializeField] public CharacterStat strength2;
+        [SerializeField] public CharacterStat magic2;
+        [SerializeField] public CharacterStat accuracy2;
+        [SerializeField] public CharacterStat initiative2;
+        [SerializeField] public CharacterStat defense2;
+        [SerializeField] public CharacterStat resistance2;
+        [SerializeField] public CharacterStat criticalChance2;
 
         [InspectorButton(nameof(update))]
         public bool updateStats;
-        
         
         public void update()
         {

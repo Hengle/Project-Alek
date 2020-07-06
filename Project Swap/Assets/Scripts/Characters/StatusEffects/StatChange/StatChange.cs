@@ -154,7 +154,9 @@ namespace StatusEffects.StatChange
                 
                 case AffectedStat.Resistance: unit.resistance2.RemoveAllModifiersFromSource(this);
                     break;
+                
                 case AffectedStat.None: break;
+                
                 default: Logger.Log("Could not find the stat to remove");
                     break;
             }

@@ -8,24 +8,29 @@ namespace Characters.Abilities
 {
     public enum AbilityType { Physical, Ranged, NonAttack }
     public enum DamageType { Str, Mag }
+    public enum TargetOptions { Enemies = 0, PartyMembers = 1, Both = 1 }
     public abstract class Ability : ScriptableObject
     {
-        public AbilityType abilityType;
-        public DamageType damageType;
         public Sprite icon;
         
-        [TextArea(5,15)] public string  description = "Insert description for this ability";
-        [Range(0, 6)] public int actionCost;
-        [Tooltip("0 = Enemy, 1 = Party Member, 2 = All")]
-        [Range(0, 2)] public int targetOptions;
-
-        [FormerlySerializedAs("isMultiHit")] public bool isMultiTarget;
+        [Header("Main Information")]
+        public AbilityType abilityType;
+        public DamageType damageType;
+        public TargetOptions targetOptions;
+        public bool isMultiTarget;
+        [Space] [TextArea(5,15)] public string  description = "Insert description for this ability";
+        [Range(1,6)] public int actionCost;
+        [Range(1,3)] public float damageMultiplier = 1f;
+        [Space] public int attackState = 2;
+        
+        [Space] [Header("Status Effects")]
         public bool hasStatusEffect;
         public List<StatusEffect> statusEffects = new List<StatusEffect>();
         [Range(0, 1)] public float chanceOfInfliction;
-        [Range(0,3)] public float damageMultiplier = 1f;
-        public int attackState = 2;
-
-        public string GetParameters(int actionOption) { return $"AbilityAction,{actionOption},{targetOptions},{actionCost}"; }
+        
+        public string GetParameters(int actionOption)
+        {
+            return $"AbilityAction,{actionOption},{(int)targetOptions},{actionCost}";
+        }
     }
 }

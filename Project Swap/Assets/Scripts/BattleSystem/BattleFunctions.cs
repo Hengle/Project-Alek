@@ -55,6 +55,7 @@ namespace BattleSystem
                 case AbilityType.Ranged: StartCoroutine(RangedAttack());
                     yield break;
                 case AbilityType.NonAttack: Logger.Log("Non-Attack: " + unit.currentAbility.name);
+                    BattleManager._performingAction = false;
                     yield break;
                 default: Logger.Log("This message should not be displaying...");
                     yield break;

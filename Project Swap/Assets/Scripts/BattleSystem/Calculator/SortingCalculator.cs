@@ -10,8 +10,8 @@ namespace BattleSystem.Calculator
         {
             BattleManager._membersAndEnemies = new List<UnitBase>();
             
-            foreach (var member in BattleManager._membersForThisBattle) BattleManager._membersAndEnemies.Add(member);
-            foreach (var enemy in BattleManager._enemiesForThisBattle) BattleManager._membersAndEnemies.Add(enemy);
+            foreach (var member in BattleManager.MembersForThisBattle) BattleManager._membersAndEnemies.Add(member);
+            foreach (var enemy in BattleManager.EnemiesForThisBattle) BattleManager._membersAndEnemies.Add(enemy);
             
             BattleManager._membersAndEnemies = BattleManager._membersAndEnemies.
                 OrderByDescending(e => e.initiative2.Value).ToList();

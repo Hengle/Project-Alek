@@ -29,6 +29,23 @@ MonoBehaviour:
   defense: 19
   resistance: 13
   criticalChance: 6
+  health2:
+    BaseValue: 2280
+  strength2:
+    BaseValue: 26
+  magic2:
+    BaseValue: 14
+  accuracy2:
+    BaseValue: 22
+  initiative2:
+    BaseValue: 20
+  defense2:
+    BaseValue: 19
+  resistance2:
+    BaseValue: 13
+  criticalChance2:
+    BaseValue: 6
+  updateStats: 0
   weaponMight: 16
   magicMight: 5
   weaponAccuracy: 85

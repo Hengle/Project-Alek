@@ -22,8 +22,8 @@ namespace BattleSystem
         private static BattleState state;
         public static BattleFunctions _battleFunctions;
 
-        public static List<Enemy> _enemiesForThisBattle = new List<Enemy>();
-        public static List<PartyMember> _membersForThisBattle = new List<PartyMember>();
+        public static readonly List<Enemy> EnemiesForThisBattle = new List<Enemy>();
+        public static readonly List<PartyMember> MembersForThisBattle = new List<PartyMember>();
         public static List<UnitBase> _membersAndEnemies = new List<UnitBase>();
 
         public static PartyMember _activePartyMember;
@@ -65,14 +65,14 @@ namespace BattleSystem
         {
             yield return new WaitWhile(generator.SetupBattle);
 
-            foreach (var partyMember in _membersForThisBattle) {
+            foreach (var partyMember in MembersForThisBattle) {
                 yield return new WaitUntil(partyMember.battlePanel.GetComponent<MenuController>().SetEnemySelectables);
                 yield return new WaitUntil(partyMember.battlePanel.GetComponent<MenuController>().SetPartySelectables);
             }
 
             SortingCalculator.SortByInitiative();
 
-            foreach (var character in _membersForThisBattle) character.onDeath += RemoveFromBattle;
+            foreach (var character in MembersForThisBattle) character.onDeath += RemoveFromBattle;
             
             StartCoroutine(PerformThisRound());
         }
@@ -246,12 +246,12 @@ namespace BattleSystem
 
         private static void RemoveFromBattle(UnitBase unit)
         {
-            if (unit.id == Type.Enemy) _enemiesForThisBattle.Remove((Enemy) unit);
+            if (unit.id == Type.Enemy) EnemiesForThisBattle.Remove((Enemy) unit);
             Logger.Log($"{unit.characterName} is being removed from battle");
-            if (unit.id == Type.Enemy) _enemiesForThisBattle.Remove((Enemy) unit);
-            else _membersForThisBattle.Remove((PartyMember) unit);
+            if (unit.id == Type.Enemy) EnemiesForThisBattle.Remove((Enemy) unit);
+            else MembersForThisBattle.Remove((PartyMember) unit);
 
-            if (_membersForThisBattle.Count == 0) allMembersDead = true;
+            if (MembersForThisBattle.Count == 0) allMembersDead = true;
         }
 
         private void ResetStaticVariables()

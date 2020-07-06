@@ -29,6 +29,23 @@ MonoBehaviour:
   defense: 17
   resistance: 10
   criticalChance: 31
+  health2:
+    BaseValue: 2470
+  strength2:
+    BaseValue: 23
+  magic2:
+    BaseValue: 12
+  accuracy2:
+    BaseValue: 26
+  initiative2:
+    BaseValue: 24
+  defense2:
+    BaseValue: 17
+  resistance2:
+    BaseValue: 10
+  criticalChance2:
+    BaseValue: 31
+  updateStats: 0
   weaponMight: 12
   magicMight: 4
   weaponAccuracy: 95
@@ -45,6 +62,7 @@ MonoBehaviour:
     type: 3}
   armorInventory: {fileID: 2363339618168879057, guid: fe5e8dd8d6dd25641a5f62d19d40ecd8,
     type: 3}
+  equippedWeapon: {fileID: 0}
   battleOptionsPanel: {fileID: 0}
   battlePanel: {fileID: 0}
   inventoryDisplay: {fileID: 0}
