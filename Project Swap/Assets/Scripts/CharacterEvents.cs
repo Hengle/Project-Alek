@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
 using UnityEngine;
 
-public enum CEventType { CharacterTurn, ChoosingTarget, EndOfTurn, CharacterAttacking, CharacterDeath }
+public enum CEventType { CharacterTurn, ChoosingTarget, EndOfTurn, CharacterAttacking, CharacterDeath, StatChange }
 public struct CharacterEvents
 {
         public CEventType _eventType;

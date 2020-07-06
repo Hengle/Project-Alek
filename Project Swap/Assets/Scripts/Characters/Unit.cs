@@ -12,7 +12,7 @@ namespace Characters
 {
     // Use these with status effects (like inhibiting)
     public enum Status { Normal, Dead, UnableToPerformAction }
-    public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
+    public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler, IGameEventListener<CharacterEvents>
     {
         #region HideInInspector
 
@@ -37,24 +37,37 @@ namespace Characters
 
         #endregion
 
-        public Status status = Status.Normal;
-
-        public int level;
-        public int currentHP;
-        // public int currentStrength;
-        // public int currentMagic;
-        // public int currentAccuracy;
-        // public int currentInitiative;
-        // public int currentCrit;
-        // public int currentDefense;
-        // public int currentResistance;
-
-        public List<StatusEffect> statusEffects = new List<StatusEffect>();
-        public List<UnitBase> multiHitTargets = new List<UnitBase>();
-        public List<int> damageValueList = new List<int>();
+        #region ReadOnly
         
+        [ReadOnly] public Status status = Status.Normal;
+        [ReadOnly] public int level;
+        [ReadOnly] public int currentHP;
+        
+        [SerializeField] [ReadOnly] 
+        private protected int currentStrength;
+        [SerializeField] [ReadOnly]
+        private protected int currentMagic;
+        [SerializeField] [ReadOnly]
+        private protected int currentAccuracy;
+        [SerializeField] [ReadOnly]
+        private protected int currentInitiative;
+        [SerializeField] [ReadOnly]
+        private protected int currentCrit;
+        [SerializeField] [ReadOnly]
+        private protected int currentDefense;
+        [SerializeField] [ReadOnly]
+        private protected int currentResistance;
+        
+        [ReadOnly] public List<StatusEffect> statusEffects = new List<StatusEffect>();
+        [ReadOnly] public List<UnitBase> multiHitTargets = new List<UnitBase>();
+        [ReadOnly] public List<int> damageValueList = new List<int>();
+
+        #endregion
+
         public Action onSelect;
         public Action onDeselect;
+
+        private UnitBase parent;
 
         private void Awake()
         {
@@ -62,8 +75,10 @@ namespace Characters
             outline = GetComponent<SpriteOutline>();
             button = GetComponent<Button>();
             animationHandler = GetComponent<AnimationHandler>();
+            
             outline.enabled = false;
             status = Status.Normal;
+            GameEventsManager.AddListener(this);
         }
 
         private void Update() 
@@ -87,26 +102,42 @@ namespace Characters
         public void Setup(UnitBase unitBase)
         {
             unitBase.Unit = this;
+            parent = unitBase;
             name = unitBase.characterName;
             level = unitBase.level;
             status = Status.Normal;
-            maxHealthRef = (int) unitBase.health2.Value;
-            currentHP = (int) unitBase.health2.Value;
-            // currentStrength = (int) unitBase.strength2.Value;
-            // currentMagic = (int) unitBase.magic2.Value;
-            // currentAccuracy = (int) unitBase.accuracy2.Value;
-            // currentInitiative = (int) unitBase.initiative2.Value;
-            // currentCrit = (int) unitBase.criticalChance2.Value;
-            // currentDefense = (int) unitBase.defense2.Value;
-            // currentResistance = (int) unitBase.resistance2.Value;
-
-
+            
+            // Would need to update UI slider if i want to be able to modify max health
+            maxHealthRef = (int) parent.health2.Value;
+            currentHP = (int) parent.health2.Value;
+            
+            SetStats();
+            
             currentAP = unitBase.maxAP;
             outline.color = unitBase.Color;
             
             var chooseTarget = gameObject.GetComponent<ChooseTarget>();
             chooseTarget.thisUnitBase = unitBase;
             chooseTarget.enabled = true;
+        }
+
+        private void SetStats()
+        {
+            currentStrength = (int) parent.strength2.Value;
+            currentMagic = (int) parent.magic2.Value;
+            currentAccuracy = (int) parent.accuracy2.Value;
+            currentInitiative = (int) parent.initiative2.Value;
+            currentCrit = (int) parent.criticalChance2.Value;
+            currentDefense = (int) parent.defense2.Value;
+            currentResistance = (int) parent.resistance2.Value;
+        }
+
+        public void OnGameEvent(CharacterEvents eventType)
+        {
+            if (eventType._eventType == CEventType.StatChange && eventType._character == parent)
+            {
+                SetStats();
+            }
         }
     }
 }

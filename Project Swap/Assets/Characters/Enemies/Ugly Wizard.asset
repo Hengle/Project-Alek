@@ -35,7 +35,7 @@ MonoBehaviour:
   magic2:
     BaseValue: 26
   accuracy2:
-    BaseValue: 51
+    BaseValue: 21
   initiative2:
     BaseValue: 16
   defense2:

@@ -29,6 +29,23 @@ MonoBehaviour:
   defense: 14
   resistance: 10
   criticalChance: 12
+  health2:
+    BaseValue: 2080
+  strength2:
+    BaseValue: 22
+  magic2:
+    BaseValue: 11
+  accuracy2:
+    BaseValue: 27
+  initiative2:
+    BaseValue: 21
+  defense2:
+    BaseValue: 14
+  resistance2:
+    BaseValue: 10
+  criticalChance2:
+    BaseValue: 12
+  updateStats: 0
   weaponMight: 15
   magicMight: 2
   weaponAccuracy: 90
@@ -40,7 +57,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 47015355f94fcc74bbb9c212781f9416, type: 2}
   - {fileID: 11400000, guid: ee9a142c4223d434e863f4e4e1758255, type: 2}
   - {fileID: 11400000, guid: 3499fec825fc18c438ede820b9be0e0e, type: 2}
-  - {fileID: 11400000, guid: 1306999bff8e7c14892abd85b0b028c7, type: 2}
+  - {fileID: 11400000, guid: 6eb5e2c11d395244e94b25794bf8f3dc, type: 2}
   actionPointAnim: {fileID: 0}
   positionInParty: 4
   weaponInventory: {fileID: 9018186885891804427, guid: b53c59ae1a11e064b8d4a3e7c56bbfe6,

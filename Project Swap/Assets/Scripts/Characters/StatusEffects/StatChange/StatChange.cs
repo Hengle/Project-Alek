@@ -1,9 +1,7 @@
-﻿using System.Runtime.CompilerServices;
-using Characters;
+﻿using Characters;
 using Characters.StatusEffects;
 using Kryz.CharacterStats;
 using UnityEngine;
-using Type = Characters.Type;
 
 namespace StatusEffects.StatChange
 {
@@ -67,17 +65,18 @@ namespace StatusEffects.StatChange
             AddModifiers(buffedStat, target, true);
             AddModifiers(debuffedStat, target, false);
             target.onStatusEffectReceived?.Invoke(this);
+            CharacterEvents.Trigger(CEventType.StatChange, target);
         }
         
         public override void OnRemoval(UnitBase unitBase)
         {
-            Logger.Log("Stat Change has been removed from " + unitBase);
+            Logger.Log("Stat Change has been removed from " + unitBase.characterName);
             RemoveModifier(buffedStat, unitBase);
             RemoveModifier(debuffedStat, unitBase);
             unitBase.onStatusEffectRemoved?.Invoke(this);
+            CharacterEvents.Trigger(CEventType.StatChange, unitBase);
         }
-
-        // Refactor all this
+        
         private void AddModifiers(AffectedStat stat, UnitBase unit, bool isBuff)
         {
             switch (stat)
@@ -88,48 +87,41 @@ namespace StatusEffects.StatChange
                 case AffectedStat.Strength: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
                         : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
                     unit.strength2.AddModifier(modifier);
-                    Logger.Log($"Strength: {unit.strength2.Value}");
                     break;
                 
                 case AffectedStat.Magic: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
                         : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
                     unit.magic2.AddModifier(modifier);
-                    Logger.Log($"Magic: {unit.magic2.Value}");
                     break;
                 
                 case AffectedStat.Accuracy: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
                         : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
                     unit.accuracy2.AddModifier(modifier);
-                    Logger.Log($"Accuracy: {unit.accuracy2.Value}");
                     break;
                 
                 case AffectedStat.Initiative: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
                         : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
                     unit.initiative2.AddModifier(modifier);
-                    Logger.Log($"Initiative: {unit.initiative2.Value}");
                     break;
                 
                 case AffectedStat.CriticalChance: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
                         : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
                     unit.criticalChance2.AddModifier(modifier);
-                    Logger.Log($"Critical Chance: {unit.criticalChance2.Value}");
                     break;
                 
                 case AffectedStat.Defense: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
                         : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
                     unit.defense2.AddModifier(modifier);
-                    Logger.Log($"Defense: {unit.defense2.Value}");
                     break;
                 
                 case AffectedStat.Resistance: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
                         : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
                     unit.resistance2.AddModifier(modifier);
-                    Logger.Log($"Resistance: {unit.resistance2.Value}");
                     break;
                 
                 case AffectedStat.None: break;
                 
-                default: Logger.Log("Could not find the stat to remove");
+                default: Logger.Log("Could not find the stat to modify");
                     break;
             }
         }
@@ -143,31 +135,24 @@ namespace StatusEffects.StatChange
                     break;
                 
                 case AffectedStat.Strength: unit.strength2.RemoveModifier(modifier);
-                    Logger.Log($"Strength: {unit.strength2.Value}");
                     break;
                 
                 case AffectedStat.Magic: unit.magic2.RemoveAllModifiersFromSource(this);
-                    Logger.Log($"Magic: {unit.magic2.Value}");
                     break;
                 
                 case AffectedStat.Accuracy: unit.accuracy2.RemoveAllModifiersFromSource(this);
-                    Logger.Log($"Accuracy: {unit.accuracy2.Value}");
                     break;
                 
                 case AffectedStat.Initiative: unit.initiative2.RemoveAllModifiersFromSource(this);
-                    Logger.Log($"Initiative: {unit.initiative2.Value}");
                     break;
                 
                 case AffectedStat.CriticalChance: unit.criticalChance2.RemoveAllModifiersFromSource(this);
-                    Logger.Log($"Critical Chance: {unit.criticalChance2.Value}");
                     break;
                 
                 case AffectedStat.Defense: unit.defense2.RemoveAllModifiersFromSource(this);
-                    Logger.Log($"Defense: {unit.defense2.Value}");
                     break;
                 
                 case AffectedStat.Resistance: unit.resistance2.RemoveAllModifiersFromSource(this);
-                    Logger.Log($"Resistance: {unit.resistance2.Value}");
                     break;
                 case AffectedStat.None: break;
                 default: Logger.Log("Could not find the stat to remove");

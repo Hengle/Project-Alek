@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using UnityEngine;
 
 namespace Kryz.CharacterStats
 {
 	[Serializable]
 	public class CharacterStat
 	{
-		public float BaseValue;
+		[SerializeField] public float BaseValue;
 
 		protected bool isDirty = true;
 		protected float lastBaseValue;
