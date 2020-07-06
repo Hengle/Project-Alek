@@ -108,8 +108,8 @@ namespace Characters
             status = Status.Normal;
             
             // Would need to update UI slider if i want to be able to modify max health
-            maxHealthRef = (int) parent.health2.Value;
-            currentHP = (int) parent.health2.Value;
+            maxHealthRef = (int) parent.health.Value;
+            currentHP = (int) parent.health.Value;
             
             SetStats();
             
@@ -123,13 +123,13 @@ namespace Characters
 
         private void SetStats()
         {
-            currentStrength = (int) parent.strength2.Value;
-            currentMagic = (int) parent.magic2.Value;
-            currentAccuracy = (int) parent.accuracy2.Value;
-            currentInitiative = (int) parent.initiative2.Value;
-            currentCrit = (int) parent.criticalChance2.Value;
-            currentDefense = (int) parent.defense2.Value;
-            currentResistance = (int) parent.resistance2.Value;
+            currentStrength = (int) parent.strength.Value;
+            currentMagic = (int) parent.magic.Value;
+            currentAccuracy = (int) parent.accuracy.Value;
+            currentInitiative = (int) parent.initiative.Value;
+            currentCrit = (int) parent.criticalChance.Value;
+            currentDefense = (int) parent.defense.Value;
+            currentResistance = (int) parent.resistance.Value;
         }
 
         public void OnGameEvent(CharacterEvents eventType)

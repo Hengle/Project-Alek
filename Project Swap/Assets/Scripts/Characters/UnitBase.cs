@@ -8,55 +8,31 @@ using Characters.Abilities;
 using Characters.Animations;
 using Characters.StatusEffects;
 using Kryz.CharacterStats;
+using UnityEngine.Serialization;
 
 namespace Characters
 {
-    public enum Type { PartyMember, Enemy }
+    public enum CharacterType { PartyMember, Enemy }
     public abstract class UnitBase : ScriptableObject
     {
         public Vector3 scale = Vector3.one;
         public GameObject characterPrefab;
         public Sprite icon;
 
-        public Type id;
+        public CharacterType id;
         public string characterName;
         [TextArea(5,15)] public string  description;
         
         [Header("Stats")]
         [Range(0,99)] public int level;
-        [Range(0,99999)] public int health;
-        [Range(0,99)] public int strength;
-        [Range(0,99)] public int magic;
-        [Range(0,99)] public int accuracy;
-        [Range(0,99)] public int initiative;
-        [Range(0,99)] public int defense;
-        [Range(0,99)] public int resistance;
-        [Range(0,99)] public int criticalChance;
-        
-        [SerializeField] public CharacterStat health2;
-        [SerializeField] public CharacterStat strength2;
-        [SerializeField] public CharacterStat magic2;
-        [SerializeField] public CharacterStat accuracy2;
-        [SerializeField] public CharacterStat initiative2;
-        [SerializeField] public CharacterStat defense2;
-        [SerializeField] public CharacterStat resistance2;
-        [SerializeField] public CharacterStat criticalChance2;
-
-        [InspectorButton(nameof(update))]
-        public bool updateStats;
-        
-        public void update()
-        {
-
-            health2.BaseValue = health;
-            strength2.BaseValue = strength;
-            magic2.BaseValue = magic;
-            accuracy2.BaseValue = accuracy;
-            initiative2.BaseValue = initiative;
-            defense2.BaseValue = defense;
-            resistance2.BaseValue = resistance;
-            criticalChance2.BaseValue = criticalChance;
-        }
+        [SerializeField] public CharacterStat health;
+        [SerializeField] public CharacterStat strength;
+        [SerializeField] public CharacterStat magic;
+        [SerializeField] public CharacterStat accuracy;
+        [SerializeField] public CharacterStat initiative;
+        [SerializeField] public CharacterStat defense;
+        [SerializeField] public CharacterStat resistance;
+        [SerializeField] public CharacterStat criticalChance;
 
         [Header("Weapon Stats")]
         [Range(1,99)] public int weaponMight;
@@ -73,11 +49,11 @@ namespace Characters
         {
             get
             {
-                if (Unit.currentHP <= 0.25f * (int) health2.BaseValue) {
+                if (Unit.currentHP <= 0.25f * (int) health.BaseValue) {
                     Unit.outline.color = lowHealthColor;
                     return lowHealthColor;
                 }
-                if (Unit.currentHP <= 0.5f * (int) health2.BaseValue) {
+                if (Unit.currentHP <= 0.5f * (int) health.BaseValue) {
                     Unit.outline.color = midHealthColor;
                     return midHealthColor;
                 } 
@@ -104,7 +80,7 @@ namespace Characters
             set 
             {
                 Unit.currentHP = value < 0 ? 0 : value;
-                if (Unit.currentHP > health2.BaseValue) Unit.currentHP = (int) health2.BaseValue;
+                if (Unit.currentHP > health.BaseValue) Unit.currentHP = (int) health.BaseValue;
                 onHpValueChanged?.Invoke();
                 Unit.outline.color = Color;
             } 

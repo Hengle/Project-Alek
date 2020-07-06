@@ -20,31 +20,22 @@ MonoBehaviour:
   characterName: Skeleton
   description: I mean, he's a...
   level: 24
-  health: 2580
-  strength: 27
-  magic: 12
-  accuracy: 26
-  initiative: 18
-  defense: 14
-  resistance: 9
-  criticalChance: 10
-  health2:
-    BaseValue: 24
-  strength2:
-    BaseValue: 2580
-  magic2:
-    BaseValue: 27
-  accuracy2:
-    BaseValue: 26
-  initiative2:
+  health:
+    BaseValue: 2780
+  strength:
+    BaseValue: 25
+  magic:
+    BaseValue: 15
+  accuracy:
+    BaseValue: 22
+  initiative:
+    BaseValue: 19
+  defense:
     BaseValue: 18
-  defense2:
-    BaseValue: 14
-  resistance2:
-    BaseValue: 9
-  criticalChance2:
-    BaseValue: 10
-  updateStats: 0
+  resistance:
+    BaseValue: 11
+  criticalChance:
+    BaseValue: 8
   weaponMight: 19
   magicMight: 8
   weaponAccuracy: 75

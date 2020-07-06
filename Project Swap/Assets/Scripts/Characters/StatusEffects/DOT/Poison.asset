@@ -17,4 +17,4 @@ MonoBehaviour:
   rateOfInfliction: 00000000
   color: {r: 0.13983291, g: 0.5660378, b: 0, a: 0}
   duration: 4
-  damagePercentage: 0.15
+  damagePercentage: 0.1

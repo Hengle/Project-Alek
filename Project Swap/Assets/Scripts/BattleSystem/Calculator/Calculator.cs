@@ -26,13 +26,13 @@ namespace BattleSystem.Calculator
                 switch (damageDealer.Unit.currentAbility.damageType)
                 {
                     case DamageType.Str: //Logger.Log("On Str Switch");
-                        dealerDamage = (int) damageDealer.strength2.Value * damageDealer.weaponMight * damageDealer.Unit.currentAbility.damageMultiplier;
-                        targetDefense = (int) target.defense2.Value * (target.level / 2);
+                        dealerDamage = (int) damageDealer.strength.Value * damageDealer.weaponMight * damageDealer.Unit.currentAbility.damageMultiplier;
+                        targetDefense = (int) target.defense.Value * (target.level / 2);
                         break;
                     
                     case DamageType.Mag: //Logger.Log("On Mag Switch");
-                        dealerDamage = (int) damageDealer.magic2.Value * damageDealer.magicMight * damageDealer.Unit.currentAbility.damageMultiplier;
-                        targetDefense = (int) target.resistance2.Value * (target.Unit.level / 2);
+                        dealerDamage = (int) damageDealer.magic.Value * damageDealer.magicMight * damageDealer.Unit.currentAbility.damageMultiplier;
+                        targetDefense = (int) target.resistance.Value * (target.Unit.level / 2);
                         break;
                 }
             }
@@ -40,8 +40,8 @@ namespace BattleSystem.Calculator
             else
             {
                 //Logger.Log("Not an ability??");
-                dealerDamage = (int) damageDealer.strength2.Value * damageDealer.weaponMight;
-                targetDefense = (int) target.defense2.Value * (target.Unit.level / 2);
+                dealerDamage = (int) damageDealer.strength.Value * damageDealer.weaponMight;
+                targetDefense = (int) target.defense.Value * (target.Unit.level / 2);
             }
             
             //Logger.Log($"{dealerDamage} - {targetDefense}");
@@ -60,7 +60,7 @@ namespace BattleSystem.Calculator
         
         private static bool CalculateCritChance(UnitBase damageDealer)
         {
-            var critChance = damageDealer.criticalChance2.Value / 100;
+            var critChance = damageDealer.criticalChance.Value / 100;
             var randomValue = Random.value;
 
             return randomValue <= critChance;
@@ -69,7 +69,7 @@ namespace BattleSystem.Calculator
         private static bool CalculateAccuracy(UnitBase damageDealer, UnitBase target)
         {
             target.Unit.attackerHasMissed = false;
-            var hitChance = (damageDealer.accuracy2.Value + damageDealer.weaponAccuracy - target.initiative2.Value) / 100;
+            var hitChance = (damageDealer.accuracy.Value + damageDealer.weaponAccuracy - target.initiative.Value) / 100;
             var randomValue = Random.value;
             
             return randomValue <= hitChance;

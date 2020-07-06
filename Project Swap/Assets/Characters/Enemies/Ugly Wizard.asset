@@ -20,31 +20,22 @@ MonoBehaviour:
   characterName: Ugly Wizard
   description: ewww
   level: 21
-  health: 2065
-  strength: 15
-  magic: 26
-  accuracy: 51
-  initiative: 16
-  defense: 12
-  resistance: 20
-  criticalChance: 6
-  health2:
-    BaseValue: 2065
-  strength2:
-    BaseValue: 15
-  magic2:
-    BaseValue: 26
-  accuracy2:
+  health:
+    BaseValue: 2075
+  strength:
+    BaseValue: 13
+  magic:
+    BaseValue: 24
+  accuracy:
     BaseValue: 21
-  initiative2:
-    BaseValue: 16
-  defense2:
+  initiative:
+    BaseValue: 17
+  defense:
     BaseValue: 12
-  resistance2:
-    BaseValue: 20
-  criticalChance2:
-    BaseValue: 6
-  updateStats: 0
+  resistance:
+    BaseValue: 25
+  criticalChance:
+    BaseValue: 4
   weaponMight: 9
   magicMight: 20
   weaponAccuracy: 90

@@ -21,31 +21,22 @@ MonoBehaviour:
   description: A very long description about an amazing girl named Lilith. I tell
     you when I come up with a good description, it will be legendary!
   level: 20
-  health: 2080
-  strength: 22
-  magic: 11
-  accuracy: 29
-  initiative: 21
-  defense: 14
-  resistance: 10
-  criticalChance: 12
-  health2:
-    BaseValue: 2080
-  strength2:
-    BaseValue: 22
-  magic2:
-    BaseValue: 11
-  accuracy2:
-    BaseValue: 27
-  initiative2:
-    BaseValue: 21
-  defense2:
-    BaseValue: 14
-  resistance2:
-    BaseValue: 10
-  criticalChance2:
+  health:
+    BaseValue: 2070
+  strength:
+    BaseValue: 19
+  magic:
+    BaseValue: 7
+  accuracy:
+    BaseValue: 23
+  initiative:
+    BaseValue: 20
+  defense:
     BaseValue: 12
-  updateStats: 0
+  resistance:
+    BaseValue: 5
+  criticalChance:
+    BaseValue: 5
   weaponMight: 15
   magicMight: 2
   weaponAccuracy: 90

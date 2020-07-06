@@ -14,7 +14,7 @@ namespace BattleSystem.Calculator
             foreach (var enemy in BattleManager.EnemiesForThisBattle) BattleManager._membersAndEnemies.Add(enemy);
             
             BattleManager._membersAndEnemies = BattleManager._membersAndEnemies.
-                OrderByDescending(e => e.initiative2.Value).ToList();
+                OrderByDescending(e => e.initiative.Value).ToList();
         }
     }
 }

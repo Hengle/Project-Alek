@@ -21,31 +21,22 @@ MonoBehaviour:
   description: 'Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a
     hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! '
   level: 20
-  health: 2660
-  strength: 19
-  magic: 9
-  accuracy: 24
-  initiative: 18
-  defense: 22
-  resistance: 14
-  criticalChance: 6
-  health2:
-    BaseValue: 2660
-  strength2:
-    BaseValue: 19
-  magic2:
-    BaseValue: 9
-  accuracy2:
-    BaseValue: 23
-  initiative2:
-    BaseValue: 18
-  defense2:
+  health:
+    BaseValue: 2445
+  strength:
     BaseValue: 22
-  resistance2:
-    BaseValue: 14
-  criticalChance2:
-    BaseValue: 6
-  updateStats: 0
+  magic:
+    BaseValue: 16
+  accuracy:
+    BaseValue: 20
+  initiative:
+    BaseValue: 17
+  defense:
+    BaseValue: 16
+  resistance:
+    BaseValue: 11
+  criticalChance:
+    BaseValue: 3
   weaponMight: 14
   magicMight: 6
   weaponAccuracy: 75

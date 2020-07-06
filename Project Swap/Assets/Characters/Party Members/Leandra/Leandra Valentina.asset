@@ -21,31 +21,22 @@ MonoBehaviour:
   description: This is a description for yah girl Leandra. She is boss and won't
     take anyone's crap. Uggghhh extra stuff to increase text count.
   level: 20
-  health: 2470
-  strength: 23
-  magic: 12
-  accuracy: 26
-  initiative: 24
-  defense: 17
-  resistance: 10
-  criticalChance: 31
-  health2:
-    BaseValue: 2470
-  strength2:
+  health:
+    BaseValue: 2160
+  strength:
+    BaseValue: 22
+  magic:
+    BaseValue: 8
+  accuracy:
+    BaseValue: 18
+  initiative:
     BaseValue: 23
-  magic2:
-    BaseValue: 12
-  accuracy2:
-    BaseValue: 26
-  initiative2:
-    BaseValue: 24
-  defense2:
-    BaseValue: 17
-  resistance2:
-    BaseValue: 10
-  criticalChance2:
-    BaseValue: 31
-  updateStats: 0
+  defense:
+    BaseValue: 15
+  resistance:
+    BaseValue: 7
+  criticalChance:
+    BaseValue: 4
   weaponMight: 12
   magicMight: 4
   weaponAccuracy: 95

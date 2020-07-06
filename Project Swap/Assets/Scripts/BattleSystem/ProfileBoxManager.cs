@@ -15,6 +15,7 @@ namespace BattleSystem
         public Image background;
         public Image spriteImage;
         public UnitBase unitBase;
+        [SerializeField] [ReadOnly]
         private bool isOpen;
 
         private void Start() {
@@ -48,13 +49,13 @@ namespace BattleSystem
                 $"Name: {unitBase.characterName}\n" +
                 $"Level: {unitBase.level}\n" +
                 $"Health: {unitBase.Unit.currentHP}\n" +
-                $"STR: {unitBase.strength2.Value}\n" +
-                $"MAG: {unitBase.magic2.Value}\n" +
-                $"ACC: {unitBase.accuracy2.Value}\n" +
-                $"INIT: {unitBase.initiative2.Value}\n" +
-                $"DEF: {unitBase.defense2.Value}\n" +
-                $"RES: {unitBase.resistance2.Value}\n" +
-                $"CRIT: {unitBase.criticalChance2.Value}";
+                $"STR: {unitBase.strength.Value}\n" +
+                $"MAG: {unitBase.magic.Value}\n" +
+                $"ACC: {unitBase.accuracy.Value}\n" +
+                $"INIT: {unitBase.initiative.Value}\n" +
+                $"DEF: {unitBase.defense.Value}\n" +
+                $"RES: {unitBase.resistance.Value}\n" +
+                $"CRIT: {unitBase.criticalChance.Value}";
             
             BattleInputManager._inputModule.move.action.Disable();
             BattleInputManager._inputModule.submit.action.Disable();

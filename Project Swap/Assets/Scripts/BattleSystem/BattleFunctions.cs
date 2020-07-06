@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using Characters;
@@ -6,7 +7,6 @@ using Characters.Abilities;
 using Characters.Animations;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
-using Type = Characters.Type;
 
 namespace BattleSystem
 {
@@ -110,6 +110,9 @@ namespace BattleSystem
                 (unitBase, RateOfInfliction.AfterAttacked, 0.5f, false));
             
             yield return coroutine;
+            
+            unit.multiHitTargets = new List<UnitBase>();
+            unit.damageValueList = new List<int>();
         }
 
         private IEnumerator MoveToTargetPosition()
@@ -119,7 +122,7 @@ namespace BattleSystem
             
             var position = currentTarget.Unit.transform.position;
 
-            targetPosition = unitBase.id == Type.PartyMember ? 
+            targetPosition = unitBase.id == CharacterType.PartyMember ? 
                 new Vector3(position.x, originPosition.y, position.z - 2) :
                 new Vector3(position.x, position.y, position.z + 2);
 

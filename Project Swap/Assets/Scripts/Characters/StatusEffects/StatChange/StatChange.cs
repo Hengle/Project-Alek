@@ -86,37 +86,37 @@ namespace StatusEffects.StatChange
                 
                 case AffectedStat.Strength: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
                         : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
-                    unit.strength2.AddModifier(modifier);
+                    unit.strength.AddModifier(modifier);
                     break;
                 
                 case AffectedStat.Magic: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
                         : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
-                    unit.magic2.AddModifier(modifier);
+                    unit.magic.AddModifier(modifier);
                     break;
                 
                 case AffectedStat.Accuracy: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
                         : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
-                    unit.accuracy2.AddModifier(modifier);
+                    unit.accuracy.AddModifier(modifier);
                     break;
                 
                 case AffectedStat.Initiative: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
                         : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
-                    unit.initiative2.AddModifier(modifier);
+                    unit.initiative.AddModifier(modifier);
                     break;
                 
                 case AffectedStat.CriticalChance: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
                         : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
-                    unit.criticalChance2.AddModifier(modifier);
+                    unit.criticalChance.AddModifier(modifier);
                     break;
                 
                 case AffectedStat.Defense: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
                         : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
-                    unit.defense2.AddModifier(modifier);
+                    unit.defense.AddModifier(modifier);
                     break;
                 
                 case AffectedStat.Resistance: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
                         : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
-                    unit.resistance2.AddModifier(modifier);
+                    unit.resistance.AddModifier(modifier);
                     break;
                 
                 case AffectedStat.None: break;
@@ -134,25 +134,25 @@ namespace StatusEffects.StatChange
                 case AffectedStat.MaxHP:
                     break;
                 
-                case AffectedStat.Strength: unit.strength2.RemoveModifier(modifier);
+                case AffectedStat.Strength: unit.strength.RemoveModifier(modifier);
                     break;
                 
-                case AffectedStat.Magic: unit.magic2.RemoveAllModifiersFromSource(this);
+                case AffectedStat.Magic: unit.magic.RemoveAllModifiersFromSource(this);
                     break;
                 
-                case AffectedStat.Accuracy: unit.accuracy2.RemoveAllModifiersFromSource(this);
+                case AffectedStat.Accuracy: unit.accuracy.RemoveAllModifiersFromSource(this);
                     break;
                 
-                case AffectedStat.Initiative: unit.initiative2.RemoveAllModifiersFromSource(this);
+                case AffectedStat.Initiative: unit.initiative.RemoveAllModifiersFromSource(this);
                     break;
                 
-                case AffectedStat.CriticalChance: unit.criticalChance2.RemoveAllModifiersFromSource(this);
+                case AffectedStat.CriticalChance: unit.criticalChance.RemoveAllModifiersFromSource(this);
                     break;
                 
-                case AffectedStat.Defense: unit.defense2.RemoveAllModifiersFromSource(this);
+                case AffectedStat.Defense: unit.defense.RemoveAllModifiersFromSource(this);
                     break;
                 
-                case AffectedStat.Resistance: unit.resistance2.RemoveAllModifiersFromSource(this);
+                case AffectedStat.Resistance: unit.resistance.RemoveAllModifiersFromSource(this);
                     break;
                 
                 case AffectedStat.None: break;

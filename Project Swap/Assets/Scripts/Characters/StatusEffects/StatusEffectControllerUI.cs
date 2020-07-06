@@ -12,7 +12,7 @@ namespace Characters.StatusEffects
             member.onStatusEffectReceived += AddStatusEffectIcon;
             member.onStatusEffectRemoved += RemoveStatusEffectIcon;
             
-            if (member.id != Type.Enemy) return;
+            if (member.id != CharacterType.Enemy) return;
             member.Unit.onSelect += ShowIcons;
             member.Unit.onDeselect += HideIcons;
             group = GetComponentInParent<CanvasGroup>();

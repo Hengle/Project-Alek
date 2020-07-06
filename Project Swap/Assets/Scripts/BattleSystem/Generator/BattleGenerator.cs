@@ -175,7 +175,7 @@ namespace BattleSystem.Generator
                  you encounter them (jack frost is only really at the beginning) so this could be the same way. If i want a higher
                  level version of an enemy, create a new enemy that is a variant of the original
                  */
-                clone.initiative2.BaseValue = (int) Random.Range(clone.initiative2.BaseValue - 2, clone.initiative2.BaseValue + 2); // Temporary until i make a randomizer
+                clone.initiative.BaseValue = (int) Random.Range(clone.initiative.BaseValue - 2, clone.initiative.BaseValue + 2); // Temporary until i make a randomizer
                 
                 var enemyGo = Instantiate(clone.characterPrefab, battleGeneratorDatabase.enemySpawnPoints[i+enemyOffset].transform);
                 enemyGo.name = clone.name;

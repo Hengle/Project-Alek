@@ -4,7 +4,6 @@ using UnityEngine.EventSystems;
 using Characters;
 using Characters.PartyMembers;
 using Input;
-using Type = Characters.Type;
 
 namespace BattleSystem
 {
@@ -14,7 +13,7 @@ namespace BattleSystem
         public static bool _isMultiTarget;
         [HideInInspector] public UnitBase thisUnitBase;
 
-        private static Type targetOptionsType;
+        private static CharacterType targetOptionsCharacterType;
         private static MenuController menuController;
         private static PartyMember character;
 
@@ -28,9 +27,9 @@ namespace BattleSystem
 
             switch (_targetOptions)
             {
-                case 0: targetOptionsType = Type.Enemy;
+                case 0: targetOptionsCharacterType = CharacterType.Enemy;
                     break;
-                case 1: targetOptionsType = Type.PartyMember;
+                case 1: targetOptionsCharacterType = CharacterType.PartyMember;
                     break;
                 case 2: break;
             }
@@ -80,7 +79,7 @@ namespace BattleSystem
         private void Update()
         {
             // Need to update the last parameter if when/if I implement target option for everyone
-            if (!BattleManager._choosingTarget || !_isMultiTarget || thisUnitBase.id != targetOptionsType) {
+            if (!BattleManager._choosingTarget || !_isMultiTarget || thisUnitBase.id != targetOptionsCharacterType) {
                 thisUnitBase.Unit.button.interactable = true;
                 return;
             }

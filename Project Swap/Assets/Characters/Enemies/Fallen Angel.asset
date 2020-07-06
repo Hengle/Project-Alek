@@ -20,31 +20,22 @@ MonoBehaviour:
   characterName: Fallen Angel
   description: what a shame...
   level: 22
-  health: 2140
-  strength: 23
-  magic: 25
-  accuracy: 24
-  initiative: 17
-  defense: 13
-  resistance: 18
-  criticalChance: 7
-  health2:
-    BaseValue: 2140
-  strength2:
-    BaseValue: 23
-  magic2:
-    BaseValue: 25
-  accuracy2:
-    BaseValue: 24
-  initiative2:
-    BaseValue: 17
-  defense2:
-    BaseValue: 13
-  resistance2:
+  health:
+    BaseValue: 2340
+  strength:
     BaseValue: 18
-  criticalChance2:
-    BaseValue: 7
-  updateStats: 0
+  magic:
+    BaseValue: 22
+  accuracy:
+    BaseValue: 25
+  initiative:
+    BaseValue: 18
+  defense:
+    BaseValue: 13
+  resistance:
+    BaseValue: 25
+  criticalChance:
+    BaseValue: 5
   weaponMight: 13
   magicMight: 15
   weaponAccuracy: 80

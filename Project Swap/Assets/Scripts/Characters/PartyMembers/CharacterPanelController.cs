@@ -19,9 +19,9 @@ namespace Characters.PartyMembers
             fillRectImage = slider.fillRect.GetComponent<Image>();
             icon.sprite = member.icon;
             nameUGUI.text = member.characterName.ToUpper();
-            healthUGUI.text = $"HP: {member.health2.BaseValue}";
-            slider.maxValue = member.health2.BaseValue;
-            slider.value = member.health2.BaseValue;
+            healthUGUI.text = $"HP: {member.health.BaseValue}";
+            slider.maxValue = member.health.BaseValue;
+            slider.value = member.health.BaseValue;
             member.onHpValueChanged += OnHpValueChanged;
         }
 

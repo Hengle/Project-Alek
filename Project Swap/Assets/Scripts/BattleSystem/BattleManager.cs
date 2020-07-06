@@ -10,7 +10,6 @@ using Characters.PartyMembers;
 using Characters.StatusEffects;
 using Input;
 using MoreMountains.InventoryEngine;
-using Type = Characters.Type;
 
 namespace BattleSystem
 {
@@ -95,7 +94,7 @@ namespace BattleSystem
 
                 if (PartyOrEnemyTeamIsDead || character.IsDead) break;
                 
-                var round = StartCoroutine(character.id == Type.PartyMember?
+                var round = StartCoroutine(character.id == CharacterType.PartyMember?
                     ThisPlayerTurn((PartyMember) character) : ThisEnemyTurn((Enemy) character));
 
                 yield return round;
@@ -246,9 +245,9 @@ namespace BattleSystem
 
         private static void RemoveFromBattle(UnitBase unit)
         {
-            if (unit.id == Type.Enemy) EnemiesForThisBattle.Remove((Enemy) unit);
+            if (unit.id == CharacterType.Enemy) EnemiesForThisBattle.Remove((Enemy) unit);
             Logger.Log($"{unit.characterName} is being removed from battle");
-            if (unit.id == Type.Enemy) EnemiesForThisBattle.Remove((Enemy) unit);
+            if (unit.id == CharacterType.Enemy) EnemiesForThisBattle.Remove((Enemy) unit);
             else MembersForThisBattle.Remove((PartyMember) unit);
 
             if (MembersForThisBattle.Count == 0) allMembersDead = true;
