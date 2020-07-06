@@ -26,6 +26,8 @@ namespace StatusEffects.StatChange
 
         private const float SignificantBuff = 0.20f;
         private const float SignificantDebuff = -0.20f;
+
+        private StatModifier modifier;
         
         private float BuffMultiplier
         {
@@ -62,8 +64,8 @@ namespace StatusEffects.StatChange
         
         public override void OnAdded(UnitBase target) {
             Logger.Log(target.characterName + " is inflicted with " + name);
-            AddModifiers(buffedStat, target, true, false);
-            AddModifiers(debuffedStat, target, false, false);
+            AddModifiers(buffedStat, target, true);
+            AddModifiers(debuffedStat, target, false);
             target.onStatusEffectReceived?.Invoke(this);
         }
         
@@ -71,91 +73,62 @@ namespace StatusEffects.StatChange
         {
             Logger.Log("Stat Change has been removed from " + unitBase);
             RemoveModifier(buffedStat, unitBase);
+            RemoveModifier(debuffedStat, unitBase);
             unitBase.onStatusEffectRemoved?.Invoke(this);
         }
 
         // Refactor all this
-        private void AddModifiers(AffectedStat stat, UnitBase unit, bool isBuff, bool removing)
+        private void AddModifiers(AffectedStat stat, UnitBase unit, bool isBuff)
         {
             switch (stat)
             {
                 case AffectedStat.MaxHP:
-                    // float maxHealth = unit.maxHealthRef;
-                    // if (removing) maxHealth /= isBuff ? BuffMultiplier : DebuffMultiplier;
-                    // else maxHealth *= isBuff ? BuffMultiplier : DebuffMultiplier;
-                    // unit.maxHealthRef = (int) maxHealth;
                     break;
                 
-                case AffectedStat.Strength:
-                    unit.strength2.AddModifier(isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
-                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this));
+                case AffectedStat.Strength: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
+                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
+                    unit.strength2.AddModifier(modifier);
                     Logger.Log($"Strength: {unit.strength2.Value}");
-                    // float strength = unit.currentStrength;
-                    // if (removing) { strength /= isBuff ? BuffMultiplier : DebuffMultiplier; strength++; }
-                    // else strength *= isBuff ? BuffMultiplier : DebuffMultiplier;
-                    // unit.currentStrength = (int) strength;
                     break;
                 
-                case AffectedStat.Magic:
-                    unit.magic2.AddModifier(isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
-                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this));
+                case AffectedStat.Magic: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
+                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
+                    unit.magic2.AddModifier(modifier);
                     Logger.Log($"Magic: {unit.magic2.Value}");
-                    // float magic = unit.currentMagic;
-                    // if (removing) { magic /= isBuff ? BuffMultiplier : DebuffMultiplier; magic++; }
-                    // else magic *= isBuff ? BuffMultiplier : DebuffMultiplier;
-                    // unit.currentMagic = (int) magic;
                     break;
                 
-                case AffectedStat.Accuracy:
-                    unit.accuracy2.AddModifier(isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
-                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this));
+                case AffectedStat.Accuracy: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
+                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
+                    unit.accuracy2.AddModifier(modifier);
                     Logger.Log($"Accuracy: {unit.accuracy2.Value}");
-                    // float accuracy = unit.currentAccuracy;
-                    // if (removing) { accuracy /= isBuff ? BuffMultiplier : DebuffMultiplier; accuracy++; }
-                    // else accuracy *= isBuff ? BuffMultiplier : DebuffMultiplier;
-                    // unit.currentAccuracy = (int) accuracy;
                     break;
                 
-                case AffectedStat.Initiative:
-                    unit.initiative2.AddModifier(isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
-                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this));
+                case AffectedStat.Initiative: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
+                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
+                    unit.initiative2.AddModifier(modifier);
                     Logger.Log($"Initiative: {unit.initiative2.Value}");
-                    // float init = unit.currentInitiative;
-                    // if (removing) { init /= isBuff ? BuffMultiplier : DebuffMultiplier; init++; }
-                    // else init *= isBuff ? BuffMultiplier : DebuffMultiplier;
-                    // unit.currentInitiative = (int) init;
                     break;
                 
-                case AffectedStat.CriticalChance:
-                    unit.criticalChance2.AddModifier(isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
-                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this));
+                case AffectedStat.CriticalChance: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
+                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
+                    unit.criticalChance2.AddModifier(modifier);
                     Logger.Log($"Critical Chance: {unit.criticalChance2.Value}");
-                    // float crit = unit.currentCrit;
-                    // if (removing) { crit /= isBuff ? BuffMultiplier : DebuffMultiplier; crit++; }
-                    // else crit *= isBuff ? BuffMultiplier : DebuffMultiplier;
-                    // unit.currentCrit = (int) crit;
                     break;
                 
-                case AffectedStat.Defense:
-                    unit.defense2.AddModifier(isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
-                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this));
+                case AffectedStat.Defense: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
+                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
+                    unit.defense2.AddModifier(modifier);
                     Logger.Log($"Defense: {unit.defense2.Value}");
-                    // float defense = unit.currentDefense;
-                    // if (removing) { defense /= isBuff ? BuffMultiplier : DebuffMultiplier; defense++; }
-                    // else defense *= isBuff ? BuffMultiplier : DebuffMultiplier;
-                    // unit.currentDefense = (int) defense;
                     break;
                 
-                case AffectedStat.Resistance:
-                    unit.resistance2.AddModifier(isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
-                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this));
+                case AffectedStat.Resistance: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
+                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
+                    unit.resistance2.AddModifier(modifier);
                     Logger.Log($"Resistance: {unit.resistance2.Value}");
-                    // float resistance = unit.currentResistance;
-                    // if (removing) { resistance /= isBuff ? BuffMultiplier : DebuffMultiplier; resistance++; }
-                    // else resistance *= isBuff ? BuffMultiplier : DebuffMultiplier;
-                    // unit.currentResistance = (int) resistance;
                     break;
+                
                 case AffectedStat.None: break;
+                
                 default: Logger.Log("Could not find the stat to remove");
                     break;
             }
@@ -163,76 +136,38 @@ namespace StatusEffects.StatChange
 
         private void RemoveModifier(AffectedStat stat, UnitBase unit)
         {
+            Logger.Log("Removing Stat Mod");
             switch (stat)
             {
                 case AffectedStat.MaxHP:
-                    // float maxHealth = unit.maxHealthRef;
-                    // if (removing) maxHealth /= isBuff ? BuffMultiplier : DebuffMultiplier;
-                    // else maxHealth *= isBuff ? BuffMultiplier : DebuffMultiplier;
-                    // unit.maxHealthRef = (int) maxHealth;
                     break;
                 
-                case AffectedStat.Strength:
-                    unit.strength2.RemoveAllModifiersFromSource(this);
+                case AffectedStat.Strength: unit.strength2.RemoveModifier(modifier);
                     Logger.Log($"Strength: {unit.strength2.Value}");
-                    // float strength = unit.currentStrength;
-                    // if (removing) { strength /= isBuff ? BuffMultiplier : DebuffMultiplier; strength++; }
-                    // else strength *= isBuff ? BuffMultiplier : DebuffMultiplier;
-                    // unit.currentStrength = (int) strength;
                     break;
                 
-                case AffectedStat.Magic:
-                    unit.magic2.RemoveAllModifiersFromSource(this);
+                case AffectedStat.Magic: unit.magic2.RemoveAllModifiersFromSource(this);
                     Logger.Log($"Magic: {unit.magic2.Value}");
-                    // float magic = unit.currentMagic;
-                    // if (removing) { magic /= isBuff ? BuffMultiplier : DebuffMultiplier; magic++; }
-                    // else magic *= isBuff ? BuffMultiplier : DebuffMultiplier;
-                    // unit.currentMagic = (int) magic;
                     break;
                 
-                case AffectedStat.Accuracy:
-                    unit.accuracy2.RemoveAllModifiersFromSource(this);
+                case AffectedStat.Accuracy: unit.accuracy2.RemoveAllModifiersFromSource(this);
                     Logger.Log($"Accuracy: {unit.accuracy2.Value}");
-                    // float accuracy = unit.currentAccuracy;
-                    // if (removing) { accuracy /= isBuff ? BuffMultiplier : DebuffMultiplier; accuracy++; }
-                    // else accuracy *= isBuff ? BuffMultiplier : DebuffMultiplier;
-                    // unit.currentAccuracy = (int) accuracy;
                     break;
                 
-                case AffectedStat.Initiative:
-                    unit.initiative2.RemoveAllModifiersFromSource(this);
+                case AffectedStat.Initiative: unit.initiative2.RemoveAllModifiersFromSource(this);
                     Logger.Log($"Initiative: {unit.initiative2.Value}");
-                    // float init = unit.currentInitiative;
-                    // if (removing) { init /= isBuff ? BuffMultiplier : DebuffMultiplier; init++; }
-                    // else init *= isBuff ? BuffMultiplier : DebuffMultiplier;
-                    // unit.currentInitiative = (int) init;
                     break;
                 
-                case AffectedStat.CriticalChance:
-                    unit.criticalChance2.RemoveAllModifiersFromSource(this);
+                case AffectedStat.CriticalChance: unit.criticalChance2.RemoveAllModifiersFromSource(this);
                     Logger.Log($"Critical Chance: {unit.criticalChance2.Value}");
-                    // float crit = unit.currentCrit;
-                    // if (removing) { crit /= isBuff ? BuffMultiplier : DebuffMultiplier; crit++; }
-                    // else crit *= isBuff ? BuffMultiplier : DebuffMultiplier;
-                    // unit.currentCrit = (int) crit;
                     break;
                 
-                case AffectedStat.Defense:
-                    unit.defense2.RemoveAllModifiersFromSource(this);
+                case AffectedStat.Defense: unit.defense2.RemoveAllModifiersFromSource(this);
                     Logger.Log($"Defense: {unit.defense2.Value}");
-                    // float defense = unit.currentDefense;
-                    // if (removing) { defense /= isBuff ? BuffMultiplier : DebuffMultiplier; defense++; }
-                    // else defense *= isBuff ? BuffMultiplier : DebuffMultiplier;
-                    // unit.currentDefense = (int) defense;
                     break;
                 
-                case AffectedStat.Resistance:
-                    unit.resistance2.RemoveAllModifiersFromSource(this);
+                case AffectedStat.Resistance: unit.resistance2.RemoveAllModifiersFromSource(this);
                     Logger.Log($"Resistance: {unit.resistance2.Value}");
-                    // float resistance = unit.currentResistance;
-                    // if (removing) { resistance /= isBuff ? BuffMultiplier : DebuffMultiplier; resistance++; }
-                    // else resistance *= isBuff ? BuffMultiplier : DebuffMultiplier;
-                    // unit.currentResistance = (int) resistance;
                     break;
                 case AffectedStat.None: break;
                 default: Logger.Log("Could not find the stat to remove");

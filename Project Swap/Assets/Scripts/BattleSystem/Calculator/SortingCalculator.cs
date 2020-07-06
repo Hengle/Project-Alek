@@ -15,9 +15,6 @@ namespace BattleSystem.Calculator
             
             BattleManager._membersAndEnemies = BattleManager._membersAndEnemies.
                 OrderByDescending(e => e.initiative2.Value).ToList();
-            
-            foreach (var unitBase in BattleManager._membersAndEnemies) 
-                Logger.Log($"{unitBase.characterName} initiative: {unitBase.initiative2.Value}");
         }
     }
 }

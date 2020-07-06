@@ -21,7 +21,7 @@ namespace Characters.StatusEffects
 
         private void DecrementTimer()
         {
-            Logger.Log("Decrementing timer for " + targetUnit.characterName);
+            //Logger.Log("Decrementing timer for " + targetUnit.characterName);
             if (targetUnit.Unit.status == Status.Dead) {
                 RemoveTimerAndEffect(targetUnit);
                 return;

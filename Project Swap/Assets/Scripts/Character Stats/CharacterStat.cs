@@ -107,7 +107,7 @@ namespace Kryz.CharacterStats
 			}
 
 			// Workaround for float calculation errors, like displaying 12.00001 instead of 12
-			return (float)Math.Round(finalValue, 4);
+			return (int)Math.Round(finalValue, 4); // Changed to int instead of float
 		}
 	}
 }
