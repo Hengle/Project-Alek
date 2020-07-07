@@ -25,12 +25,12 @@ namespace BattleSystem.Calculator
             {
                 switch (damageDealer.Unit.currentAbility.damageType)
                 {
-                    case DamageType.Str: //Logger.Log("On Str Switch");
+                    case DamageType.Physical: //Logger.Log("On Str Switch");
                         dealerDamage = (int) damageDealer.strength.Value * damageDealer.weaponMight * damageDealer.Unit.currentAbility.damageMultiplier;
                         targetDefense = (int) target.defense.Value * (target.level / 2);
                         break;
                     
-                    case DamageType.Mag: //Logger.Log("On Mag Switch");
+                    case DamageType.Magic: //Logger.Log("On Mag Switch");
                         dealerDamage = (int) damageDealer.magic.Value * damageDealer.magicMight * damageDealer.Unit.currentAbility.damageMultiplier;
                         targetDefense = (int) target.resistance.Value * (target.Unit.level / 2);
                         break;

@@ -6,15 +6,15 @@ using UnityEngine.Serialization;
 
 namespace Characters.Abilities
 {
-    public enum AbilityType { Physical, Ranged, NonAttack }
-    public enum DamageType { Str, Mag }
+    public enum AbilityType { CloseRange, Ranged, NonAttack }
+    public enum DamageType { Physical, Magic }
     public enum TargetOptions { Enemies = 0, PartyMembers = 1, Both = 1 }
     public abstract class Ability : ScriptableObject
     {
         public Sprite icon;
         
         [Header("Main Information")]
-        public AbilityType abilityType;
+        [ReadOnly] public AbilityType abilityType;
         public DamageType damageType;
         public TargetOptions targetOptions;
         public bool isMultiTarget;

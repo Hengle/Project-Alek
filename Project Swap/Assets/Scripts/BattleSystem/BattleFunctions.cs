@@ -50,7 +50,7 @@ namespace BattleSystem
 
             switch (unit.currentAbility.abilityType)
             {
-                case AbilityType.Physical: StartCoroutine(CloseRangeAttack());
+                case AbilityType.CloseRange: StartCoroutine(CloseRangeAttack());
                     yield break;
                 case AbilityType.Ranged: StartCoroutine(RangedAttack());
                     yield break;

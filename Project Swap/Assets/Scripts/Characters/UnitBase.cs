@@ -6,9 +6,11 @@ using BattleSystem.Calculator;
 using BattleSystem.DamagePrefab;
 using Characters.Abilities;
 using Characters.Animations;
+using Characters.ElementalTypes;
 using Characters.StatusEffects;
 using Kryz.CharacterStats;
 using UnityEngine.Serialization;
+using Enumerable = System.Linq.Enumerable;
 
 namespace Characters
 {
@@ -33,6 +35,14 @@ namespace Characters
         [SerializeField] public CharacterStat defense;
         [SerializeField] public CharacterStat resistance;
         [SerializeField] public CharacterStat criticalChance;
+
+        // Need to account for potential mechanics where bosses change their resistances and weaknesses mid fight
+        [Header("Resistances and Weaknesses")]
+        public List<ElementalType> elementalResistances = new List<ElementalType>();
+        public List<ElementalType> elementalWeaknesses = new List<ElementalType>();
+        [Space]
+        public List<StatusEffect> statusEffectResistances = new List<StatusEffect>();
+        public List<StatusEffect> statusEffectWeaknesses = new List<StatusEffect>();
 
         [Header("Weapon Stats")]
         [Range(1,99)] public int weaponMight;
@@ -84,6 +94,16 @@ namespace Characters
                 onHpValueChanged?.Invoke();
                 Unit.outline.color = Color;
             } 
+        }
+
+        private void OnValidate()
+        {
+            foreach (var r in elementalResistances)
+            {
+                if (elementalWeaknesses.Contains(r))
+                    Debug.LogError("Cannot have an Elemental Type in as both a weakness and a resistance");
+                break;
+            }
         }
 
         public abstract void Heal(float amount);
