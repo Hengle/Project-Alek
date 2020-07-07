@@ -18,16 +18,5 @@ namespace StatusEffects.DOT
             dmg = Random.Range((int)(0.98f * dmg), (int)(1.02f * dmg));
             unitBase.TakeDamage(dmg);
         }
-        
-        public override void OnAdded(UnitBase target) {
-            Logger.Log($"{target.characterName} is inflicted with {name}.");
-            target.onStatusEffectReceived?.Invoke(this);
-        }
-        
-        public override void OnRemoval(UnitBase unitBase)
-        {
-            Logger.Log($"{unitBase.characterName} is no longer inflicted with {name}.");
-            unitBase.onStatusEffectRemoved?.Invoke(this);
-        }
     }
 }

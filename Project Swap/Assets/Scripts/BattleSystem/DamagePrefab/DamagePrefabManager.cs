@@ -14,6 +14,7 @@ namespace BattleSystem.DamagePrefab
         [SerializeField] private GameObject damagePrefab;
         [SerializeField] private GameObject prefabParent;
 
+        // This may need to be refactored to account for multiple targets at the same time
         [SerializeField] private Color damageTextColor;
         [SerializeField] private Color criticalTextColor;
 

@@ -18,7 +18,8 @@ namespace BattleSystem
         [SerializeField] [ReadOnly]
         private bool isOpen;
 
-        private void Start() {
+        private void Start()
+        {
             DOTween.Init();
             isOpen = false;
         }

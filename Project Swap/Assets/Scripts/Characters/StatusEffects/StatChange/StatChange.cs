@@ -10,9 +10,10 @@ namespace StatusEffects.StatChange
     [CreateAssetMenu(fileName = "Stat Effect", menuName = "Status Effect/Stat Change")]
     public class StatChange : StatusEffect
     {
+        [Space]
         public AffectedStat buffedStat;
         public Multiplier buffMultiplier;
-        
+        [Space]
         public AffectedStat debuffedStat;
         public Multiplier debuffMultiplier;
 
@@ -58,22 +59,19 @@ namespace StatusEffects.StatChange
 
         private void Awake() => effectType = EffectType.StatChange;
 
-        public override void InflictStatus(UnitBase unitBase) { /*Do nothing*/ }
-        
-        public override void OnAdded(UnitBase target) {
-            Logger.Log(target.characterName + " is inflicted with " + name);
+        public override void OnAdded(UnitBase target)
+        {
+            base.OnAdded(target);
             AddModifiers(buffedStat, target, true);
             AddModifiers(debuffedStat, target, false);
-            target.onStatusEffectReceived?.Invoke(this);
             CharacterEvents.Trigger(CEventType.StatChange, target);
         }
         
         public override void OnRemoval(UnitBase unitBase)
         {
-            Logger.Log("Stat Change has been removed from " + unitBase.characterName);
+            base.OnRemoval(unitBase);
             RemoveModifier(buffedStat, unitBase);
             RemoveModifier(debuffedStat, unitBase);
-            unitBase.onStatusEffectRemoved?.Invoke(this);
             CharacterEvents.Trigger(CEventType.StatChange, unitBase);
         }
         
@@ -81,84 +79,61 @@ namespace StatusEffects.StatChange
         {
             switch (stat)
             {
-                case AffectedStat.MaxHP:
-                    break;
+                case AffectedStat.MaxHP: break;
                 
-                case AffectedStat.Strength: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
-                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
-                    unit.strength.AddModifier(modifier);
-                    break;
+                case AffectedStat.Strength: modifier = isBuff?
+                        new StatModifier(BuffMultiplier, StatModType.PercentAdd, this) : 
+                        new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
+                    unit.strength.AddModifier(modifier); break;
                 
-                case AffectedStat.Magic: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
-                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
-                    unit.magic.AddModifier(modifier);
-                    break;
+                case AffectedStat.Magic: modifier = isBuff? 
+                        new StatModifier(BuffMultiplier, StatModType.PercentAdd, this) :
+                        new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
+                    unit.magic.AddModifier(modifier); break;
                 
-                case AffectedStat.Accuracy: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
-                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
-                    unit.accuracy.AddModifier(modifier);
-                    break;
+                case AffectedStat.Accuracy: modifier = isBuff? 
+                        new StatModifier(BuffMultiplier, StatModType.PercentAdd, this) : 
+                        new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
+                    unit.accuracy.AddModifier(modifier); break;
                 
-                case AffectedStat.Initiative: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
-                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
-                    unit.initiative.AddModifier(modifier);
-                    break;
+                case AffectedStat.Initiative: modifier = isBuff? 
+                        new StatModifier(BuffMultiplier, StatModType.PercentAdd, this) :
+                        new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
+                    unit.initiative.AddModifier(modifier); break;
                 
-                case AffectedStat.CriticalChance: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
-                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
-                    unit.criticalChance.AddModifier(modifier);
-                    break;
+                case AffectedStat.CriticalChance: modifier = isBuff? 
+                        new StatModifier(BuffMultiplier, StatModType.PercentAdd, this) : 
+                        new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
+                    unit.criticalChance.AddModifier(modifier); break;
                 
-                case AffectedStat.Defense: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
-                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
-                    unit.defense.AddModifier(modifier);
-                    break;
+                case AffectedStat.Defense: modifier = isBuff?
+                        new StatModifier(BuffMultiplier, StatModType.PercentAdd, this) : 
+                        new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
+                    unit.defense.AddModifier(modifier); break;
                 
-                case AffectedStat.Resistance: modifier = isBuff? new StatModifier(BuffMultiplier, StatModType.PercentAdd, this)
-                        : new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
-                    unit.resistance.AddModifier(modifier);
-                    break;
+                case AffectedStat.Resistance: modifier = isBuff? 
+                        new StatModifier(BuffMultiplier, StatModType.PercentAdd, this) : 
+                        new StatModifier(DebuffMultiplier, StatModType.PercentAdd, this);
+                    unit.resistance.AddModifier(modifier); break;
                 
                 case AffectedStat.None: break;
-                
-                default: Logger.Log("Could not find the stat to modify");
-                    break;
+                default: Logger.Log("Could not find the stat to modify"); break;
             }
         }
 
         private void RemoveModifier(AffectedStat stat, UnitBase unit)
         {
-            Logger.Log("Removing Stat Mod");
             switch (stat)
             {
-                case AffectedStat.MaxHP:
-                    break;
-                
-                case AffectedStat.Strength: unit.strength.RemoveModifier(modifier);
-                    break;
-                
-                case AffectedStat.Magic: unit.magic.RemoveAllModifiersFromSource(this);
-                    break;
-                
-                case AffectedStat.Accuracy: unit.accuracy.RemoveAllModifiersFromSource(this);
-                    break;
-                
-                case AffectedStat.Initiative: unit.initiative.RemoveAllModifiersFromSource(this);
-                    break;
-                
-                case AffectedStat.CriticalChance: unit.criticalChance.RemoveAllModifiersFromSource(this);
-                    break;
-                
-                case AffectedStat.Defense: unit.defense.RemoveAllModifiersFromSource(this);
-                    break;
-                
-                case AffectedStat.Resistance: unit.resistance.RemoveAllModifiersFromSource(this);
-                    break;
-                
+                case AffectedStat.MaxHP: break;
+                case AffectedStat.Strength: unit.strength.RemoveModifier(modifier); break;
+                case AffectedStat.Magic: unit.magic.RemoveModifier(modifier); break;
+                case AffectedStat.Accuracy: unit.accuracy.RemoveModifier(modifier); break;
+                case AffectedStat.Initiative: unit.initiative.RemoveModifier(modifier); break;
+                case AffectedStat.CriticalChance: unit.criticalChance.RemoveModifier(modifier); break;
+                case AffectedStat.Defense: unit.defense.RemoveModifier(modifier); break;
+                case AffectedStat.Resistance: unit.resistance.RemoveModifier(modifier); break;
                 case AffectedStat.None: break;
-                
-                default: Logger.Log("Could not find the stat to remove");
-                    break;
             }
         }
     }

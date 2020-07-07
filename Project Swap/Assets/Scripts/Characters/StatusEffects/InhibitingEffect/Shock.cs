@@ -30,18 +30,5 @@ namespace StatusEffects.InhibitingEffect
             // show shocked visual effect
             BattleManager._shouldGiveCommand = false;
         }
-
-        public override void OnAdded(UnitBase target)
-        {
-            // show shocked visual effect
-            Logger.Log($"{target.characterName} is inflicted with {name}.");
-            target.onStatusEffectReceived?.Invoke(this);
-        }
-
-        public override void OnRemoval(UnitBase unitBase)
-        {
-            Logger.Log($"{unitBase.characterName} is no longer inflicted with {name}.");
-            unitBase.onStatusEffectRemoved?.Invoke(this);
-        }
     }
 }

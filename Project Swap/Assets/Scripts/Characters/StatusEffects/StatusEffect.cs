@@ -8,7 +8,7 @@ namespace Characters.StatusEffects
     public abstract class StatusEffect : ScriptableObject
     {
         public GameObject icon;
-        public EffectType effectType;
+        [ReadOnly] public EffectType effectType;
         
         [Tooltip("How often the effect is inflicted")] 
         public List<RateOfInfliction> rateOfInfliction = new List<RateOfInfliction>();
@@ -18,9 +18,19 @@ namespace Characters.StatusEffects
         
         [Tooltip("Number of turns that the effect lasts")] 
         public int duration;
-        
-        public abstract void InflictStatus(UnitBase unitBase);
-        public abstract void OnAdded(UnitBase target);
-        public abstract void OnRemoval(UnitBase unitBase);
+
+        public virtual void InflictStatus(UnitBase unitBase) { }
+
+        public virtual void OnAdded(UnitBase target)
+        {
+            Logger.Log($"{target.characterName} is inflicted with {name}.");
+            target.onStatusEffectReceived?.Invoke(this);
+        }
+
+        public virtual void OnRemoval(UnitBase unitBase)
+        {
+            Logger.Log($"{unitBase.characterName} is no longer inflicted with {name}.");
+            unitBase.onStatusEffectRemoved?.Invoke(this);
+        }
     }
 }

@@ -9,8 +9,6 @@ using Characters.Animations;
 using Characters.ElementalTypes;
 using Characters.StatusEffects;
 using Kryz.CharacterStats;
-using UnityEngine.Serialization;
-using Enumerable = System.Linq.Enumerable;
 
 namespace Characters
 {
@@ -106,9 +104,10 @@ namespace Characters
             }
         }
 
-        public abstract void Heal(float amount);
+        public virtual void Heal(float amount) {}
      
-        public void GiveCommand() {
+        public void GiveCommand()
+        {
             BattleManager._battleFunctions.GetCommand(this);
             BattleManager._performingAction = true;
         }
@@ -134,18 +133,20 @@ namespace Characters
         
         public void GetDamageValues()
         {
-            if (Unit.isAbility && Unit.currentAbility.isMultiTarget) {
+            if (Unit.isAbility && Unit.currentAbility.isMultiTarget)
+            {
                 foreach (var target in Unit.multiHitTargets) 
                     Unit.damageValueList.Add(Calculator.CalculateAttackDamage(this, target));
             }
 
-            else {
+            else 
+            {
                 Unit.currentTarget = CheckTargetStatus(Unit.currentTarget);
                 Unit.currentDamage = Calculator.CalculateAttackDamage(this, Unit.currentTarget);
             }
         }
 
-        public void TakeDamage(int dmg)
+        public virtual void TakeDamage(int dmg)
         {
             CurrentHP -= dmg < 0 ? 0 : dmg;
 
@@ -164,14 +165,15 @@ namespace Characters
             
         }
 
-        private void Die() // If i want to make special death sequences, just make it an event or cutscene
+        protected virtual void Die()
         {
             Unit.status = Status.Dead;
             onDeath?.Invoke(this);
             Unit.anim.SetBool(AnimationHandler.DeathTrigger, true);
         }
 
-        public void ResetAP() {
+        public virtual void ResetAP() 
+        {
             Unit.currentAP += 2;
             if (Unit.currentAP > 6) Unit.currentAP = 6;
         }
@@ -187,7 +189,8 @@ namespace Characters
             }
         }
 
-        private UnitBase CheckTargetStatus(UnitBase target) {
+        private UnitBase CheckTargetStatus(UnitBase target) 
+        {
             if (target != null) return Unit.currentTarget.Unit.status != Status.Dead? target : this;
             return this;
         }
