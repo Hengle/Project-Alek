@@ -576,7 +576,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
-    1: MOREMOUNTAINS_TOOLS;MOREMOUNTAINS_INVENTORYENGINE
+    1: MOREMOUNTAINS_TOOLS;MOREMOUNTAINS_INVENTORYENGINE;ODIN_INSPECTOR
   platformArchitecture: {}
   scriptingBackend:
     Standalone: 1

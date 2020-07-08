@@ -9,11 +9,12 @@ using Characters.Animations;
 using Characters.ElementalTypes;
 using Characters.StatusEffects;
 using Kryz.CharacterStats;
+using Sirenix.OdinInspector;
 
 namespace Characters
 {
     public enum CharacterType { PartyMember, Enemy }
-    public abstract class UnitBase : ScriptableObject
+    public abstract class UnitBase : SerializedScriptableObject
     {
         public Vector3 scale = Vector3.one;
         public GameObject characterPrefab;
@@ -38,10 +39,14 @@ namespace Characters
         // For cases where enemies lose their resistance when susceptible, just add a function/variable to 
         // The Elemental Type/Status Effects classes that disables them
         [Header("Resistances and Weaknesses")]
+        [ShowInInspector]
         public readonly Dictionary<ElementalType, ElementalScaler> _elementalResistances = new Dictionary<ElementalType, ElementalScaler>();
+        [ShowInInspector]
         public readonly Dictionary<ElementalType, ElementalWeaknessScaler> _elementalWeaknesses = new Dictionary<ElementalType, ElementalWeaknessScaler>();
-        [Space]
+        [PropertySpace]
+        [ShowInInspector]
         public readonly Dictionary<StatusEffect, InflictionChanceModifier> _statusEffectResistances = new Dictionary<StatusEffect, InflictionChanceModifier>();
+        [ShowInInspector]
         public readonly Dictionary<StatusEffect, InflictionChanceModifier> _statusEffectWeaknesses = new Dictionary<StatusEffect, InflictionChanceModifier>();
 
         [Header("Weapon Stats")]

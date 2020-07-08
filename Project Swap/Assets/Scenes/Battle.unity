@@ -22218,6 +22218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2710f2dbbb3b4cec8e1e98555d657e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  testingType: {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
+  testingWeakness: {fileID: 11400000, guid: c39d538e0733abc409ae3ae8b371cbf4, type: 2}
   inventoryItems:
   - {fileID: 11400000, guid: 40876a02f1980694e94d7190565ee90c, type: 2}
   - {fileID: 11400000, guid: 40876a02f1980694e94d7190565ee90c, type: 2}
