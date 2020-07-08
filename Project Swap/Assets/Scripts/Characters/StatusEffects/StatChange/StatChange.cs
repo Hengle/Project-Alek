@@ -1,6 +1,7 @@
 ﻿using Characters;
 using Characters.StatusEffects;
 using Kryz.CharacterStats;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace StatusEffects.StatChange
@@ -10,21 +11,33 @@ namespace StatusEffects.StatChange
     [CreateAssetMenu(fileName = "Stat Effect", menuName = "Status Effect/Stat Change")]
     public class StatChange : StatusEffect
     {
-        [Space]
+
+        [Space] [SerializeField, BoxGroup("Buffs")] 
+        private bool buffs;
+        
+        [ShowIf(nameof(buffs)), BoxGroup("Buffs")]
         public AffectedStat buffedStat;
+        
+        [ShowIf(nameof(buffs)), BoxGroup("Buffs")]
         public Multiplier buffMultiplier;
-        [Space]
+        
+        [Space] [SerializeField, BoxGroup("Debuffs")] 
+        private bool debuffs;
+        
+        [ShowIf(nameof(debuffs)), BoxGroup("Debuffs")]
         public AffectedStat debuffedStat;
+        
+        [ShowIf(nameof(debuffs)), BoxGroup("Debuffs")]
         public Multiplier debuffMultiplier;
 
-        private const float SlightBuff = 0.05f;
-        private const float SlightDebuff = -0.05f;
+        [ShowInInspector] private const float SlightBuff = 0.05f;
+        [ShowInInspector] private const float SlightDebuff = -0.05f;
 
-        private const float ModerateBuff = 0.10f;
-        private const float ModerateDebuff = -0.10f;
+        [ShowInInspector] private const float ModerateBuff = 0.10f;
+        [ShowInInspector] private const float ModerateDebuff = -0.10f;
 
-        private const float SignificantBuff = 0.20f;
-        private const float SignificantDebuff = -0.20f;
+        [ShowInInspector] private const float SignificantBuff = 0.20f;
+        [ShowInInspector] private const float SignificantDebuff = -0.20f;
 
         private StatModifier modifier;
         

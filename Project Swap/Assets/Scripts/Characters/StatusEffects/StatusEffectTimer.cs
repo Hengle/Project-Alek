@@ -49,5 +49,10 @@ namespace Characters.StatusEffects
             if (!targetUnit.GetStatus()) { GameEventsManager.RemoveListener(this); return; }
             DecrementTimer();
         }
+
+        private void OnDisable()
+        {
+            targetUnit.onDeath -= RemoveTimerAndEffect;
+        }
     }
 }

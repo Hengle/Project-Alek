@@ -31,5 +31,10 @@ namespace Characters.PartyMembers
             slider.value = member.Unit.currentHP;
             healthUGUI.text = $"HP: {member.Unit.currentHP}";
         }
+
+        private void OnDisable()
+        {
+            member.onHpValueChanged -= OnHpValueChanged;
+        }
     }
 }

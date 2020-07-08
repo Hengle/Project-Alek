@@ -42,5 +42,11 @@ namespace Characters.StatusEffects
         private void ShowIcons() => group.alpha = 1;
 
         private void HideIcons() => group.alpha = 0;
+        
+        private void OnDisable()
+        {
+            member.onStatusEffectReceived -= AddStatusEffectIcon;
+            member.onStatusEffectRemoved -= RemoveStatusEffectIcon;
+        }
     }
 }

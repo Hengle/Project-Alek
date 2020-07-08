@@ -9,16 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20d95f71b0ecb984994fbe8ed6ae5941, type: 3}
-  m_Name: Skeleton
+  m_Script: {fileID: 11500000, guid: 4760f1c8fd2d6214986da2731bc0ab7b, type: 3}
+  m_Name: Alek Ezana
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000, guid: c39d538e0733abc409ae3ae8b371cbf4, type: 2}
-    - {fileID: 11400000, guid: eb1b5a0f67771a842832b379372ae131, type: 2}
-    - {fileID: 11400000, guid: 5b7dd86029ea2ce49beaee4e4d702b94, type: 2}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -37,19 +34,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 10
       Data: 0
-    - Name: $v
-      Entry: 3
-      Data: 25
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -66,31 +51,7 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 10
-      Data: 1
-    - Name: $v
-      Entry: 3
-      Data: 150
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 10
-      Data: 2
-    - Name: $v
-      Entry: 3
-      Data: 150
-    - Name: 
-      Entry: 8
-      Data: 
+      Data: 0
     - Name: 
       Entry: 13
       Data: 
@@ -147,35 +108,48 @@ MonoBehaviour:
     - Name: onStatusEffectRemoved
       Entry: 6
       Data: 
-  scale: {x: 45, y: 45, z: 1}
-  characterPrefab: {fileID: 1109450531332189788, guid: 46c69567f6d4d924ca3cfc4c96675443,
+  scale: {x: 55, y: 55, z: 1}
+  icon: {fileID: 21300000, guid: 93a66ee4446eb5741900a389e401cdb0, type: 3}
+  id: 0
+  characterName: Alek Ezana
+  description: Bruh it is the one. The ONLY. The ONE and ONLY. The ONE and ONLY GOD
+    among MEN. It is.... ya boi.... tha GAWD.... Alek.
+  characterPrefab: {fileID: 1526218485019349028, guid: 38e223593cf5fd94cb9a317771507f77,
     type: 3}
-  icon: {fileID: 0}
-  id: 1
-  characterName: Skeleton
-  description: I mean, he's a...
-  level: 24
+  level: 20
   health:
-    BaseValue: 2780
+    BaseValue: 2310
   strength:
-    BaseValue: 25
+    BaseValue: 23
   magic:
-    BaseValue: 15
+    BaseValue: 18
   accuracy:
-    BaseValue: 22
+    BaseValue: 21
   initiative:
     BaseValue: 19
   defense:
-    BaseValue: 18
+    BaseValue: 15
   resistance:
-    BaseValue: 11
+    BaseValue: 10
   criticalChance:
-    BaseValue: 8
-  weaponMight: 19
-  magicMight: 8
-  weaponAccuracy: 75
+    BaseValue: 6
+  weaponMight: 16
+  magicMight: 5
+  weaponAccuracy: 85
   weaponCriticalChance: 3
-  profileBoxColor: {r: 0.735849, g: 0.7254361, b: 0.7254361, a: 0.78431374}
+  profileBoxColor: {r: 0.6415094, g: 0.54118514, b: 0.493236, a: 0.78431374}
   maxAP: 6
   abilities:
-  - {fileID: 11400000, guid: 8697ec229a0734b4b9c69d6087505ba9, type: 2}
+  - {fileID: 11400000, guid: 5c5fa03193734104c98ec2f8d6543cfa, type: 2}
+  - {fileID: 11400000, guid: 6c09b3176a3b3e54ca0946ee458d3fa6, type: 2}
+  - {fileID: 11400000, guid: 1306999bff8e7c14892abd85b0b028c7, type: 2}
+  actionPointAnim: {fileID: 0}
+  positionInParty: 2
+  weaponInventory: {fileID: 5917402227159465644, guid: 1d94ebccb9928a445b4a7e1dbacb9d53,
+    type: 3}
+  armorInventory: {fileID: 5917402227159465644, guid: 73160e3893c2b7843b6db9576b98ff50,
+    type: 3}
+  equippedWeapon: {fileID: 0}
+  battleOptionsPanel: {fileID: 0}
+  battlePanel: {fileID: 0}
+  inventoryDisplay: {fileID: 0}

@@ -10,6 +10,7 @@ using Characters.PartyMembers;
 using Characters.StatusEffects;
 using Input;
 using MoreMountains.InventoryEngine;
+using Sirenix.OdinInspector;
 
 namespace BattleSystem
 {
@@ -18,25 +19,26 @@ namespace BattleSystem
     [RequireComponent(typeof(InputSystemUIInputModule))]
     public class BattleManager : MonoBehaviour
     {
+        [ShowInInspector]
         private static BattleState state;
         public static BattleFunctions _battleFunctions;
 
-        public static readonly List<Enemy> EnemiesForThisBattle = new List<Enemy>();
-        public static readonly List<PartyMember> MembersForThisBattle = new List<PartyMember>();
-        public static List<UnitBase> _membersAndEnemies = new List<UnitBase>();
+        [ShowInInspector] public static readonly List<Enemy> EnemiesForThisBattle = new List<Enemy>();
+        [ShowInInspector] public static readonly List<PartyMember> MembersForThisBattle = new List<PartyMember>();
+        [ShowInInspector] public static List<UnitBase> _membersAndEnemies = new List<UnitBase>();
 
-        public static PartyMember _activePartyMember;
-
-        public static bool _choosingOption;
-        public static bool _choosingTarget;
-        public static bool _performingAction;
-        public static bool _endThisMembersTurn;
-        public static bool _choosingAbility;
-        public static bool _shouldGiveCommand;
+        [ShowInInspector] public static PartyMember _activePartyMember;
         
-        private static bool allMembersDead;
-        private static bool allEnemiesDead;
-        private static bool PartyOrEnemyTeamIsDead 
+        [ShowInInspector] public static bool _choosingOption;
+        [ShowInInspector] public static bool _choosingTarget;
+        [ShowInInspector] public static bool _performingAction;
+        [ShowInInspector] public static bool _endThisMembersTurn;
+        [ShowInInspector] public static bool _choosingAbility;
+        [ShowInInspector] public static bool _shouldGiveCommand;
+        
+        [ShowInInspector] private static bool allMembersDead;
+        [ShowInInspector] private static bool allEnemiesDead;
+        [ShowInInspector] private static bool PartyOrEnemyTeamIsDead 
         {
             get
             {
@@ -48,10 +50,11 @@ namespace BattleSystem
 
         private BattleGenerator generator;
 
-        private int roundCount;
+        [SerializeField] private int roundCount;
         
         private void Start()
         {
+            roundCount = 0;
             generator = GetComponent<BattleGenerator>();
             _battleFunctions = GetComponent<BattleFunctions>();
 

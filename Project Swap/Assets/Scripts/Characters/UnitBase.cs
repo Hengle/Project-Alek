@@ -17,41 +17,54 @@ namespace Characters
     public abstract class UnitBase : SerializedScriptableObject
     {
         public Vector3 scale = Vector3.one;
-        public GameObject characterPrefab;
+
+        [InlineEditor(InlineEditorModes.SmallPreview)]
         public Sprite icon;
 
         public CharacterType id;
+
         public string characterName;
+
         [TextArea(5,15)] public string  description;
-        
-        [Header("Stats")]
-        [Range(0,99)] public int level;
-        [SerializeField] public CharacterStat health;
-        [SerializeField] public CharacterStat strength;
-        [SerializeField] public CharacterStat magic;
-        [SerializeField] public CharacterStat accuracy;
-        [SerializeField] public CharacterStat initiative;
-        [SerializeField] public CharacterStat defense;
-        [SerializeField] public CharacterStat resistance;
-        [SerializeField] public CharacterStat criticalChance;
+
+        [HorizontalGroup("Stat Data", 200), PreviewField(200), HideLabel]
+        public GameObject characterPrefab;
+
+        [Range(0,99), VerticalGroup("Stat Data/Stats"), LabelWidth(100)]
+        public int level;
+        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100)] 
+        public CharacterStat health;
+        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100)] 
+        public CharacterStat strength;
+        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100)] 
+        public CharacterStat magic;
+        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100)] 
+        public CharacterStat accuracy;
+        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100)]
+        public CharacterStat initiative;
+        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100)] 
+        public CharacterStat defense;
+        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100)] 
+        public CharacterStat resistance;
+        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100)] 
+        public CharacterStat criticalChance;
 
         // Need to account for potential mechanics where bosses change their resistances and weaknesses mid fight
         // For cases where enemies lose their resistance when susceptible, just add a function/variable to 
         // The Elemental Type/Status Effects classes that disables them
-        [Header("Resistances and Weaknesses")]
-        [ShowInInspector]
+        [ShowInInspector,BoxGroup("Resistances and Weaknesses")]
         public readonly Dictionary<ElementalType, ElementalScaler> _elementalResistances = new Dictionary<ElementalType, ElementalScaler>();
-        [ShowInInspector]
+        [ShowInInspector,BoxGroup("Resistances and Weaknesses")]
         public readonly Dictionary<ElementalType, ElementalWeaknessScaler> _elementalWeaknesses = new Dictionary<ElementalType, ElementalWeaknessScaler>();
-        [PropertySpace]
-        [ShowInInspector]
+        [Space]
+        [ShowInInspector,BoxGroup("Resistances and Weaknesses")]
         public readonly Dictionary<StatusEffect, InflictionChanceModifier> _statusEffectResistances = new Dictionary<StatusEffect, InflictionChanceModifier>();
-        [ShowInInspector]
+        [ShowInInspector,BoxGroup("Resistances and Weaknesses")]
         public readonly Dictionary<StatusEffect, InflictionChanceModifier> _statusEffectWeaknesses = new Dictionary<StatusEffect, InflictionChanceModifier>();
 
         [Header("Weapon Stats")]
         [Range(1,99)] public int weaponMight;
-        [Range(1,99)] public int magicMight;
+        [Range(1,99)] public int magicMight; // May get rid of
         [Range(1,99)] public int weaponAccuracy;
         [Range(1,99)] public int weaponCriticalChance;
 
@@ -79,7 +92,7 @@ namespace Characters
         
         [HideInInspector] public int maxAP = 6;
         public Unit Unit { get; set; }
-        [Header("Abilities")]
+        [Header("Abilities"), InlineEditor]
         public List<Ability> abilities = new List<Ability>();
 
         public Action<UnitBase> onDeath;
@@ -97,18 +110,17 @@ namespace Characters
                 Unit.currentHP = value < 0 ? 0 : value;
                 if (Unit.currentHP > health.BaseValue) Unit.currentHP = (int) health.BaseValue;
                 onHpValueChanged?.Invoke();
+                //CharacterEvents.Trigger(CEventType.HpValueChanged, this);
                 Unit.outline.color = Color;
             } 
         }
 
         private void OnValidate()
         {
-            foreach (var r in _elementalResistances)
-            {
-                if (_elementalWeaknesses.ContainsKey(r.Key))
-                    Debug.LogError("Cannot have an Elemental Type in as both a weakness and a resistance");
-                break;
-            }
+            onHpValueChanged = null;
+            onStatusEffectReceived = null;
+            onStatusEffectRemoved = null;
+            onDeath = null;
         }
 
         public virtual void Heal(float amount) {}
@@ -155,6 +167,7 @@ namespace Characters
 
         public virtual void TakeDamage(int dmg)
         {
+            Logger.Log("Called Take Damage");
             CurrentHP -= dmg < 0 ? 0 : dmg;
 
             var position = Unit.gameObject.transform.position;

@@ -198,9 +198,6 @@ namespace BattleSystem.Generator
                 statusBoxController.member = clone;
                 statusBoxController.Initialize();
                 
-                // testing
-                // clone._elementalResistances.Add(battleGeneratorDatabase.testingType, ElementalScaler.Normal);
-                // clone._elementalWeaknesses.Add(battleGeneratorDatabase.testingWeakness, ElementalWeaknessScaler.Moderate);
                 BattleManager.EnemiesForThisBattle.Add(clone);
                 i++;
             }

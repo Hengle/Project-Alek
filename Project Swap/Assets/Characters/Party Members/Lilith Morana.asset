@@ -9,16 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20d95f71b0ecb984994fbe8ed6ae5941, type: 3}
-  m_Name: Skeleton
+  m_Script: {fileID: 11500000, guid: 4760f1c8fd2d6214986da2731bc0ab7b, type: 3}
+  m_Name: Lilith Morana
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000, guid: c39d538e0733abc409ae3ae8b371cbf4, type: 2}
-    - {fileID: 11400000, guid: eb1b5a0f67771a842832b379372ae131, type: 2}
-    - {fileID: 11400000, guid: 5b7dd86029ea2ce49beaee4e4d702b94, type: 2}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -37,19 +34,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 10
       Data: 0
-    - Name: $v
-      Entry: 3
-      Data: 25
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -66,31 +51,7 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 10
-      Data: 1
-    - Name: $v
-      Entry: 3
-      Data: 150
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 10
-      Data: 2
-    - Name: $v
-      Entry: 3
-      Data: 150
-    - Name: 
-      Entry: 8
-      Data: 
+      Data: 0
     - Name: 
       Entry: 13
       Data: 
@@ -147,35 +108,50 @@ MonoBehaviour:
     - Name: onStatusEffectRemoved
       Entry: 6
       Data: 
-  scale: {x: 45, y: 45, z: 1}
-  characterPrefab: {fileID: 1109450531332189788, guid: 46c69567f6d4d924ca3cfc4c96675443,
+  scale: {x: 50, y: 50, z: 1}
+  icon: {fileID: 21300000, guid: 53ffa75a1222255418c13ded5bac1730, type: 3}
+  id: 0
+  characterName: Lilith Morana
+  description: A very long description about an amazing girl named Lilith. I tell
+    you when I come up with a good description, it will be legendary!
+  characterPrefab: {fileID: 1526218485019349028, guid: c480ece643ae0c54099692d3bbb9649d,
     type: 3}
-  icon: {fileID: 0}
-  id: 1
-  characterName: Skeleton
-  description: I mean, he's a...
-  level: 24
+  level: 20
   health:
-    BaseValue: 2780
+    BaseValue: 2070
   strength:
-    BaseValue: 25
-  magic:
-    BaseValue: 15
-  accuracy:
-    BaseValue: 22
-  initiative:
     BaseValue: 19
+  magic:
+    BaseValue: 7
+  accuracy:
+    BaseValue: 23
+  initiative:
+    BaseValue: 20
   defense:
-    BaseValue: 18
+    BaseValue: 12
   resistance:
-    BaseValue: 11
+    BaseValue: 5
   criticalChance:
-    BaseValue: 8
-  weaponMight: 19
-  magicMight: 8
-  weaponAccuracy: 75
-  weaponCriticalChance: 3
-  profileBoxColor: {r: 0.735849, g: 0.7254361, b: 0.7254361, a: 0.78431374}
+    BaseValue: 5
+  weaponMight: 15
+  magicMight: 2
+  weaponAccuracy: 90
+  weaponCriticalChance: 4
+  profileBoxColor: {r: 0, g: 0.6316395, b: 1, a: 0.78431374}
   maxAP: 6
   abilities:
-  - {fileID: 11400000, guid: 8697ec229a0734b4b9c69d6087505ba9, type: 2}
+  - {fileID: 11400000, guid: 8e151e58900d509469c607fa4066a172, type: 2}
+  - {fileID: 11400000, guid: 47015355f94fcc74bbb9c212781f9416, type: 2}
+  - {fileID: 11400000, guid: ee9a142c4223d434e863f4e4e1758255, type: 2}
+  - {fileID: 11400000, guid: 3499fec825fc18c438ede820b9be0e0e, type: 2}
+  - {fileID: 11400000, guid: 6eb5e2c11d395244e94b25794bf8f3dc, type: 2}
+  actionPointAnim: {fileID: 0}
+  positionInParty: 4
+  weaponInventory: {fileID: 9018186885891804427, guid: b53c59ae1a11e064b8d4a3e7c56bbfe6,
+    type: 3}
+  armorInventory: {fileID: 9018186885891804427, guid: 6174d2c658d59084a9cbb01826b18408,
+    type: 3}
+  equippedWeapon: {fileID: 0}
+  battleOptionsPanel: {fileID: 0}
+  battlePanel: {fileID: 0}
+  inventoryDisplay: {fileID: 0}

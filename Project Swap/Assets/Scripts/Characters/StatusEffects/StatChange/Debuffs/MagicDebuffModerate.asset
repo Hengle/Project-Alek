@@ -17,7 +17,9 @@ MonoBehaviour:
   rateOfInfliction: 
   color: {r: 0, g: 0, b: 0, a: 0}
   duration: 2
+  buffs: 0
   buffedStat: 0
   buffMultiplier: 0
+  debuffs: 1
   debuffedStat: 3
   debuffMultiplier: 2
