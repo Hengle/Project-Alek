@@ -36,6 +36,13 @@ MonoBehaviour:
     BaseValue: 25
   criticalChance:
     BaseValue: 5
+  elementalResistances:
+  - {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
+  elementalWeaknesses:
+  - {fileID: 11400000, guid: 366775002164acb45983c6014a20dd29, type: 2}
+  - {fileID: 11400000, guid: 5b7dd86029ea2ce49beaee4e4d702b94, type: 2}
+  statusEffectResistances: []
+  statusEffectWeaknesses: []
   weaponMight: 13
   magicMight: 15
   weaponAccuracy: 80

@@ -35,12 +35,14 @@ namespace Characters
         [SerializeField] public CharacterStat criticalChance;
 
         // Need to account for potential mechanics where bosses change their resistances and weaknesses mid fight
+        // For cases where enemies lose their resistance when susceptible, just add a function/variable to 
+        // The Elemental Type/Status Effects classes that disables them
         [Header("Resistances and Weaknesses")]
-        public List<ElementalType> elementalResistances = new List<ElementalType>();
-        public List<ElementalType> elementalWeaknesses = new List<ElementalType>();
+        public readonly Dictionary<ElementalType, ElementalScaler> _elementalResistances = new Dictionary<ElementalType, ElementalScaler>();
+        public readonly Dictionary<ElementalType, ElementalWeaknessScaler> _elementalWeaknesses = new Dictionary<ElementalType, ElementalWeaknessScaler>();
         [Space]
-        public List<StatusEffect> statusEffectResistances = new List<StatusEffect>();
-        public List<StatusEffect> statusEffectWeaknesses = new List<StatusEffect>();
+        public readonly Dictionary<StatusEffect, InflictionChanceModifier> _statusEffectResistances = new Dictionary<StatusEffect, InflictionChanceModifier>();
+        public readonly Dictionary<StatusEffect, InflictionChanceModifier> _statusEffectWeaknesses = new Dictionary<StatusEffect, InflictionChanceModifier>();
 
         [Header("Weapon Stats")]
         [Range(1,99)] public int weaponMight;
@@ -96,9 +98,9 @@ namespace Characters
 
         private void OnValidate()
         {
-            foreach (var r in elementalResistances)
+            foreach (var r in _elementalResistances)
             {
-                if (elementalWeaknesses.Contains(r))
+                if (_elementalWeaknesses.ContainsKey(r.Key))
                     Debug.LogError("Cannot have an Elemental Type in as both a weakness and a resistance");
                 break;
             }
@@ -139,7 +141,7 @@ namespace Characters
                     Unit.damageValueList.Add(Calculator.CalculateAttackDamage(this, target));
             }
 
-            else 
+            else
             {
                 Unit.currentTarget = CheckTargetStatus(Unit.currentTarget);
                 Unit.currentDamage = Calculator.CalculateAttackDamage(this, Unit.currentTarget);

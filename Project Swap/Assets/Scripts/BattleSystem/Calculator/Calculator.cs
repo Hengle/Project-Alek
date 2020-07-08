@@ -25,12 +25,12 @@ namespace BattleSystem.Calculator
             {
                 switch (damageDealer.Unit.currentAbility.damageType)
                 {
-                    case DamageType.Physical: //Logger.Log("On Str Switch");
+                    case DamageType.Physical:
                         dealerDamage = (int) damageDealer.strength.Value * damageDealer.weaponMight * damageDealer.Unit.currentAbility.damageMultiplier;
                         targetDefense = (int) target.defense.Value * (target.level / 2);
                         break;
                     
-                    case DamageType.Magic: //Logger.Log("On Mag Switch");
+                    case DamageType.Magic:
                         dealerDamage = (int) damageDealer.magic.Value * damageDealer.magicMight * damageDealer.Unit.currentAbility.damageMultiplier;
                         targetDefense = (int) target.resistance.Value * (target.Unit.level / 2);
                         break;
@@ -56,6 +56,49 @@ namespace BattleSystem.Calculator
             damageDealer.Unit.isCrit = true;
 
             return totalDamage < 0 ? 0 : Random.Range((int)(0.95f * totalDamage), (int)(1.05f * totalDamage));
+        }
+
+        private static int CalculateDamageWithElemental(UnitBase damageDealer, UnitBase target)
+        {
+            if (damageDealer.Unit == target.Unit) return 0;
+            
+            var hitChance = CalculateAccuracy(damageDealer, target);
+            if (!hitChance) { target.Unit.attackerHasMissed = true; return -1; }
+
+            float normalDamage = 0;
+            float elementalDamage;
+            float totalDamage;
+            
+            var targetDefense = 0;
+            var ability = damageDealer.Unit.currentAbility;
+            
+            switch (ability.damageType)
+            {
+                case DamageType.Physical:
+                    normalDamage = (int) damageDealer.strength.Value * damageDealer.weaponMight;
+                    
+                    elementalDamage =
+                        (int) damageDealer.magic.Value * damageDealer.weaponMight * 
+                        (target._elementalResistances.ContainsKey(ability.elementalType)? 
+                            ability.ElementalScaler * ( 1 - (float) target._elementalResistances.Single
+                                (s => s.Key == ability.elementalType).Value / 100) :
+                            ability.ElementalScaler);
+                    
+                    targetDefense = (int) target.defense.Value * (target.level / 2);
+                    
+                    totalDamage = (normalDamage + elementalDamage) * damageDealer.Unit.currentAbility.damageMultiplier;
+                    break;
+                    
+                case DamageType.Magic:
+                    normalDamage =
+                        (int) damageDealer.magic.Value * damageDealer.weaponMight +
+                        damageDealer.magic.Value * damageDealer.weaponMight * damageDealer.Unit.currentAbility.ElementalScaler
+                        * damageDealer.Unit.currentAbility.damageMultiplier;
+                    targetDefense = (int) target.resistance.Value * (target.Unit.level / 2);
+                    break;
+            }
+
+            return 0;
         }
         
         private static bool CalculateCritChance(UnitBase damageDealer)

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Characters.ElementalTypes;
 using Characters.StatusEffects;
 using StatusEffects;
 using UnityEngine;
@@ -22,7 +24,13 @@ namespace Characters.Abilities
         [Range(1,6)] public int actionCost;
         [Range(1,3)] public float damageMultiplier = 1f;
         [Space] public int attackState = 2;
-        
+
+        [Space] [Header("Elemental Damage")] 
+        public bool hasElemental;
+        public ElementalType elementalType;
+        [SerializeField] private ElementalScaler elementalScaler;
+        public float ElementalScaler => (float) elementalScaler / 100;
+
         [Space] [Header("Status Effects")]
         public bool hasStatusEffect;
         public List<StatusEffect> statusEffects = new List<StatusEffect>();
@@ -31,6 +39,11 @@ namespace Characters.Abilities
         public string GetParameters(int actionOption)
         {
             return $"AbilityAction,{actionOption},{(int)targetOptions},{actionCost}";
+        }
+
+        private void OnValidate()
+        {
+            if (hasElemental) Debug.Log(ElementalScaler);
         }
     }
 }

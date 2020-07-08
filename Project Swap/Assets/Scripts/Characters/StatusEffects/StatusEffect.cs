@@ -5,6 +5,7 @@ namespace Characters.StatusEffects
 {
     public enum EffectType { DamageOverTime, Inhibiting, AI, StatChange }
     public enum RateOfInfliction { EveryTurn, BeforeEveryAction, AfterEveryAction, AfterAttacked, Once }
+    public enum InflictionChanceModifier { Normal = 125, Moderate = 150, Significant = 75, Major = 100 }
     public abstract class StatusEffect : ScriptableObject
     {
         public GameObject icon;
