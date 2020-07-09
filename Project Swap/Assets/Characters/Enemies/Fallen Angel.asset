@@ -135,12 +135,12 @@ MonoBehaviour:
       Entry: 6
       Data: 
   scale: {x: 50, y: 50, z: 1}
-  characterPrefab: {fileID: 1109450531332189788, guid: 4c66f5057c296d34987d4b8965774b8f,
-    type: 3}
   icon: {fileID: 0}
   id: 1
   characterName: Fallen Angel
   description: what a shame...
+  characterPrefab: {fileID: 1109450531332189788, guid: 4c66f5057c296d34987d4b8965774b8f,
+    type: 3}
   level: 22
   health:
     BaseValue: 2340

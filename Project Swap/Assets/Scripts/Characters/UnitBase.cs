@@ -56,17 +56,16 @@ namespace Characters
         public readonly Dictionary<ElementalType, ElementalScaler> _elementalResistances = new Dictionary<ElementalType, ElementalScaler>();
         [ShowInInspector,BoxGroup("Resistances and Weaknesses")]
         public readonly Dictionary<ElementalType, ElementalWeaknessScaler> _elementalWeaknesses = new Dictionary<ElementalType, ElementalWeaknessScaler>();
-        [Space]
+        [Space][Space]
         [ShowInInspector,BoxGroup("Resistances and Weaknesses")]
         public readonly Dictionary<StatusEffect, InflictionChanceModifier> _statusEffectResistances = new Dictionary<StatusEffect, InflictionChanceModifier>();
         [ShowInInspector,BoxGroup("Resistances and Weaknesses")]
         public readonly Dictionary<StatusEffect, InflictionChanceModifier> _statusEffectWeaknesses = new Dictionary<StatusEffect, InflictionChanceModifier>();
-
-        [Header("Weapon Stats")]
-        [Range(1,99)] public int weaponMight;
-        [Range(1,99)] public int magicMight; // May get rid of
-        [Range(1,99)] public int weaponAccuracy;
-        [Range(1,99)] public int weaponCriticalChance;
+        
+        [Range(1,99), BoxGroup("Weapon Stats")] public int weaponMight;
+        [Range(1,99), BoxGroup("Weapon Stats")] public int magicMight; // May get rid of
+        [Range(1,99), BoxGroup("Weapon Stats")] public int weaponAccuracy;
+        [Range(1,99), BoxGroup("Weapon Stats")] public int weaponCriticalChance;
 
         public Color profileBoxColor;
         private readonly Color normalHealthColor = Color.green;
@@ -92,7 +91,7 @@ namespace Characters
         
         [HideInInspector] public int maxAP = 6;
         public Unit Unit { get; set; }
-        [Header("Abilities"), InlineEditor]
+        [InlineEditor]
         public List<Ability> abilities = new List<Ability>();
 
         public Action<UnitBase> onDeath;
