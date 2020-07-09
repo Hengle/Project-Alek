@@ -1,4 +1,6 @@
-﻿using Characters;
+﻿using System.Linq;
+using Characters;
+using Characters.StatusEffects;
 using DG.Tweening;
 using Input;
 using TMPro;
@@ -9,14 +11,18 @@ namespace BattleSystem
 {
     public class ProfileBoxManager : MonoBehaviour, IGameEventListener<UIEvents>
     {
+        [SerializeField] [ReadOnly] private UnitBase unitBase;
+        [SerializeField] [ReadOnly] private bool isOpen;
+
+        [SerializeField] private TextMeshProUGUI description;
+        [SerializeField] private TextMeshProUGUI stats;
+
+        [SerializeField] private Image background;
+        [SerializeField] private Image spriteImage;
+
         [SerializeField] private Transform profileBox;
-        public TextMeshProUGUI description;
-        public TextMeshProUGUI stats;
-        public Image background;
-        public Image spriteImage;
-        public UnitBase unitBase;
-        [SerializeField] [ReadOnly]
-        private bool isOpen;
+        [SerializeField] private Transform weaknessesBox;
+        [SerializeField] private Transform resistancesBox;
 
         private void Start()
         {
@@ -26,17 +32,34 @@ namespace BattleSystem
         
         public void SetupProfileBox(UnitBase character)
         {
-            spriteImage = profileBox.Find("Sprite").GetComponent<Image>();
-            description = profileBox.Find("Description").GetChild(0).GetComponent<TextMeshProUGUI>();
-            stats = profileBox.Find("Stats").GetChild(0).GetComponent<TextMeshProUGUI>();
-            background = profileBox.Find("Background").GetComponent<Image>();
-
             unitBase = character;
             profileBox.name = $"{character.characterName} profile";
             description.text = character.description;
             spriteImage.sprite = character.Unit.gameObject.GetComponent<SpriteRenderer>().sprite;
             description.text = character.description;
             background.color = character.profileBoxColor;
+
+            foreach (var element in character._elementalResistances)
+            {
+                Instantiate(element.Key.icon, resistancesBox, false);
+            }
+
+            foreach (var element in character._elementalWeaknesses)
+            {
+                Instantiate(element.Key.icon, weaknessesBox, false);
+            }
+
+            foreach (var icon in character._statusEffectResistances.Select
+                (status => Instantiate(status.Key.icon, resistancesBox, false)))
+            {
+                icon.GetComponent<StatusEffectTimer>().enabled = false;
+            }
+
+            foreach (var icon in character._statusEffectWeaknesses.Select
+                (status => Instantiate(status.Key.icon, weaknessesBox, false)))
+            {
+                icon.GetComponent<StatusEffectTimer>().enabled = false;
+            }
             
             profileBox.gameObject.SetActive(false);
             GameEventsManager.AddListener(this);
@@ -50,13 +73,13 @@ namespace BattleSystem
                 $"Name: {unitBase.characterName}\n" +
                 $"Level: {unitBase.level}\n" +
                 $"Health: {unitBase.Unit.currentHP}\n" +
-                $"STR: {unitBase.strength.Value}\n" +
-                $"MAG: {unitBase.magic.Value}\n" +
-                $"ACC: {unitBase.accuracy.Value}\n" +
-                $"INIT: {unitBase.initiative.Value}\n" +
-                $"DEF: {unitBase.defense.Value}\n" +
-                $"RES: {unitBase.resistance.Value}\n" +
-                $"CRIT: {unitBase.criticalChance.Value}";
+                $"STR: {unitBase.strength.Value} ({unitBase.strength.Value - unitBase.strength.BaseValue})\n" +
+                $"MAG: {unitBase.magic.Value} ({unitBase.magic.Value - unitBase.magic.BaseValue})\n" +
+                $"ACC: {unitBase.accuracy.Value} ({unitBase.accuracy.Value - unitBase.accuracy.BaseValue})\n" +
+                $"INIT: {unitBase.initiative.Value} ({unitBase.initiative.Value - unitBase.initiative.BaseValue})\n" +
+                $"DEF: {unitBase.defense.Value} ({unitBase.defense.Value - unitBase.defense.BaseValue})\n" +
+                $"RES: {unitBase.resistance.Value} ({unitBase.resistance.Value - unitBase.resistance.BaseValue})\n" +
+                $"CRIT: {unitBase.criticalChance.Value} ({unitBase.criticalChance.Value - unitBase.criticalChance.BaseValue})";
             
             BattleInputManager._inputModule.move.action.Disable();
             BattleInputManager._inputModule.submit.action.Disable();

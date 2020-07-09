@@ -700,12 +700,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3b378a364fa45d2b80b5f72ec7bc7c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profileBox: {fileID: 3617879884565149884}
-  description: {fileID: 0}
-  stats: {fileID: 0}
-  background: {fileID: 0}
-  spriteImage: {fileID: 0}
+  description: {fileID: 776435446276822040}
+  stats: {fileID: 3092168674006039606}
+  background: {fileID: 5216327580409472237}
+  spriteImage: {fileID: 4636671308662061538}
   unitBase: {fileID: 0}
+  profileBox: {fileID: 3617879884565149884}
+  weaknessesBox: {fileID: 8308213481020424392}
+  resistancesBox: {fileID: 4513986665212114129}
   isOpen: 0
 --- !u!1 &3655487345453622102
 GameObject:

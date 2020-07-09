@@ -52,7 +52,7 @@ namespace Characters.StatusEffects
 
         private void OnDisable()
         {
-            targetUnit.onDeath -= RemoveTimerAndEffect;
+            if (targetUnit!= null) targetUnit.onDeath -= RemoveTimerAndEffect;
         }
     }
 }

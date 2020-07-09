@@ -18,6 +18,9 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 366775002164acb45983c6014a20dd29, type: 2}
     - {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
+    - {fileID: 11400000, guid: 856a4a808bf1c3d47b06852f07eb68bc, type: 2}
+    - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
+    - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -98,7 +101,19 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 2
+    - Name: $v
+      Entry: 3
+      Data: 75
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -115,7 +130,31 @@ MonoBehaviour:
       Data: 4
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 3
+    - Name: $v
+      Entry: 3
+      Data: 75
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 4
+    - Name: $v
+      Entry: 3
+      Data: 150
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -135,12 +174,12 @@ MonoBehaviour:
       Entry: 6
       Data: 
   scale: {x: 50, y: 50, z: 1}
-  characterPrefab: {fileID: 1109450531332189788, guid: a8ec9d4fb47d1b241981a2a4e89f88f2,
-    type: 3}
   icon: {fileID: 0}
   id: 1
   characterName: Goblin
   description: What's a goon to a...
+  characterPrefab: {fileID: 1109450531332189788, guid: a8ec9d4fb47d1b241981a2a4e89f88f2,
+    type: 3}
   level: 21
   health:
     BaseValue: 2520

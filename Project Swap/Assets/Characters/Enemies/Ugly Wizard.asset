@@ -18,6 +18,9 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
     - {fileID: 11400000, guid: 5b7dd86029ea2ce49beaee4e4d702b94, type: 2}
+    - {fileID: 11400000, guid: eb1b5a0f67771a842832b379372ae131, type: 2}
+    - {fileID: 11400000, guid: 69edb0df81ead1c4fb7df7bfa4cd9381, type: 2}
+    - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -77,7 +80,19 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 2
+    - Name: $v
+      Entry: 3
+      Data: 150
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -98,7 +113,19 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 3
+    - Name: $v
+      Entry: 3
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -115,7 +142,19 @@ MonoBehaviour:
       Data: 4
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 4
+    - Name: $v
+      Entry: 3
+      Data: 150
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -135,12 +174,12 @@ MonoBehaviour:
       Entry: 6
       Data: 
   scale: {x: 45, y: 45, z: 1}
-  characterPrefab: {fileID: 1109450531332189788, guid: 855eb21ea4a7ba14a850a0f6daae31c5,
-    type: 3}
   icon: {fileID: 0}
   id: 1
   characterName: Ugly Wizard
   description: ewww
+  characterPrefab: {fileID: 1109450531332189788, guid: 855eb21ea4a7ba14a850a0f6daae31c5,
+    type: 3}
   level: 21
   health:
     BaseValue: 2075
