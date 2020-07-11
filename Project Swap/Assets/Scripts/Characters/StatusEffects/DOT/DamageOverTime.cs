@@ -1,6 +1,7 @@
 ﻿using BattleSystem.DamagePrefab;
 using Characters;
 using Characters.StatusEffects;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace StatusEffects.DOT
@@ -8,7 +9,7 @@ namespace StatusEffects.DOT
     [CreateAssetMenu(fileName = "DOT Effect", menuName = "Status Effect/Damage Over Time Effect")]
     public class DamageOverTime : StatusEffect
     {
-        [Range(0, 1)] public float damagePercentage;
+        [Space] [Range(0, 1)] [VerticalGroup("Icon/Info")] public float damagePercentage;
         private void Awake() => effectType = EffectType.DamageOverTime;
         
         public override void InflictStatus(UnitBase unitBase)

@@ -11,38 +11,38 @@ namespace StatusEffects.StatChange
     [CreateAssetMenu(fileName = "Stat Effect", menuName = "Status Effect/Stat Change")]
     public class StatChange : StatusEffect
     {
-
-        [Space] [SerializeField, BoxGroup("Buffs")] 
+        #region FieldsAndProperties
+        
+        [Space] [SerializeField] [VerticalGroup("Icon/Info")]
         private bool buffs;
         
-        [ShowIf(nameof(buffs)), BoxGroup("Buffs")]
+        [ShowIf(nameof(buffs))] [VerticalGroup("Icon/Info")]
         public AffectedStat buffedStat;
         
-        [ShowIf(nameof(buffs)), BoxGroup("Buffs")]
+        [ShowIf(nameof(buffs))] [VerticalGroup("Icon/Info")]
         public Multiplier buffMultiplier;
         
-        [Space] [SerializeField, BoxGroup("Debuffs")] 
+        [Space] [SerializeField] [VerticalGroup("Icon/Info")]
         private bool debuffs;
         
-        [ShowIf(nameof(debuffs)), BoxGroup("Debuffs")]
+        [ShowIf(nameof(debuffs))] [VerticalGroup("Icon/Info")]
         public AffectedStat debuffedStat;
         
-        [ShowIf(nameof(debuffs)), BoxGroup("Debuffs")]
+        [ShowIf(nameof(debuffs))] [VerticalGroup("Icon/Info")]
         public Multiplier debuffMultiplier;
 
-        [ShowInInspector] private const float SlightBuff = 0.05f;
-        [ShowInInspector] private const float SlightDebuff = -0.05f;
+        private const float SlightBuff = 0.05f;
+        private const float SlightDebuff = -0.05f;
 
-        [ShowInInspector] private const float ModerateBuff = 0.10f;
-        [ShowInInspector] private const float ModerateDebuff = -0.10f;
+        private const float ModerateBuff = 0.10f;
+        private const float ModerateDebuff = -0.10f;
 
-        [ShowInInspector] private const float SignificantBuff = 0.20f;
-        [ShowInInspector] private const float SignificantDebuff = -0.20f;
+        private const float SignificantBuff = 0.20f;
+        private const float SignificantDebuff = -0.20f;
 
         private StatModifier modifier;
         
-        private float BuffMultiplier
-        {
+        private float BuffMultiplier {
             get
             {
                 switch (buffMultiplier)
@@ -55,8 +55,7 @@ namespace StatusEffects.StatChange
                 }
             }
         }
-        private float DebuffMultiplier
-        {
+        private float DebuffMultiplier {
             get
             {
                 switch (debuffMultiplier)
@@ -69,6 +68,8 @@ namespace StatusEffects.StatChange
                 }
             }
         }
+        
+        #endregion
 
         private void Awake() => effectType = EffectType.StatChange;
 

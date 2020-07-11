@@ -16,11 +16,11 @@ MonoBehaviour:
   abilityType: 0
   damageType: 0
   targetOptions: 0
-  isMultiTarget: 0
-  description: You got the juice??
   actionCost: 2
   damageMultiplier: 1.25
   attackState: 2
+  isMultiTarget: 0
+  description: You got the juice??
   hasElemental: 1
   elementalType: {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
   elementalScaler: 50

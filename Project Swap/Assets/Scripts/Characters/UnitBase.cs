@@ -16,6 +16,8 @@ namespace Characters
     public enum CharacterType { PartyMember, Enemy }
     public abstract class UnitBase : SerializedScriptableObject
     {
+        #region FieldsAndProperties
+        
         public Vector3 scale = Vector3.one;
 
         [InlineEditor(InlineEditorModes.SmallPreview)]
@@ -109,10 +111,11 @@ namespace Characters
                 Unit.currentHP = value < 0 ? 0 : value;
                 if (Unit.currentHP > health.BaseValue) Unit.currentHP = (int) health.BaseValue;
                 onHpValueChanged?.Invoke();
-                //CharacterEvents.Trigger(CEventType.HpValueChanged, this);
                 Unit.outline.color = Color;
             } 
         }
+        
+        #endregion
 
         private void OnValidate()
         {
@@ -166,7 +169,6 @@ namespace Characters
 
         public virtual void TakeDamage(int dmg)
         {
-            Logger.Log("Called Take Damage");
             CurrentHP -= dmg < 0 ? 0 : dmg;
 
             var position = Unit.gameObject.transform.position;

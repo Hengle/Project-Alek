@@ -15,6 +15,8 @@ namespace Characters.PartyMembers
 {
     public class MenuController : MonoBehaviour, MMEventListener<MMInventoryEvent>, IGameEventListener<CharacterEvents>
     {
+        #region FieldsAndProperties
+        
         [HideInInspector] public List<GameObject> enemySelectable = new List<GameObject>();
         [HideInInspector] public List<GameObject> memberSelectable = new List<GameObject>();
 
@@ -28,6 +30,8 @@ namespace Characters.PartyMembers
         private GameObject memberFirstSelected;
 
         private bool isEnabled;
+        
+        #endregion
         
         private void Awake()
         {
@@ -43,14 +47,6 @@ namespace Characters.PartyMembers
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
         }
 
-        private void UpdateSelectables() // If I use this later, remember to make an event for it
-        {
-            memberSelectable = memberSelectable.OrderBy
-                (go => go.transform.parent.GetSiblingIndex()).ToList();
-
-            SetPartySelectables();
-        }
-        
         private void OnEnable() 
         {
             EventSystem.current.SetSelectedGameObject(null);
@@ -58,6 +54,14 @@ namespace Characters.PartyMembers
             previousFirstSelected = memberFirstSelected;
             MMEventManager.AddListener(this);
             GameEventsManager.AddListener(this);
+        }
+        
+        private void UpdateSelectables() // If I use this later, remember to make an event for it
+        {
+            memberSelectable = memberSelectable.OrderBy
+                (go => go.transform.parent.GetSiblingIndex()).ToList();
+
+            SetPartySelectables();
         }
 
         [UsedImplicitly] public void DisableInput() => BattleInputManager._inputModule.enabled = false;

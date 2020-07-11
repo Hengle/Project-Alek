@@ -4,19 +4,14 @@ using UnityEngine;
 
 namespace Characters.PartyMembers
 {
-    /*
-     * Consider making this inherit from a base SO so each character's battle panel can already have
-     * all of their available actions and not rely on generating them at start of battle
-     */
     [CreateAssetMenu(fileName = "Battle Options Panel")]
     public class BattleOptionsPanel : ScriptableObject
     {
         public GameObject battlePanel;
-        public PartyMember character; // This will be used to store a reference to the active party member
+        public PartyMember character;
         
         public void ShowBattlePanel()
         {
-            //character = thisCharacter;
             BattleManager._choosingOption = true;
             character.actionPointAnim.SetInteger(AnimationHandler.APVal, character.CurrentAP);
             
@@ -43,33 +38,26 @@ namespace Characters.PartyMembers
         }
 
         // Parameters are separated by comma in order of: Action Name, Action Option, Target Options, and Action Cost
-        // Could add extra parameter that serves as the ID for each ability (that comes from a dictionary)
         public void GetCommandInformation(string parameters)
         {
-            // Split the parameters into a list
             var splitParams = parameters.Split(',');
-        
-            // Store each parameter into separate variables
+            
             var commandActionName = splitParams[0];
             var commandActionOptionString = splitParams[1];
             var commandTargetOptionsString = splitParams[2];
             var commandCostString = splitParams[3];
-        
-            // Convert numbers to integers
+            
             var commandActionOption = int.Parse(commandActionOptionString);
             var commandTargetOptions = int.Parse(commandTargetOptionsString);
             var commandCost = int.Parse(commandCostString);
-
-            // Check to see if the action costs more than current AP
+            
             var notEnoughAP = character.CurrentAP - commandCost < 0;
             if (notEnoughAP) return;
-        
-            // Store the information
+            
             ChooseTarget._targetOptions = commandTargetOptions;
             ChooseTarget.GetCurrentCommand(commandActionName, commandActionOption);
             character.Unit.actionCost = commandCost;
-
-            // Close the panel
+            
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
             if (!BattleManager._choosingOption) BattleManager._choosingAbility = false;
             else BattleManager._choosingOption = false;

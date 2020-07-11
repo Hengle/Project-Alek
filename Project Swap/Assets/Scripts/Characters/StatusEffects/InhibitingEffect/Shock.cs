@@ -2,6 +2,7 @@
 using BattleSystem.DamagePrefab;
 using Characters;
 using Characters.StatusEffects;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace StatusEffects.InhibitingEffect
@@ -9,13 +10,10 @@ namespace StatusEffects.InhibitingEffect
     [CreateAssetMenu(menuName = "Status Effect/Inhibiting Effect/Shock")]
     public class Shock : StatusEffect
     {
-        [Range(0, 1)] public float damagePercentage;
-        [Range(0, 1)] public float chanceOfInfliction;
+        [Space] [Range(0, 1)] [VerticalGroup("Icon/Info")] public float damagePercentage;
+        [Space] [Range(0, 1)] [VerticalGroup("Icon/Info")] public float chanceOfInfliction;
 
-        private void Awake() {
-            effectType = EffectType.Inhibiting;
-            rateOfInfliction.Add(RateOfInfliction.BeforeEveryAction);
-        }
+        private void Awake() => effectType = EffectType.Inhibiting;
 
         public override void InflictStatus(UnitBase unitBase)
         {

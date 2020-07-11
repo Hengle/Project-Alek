@@ -12,19 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c89647cb589c4c46adccd11c07fb607c, type: 3}
   m_Name: Drain Bullet
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 0c42cbf833b0a4246a074b02fe581b6e, type: 3}
   abilityType: 1
   damageType: 0
-  icon: {fileID: 21300000, guid: 0c42cbf833b0a4246a074b02fe581b6e, type: 3}
-  description: Drain all of the enemie's strength
-  actionCost: 1
   targetOptions: 0
   isMultiTarget: 0
+  description: Drain all of the enemie's strength
+  actionCost: 1
+  damageMultiplier: 1
+  attackState: 2
+  hasElemental: 0
+  elementalType: {fileID: 0}
+  elementalScaler: 0
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: 5b78aaf94fa3c224c82d9dc641cad28e, type: 2}
   - {fileID: 11400000, guid: 86eb9e2e2ae0507478bc348c4d901c29, type: 2}
   - {fileID: 11400000, guid: 44dd6fe786b69c042827684d206f2972, type: 2}
+  - {fileID: 11400000, guid: 117d4bee611522f4c80370e5c9a65230, type: 2}
   chanceOfInfliction: 1
-  damageMultiplier: 1
-  attackState: 2
   lookAtTarget: 1

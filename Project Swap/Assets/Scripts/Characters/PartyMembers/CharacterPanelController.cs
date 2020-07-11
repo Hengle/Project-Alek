@@ -6,6 +6,8 @@ namespace Characters.PartyMembers
 {
     public class CharacterPanelController : MonoBehaviour
     {
+        #region FieldsAndProperties
+        
         public UnitBase member;
 
         private Image fillRectImage;
@@ -13,6 +15,8 @@ namespace Characters.PartyMembers
         [SerializeField] private TextMeshProUGUI nameUGUI;
         [SerializeField] private TextMeshProUGUI healthUGUI;
         [SerializeField] private Slider slider;
+        
+        #endregion
 
         private void Awake()
         {
@@ -32,9 +36,6 @@ namespace Characters.PartyMembers
             healthUGUI.text = $"HP: {member.Unit.currentHP}";
         }
 
-        private void OnDisable()
-        {
-            member.onHpValueChanged -= OnHpValueChanged;
-        }
+        private void OnDisable() => member.onHpValueChanged -= OnHpValueChanged;
     }
 }

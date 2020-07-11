@@ -54,8 +54,7 @@ namespace BattleSystem.Calculator
             }
             
             var elementalDamage = (int) damageDealer.magic.Value * damageDealer.weaponMight * ability.ElementalScaler;
-            Logger.Log($"Elemental Damage: {elementalDamage}");
-            
+
             var tryGetRes = target._elementalResistances.ContainsKey(ability.elementalType);
             var tryGetWeakness = target._elementalWeaknesses.ContainsKey(ability.elementalType);
 
@@ -64,10 +63,8 @@ namespace BattleSystem.Calculator
                 Logger.Log($"{target.characterName} resists {ability.elementalType.name}!");
                 var resistanceScaler = 1 - (float) target._elementalResistances.Single
                     (s => s.Key == ability.elementalType).Value / 100;
-                Logger.Log($"Resistance Scaler: {resistanceScaler}");
-                        
+
                 elementalDamage *= resistanceScaler;
-                Logger.Log($"Elemental Damage: {elementalDamage}");
             }
                     
             else if (tryGetWeakness)
@@ -75,14 +72,12 @@ namespace BattleSystem.Calculator
                 Logger.Log($"{target.characterName} is weak to {ability.elementalType.name}!");
                 var weaknessScaler = (float) target._elementalWeaknesses.Single
                     (s => s.Key == ability.elementalType).Value / 100;
-                Logger.Log($"Weakness Scaler: {weaknessScaler}");
 
                 elementalDamage *= weaknessScaler;
-                Logger.Log($"Elemental Damage: {elementalDamage}");
             }
             
             totalDamage = (int) ((normalDamage + elementalDamage) * damageDealer.Unit.currentAbility.damageMultiplier) - targetDefense;
-            Logger.Log($"Total Damage: {totalDamage}");
+            Logger.Log($"Elemental Damage: {elementalDamage} \t Total Damage: {totalDamage}");
             
             SkipElemental:
             var critical = CalculateCritChance(damageDealer);

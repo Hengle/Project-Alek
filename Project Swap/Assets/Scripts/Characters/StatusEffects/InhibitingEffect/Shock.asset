@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 6377904230404883206, guid: d9213e0b79497c946973d7b559029086, type: 3}
   effectType: 1
-  rateOfInfliction: 0100000001000000
+  rateOfInfliction: 01000000
   color: {r: 0.97311616, g: 1, b: 0, a: 0}
   duration: 2
   damagePercentage: 0.1

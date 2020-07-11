@@ -12,11 +12,15 @@ namespace BattleSystem
 {
     public class BattleFunctions : MonoBehaviour
     {
+        #region FieldsAndProperties
+        
         private Vector3 originPosition, targetPosition;
         private AnimationHandler animHandler;
         private UnitBase unitBase;
         private UnitBase currentTarget;
         private Unit unit;
+        
+        #endregion
 
         public void GetCommand(UnitBase unitBaseParam)
         {
@@ -27,6 +31,8 @@ namespace BattleSystem
             
             StartCoroutine(unitBase.Unit.commandActionName);
         }
+
+        #region ImplicitFunctions
         
         [UsedImplicitly] private IEnumerator UniversalAction()
         {
@@ -61,7 +67,11 @@ namespace BattleSystem
                     yield break;
             }
         }
+        
+        #endregion
 
+        #region AttackCoroutines
+        
         private IEnumerator CloseRangeAttack()
         {
             unitBase.GetDamageValues();
@@ -114,6 +124,10 @@ namespace BattleSystem
             unit.multiHitTargets = new List<UnitBase>();
             unit.damageValueList = new List<int>();
         }
+        
+        #endregion
+
+        #region MovementCoroutines
 
         private IEnumerator MoveToTargetPosition()
         {
@@ -150,5 +164,7 @@ namespace BattleSystem
             }
             yield return new WaitForSeconds(1);
         }
+        
+        #endregion
     }
 }

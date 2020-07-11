@@ -11,57 +11,56 @@ namespace Characters.Abilities
     public enum TargetOptions { Enemies = 0, PartyMembers = 1, Both = 1 }
     public abstract class Ability : ScriptableObject
     {
-        [TabGroup("Main Information")]
+        #region FieldsAndProperties
+        
+        [HorizontalGroup("Icon", 175)] [PreviewField(175)] [HideLabel] 
         public Sprite icon;
         
-        [ReadOnly, TabGroup("Main Information")]
+        [ReadOnly, VerticalGroup("Icon/Info")] 
         public AbilityType abilityType;
         
-        [TabGroup("Main Information")]
+        [VerticalGroup("Icon/Info")] [EnumPaging]
         public DamageType damageType;
         
-        [TabGroup("Main Information")]
+        [VerticalGroup("Icon/Info")] [EnumPaging]
         public TargetOptions targetOptions;
-        
-        [TabGroup("Main Information")]
-        public bool isMultiTarget;
-        
-        [Space] [TextArea(5,15), TabGroup("Main Information")]
-        public string  description = "Insert description for this ability";
-        
-        [Range(1,6), TabGroup("Main Information")]
+
+        [Space] [Range(1,6)] [VerticalGroup("Icon/Info")]
         public int actionCost;
-        
-        [Range(1,3), TabGroup("Main Information")] 
+
+        [Space] [Range(1,3)] [VerticalGroup("Icon/Info")]
         public float damageMultiplier = 1f;
-        
-        [Space] [TabGroup("Main Information")]
+
+        [Space] [VerticalGroup("Icon/Info")]
         public int attackState = 2;
 
-        [Space] [TabGroup("Elemental Damage")]
-        public bool hasElemental;
+        [Space] [VerticalGroup("Icon/Info")]
+        public bool isMultiTarget;
+
+        [Space] [TextArea(5,15)]
+        public string  description = "Insert description for this ability";
+
+        [Space] [BoxGroup("Elements")] public bool hasElemental;
         
-        [ShowIf(nameof(hasElemental)), TabGroup("Elemental Damage"),  InlineEditor]
+        [BoxGroup("Elements")] [ShowIf(nameof(hasElemental)), InlineEditor]
         public ElementalType elementalType;
         
-        [ShowIf(nameof(hasElemental)), TabGroup("Elemental Damage"), SerializeField] 
+        [BoxGroup("Elements")] [ShowIf(nameof(hasElemental)), SerializeField] 
         private ElementalScaler elementalScaler;
         
-        [ShowInInspector, ShowIf(nameof(hasElemental)), TabGroup("Elemental Damage")]
+        [BoxGroup("Elements")] [ShowInInspector, ShowIf(nameof(hasElemental)), HideLabel]
         public float ElementalScaler => (float) elementalScaler / 100;
 
-        [Space] [TabGroup("Status Effects")]
-        public bool hasStatusEffect;
+        [Space] [BoxGroup("Status Effects")] public bool hasStatusEffect;
         
-        [ShowIf(nameof(hasStatusEffect)), TabGroup("Status Effects"), InlineEditor]
+        [BoxGroup("Status Effects")] [ShowIf(nameof(hasStatusEffect)), InlineEditor]
         public List<StatusEffect> statusEffects = new List<StatusEffect>();
         
-        [ShowIf(nameof(hasStatusEffect)), TabGroup("Status Effects")]
+        [BoxGroup("Status Effects")] [ShowIf(nameof(hasStatusEffect))]
         [Range(0, 1)] public float chanceOfInfliction;
         
-        public string GetParameters(int actionOption)
-        {
-            return $"AbilityAction,{actionOption},{(int)targetOptions},{actionCost}";
-        }
+        #endregion
+        
+        public string GetParameters(int actionOption) => $"AbilityAction,{actionOption},{(int)targetOptions},{actionCost}";
     }
 }

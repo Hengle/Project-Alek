@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Characters.StatusEffects
 {
@@ -8,17 +10,29 @@ namespace Characters.StatusEffects
     public enum InflictionChanceModifier { Normal = 125, Moderate = 150, Significant = 75, Major = 100 }
     public abstract class StatusEffect : ScriptableObject
     {
-        public GameObject icon;
-        [ReadOnly] public EffectType effectType;
+        #region FieldsAndProperties
         
-        [Tooltip("How often the effect is inflicted")] 
+        [Space] [ReadOnly] public EffectType effectType;
+        
+        [HideLabel] public GameObject icon;
+
+        [HideLabel] [ShowInInspector] [HorizontalGroup("Icon", 175)] [PreviewField(175)]
+        public Sprite Icon
+        {
+            get => icon.GetComponent<Image>().sprite;
+            set => icon.GetComponent<Image>().sprite = value;
+        }
+
+        [Space] [Tooltip("How often the effect is inflicted")] [VerticalGroup("Icon/Info")] [EnumPaging]
         public List<RateOfInfliction> rateOfInfliction = new List<RateOfInfliction>();
         
-        [Tooltip("Set the color that the damage text will be")] 
+        [Space] [Tooltip("Set the color that the damage text will be")] [VerticalGroup("Icon/Info")]
         public Color color;
         
-        [Tooltip("Number of turns that the effect lasts")] 
+        [Space] [Tooltip("Number of turns that the effect lasts")] [VerticalGroup("Icon/Info")]
         public int duration;
+        
+        #endregion
 
         public virtual void InflictStatus(UnitBase unitBase) { }
 

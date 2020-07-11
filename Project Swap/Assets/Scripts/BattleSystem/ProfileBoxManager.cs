@@ -11,6 +11,8 @@ namespace BattleSystem
 {
     public class ProfileBoxManager : MonoBehaviour, IGameEventListener<UIEvents>
     {
+        #region FieldsAndProperties
+        
         [SerializeField] [ReadOnly] private UnitBase unitBase;
         [SerializeField] [ReadOnly] private bool isOpen;
 
@@ -23,15 +25,96 @@ namespace BattleSystem
         [SerializeField] private Transform profileBox;
         [SerializeField] private Transform weaknessesBox;
         [SerializeField] private Transform resistancesBox;
+        
+        #endregion
 
-        private void Start()
-        {
-            DOTween.Init();
-            isOpen = false;
+        #region StatValDifferences
+        
+        private string StrDiff {
+            get
+            {
+                if (unitBase.strength.Value - unitBase.strength.BaseValue > 0) 
+                    return $"(+ {unitBase.strength.Value - unitBase.strength.BaseValue})";
+                
+                return unitBase.strength.Value - unitBase.strength.BaseValue < 0?
+                    $"({unitBase.strength.Value - unitBase.strength.BaseValue})" : "";
+            }
+        }
+
+        private string MagDiff {
+            get
+            {
+                if (unitBase.magic.Value - unitBase.magic.BaseValue > 0) 
+                    return $"(+ {unitBase.magic.Value - unitBase.magic.BaseValue})";
+                
+                return unitBase.magic.Value - unitBase.magic.BaseValue < 0?
+                    $"({unitBase.magic.Value - unitBase.magic.BaseValue})" : "";
+            }
         }
         
+        private string AccDiff {
+            get
+            {
+                if (unitBase.accuracy.Value - unitBase.accuracy.BaseValue > 0) 
+                    return $"(+ {unitBase.accuracy.Value - unitBase.accuracy.BaseValue})";
+                
+                return unitBase.accuracy.Value - unitBase.accuracy.BaseValue < 0?
+                    $"({unitBase.accuracy.Value - unitBase.accuracy.BaseValue})" : "";
+            }
+        }
+        
+        private string InitDiff {
+            get
+            {
+                if (unitBase.initiative.Value - unitBase.initiative.BaseValue > 0) 
+                    return $"(+ {unitBase.initiative.Value - unitBase.initiative.BaseValue})";
+                
+                return unitBase.initiative.Value - unitBase.initiative.BaseValue < 0?
+                    $"({unitBase.initiative.Value - unitBase.initiative.BaseValue})" : "";
+            }
+        }
+        
+        private string DefDiff {
+            get
+            {
+                if (unitBase.defense.Value - unitBase.defense.BaseValue > 0) 
+                    return $"(+ {unitBase.defense.Value - unitBase.defense.BaseValue})";
+                
+                return unitBase.defense.Value - unitBase.defense.BaseValue < 0?
+                    $"({unitBase.defense.Value - unitBase.defense.BaseValue})" : "";
+            }
+        }
+        
+        private string ResDiff {
+            get
+            {
+                if (unitBase.resistance.Value - unitBase.resistance.BaseValue > 0) 
+                    return $"(+ {unitBase.resistance.Value - unitBase.resistance.BaseValue})";
+                
+                return unitBase.resistance.Value - unitBase.resistance.BaseValue < 0?
+                    $"({unitBase.resistance.Value - unitBase.resistance.BaseValue})" : "";
+            }
+        }
+        
+        private string CritDiff {
+            get
+            {
+                if (unitBase.criticalChance.Value - unitBase.criticalChance.BaseValue > 0) 
+                    return $"(+ {unitBase.criticalChance.Value - unitBase.criticalChance.BaseValue})";
+                
+                return unitBase.criticalChance.Value - unitBase.criticalChance.BaseValue < 0?
+                    $"({unitBase.criticalChance.Value - unitBase.criticalChance.BaseValue})" : "";
+            }
+        }
+        
+        #endregion
+
+        private void Start() => DOTween.Init();
+
         public void SetupProfileBox(UnitBase character)
         {
+            isOpen = false;
+            
             unitBase = character;
             profileBox.name = $"{character.characterName} profile";
             description.text = character.description;
@@ -72,14 +155,13 @@ namespace BattleSystem
             stats.text =
                 $"Name: {unitBase.characterName}\n" +
                 $"Level: {unitBase.level}\n" +
-                $"Health: {unitBase.Unit.currentHP}\n" +
-                $"STR: {unitBase.strength.Value} ({unitBase.strength.Value - unitBase.strength.BaseValue})\n" +
-                $"MAG: {unitBase.magic.Value} ({unitBase.magic.Value - unitBase.magic.BaseValue})\n" +
-                $"ACC: {unitBase.accuracy.Value} ({unitBase.accuracy.Value - unitBase.accuracy.BaseValue})\n" +
-                $"INIT: {unitBase.initiative.Value} ({unitBase.initiative.Value - unitBase.initiative.BaseValue})\n" +
-                $"DEF: {unitBase.defense.Value} ({unitBase.defense.Value - unitBase.defense.BaseValue})\n" +
-                $"RES: {unitBase.resistance.Value} ({unitBase.resistance.Value - unitBase.resistance.BaseValue})\n" +
-                $"CRIT: {unitBase.criticalChance.Value} ({unitBase.criticalChance.Value - unitBase.criticalChance.BaseValue})";
+                $"STR: {unitBase.strength.Value} {StrDiff}\n" +
+                $"MAG: {unitBase.magic.Value} {MagDiff}\n" +
+                $"ACC: {unitBase.accuracy.Value} {AccDiff}\n" +
+                $"INIT: {unitBase.initiative.Value} {InitDiff}\n" +
+                $"DEF: {unitBase.defense.Value} {DefDiff}\n" +
+                $"RES: {unitBase.resistance.Value} {ResDiff}\n" +
+                $"CRIT: {unitBase.criticalChance.Value} {CritDiff}";
             
             BattleInputManager._inputModule.move.action.Disable();
             BattleInputManager._inputModule.submit.action.Disable();

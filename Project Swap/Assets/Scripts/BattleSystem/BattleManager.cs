@@ -19,6 +19,8 @@ namespace BattleSystem
     [RequireComponent(typeof(InputSystemUIInputModule))]
     public class BattleManager : MonoBehaviour
     {
+        #region FieldsAndProperties
+        
         [ShowInInspector]
         private static BattleState state;
         public static BattleFunctions _battleFunctions;
@@ -38,8 +40,7 @@ namespace BattleSystem
         
         [ShowInInspector] private static bool allMembersDead;
         [ShowInInspector] private static bool allEnemiesDead;
-        [ShowInInspector] private static bool PartyOrEnemyTeamIsDead 
-        {
+        [ShowInInspector] private static bool PartyOrEnemyTeamIsDead {
             get
             {
                 if (allEnemiesDead) state = BattleState.Won;
@@ -51,6 +52,10 @@ namespace BattleSystem
         private BattleGenerator generator;
 
         [SerializeField] private int roundCount;
+        
+        #endregion
+
+        #region SettingUpBattle
         
         private void Start()
         {
@@ -79,6 +84,10 @@ namespace BattleSystem
             StartCoroutine(PerformThisRound());
         }
 
+        #endregion
+
+        #region RoundsAndCharacterTurns
+        
         private IEnumerator PerformThisRound()
         {
             BattleEvents.Trigger(BattleEventType.NewRound);
@@ -233,6 +242,10 @@ namespace BattleSystem
                 if (PartyOrEnemyTeamIsDead || enemy.IsDead) break;
             }
         }
+        
+        #endregion
+
+        #region EndOfBattle
 
         private IEnumerator WonBattleSequence()
         {
@@ -245,6 +258,10 @@ namespace BattleSystem
             yield return new WaitForSeconds(0.5f);
             Logger.Log("you lost idiot");
         }
+        
+        #endregion
+
+        #region Misc
 
         private static void RemoveFromBattle(UnitBase unit)
         {
@@ -269,5 +286,7 @@ namespace BattleSystem
             _shouldGiveCommand = true;
             roundCount = 0;
         }
+        
+        #endregion
     }
 }

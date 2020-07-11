@@ -1,12 +1,10 @@
 ﻿using System.Linq;
 using Characters;
-using Characters.ElementalTypes;
 using UnityEngine;
 using UnityEngine.UI;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
 using MoreMountains.InventoryEngine;
-using MoreMountains.Tools;
 using Input;
 
 namespace BattleSystem.Generator
