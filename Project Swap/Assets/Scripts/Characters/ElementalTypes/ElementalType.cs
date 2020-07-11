@@ -9,14 +9,14 @@ namespace Characters.ElementalTypes
     [CreateAssetMenu(menuName = "Elemental Type")]
     public class ElementalType : ScriptableObject
     {
-        [HideLabel] [VerticalGroup("Icon/Info")] public GameObject icon;
-        
-        [HideLabel] [ShowInInspector] [HorizontalGroup("Icon", 100)] [PreviewField(100)]
+        [HideLabel, ShowInInspector, HorizontalGroup("Icon", 100), PreviewField(100), ShowIf(nameof(icon))]
         public Sprite Icon
         {
-            get => icon.GetComponent<Image>().sprite;
+            get => icon == null? null : icon.GetComponent<Image>().sprite;
             set => icon.GetComponent<Image>().sprite = value;
         }
+
+        [VerticalGroup("Icon/Info")] public GameObject icon;
 
         [VerticalGroup("Icon/Info")] public GameObject visualEffect;
     }

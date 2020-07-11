@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Ice
   m_EditorClassIdentifier: 
   icon: {fileID: 6377904230404883206, guid: e4875168dd164cc45be8c9ab9e53ac44, type: 3}
+  visualEffect: {fileID: 0}

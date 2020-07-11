@@ -31,7 +31,7 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
         if (createNewEnemy != null) DestroyImmediate(createNewEnemy._enemy);
         if (createNewPhysicalAttack != null) DestroyImmediate(createNewPhysicalAttack._ability);
     }
-    
+
     protected override OdinMenuTree BuildMenuTree()
     {
         createNewEnemy = new CreateNewEnemy();
@@ -40,7 +40,7 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
         createNewNonAttack = new CreateNewNonAttack();
         createNewDotEffect = new CreateNewDotEffect();
         createNewElementalType = new CreateNewElementalType();
-        
+
         var tree = new OdinMenuTree
         {
             {"Create New/Enemy", createNewEnemy},
@@ -50,7 +50,7 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
             {"Create New/Status Effect/Damage Over Time", createNewDotEffect},
             {"Create New/Elemental Type", createNewElementalType}
         };
-
+        
         tree.AddAllAssetsAtPath("Party Members", "Characters/Party Members", typeof(PartyMember));
         tree.AddAllAssetsAtPath("Enemies", "Characters/Enemies", typeof(Enemy));
         tree.AddAllAssetsAtPath("Abilities/Physical Attacks","Scripts/Characters/Abilities/Physical Attacks", typeof(Ability));
@@ -62,10 +62,10 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
         tree.AddAllAssetsAtPath("Status Effects/Inhibiting", "Scripts/Characters/StatusEffects/InhibitingEffect", typeof(StatusEffect));
         tree.AddAllAssetsAtPath("Status Effects/AI Effect", "Scripts/Characters/StatusEffects/AIEffect", typeof(StatusEffect));
         tree.AddAllAssetsAtPath("Elemental Types", "Assets/Scripts/Characters/ElementalTypes", typeof(ElementalType));
-        
+
         return tree;
     }
-
+    
     public class CreateNewEnemy
     {
         public CreateNewEnemy()

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2407d836efeb419c811cc8d2bfd001dc, type: 3}
   m_Name: StrengthDebuffSlight
   m_EditorClassIdentifier: 
-  icon: {fileID: 6377904230404883206, guid: 7d6682148f995b048b3f815f933cdbe6, type: 3}
   effectType: 3
+  icon: {fileID: 6377904230404883206, guid: 7d6682148f995b048b3f815f933cdbe6, type: 3}
   rateOfInfliction: 
   color: {r: 0, g: 0, b: 0, a: 0}
-  duration: 2
+  turnDuration: 3
   buffs: 0
   buffedStat: 0
   buffMultiplier: 0

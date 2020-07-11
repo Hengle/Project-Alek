@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,28 +13,27 @@ namespace Characters.StatusEffects
     {
         #region FieldsAndProperties
         
-        [Space] [ReadOnly] public EffectType effectType;
+        [Space, ReadOnly, VerticalGroup("Icon/Info")] public EffectType effectType;
         
-        [HideLabel] public GameObject icon;
+        [VerticalGroup("Icon/Info")] public GameObject icon;
 
-        [HideLabel] [ShowInInspector] [HorizontalGroup("Icon", 175)] [PreviewField(175)]
+        [HideLabel, ShowInInspector, HorizontalGroup("Icon", 200), PreviewField(200), ShowIf(nameof(icon))]
         public Sprite Icon
         {
-            get => icon.GetComponent<Image>().sprite;
+            get => icon == null ? null : icon.GetComponent<Image>().sprite;
             set => icon.GetComponent<Image>().sprite = value;
         }
 
-        [Space] [Tooltip("How often the effect is inflicted")] [VerticalGroup("Icon/Info")] [EnumPaging]
+        [HideIf(nameof(effectType), EffectType.StatChange)] 
+        [Space, Tooltip("How often the effect is inflicted"), VerticalGroup("Icon/Info"), EnumPaging]
         public List<RateOfInfliction> rateOfInfliction = new List<RateOfInfliction>();
         
-        [Space] [Tooltip("Set the color that the damage text will be")] [VerticalGroup("Icon/Info")]
-        public Color color;
+        [Space, VerticalGroup("Icon/Info"), ColorPalette, HideLabel] public Color color;
         
-        [Space] [Tooltip("Number of turns that the effect lasts")] [VerticalGroup("Icon/Info")]
-        public int duration;
+        [Space, VerticalGroup("Icon/Info"), Range(1,5), LabelWidth(120)] public int turnDuration;
         
         #endregion
-
+        
         public virtual void InflictStatus(UnitBase unitBase) { }
 
         public virtual void OnAdded(UnitBase target)

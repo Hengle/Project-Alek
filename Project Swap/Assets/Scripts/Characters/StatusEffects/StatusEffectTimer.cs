@@ -14,7 +14,7 @@ namespace Characters.StatusEffects
         {
             targetUnit = unit;
             statusEffect = effect;
-            timer = statusEffect.duration;
+            timer = statusEffect.turnDuration;
             GameEventsManager.AddListener(this);
             targetUnit.onDeath += RemoveTimerAndEffect;
         }

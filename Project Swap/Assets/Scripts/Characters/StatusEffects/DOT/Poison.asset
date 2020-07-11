@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf93fb7aee24d65898814f9d19850ab, type: 3}
   m_Name: Poison
   m_EditorClassIdentifier: 
-  icon: {fileID: 6377904230404883206, guid: 425b44a808f24594b901ba4343294ff1, type: 3}
   effectType: 0
+  icon: {fileID: 6377904230404883206, guid: 425b44a808f24594b901ba4343294ff1, type: 3}
   rateOfInfliction: 00000000
-  color: {r: 0.13983291, g: 0.5660378, b: 0, a: 0}
-  duration: 4
+  color: {r: 0.314, g: 0.592, b: 0.035, a: 1}
+  turnDuration: 4
   damagePercentage: 0.1

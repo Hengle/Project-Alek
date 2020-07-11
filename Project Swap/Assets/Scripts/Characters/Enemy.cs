@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using BattleSystem;
+using Random = UnityEngine.Random;
 
 namespace Characters
 {
@@ -11,6 +12,8 @@ namespace Characters
             get => Unit.currentAP;
             set => Unit.currentAP = value;
         }
+
+        private void Awake() => id = CharacterType.Enemy;
         
         public bool SetAI()
         {

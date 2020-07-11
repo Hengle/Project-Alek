@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using BattleSystem;
 using Characters.Animations;
 using MoreMountains.InventoryEngine;
+using Sirenix.OdinInspector;
 
 namespace Characters.PartyMembers
 {
@@ -11,9 +12,9 @@ namespace Characters.PartyMembers
     public class PartyMember : UnitBase
     {
         [HideInInspector] public Animator actionPointAnim;
-        [Range(0,4)] public int positionInParty;
+        [Range(0,4), VerticalGroup("Basic/Info")] public int positionInParty;
 
-        [Header("Inventories")]
+        [Title("Inventories")]
         public Inventory weaponInventory;
         public Inventory armorInventory;
         

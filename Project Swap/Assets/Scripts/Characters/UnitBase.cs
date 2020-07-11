@@ -10,6 +10,7 @@ using Characters.ElementalTypes;
 using Characters.StatusEffects;
 using Kryz.CharacterStats;
 using Sirenix.OdinInspector;
+using Sirenix.OdinInspector.Editor.Drawers;
 
 namespace Characters
 {
@@ -17,65 +18,88 @@ namespace Characters
     public abstract class UnitBase : SerializedScriptableObject
     {
         #region FieldsAndProperties
+
+        [HorizontalGroup("Basic", 125), PreviewField(125), HideLabel] public Sprite icon;
         
-        public Vector3 scale = Vector3.one;
+        [VerticalGroup("Basic/Info"), LabelWidth(120)] public Vector3 scale = Vector3.one;
 
-        [InlineEditor(InlineEditorModes.SmallPreview)]
-        public Sprite icon;
+        [VerticalGroup("Basic/Info"), ReadOnly, LabelWidth(120)] public CharacterType id;
 
-        public CharacterType id;
+        [VerticalGroup("Basic/Info"), LabelWidth(120)] public string characterName;
+        
+        [VerticalGroup("Basic/Info"), LabelWidth(120)] public GameObject characterPrefab;
 
-        public string characterName;
+        [HideLabel, ShowInInspector, HorizontalGroup("Stat Data", 175), PreviewField(175), ShowIf(nameof(characterPrefab))] 
+        public Sprite CharacterPrefab {
+            get {
+                if (characterPrefab == null) return null;
+                return characterPrefab.TryGetComponent(out SpriteRenderer renderer) ? renderer.sprite : null;
+            }
+            set => characterPrefab.GetComponent<SpriteRenderer>().sprite = value;
+        }
 
-        [TextArea(5,15)] public string  description;
-
-        [HorizontalGroup("Stat Data", 200), PreviewField(200), HideLabel]
-        public GameObject characterPrefab;
-
-        [Range(0,99), VerticalGroup("Stat Data/Stats"), LabelWidth(100)]
+        [ProgressBar(1,99), VerticalGroup("Basic/Info"), LabelWidth(75)]
         public int level;
-        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100)] 
+        
+        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty, Title("Stats")]
         public CharacterStat health;
-        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100)] 
+        
+        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
         public CharacterStat strength;
-        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100)] 
+        
+        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
         public CharacterStat magic;
-        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100)] 
+        
+        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
         public CharacterStat accuracy;
-        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100)]
+        
+        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty]
         public CharacterStat initiative;
-        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100)] 
+        
+        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
         public CharacterStat defense;
-        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100)] 
+        
+        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
         public CharacterStat resistance;
-        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100)] 
+        
+        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
         public CharacterStat criticalChance;
 
-        // Need to account for potential mechanics where bosses change their resistances and weaknesses mid fight
+        [Space(20), TextArea(5,15), Title("Description"), HideLabel] public string  description;
+        
         // For cases where enemies lose their resistance when susceptible, just add a function/variable to 
         // The Elemental Type/Status Effects classes that disables them
-        [ShowInInspector,BoxGroup("Resistances and Weaknesses")]
+        [Title("Elements"), ShowInInspector, FoldoutGroup("Resistances and Weaknesses")]
+        [DictionaryDrawerSettings(KeyLabel = "Element", ValueLabel = "Resistance Level", DisplayMode = DictionaryDisplayOptions.ExpandedFoldout)]
         public readonly Dictionary<ElementalType, ElementalScaler> _elementalResistances = new Dictionary<ElementalType, ElementalScaler>();
-        [ShowInInspector,BoxGroup("Resistances and Weaknesses")]
+        [ShowInInspector, FoldoutGroup("Resistances and Weaknesses")]
+        [DictionaryDrawerSettings(KeyLabel = "Element", ValueLabel = "Weakness Level", DisplayMode = DictionaryDisplayOptions.ExpandedFoldout)]
         public readonly Dictionary<ElementalType, ElementalWeaknessScaler> _elementalWeaknesses = new Dictionary<ElementalType, ElementalWeaknessScaler>();
-        [Space][Space]
-        [ShowInInspector,BoxGroup("Resistances and Weaknesses")]
+  
+        [Title("Status Effects"), ShowInInspector, FoldoutGroup("Resistances and Weaknesses")]
+        [DictionaryDrawerSettings(KeyLabel = "Status Effect", ValueLabel = "Resistance Level", DisplayMode = DictionaryDisplayOptions.ExpandedFoldout)]
         public readonly Dictionary<StatusEffect, InflictionChanceModifier> _statusEffectResistances = new Dictionary<StatusEffect, InflictionChanceModifier>();
-        [ShowInInspector,BoxGroup("Resistances and Weaknesses")]
+        [ShowInInspector, FoldoutGroup("Resistances and Weaknesses")]
+        [DictionaryDrawerSettings(KeyLabel = "Status Effect", ValueLabel = "Weakness Level", DisplayMode = DictionaryDisplayOptions.ExpandedFoldout)]
         public readonly Dictionary<StatusEffect, InflictionChanceModifier> _statusEffectWeaknesses = new Dictionary<StatusEffect, InflictionChanceModifier>();
         
-        [Range(1,99), BoxGroup("Weapon Stats")] public int weaponMight;
-        [Range(1,99), BoxGroup("Weapon Stats")] public int magicMight; // May get rid of
-        [Range(1,99), BoxGroup("Weapon Stats")] public int weaponAccuracy;
-        [Range(1,99), BoxGroup("Weapon Stats")] public int weaponCriticalChance;
+        [Range(1,99), FoldoutGroup("Weapon Stats")] public int weaponMight;
+        [Range(1,99), FoldoutGroup("Weapon Stats")] public int magicMight;
+        [Range(1,99), FoldoutGroup("Weapon Stats")] public int weaponAccuracy;
+        [Range(1,99), FoldoutGroup("Weapon Stats")] public int weaponCriticalChance;
 
-        public Color profileBoxColor;
+        [InlineEditor] [OnValueChanged(nameof(Abilities))] 
+        public List<Ability> abilities = new List<Ability>();
+
+        public void Abilities() {
+            if (abilities.Count <= 5) return;
+            Debug.LogError("Cannot have more than 5 abilities at a time!");
+        }
+        
         private readonly Color normalHealthColor = Color.green;
         private readonly Color midHealthColor = Color.yellow;
         private readonly Color lowHealthColor = Color.red;
-
-        public Color Color
-        {
+        public Color Color {
             get
             {
                 if (Unit.currentHP <= 0.25f * (int) health.BaseValue) {
@@ -90,21 +114,19 @@ namespace Characters
                 return normalHealthColor;
             }
         }
+
+        public Unit Unit { get; set; }
         
         [HideInInspector] public int maxAP = 6;
-        public Unit Unit { get; set; }
-        [InlineEditor]
-        public List<Ability> abilities = new List<Ability>();
 
-        public Action<UnitBase> onDeath;
-        public Action onHpValueChanged;
-        public Action<StatusEffect> onStatusEffectReceived;
-        public Action<StatusEffect> onStatusEffectRemoved;
+        [HideInInspector] public Action<UnitBase> onDeath;
+        [HideInInspector] public Action onHpValueChanged;
+        [HideInInspector] public Action<StatusEffect> onStatusEffectReceived;
+        [HideInInspector] public Action<StatusEffect> onStatusEffectRemoved;
 
         public bool IsDead => Unit.status == Status.Dead;
 
-        protected int CurrentHP
-        {
+        protected int CurrentHP {
             get => Unit.currentHP;
             set 
             {

@@ -25,6 +25,8 @@ namespace BattleSystem
         [SerializeField] private Transform profileBox;
         [SerializeField] private Transform weaknessesBox;
         [SerializeField] private Transform resistancesBox;
+
+        [SerializeField] private Color color;
         
         #endregion
 
@@ -120,7 +122,7 @@ namespace BattleSystem
             description.text = character.description;
             spriteImage.sprite = character.Unit.gameObject.GetComponent<SpriteRenderer>().sprite;
             description.text = character.description;
-            background.color = character.profileBoxColor;
+            background.color = color;
 
             foreach (var element in character._elementalResistances)
             {

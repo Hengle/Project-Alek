@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf93fb7aee24d65898814f9d19850ab, type: 3}
   m_Name: Burn
   m_EditorClassIdentifier: 
-  icon: {fileID: 6377904230404883206, guid: 54ff4705d611dbc43ae8fb0fe28b9c38, type: 3}
   effectType: 0
+  icon: {fileID: 6377904230404883206, guid: 54ff4705d611dbc43ae8fb0fe28b9c38, type: 3}
   rateOfInfliction: 0200000000000000
   color: {r: 1, g: 0.40705162, b: 0, a: 0}
-  duration: 2
+  turnDuration: 2
   damagePercentage: 0.06

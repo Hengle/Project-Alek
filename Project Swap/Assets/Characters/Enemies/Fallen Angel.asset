@@ -160,11 +160,10 @@ MonoBehaviour:
     - Name: onStatusEffectRemoved
       Entry: 6
       Data: 
-  scale: {x: 50, y: 50, z: 1}
   icon: {fileID: 0}
+  scale: {x: 50, y: 50, z: 1}
   id: 1
   characterName: Fallen Angel
-  description: what a shame...
   characterPrefab: {fileID: 1109450531332189788, guid: 4c66f5057c296d34987d4b8965774b8f,
     type: 3}
   level: 22
@@ -184,12 +183,13 @@ MonoBehaviour:
     BaseValue: 25
   criticalChance:
     BaseValue: 5
+  description: what a shame...
   weaponMight: 13
   magicMight: 15
   weaponAccuracy: 80
   weaponCriticalChance: 2
-  profileBoxColor: {r: 1, g: 1, b: 1, a: 0.78431374}
-  maxAP: 6
   abilities:
   - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
   - {fileID: 11400000, guid: e558d404ab0ced340bb9314e1e677569, type: 2}
+  profileBoxColor: {r: 1, g: 1, b: 1, a: 0.78431374}
+  maxAP: 6

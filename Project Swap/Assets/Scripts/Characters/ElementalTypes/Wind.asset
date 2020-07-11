@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Wind
   m_EditorClassIdentifier: 
   icon: {fileID: 6377904230404883206, guid: 63a7a570f2b82a6448f38bd39d635aa6, type: 3}
+  visualEffect: {fileID: 0}

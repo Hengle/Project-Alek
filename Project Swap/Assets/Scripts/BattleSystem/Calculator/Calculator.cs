@@ -39,8 +39,9 @@ namespace BattleSystem.Calculator
         {
             var ability = damageDealer.Unit.currentAbility;
 
-            var normalDamage = (ability.damageType == DamageType.Physical?
-                (int) damageDealer.strength.Value : (int) damageDealer.magic.Value) * damageDealer.weaponMight;
+            var normalDamage = ability.damageType == DamageType.Physical
+                ? (int) damageDealer.strength.Value * damageDealer.weaponMight
+                : (int) damageDealer.magic.Value * damageDealer.magicMight;
 
             var targetDefense = (ability.damageType == DamageType.Physical?
                 (int) target.defense.Value : (int) target.resistance.Value) * (target.level / 2);

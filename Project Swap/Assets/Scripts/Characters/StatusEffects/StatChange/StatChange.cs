@@ -13,22 +13,22 @@ namespace StatusEffects.StatChange
     {
         #region FieldsAndProperties
         
-        [Space] [SerializeField] [VerticalGroup("Icon/Info")]
+        [Space] [SerializeField] [Title("Buffs"), VerticalGroup("Icon/Info"), LabelWidth(120)]
         private bool buffs;
         
-        [ShowIf(nameof(buffs))] [VerticalGroup("Icon/Info")]
+        [ShowIf(nameof(buffs))] [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
         public AffectedStat buffedStat;
         
-        [ShowIf(nameof(buffs))] [VerticalGroup("Icon/Info")]
+        [ShowIf(nameof(buffs))] [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
         public Multiplier buffMultiplier;
         
-        [Space] [SerializeField] [VerticalGroup("Icon/Info")]
+        [Space] [SerializeField] [Title("Debuffs"), VerticalGroup("Icon/Info"), LabelWidth(120)]
         private bool debuffs;
         
-        [ShowIf(nameof(debuffs))] [VerticalGroup("Icon/Info")]
+        [ShowIf(nameof(debuffs))] [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
         public AffectedStat debuffedStat;
         
-        [ShowIf(nameof(debuffs))] [VerticalGroup("Icon/Info")]
+        [ShowIf(nameof(debuffs))] [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
         public Multiplier debuffMultiplier;
 
         private const float SlightBuff = 0.05f;

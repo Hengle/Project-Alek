@@ -9,7 +9,9 @@ namespace StatusEffects.DOT
     [CreateAssetMenu(fileName = "DOT Effect", menuName = "Status Effect/Damage Over Time Effect")]
     public class DamageOverTime : StatusEffect
     {
-        [Space] [Range(0, 1)] [VerticalGroup("Icon/Info")] public float damagePercentage;
+        [Space] [Range(0, 1)] [VerticalGroup("Icon/Info"), LabelWidth(120)] 
+        public float damagePercentage;
+        
         private void Awake() => effectType = EffectType.DamageOverTime;
         
         public override void InflictStatus(UnitBase unitBase)

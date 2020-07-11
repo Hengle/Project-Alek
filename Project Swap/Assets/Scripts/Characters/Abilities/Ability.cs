@@ -12,55 +12,55 @@ namespace Characters.Abilities
     public abstract class Ability : ScriptableObject
     {
         #region FieldsAndProperties
-        
-        [HorizontalGroup("Icon", 175)] [PreviewField(175)] [HideLabel] 
-        public Sprite icon;
-        
-        [ReadOnly, VerticalGroup("Icon/Info")] 
+
+        [ReadOnly, VerticalGroup("Icon/Info"), Title("Main Info"), LabelWidth(120)] 
         public AbilityType abilityType;
-        
-        [VerticalGroup("Icon/Info")] [EnumPaging]
+
+        [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
         public DamageType damageType;
-        
-        [VerticalGroup("Icon/Info")] [EnumPaging]
+
+        [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
         public TargetOptions targetOptions;
 
-        [Space] [Range(1,6)] [VerticalGroup("Icon/Info")]
+        [HorizontalGroup("Icon", 175)] [PreviewField(175)] [HideLabel] 
+        public Sprite icon;
+
+        [Range(1,6)] [VerticalGroup("Icon/Info"), LabelWidth(120)]
         public int actionCost;
 
-        [Space] [Range(1,3)] [VerticalGroup("Icon/Info")]
+        [Range(1,3)] [VerticalGroup("Icon/Info"), LabelWidth(120)]
         public float damageMultiplier = 1f;
 
-        [Space] [VerticalGroup("Icon/Info")]
+        [VerticalGroup("Icon/Info"), LabelWidth(120)]
         public int attackState = 2;
 
-        [Space] [VerticalGroup("Icon/Info")]
+        [VerticalGroup("Icon/Info"), LabelWidth(120)]
         public bool isMultiTarget;
 
-        [Space] [TextArea(5,15)]
+        [Space(15)] [TextArea(5,15)] [Title("Description"), HideLabel]
         public string  description = "Insert description for this ability";
 
-        [Space] [BoxGroup("Elements")] public bool hasElemental;
+        [Space(15)] [Title("Elements"), LabelWidth(120)] public bool hasElemental;
         
-        [BoxGroup("Elements")] [ShowIf(nameof(hasElemental)), InlineEditor]
+        [ShowIf(nameof(hasElemental)), InlineEditor, LabelWidth(120)]
         public ElementalType elementalType;
         
-        [BoxGroup("Elements")] [ShowIf(nameof(hasElemental)), SerializeField] 
+        [ShowIf(nameof(hasElemental)), SerializeField, EnumPaging, HorizontalGroup("Scaler"), LabelWidth(120)] 
         private ElementalScaler elementalScaler;
         
-        [BoxGroup("Elements")] [ShowInInspector, ShowIf(nameof(hasElemental)), HideLabel]
+        [ShowInInspector, ShowIf(nameof(hasElemental)), HideLabel, VerticalGroup("Scaler/Value"), LabelWidth(5)]
         public float ElementalScaler => (float) elementalScaler / 100;
 
-        [Space] [BoxGroup("Status Effects")] public bool hasStatusEffect;
+        [Space(15)] [Title("Status Effects"), LabelWidth(120)] public bool hasStatusEffect;
         
-        [BoxGroup("Status Effects")] [ShowIf(nameof(hasStatusEffect)), InlineEditor]
+        [ShowIf(nameof(hasStatusEffect)), InlineEditor]
         public List<StatusEffect> statusEffects = new List<StatusEffect>();
         
-        [BoxGroup("Status Effects")] [ShowIf(nameof(hasStatusEffect))]
+        [ShowIf(nameof(hasStatusEffect))]
         [Range(0, 1)] public float chanceOfInfliction;
         
         #endregion
-        
+
         public string GetParameters(int actionOption) => $"AbilityAction,{actionOption},{(int)targetOptions},{actionCost}";
     }
 }
