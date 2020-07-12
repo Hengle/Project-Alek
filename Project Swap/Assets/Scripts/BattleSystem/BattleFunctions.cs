@@ -7,6 +7,7 @@ using Characters.Abilities;
 using Characters.Animations;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
+using MEC;
 
 namespace BattleSystem
 {
@@ -40,7 +41,7 @@ namespace BattleSystem
             
             switch (unitBase.Unit.commandActionOption)
             {
-                case 1: StartCoroutine(CloseRangeAttack());
+                case 1: Timing.RunCoroutine(CloseRangeAttack());
                     yield break;
                 case 2: // Item. May not need this depending on how the inventory system integration goes
                     yield break;
@@ -56,9 +57,9 @@ namespace BattleSystem
 
             switch (unit.currentAbility.abilityType)
             {
-                case AbilityType.CloseRange: StartCoroutine(CloseRangeAttack());
+                case AbilityType.CloseRange: Timing.RunCoroutine(CloseRangeAttack());
                     yield break;
-                case AbilityType.Ranged: StartCoroutine(RangedAttack());
+                case AbilityType.Ranged: Timing.RunCoroutine(RangedAttack());
                     yield break;
                 case AbilityType.NonAttack: Logger.Log("Non-Attack: " + unit.currentAbility.name);
                     BattleManager._performingAction = false;
@@ -72,54 +73,60 @@ namespace BattleSystem
 
         #region AttackCoroutines
         
-        private IEnumerator CloseRangeAttack()
+        private IEnumerator<float> CloseRangeAttack()
         {
             unitBase.GetDamageValues();
 
-            var move = StartCoroutine(MoveToTargetPosition());
-            yield return move;
+            yield return Timing.WaitUntilDone(MoveToTargetPosition());
+            // var move = StartCoroutine(MoveToTargetPosition());
+            // yield return move;
 
-            var attack = StartCoroutine(ExecuteAttack());
-            yield return attack;
+            yield return Timing.WaitUntilDone(ExecuteAttack());
+            // var attack = StartCoroutine(ExecuteAttack());
+            // yield return attack;
 
-            var moveBack = StartCoroutine(MoveBackToOriginPosition());
-            yield return moveBack;
+            yield return Timing.WaitUntilDone(MoveBackToOriginPosition());
+            // var moveBack = StartCoroutine(MoveBackToOriginPosition());
+            // yield return moveBack;
 
             BattleManager._performingAction = false;
         }
         
-        private IEnumerator RangedAttack()
+        private IEnumerator<float> RangedAttack()
         {
             unitBase.GetDamageValues();
 
             var originalRotation = unitBase.LookAtTarget();
 
-            var attack = StartCoroutine(ExecuteAttack());
-            yield return attack;
+            yield return Timing.WaitUntilDone(ExecuteAttack());
+            // var attack = StartCoroutine(ExecuteAttack());
+            // yield return attack;
 
             unit.transform.rotation = originalRotation;
 
             BattleManager._performingAction = false;
         }
 
-        private IEnumerator ExecuteAttack()
+        private IEnumerator<float> ExecuteAttack()
         {
             TimeManager._slowTimeCrit = unitBase.Unit.isCrit;
             
             unit.anim.SetInteger(AnimationHandler.PhysAttackState, unit.isAbility? unit.currentAbility.attackState : 0);
             
             unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
-            
-            yield return new WaitForEndOfFrame();
-            while (animHandler.isAttacking) yield return null;
+
+            yield return Timing.WaitForOneFrame;
+            while (animHandler.isAttacking) yield return Timing.WaitForOneFrame;
             
             TimeManager._slowTime = false;
             TimeManager._slowTimeCrit = false;
 
-            var coroutine = StartCoroutine(InflictStatus.OnTargetsOf
+            yield return Timing.WaitUntilDone(InflictStatus.OnTargetsOf
                 (unitBase, RateOfInfliction.AfterAttacked, 0.5f, false));
-            
-            yield return coroutine;
+            // var coroutine = StartCoroutine(InflictStatus.OnTargetsOf
+            //     (unitBase, RateOfInfliction.AfterAttacked, 0.5f, false));
+            //
+            // yield return coroutine;
             
             unit.multiHitTargets = new List<UnitBase>();
             unit.damageValueList = new List<int>();
@@ -129,7 +136,7 @@ namespace BattleSystem
 
         #region MovementCoroutines
 
-        private IEnumerator MoveToTargetPosition()
+        private IEnumerator<float> MoveToTargetPosition()
         {
             var parent = unit.transform.parent.transform;
             originPosition = parent.position;
@@ -144,14 +151,14 @@ namespace BattleSystem
             {
                 parent.position = Vector3.MoveTowards
                     (parent.position, targetPosition, TimeManager._moveSpeed * Time.deltaTime);
-                yield return new WaitForEndOfFrame();
+                yield return Timing.WaitForOneFrame;
             }
             
-            yield return new WaitForSeconds(0.5f);
+            yield return Timing.WaitForSeconds(0.5f);
             if (unit.isCrit) CriticalCamController._onCritical(unitBase);
         }
 
-        private IEnumerator MoveBackToOriginPosition()
+        private IEnumerator<float> MoveBackToOriginPosition()
         {
             CriticalCamController._disableCam(unitBase);
             
@@ -160,9 +167,9 @@ namespace BattleSystem
             {
                 parent.position = Vector3.MoveTowards
                     (parent.position, originPosition, TimeManager._moveSpeed * Time.deltaTime);
-                yield return new WaitForEndOfFrame();
+                yield return Timing.WaitForOneFrame;
             }
-            yield return new WaitForSeconds(1);
+            yield return Timing.WaitForSeconds(1);
         }
         
         #endregion

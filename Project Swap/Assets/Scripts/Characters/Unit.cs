@@ -7,6 +7,7 @@ using BattleSystem;
 using Characters.Abilities;
 using Characters.Animations;
 using Characters.StatusEffects;
+using Sirenix.OdinInspector;
 
 namespace Characters
 {

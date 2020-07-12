@@ -1,23 +1,15 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
 using System.Linq;
+using MEC;
 using UnityEngine;
 
 namespace Characters.StatusEffects
 {
-    public class InflictStatus : MonoBehaviour
+    public static class InflictStatus
     {
 
         // Update so that if there are multiple BeforeEveryAction effects, it will break after the first one triggers
-        
-        /// <summary>
-        /// Inflict a status effect on this unit
-        /// </summary>
-        /// <param name="unitBase"></param>
-        /// <param name="rate"></param>
-        /// <param name="delay"></param>
-        /// <param name="delayAfterInfliction"></param>
-        /// <returns></returns>
-        public static IEnumerator OnThisUnit(UnitBase unitBase, RateOfInfliction rate, float delay, bool delayAfterInfliction)
+        public static IEnumerator<float> OnThisUnit(UnitBase unitBase, RateOfInfliction rate, float delay, bool delayAfterInfliction)
         {
             if (unitBase.IsDead) yield break;
             
@@ -25,24 +17,16 @@ namespace Characters.StatusEffects
                 where statusEffect.rateOfInfliction.Contains(rate)
                 select statusEffect)
             {
-                if (!delayAfterInfliction) yield return new WaitForSeconds(delay);
+                if (!delayAfterInfliction) yield return Timing.WaitForSeconds(delay);
                 
                 statusEffect.InflictStatus(unitBase);
                 
-                if (delayAfterInfliction) yield return new WaitForSeconds(delay);
+                if (delayAfterInfliction) yield return Timing.WaitForSeconds(delay);
                 if (unitBase.IsDead) break;
             }
         }
         
-        /// <summary>
-        /// Inflict a status effect on the targets of a unit
-        /// </summary>
-        /// <param name="attacker"></param>
-        /// <param name="rate"></param>
-        /// <param name="delay"></param>
-        /// <param name="delayAfterInfliction"></param>
-        /// <returns></returns>
-        public static IEnumerator OnTargetsOf(UnitBase attacker, RateOfInfliction rate, float delay, bool delayAfterInfliction)
+        public static IEnumerator<float> OnTargetsOf(UnitBase attacker, RateOfInfliction rate, float delay, bool delayAfterInfliction)
         {
             if (attacker.Unit.isAbility && attacker.Unit.currentAbility.isMultiTarget)
             {
@@ -53,11 +37,11 @@ namespace Characters.StatusEffects
                         where statusEffect.rateOfInfliction.Contains(rate) select statusEffect)
                     {
                         if (attacker.IsDead) break;
-                        if (!delayAfterInfliction) yield return new WaitForSeconds(delay);
+                        if (!delayAfterInfliction) yield return Timing.WaitForSeconds(delay);
                 
                         statusEffect.InflictStatus(target);
                 
-                        if (delayAfterInfliction) yield return new WaitForSeconds(delay);
+                        if (delayAfterInfliction) yield return Timing.WaitForSeconds(delay);
                         if (attacker.IsDead) break;
                     }
                 }
@@ -69,11 +53,11 @@ namespace Characters.StatusEffects
                 where statusEffect.rateOfInfliction.Contains(rate) select statusEffect)
             {
                 if (attacker.Unit.currentTarget.IsDead) break;
-                if (!delayAfterInfliction) yield return new WaitForSeconds(delay);
+                if (!delayAfterInfliction) yield return Timing.WaitForSeconds(delay);
                 
                 statusEffect.InflictStatus(attacker.Unit.currentTarget);
                 
-                if (delayAfterInfliction) yield return new WaitForSeconds(delay);
+                if (delayAfterInfliction) yield return Timing.WaitForSeconds(delay);
                 if (attacker.Unit.currentTarget.IsDead) break;
             }
         }
