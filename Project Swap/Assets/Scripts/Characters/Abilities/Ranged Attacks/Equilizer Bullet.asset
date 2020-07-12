@@ -14,16 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 1
   damageType: 0
-  icon: {fileID: 21300000, guid: 20fa0968317cae7419eb9bed5192967f, type: 3}
-  description: Moderately lowers STR and slightly lowers CRIT
-  actionCost: 1
   targetOptions: 0
+  icon: {fileID: 21300000, guid: 20fa0968317cae7419eb9bed5192967f, type: 3}
+  actionCost: 2
+  damageMultiplier: 1.05
+  attackState: 2
   isMultiTarget: 0
+  description: Moderately lowers STR and slightly lowers CRIT
+  hasElemental: 0
+  elementalType: {fileID: 0}
+  elementalScaler: 0
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: 86eb9e2e2ae0507478bc348c4d901c29, type: 2}
   - {fileID: 11400000, guid: 7eb214ed7c78d8145b6e1063cff34ef2, type: 2}
-  chanceOfInfliction: 1
-  damageMultiplier: 1.05
-  attackState: 2
+  - {fileID: 11400000, guid: d4898860fab627c488899a7f4dbba9ba, type: 2}
+  chanceOfInfliction: 0.8
   lookAtTarget: 1

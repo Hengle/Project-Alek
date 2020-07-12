@@ -16,7 +16,8 @@ namespace Characters.Abilities
         [ReadOnly, VerticalGroup("Icon/Info"), Title("Main Info"), LabelWidth(120)] 
         public AbilityType abilityType;
 
-        [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
+        [VerticalGroup("Icon/Info"), LabelWidth(120)]
+        [HideIf(nameof(abilityType), AbilityType.NonAttack)] [EnumPaging]
         public DamageType damageType;
 
         [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
@@ -28,7 +29,8 @@ namespace Characters.Abilities
         [Range(1,6)] [VerticalGroup("Icon/Info"), LabelWidth(120)]
         public int actionCost;
 
-        [Range(1,3)] [VerticalGroup("Icon/Info"), LabelWidth(120)]
+        [Range(0,3)] [VerticalGroup("Icon/Info"), LabelWidth(120)]
+        [HideIf(nameof(abilityType), AbilityType.NonAttack)]
         public float damageMultiplier = 1f;
 
         [VerticalGroup("Icon/Info"), LabelWidth(120)]
@@ -40,7 +42,9 @@ namespace Characters.Abilities
         [Space(15)] [TextArea(5,15)] [Title("Description"), HideLabel]
         public string  description = "Insert description for this ability";
 
-        [Space(15)] [Title("Elements"), LabelWidth(120)] public bool hasElemental;
+        [Space(15)] [Title("Elements"), LabelWidth(120)]
+        [HideIf(nameof(abilityType), AbilityType.NonAttack)]
+        public bool hasElemental;
         
         [ShowIf(nameof(hasElemental)), InlineEditor, LabelWidth(120)]
         public ElementalType elementalType;
@@ -51,7 +55,9 @@ namespace Characters.Abilities
         [ShowInInspector, ShowIf(nameof(hasElemental)), HideLabel, VerticalGroup("Scaler/Value"), LabelWidth(5)]
         public float ElementalScaler => (float) elementalScaler / 100;
 
-        [Space(15)] [Title("Status Effects"), LabelWidth(120)] public bool hasStatusEffect;
+        [Space(15)] [Title("Status Effects"), LabelWidth(120)]
+        [HideIf(nameof(abilityType), AbilityType.NonAttack)]
+        public bool hasStatusEffect;
         
         [ShowIf(nameof(hasStatusEffect)), InlineEditor]
         public List<StatusEffect> statusEffects = new List<StatusEffect>();

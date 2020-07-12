@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe0785f3733400495ac195eb98ba710, type: 3}
   m_Name: The Juice
   m_EditorClassIdentifier: 
-  abilityName: 
   abilityType: 0
   damageType: 0
   targetOptions: 0
@@ -24,7 +23,7 @@ MonoBehaviour:
   description: You got the juice??
   hasElemental: 1
   elementalType: {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
-  elementalScaler: 25
+  elementalScaler: 50
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}

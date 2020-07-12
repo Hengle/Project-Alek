@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c89647cb589c4c46adccd11c07fb607c, type: 3}
   m_Name: Toxic Bullet
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: d2796662e127c0e4c8d4ec8323258b52, type: 3}
   abilityType: 1
   damageType: 0
   targetOptions: 0
-  actionCost: 1
+  icon: {fileID: 21300000, guid: e2087dd714dd1ec44897493a323ad28f, type: 3}
+  actionCost: 3
   damageMultiplier: 1.05
   attackState: 2
   isMultiTarget: 0
@@ -27,5 +27,5 @@ MonoBehaviour:
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: 69edb0df81ead1c4fb7df7bfa4cd9381, type: 2}
-  chanceOfInfliction: 1
+  chanceOfInfliction: 0.9
   lookAtTarget: 1

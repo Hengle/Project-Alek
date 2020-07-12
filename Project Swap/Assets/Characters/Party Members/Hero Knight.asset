@@ -186,12 +186,10 @@ MonoBehaviour:
     - Name: onStatusEffectRemoved
       Entry: 6
       Data: 
-  scale: {x: 50, y: 50, z: 0}
   icon: {fileID: 21300000, guid: f2ea487f62fd65944b6389c00e56eb6b, type: 3}
+  scale: {x: 50, y: 50, z: 0}
   id: 0
   characterName: Hero Knight
-  description: 'Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a
-    hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! '
   characterPrefab: {fileID: 1526218485019349028, guid: d31dfb895a5ac204485d636d12c3ffff,
     type: 3}
   level: 20
@@ -211,15 +209,16 @@ MonoBehaviour:
     BaseValue: 11
   criticalChance:
     BaseValue: 3
+  description: 'Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a
+    hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! '
   weaponMight: 14
   magicMight: 6
   weaponAccuracy: 75
   weaponCriticalChance: 2
-  profileBoxColor: {r: 1, g: 0.3066038, b: 0.3066038, a: 0.78431374}
-  maxAP: 6
   abilities:
   - {fileID: 11400000, guid: 8697ec229a0734b4b9c69d6087505ba9, type: 2}
   - {fileID: 11400000, guid: 1306999bff8e7c14892abd85b0b028c7, type: 2}
+  maxAP: 6
   actionPointAnim: {fileID: 0}
   positionInParty: 1
   weaponInventory: {fileID: 417493762244957691, guid: 8dd491fe5bbd13742a4a9ed04d140e08,

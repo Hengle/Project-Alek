@@ -10,7 +10,6 @@ using Characters.ElementalTypes;
 using Characters.StatusEffects;
 using Kryz.CharacterStats;
 using Sirenix.OdinInspector;
-using Sirenix.OdinInspector.Editor.Drawers;
 
 namespace Characters
 {
