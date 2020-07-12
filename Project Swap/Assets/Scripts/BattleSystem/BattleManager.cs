@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.UI;
 using System.Linq;
@@ -71,10 +70,10 @@ namespace BattleSystem
 
         private IEnumerator<float> SetupBattle()
         {
-            //yield return new WaitWhile(generator.SetupBattle);
             yield return Timing.WaitUntilFalse(generator.SetupBattle);
 
-            foreach (var partyMember in MembersForThisBattle) {
+            foreach (var partyMember in MembersForThisBattle)
+            {
                 yield return Timing.WaitUntilTrue(partyMember.battlePanel.GetComponent<MenuController>().SetEnemySelectables);
                 yield return Timing.WaitUntilTrue(partyMember.battlePanel.GetComponent<MenuController>().SetPartySelectables);
             }
@@ -118,10 +117,12 @@ namespace BattleSystem
                     BattleEvents.Trigger(BattleEventType.WonBattle);
                     Timing.RunCoroutine(WonBattleSequence());
                     break;
+                
                 case BattleState.Lost:
                     BattleEvents.Trigger(BattleEventType.LostBattle);
                     Timing.RunCoroutine(LostBattleSequence());
                     break;
+                
                 default:
                     roundCount++;
                     Timing.RunCoroutine(PerformThisRound());
@@ -129,14 +130,16 @@ namespace BattleSystem
             }
         }
 
-        private IEnumerator<float> ThisPlayerTurn(PartyMember character)
+        private static IEnumerator<float> ThisPlayerTurn(PartyMember character)
         {
             _activePartyMember = character;
             
-            BattleInputManager._inventoryInputManager.TargetInventoryContainer = character.inventoryDisplay.GetComponent<CanvasGroup>();
-            BattleInputManager._inventoryInputManager.TargetInventoryDisplay = character.inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
-
-            yield return Timing.WaitForSeconds(0.5f);
+            BattleInputManager._inventoryInputManager.TargetInventoryContainer =
+                character.inventoryDisplay.GetComponent<CanvasGroup>();
+            
+            BattleInputManager._inventoryInputManager.TargetInventoryDisplay =
+                character.inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
+            
             character.inventoryDisplay.SetActive(true);
 
             state = BattleState.PartyTurn;
@@ -156,32 +159,22 @@ namespace BattleSystem
                 yield return Timing.WaitForOneFrame;
             }
 
-            if (_endThisMembersTurn)
-            {
-                CharacterEvents.Trigger(CEventType.EndOfTurn, character);
-                _endThisMembersTurn = false;
-                character.inventoryDisplay.SetActive(false);
-                yield break;
-            }
-
+            if (_endThisMembersTurn) goto end_of_turn;
+            
+            yield return Timing.WaitForOneFrame;
             CharacterEvents.Trigger(CEventType.ChoosingTarget, character);
-            yield return Timing.WaitForSeconds(0.5f);
 
             while (_choosingTarget)
             {
+                yield return Timing.WaitForOneFrame;
                 BattleInputManager._canPressBack = true;
                 if (BattleInputManager.CancelCondition) goto main_menu;
-                yield return Timing.WaitForOneFrame;
             }
             
             character.CurrentAP -= character.Unit.actionCost;
 
             yield return Timing.WaitUntilDone(InflictStatus.OnThisUnit
                 (character, RateOfInfliction.BeforeEveryAction, 1, true));
-            // var inflictStatusEffectsBefore = StartCoroutine(InflictStatus.OnThisUnit
-            //     (character, RateOfInfliction.BeforeEveryAction, 1,true));
-            //
-            // yield return inflictStatusEffectsBefore;
 
             if (!_shouldGiveCommand) _shouldGiveCommand = true;
             
@@ -195,25 +188,18 @@ namespace BattleSystem
 
             yield return Timing.WaitUntilDone(InflictStatus.OnThisUnit
                 (character, RateOfInfliction.AfterEveryAction, 1, true));
-            // var inflictStatusEffectsAfter = StartCoroutine(InflictStatus.OnThisUnit
-            //     (character, RateOfInfliction.AfterEveryAction, 1,true));
-            //
-            // yield return inflictStatusEffectsAfter;
 
-            if (PartyOrEnemyTeamIsDead || character.IsDead)
-            {
-                CharacterEvents.Trigger(CEventType.EndOfTurn, character);
-                character.inventoryDisplay.SetActive(false);
-                yield break;
-            }
+            if (PartyOrEnemyTeamIsDead || character.IsDead) goto end_of_turn;
             
             if (character.CurrentAP > 0) goto main_menu;
             
+            end_of_turn:
+            _endThisMembersTurn = false;
             CharacterEvents.Trigger(CEventType.EndOfTurn, character);
             character.inventoryDisplay.SetActive(false);
         }
 
-        private IEnumerator<float> ThisEnemyTurn(Enemy enemy)
+        private static IEnumerator<float> ThisEnemyTurn(Enemy enemy)
         {
             state = BattleState.EnemyTurn;
             enemy.ResetAP();
@@ -229,21 +215,14 @@ namespace BattleSystem
 
                 yield return Timing.WaitUntilDone(InflictStatus.OnThisUnit
                     (enemy, RateOfInfliction.BeforeEveryAction, 1, true));
-                // var inflictStatusEffectsBefore = StartCoroutine(InflictStatus.OnThisUnit
-                //     (enemy, RateOfInfliction.BeforeEveryAction, 1,true));
-                //
-                // yield return inflictStatusEffectsBefore;
 
                 if (!_shouldGiveCommand) _shouldGiveCommand = true;
                 else enemy.GiveCommand();
+                
                 while (_performingAction) yield return Timing.WaitForOneFrame;
 
                 yield return Timing.WaitUntilDone(InflictStatus.OnThisUnit
                     (enemy, RateOfInfliction.AfterEveryAction, 1, true));
-                // var inflictStatusEffectsAfter = StartCoroutine(InflictStatus.OnThisUnit
-                //     (enemy, RateOfInfliction.AfterEveryAction, 1,true));
-                //
-                // yield return inflictStatusEffectsAfter;
 
                 if (PartyOrEnemyTeamIsDead || enemy.IsDead) break;
             }
@@ -272,14 +251,13 @@ namespace BattleSystem
         private static void RemoveFromBattle(UnitBase unit)
         {
             if (unit.id == CharacterType.Enemy) EnemiesForThisBattle.Remove((Enemy) unit);
-            Logger.Log($"{unit.characterName} is being removed from battle");
-            if (unit.id == CharacterType.Enemy) EnemiesForThisBattle.Remove((Enemy) unit);
             else MembersForThisBattle.Remove((PartyMember) unit);
 
             if (MembersForThisBattle.Count == 0) allMembersDead = true;
+            if (EnemiesForThisBattle.Count == 0) allEnemiesDead = true;
         }
 
-        private void ResetStaticVariables()
+        private static void ResetStaticVariables()
         {
             _activePartyMember = null;
             _choosingOption = false;
@@ -290,7 +268,6 @@ namespace BattleSystem
             allMembersDead = false;
             allEnemiesDead = false;
             _shouldGiveCommand = true;
-            roundCount = 0;
         }
         
         #endregion

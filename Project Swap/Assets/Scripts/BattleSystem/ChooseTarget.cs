@@ -4,13 +4,14 @@ using UnityEngine.EventSystems;
 using Characters;
 using Characters.PartyMembers;
 using Input;
+using Sirenix.OdinInspector;
 
 namespace BattleSystem
 {
     public class ChooseTarget : MonoBehaviour, IGameEventListener<CharacterEvents>
     {
         public static int _targetOptions = 0;
-        public static bool _isMultiTarget;
+        [ShowInInspector] public static bool _isMultiTarget;
         [HideInInspector] public UnitBase thisUnitBase;
 
         private static CharacterType targetOptionsCharacterType;
@@ -79,30 +80,26 @@ namespace BattleSystem
         private void Update()
         {
             // Need to update the last parameter if when/if I implement target option for everyone
-            if (!BattleManager._choosingTarget || !_isMultiTarget || thisUnitBase.id != targetOptionsCharacterType) {
+            if (!BattleManager._choosingTarget || !_isMultiTarget || thisUnitBase.id != targetOptionsCharacterType)
+            {
                 thisUnitBase.Unit.button.interactable = true;
                 return;
             }
             
             thisUnitBase.Unit.outline.enabled = true;
             thisUnitBase.Unit.button.interactable = false;
-                
-            if (BattleInputManager._inputModule.cancel.action.triggered) {
-                thisUnitBase.Unit.button.interactable = true;
-                _isMultiTarget = false;
-                return;
-            }
-                
-            if (!BattleInputManager._inputModule.submit.action.triggered) return;
-                
+
+            if (!BattleInputManager._controls.Menu.Confirm.triggered) return;
+
             AddMultiHitCommand();
             thisUnitBase.Unit.outline.enabled = false;
             thisUnitBase.Unit.button.interactable = true;
             _isMultiTarget = false;
         }
-
+        
         public void OnGameEvent(CharacterEvents eventType)
         {
+            if (eventType._eventType == CEventType.CharacterTurn) { _isMultiTarget = false; return; }
             if (eventType._eventType != CEventType.ChoosingTarget) return;
             
             BattleManager._choosingTarget = true;

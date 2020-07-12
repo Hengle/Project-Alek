@@ -78,16 +78,10 @@ namespace BattleSystem
             unitBase.GetDamageValues();
 
             yield return Timing.WaitUntilDone(MoveToTargetPosition());
-            // var move = StartCoroutine(MoveToTargetPosition());
-            // yield return move;
 
             yield return Timing.WaitUntilDone(ExecuteAttack());
-            // var attack = StartCoroutine(ExecuteAttack());
-            // yield return attack;
 
             yield return Timing.WaitUntilDone(MoveBackToOriginPosition());
-            // var moveBack = StartCoroutine(MoveBackToOriginPosition());
-            // yield return moveBack;
 
             BattleManager._performingAction = false;
         }
@@ -99,8 +93,6 @@ namespace BattleSystem
             var originalRotation = unitBase.LookAtTarget();
 
             yield return Timing.WaitUntilDone(ExecuteAttack());
-            // var attack = StartCoroutine(ExecuteAttack());
-            // yield return attack;
 
             unit.transform.rotation = originalRotation;
 
@@ -111,7 +103,8 @@ namespace BattleSystem
         {
             TimeManager._slowTimeCrit = unitBase.Unit.isCrit;
             
-            unit.anim.SetInteger(AnimationHandler.PhysAttackState, unit.isAbility? unit.currentAbility.attackState : 0);
+            unit.anim.SetInteger(AnimationHandler.PhysAttackState, unit.isAbility?
+                unit.currentAbility.attackState : 0);
             
             unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
 
@@ -123,11 +116,7 @@ namespace BattleSystem
 
             yield return Timing.WaitUntilDone(InflictStatus.OnTargetsOf
                 (unitBase, RateOfInfliction.AfterAttacked, 0.5f, false));
-            // var coroutine = StartCoroutine(InflictStatus.OnTargetsOf
-            //     (unitBase, RateOfInfliction.AfterAttacked, 0.5f, false));
-            //
-            // yield return coroutine;
-            
+
             unit.multiHitTargets = new List<UnitBase>();
             unit.damageValueList = new List<int>();
         }
@@ -154,7 +143,6 @@ namespace BattleSystem
                 yield return Timing.WaitForOneFrame;
             }
             
-            yield return Timing.WaitForSeconds(0.5f);
             if (unit.isCrit) CriticalCamController._onCritical(unitBase);
         }
 

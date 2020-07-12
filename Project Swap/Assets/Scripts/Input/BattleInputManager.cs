@@ -1,4 +1,5 @@
 ﻿using MoreMountains.InventoryEngine;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
@@ -10,12 +11,13 @@ namespace Input
         public static InputSystemUIInputModule _inputModule;
         public static InventoryInputManager _inventoryInputManager;
         public static Controls _controls;
+        
+        private static GameObject currentlySelected;
 
         public static bool _canPressBack;
         public static bool CancelCondition => _inputModule.cancel.action.triggered && _canPressBack;
-
-        private GameObject currentlySelected;
-
+        private static bool ProfileBoxCondition => _controls.Menu.TopButton.triggered && currentlySelected;
+        
         private void Awake()
         {
             _controls = new Controls();
@@ -28,7 +30,7 @@ namespace Input
         private void Update()
         {
             currentlySelected = EventSystem.current.currentSelectedGameObject;
-            if (_controls.Menu.TopButton.triggered && currentlySelected) UIEvents.Trigger(UIEventType.ToggleProfileBox, currentlySelected);
+            if (ProfileBoxCondition) UIEvents.Trigger(UIEventType.ToggleProfileBox, currentlySelected);
         }
     }
 }

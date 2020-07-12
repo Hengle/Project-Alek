@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using MEC;
-using UnityEngine;
 
 namespace Characters.StatusEffects
 {
     public static class InflictStatus
     {
-
         // Update so that if there are multiple BeforeEveryAction effects, it will break after the first one triggers
         public static IEnumerator<float> OnThisUnit(UnitBase unitBase, RateOfInfliction rate, float delay, bool delayAfterInfliction)
         {

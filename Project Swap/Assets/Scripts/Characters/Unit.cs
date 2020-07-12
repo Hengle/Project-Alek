@@ -65,10 +65,14 @@ namespace Characters
 
         #endregion
 
+        #region OtherFieldsAndProperies
+        
         public Action onSelect;
         public Action onDeselect;
 
         private UnitBase parent;
+        
+        #endregion
 
         private void Awake()
         {

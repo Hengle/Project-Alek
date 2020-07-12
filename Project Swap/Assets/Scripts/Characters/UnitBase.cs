@@ -18,15 +18,20 @@ namespace Characters
     {
         #region FieldsAndProperties
 
-        [HorizontalGroup("Basic", 125), PreviewField(125), HideLabel] public Sprite icon;
+        [HorizontalGroup("Basic", 125), PreviewField(125), HideLabel] 
+        public Sprite icon;
         
-        [VerticalGroup("Basic/Info"), LabelWidth(120)] public Vector3 scale = Vector3.one;
+        [VerticalGroup("Basic/Info"), LabelWidth(120)] 
+        public Vector3 scale = Vector3.one;
 
-        [VerticalGroup("Basic/Info"), ReadOnly, LabelWidth(120)] public CharacterType id;
+        [VerticalGroup("Basic/Info"), ReadOnly, LabelWidth(120)] 
+        public CharacterType id;
 
-        [VerticalGroup("Basic/Info"), LabelWidth(120)] public string characterName;
+        [VerticalGroup("Basic/Info"), LabelWidth(120)] 
+        public string characterName;
         
-        [VerticalGroup("Basic/Info"), LabelWidth(120)] public GameObject characterPrefab;
+        [VerticalGroup("Basic/Info"), LabelWidth(120)] 
+        public GameObject characterPrefab;
 
         [HideLabel, ShowInInspector, HorizontalGroup("Stat Data", 175), PreviewField(175), ShowIf(nameof(characterPrefab))] 
         public Sprite CharacterPrefab {
@@ -64,7 +69,8 @@ namespace Characters
         [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
         public CharacterStat criticalChance;
 
-        [Space(20), TextArea(5,15), Title("Description"), HideLabel] public string  description;
+        [Space(20), TextArea(5,15), Title("Description"), HideLabel]
+        public string  description;
         
         // For cases where enemies lose their resistance when susceptible, just add a function/variable to 
         // The Elemental Type/Status Effects classes that disables them
@@ -87,30 +93,28 @@ namespace Characters
         [Range(1,99), FoldoutGroup("Weapon Stats")] public int weaponAccuracy;
         [Range(1,99), FoldoutGroup("Weapon Stats")] public int weaponCriticalChance;
 
-        [InlineEditor] [OnValueChanged(nameof(Abilities))] 
+        [InlineEditor] [OnValueChanged(nameof(CheckAbilityCount))] 
         public List<Ability> abilities = new List<Ability>();
 
-        public void Abilities() {
+        public void CheckAbilityCount() 
+        {
             if (abilities.Count <= 5) return;
             Debug.LogError("Cannot have more than 5 abilities at a time!");
         }
         
-        private readonly Color normalHealthColor = Color.green;
-        private readonly Color midHealthColor = Color.yellow;
-        private readonly Color lowHealthColor = Color.red;
         public Color Color {
             get
             {
-                if (Unit.currentHP <= 0.25f * (int) health.BaseValue) {
-                    Unit.outline.color = lowHealthColor;
-                    return lowHealthColor;
+                if (Unit.currentHP <= 0.3f * (int) health.BaseValue) {
+                    Unit.outline.color = Color.red;
+                    return Color.red;
                 }
-                if (Unit.currentHP <= 0.5f * (int) health.BaseValue) {
-                    Unit.outline.color = midHealthColor;
-                    return midHealthColor;
-                } 
-                Unit.outline.color = normalHealthColor;
-                return normalHealthColor;
+                if (Unit.currentHP <= 0.6f * (int) health.BaseValue) {
+                    Unit.outline.color = Color.yellow;
+                    return Color.yellow;
+                }
+                Unit.outline.color = Color.green;
+                return Color.green;;
             }
         }
 
@@ -146,33 +150,22 @@ namespace Characters
             onDeath = null;
         }
 
-        public virtual void Heal(float amount) {}
-     
         public void GiveCommand()
         {
             BattleManager._battleFunctions.GetCommand(this);
             BattleManager._performingAction = true;
         }
 
-        public Quaternion LookAtTarget()
+        public virtual void ResetAP() 
         {
-            var rangeAbility = (RangedAttack) Unit.currentAbility;
-
-            var transform1 = Unit.transform;
-            var originalRotation = transform1.rotation;
-            var lookAtPosition = rangeAbility.lookAtTarget?
-                Unit.currentTarget.Unit.transform.position : transform1.position;
-
-            if (!rangeAbility.lookAtTarget) return originalRotation;
-            
-            Unit.transform.LookAt(lookAtPosition);
-            Unit.transform.rotation *= Quaternion.FromToRotation(Vector3.right, Vector3.forward);
-
-            return originalRotation;
+            Unit.currentAP += 2;
+            if (Unit.currentAP > 6) Unit.currentAP = 6;
         }
 
+        #region GetFunctions
+
         public Ability GetAndSetAbility(int index) => abilities[index];
-        
+
         public void GetDamageValues()
         {
             if (Unit.isAbility && Unit.currentAbility.isMultiTarget)
@@ -183,10 +176,31 @@ namespace Characters
 
             else
             {
-                Unit.currentTarget = CheckTargetStatus(Unit.currentTarget);
+                Unit.currentTarget = GetNewTargetIfDead(Unit.currentTarget);
                 Unit.currentDamage = Calculator.CalculateAttackDamage(this, Unit.currentTarget);
             }
         }
+
+        private UnitBase GetNewTargetIfDead(UnitBase target) 
+        {
+            if (target != null) return Unit.currentTarget.Unit.status != Status.Dead? target : this;
+            return this;
+        }
+
+        public bool GetStatus()
+        {
+            switch (Unit.status)
+            {
+                case Status.Normal: return true;
+                case Status.Dead: return false;
+                case Status.UnableToPerformAction: return false;
+                default: return true;
+            }
+        }
+
+        #endregion
+
+        public virtual void Heal(float amount) {}
 
         public virtual void TakeDamage(int dmg)
         {
@@ -204,7 +218,6 @@ namespace Characters
             if (dmg == -1 && Unit.currentHP > 0) return;
             if (Unit.currentHP > 0) Unit.anim.SetTrigger(AnimationHandler.HurtTrigger);
             else Die();
-            
         }
 
         protected virtual void Die()
@@ -214,27 +227,21 @@ namespace Characters
             Unit.anim.SetBool(AnimationHandler.DeathTrigger, true);
         }
 
-        public virtual void ResetAP() 
+        public Quaternion LookAtTarget()
         {
-            Unit.currentAP += 2;
-            if (Unit.currentAP > 6) Unit.currentAP = 6;
-        }
-        
-        public bool GetStatus()
-        {
-            switch (Unit.status)
-            {
-                case Status.Normal: return true;
-                case Status.Dead: return false;
-                case Status.UnableToPerformAction: return false;
-                default: return true;
-            }
-        }
+            var rangeAbility = (RangedAttack) Unit.currentAbility;
 
-        private UnitBase CheckTargetStatus(UnitBase target) 
-        {
-            if (target != null) return Unit.currentTarget.Unit.status != Status.Dead? target : this;
-            return this;
+            var transform1 = Unit.transform;
+            var originalRotation = transform1.rotation;
+            var lookAtPosition = rangeAbility.lookAtTarget?
+                Unit.currentTarget.Unit.transform.position : transform1.position;
+
+            if (!rangeAbility.lookAtTarget) return originalRotation;
+            
+            Unit.transform.LookAt(lookAtPosition);
+            Unit.transform.rotation *= Quaternion.FromToRotation(Vector3.right, Vector3.forward);
+
+            return originalRotation;
         }
     }
 }
