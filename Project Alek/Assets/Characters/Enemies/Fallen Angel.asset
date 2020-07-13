@@ -1,0 +1,214 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d95f71b0ecb984994fbe8ed6ae5941, type: 3}
+  m_Name: Fallen Angel
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
+    - {fileID: 11400000, guid: 5b7dd86029ea2ce49beaee4e4d702b94, type: 2}
+    - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
+    - {fileID: 11400000, guid: 856a4a808bf1c3d47b06852f07eb68bc, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _elementalResistances
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
+        ProjectAlek],[Characters.ElementalTypes.ElementalScaler, ProjectAlek]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.ElementalTypes.ElementalType,
+        ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 25
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _elementalWeaknesses
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
+        ProjectAlek],[Characters.ElementalTypes.ElementalWeaknessScaler, ProjectAlek]],
+        mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 1
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 150
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _statusEffectResistances
+      Entry: 7
+      Data: 3|System.Collections.Generic.Dictionary`2[[Characters.StatusEffects.StatusEffect,
+        ProjectAlek],[Characters.StatusEffects.InflictionChanceModifier, ProjectAlek]],
+        mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 4|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.StatusEffects.StatusEffect,
+        ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 2
+    - Name: $v
+      Entry: 3
+      Data: 75
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _statusEffectWeaknesses
+      Entry: 7
+      Data: 5|System.Collections.Generic.Dictionary`2[[Characters.StatusEffects.StatusEffect,
+        ProjectAlek],[Characters.StatusEffects.InflictionChanceModifier, ProjectAlek]],
+        mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 4
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 3
+    - Name: $v
+      Entry: 3
+      Data: 75
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: onDeath
+      Entry: 6
+      Data: 
+    - Name: onHpValueChanged
+      Entry: 6
+      Data: 
+    - Name: onNewState
+      Entry: 6
+      Data: 
+    - Name: onElementalDamageReceived
+      Entry: 6
+      Data: 
+    - Name: onStatusEffectReceived
+      Entry: 6
+      Data: 
+    - Name: onStatusEffectRemoved
+      Entry: 6
+      Data: 
+    - Name: _checkmateRequirements
+      Entry: 7
+      Data: 6|System.Collections.Generic.SortedList`2[[UnityEngine.ScriptableObject,
+        UnityEngine.CoreModule],[Characters.TransitionRequirements, ProjectAlek]],
+        System
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  icon: {fileID: 0}
+  scale: {x: 50, y: 50, z: 1}
+  id: 1
+  characterName: Fallen Angel
+  characterPrefab: {fileID: 1109450531332189788, guid: 4c66f5057c296d34987d4b8965774b8f,
+    type: 3}
+  level: 22
+  health:
+    BaseValue: 2340
+  strength:
+    BaseValue: 18
+  magic:
+    BaseValue: 22
+  accuracy:
+    BaseValue: 25
+  initiative:
+    BaseValue: 18
+  defense:
+    BaseValue: 13
+  resistance:
+    BaseValue: 25
+  criticalChance:
+    BaseValue: 5
+  description: what a shame...
+  weaponMight: 13
+  magicMight: 15
+  weaponAccuracy: 80
+  weaponCriticalChance: 2
+  abilities:
+  - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
+  - {fileID: 11400000, guid: e558d404ab0ced340bb9314e1e677569, type: 2}
+  maxAP: 6
