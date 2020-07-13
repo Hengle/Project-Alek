@@ -29,11 +29,11 @@ MonoBehaviour:
     - Name: _elementalResistances
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
-        ProjectSwap],[Characters.ElementalTypes.ElementalScaler, ProjectSwap]], mscorlib
+        ProjectAlek],[Characters.ElementalTypes.ElementalScaler, ProjectAlek]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.ElementalTypes.ElementalType,
-        ProjectSwap]], mscorlib
+        ProjectAlek]], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -61,7 +61,7 @@ MonoBehaviour:
     - Name: _elementalWeaknesses
       Entry: 7
       Data: 2|System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
-        ProjectSwap],[Characters.ElementalTypes.ElementalWeaknessScaler, ProjectSwap]],
+        ProjectAlek],[Characters.ElementalTypes.ElementalWeaknessScaler, ProjectAlek]],
         mscorlib
     - Name: comparer
       Entry: 9
@@ -102,12 +102,12 @@ MonoBehaviour:
     - Name: _statusEffectResistances
       Entry: 7
       Data: 3|System.Collections.Generic.Dictionary`2[[Characters.StatusEffects.StatusEffect,
-        ProjectSwap],[Characters.StatusEffects.InflictionChanceModifier, ProjectSwap]],
+        ProjectAlek],[Characters.StatusEffects.InflictionChanceModifier, ProjectAlek]],
         mscorlib
     - Name: comparer
       Entry: 7
       Data: 4|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.StatusEffects.StatusEffect,
-        ProjectSwap]], mscorlib
+        ProjectAlek]], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -135,7 +135,7 @@ MonoBehaviour:
     - Name: _statusEffectWeaknesses
       Entry: 7
       Data: 5|System.Collections.Generic.Dictionary`2[[Characters.StatusEffects.StatusEffect,
-        ProjectSwap],[Characters.StatusEffects.InflictionChanceModifier, ProjectSwap]],
+        ProjectAlek],[Characters.StatusEffects.InflictionChanceModifier, ProjectAlek]],
         mscorlib
     - Name: comparer
       Entry: 9
@@ -162,9 +162,60 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: onDeath
-      Entry: 6
+      Entry: 7
+      Data: 6|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: declaringType
+      Entry: 7
+      Data: 7|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BattleSystem.BattleManager, ProjectAlek
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: RemoveFromBattle
+    - Name: delegateType
+      Entry: 7
+      Data: 8|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 9|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 10|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Characters.UnitBase, ProjectAlek
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
     - Name: onHpValueChanged
+      Entry: 6
+      Data: 
+    - Name: onNewState
+      Entry: 6
+      Data: 
+    - Name: onElementalDamageReceived
       Entry: 6
       Data: 
     - Name: onStatusEffectReceived
@@ -206,6 +257,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}
   - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
   - {fileID: 11400000, guid: 1306999bff8e7c14892abd85b0b028c7, type: 2}
+  - {fileID: 11400000, guid: 29e5f87674d2cba4b9282fcecc4fe2ca, type: 2}
+  - {fileID: 11400000, guid: e558d404ab0ced340bb9314e1e677569, type: 2}
   maxAP: 6
   actionPointAnim: {fileID: 0}
   positionInParty: 3

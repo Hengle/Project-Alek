@@ -22,15 +22,13 @@ namespace Characters
         
         private readonly Stack<UnitStates> states = new Stack<UnitStates>();
 
-        public UnitStateMachine(UnitBase unit, List<ScriptableObject> objects, List<TransitionRequirements> requirements)
+        public UnitStateMachine(UnitBase unit, IReadOnlyList<ScriptableObject> objects, IReadOnlyList<TransitionRequirements> requirements)
         {
             unitBase = unit;
             
             for (var i = 0; i < objects.Count; i++)
             {
                 checkmateRequirements.Add(new KeyValuePair<ScriptableObject, TransitionRequirements>(objects[i], requirements[i]));
-                
-                Debug.Log($"Key: {checkmateRequirements[i].Key.name} \n Value: {checkmateRequirements[i].Value}");
             }
             
             InitializeStack();
@@ -53,11 +51,9 @@ namespace Characters
             
             states.Push(UnitStates.Susceptible);
             states.Push(UnitStates.Normal);
-
-            unitBase.Unit.currentState = UnitStates.Normal;
-            currentState = states.Pop();
             
-            Logger.Log($"{unitBase.characterName}'s current state is {currentState}. Stack count: {states.Count}");
+            currentState = states.Pop();
+            unitBase.Unit.currentState = currentState;
 
             requirementIndex = 0;
             currentRequirement = checkmateRequirements[0].Value;
@@ -71,7 +67,7 @@ namespace Characters
             states.Clear();
             InitializeStack();
         }
-
+        
         private void EvaluateState(StatusEffect effect)
         {
             switch (currentState)
@@ -82,19 +78,16 @@ namespace Characters
                     currentState = states.Pop();
                     unitBase.onNewState?.Invoke(currentState);
                     unitBase.Unit.currentState = currentState;
-                    Logger.Log($"{unitBase.characterName}'s current state is {currentState}. Stack count: {states.Count}");
                     return;
                 
                 case UnitStates.Normal: return;
             }
-
+            
             if (currentRequirement != TransitionRequirements.StatusEffect) return;
 
             var tryGetEffect = checkmateRequirements[requirementIndex].Key as StatusEffect;
 
-            if (tryGetEffect == null || !unitBase.Unit.statusEffects.Contains(tryGetEffect)) return;
-            
-            RequirementMet();
+            if (tryGetEffect != null) RequirementMet();;
         }
 
         private void EvaluateState(ElementalType elementalType)
@@ -105,21 +98,29 @@ namespace Characters
             
             var tryGetElement = checkmateRequirements[requirementIndex].Key as ElementalType;
 
-            if (tryGetElement == null || tryGetElement != elementalType) return;
-            
-            RequirementMet();
+            if (tryGetElement != null && tryGetElement == elementalType) RequirementMet();
         }
 
         private void RequirementMet()
         {
-            requirementIndex++;
-            currentRequirement = checkmateRequirements[requirementIndex].Value;
+            currentState = states.Pop();
+
+            Logger.Log($"Requirement met for {unitBase.characterName}! Stack count: {states.Count}");
+
+            if (states.Peek() != UnitStates.Checkmate)
+            {
+                requirementIndex++;
+                currentRequirement = checkmateRequirements[requirementIndex].Value;
+                
+                unitBase.Unit.currentState = currentState;
+                unitBase.onNewState?.Invoke(currentState);
+                return;
+            }
             
             currentState = states.Pop();
-            unitBase.onNewState?.Invoke(currentState);
             unitBase.Unit.currentState = currentState;
-                
-            Logger.Log($"{unitBase.characterName}'s current state is {currentState}. Stack count: {states.Count}");
+            unitBase.onNewState?.Invoke(currentState);
+            Logger.Log($"{unitBase.characterName} is in {currentState}!");
         }
 
         public void OnGameEvent(BattleEvents eventType)

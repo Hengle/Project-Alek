@@ -196,9 +196,9 @@ namespace BattleSystem.Generator
                 statusBoxController.member = clone;
                 statusBoxController.Initialize();
 
-                if (clone.checkmateRequirements != null && clone.ValidateLists()) clone.stateMachine = new UnitStateMachine
+                if (clone.checkmateRequirements.Count > 0 && clone.ValidateLists()) clone.stateMachine = new UnitStateMachine
                     (clone, clone.checkmateRequirements, clone.transitionRequirements);
-                else Debug.LogError($"Error with requirements of {clone.characterName}");
+                //else Debug.LogError($"Error with requirements of {clone.characterName}");
                 
                 BattleManager.EnemiesForThisBattle.Add(clone);
                 i++;

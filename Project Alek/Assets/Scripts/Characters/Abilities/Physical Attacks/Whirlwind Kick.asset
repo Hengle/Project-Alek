@@ -10,21 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4fe0785f3733400495ac195eb98ba710, type: 3}
-  m_Name: Mystical Arts
+  m_Name: Whirlwind Kick
   m_EditorClassIdentifier: 
   abilityType: 0
-  damageType: 1
+  damageType: 0
   targetOptions: 0
-  icon: {fileID: 21300000, guid: 9741f93265551d249b4d338ec9488319, type: 3}
+  icon: {fileID: 21300000, guid: 889096820535b0f48acdff308771b1b5, type: 3}
   actionCost: 1
-  damageMultiplier: 1.15
+  damageMultiplier: 1
   attackState: 2
   isMultiTarget: 0
-  description: OoOoH MaAgic
-  hasElemental: 0
-  elementalType: {fileID: 0}
-  elementalScaler: 25
-  hasStatusEffect: 1
-  statusEffects:
-  - {fileID: 11400000, guid: 69edb0df81ead1c4fb7df7bfa4cd9381, type: 2}
-  chanceOfInfliction: 1
+  description: Whoosh!
+  hasElemental: 1
+  elementalType: {fileID: 11400000, guid: 5b7dd86029ea2ce49beaee4e4d702b94, type: 2}
+  elementalScaler: 75
+  hasStatusEffect: 0
+  statusEffects: []
+  chanceOfInfliction: 0

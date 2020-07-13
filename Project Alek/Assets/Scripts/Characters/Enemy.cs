@@ -55,7 +55,7 @@ namespace Characters
                 }
             }
             
-            Debug.Log("No Errors in Requirements Lists");
+            if (!Application.isPlaying) Debug.Log("No Errors in Requirements Lists");
             return true;
         }
         private void Awake() => id = CharacterType.Enemy;

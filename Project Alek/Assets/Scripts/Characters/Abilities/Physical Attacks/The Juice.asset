@@ -27,4 +27,5 @@ MonoBehaviour:
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
-  chanceOfInfliction: 0.9
+  - {fileID: 11400000, guid: a088f13962786214c86317bf6f4c8c85, type: 2}
+  chanceOfInfliction: 1
