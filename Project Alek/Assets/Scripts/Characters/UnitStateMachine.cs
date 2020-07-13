@@ -10,20 +10,28 @@ namespace Characters
     public enum TransitionRequirements { StatusEffect, ElementalDamage }
     public class UnitStateMachine : IGameEventListener<BattleEvents>
     {
-        private UnitBase unitBase;
-        private SortedList<ScriptableObject, TransitionRequirements> checkmateRequirements;
+        private readonly UnitBase unitBase;
+        
+        private readonly List<KeyValuePair<ScriptableObject, TransitionRequirements>> checkmateRequirements =
+            new List<KeyValuePair<ScriptableObject, TransitionRequirements>>();
+        
         private int requirementIndex;
 
         private TransitionRequirements currentRequirement;
-
         private UnitStates currentState;
         
         private readonly Stack<UnitStates> states = new Stack<UnitStates>();
 
-        public UnitStateMachine(UnitBase unit, SortedList<ScriptableObject, TransitionRequirements> requirements)
+        public UnitStateMachine(UnitBase unit, List<ScriptableObject> objects, List<TransitionRequirements> requirements)
         {
             unitBase = unit;
-            checkmateRequirements = requirements;
+            
+            for (var i = 0; i < objects.Count; i++)
+            {
+                checkmateRequirements.Add(new KeyValuePair<ScriptableObject, TransitionRequirements>(objects[i], requirements[i]));
+                
+                Debug.Log($"Key: {checkmateRequirements[i].Key.name} \n Value: {checkmateRequirements[i].Value}");
+            }
             
             InitializeStack();
 
@@ -52,13 +60,13 @@ namespace Characters
             Logger.Log($"{unitBase.characterName}'s current state is {currentState}. Stack count: {states.Count}");
 
             requirementIndex = 0;
-            currentRequirement = checkmateRequirements.Values[0];
+            currentRequirement = checkmateRequirements[0].Value;
         }
 
         private void EvaluateStateOnRemoval(StatusEffect effect)
         {
             if (currentState != UnitStates.Susceptible) return;
-            if (effect.GetType() != typeof(Susceptible)) return;
+            if (effect as Susceptible == null) return;
             
             states.Clear();
             InitializeStack();
@@ -70,7 +78,7 @@ namespace Characters
             {
                 case UnitStates.Checkmate: return;
                 
-                case UnitStates.Normal when effect.GetType() == typeof(Susceptible):
+                case UnitStates.Normal when effect as Susceptible != null:
                     currentState = states.Pop();
                     unitBase.onNewState?.Invoke(currentState);
                     unitBase.Unit.currentState = currentState;
@@ -82,7 +90,7 @@ namespace Characters
 
             if (currentRequirement != TransitionRequirements.StatusEffect) return;
 
-            var tryGetEffect = checkmateRequirements.Keys[requirementIndex] as StatusEffect;
+            var tryGetEffect = checkmateRequirements[requirementIndex].Key as StatusEffect;
 
             if (tryGetEffect == null || !unitBase.Unit.statusEffects.Contains(tryGetEffect)) return;
             
@@ -95,7 +103,7 @@ namespace Characters
             
             if (currentRequirement != TransitionRequirements.ElementalDamage) return;
             
-            var tryGetElement = checkmateRequirements.Keys[requirementIndex] as ElementalType;
+            var tryGetElement = checkmateRequirements[requirementIndex].Key as ElementalType;
 
             if (tryGetElement == null || tryGetElement != elementalType) return;
             
@@ -105,7 +113,7 @@ namespace Characters
         private void RequirementMet()
         {
             requirementIndex++;
-            currentRequirement = checkmateRequirements.Values[requirementIndex];
+            currentRequirement = checkmateRequirements[requirementIndex].Value;
             
             currentState = states.Pop();
             unitBase.onNewState?.Invoke(currentState);

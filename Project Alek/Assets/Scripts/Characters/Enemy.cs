@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using BattleSystem;
+using Characters.ElementalTypes;
+using Characters.StatusEffects;
 using Sirenix.OdinInspector;
 using Random = UnityEngine.Random;
 
@@ -10,16 +12,52 @@ namespace Characters
     [CreateAssetMenu(fileName = "New Enemy", menuName = "Character/Enemy")]
     public class Enemy : UnitBase
     {
-        public UnitStateMachine stateMachine;
+        [HideInInspector] public UnitStateMachine stateMachine;
         
-        [ShowInInspector] public readonly SortedList<ScriptableObject, TransitionRequirements> _checkmateRequirements = 
-            new SortedList<ScriptableObject, TransitionRequirements>();
-        
+        [InfoBox("REQUIREMENT LISTS MUST MATCH!! A STATUS EFFECT/ELEMEMT MUST MATCH THE TRANSITION IN OTHER LIST")]
+        public List<ScriptableObject> checkmateRequirements = new List<ScriptableObject>();
+        public List<TransitionRequirements> transitionRequirements = new List<TransitionRequirements>();
+
         public int CurrentAP {
             get => Unit.currentAP;
             set => Unit.currentAP = value;
         }
 
+        [Button] public bool ValidateLists()
+        {
+            if (checkmateRequirements.Count != transitionRequirements.Count)
+            {
+                Debug.LogError("Requirement lists count do not match!");
+                return false;
+            }
+
+            for (var i = 0; i < checkmateRequirements.Count; i++)
+            {
+                var tryGetStatus = checkmateRequirements[i] as StatusEffect;
+                var tryGetElement = checkmateRequirements[i] as ElementalType;
+
+                if (tryGetStatus != null && transitionRequirements[i] != TransitionRequirements.StatusEffect)
+                {
+                    Debug.LogError($"Requirement lists do not match! index: {i}");
+                    return false;
+                }
+                
+                if (tryGetElement != null && transitionRequirements[i] != TransitionRequirements.ElementalDamage)
+                {
+                    Debug.LogError($"Requirement lists do not match! index: {i}");
+                    return false;
+                }
+
+                if (tryGetStatus == null && tryGetElement == null)
+                {
+                    Debug.LogError("List contains object that isn't of type StatusEffect or ElementalType");
+                    return false;
+                }
+            }
+            
+            Debug.Log("No Errors in Requirements Lists");
+            return true;
+        }
         private void Awake() => id = CharacterType.Enemy;
         
         public bool SetAI()

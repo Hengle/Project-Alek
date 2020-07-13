@@ -47,5 +47,10 @@ namespace Characters.StatusEffects
             Logger.Log($"{unitBase.characterName} is no longer inflicted with {name}.");
             unitBase.onStatusEffectRemoved?.Invoke(this);
         }
+
+        // public int CompareTo(object obj)
+        // {
+        //     return 1;
+        // }
     }
 }

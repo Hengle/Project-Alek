@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,5 +20,10 @@ namespace Characters.ElementalTypes
         [VerticalGroup("Icon/Info")] public GameObject icon;
 
         [VerticalGroup("Icon/Info")] public GameObject visualEffect;
+        
+        // public int CompareTo(object obj)
+        // {
+        //     return 1;
+        // }
     }
 }
