@@ -1,8 +1,8 @@
-﻿using BattleSystem;
-using Characters.Animations;
+﻿using Characters.Animations;
+using Characters.PartyMembers;
 using UnityEngine;
 
-namespace Characters.PartyMembers
+namespace BattleSystem
 {
     [CreateAssetMenu(fileName = "Battle Options Panel")]
     public class BattleOptionsPanel : ScriptableObject

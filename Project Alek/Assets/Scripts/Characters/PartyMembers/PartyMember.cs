@@ -1,7 +1,4 @@
-﻿using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
-using BattleSystem;
+﻿using UnityEngine;
 using Characters.Animations;
 using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
@@ -21,7 +18,7 @@ namespace Characters.PartyMembers
         [TabGroup("Tabs","Inventory")]
         public InventoryItem equippedWeapon;
 
-        [HideInInspector] public BattleOptionsPanel battleOptionsPanel;
+        [HideInInspector] public ScriptableObject battleOptionsPanel;
         [HideInInspector] public GameObject battlePanel;
         [HideInInspector] public GameObject inventoryDisplay;
         private GameObject unitGO;
@@ -43,47 +40,5 @@ namespace Characters.PartyMembers
         }
         
         public bool SetAI() => true;
-
-        public void SetAbilityMenuOptions()
-        {
-            var abilityMenu = battlePanel.transform.Find("Battle Menu").transform.Find("Ability Menu").transform;
-            var abilityListIndex = 0;
-            
-            while (abilities.Count > 5) abilities.Remove(abilities[abilities.Count-1]);
-
-            for (var buttonIndex = 0; buttonIndex < abilities.Count; buttonIndex++)
-            {
-                var optionButton = abilityMenu.GetChild(buttonIndex).gameObject;
-                optionButton.GetComponentInChildren<TextMeshPro>().text = abilities[abilityListIndex].name;
-                
-                optionButton.transform.Find("Icon").GetComponent<Image>().sprite = abilities[abilityListIndex].icon;
-                optionButton.SetActive(true);
-                
-                var param = abilities[abilityListIndex].GetParameters(abilityListIndex);
-                
-                optionButton.GetComponent<Button>().onClick.
-                    AddListener(delegate { battleOptionsPanel.GetCommandInformation(param); });
-
-                if (abilities[abilityListIndex].isMultiTarget) optionButton.GetComponent<Button>().onClick.
-                    AddListener(delegate { ChooseTarget._isMultiTarget = true; });
-                    
-                optionButton.GetComponent<InfoBoxScript>().information = 
-                    $"{abilities[abilityListIndex].description} ( {abilities[abilityListIndex].actionCost} AP )";
-                
-                abilityListIndex++;
-
-                if (buttonIndex != abilities.Count - 1) continue;
-
-                var firstOption = abilityMenu.GetChild(0).gameObject;
-                var firstOpNav = firstOption.GetComponent<Selectable>().navigation;
-                var nav = optionButton.GetComponent<Selectable>().navigation;
-
-                nav.selectOnDown = firstOption.GetComponent<Button>();
-                optionButton.GetComponent<Selectable>().navigation = nav;
-
-                firstOpNav.selectOnUp = optionButton.GetComponent<Button>();
-                firstOption.GetComponent<Selectable>().navigation = firstOpNav;
-            }
-        }
     }
 }

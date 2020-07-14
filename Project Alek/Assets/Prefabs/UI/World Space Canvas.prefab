@@ -223,10 +223,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 783416123056813065}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66b757baabd24e75a5c36d66dd3ff44e, type: 3}
+  m_Script: {fileID: 11500000, guid: 637d0fd238dc7b243a98d37eb86549b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  information: Attempt to flee from the battle
+  information: 
   infoText: {fileID: 0}
 --- !u!1 &932612526611727210
 GameObject:
@@ -657,10 +657,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1708297386206082608}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66b757baabd24e75a5c36d66dd3ff44e, type: 3}
+  m_Script: {fileID: 11500000, guid: 637d0fd238dc7b243a98d37eb86549b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  information: Open ability menu
+  information: 
   infoText: {fileID: 0}
 --- !u!1 &1930296828722180806
 GameObject:
@@ -812,7 +812,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1930296828722180806}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66b757baabd24e75a5c36d66dd3ff44e, type: 3}
+  m_Script: {fileID: 11500000, guid: 637d0fd238dc7b243a98d37eb86549b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   information: 
@@ -2070,10 +2070,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4647836516540348567}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66b757baabd24e75a5c36d66dd3ff44e, type: 3}
+  m_Script: {fileID: 11500000, guid: 637d0fd238dc7b243a98d37eb86549b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  information: Open inventory
+  information: 
   infoText: {fileID: 0}
 --- !u!1 &4792203345709095841
 GameObject:
@@ -2430,10 +2430,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4792203346361511273}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66b757baabd24e75a5c36d66dd3ff44e, type: 3}
+  m_Script: {fileID: 11500000, guid: 637d0fd238dc7b243a98d37eb86549b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  information: A basic attack ( 2 AP )
+  information: 'Perform a basic attack
+
+    ( 2 AP )'
   infoText: {fileID: 0}
 --- !u!1 &4792203347304205827
 GameObject:
@@ -2537,7 +2539,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 311
 --- !u!95 &6927818857801966442
 Animator:
   serializedVersion: 3
@@ -2887,7 +2889,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4851009656776932604}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66b757baabd24e75a5c36d66dd3ff44e, type: 3}
+  m_Script: {fileID: 11500000, guid: 637d0fd238dc7b243a98d37eb86549b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   information: 
@@ -3116,7 +3118,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5860258340262513909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66b757baabd24e75a5c36d66dd3ff44e, type: 3}
+  m_Script: {fileID: 11500000, guid: 637d0fd238dc7b243a98d37eb86549b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   information: 
@@ -3371,7 +3373,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6450662236938108158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66b757baabd24e75a5c36d66dd3ff44e, type: 3}
+  m_Script: {fileID: 11500000, guid: 637d0fd238dc7b243a98d37eb86549b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   information: 
@@ -4013,7 +4015,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7940538518153951757}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66b757baabd24e75a5c36d66dd3ff44e, type: 3}
+  m_Script: {fileID: 11500000, guid: 637d0fd238dc7b243a98d37eb86549b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   information: 
@@ -4759,8 +4761,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 9150060273821627121}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66b757baabd24e75a5c36d66dd3ff44e, type: 3}
+  m_Script: {fileID: 11500000, guid: 637d0fd238dc7b243a98d37eb86549b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  information: End your turn
+  information: 
   infoText: {fileID: 0}

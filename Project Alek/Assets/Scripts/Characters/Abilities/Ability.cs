@@ -13,10 +13,10 @@ namespace Characters.Abilities
     {
         #region FieldsAndProperties
 
-        [ReadOnly, VerticalGroup("Icon/Info"), Title("Main Info"), LabelWidth(120)] 
+        [ReadOnly, HideLabel, VerticalGroup("Icon/Info"), LabelWidth(120)] 
         public AbilityType abilityType;
 
-        [VerticalGroup("Icon/Info"), LabelWidth(120)]
+        [Title("Main Info"), VerticalGroup("Icon/Info"), LabelWidth(120)]
         [HideIf(nameof(abilityType), AbilityType.NonAttack)] [EnumPaging]
         public DamageType damageType;
 

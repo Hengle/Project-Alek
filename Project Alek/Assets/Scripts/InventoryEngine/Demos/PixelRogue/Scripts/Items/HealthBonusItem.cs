@@ -2,7 +2,7 @@
 using System.Collections;
 using MoreMountains.Tools;
 using System;
-using BattleSystem;
+//using BattleSystem;
 
 namespace MoreMountains.InventoryEngine
 {	
@@ -23,7 +23,7 @@ namespace MoreMountains.InventoryEngine
 		public override bool Use()
 		{
 			base.Use();
-			BattleManager._activePartyMember.Heal(HealthBonus);
+			//BattleManager._activePartyMember.Heal(HealthBonus);
 			// This is where you would increase your character's health,
 			// with something like : 
 			// Player.Life += HealthValue;

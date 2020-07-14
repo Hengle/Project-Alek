@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using BattleSystem;
-using BattleSystem.Calculator;
-using BattleSystem.DamagePrefab;
 using Characters.Abilities;
 using Characters.Animations;
 using Characters.ElementalTypes;
 using Characters.StatusEffects;
+using DamagePrefab;
 using Kryz.CharacterStats;
 using Sirenix.OdinInspector;
 
@@ -73,9 +71,7 @@ namespace Characters
 
         [PropertySpace(SpaceBefore = 20, SpaceAfter = 20), TextArea(5,15), Title("Description"), HideLabel]
         public string  description;
-
-        // For cases where enemies lose their resistance when susceptible, just add a function/variable to 
-        // The Elemental Type/Status Effects classes that disables them
+        
         [ShowInInspector] [TabGroup("Tabs/Resistances & Weaknesses", "Elements")]
         [DictionaryDrawerSettings(KeyLabel = "Element", ValueLabel = "Resistance Level", DisplayMode = DictionaryDisplayOptions.ExpandedFoldout)]
         public readonly Dictionary<ElementalType, ElementalScaler> _elementalResistances = new Dictionary<ElementalType, ElementalScaler>();
@@ -159,12 +155,6 @@ namespace Characters
             onDeath = null;
         }
 
-        public void GiveCommand()
-        {
-            BattleManager._battleFunctions.GetCommand(this);
-            BattleManager._performingAction = true;
-        }
-
         public virtual void ResetAP() 
         {
             Unit.currentAP += 2;
@@ -213,7 +203,6 @@ namespace Characters
 
         public virtual void TakeDamage(int dmg, ElementalType elementalDmg)
         {
-            //CurrentHP -= dmg < 0 ? 0 : dmg;
             if (dmg != -1)
             {
                 CurrentHP -= dmg;

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using BattleSystem;
 using Characters.Abilities;
 using Characters.Animations;
 using Characters.StatusEffects;
@@ -87,12 +86,6 @@ namespace Characters
             GameEventsManager.AddListener(this);
         }
 
-        private void Update() 
-        {
-            button.enabled = BattleManager._choosingTarget;
-            if (!BattleManager._choosingTarget) outline.enabled = false;
-        }
-
         public void OnSelect(BaseEventData eventData)
         {
             outline.enabled = true;
@@ -121,10 +114,6 @@ namespace Characters
             
             currentAP = unitBase.maxAP;
             outline.color = unitBase.Color;
-            
-            var chooseTarget = gameObject.GetComponent<ChooseTarget>();
-            chooseTarget.thisUnitBase = unitBase;
-            chooseTarget.enabled = true;
         }
 
         private void SetStats()
@@ -140,9 +129,21 @@ namespace Characters
 
         public void OnGameEvent(CharacterEvents eventType)
         {
-            if (eventType._eventType == CEventType.StatChange && eventType._character == parent)
+            switch (eventType._eventType)
             {
-                SetStats();
+                case CEventType.CharacterTurn:
+                    outline.enabled = false;
+                    button.enabled = false;
+                    break;
+                
+                case CEventType.ChoosingTarget: button.enabled = true;
+                    break;
+                
+                case CEventType.CharacterAttacking: outline.enabled = false;
+                    break;
+                
+                case CEventType.StatChange when eventType._character == parent: SetStats();
+                    break;
             }
         }
     }

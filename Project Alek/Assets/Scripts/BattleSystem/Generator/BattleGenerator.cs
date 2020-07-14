@@ -6,6 +6,7 @@ using Characters.PartyMembers;
 using Characters.StatusEffects;
 using MoreMountains.InventoryEngine;
 using Input;
+using TMPro;
 
 namespace BattleSystem.Generator
 {
@@ -66,26 +67,69 @@ namespace BattleSystem.Generator
             character.battlePanel.transform.SetParent(character.Unit.transform.parent, true);
             
             character.battleOptionsPanel = Instantiate(battleGeneratorDatabase.boPanel);
-            character.battleOptionsPanel.character = character;
+            ((BattleOptionsPanel) character.battleOptionsPanel).character = character;
             
             var mainMenu = character.battlePanel.transform.Find("Battle Menu").transform.Find("Main Options").transform;
 
             mainMenu.Find("Attack Button").gameObject.GetComponent<Button>().onClick.AddListener
-                ( delegate { character.battleOptionsPanel.GetCommandInformation("UniversalAction,1,0,2"); });
+                ( delegate { ((BattleOptionsPanel) character.battleOptionsPanel).GetCommandInformation("UniversalAction,1,0,2"); });
 
             mainMenu.Find("Abilities Button").gameObject.GetComponent<Button>().onClick.AddListener
-                (delegate { character.battleOptionsPanel.OnAbilityMenuButton(); });
+                (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnAbilityMenuButton(); });
             
             mainMenu.Find("Inventory Button").gameObject.GetComponent<Button>().onClick.AddListener
                 (delegate { BattleInputManager._inventoryInputManager.OpenInventory(); });
 
             mainMenu.Find("End Turn Button").gameObject.GetComponent<Button>().onClick.AddListener
-                (delegate { character.battleOptionsPanel.OnEndTurnButton(); });
+                (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnEndTurnButton(); });
             
-            character.SetAbilityMenuOptions();
+            //character.SetAbilityMenuOptions();
+            SetAbilityMenuOptions(character);
 
             character.actionPointAnim = character.battlePanel.transform.Find("AP Box").GetComponent<Animator>();
             character.battlePanel.SetActive(false);
+        }
+        
+        private static void SetAbilityMenuOptions(PartyMember character)
+        {
+            var abilityMenu = character.battlePanel.transform.Find("Battle Menu").transform.Find("Ability Menu").transform;
+            var abilityListIndex = 0;
+            
+            while (character.abilities.Count > 5) character.abilities.Remove(character.abilities[character.abilities.Count-1]);
+
+            for (var buttonIndex = 0; buttonIndex < character.abilities.Count; buttonIndex++)
+            {
+                var optionButton = abilityMenu.GetChild(buttonIndex).gameObject;
+                optionButton.GetComponentInChildren<TextMeshPro>().text = character.abilities[abilityListIndex].name;
+                
+                optionButton.transform.Find("Icon").GetComponent<Image>().sprite = character.abilities[abilityListIndex].icon;
+                optionButton.SetActive(true);
+                
+                var param = character.abilities[abilityListIndex].GetParameters(abilityListIndex);
+                
+                optionButton.GetComponent<Button>().onClick.
+                    AddListener(delegate { ((BattleOptionsPanel) character.battleOptionsPanel).GetCommandInformation(param); });
+
+                if (character.abilities[abilityListIndex].isMultiTarget) optionButton.GetComponent<Button>().onClick.
+                    AddListener(delegate { CharacterEvents.Trigger(CEventType.MultiTargetAction, character); });
+                    
+                optionButton.GetComponent<InfoBoxScript>().information = 
+                    $"{character.abilities[abilityListIndex].description} ( {character.abilities[abilityListIndex].actionCost} AP )";
+                
+                abilityListIndex++;
+
+                if (buttonIndex != character.abilities.Count - 1) continue;
+
+                var firstOption = abilityMenu.GetChild(0).gameObject;
+                var firstOpNav = firstOption.GetComponent<Selectable>().navigation;
+                var nav = optionButton.GetComponent<Selectable>().navigation;
+
+                nav.selectOnDown = firstOption.GetComponent<Button>();
+                optionButton.GetComponent<Selectable>().navigation = nav;
+
+                firstOpNav.selectOnUp = optionButton.GetComponent<Button>();
+                firstOption.GetComponent<Selectable>().navigation = firstOpNav;
+            }
         }
 
         private void SetupInventoryDisplay(PartyMember character, int i)
@@ -131,6 +175,10 @@ namespace BattleSystem.Generator
         {
             var memberGo = Instantiate(character.characterPrefab, battleGeneratorDatabase.characterSpawnPoints[i+offset].transform);
             memberGo.GetComponent<Unit>().Setup(character);
+            
+            var chooseTarget = character.Unit.gameObject.GetComponent<ChooseTarget>();
+            chooseTarget.thisUnitBase = character;
+            chooseTarget.enabled = true;
 
             SetupBattlePanel(character);
             SetupInventoryDisplay(character, i);
@@ -170,6 +218,11 @@ namespace BattleSystem.Generator
                 }
                 
                 enemyGo.GetComponent<Unit>().Setup(clone);
+                
+                var chooseTarget = clone.Unit.gameObject.GetComponent<ChooseTarget>();
+                chooseTarget.thisUnitBase = clone;
+                chooseTarget.enabled = true;
+                
                 SetupProfileBox(clone);
 
                 var position = enemyGo.transform.position;

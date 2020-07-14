@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -11,7 +12,7 @@ using MEC;
 
 namespace BattleSystem
 {
-    public class BattleFunctions : MonoBehaviour
+    public class BattleFunctions : MonoBehaviour, IGameEventListener<CharacterEvents>
     {
         #region FieldsAndProperties
         
@@ -23,8 +24,12 @@ namespace BattleSystem
         
         #endregion
 
-        public void GetCommand(UnitBase unitBaseParam)
+        private void Start() => GameEventsManager.AddListener(this);
+
+        private void GetCommand(UnitBase unitBaseParam)
         {
+            BattleManager._performingAction = true;
+            
             unitBase = unitBaseParam;
             unit = unitBase.Unit;
             currentTarget = unitBase.Unit.currentTarget;
@@ -161,5 +166,11 @@ namespace BattleSystem
         }
         
         #endregion
+
+        public void OnGameEvent(CharacterEvents eventType)
+        {
+            if (eventType._eventType != CEventType.NewCommand) return;
+            GetCommand(eventType._character as UnitBase);
+        }
     }
 }

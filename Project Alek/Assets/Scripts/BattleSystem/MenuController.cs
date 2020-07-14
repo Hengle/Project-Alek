@@ -2,16 +2,17 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using JetBrains.Annotations;
+using MoreMountains.InventoryEngine;
+using MoreMountains.Tools;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using BattleSystem;
+using Characters;
 using Characters.Animations;
+using Characters.PartyMembers;
 using Input;
-using MoreMountains.InventoryEngine;
-using MoreMountains.Tools;
 
-namespace Characters.PartyMembers
+namespace BattleSystem
 {
     public class MenuController : MonoBehaviour, MMEventListener<MMInventoryEvent>, IGameEventListener<CharacterEvents>
     {

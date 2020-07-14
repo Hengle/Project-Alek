@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using BattleSystem;
 using Characters.ElementalTypes;
+using Characters.PartyMembers;
 using Characters.StatusEffects;
 using Sirenix.OdinInspector;
 using Random = UnityEngine.Random;
@@ -34,7 +34,6 @@ namespace Characters
 
         [TabGroup("Tabs","Checkmate Requirements")]
         [FoldoutGroup("Tabs/Checkmate Requirements/Requirements")]
-        //[HorizontalGroup("Tabs/Checkmate Requirements/Requirements/Requirement Lists")]
         [Button] public bool ValidateLists()
         {
             if (checkmateRequirements.Count != transitionRequirements.Count)
@@ -71,12 +70,12 @@ namespace Characters
             return true;
         }
 
-        public bool SetAI()
+        public bool SetAI(List<PartyMember> targets)
         {
             if (Unit.currentAP <= 2) return false;
             
-            var rand = Random.Range(0, BattleManager.MembersForThisBattle.Count); // Inclusive apparently
-            Unit.currentTarget = BattleManager.MembersForThisBattle[rand];
+            var rand = Random.Range(0, targets.Count); // Inclusive apparently
+            Unit.currentTarget = targets[rand];
 
             rand = Random.Range(0, abilities.Count);
             Unit.commandActionName = rand < abilities.Count ? "AbilityAction" : "UniversalAction";

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BattleSystem.DamagePrefab
+namespace DamagePrefab
 {
     public class DamagePrefab : MonoBehaviour
     {

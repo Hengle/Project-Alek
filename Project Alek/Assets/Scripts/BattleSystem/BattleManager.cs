@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem.UI;
 using System.Linq;
-using BattleSystem.Calculator;
 using Characters;
 using BattleSystem.Generator;
 using Characters.PartyMembers;
@@ -78,7 +77,7 @@ namespace BattleSystem
                 yield return Timing.WaitUntilTrue(partyMember.battlePanel.GetComponent<MenuController>().SetPartySelectables);
             }
 
-            SortingCalculator.SortByInitiative();
+            SortByInitiative();
 
             foreach (var character in MembersForThisBattle) character.onDeath += RemoveFromBattle;
             
@@ -93,7 +92,7 @@ namespace BattleSystem
         {
             BattleEvents.Trigger(BattleEventType.NewRound);
             
-            SortingCalculator.SortByInitiative();
+            SortByInitiative();
 
             foreach (var character in from character in _membersAndEnemies
                 let checkMemberStatus = character.GetStatus() where checkMemberStatus select character)
@@ -148,7 +147,7 @@ namespace BattleSystem
             main_menu:
             CharacterEvents.Trigger(CEventType.CharacterTurn, character);
             BattleInputManager._canPressBack = false;
-            character.battleOptionsPanel.ShowBattlePanel();
+            ((BattleOptionsPanel) character.battleOptionsPanel).ShowBattlePanel();
             
             while (_choosingOption) yield return Timing.WaitForOneFrame;
 
@@ -181,7 +180,7 @@ namespace BattleSystem
             else 
             {
                 CharacterEvents.Trigger(CEventType.CharacterAttacking, character);
-                character.GiveCommand();
+                CharacterEvents.Trigger(CEventType.NewCommand, character);
             }
             
             while (_performingAction) yield return Timing.WaitForOneFrame;
@@ -208,7 +207,7 @@ namespace BattleSystem
             {
                 if (enemy.IsDead) break;
 
-                var shouldAttack = enemy.SetAI();
+                var shouldAttack = enemy.SetAI(MembersForThisBattle);
                 if (!shouldAttack) break;
 
                 enemy.CurrentAP -= enemy.Unit.actionCost;
@@ -217,8 +216,8 @@ namespace BattleSystem
                     (enemy, RateOfInfliction.BeforeEveryAction, 1, true));
 
                 if (!_shouldGiveCommand) _shouldGiveCommand = true;
-                else enemy.GiveCommand();
-                
+                else CharacterEvents.Trigger(CEventType.NewCommand, enemy);
+
                 while (_performingAction) yield return Timing.WaitForOneFrame;
 
                 yield return Timing.WaitUntilDone(InflictStatus.OnThisUnit
@@ -247,6 +246,17 @@ namespace BattleSystem
         #endregion
 
         #region Misc
+
+        private static void SortByInitiative()
+        {
+            _membersAndEnemies = new List<UnitBase>();
+            
+            foreach (var member in MembersForThisBattle) _membersAndEnemies.Add(member);
+            foreach (var enemy in EnemiesForThisBattle) _membersAndEnemies.Add(enemy);
+            
+            _membersAndEnemies = _membersAndEnemies.
+                OrderByDescending(e => e.initiative.Value).ToList();
+        }
 
         private static void RemoveFromBattle(UnitBase unit)
         {

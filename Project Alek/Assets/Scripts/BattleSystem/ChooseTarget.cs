@@ -99,14 +99,24 @@ namespace BattleSystem
         
         public void OnGameEvent(CharacterEvents eventType)
         {
-            if (eventType._eventType == CEventType.CharacterTurn) { _isMultiTarget = false; return; }
-            if (eventType._eventType != CEventType.ChoosingTarget) return;
-            
-            BattleManager._choosingTarget = true;
-            character = (PartyMember) eventType._character;
+            switch (eventType._eventType)
+            {
+                case CEventType.CharacterTurn:
+                    _isMultiTarget = false;
+                    break;
+                
+                case CEventType.MultiTargetAction:
+                    _isMultiTarget = true;
+                    break;
+                
+                case CEventType.ChoosingTarget:
+                    BattleManager._choosingTarget = true;
+                    character = (PartyMember) eventType._character;
 
-            menuController = character.battlePanel.GetComponent<MenuController>();
-            menuController.SetTargetFirstSelected();
+                    menuController = character.battlePanel.GetComponent<MenuController>();
+                    menuController.SetTargetFirstSelected();
+                    break;
+            }
         }
 
         private void OnEnable() => GameEventsManager.AddListener(this);

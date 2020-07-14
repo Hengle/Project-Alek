@@ -9,6 +9,8 @@ public enum CEventType
         CharacterAttacking,
         CharacterDeath,
         StatChange,
+        MultiTargetAction,
+        NewCommand
 }
 
 public struct CharacterEvents
