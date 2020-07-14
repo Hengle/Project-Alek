@@ -10,22 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c89647cb589c4c46adccd11c07fb607c, type: 3}
-  m_Name: Incendiary Bullet
+  m_Name: Electric Bullet
   m_EditorClassIdentifier: 
   abilityType: 1
   damageType: 0
   targetOptions: 0
-  icon: {fileID: 21300000, guid: dd2101390b04cbb44b7eacb0d361a795, type: 3}
-  actionCost: 3
-  damageMultiplier: 1.1
+  icon: {fileID: 0}
+  actionCost: 1
+  damageMultiplier: 1
   attackState: 2
   isMultiTarget: 0
-  description: Burn baby burn!
+  description: Electric bullet...
   hasElemental: 1
-  elementalType: {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
+  elementalType: {fileID: 11400000, guid: c39d538e0733abc409ae3ae8b371cbf4, type: 2}
   elementalScaler: 50
-  hasStatusEffect: 1
-  statusEffects:
-  - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
-  chanceOfInfliction: 1
+  hasStatusEffect: 0
+  statusEffects: []
+  chanceOfInfliction: 0
   lookAtTarget: 1

@@ -67,6 +67,9 @@ namespace Characters.Abilities
         
         #endregion
 
-        public string GetParameters(int actionOption) => $"AbilityAction,{actionOption},{(int)targetOptions},{actionCost}";
+        public string GetParameters(int actionOption)
+        {
+            return $"AbilityAction,{actionOption},{(int) targetOptions},{actionCost}";
+        }
     }
 }

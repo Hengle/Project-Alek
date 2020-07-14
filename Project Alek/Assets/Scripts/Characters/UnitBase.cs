@@ -34,10 +34,12 @@ namespace Characters
         public GameObject characterPrefab;
 
         [HideLabel, ShowInInspector, HorizontalGroup("Stat Data", 175), PreviewField(175), ShowIf(nameof(characterPrefab))] 
-        public Sprite CharacterPrefab {
-            get {
+        public Sprite CharacterPrefab 
+        {
+            get 
+            {
                 if (characterPrefab == null) return null;
-                return characterPrefab.TryGetComponent(out SpriteRenderer renderer) ? renderer.sprite : null;
+                return characterPrefab.TryGetComponent(out SpriteRenderer renderer)? renderer.sprite : null;
             }
             set => characterPrefab.GetComponent<SpriteRenderer>().sprite = value;
         }
@@ -69,31 +71,32 @@ namespace Characters
         [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
         public CharacterStat criticalChance;
 
-        [Space(20), TextArea(5,15), Title("Description"), HideLabel]
+        [PropertySpace(SpaceBefore = 20, SpaceAfter = 20), TextArea(5,15), Title("Description"), HideLabel]
         public string  description;
-        
+
         // For cases where enemies lose their resistance when susceptible, just add a function/variable to 
         // The Elemental Type/Status Effects classes that disables them
-        [Title("Elements"), ShowInInspector, FoldoutGroup("Resistances and Weaknesses")]
+        [ShowInInspector] [TabGroup("Tabs/Resistances & Weaknesses", "Elements")]
         [DictionaryDrawerSettings(KeyLabel = "Element", ValueLabel = "Resistance Level", DisplayMode = DictionaryDisplayOptions.ExpandedFoldout)]
         public readonly Dictionary<ElementalType, ElementalScaler> _elementalResistances = new Dictionary<ElementalType, ElementalScaler>();
-        [ShowInInspector, FoldoutGroup("Resistances and Weaknesses")]
+        [ShowInInspector] [TabGroup("Tabs/Resistances & Weaknesses", "Elements")]
         [DictionaryDrawerSettings(KeyLabel = "Element", ValueLabel = "Weakness Level", DisplayMode = DictionaryDisplayOptions.ExpandedFoldout)]
         public readonly Dictionary<ElementalType, ElementalWeaknessScaler> _elementalWeaknesses = new Dictionary<ElementalType, ElementalWeaknessScaler>();
   
-        [Title("Status Effects"), ShowInInspector, FoldoutGroup("Resistances and Weaknesses")]
+        [ShowInInspector] [TabGroup("Tabs/Resistances & Weaknesses", "Status Effects")]
         [DictionaryDrawerSettings(KeyLabel = "Status Effect", ValueLabel = "Resistance Level", DisplayMode = DictionaryDisplayOptions.ExpandedFoldout)]
         public readonly Dictionary<StatusEffect, InflictionChanceModifier> _statusEffectResistances = new Dictionary<StatusEffect, InflictionChanceModifier>();
-        [ShowInInspector, FoldoutGroup("Resistances and Weaknesses")]
+        [ShowInInspector] [TabGroup("Tabs/Resistances & Weaknesses", "Status Effects")]
         [DictionaryDrawerSettings(KeyLabel = "Status Effect", ValueLabel = "Weakness Level", DisplayMode = DictionaryDisplayOptions.ExpandedFoldout)]
         public readonly Dictionary<StatusEffect, InflictionChanceModifier> _statusEffectWeaknesses = new Dictionary<StatusEffect, InflictionChanceModifier>();
         
-        [Range(1,99), FoldoutGroup("Weapon Stats")] public int weaponMight;
-        [Range(1,99), FoldoutGroup("Weapon Stats")] public int magicMight;
-        [Range(1,99), FoldoutGroup("Weapon Stats")] public int weaponAccuracy;
-        [Range(1,99), FoldoutGroup("Weapon Stats")] public int weaponCriticalChance;
+        [Range(1,99), TabGroup("Tabs","Weapon Stats")] public int weaponMight;
+        [Range(1,99), TabGroup("Tabs","Weapon Stats")] public int magicMight;
+        [Range(1,99), TabGroup("Tabs","Weapon Stats")] public int weaponAccuracy;
+        [Range(1,99), TabGroup("Tabs","Weapon Stats")] public int weaponCriticalChance;
 
-        [InlineEditor] [OnValueChanged(nameof(CheckAbilityCount))] 
+        [TabGroup("Tabs","Abilities")] [InlineEditor]
+        [OnValueChanged(nameof(CheckAbilityCount))] 
         public List<Ability> abilities = new List<Ability>();
 
         public void CheckAbilityCount() 
@@ -102,14 +105,17 @@ namespace Characters
             Debug.LogError("Cannot have more than 5 abilities at a time!");
         }
         
-        public Color Color {
+        public Color Color 
+        {
             get
             {
-                if (Unit.currentHP <= 0.3f * (int) health.BaseValue) {
+                if (Unit.currentHP <= 0.3f * (int) health.BaseValue)
+                {
                     Unit.outline.color = Color.red;
                     return Color.red;
                 }
-                if (Unit.currentHP <= 0.6f * (int) health.BaseValue) {
+                if (Unit.currentHP <= 0.6f * (int) health.BaseValue)
+                {
                     Unit.outline.color = Color.yellow;
                     return Color.yellow;
                 }
@@ -131,14 +137,14 @@ namespace Characters
 
         public bool IsDead => Unit.status == Status.Dead;
 
-        protected int CurrentHP {
+        protected int CurrentHP 
+        {
             get => Unit.currentHP;
             set 
             {
                 Unit.currentHP = value < 0 ? 0 : value;
                 if (Unit.currentHP > health.BaseValue) Unit.currentHP = (int) health.BaseValue;
                 onHpValueChanged?.Invoke();
-                // EvaluateState can subscribe to onValueChanged
                 Unit.outline.color = Color;
             } 
         }

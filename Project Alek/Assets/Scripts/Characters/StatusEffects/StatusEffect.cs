@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -47,10 +46,5 @@ namespace Characters.StatusEffects
             Logger.Log($"{unitBase.characterName} is no longer inflicted with {name}.");
             unitBase.onStatusEffectRemoved?.Invoke(this);
         }
-
-        // public int CompareTo(object obj)
-        // {
-        //     return 1;
-        // }
     }
 }

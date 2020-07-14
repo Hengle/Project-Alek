@@ -5,14 +5,14 @@ using Characters.ElementalTypes;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Characters
+namespace Characters.Animations
 {
     public class UnitAnimatorFunctions : MonoBehaviour, IGameEventListener<CharacterEvents>
     {
         private Unit unit;
         private UnitBase unitBase;
 
-        private ElementalType ElementalCondition => unit != null && unit.isAbility && unit.currentAbility.hasElemental ?
+        private ElementalType ElementalCondition => unit != null && unit.isAbility && unit.currentAbility.hasElemental?
             unit.currentAbility.elementalType : null;
 
         private void Awake()
@@ -21,16 +21,6 @@ namespace Characters
             GameEventsManager.AddListener(this);
         }
 
-        public void OnGameEvent(CharacterEvents eventType)
-        {
-            if (eventType._eventType != CEventType.CharacterAttacking) return;
-
-            var character = (UnitBase) eventType._character;
-            if (character.Unit != unit) return;
-
-            unitBase = character;
-        }
-        
         [UsedImplicitly] public void TryToInflictStatusEffect()
         {
             if (!unit.isAbility || !unit.currentAbility.hasStatusEffect) return;
@@ -48,7 +38,6 @@ namespace Characters
                 {
                     effect.OnAdded(unit.currentTarget);
                     unit.currentTarget.Unit.statusEffects.Add(effect);
-                    // unit.currentTarget.EvaluateState();
                 }
             }
             
@@ -69,14 +58,17 @@ namespace Characters
 
         [UsedImplicitly] public void TargetTakeDamage()
         {
-            if (!unit.isAbility || !unit.currentAbility.isMultiTarget) {
+            if (!unit.isAbility || !unit.currentAbility.isMultiTarget) 
+            {
                 unit.currentTarget.TakeDamage(unit.currentDamage, ElementalCondition);
                 unit.isCrit = false;
                 return;
             }
 
             for (var i = 0; i < unit.multiHitTargets.Count; i++)
+            {
                 unit.multiHitTargets[i].TakeDamage(unit.damageValueList[i], ElementalCondition);
+            }
 
             unit.isCrit = false;
         }
@@ -86,14 +78,28 @@ namespace Characters
             if (unit.isAbility && unit.currentAbility.isMultiTarget)
             {
                 unit.damageValueList = new List<int>();
-                foreach (var target in unit.multiHitTargets) 
+                
+                foreach (var target in unit.multiHitTargets)
+                {
                     unit.damageValueList.Add(Calculator.CalculateAttackDamage(unitBase, target));
+                }
+                
                 return;
             }
             
             unit.currentDamage = Calculator.CalculateAttackDamage(unitBase, unit.currentTarget);
             if (unitBase.id != CharacterType.PartyMember || !unit.isCrit) return;
             TimeManager._slowTimeCrit = true;
+        }
+
+        public void OnGameEvent(CharacterEvents eventType)
+        {
+            if (eventType._eventType != CEventType.CharacterAttacking) return;
+
+            var character = (UnitBase) eventType._character;
+            if (character.Unit != unit) return;
+
+            unitBase = character;
         }
     }
 }

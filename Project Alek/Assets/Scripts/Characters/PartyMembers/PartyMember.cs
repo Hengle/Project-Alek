@@ -14,10 +14,11 @@ namespace Characters.PartyMembers
         [HideInInspector] public Animator actionPointAnim;
         [Range(0,4), VerticalGroup("Basic/Info")] public int positionInParty;
 
-        [Title("Inventories")]
+        [TabGroup("Tabs","Inventory")]
         public Inventory weaponInventory;
+        [TabGroup("Tabs","Inventory")]
         public Inventory armorInventory;
-        
+        [TabGroup("Tabs","Inventory")]
         public InventoryItem equippedWeapon;
 
         [HideInInspector] public BattleOptionsPanel battleOptionsPanel;

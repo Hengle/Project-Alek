@@ -42,7 +42,6 @@ namespace Characters
         
         [ReadOnly] public Status status = Status.Normal;
         [ReadOnly] public UnitStates currentState;
-        [ReadOnly] public bool newState;
         [ReadOnly] public int level;
         [ReadOnly] public int currentHP;
         

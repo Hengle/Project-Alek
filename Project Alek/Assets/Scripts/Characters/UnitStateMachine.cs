@@ -10,16 +10,16 @@ namespace Characters
     public enum TransitionRequirements { StatusEffect, ElementalDamage }
     public class UnitStateMachine : IGameEventListener<BattleEvents>
     {
-        private readonly UnitBase unitBase;
-        
-        private readonly List<KeyValuePair<ScriptableObject, TransitionRequirements>> checkmateRequirements =
-            new List<KeyValuePair<ScriptableObject, TransitionRequirements>>();
-        
         private int requirementIndex;
-
+        
         private TransitionRequirements currentRequirement;
         private UnitStates currentState;
         
+        private readonly UnitBase unitBase;
+
+        private readonly List<KeyValuePair<ScriptableObject, TransitionRequirements>> checkmateRequirements =
+            new List<KeyValuePair<ScriptableObject, TransitionRequirements>>();
+
         private readonly Stack<UnitStates> states = new Stack<UnitStates>();
 
         public UnitStateMachine(UnitBase unit, IReadOnlyList<ScriptableObject> objects, IReadOnlyList<TransitionRequirements> requirements)
@@ -56,7 +56,7 @@ namespace Characters
             unitBase.Unit.currentState = currentState;
 
             requirementIndex = 0;
-            currentRequirement = checkmateRequirements[0].Value;
+            currentRequirement = checkmateRequirements[requirementIndex].Value;
         }
 
         private void EvaluateStateOnRemoval(StatusEffect effect)
@@ -87,13 +87,12 @@ namespace Characters
 
             var tryGetEffect = checkmateRequirements[requirementIndex].Key as StatusEffect;
 
-            if (tryGetEffect != null) RequirementMet();;
+            if (tryGetEffect != null) RequirementMet();
         }
 
         private void EvaluateState(ElementalType elementalType)
         {
             if (currentState == UnitStates.Checkmate || currentState == UnitStates.Normal) return;
-            
             if (currentRequirement != TransitionRequirements.ElementalDamage) return;
             
             var tryGetElement = checkmateRequirements[requirementIndex].Key as ElementalType;
@@ -126,7 +125,6 @@ namespace Characters
         public void OnGameEvent(BattleEvents eventType)
         {
             if (eventType._battleEventType != BattleEventType.NewRound) return;
-
             if (currentState != UnitStates.Checkmate) return;
             
             states.Clear();

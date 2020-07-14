@@ -13,16 +13,28 @@ namespace Characters
     public class Enemy : UnitBase
     {
         [HideInInspector] public UnitStateMachine stateMachine;
-        
-        [InfoBox("REQUIREMENT LISTS MUST MATCH!! A STATUS EFFECT/ELEMEMT MUST MATCH THE TRANSITION IN OTHER LIST")]
+
+        [TabGroup("Tabs","Checkmate Requirements")]
+        [FoldoutGroup("Tabs/Checkmate Requirements/Requirements")]
+        [HorizontalGroup("Tabs/Checkmate Requirements/Requirements/Requirement Lists")]
         public List<ScriptableObject> checkmateRequirements = new List<ScriptableObject>();
+        
+        [TabGroup("Tabs","Checkmate Requirements")]
+        [FoldoutGroup("Tabs/Checkmate Requirements/Requirements")]
+        [HorizontalGroup("Tabs/Checkmate Requirements/Requirements/Requirement Lists")]
         public List<TransitionRequirements> transitionRequirements = new List<TransitionRequirements>();
 
-        public int CurrentAP {
+        public int CurrentAP 
+        {
             get => Unit.currentAP;
             set => Unit.currentAP = value;
         }
 
+        private void Awake() => id = CharacterType.Enemy;
+
+        [TabGroup("Tabs","Checkmate Requirements")]
+        [FoldoutGroup("Tabs/Checkmate Requirements/Requirements")]
+        //[HorizontalGroup("Tabs/Checkmate Requirements/Requirements/Requirement Lists")]
         [Button] public bool ValidateLists()
         {
             if (checkmateRequirements.Count != transitionRequirements.Count)
@@ -58,8 +70,7 @@ namespace Characters
             if (!Application.isPlaying) Debug.Log("No Errors in Requirements Lists");
             return true;
         }
-        private void Awake() => id = CharacterType.Enemy;
-        
+
         public bool SetAI()
         {
             if (Unit.currentAP <= 2) return false;

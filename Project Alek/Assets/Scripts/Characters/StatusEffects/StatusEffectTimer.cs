@@ -15,13 +15,15 @@ namespace Characters.StatusEffects
             targetUnit = unit;
             statusEffect = effect;
             timer = statusEffect.turnDuration;
+            
             GameEventsManager.AddListener(this);
             targetUnit.onDeath += RemoveTimerAndEffect;
         }
 
         private void DecrementTimer()
         {
-            if (targetUnit.Unit.status == Status.Dead) {
+            if (targetUnit.Unit.status == Status.Dead)
+            {
                 RemoveTimerAndEffect(targetUnit);
                 return;
             }
@@ -35,24 +37,27 @@ namespace Characters.StatusEffects
         private void RemoveTimerAndEffect(UnitBase target)
         {
             if (target != targetUnit) return;
-            
             if (!target.Unit.statusEffects.Contains(statusEffect)) return;
-            Logger.Log($"Removing {statusEffect.name} for " + target.characterName);
 
             target.Unit.statusEffects.Remove(statusEffect);
             statusEffect.OnRemoval(target);
         }
 
-        public void OnGameEvent(BattleEvents eventType)
-        {
-            if (eventType._battleEventType != BattleEventType.NewRound) return;
-            if (!targetUnit.GetStatus()) { GameEventsManager.RemoveListener(this); return; }
-            DecrementTimer();
-        }
-
         private void OnDisable()
         {
             if (targetUnit!= null) targetUnit.onDeath -= RemoveTimerAndEffect;
+        }
+
+        public void OnGameEvent(BattleEvents eventType)
+        {
+            if (eventType._battleEventType != BattleEventType.NewRound) return;
+            if (!targetUnit.GetStatus())
+            {
+                GameEventsManager.RemoveListener(this);
+                return;
+            }
+            
+            DecrementTimer();
         }
     }
 }

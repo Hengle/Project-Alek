@@ -16,24 +16,30 @@ namespace Characters.PartyMembers
             character.actionPointAnim.SetInteger(AnimationHandler.APVal, character.CurrentAP);
             
             // This is triggered at the start of a party member's turn
-            if (!character.battlePanel.activeSelf) { character.battlePanel.SetActive(true); }
+            if (!character.battlePanel.activeSelf)
+            {
+                character.battlePanel.SetActive(true);
+            }
             
             // This is triggered when going back to main menu from the ability menu
-            else if (BattleManager._choosingAbility) {
+            else if (BattleManager._choosingAbility) 
+            {
                 character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.AbilityMenu);
                 BattleManager._choosingAbility = false;
             }
             
             // This is triggered when going back while choosing a target from the ability menu
-            else if (BattleManager._choosingTarget && BattleManager._choosingAbility) {
-                BattleManager._choosingTarget = false;
+            else if (BattleManager._choosingTarget && BattleManager._choosingAbility) 
+            {
                 character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
+                BattleManager._choosingTarget = false;
             }
             
             // This is triggered when going back while choosing a target from the main menu (attack button)
-            else {
-                BattleManager._choosingTarget = false;
+            else 
+            {
                 character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
+                BattleManager._choosingTarget = false;
             }
         }
 
