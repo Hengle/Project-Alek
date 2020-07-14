@@ -195,7 +195,7 @@ namespace BattleSystem
             end_of_turn:
             _endThisMembersTurn = false;
             CharacterEvents.Trigger(CEventType.EndOfTurn, character);
-            character.inventoryDisplay.SetActive(false);
+            character.inventoryDisplay.SetActive(false); // TODO: Make this a part of the EndOfTurn event
         }
 
         private static IEnumerator<float> ThisEnemyTurn(Enemy enemy)
@@ -224,6 +224,8 @@ namespace BattleSystem
                     (enemy, RateOfInfliction.AfterEveryAction, 1, true));
 
                 if (PartyOrEnemyTeamIsDead || enemy.IsDead) break;
+
+                yield return Timing.WaitForSeconds(0.5f);
             }
         }
         

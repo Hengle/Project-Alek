@@ -6,7 +6,7 @@ namespace Characters
 {
     public static class Calculator
     {
-        // Make this the base function that is called for everything and delegate to correct function based on action type
+        // TODO: Make this the base function that is called for everything and delegate to correct function based on action type
         public static int CalculateAttackDamage(UnitBase damageDealer, UnitBase target)
         {
             if (damageDealer.Unit == target.Unit) return 0;

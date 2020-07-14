@@ -47,9 +47,9 @@ namespace BattleSystem
             {
                 case 1: Timing.RunCoroutine(CloseRangeAttack());
                     yield break;
-                case 2: // Item. May not need this depending on how the inventory system integration goes
+                case 2: // TODO: Item. May not need this depending on how the inventory system integration goes
                     yield break;
-                case 3: // Flee
+                case 3: // TODO: Flee
                     yield break;
             }
         }
@@ -136,14 +136,16 @@ namespace BattleSystem
             
             var position = currentTarget.Unit.transform.position;
 
-            targetPosition = unitBase.id == CharacterType.PartyMember ? 
+            targetPosition = unitBase.id == CharacterType.PartyMember? 
                 new Vector3(position.x, originPosition.y, position.z - 2) :
                 new Vector3(position.x, position.y, position.z + 2);
 
             while (parent.position != targetPosition)
             {
                 parent.position = Vector3.MoveTowards
-                    (parent.position, targetPosition, TimeManager._moveSpeed * Time.deltaTime);
+                    (parent.position, targetPosition,
+                    TimeManager._moveSpeed * Time.deltaTime);
+                
                 yield return Timing.WaitForOneFrame;
             }
             
@@ -155,13 +157,15 @@ namespace BattleSystem
             CriticalCamController._disableCam(unitBase);
             
             var parent = unit.transform.parent.transform;
+            
             while (parent.position != originPosition)
             {
                 parent.position = Vector3.MoveTowards
-                    (parent.position, originPosition, TimeManager._moveSpeed * Time.deltaTime);
+                    (parent.position, originPosition,
+                    TimeManager._moveSpeed * Time.deltaTime);
+                
                 yield return Timing.WaitForOneFrame;
             }
-            yield return Timing.WaitForSeconds(1);
         }
         
         #endregion

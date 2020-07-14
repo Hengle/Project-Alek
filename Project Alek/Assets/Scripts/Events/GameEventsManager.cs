@@ -1,8 +1,4 @@
-﻿#if EVENTROUTER_THROWEXCEPTIONS
-//#define EVENTROUTER_REQUIRELISTENER // Uncomment this if you want listeners to be required for sending events.
-#endif
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -17,67 +13,41 @@ using UnityEngine;
     {
         var eventType = typeof(TGEvent);
 
-        if (!SubscribersList.ContainsKey(eventType))
-            SubscribersList[eventType] = new List<IGameEventListenerBase>();
+        if (!SubscribersList.ContainsKey(eventType)) SubscribersList[eventType] = new List<IGameEventListenerBase>();
         
-        if(!SubscriptionExists(eventType, listener))
-            SubscribersList[eventType].Add(listener);
+        if(!SubscriptionExists(eventType, listener)) SubscribersList[eventType].Add(listener);
     }
 
     public static void RemoveListener<TGEvent>(IGameEventListener<TGEvent> listener) where TGEvent : struct
     {
         var eventType = typeof(TGEvent);
 
-        if (!SubscribersList.ContainsKey(eventType))
-#if EVENTROUTER_THROWEXCEPTIONS
-throw new ArgumentException( string.Format
-( "Removing listener \"{0}\", but the event type \"{1}\" isn't registered.", listener, eventType.ToString() ) );
-#else
-            return;
-#endif
-
-        var subscribers = SubscribersList[eventType];
+        if (!SubscribersList.ContainsKey(eventType)) return;
         
-        bool listenerFound;
-        listenerFound = false;
+        var subscribers = SubscribersList[eventType];
 
         for (var i = 0; i<subscribers.Count; i++)
         {
             if (subscribers[i] != listener) continue;
             
-            subscribers.Remove( subscribers[i] );
-            listenerFound = true;
+            subscribers.Remove(subscribers[i]);
 
-            if( subscribers.Count == 0 )
-                SubscribersList.Remove( eventType );
+            if( subscribers.Count == 0 ) SubscribersList.Remove(eventType);
             
             return;
         }
-        
-#if EVENTROUTER_THROWEXCEPTIONS
-if( !listenerFound )
-throw new ArgumentException( string.Format
-( "Removing listener, but the supplied receiver isn't subscribed to event type \"{0}\".", eventType.ToString() ) );
-#endif
     }
     
     public static void TriggerEvent<TGEvent>(TGEvent @event) where TGEvent : struct
     {
-        if (!SubscribersList.TryGetValue(typeof(TGEvent), out var list)) 
-        {
-#if EVENTROUTER_REQUIRELISTENER
-throw new ArgumentException( string.Format( "Attempting to send event of type \"{0}\", but no listener for this type has been found. Make sure this.Subscribe<{0}>(EventRouter) has been called, or that all listeners to this event haven't been unsubscribed.", typeof( MMEvent ).ToString() ) );
-#else
-            return;
-#endif
-        }
+        if (!SubscribersList.TryGetValue(typeof(TGEvent), out var list)) return;
         
         for (var i= list.Count - 1; i >= 0; i--) (list[i] as IGameEventListener<TGEvent>)?.OnGameEvent(@event);
     }
     
-    private static bool SubscriptionExists( Type type, IGameEventListenerBase receiver )
+    private static bool SubscriptionExists(Type type, IGameEventListenerBase receiver)
     {
-        return SubscribersList.TryGetValue( type, out var receivers ) 
+        return SubscribersList.TryGetValue(type, out var receivers) 
                && receivers.Any(t => t == receiver);
     }
 }

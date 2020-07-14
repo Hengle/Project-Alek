@@ -10,7 +10,7 @@ using Sirenix.OdinInspector;
 
 namespace Characters
 {
-    // Use these with status effects (like inhibiting)
+    // TODO: Use these with status effects (like inhibiting)
     public enum Status { Normal, Dead, UnableToPerformAction }
     public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler, IGameEventListener<CharacterEvents>
     {
@@ -106,7 +106,7 @@ namespace Characters
             level = unitBase.level;
             status = Status.Normal;
             
-            // Would need to update UI slider if i want to be able to modify max health
+            // TODO: Would need to update UI slider if i want to be able to modify max health
             maxHealthRef = (int) parent.health.Value;
             currentHP = (int) parent.health.Value;
             

@@ -215,6 +215,6 @@ MonoBehaviour:
   maxAP: 6
   checkmateRequirements:
   - {fileID: 11400000, guid: 366775002164acb45983c6014a20dd29, type: 2}
-  - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
+  - {fileID: 11400000, guid: 69edb0df81ead1c4fb7df7bfa4cd9381, type: 2}
   - {fileID: 11400000, guid: c39d538e0733abc409ae3ae8b371cbf4, type: 2}
   transitionRequirements: 010000000000000001000000

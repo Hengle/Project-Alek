@@ -86,7 +86,7 @@ namespace Characters
 
             var tryGetEffect = checkmateRequirements[requirementIndex].Key as StatusEffect;
 
-            if (tryGetEffect != null) RequirementMet();
+            if (tryGetEffect != null && tryGetEffect == effect) RequirementMet();
         }
 
         private void EvaluateState(ElementalType elementalType)
@@ -118,6 +118,7 @@ namespace Characters
             currentState = states.Pop();
             unitBase.Unit.currentState = currentState;
             unitBase.onNewState?.Invoke(currentState);
+            unitBase.Unit.status = Status.UnableToPerformAction;
             Logger.Log($"{unitBase.characterName} is in {currentState}!");
         }
 
@@ -128,6 +129,7 @@ namespace Characters
             
             states.Clear();
             InitializeStack();
+            unitBase.Unit.status = Status.Normal;
         }
     }
 }

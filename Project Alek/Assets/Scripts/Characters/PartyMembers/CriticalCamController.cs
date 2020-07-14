@@ -16,6 +16,7 @@ namespace Characters.PartyMembers
         {
             cvCamera = GetComponent<CinemachineVirtualCamera>();
             unit = transform.parent.GetComponentInChildren<Unit>();
+            
             _onCritical += OnCritical;
             _disableCam += DisableCam;
             cvCamera.enabled = false;

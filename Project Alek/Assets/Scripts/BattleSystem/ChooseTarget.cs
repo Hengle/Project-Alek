@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using Characters;
 using Characters.PartyMembers;
 using Input;
+using MEC;
 using Sirenix.OdinInspector;
 
 namespace BattleSystem
@@ -77,23 +78,29 @@ namespace BattleSystem
             EventSystem.current.SetSelectedGameObject(null);
         }
 
-        private void Update()
+        private IEnumerator<float> WaitForMultiTargetConfirmation()
         {
-            // Need to update the last parameter if when/if I implement target option for everyone
-            if (!BattleManager._choosingTarget || !_isMultiTarget || thisUnitBase.id != targetOptionsCharacterType)
-            {
-                thisUnitBase.Unit.button.interactable = true;
-                return;
-            }
+            if (thisUnitBase.id != targetOptionsCharacterType) yield break;
             
             thisUnitBase.Unit.outline.enabled = true;
             thisUnitBase.Unit.button.interactable = false;
 
-            if (!BattleInputManager._controls.Menu.Confirm.triggered) return;
+            BattleInputManager._inputModule.move.action.Disable();
+            
+            while (_isMultiTarget)
+            {
+                if (BattleInputManager._controls.Menu.Confirm.triggered)
+                {
+                    AddMultiHitCommand();
+                    break;
+                }
 
-            AddMultiHitCommand();
-            thisUnitBase.Unit.outline.enabled = false;
+                yield return Timing.WaitForOneFrame;
+            }
+
+            BattleInputManager._inputModule.move.action.Enable();
             thisUnitBase.Unit.button.interactable = true;
+            thisUnitBase.Unit.outline.enabled = false;
             _isMultiTarget = false;
         }
         
@@ -111,6 +118,8 @@ namespace BattleSystem
 
                     menuController = character.battlePanel.GetComponent<MenuController>();
                     menuController.SetTargetFirstSelected();
+                    
+                    if (_isMultiTarget) Timing.RunCoroutine(WaitForMultiTargetConfirmation());
                     break;
             }
         }
