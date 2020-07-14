@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Characters.ElementalTypes;
 using Characters.StatusEffects;
-using StatusEffects.InhibitingEffect;
 using UnityEngine;
 
 namespace Characters

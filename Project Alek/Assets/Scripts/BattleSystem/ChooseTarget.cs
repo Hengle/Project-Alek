@@ -104,11 +104,7 @@ namespace BattleSystem
                 case CEventType.CharacterTurn:
                     _isMultiTarget = false;
                     break;
-                
-                case CEventType.MultiTargetAction:
-                    _isMultiTarget = true;
-                    break;
-                
+
                 case CEventType.ChoosingTarget:
                     BattleManager._choosingTarget = true;
                     character = (PartyMember) eventType._character;

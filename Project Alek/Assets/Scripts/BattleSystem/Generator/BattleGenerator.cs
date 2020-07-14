@@ -82,9 +82,6 @@ namespace BattleSystem.Generator
 
             mainMenu.Find("End Turn Button").gameObject.GetComponent<Button>().onClick.AddListener
                 (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnEndTurnButton(); });
-            
-            //character.SetAbilityMenuOptions();
-            SetAbilityMenuOptions(character);
 
             character.actionPointAnim = character.battlePanel.transform.Find("AP Box").GetComponent<Animator>();
             character.battlePanel.SetActive(false);
@@ -111,7 +108,7 @@ namespace BattleSystem.Generator
                     AddListener(delegate { ((BattleOptionsPanel) character.battleOptionsPanel).GetCommandInformation(param); });
 
                 if (character.abilities[abilityListIndex].isMultiTarget) optionButton.GetComponent<Button>().onClick.
-                    AddListener(delegate { CharacterEvents.Trigger(CEventType.MultiTargetAction, character); });
+                    AddListener(delegate { ChooseTarget._isMultiTarget = true; });
                     
                 optionButton.GetComponent<InfoBoxScript>().information = 
                     $"{character.abilities[abilityListIndex].description} ( {character.abilities[abilityListIndex].actionCost} AP )";
@@ -181,6 +178,7 @@ namespace BattleSystem.Generator
             chooseTarget.enabled = true;
 
             SetupBattlePanel(character);
+            SetAbilityMenuOptions(character);
             SetupInventoryDisplay(character, i);
             SetupProfileBox(character);
 

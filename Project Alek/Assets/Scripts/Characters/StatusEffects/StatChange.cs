@@ -1,10 +1,8 @@
-﻿using Characters;
-using Characters.StatusEffects;
-using Kryz.CharacterStats;
+﻿using Kryz.CharacterStats;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace StatusEffects.StatChange
+namespace Characters.StatusEffects
 {
     public enum AffectedStat { None, MaxHP, Strength, Magic, Accuracy, Initiative, CriticalChance, Defense, Resistance }
     public enum Multiplier { None, Slight, Moderate, Significant}

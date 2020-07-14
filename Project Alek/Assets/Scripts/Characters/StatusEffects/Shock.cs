@@ -1,11 +1,8 @@
-﻿using BattleSystem;
-using Characters;
-using Characters.StatusEffects;
-using DamagePrefab;
+﻿using DamagePrefab;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace StatusEffects.InhibitingEffect
+namespace Characters.StatusEffects
 {
     [CreateAssetMenu(menuName = "Status Effect/Inhibiting Effect/Shock")]
     public class Shock : StatusEffect
@@ -26,7 +23,7 @@ namespace StatusEffects.InhibitingEffect
             unitBase.TakeDamage(dmg, null);
             Logger.Log($"{unitBase.characterName} is unable to attack due to {name}");
             // show shocked visual effect
-            BattleManager._shouldGiveCommand = false;
+            CharacterEvents.Trigger(CEventType.CantPerformAction, unitBase);
         }
     }
 }

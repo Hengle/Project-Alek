@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -169,8 +168,10 @@ namespace BattleSystem
 
         public void OnGameEvent(CharacterEvents eventType)
         {
-            if (eventType._eventType != CEventType.NewCommand) return;
-            GetCommand(eventType._character as UnitBase);
+            if (eventType._eventType == CEventType.NewCommand)
+            {
+                GetCommand(eventType._character as UnitBase);
+            }
         }
     }
 }

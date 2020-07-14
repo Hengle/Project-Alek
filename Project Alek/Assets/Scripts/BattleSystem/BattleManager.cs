@@ -16,7 +16,7 @@ namespace BattleSystem
     // Need to rework the enums. They are not good right now
     public enum BattleState { Start, PartyTurn, EnemyTurn, Won, Lost }
     [RequireComponent(typeof(InputSystemUIInputModule))]
-    public class BattleManager : MonoBehaviour
+    public class BattleManager : MonoBehaviour, IGameEventListener<CharacterEvents>
     {
         #region FieldsAndProperties
         
@@ -65,6 +65,7 @@ namespace BattleSystem
             ResetStaticVariables();
             Timing.RunCoroutine(SetupBattle());
             state = BattleState.Start;
+            GameEventsManager.AddListener(this);
         }
 
         private IEnumerator<float> SetupBattle()
@@ -111,7 +112,6 @@ namespace BattleSystem
 
             switch (state)
             {
-                // Could make the sequences events
                 case BattleState.Won:
                     BattleEvents.Trigger(BattleEventType.WonBattle);
                     Timing.RunCoroutine(WonBattleSequence());
@@ -281,5 +281,13 @@ namespace BattleSystem
         }
         
         #endregion
+
+        public void OnGameEvent(CharacterEvents eventType)
+        {
+            if (eventType._eventType == CEventType.CantPerformAction)
+            {
+                _shouldGiveCommand = false;
+            }
+        }
     }
 }

@@ -6,7 +6,6 @@ using Characters.StatusEffects;
 using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
-using StatusEffects.DOT;
 using UnityEditor;
 
 public class ScriptableObjectEditor : OdinMenuEditorWindow
