@@ -9,11 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0cf4d2272154d359994e58aed0e155b, type: 3}
-  m_Name: Susceptible
+  m_Script: {fileID: 11500000, guid: adc2a53b4f164b9faf84a7808b18ba3b, type: 3}
+  m_Name: Checkmate
   m_EditorClassIdentifier: 
-  effectType: 1
+  effectType: 3
   icon: {fileID: 6377904230404883206, guid: 7d6682148f995b048b3f815f933cdbe6, type: 3}
   rateOfInfliction: 
   color: {r: 0, g: 0, b: 0, a: 0}
-  turnDuration: 1
+  turnDuration: 3
+  buffs: 0
+  buffedStat: 0
+  buffMultiplier: 0
+  debuffs: 0
+  debuffedStat: 0
+  debuffMultiplier: 2

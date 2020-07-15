@@ -16,10 +16,9 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 5b7dd86029ea2ce49beaee4e4d702b94, type: 2}
-    - {fileID: 11400000, guid: c39d538e0733abc409ae3ae8b371cbf4, type: 2}
+    - {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
     - {fileID: 11400000, guid: eb1b5a0f67771a842832b379372ae131, type: 2}
-    - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
+    - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
     - {fileID: 11400000, guid: 69edb0df81ead1c4fb7df7bfa4cd9381, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
@@ -48,7 +47,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 3
-      Data: 50
+      Data: 25
     - Name: 
       Entry: 8
       Data: 
@@ -68,25 +67,13 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 7
       Data: 
     - Name: $k
       Entry: 10
       Data: 1
-    - Name: $v
-      Entry: 3
-      Data: 150
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 10
-      Data: 2
     - Name: $v
       Entry: 3
       Data: 75
@@ -119,10 +106,10 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 10
-      Data: 3
+      Data: 2
     - Name: $v
       Entry: 3
-      Data: 75
+      Data: 150
     - Name: 
       Entry: 8
       Data: 
@@ -148,10 +135,10 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 10
-      Data: 4
+      Data: 3
     - Name: $v
       Entry: 3
-      Data: 100
+      Data: 150
     - Name: 
       Entry: 8
       Data: 
@@ -162,52 +149,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: onDeath
-      Entry: 7
-      Data: 6|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: declaringType
-      Entry: 7
-      Data: 7|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: BattleSystem.BattleManager, ProjectAlek
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: methodName
-      Entry: 1
-      Data: RemoveFromBattle
-    - Name: delegateType
-      Entry: 7
-      Data: 8|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: signature
-      Entry: 7
-      Data: 9|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 10|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: Characters.UnitBase, ProjectAlek
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
+      Entry: 6
       Data: 
     - Name: onHpValueChanged
       Entry: 6

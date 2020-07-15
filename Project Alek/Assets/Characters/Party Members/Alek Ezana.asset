@@ -16,12 +16,10 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 366775002164acb45983c6014a20dd29, type: 2}
     - {fileID: 11400000, guid: eb1b5a0f67771a842832b379372ae131, type: 2}
     - {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
-    - {fileID: 11400000, guid: 856a4a808bf1c3d47b06852f07eb68bc, type: 2}
-    - {fileID: 11400000, guid: 69edb0df81ead1c4fb7df7bfa4cd9381, type: 2}
     - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
+    - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -30,35 +28,23 @@ MonoBehaviour:
     - Name: _elementalResistances
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
-        ProjectSwap],[Characters.ElementalTypes.ElementalScaler, ProjectSwap]], mscorlib
+        ProjectAlek],[Characters.ElementalTypes.ElementalScaler, ProjectAlek]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.ElementalTypes.ElementalType,
-        ProjectSwap]], mscorlib
+        ProjectAlek]], mscorlib
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 7
       Data: 
     - Name: $k
       Entry: 10
       Data: 0
-    - Name: $v
-      Entry: 3
-      Data: 50
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 10
-      Data: 1
     - Name: $v
       Entry: 3
       Data: 25
@@ -74,7 +60,7 @@ MonoBehaviour:
     - Name: _elementalWeaknesses
       Entry: 7
       Data: 2|System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
-        ProjectSwap],[Characters.ElementalTypes.ElementalWeaknessScaler, ProjectSwap]],
+        ProjectAlek],[Characters.ElementalTypes.ElementalWeaknessScaler, ProjectAlek]],
         mscorlib
     - Name: comparer
       Entry: 9
@@ -87,7 +73,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 10
-      Data: 2
+      Data: 1
     - Name: $v
       Entry: 3
       Data: 75
@@ -103,36 +89,24 @@ MonoBehaviour:
     - Name: _statusEffectResistances
       Entry: 7
       Data: 3|System.Collections.Generic.Dictionary`2[[Characters.StatusEffects.StatusEffect,
-        ProjectSwap],[Characters.StatusEffects.InflictionChanceModifier, ProjectSwap]],
+        ProjectAlek],[Characters.StatusEffects.InflictionChanceModifier, ProjectAlek]],
         mscorlib
     - Name: comparer
       Entry: 7
       Data: 4|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.StatusEffects.StatusEffect,
-        ProjectSwap]], mscorlib
+        ProjectAlek]], mscorlib
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
       Data: 2
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 10
-      Data: 3
-    - Name: $v
-      Entry: 3
-      Data: 150
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 10
-      Data: 4
     - Name: $v
       Entry: 3
       Data: 150
@@ -148,7 +122,7 @@ MonoBehaviour:
     - Name: _statusEffectWeaknesses
       Entry: 7
       Data: 5|System.Collections.Generic.Dictionary`2[[Characters.StatusEffects.StatusEffect,
-        ProjectSwap],[Characters.StatusEffects.InflictionChanceModifier, ProjectSwap]],
+        ProjectAlek],[Characters.StatusEffects.InflictionChanceModifier, ProjectAlek]],
         mscorlib
     - Name: comparer
       Entry: 9
@@ -161,7 +135,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 10
-      Data: 5
+      Data: 3
     - Name: $v
       Entry: 3
       Data: 150
@@ -180,18 +154,22 @@ MonoBehaviour:
     - Name: onHpValueChanged
       Entry: 6
       Data: 
+    - Name: onNewState
+      Entry: 6
+      Data: 
+    - Name: onElementalDamageReceived
+      Entry: 6
+      Data: 
     - Name: onStatusEffectReceived
       Entry: 6
       Data: 
     - Name: onStatusEffectRemoved
       Entry: 6
       Data: 
-  scale: {x: 55, y: 55, z: 1}
   icon: {fileID: 21300000, guid: 93a66ee4446eb5741900a389e401cdb0, type: 3}
+  scale: {x: 55, y: 55, z: 1}
   id: 0
   characterName: Alek Ezana
-  description: Bruh it is the one. The ONLY. The ONE and ONLY. The ONE and ONLY GOD
-    among MEN. It is.... ya boi.... tha GAWD.... Alek.
   characterPrefab: {fileID: 1526218485019349028, guid: 38e223593cf5fd94cb9a317771507f77,
     type: 3}
   level: 20
@@ -211,16 +189,17 @@ MonoBehaviour:
     BaseValue: 10
   criticalChance:
     BaseValue: 6
+  description: Bruh it is the one. The ONLY. The ONE and ONLY. The ONE and ONLY GOD
+    among MEN. It is.... ya boi.... tha GAWD.... Alek.
   weaponMight: 16
   magicMight: 5
   weaponAccuracy: 85
   weaponCriticalChance: 3
-  profileBoxColor: {r: 0.6415094, g: 0.54118514, b: 0.493236, a: 0.78431374}
-  maxAP: 6
   abilities:
   - {fileID: 11400000, guid: 5c5fa03193734104c98ec2f8d6543cfa, type: 2}
   - {fileID: 11400000, guid: 6c09b3176a3b3e54ca0946ee458d3fa6, type: 2}
   - {fileID: 11400000, guid: 1306999bff8e7c14892abd85b0b028c7, type: 2}
+  maxAP: 6
   actionPointAnim: {fileID: 0}
   positionInParty: 2
   weaponInventory: {fileID: 5917402227159465644, guid: 1d94ebccb9928a445b4a7e1dbacb9d53,

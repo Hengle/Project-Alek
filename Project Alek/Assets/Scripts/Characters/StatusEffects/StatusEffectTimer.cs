@@ -50,14 +50,7 @@ namespace Characters.StatusEffects
 
         public void OnGameEvent(BattleEvents eventType)
         {
-            if (eventType._battleEventType != BattleEventType.NewRound) return;
-            if (!targetUnit.GetStatus())
-            {
-                GameEventsManager.RemoveListener(this);
-                return;
-            }
-            
-            DecrementTimer();
+            if (eventType._battleEventType == BattleEventType.NewRound) DecrementTimer();
         }
     }
 }

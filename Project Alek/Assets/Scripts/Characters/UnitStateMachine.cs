@@ -119,7 +119,12 @@ namespace Characters
             unitBase.Unit.currentState = currentState;
             unitBase.onNewState?.Invoke(currentState);
             unitBase.Unit.status = Status.UnableToPerformAction;
-            Logger.Log($"{unitBase.characterName} is in {currentState}!");
+
+            var checkmate = ScriptableObject.CreateInstance<Checkmate>();
+            checkmate.name = "Checkmate";
+            checkmate.turnDuration = 3;
+            checkmate.OnAdded(unitBase);
+            unitBase.Unit.statusEffects.Add(checkmate);
         }
 
         public void OnGameEvent(BattleEvents eventType)
@@ -127,8 +132,15 @@ namespace Characters
             if (eventType._battleEventType != BattleEventType.NewRound) return;
             if (currentState != UnitStates.Checkmate) return;
             
+            // Prevent unit from being checkmated again
             states.Clear();
-            InitializeStack();
+            
+            unitBase.onElementalDamageReceived -= EvaluateState;
+            unitBase.onStatusEffectReceived -= EvaluateState;
+            unitBase.onStatusEffectRemoved -= EvaluateStateOnRemoval;
+            
+            GameEventsManager.RemoveListener(this);
+            
             unitBase.Unit.status = Status.Normal;
         }
     }

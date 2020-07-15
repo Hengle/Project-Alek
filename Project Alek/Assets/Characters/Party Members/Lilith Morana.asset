@@ -16,9 +16,9 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: eb1b5a0f67771a842832b379372ae131, type: 2}
+    - {fileID: 11400000, guid: 5b7dd86029ea2ce49beaee4e4d702b94, type: 2}
     - {fileID: 11400000, guid: c39d538e0733abc409ae3ae8b371cbf4, type: 2}
-    - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
+    - {fileID: 11400000, guid: 69edb0df81ead1c4fb7df7bfa4cd9381, type: 2}
     - {fileID: 11400000, guid: 856a4a808bf1c3d47b06852f07eb68bc, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 3
-      Data: 75
+      Data: 25
     - Name: 
       Entry: 8
       Data: 
@@ -76,7 +76,7 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 3
-      Data: 150
+      Data: 75
     - Name: 
       Entry: 8
       Data: 
@@ -100,7 +100,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 7
       Data: 
@@ -110,18 +110,6 @@ MonoBehaviour:
     - Name: $v
       Entry: 3
       Data: 150
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 10
-      Data: 3
-    - Name: $v
-      Entry: 3
-      Data: 75
     - Name: 
       Entry: 8
       Data: 
@@ -141,7 +129,19 @@ MonoBehaviour:
       Data: 4
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 3
+    - Name: $v
+      Entry: 3
+      Data: 150
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -238,10 +238,10 @@ MonoBehaviour:
     you when I come up with a good description, it will be legendary!
   weaponMight: 15
   magicMight: 2
-  weaponAccuracy: 90
+  weaponAccuracy: 99
   weaponCriticalChance: 4
   abilities:
-  - {fileID: 11400000, guid: 8e151e58900d509469c607fa4066a172, type: 2}
+  - {fileID: 11400000, guid: 6eb5e2c11d395244e94b25794bf8f3dc, type: 2}
   - {fileID: 11400000, guid: 47015355f94fcc74bbb9c212781f9416, type: 2}
   - {fileID: 11400000, guid: 7cd82371e6997234abbbab39c6646c77, type: 2}
   - {fileID: 11400000, guid: ee9a142c4223d434e863f4e4e1758255, type: 2}

@@ -20,9 +20,7 @@ namespace BattleSystem
     {
         #region FieldsAndProperties
         
-        [ShowInInspector]
-        private static BattleState state;
-        public static BattleFunctions _battleFunctions;
+        [ShowInInspector] private static BattleState state;
 
         [ShowInInspector] public static readonly List<Enemy> EnemiesForThisBattle = new List<Enemy>();
         [ShowInInspector] public static readonly List<PartyMember> MembersForThisBattle = new List<PartyMember>();
@@ -39,7 +37,8 @@ namespace BattleSystem
         
         [ShowInInspector] private static bool allMembersDead;
         [ShowInInspector] private static bool allEnemiesDead;
-        [ShowInInspector] private static bool PartyOrEnemyTeamIsDead {
+        [ShowInInspector] private static bool PartyOrEnemyTeamIsDead
+        {
             get
             {
                 if (allEnemiesDead) state = BattleState.Won;
@@ -60,7 +59,6 @@ namespace BattleSystem
         {
             roundCount = 0;
             generator = GetComponent<BattleGenerator>();
-            _battleFunctions = GetComponent<BattleFunctions>();
 
             ResetStaticVariables();
             Timing.RunCoroutine(SetupBattle());

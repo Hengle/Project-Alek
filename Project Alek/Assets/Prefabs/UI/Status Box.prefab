@@ -101,7 +101,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 311
 --- !u!222 &246585299259226260
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -236,3 +236,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   member: {fileID: 0}
+  checkmate: {fileID: 11400000, guid: 36cd878da8e17a84ba8777f48afcd570, type: 2}

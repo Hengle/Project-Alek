@@ -12,28 +12,34 @@ namespace Characters.StatusEffects
         #region FieldsAndProperties
         
         [Space] [SerializeField] [Title("Buffs"), VerticalGroup("Icon/Info"), LabelWidth(120)]
+        [HideIf(nameof(name), "Checkmate")]
         private bool buffs;
         
-        [ShowIf(nameof(buffs))] [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
+        [ShowIf(nameof(buffs))] [HideIf(nameof(name), "Checkmate")]
+        [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
         public AffectedStat buffedStat;
         
-        [ShowIf(nameof(buffs))] [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
+        [ShowIf(nameof(buffs))] [HideIf(nameof(name), "Checkmate")]
+        [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
         public Multiplier buffMultiplier;
         
-        [Space] [SerializeField] [Title("Debuffs"), VerticalGroup("Icon/Info"), LabelWidth(120)]
+        [Space] [HideIf(nameof(name), "Checkmate")]
+        [SerializeField] [Title("Debuffs"), VerticalGroup("Icon/Info"), LabelWidth(120)]
         private bool debuffs;
         
-        [ShowIf(nameof(debuffs))] [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
+        [ShowIf(nameof(debuffs))] [HideIf(nameof(name), "Checkmate")]
+        [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
         public AffectedStat debuffedStat;
         
-        [ShowIf(nameof(debuffs))] [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
+        [ShowIf(nameof(debuffs))] [HideIf(nameof(name), "Checkmate")]
+        [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
         public Multiplier debuffMultiplier;
 
         private const float SlightBuff = 0.05f;
         private const float SlightDebuff = -0.05f;
 
         private const float ModerateBuff = 0.10f;
-        private const float ModerateDebuff = -0.10f;
+        protected const float ModerateDebuff = -0.10f;
 
         private const float SignificantBuff = 0.20f;
         private const float SignificantDebuff = -0.20f;
@@ -53,7 +59,7 @@ namespace Characters.StatusEffects
                 }
             }
         }
-        private float DebuffMultiplier {
+        protected float DebuffMultiplier {
             get
             {
                 switch (debuffMultiplier)

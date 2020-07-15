@@ -6,6 +6,7 @@ namespace Characters.StatusEffects
     {
         public UnitBase member;
         private CanvasGroup group;
+        [SerializeField] private Checkmate checkmate;
 
         public void Initialize()
         {
@@ -31,6 +32,19 @@ namespace Characters.StatusEffects
             else if (effect.icon != null && alreadyHasIcon != null) {
                 alreadyHasIcon.gameObject.SetActive(true);
                 alreadyHasIcon.GetComponent<StatusEffectTimer>().SetTimer(effect, member);
+            }
+            
+            else if (effect.GetType() == typeof(Checkmate))
+            {
+                if (alreadyHasIcon != null)
+                {
+                    alreadyHasIcon.gameObject.SetActive(true);
+                    alreadyHasIcon.GetComponent<StatusEffectTimer>().SetTimer(effect, member);
+                }
+                
+                var iconGO = Instantiate(checkmate.icon, transform, false);
+                iconGO.name = effect.name;
+                iconGO.GetComponent<StatusEffectTimer>().SetTimer(effect, member);
             }
         }
 

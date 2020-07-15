@@ -23,13 +23,16 @@ namespace Characters.StatusEffects
             set => icon.GetComponent<Image>().sprite = value;
         }
 
-        [HideIf(nameof(effectType), EffectType.StatChange)] 
+        [HideIf(nameof(effectType), EffectType.StatChange)] [HideIf(nameof(name), "Susceptible")]
         [Space, Tooltip("How often the effect is inflicted"), VerticalGroup("Icon/Info"), EnumPaging]
         public List<RateOfInfliction> rateOfInfliction = new List<RateOfInfliction>();
         
-        [Space, VerticalGroup("Icon/Info"), ColorPalette, HideLabel] public Color color;
+        [HideIf(nameof(effectType), EffectType.StatChange)] [HideIf(nameof(name), "Susceptible")] 
+        [Space, VerticalGroup("Icon/Info"), ColorPalette, HideLabel] 
+        public Color color;
         
-        [Space, VerticalGroup("Icon/Info"), Range(1,5), LabelWidth(120)] public int turnDuration;
+        [Space, VerticalGroup("Icon/Info"), Range(1,5), LabelWidth(120)] 
+        public int turnDuration;
         
         #endregion
         
