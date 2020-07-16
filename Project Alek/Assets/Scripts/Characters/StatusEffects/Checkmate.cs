@@ -13,7 +13,6 @@ namespace Characters.StatusEffects
             Logger.Log($"{target.characterName} is in {name}!");
             target.onStatusEffectReceived?.Invoke(this);
             
-            Logger.Log("Debuff Multiplier: " + debuffMultiplier);
             AddModifiers(target);
             CharacterEvents.Trigger(CEventType.StatChange, target);
         }

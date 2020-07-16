@@ -151,7 +151,7 @@ MonoBehaviour:
       Data: 4
     - Name: $v
       Entry: 3
-      Data: 150
+      Data: 50
     - Name: 
       Entry: 8
       Data: 
@@ -179,19 +179,8 @@ MonoBehaviour:
     - Name: onStatusEffectRemoved
       Entry: 6
       Data: 
-    - Name: _checkmateRequirements
-      Entry: 7
-      Data: 6|System.Collections.Generic.SortedList`2[[UnityEngine.ScriptableObject,
-        UnityEngine.CoreModule],[Characters.TransitionRequirements, ProjectAlek]],
-        System
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
+    - Name: stateMachine
+      Entry: 6
       Data: 
   icon: {fileID: 0}
   scale: {x: 50, y: 50, z: 1}
@@ -203,7 +192,7 @@ MonoBehaviour:
   health:
     BaseValue: 2520
   strength:
-    BaseValue: 22
+    BaseValue: 20
   magic:
     BaseValue: 9
   accuracy:
@@ -225,3 +214,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}
   - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
   maxAP: 6
+  checkmateRequirements: []
+  transitionRequirements: 

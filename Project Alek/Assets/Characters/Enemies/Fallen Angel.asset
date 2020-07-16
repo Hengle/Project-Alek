@@ -179,17 +179,17 @@ MonoBehaviour:
   health:
     BaseValue: 2340
   strength:
-    BaseValue: 18
+    BaseValue: 16
   magic:
-    BaseValue: 22
+    BaseValue: 21
   accuracy:
-    BaseValue: 25
+    BaseValue: 23
   initiative:
     BaseValue: 18
   defense:
     BaseValue: 13
   resistance:
-    BaseValue: 25
+    BaseValue: 24
   criticalChance:
     BaseValue: 5
   description: what a shame...

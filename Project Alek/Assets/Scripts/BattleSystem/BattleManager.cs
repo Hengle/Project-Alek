@@ -20,24 +20,37 @@ namespace BattleSystem
     {
         #region FieldsAndProperties
         
-        [ShowInInspector] private static BattleState state;
+        [ShowInInspector] [ReadOnly]
+        private static BattleState state;
 
-        [ShowInInspector] public static readonly List<Enemy> EnemiesForThisBattle = new List<Enemy>();
-        [ShowInInspector] public static readonly List<PartyMember> MembersForThisBattle = new List<PartyMember>();
-        [ShowInInspector] public static List<UnitBase> _membersAndEnemies = new List<UnitBase>();
+        [ShowInInspector] [ReadOnly]
+        public static readonly List<Enemy> EnemiesForThisBattle = new List<Enemy>();
+        [ShowInInspector] [ReadOnly]
+        public static readonly List<PartyMember> MembersForThisBattle = new List<PartyMember>();
+        [ShowInInspector] [ReadOnly]
+        public static List<UnitBase> _membersAndEnemies = new List<UnitBase>();
 
-        [ShowInInspector] public static PartyMember _activePartyMember;
+        [ShowInInspector] [ReadOnly]
+        public static PartyMember _activePartyMember;
         
-        [ShowInInspector] public static bool _choosingOption;
-        [ShowInInspector] public static bool _choosingTarget;
-        [ShowInInspector] public static bool _performingAction;
-        [ShowInInspector] public static bool _endThisMembersTurn;
-        [ShowInInspector] public static bool _choosingAbility;
-        [ShowInInspector] public static bool _shouldGiveCommand;
-        
-        [ShowInInspector] private static bool allMembersDead;
-        [ShowInInspector] private static bool allEnemiesDead;
-        [ShowInInspector] private static bool PartyOrEnemyTeamIsDead
+        [ShowInInspector] [ReadOnly]
+        public static bool _choosingOption;
+        [ShowInInspector] [ReadOnly]
+        public static bool _choosingTarget;
+        [ShowInInspector] [ReadOnly]
+        public static bool _performingAction;
+        [ShowInInspector] [ReadOnly]
+        public static bool _endThisMembersTurn;
+        [ShowInInspector] [ReadOnly]
+        public static bool _choosingAbility;
+        [ShowInInspector] [ReadOnly]
+        public static bool _shouldGiveCommand;
+        [ShowInInspector] [ReadOnly]
+        private static bool allMembersDead;
+        [ShowInInspector] [ReadOnly]
+        private static bool allEnemiesDead;
+        [ShowInInspector] [ReadOnly]
+        private static bool PartyOrEnemyTeamIsDead
         {
             get
             {
@@ -49,7 +62,8 @@ namespace BattleSystem
 
         private BattleGenerator generator;
 
-        [SerializeField] private int roundCount;
+        [SerializeField] [ReadOnly]
+        private int roundCount;
         
         #endregion
 

@@ -15,7 +15,8 @@ namespace Characters.StatusEffects
         public override void InflictStatus(UnitBase unitBase)
         {
             DamagePrefabManager.Instance.DamageTextColor = color;
-            var dmg = (int) (damagePercentage * unitBase.Unit.maxHealthRef);
+            var modifier = StatusEffectModifier(unitBase);
+            var dmg = (int) (damagePercentage * modifier * unitBase.Unit.maxHealthRef);
             dmg = Random.Range((int)(0.98f * dmg), (int)(1.02f * dmg));
             unitBase.TakeDamage(dmg, null);
         }

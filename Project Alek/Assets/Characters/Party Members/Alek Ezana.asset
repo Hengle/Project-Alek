@@ -109,7 +109,7 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 3
-      Data: 150
+      Data: 50
     - Name: 
       Entry: 8
       Data: 
@@ -138,7 +138,7 @@ MonoBehaviour:
       Data: 3
     - Name: $v
       Entry: 3
-      Data: 150
+      Data: 50
     - Name: 
       Entry: 8
       Data: 
@@ -176,7 +176,7 @@ MonoBehaviour:
   health:
     BaseValue: 2310
   strength:
-    BaseValue: 23
+    BaseValue: 21
   magic:
     BaseValue: 18
   accuracy:
@@ -191,7 +191,7 @@ MonoBehaviour:
     BaseValue: 6
   description: Bruh it is the one. The ONLY. The ONE and ONLY. The ONE and ONLY GOD
     among MEN. It is.... ya boi.... tha GAWD.... Alek.
-  weaponMight: 16
+  weaponMight: 17
   magicMight: 5
   weaponAccuracy: 85
   weaponCriticalChance: 3

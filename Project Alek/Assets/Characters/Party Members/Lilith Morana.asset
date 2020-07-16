@@ -109,7 +109,7 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 3
-      Data: 150
+      Data: 50
     - Name: 
       Entry: 8
       Data: 
@@ -138,7 +138,7 @@ MonoBehaviour:
       Data: 3
     - Name: $v
       Entry: 3
-      Data: 150
+      Data: 50
     - Name: 
       Entry: 8
       Data: 
@@ -149,52 +149,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: onDeath
-      Entry: 7
-      Data: 6|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: declaringType
-      Entry: 7
-      Data: 7|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: BattleSystem.BattleManager, ProjectAlek
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: methodName
-      Entry: 1
-      Data: RemoveFromBattle
-    - Name: delegateType
-      Entry: 7
-      Data: 8|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: signature
-      Entry: 7
-      Data: 9|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 10|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: Characters.UnitBase, ProjectAlek
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
+      Entry: 6
       Data: 
     - Name: onHpValueChanged
       Entry: 6
@@ -221,7 +176,7 @@ MonoBehaviour:
   health:
     BaseValue: 2070
   strength:
-    BaseValue: 19
+    BaseValue: 18
   magic:
     BaseValue: 7
   accuracy:
@@ -236,12 +191,12 @@ MonoBehaviour:
     BaseValue: 5
   description: A very long description about an amazing girl named Lilith. I tell
     you when I come up with a good description, it will be legendary!
-  weaponMight: 15
+  weaponMight: 16
   magicMight: 2
-  weaponAccuracy: 99
+  weaponAccuracy: 110
   weaponCriticalChance: 4
   abilities:
-  - {fileID: 11400000, guid: 6eb5e2c11d395244e94b25794bf8f3dc, type: 2}
+  - {fileID: 11400000, guid: 8e151e58900d509469c607fa4066a172, type: 2}
   - {fileID: 11400000, guid: 47015355f94fcc74bbb9c212781f9416, type: 2}
   - {fileID: 11400000, guid: 7cd82371e6997234abbbab39c6646c77, type: 2}
   - {fileID: 11400000, guid: ee9a142c4223d434e863f4e4e1758255, type: 2}

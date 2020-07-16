@@ -49,7 +49,8 @@ namespace Characters.StatusEffects
             }
         }
 
-        private void RemoveStatusEffectIcon(StatusEffect effect) {
+        private void RemoveStatusEffectIcon(StatusEffect effect)
+        {
             var iconGO = transform.Find(effect.name);
             if (iconGO != null) iconGO.gameObject.SetActive(false);
         }

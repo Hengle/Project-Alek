@@ -151,7 +151,7 @@ MonoBehaviour:
       Data: 4
     - Name: $v
       Entry: 3
-      Data: 150
+      Data: 100
     - Name: 
       Entry: 8
       Data: 
@@ -179,19 +179,8 @@ MonoBehaviour:
     - Name: onStatusEffectRemoved
       Entry: 6
       Data: 
-    - Name: _checkmateRequirements
-      Entry: 7
-      Data: 6|System.Collections.Generic.SortedList`2[[UnityEngine.ScriptableObject,
-        UnityEngine.CoreModule],[Characters.TransitionRequirements, ProjectAlek]],
-        System
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
+    - Name: stateMachine
+      Entry: 6
       Data: 
   icon: {fileID: 0}
   scale: {x: 45, y: 45, z: 1}
@@ -203,24 +192,26 @@ MonoBehaviour:
   health:
     BaseValue: 2075
   strength:
-    BaseValue: 13
+    BaseValue: 11
   magic:
     BaseValue: 24
   accuracy:
-    BaseValue: 21
+    BaseValue: 20
   initiative:
     BaseValue: 17
   defense:
     BaseValue: 12
   resistance:
-    BaseValue: 25
+    BaseValue: 22
   criticalChance:
     BaseValue: 4
   description: ewww
-  weaponMight: 9
-  magicMight: 20
+  weaponMight: 7
+  magicMight: 18
   weaponAccuracy: 90
   weaponCriticalChance: 1
   abilities:
   - {fileID: 11400000, guid: e558d404ab0ced340bb9314e1e677569, type: 2}
   maxAP: 6
+  checkmateRequirements: []
+  transitionRequirements: 

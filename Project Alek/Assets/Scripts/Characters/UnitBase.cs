@@ -88,7 +88,7 @@ namespace Characters
         
         [Range(1,99), TabGroup("Tabs","Weapon Stats")] public int weaponMight;
         [Range(1,99), TabGroup("Tabs","Weapon Stats")] public int magicMight;
-        [Range(1,99), TabGroup("Tabs","Weapon Stats")] public int weaponAccuracy;
+        [Range(1,150), TabGroup("Tabs","Weapon Stats")] public int weaponAccuracy;
         [Range(1,99), TabGroup("Tabs","Weapon Stats")] public int weaponCriticalChance;
 
         [TabGroup("Tabs","Abilities")] [InlineEditor]

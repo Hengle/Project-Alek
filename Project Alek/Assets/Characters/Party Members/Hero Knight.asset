@@ -109,7 +109,7 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 3
-      Data: 150
+      Data: 50
     - Name: 
       Entry: 8
       Data: 
@@ -138,7 +138,7 @@ MonoBehaviour:
       Data: 3
     - Name: $v
       Entry: 3
-      Data: 150
+      Data: 50
     - Name: 
       Entry: 8
       Data: 
@@ -176,11 +176,11 @@ MonoBehaviour:
   health:
     BaseValue: 2445
   strength:
-    BaseValue: 22
+    BaseValue: 19
   magic:
-    BaseValue: 16
+    BaseValue: 14
   accuracy:
-    BaseValue: 20
+    BaseValue: 19
   initiative:
     BaseValue: 17
   defense:
@@ -191,7 +191,7 @@ MonoBehaviour:
     BaseValue: 3
   description: 'Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a
     hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! '
-  weaponMight: 14
+  weaponMight: 17
   magicMight: 6
   weaponAccuracy: 75
   weaponCriticalChance: 2

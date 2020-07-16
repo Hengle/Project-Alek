@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Characters;
-using Characters.PartyMembers;
 using MoreMountains.InventoryEngine;
 using UnityEngine;
 

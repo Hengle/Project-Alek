@@ -192,7 +192,7 @@ MonoBehaviour:
   health:
     BaseValue: 2780
   strength:
-    BaseValue: 25
+    BaseValue: 22
   magic:
     BaseValue: 15
   accuracy:
@@ -200,7 +200,7 @@ MonoBehaviour:
   initiative:
     BaseValue: 19
   defense:
-    BaseValue: 18
+    BaseValue: 17
   resistance:
     BaseValue: 11
   criticalChance:

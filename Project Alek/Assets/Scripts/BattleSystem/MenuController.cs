@@ -111,8 +111,9 @@ namespace BattleSystem
                 var unit = memberSelectable[i].GetComponent<Unit>();
                 var nav = unit.GetComponent<Selectable>().navigation;
 
-                nav.selectOnDown = i + 1 < memberSelectable.Count ?
-                    memberSelectable[i + 1].gameObject.GetComponent<Button>() : memberSelectable[0].gameObject.GetComponent<Button>();
+                nav.selectOnDown = i + 1 < memberSelectable.Count?
+                    memberSelectable[i + 1].gameObject.GetComponent<Button>() :
+                    memberSelectable[0].gameObject.GetComponent<Button>();
             
                 if (i - 1 >= 0) nav.selectOnUp = memberSelectable[i - 1].gameObject.GetComponent<Button>();
                 else if (i == 0) nav.selectOnUp = memberSelectable[memberSelectable.Count-1].gameObject.GetComponent<Button>();
@@ -131,8 +132,9 @@ namespace BattleSystem
                 var unit = enemySelectable[i].GetComponent<Unit>();
                 var nav = unit.GetComponent<Selectable>().navigation;
 
-                nav.selectOnDown = i + 1 < enemySelectable.Count ?
-                    enemySelectable[i + 1].gameObject.GetComponent<Button>() : enemySelectable[0].gameObject.GetComponent<Button>();
+                nav.selectOnDown = i + 1 < enemySelectable.Count?
+                    enemySelectable[i + 1].gameObject.GetComponent<Button>() :
+                    enemySelectable[0].gameObject.GetComponent<Button>();
             
                 if (i - 1 >= 0) nav.selectOnUp = enemySelectable[i - 1].gameObject.GetComponent<Button>();
                 else if (i == 0) nav.selectOnUp = enemySelectable[enemySelectable.Count-1].gameObject.GetComponent<Button>();

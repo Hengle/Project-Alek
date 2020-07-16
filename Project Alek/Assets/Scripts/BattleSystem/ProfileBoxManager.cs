@@ -37,10 +37,10 @@ namespace BattleSystem
             get
             {
                 if (unitBase.strength.Value - unitBase.strength.BaseValue > 0) 
-                    return $"(+ {unitBase.strength.Value - unitBase.strength.BaseValue})";
+                    return $"( +{unitBase.strength.Value - unitBase.strength.BaseValue})";
                 
                 return unitBase.strength.Value - unitBase.strength.BaseValue < 0?
-                    $"({unitBase.strength.Value - unitBase.strength.BaseValue})" : "";
+                    $"( {unitBase.strength.Value - unitBase.strength.BaseValue})" : "";
             }
         }
 
@@ -48,10 +48,10 @@ namespace BattleSystem
             get
             {
                 if (unitBase.magic.Value - unitBase.magic.BaseValue > 0) 
-                    return $"(+ {unitBase.magic.Value - unitBase.magic.BaseValue})";
+                    return $"( +{unitBase.magic.Value - unitBase.magic.BaseValue})";
                 
                 return unitBase.magic.Value - unitBase.magic.BaseValue < 0?
-                    $"({unitBase.magic.Value - unitBase.magic.BaseValue})" : "";
+                    $"( {unitBase.magic.Value - unitBase.magic.BaseValue})" : "";
             }
         }
         
@@ -59,10 +59,10 @@ namespace BattleSystem
             get
             {
                 if (unitBase.accuracy.Value - unitBase.accuracy.BaseValue > 0) 
-                    return $"(+ {unitBase.accuracy.Value - unitBase.accuracy.BaseValue})";
+                    return $"( +{unitBase.accuracy.Value - unitBase.accuracy.BaseValue})";
                 
                 return unitBase.accuracy.Value - unitBase.accuracy.BaseValue < 0?
-                    $"({unitBase.accuracy.Value - unitBase.accuracy.BaseValue})" : "";
+                    $"( {unitBase.accuracy.Value - unitBase.accuracy.BaseValue})" : "";
             }
         }
         
@@ -70,10 +70,10 @@ namespace BattleSystem
             get
             {
                 if (unitBase.initiative.Value - unitBase.initiative.BaseValue > 0) 
-                    return $"(+ {unitBase.initiative.Value - unitBase.initiative.BaseValue})";
+                    return $"( +{unitBase.initiative.Value - unitBase.initiative.BaseValue})";
                 
                 return unitBase.initiative.Value - unitBase.initiative.BaseValue < 0?
-                    $"({unitBase.initiative.Value - unitBase.initiative.BaseValue})" : "";
+                    $"( {unitBase.initiative.Value - unitBase.initiative.BaseValue})" : "";
             }
         }
         
@@ -81,10 +81,10 @@ namespace BattleSystem
             get
             {
                 if (unitBase.defense.Value - unitBase.defense.BaseValue > 0) 
-                    return $"(+ {unitBase.defense.Value - unitBase.defense.BaseValue})";
+                    return $"( +{unitBase.defense.Value - unitBase.defense.BaseValue})";
                 
                 return unitBase.defense.Value - unitBase.defense.BaseValue < 0?
-                    $"({unitBase.defense.Value - unitBase.defense.BaseValue})" : "";
+                    $"( {unitBase.defense.Value - unitBase.defense.BaseValue})" : "";
             }
         }
         
@@ -92,10 +92,10 @@ namespace BattleSystem
             get
             {
                 if (unitBase.resistance.Value - unitBase.resistance.BaseValue > 0) 
-                    return $"(+ {unitBase.resistance.Value - unitBase.resistance.BaseValue})";
+                    return $"( +{unitBase.resistance.Value - unitBase.resistance.BaseValue})";
                 
                 return unitBase.resistance.Value - unitBase.resistance.BaseValue < 0?
-                    $"({unitBase.resistance.Value - unitBase.resistance.BaseValue})" : "";
+                    $"( {unitBase.resistance.Value - unitBase.resistance.BaseValue})" : "";
             }
         }
         
@@ -103,10 +103,10 @@ namespace BattleSystem
             get
             {
                 if (unitBase.criticalChance.Value - unitBase.criticalChance.BaseValue > 0) 
-                    return $"(+ {unitBase.criticalChance.Value - unitBase.criticalChance.BaseValue})";
+                    return $"( +{unitBase.criticalChance.Value - unitBase.criticalChance.BaseValue})";
                 
                 return unitBase.criticalChance.Value - unitBase.criticalChance.BaseValue < 0?
-                    $"({unitBase.criticalChance.Value - unitBase.criticalChance.BaseValue})" : "";
+                    $"( {unitBase.criticalChance.Value - unitBase.criticalChance.BaseValue})" : "";
             }
         }
         

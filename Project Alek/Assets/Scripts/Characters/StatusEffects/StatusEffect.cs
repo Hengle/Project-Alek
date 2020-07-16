@@ -7,14 +7,16 @@ namespace Characters.StatusEffects
 {
     public enum EffectType { DamageOverTime, Inhibiting, AI, StatChange }
     public enum RateOfInfliction { EveryTurn, BeforeEveryAction, AfterEveryAction, AfterAttacked, Once }
-    public enum InflictionChanceModifier { Normal = 125, Moderate = 150, Significant = 75, Major = 100 }
+    public enum InflictionChanceModifier { Normal = 25, Moderate = 50, Significant = 75, Major = 100 }
     public abstract class StatusEffect : ScriptableObject
     {
         #region FieldsAndProperties
         
-        [Space, ReadOnly, VerticalGroup("Icon/Info")] public EffectType effectType;
+        [Space, ReadOnly, VerticalGroup("Icon/Info")]
+        public EffectType effectType;
         
-        [VerticalGroup("Icon/Info")] public GameObject icon;
+        [VerticalGroup("Icon/Info")]
+        public GameObject icon;
 
         [HideLabel, ShowInInspector, HorizontalGroup("Icon", 200), PreviewField(200), ShowIf(nameof(icon))]
         public Sprite Icon
@@ -48,6 +50,23 @@ namespace Characters.StatusEffects
         {
             Logger.Log($"{unitBase.characterName} is no longer inflicted with {name}.");
             unitBase.onStatusEffectRemoved?.Invoke(this);
+        }
+        
+        public float StatusEffectModifier( UnitBase target)
+        {
+            if (target._statusEffectResistances.TryGetValue(this, out var resistanceModifier))
+            {
+                Logger.Log($"{target.characterName} resists {name}!");
+                return 1.0f - (float) resistanceModifier / 100;
+            }
+
+            if (target._statusEffectWeaknesses.TryGetValue(this, out var weaknessModifier))
+            {
+                Logger.Log($"{target.characterName} is weak to {name}!");
+                return 1.0f + (float) weaknessModifier / 100;
+            }
+
+            return 1;
         }
     }
 }

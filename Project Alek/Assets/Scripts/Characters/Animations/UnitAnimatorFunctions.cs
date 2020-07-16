@@ -13,6 +13,7 @@ namespace Characters.Animations
 
         private ElementalType ElementalCondition => unit != null && unit.isAbility && unit.currentAbility.hasElemental?
             unit.currentAbility.elementalType : null;
+        
 
         private void Awake()
         {
@@ -32,8 +33,10 @@ namespace Characters.Animations
                     where !(from statusEffect in unit.currentTarget.Unit.statusEffects
                     where statusEffect.name == effect.name select statusEffect).Any()
                     
-                    let randomValue = Random.value 
-                    where !(randomValue > unit.currentAbility.chanceOfInfliction) select effect)
+                    let randomValue = Random.value
+                    let modifier = effect.StatusEffectModifier(unit.currentTarget)
+
+                    where !(randomValue > unit.currentAbility.chanceOfInfliction * modifier) select effect)
                 {
                     effect.OnAdded(unit.currentTarget);
                     unit.currentTarget.Unit.statusEffects.Add(effect);
@@ -46,8 +49,10 @@ namespace Characters.Animations
                     where !(from statusEffect in target.Unit.statusEffects
                     where statusEffect.name == effect.name select statusEffect).Any() 
                     
-                    let randomValue = Random.value 
-                    where !(randomValue > unit.currentAbility.chanceOfInfliction) select effect)
+                    let randomValue = Random.value
+                    let modifier = effect.StatusEffectModifier(target)
+                    
+                    where !(randomValue > unit.currentAbility.chanceOfInfliction * modifier) select effect)
                 {
                     effect.OnAdded(target);
                     target.Unit.statusEffects.Add(effect);

@@ -18,7 +18,8 @@ namespace Characters.StatusEffects
             if (random > chanceOfInfliction) return;
             
             DamagePrefabManager.Instance.DamageTextColor = color;
-            var dmg = (int) (damagePercentage * unitBase.Unit.maxHealthRef);
+            var modifier = StatusEffectModifier(unitBase);
+            var dmg = (int) (damagePercentage * modifier * unitBase.Unit.maxHealthRef);
             dmg = Random.Range((int)(0.98f * dmg), (int)(1.02f * dmg));
             unitBase.TakeDamage(dmg, null);
             Logger.Log($"{unitBase.characterName} is unable to attack due to {name}");
