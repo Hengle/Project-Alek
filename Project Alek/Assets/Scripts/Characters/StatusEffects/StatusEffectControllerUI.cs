@@ -44,6 +44,7 @@ namespace Characters.StatusEffects
                 
                 var iconGO = Instantiate(checkmate.icon, transform, false);
                 iconGO.name = effect.name;
+                effect.turnDuration = checkmate.turnDuration;
                 iconGO.GetComponent<StatusEffectTimer>().SetTimer(effect, member);
             }
         }

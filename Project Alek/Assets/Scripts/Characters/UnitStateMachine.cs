@@ -119,10 +119,9 @@ namespace Characters
             unitBase.Unit.currentState = currentState;
             unitBase.onNewState?.Invoke(currentState);
             unitBase.Unit.status = Status.UnableToPerformAction;
-
+            
             var checkmate = ScriptableObject.CreateInstance<Checkmate>();
             checkmate.name = "Checkmate";
-            checkmate.turnDuration = 3;
             checkmate.OnAdded(unitBase);
             unitBase.Unit.statusEffects.Add(checkmate);
         }
@@ -140,8 +139,8 @@ namespace Characters
             unitBase.onStatusEffectRemoved -= EvaluateStateOnRemoval;
             
             GameEventsManager.RemoveListener(this);
-            
-            unitBase.Unit.status = Status.Normal;
+
+            unitBase.Unit.currentState = UnitStates.Normal;
         }
     }
 }
