@@ -12,9 +12,80 @@ MonoBehaviour:
   m_Script: {fileID: 1726182683, guid: a4865f1ab4504ed8a368670db22f409c, type: 3}
   m_Name: AOTGenerationConfig
   m_EditorClassIdentifier: 
-  automateBeforeBuilds: 0
+  automateBeforeBuilds: 1
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 0900000014000000
-  lastScan: 0
-  supportSerializedTypes: []
+  lastScan: 637304560630923927
+  supportSerializedTypes:
+  - TypeName: System.Action, mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Action`1[[Characters.ElementalTypes.ElementalType, ProjectAlek]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Action`1[[Characters.StatusEffects.StatusEffect, ProjectAlek]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Action`1[[Characters.UnitStates, ProjectAlek]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
+      ProjectAlek],[Characters.ElementalTypes.ElementalScaler, ProjectAlek]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
+      ProjectAlek],[Characters.ElementalTypes.ElementalWeaknessScaler, ProjectAlek]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[Characters.StatusEffects.StatusEffect,
+      ProjectAlek],[Characters.StatusEffects.InflictionChanceModifier, ProjectAlek]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Characters.ElementalTypes.ElementalScaler, ProjectAlek
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Characters.ElementalTypes.ElementalType, ProjectAlek
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Characters.ElementalTypes.ElementalWeaknessScaler, ProjectAlek
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[Characters.ElementalTypes.ElementalType,
+      ProjectAlek]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[Characters.StatusEffects.StatusEffect,
+      ProjectAlek]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Characters.StatusEffects.InflictionChanceModifier, ProjectAlek
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.ObjectEqualityComparer`1[[Characters.ElementalTypes.ElementalType,
+      ProjectAlek]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.ObjectEqualityComparer`1[[Characters.StatusEffects.StatusEffect,
+      ProjectAlek]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Characters.StatusEffects.StatusEffect, ProjectAlek
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Characters.UnitBase, ProjectAlek
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Characters.UnitStateMachine, ProjectAlek
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Characters.UnitStates, ProjectAlek
+    IsCustom: 0
+    Emit: 1
