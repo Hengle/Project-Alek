@@ -22,6 +22,8 @@ namespace BattleSystem
         
         [ShowInInspector] [ReadOnly]
         private static BattleState state;
+        
+        public static InventoryInputManager _inventoryInputManager;
 
         [ShowInInspector] [ReadOnly]
         public static readonly List<Enemy> EnemiesForThisBattle = new List<Enemy>();
@@ -71,6 +73,7 @@ namespace BattleSystem
         
         private void Start()
         {
+            _inventoryInputManager = FindObjectOfType<InventoryInputManager>();
             roundCount = 0;
             generator = GetComponent<BattleGenerator>();
 
@@ -145,10 +148,10 @@ namespace BattleSystem
         {
             _activePartyMember = character;
             
-            BattleInputManager._inventoryInputManager.TargetInventoryContainer =
+            _inventoryInputManager.TargetInventoryContainer =
                 character.inventoryDisplay.GetComponent<CanvasGroup>();
             
-            BattleInputManager._inventoryInputManager.TargetInventoryDisplay =
+            _inventoryInputManager.TargetInventoryDisplay =
                 character.inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
             
             character.inventoryDisplay.SetActive(true);

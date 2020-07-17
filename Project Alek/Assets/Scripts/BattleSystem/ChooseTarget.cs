@@ -84,9 +84,9 @@ namespace BattleSystem
             thisUnitBase.Unit.outline.enabled = true;
             thisUnitBase.Unit.button.interactable = false;
 
-            BattleInputManager._controls.Menu.Move.Disable();
-            //BattleInputManager._inputModule.move.action.Disable();
-            
+            BattleInputManager._inputModule.enabled = false;
+            BattleInputManager._canOpenBox = false;
+
             while (_isMultiTarget)
             {
                 if (BattleInputManager._controls.Menu.Confirm.triggered)
@@ -97,9 +97,10 @@ namespace BattleSystem
 
                 yield return Timing.WaitForOneFrame;
             }
+            
+            BattleInputManager._inputModule.enabled = true;
+            BattleInputManager._canOpenBox = true;
 
-            BattleInputManager._controls.Menu.Move.Enable();
-            //BattleInputManager._inputModule.move.action.Enable();
             thisUnitBase.Unit.button.interactable = true;
             thisUnitBase.Unit.outline.enabled = false;
             _isMultiTarget = false;

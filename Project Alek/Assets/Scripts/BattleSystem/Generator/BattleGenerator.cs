@@ -78,7 +78,7 @@ namespace BattleSystem.Generator
                 (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnAbilityMenuButton(); });
             
             mainMenu.Find("Inventory Button").gameObject.GetComponent<Button>().onClick.AddListener
-                (delegate { BattleInputManager._inventoryInputManager.OpenInventory(); });
+                (delegate { BattleManager._inventoryInputManager.OpenInventory(); });
 
             mainMenu.Find("End Turn Button").gameObject.GetComponent<Button>().onClick.AddListener
                 (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnEndTurnButton(); });

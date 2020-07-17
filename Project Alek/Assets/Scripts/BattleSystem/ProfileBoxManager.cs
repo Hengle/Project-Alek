@@ -5,6 +5,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace BattleSystem
@@ -165,13 +166,8 @@ namespace BattleSystem
                 $"RES: {unitBase.resistance.Value} {ResDiff}\n" +
                 $"CRIT: {unitBase.criticalChance.Value} {CritDiff}";
             
-            BattleInputManager._controls.Menu.Move.Disable();
-            BattleInputManager._controls.Menu.Confirm.Disable();
-            BattleInputManager._controls.Menu.Back.Disable();
-            // BattleInputManager._inputModule.move.action.Disable();
-            // BattleInputManager._inputModule.submit.action.Disable();
-            // BattleInputManager._inputModule.cancel.action.Disable();
-            
+            BattleInputManager._inputModule.enabled = false;
+
             profileBox.gameObject.SetActive(true);
             profileBox.DOScale(1, 0.5f);
         }
@@ -182,12 +178,7 @@ namespace BattleSystem
             profileBox.DOScale(0.1f, 0.15f).
                 OnComplete(() => profileBox.gameObject.SetActive(false));
             
-            BattleInputManager._controls.Menu.Move.Enable();
-            BattleInputManager._controls.Menu.Confirm.Enable();
-            BattleInputManager._controls.Menu.Back.Enable();
-            // BattleInputManager._inputModule.move.action.Enable();
-            // BattleInputManager._inputModule.submit.action.Enable();
-            // BattleInputManager._inputModule.cancel.action.Enable();
+            BattleInputManager._inputModule.enabled = true;
             isOpen = false;
         }
 
