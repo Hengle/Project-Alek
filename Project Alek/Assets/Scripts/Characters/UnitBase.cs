@@ -74,10 +74,10 @@ namespace Characters
         
         [ShowInInspector] [TabGroup("Tabs/Resistances & Weaknesses", "Elements")]
         [DictionaryDrawerSettings(KeyLabel = "Element", ValueLabel = "Resistance Level", DisplayMode = DictionaryDisplayOptions.ExpandedFoldout)]
-        public readonly Dictionary<ElementalType, ElementalScaler> _elementalResistances = new Dictionary<ElementalType, ElementalScaler>();
+        public readonly Dictionary<ElementalType, ElementalScalar> _elementalResistances = new Dictionary<ElementalType, ElementalScalar>();
         [ShowInInspector] [TabGroup("Tabs/Resistances & Weaknesses", "Elements")]
         [DictionaryDrawerSettings(KeyLabel = "Element", ValueLabel = "Weakness Level", DisplayMode = DictionaryDisplayOptions.ExpandedFoldout)]
-        public readonly Dictionary<ElementalType, ElementalWeaknessScaler> _elementalWeaknesses = new Dictionary<ElementalType, ElementalWeaknessScaler>();
+        public readonly Dictionary<ElementalType, ElementalWeaknessScalar> _elementalWeaknesses = new Dictionary<ElementalType, ElementalWeaknessScalar>();
   
         [ShowInInspector] [TabGroup("Tabs/Resistances & Weaknesses", "Status Effects")]
         [DictionaryDrawerSettings(KeyLabel = "Status Effect", ValueLabel = "Resistance Level", DisplayMode = DictionaryDisplayOptions.ExpandedFoldout)]

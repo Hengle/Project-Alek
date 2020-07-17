@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Characters;
 using Characters.PartyMembers;
-using Input;
 using MEC;
 using Sirenix.OdinInspector;
 
@@ -85,7 +84,8 @@ namespace BattleSystem
             thisUnitBase.Unit.outline.enabled = true;
             thisUnitBase.Unit.button.interactable = false;
 
-            BattleInputManager._inputModule.move.action.Disable();
+            BattleInputManager._controls.Menu.Move.Disable();
+            //BattleInputManager._inputModule.move.action.Disable();
             
             while (_isMultiTarget)
             {
@@ -98,7 +98,8 @@ namespace BattleSystem
                 yield return Timing.WaitForOneFrame;
             }
 
-            BattleInputManager._inputModule.move.action.Enable();
+            BattleInputManager._controls.Menu.Move.Enable();
+            //BattleInputManager._inputModule.move.action.Enable();
             thisUnitBase.Unit.button.interactable = true;
             thisUnitBase.Unit.outline.enabled = false;
             _isMultiTarget = false;

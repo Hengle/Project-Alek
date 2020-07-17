@@ -37,6 +37,9 @@ namespace MoreMountains.InventoryEngine
         [Header("Key Mapping")]
         [MMInformation("Here you need to set the various key bindings you prefer. There are some by default but feel free to change them.", MMInformationAttribute.InformationType.Info, false)]
         public InputSystemUIInputModule inputModule;
+        public InputActionMap inputActionMap;
+        public InputControlScheme inputControlScheme;
+        //private Controls controls;
         /// the key used to open/close the inventory
         public KeyCode ToggleInventoryKey = KeyCode.I;
         /// the alt key used to open/close the inventory
@@ -260,7 +263,7 @@ namespace MoreMountains.InventoryEngine
             }
 
             // equip or use
-            if (Input.GetKeyDown(EquipOrUseKey) || Input.GetKeyDown(EquipOrUseAltKey))
+            if (inputModule.submit.action.triggered)
             {
                 EquipOrUse();
             }

@@ -2416,11 +2416,11 @@ MonoBehaviour:
     type: 3}
   m_PointAction: {fileID: -378949753735127156, guid: 60be2553078ae3a4b93c82d4499eb66b,
     type: 3}
-  m_MoveAction: {fileID: 6998947656576237046, guid: 60be2553078ae3a4b93c82d4499eb66b,
+  m_MoveAction: {fileID: -7491701530474055952, guid: 60be2553078ae3a4b93c82d4499eb66b,
     type: 3}
-  m_SubmitAction: {fileID: -7903468556171607272, guid: 60be2553078ae3a4b93c82d4499eb66b,
+  m_SubmitAction: {fileID: -3144622182287432187, guid: 60be2553078ae3a4b93c82d4499eb66b,
     type: 3}
-  m_CancelAction: {fileID: -7616279151020768302, guid: 60be2553078ae3a4b93c82d4499eb66b,
+  m_CancelAction: {fileID: 905785431293529699, guid: 60be2553078ae3a4b93c82d4499eb66b,
     type: 3}
   m_LeftClickAction: {fileID: -592752947288630138, guid: 60be2553078ae3a4b93c82d4499eb66b,
     type: 3}
@@ -2434,7 +2434,7 @@ MonoBehaviour:
     type: 3}
   m_TrackedDeviceOrientationAction: {fileID: -421622963892780907, guid: 60be2553078ae3a4b93c82d4499eb66b,
     type: 3}
-  m_DeselectOnBackgroundClick: 0
+  m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
 --- !u!114 &277866814
 MonoBehaviour:
@@ -26842,7 +26842,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 311
 --- !u!114 &114479203144754671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27019,6 +27019,16 @@ MonoBehaviour:
   HideContainerOnStart: 1
   InputOnlyWhenOpen: 0
   inputModule: {fileID: 277866813}
+  inputActionMap:
+    m_Name: Input
+    m_Id: f926a5e7-f1b4-4f36-874a-455acf25cdb1
+    m_Asset: {fileID: 0}
+    m_Actions: []
+    m_Bindings: []
+  inputControlScheme:
+    m_Name: 
+    m_BindingGroup: 
+    m_DeviceRequirements: []
   ToggleInventoryKey: 0
   ToggleInventoryAltKey: 0
   CancelKey: 27

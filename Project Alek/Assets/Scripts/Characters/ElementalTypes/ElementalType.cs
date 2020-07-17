@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 namespace Characters.ElementalTypes
 {
-    public enum ElementalScaler { Normal = 25, Moderate = 50, Significant = 75, Major = 100 }
-    public enum ElementalWeaknessScaler { Normal = 125, Moderate = 150, Significant = 175, Major = 200 }
+    public enum ElementalScalar { Normal = 25, Moderate = 50, Significant = 75, Major = 100 }
+    public enum ElementalWeaknessScalar { Normal = 125, Moderate = 150, Significant = 175, Major = 200 }
     [CreateAssetMenu(menuName = "Elemental Type")]
     public class ElementalType : ScriptableObject
     {

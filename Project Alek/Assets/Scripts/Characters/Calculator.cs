@@ -53,7 +53,7 @@ namespace Characters
                 goto SkipElemental;
             }
             
-            var elementalDamage = (int) damageDealer.magic.Value * damageDealer.weaponMight * ability.ElementalScaler;
+            var elementalDamage = (int) damageDealer.magic.Value * damageDealer.weaponMight * ability.ElementalScalar;
 
             var tryGetRes = target._elementalResistances.ContainsKey(ability.elementalType);
             var tryGetWeakness = target._elementalWeaknesses.ContainsKey(ability.elementalType);
@@ -61,19 +61,19 @@ namespace Characters
             if (tryGetRes)
             {
                 Logger.Log($"{target.characterName} resists {ability.elementalType.name}!");
-                var resistanceScaler = 1 - (float) target._elementalResistances.Single
+                var resistanceScalar = 1 - (float) target._elementalResistances.Single
                     (s => s.Key == ability.elementalType).Value / 100;
 
-                elementalDamage *= resistanceScaler;
+                elementalDamage *= resistanceScalar;
             }
                     
             else if (tryGetWeakness)
             {
                 Logger.Log($"{target.characterName} is weak to {ability.elementalType.name}!");
-                var weaknessScaler = (float) target._elementalWeaknesses.Single
+                var weaknessScalar = (float) target._elementalWeaknesses.Single
                     (s => s.Key == ability.elementalType).Value / 100;
 
-                elementalDamage *= weaknessScaler;
+                elementalDamage *= weaknessScalar;
             }
             
             totalDamage = (int) ((normalDamage + elementalDamage) * damageDealer.Unit.currentAbility.damageMultiplier) - targetDefense;

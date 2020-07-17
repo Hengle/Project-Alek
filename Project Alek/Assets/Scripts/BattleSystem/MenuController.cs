@@ -10,7 +10,6 @@ using UnityEngine.UI;
 using Characters;
 using Characters.Animations;
 using Characters.PartyMembers;
-using Input;
 
 namespace BattleSystem
 {
@@ -65,14 +64,15 @@ namespace BattleSystem
             SetPartySelectables();
         }
 
-        [UsedImplicitly] public void DisableInput() => BattleInputManager._inputModule.enabled = false;
+        [UsedImplicitly]
+        public void DisableInput() => BattleInputManager._controls.Disable();
     
         [UsedImplicitly] public void SetMainMenuFirstSelected()
         {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
             previousFirstSelected = mainMenuFirstSelected;
-            BattleInputManager._inputModule.enabled = true;
+            BattleInputManager._controls.Enable();
         }
 
         [UsedImplicitly] public void SetAbilityMenuFirstSelected()
@@ -80,7 +80,7 @@ namespace BattleSystem
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(abilityMenuFirstSelected);
             previousFirstSelected = abilityMenuFirstSelected;
-            BattleInputManager._inputModule.enabled = true;
+            BattleInputManager._controls.Enable();
         }
 
         public void SetTargetFirstSelected()
@@ -101,7 +101,7 @@ namespace BattleSystem
                     break;
             }
             
-            BattleInputManager._inputModule.enabled = true;
+            BattleInputManager._controls.Enable();
         }
 
         public bool SetPartySelectables()

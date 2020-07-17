@@ -3,6 +3,7 @@ using Characters.ElementalTypes;
 using Characters.StatusEffects;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Characters.Abilities
 {
@@ -49,11 +50,11 @@ namespace Characters.Abilities
         [ShowIf(nameof(hasElemental)), InlineEditor, LabelWidth(120)]
         public ElementalType elementalType;
         
-        [ShowIf(nameof(hasElemental)), SerializeField, EnumPaging, HorizontalGroup("Scaler"), LabelWidth(120)] 
-        private ElementalScaler elementalScaler;
+        [ShowIf(nameof(hasElemental)), SerializeField, EnumPaging, HorizontalGroup("Scalar"), LabelWidth(120)] 
+        private ElementalScalar elementalScalar;
         
-        [ShowInInspector, ShowIf(nameof(hasElemental)), HideLabel, VerticalGroup("Scaler/Value"), LabelWidth(5)]
-        public float ElementalScaler => (float) elementalScaler / 100;
+        [ShowInInspector, ShowIf(nameof(hasElemental)), HideLabel, VerticalGroup("Scalar/Value"), LabelWidth(5)]
+        public float ElementalScalar => (float) elementalScalar / 100;
 
         [Space(15)] [Title("Status Effects"), LabelWidth(120)]
         [HideIf(nameof(abilityType), AbilityType.NonAttack)]

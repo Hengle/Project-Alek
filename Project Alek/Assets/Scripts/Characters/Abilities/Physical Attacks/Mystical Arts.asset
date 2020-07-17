@@ -23,7 +23,7 @@ MonoBehaviour:
   description: OoOoH MaAgic
   hasElemental: 0
   elementalType: {fileID: 0}
-  elementalScaler: 25
+  elementalScalar: 25
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: 69edb0df81ead1c4fb7df7bfa4cd9381, type: 2}
