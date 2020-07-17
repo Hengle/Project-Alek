@@ -3,6 +3,7 @@ using System.Collections;
 using MoreMountains.Tools;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
@@ -37,8 +38,6 @@ namespace MoreMountains.InventoryEngine
         [Header("Key Mapping")]
         [MMInformation("Here you need to set the various key bindings you prefer. There are some by default but feel free to change them.", MMInformationAttribute.InformationType.Info, false)]
         public InputSystemUIInputModule inputModule;
-        public InputActionMap inputActionMap;
-        public InputControlScheme inputControlScheme;
         //private Controls controls;
         /// the key used to open/close the inventory
         public KeyCode ToggleInventoryKey = KeyCode.I;
@@ -78,7 +77,7 @@ namespace MoreMountains.InventoryEngine
         public InventorySlot CurrentlySelectedInventorySlot { get; set; }
 
         protected CanvasGroup _canvasGroup;
-        protected bool InventoryOpen { get; set; }
+        [ShowInInspector] protected bool InventoryOpen { get; set; }
         protected bool _pause = false;
         protected GameObject _currentSelection;
         protected InventorySlot _currentInventorySlot;
@@ -90,6 +89,7 @@ namespace MoreMountains.InventoryEngine
         /// </summary>
         protected virtual void Start()
         {
+            inputModule = FindObjectOfType<InputSystemUIInputModule>();
             _currentInventoryDisplay = TargetInventoryDisplay;
             InventoryOpen = false;
             _targetInventoryHotbars = new List<InventoryHotbar>();
@@ -169,11 +169,14 @@ namespace MoreMountains.InventoryEngine
             // we open our inventory
             MMInventoryEvent.Trigger(MMInventoryEventType.InventoryOpens, null, TargetInventoryDisplay.TargetInventoryName, TargetInventoryDisplay.TargetInventory.Content[0], 0, 0);
             MMGameEvent.Trigger("inventoryOpens");
-            InventoryOpen = true;
 
             StartCoroutine(MMFade.FadeCanvasGroup(TargetInventoryContainer, 0.2f, 1f));
             StartCoroutine(MMFade.FadeCanvasGroup(Overlay, 0.2f, 0.85f));
+            
+            Invoke(nameof(SetInventoryOpen), 0.5f);
         }
+
+        private void SetInventoryOpen() => InventoryOpen = true;
 
         /// <summary>
         /// Closes the inventory panel
@@ -221,7 +224,7 @@ namespace MoreMountains.InventoryEngine
             //     }
             // }
 
-            if (Input.GetKeyDown(CancelKey) || inputModule.cancel.action.triggered)
+            if (inputModule.cancel.action.triggered)
             {
                 if (InventoryOpen)
                 {
@@ -269,31 +272,31 @@ namespace MoreMountains.InventoryEngine
             }
 
             // equip
-            if (Input.GetKeyDown(EquipKey) || Input.GetKeyDown(EquipAltKey))
-            {
-                if (CurrentlySelectedInventorySlot != null)
-                {
-                    CurrentlySelectedInventorySlot.Equip();
-                }
-            }
-
-            // use
-            if (Input.GetKeyDown(UseKey) || Input.GetKeyDown(UseAltKey))
-            {
-                if (CurrentlySelectedInventorySlot != null)
-                {
-                    CurrentlySelectedInventorySlot.Use();
-                }
-            }
-
-            // drop
-            if (Input.GetKeyDown(DropKey) || Input.GetKeyDown(DropAltKey))
-            {
-                if (CurrentlySelectedInventorySlot != null)
-                {
-                    CurrentlySelectedInventorySlot.Drop();
-                }
-            }
+            // if (Input.GetKeyDown(EquipKey) || Input.GetKeyDown(EquipAltKey))
+            // {
+            //     if (CurrentlySelectedInventorySlot != null)
+            //     {
+            //         CurrentlySelectedInventorySlot.Equip();
+            //     }
+            // }
+            //
+            // // use
+            // if (Input.GetKeyDown(UseKey) || Input.GetKeyDown(UseAltKey))
+            // {
+            //     if (CurrentlySelectedInventorySlot != null)
+            //     {
+            //         CurrentlySelectedInventorySlot.Use();
+            //     }
+            // }
+            //
+            // // drop
+            // if (Input.GetKeyDown(DropKey) || Input.GetKeyDown(DropAltKey))
+            // {
+            //     if (CurrentlySelectedInventorySlot != null)
+            //     {
+            //         CurrentlySelectedInventorySlot.Drop();
+            //     }
+            // }
         }
 
         /// <summary>

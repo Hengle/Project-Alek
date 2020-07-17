@@ -2,10 +2,10 @@
 using Characters;
 using Characters.StatusEffects;
 using DG.Tweening;
+using Input;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace BattleSystem

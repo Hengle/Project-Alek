@@ -153,6 +153,7 @@ namespace Characters
             onStatusEffectReceived = null;
             onStatusEffectRemoved = null;
             onDeath = null;
+            onNewState = null;
         }
 
         public virtual void ResetAP() 

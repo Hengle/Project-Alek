@@ -29,7 +29,7 @@ MonoBehaviour:
     - Name: _elementalResistances
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
-        ProjectAlek],[Characters.ElementalTypes.ElementalScaler, ProjectAlek]], mscorlib
+        ProjectAlek],[Characters.ElementalTypes.ElementalScalar, ProjectAlek]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.ElementalTypes.ElementalType,
@@ -73,7 +73,7 @@ MonoBehaviour:
     - Name: _elementalWeaknesses
       Entry: 7
       Data: 2|System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
-        ProjectAlek],[Characters.ElementalTypes.ElementalWeaknessScaler, ProjectAlek]],
+        ProjectAlek],[Characters.ElementalTypes.ElementalWeaknessScalar, ProjectAlek]],
         mscorlib
     - Name: comparer
       Entry: 9
@@ -213,5 +213,6 @@ MonoBehaviour:
   abilities:
   - {fileID: 11400000, guid: e558d404ab0ced340bb9314e1e677569, type: 2}
   maxAP: 6
-  checkmateRequirements: []
-  transitionRequirements: 
+  checkmateRequirements:
+  - {fileID: 11400000, guid: c39d538e0733abc409ae3ae8b371cbf4, type: 2}
+  transitionRequirements: 01000000

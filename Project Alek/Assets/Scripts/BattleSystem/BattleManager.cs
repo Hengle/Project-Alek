@@ -6,7 +6,7 @@ using Characters;
 using BattleSystem.Generator;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
-//using Input;
+using Input;
 using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
 using MEC;
@@ -15,7 +15,7 @@ namespace BattleSystem
 {
     // Need to rework the enums. They are not good right now
     public enum BattleState { Start, PartyTurn, EnemyTurn, Won, Lost }
-    [RequireComponent(typeof(InputSystemUIInputModule))]
+    //[RequireComponent(typeof(InputSystemUIInputModule))]
     public class BattleManager : MonoBehaviour, IGameEventListener<CharacterEvents>
     {
         #region FieldsAndProperties

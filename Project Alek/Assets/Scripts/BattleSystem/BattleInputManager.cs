@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
 
-namespace BattleSystem
+namespace Input
 {
     public class BattleInputManager : MonoBehaviour
     {
@@ -15,7 +15,8 @@ namespace BattleSystem
         public static bool _canPressBack;
         public static bool _canOpenBox;
         public static bool CancelCondition => _controls.Menu.Back.triggered && _canPressBack;
-        private static bool ProfileBoxCondition => _canOpenBox && _controls.Menu.TopButton.triggered && currentlySelected != null;
+        private static bool ProfileBoxCondition =>
+            _canOpenBox && _controls.Menu.TopButton.triggered && currentlySelected != null;
         
         private void Awake()
         {

@@ -226,7 +226,9 @@ namespace BattleSystem.Generator
                 var position = enemyGo.transform.position;
                 var newPosition = new Vector3(position.x, position.y + 1.5f, position.z);
 
-                var statusBox = Instantiate(battleGeneratorDatabase.enemyStatusBox, newPosition, battleGeneratorDatabase.enemyStatusBox.rotation);
+                var statusBox = Instantiate(battleGeneratorDatabase.enemyStatusBox, newPosition,
+                    battleGeneratorDatabase.enemyStatusBox.rotation);
+                
                 statusBox.transform.SetParent(clone.Unit.transform);
                 
                 var statusBoxController = statusBox.GetComponentInChildren<StatusEffectControllerUI>();
@@ -235,6 +237,17 @@ namespace BattleSystem.Generator
 
                 if (clone.checkmateRequirements.Count > 0 && clone.ValidateLists()) clone.stateMachine = new UnitStateMachine
                     (clone, clone.checkmateRequirements, clone.transitionRequirements);
+                
+                newPosition = new Vector3(position.x, position.y - 1.5f, position.z);
+                
+                var requirementBox = Instantiate(battleGeneratorDatabase.requirementsBox, newPosition,
+                    battleGeneratorDatabase.requirementsBox.rotation);
+                
+                requirementBox.transform.SetParent(clone.Unit.transform);
+
+                var requirementBoxController = requirementBox.GetComponentInChildren<RequirementBoxControllerUI>();
+                requirementBoxController.enemy = clone;
+                requirementBoxController.Initialize();
 
                 BattleManager.EnemiesForThisBattle.Add(clone);
                 i++;
