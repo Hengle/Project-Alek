@@ -16,7 +16,7 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 0900000014000000
-  lastScan: 637306179107584427
+  lastScan: 637307297665523632
   supportSerializedTypes:
   - TypeName: System.Action, mscorlib
     IsCustom: 0
@@ -78,6 +78,15 @@ MonoBehaviour:
     IsCustom: 0
     Emit: 1
   - TypeName: Characters.StatusEffects.StatusEffect, ProjectAlek
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.String, mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Type, mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Type[], mscorlib
     IsCustom: 0
     Emit: 1
   - TypeName: Characters.UnitBase, ProjectAlek

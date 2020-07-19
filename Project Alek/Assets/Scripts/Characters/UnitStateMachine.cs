@@ -42,11 +42,9 @@ namespace Characters
         private void InitializeStack()
         {
             states.Push(UnitStates.Checkmate);
-
+            
             for (var i = 0; i < checkmateRequirements.Count; i++)
-            {
                 states.Push(UnitStates.Intermediate);
-            }
             
             states.Push(UnitStates.Susceptible);
             states.Push(UnitStates.Normal);

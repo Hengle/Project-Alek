@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem.UI;
 
-namespace Input
+namespace BattleSystem
 {
     public class BattleInput : MonoBehaviour
     {

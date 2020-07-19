@@ -109,18 +109,18 @@ namespace BattleSystem
             
             unit.anim.SetInteger(AnimationHandler.PhysAttackState, unit.isAbility?
                 unit.currentAbility.attackState : 0);
-            
             unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
 
             yield return Timing.WaitForOneFrame;
-            while (animHandler.isAttacking) yield return Timing.WaitForOneFrame;
-            
+            yield return Timing.WaitUntilFalse(() => animHandler.isAttacking);
+
             TimeManager._slowTime = false;
             TimeManager._slowTimeCrit = false;
 
             yield return Timing.WaitUntilDone(InflictStatus.OnTargetsOf
                 (unitBase, RateOfInfliction.AfterAttacked, 0.5f, false));
 
+            // TODO: Move this out of this function
             unit.multiHitTargets = new List<UnitBase>();
             unit.damageValueList = new List<int>();
         }

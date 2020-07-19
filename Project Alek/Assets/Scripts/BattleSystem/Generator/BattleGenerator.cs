@@ -21,7 +21,7 @@ namespace BattleSystem.Generator
         
         #region Setup
 
-        public bool SetupBattle()
+        public void SetupBattle()
         {
             offset = PartyManager._instance.partyMembers.Count == 2? 1 : 0;
             enemyOffset = database.enemies.Count == 2? 1 : 0;
@@ -33,8 +33,6 @@ namespace BattleSystem.Generator
             SetupParty();
             SpawnAndSetupEnemyTeam();
             SetupPartyMenuController();
-
-            return false;
         }
 
         private void SetupParty()

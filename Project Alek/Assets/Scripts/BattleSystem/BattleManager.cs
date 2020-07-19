@@ -5,7 +5,6 @@ using Characters;
 using BattleSystem.Generator;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
-using Input;
 using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
 using MEC;
@@ -43,7 +42,7 @@ namespace BattleSystem
         [ShowInInspector] [ReadOnly]
         public static bool _choosingAbility;
         [ShowInInspector] [ReadOnly]
-        public static bool _shouldGiveCommand;
+        public static bool _canGiveCommand;
         [ShowInInspector] [ReadOnly]
         private static bool allMembersDead;
         [ShowInInspector] [ReadOnly]
@@ -75,25 +74,26 @@ namespace BattleSystem
             generator = GetComponent<BattleGenerator>();
 
             ResetStaticVariables();
-            Timing.RunCoroutine(SetupBattle());
+            SetupBattle();
             state = BattleState.Start;
             GameEventsManager.AddListener(this);
         }
 
-        private IEnumerator<float> SetupBattle()
+        private void SetupBattle()
         {
-            yield return Timing.WaitUntilFalse(generator.SetupBattle);
+            generator.SetupBattle();
 
             foreach (var partyMember in MembersForThisBattle)
             {
-                yield return Timing.WaitUntilTrue(partyMember.battlePanel.GetComponent<MenuController>().SetEnemySelectables);
-                yield return Timing.WaitUntilTrue(partyMember.battlePanel.GetComponent<MenuController>().SetPartySelectables);
+                partyMember.battlePanel.GetComponent<MenuController>().SetEnemySelectables();
+                partyMember.battlePanel.GetComponent<MenuController>().SetPartySelectables();
             }
 
             SortByInitiative();
 
-            foreach (var character in MembersForThisBattle) character.onDeath += RemoveFromBattle;
-            
+            MembersForThisBattle.ForEach(m => m.onDeath += RemoveFromBattle);
+            EnemiesForThisBattle.ForEach(e => e.onDeath += RemoveFromBattle);
+
             Timing.RunCoroutine(PerformThisRound());
         }
 
@@ -160,9 +160,9 @@ namespace BattleSystem
             CharacterEvents.Trigger(CEventType.CharacterTurn, character);
             BattleInput._canPressBack = false;
             ((BattleOptionsPanel) character.battleOptionsPanel).ShowBattlePanel();
-            
-            while (_choosingOption) yield return Timing.WaitForOneFrame;
 
+            yield return Timing.WaitUntilFalse(() => _choosingOption);
+            
             while (_choosingAbility) 
             {
                 BattleInput._canPressBack = true;
@@ -187,15 +187,14 @@ namespace BattleSystem
             yield return Timing.WaitUntilDone(InflictStatus.OnThisUnit
                 (character, RateOfInfliction.BeforeEveryAction, 1, true));
 
-            if (!_shouldGiveCommand) _shouldGiveCommand = true;
-            
+            if (!_canGiveCommand) _canGiveCommand = true;
             else 
             {
                 CharacterEvents.Trigger(CEventType.CharacterAttacking, character);
                 CharacterEvents.Trigger(CEventType.NewCommand, character);
             }
-            
-            while (_performingAction) yield return Timing.WaitForOneFrame;
+
+            yield return Timing.WaitUntilFalse(() => _performingAction);
 
             yield return Timing.WaitUntilDone(InflictStatus.OnThisUnit
                 (character, RateOfInfliction.AfterEveryAction, 1, true));
@@ -227,10 +226,10 @@ namespace BattleSystem
                 yield return Timing.WaitUntilDone(InflictStatus.OnThisUnit
                     (enemy, RateOfInfliction.BeforeEveryAction, 1, true));
 
-                if (!_shouldGiveCommand) _shouldGiveCommand = true;
+                if (!_canGiveCommand) _canGiveCommand = true;
                 else CharacterEvents.Trigger(CEventType.NewCommand, enemy);
 
-                while (_performingAction) yield return Timing.WaitForOneFrame;
+                yield return Timing.WaitUntilFalse(() => _performingAction);
 
                 yield return Timing.WaitUntilDone(InflictStatus.OnThisUnit
                     (enemy, RateOfInfliction.AfterEveryAction, 1, true));
@@ -291,7 +290,7 @@ namespace BattleSystem
             _choosingAbility = false;
             allMembersDead = false;
             allEnemiesDead = false;
-            _shouldGiveCommand = true;
+            _canGiveCommand = true;
         }
         
         #endregion
@@ -300,7 +299,7 @@ namespace BattleSystem
         {
             if (eventType._eventType == CEventType.CantPerformAction)
             {
-                _shouldGiveCommand = false;
+                _canGiveCommand = false;
             }
         }
     }

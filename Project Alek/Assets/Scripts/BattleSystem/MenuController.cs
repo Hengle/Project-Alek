@@ -10,7 +10,6 @@ using UnityEngine.UI;
 using Characters;
 using Characters.Animations;
 using Characters.PartyMembers;
-using Input;
 
 namespace BattleSystem
 {
@@ -26,16 +25,17 @@ namespace BattleSystem
         private GameObject abilityMenu;
         private GameObject mainMenuFirstSelected;
         private GameObject abilityMenuFirstSelected;
-
-        private GameObject previousFirstSelected;
         private GameObject memberFirstSelected;
 
+        private Animator animator;
         private bool isEnabled;
-        
+
         #endregion
         
         private void Awake()
         {
+            animator = GetComponent<Animator>();
+            
             battleMenu = transform.Find("Battle Menu").gameObject;
             
             mainMenu = battleMenu.gameObject.transform.Find("Main Options").gameObject;
@@ -52,27 +52,17 @@ namespace BattleSystem
         {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
-            previousFirstSelected = memberFirstSelected;
+
             MMEventManager.AddListener(this);
             GameEventsManager.AddListener(this);
         }
-        
-        private void UpdateSelectables() // If I use this later, remember to make an event for it
-        {
-            memberSelectable = memberSelectable.OrderBy
-                (go => go.transform.parent.GetSiblingIndex()).ToList();
 
-            SetPartySelectables();
-        }
-
-        [UsedImplicitly]
-        public void DisableInput() => BattleInput._controls.Disable();
+        [UsedImplicitly] public void DisableInput() => BattleInput._controls.Disable();
     
         [UsedImplicitly] public void SetMainMenuFirstSelected()
         {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
-            previousFirstSelected = mainMenuFirstSelected;
             BattleInput._controls.Enable();
         }
 
@@ -80,7 +70,6 @@ namespace BattleSystem
         {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(abilityMenuFirstSelected);
-            previousFirstSelected = abilityMenuFirstSelected;
             BattleInput._controls.Enable();
         }
 
@@ -91,12 +80,10 @@ namespace BattleSystem
                 case 0:
                     EventSystem.current.SetSelectedGameObject(null);
                     EventSystem.current.SetSelectedGameObject(enemySelectable[0].gameObject);
-                    previousFirstSelected = enemySelectable[0].gameObject;
                     break;
                 case 1:
                     EventSystem.current.SetSelectedGameObject(null);
                     EventSystem.current.SetSelectedGameObject(memberFirstSelected);
-                    previousFirstSelected = memberFirstSelected;
                     break;
                 case 2:
                     break;
@@ -105,7 +92,7 @@ namespace BattleSystem
             BattleInput._controls.Enable();
         }
 
-        public bool SetPartySelectables()
+        public void SetPartySelectables()
         {
             for (var i = 0; i < memberSelectable.Count; i++)
             {
@@ -122,11 +109,9 @@ namespace BattleSystem
                 unit.button.navigation = nav;
                 if (i == 0) memberFirstSelected = memberSelectable[0].gameObject;
             }
-
-            return true;
         }
 
-        public bool SetEnemySelectables()
+        public void SetEnemySelectables()
         {
             for (var i = 0; i < enemySelectable.Count; i++)
             {
@@ -142,24 +127,20 @@ namespace BattleSystem
 
                 unit.button.navigation = nav;
             }
-            
-            return true;
         }
-
-        [SuppressMessage("ReSharper", "Unity.InefficientPropertyAccess")]
+        
         public void OnMMEvent(MMInventoryEvent eventType)
         {
             if (isEnabled && isActiveAndEnabled && eventType.InventoryEventType == MMInventoryEventType.InventoryCloses)
             {
-                GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
-                EventSystem.current.SetSelectedGameObject(previousFirstSelected);
+                animator.SetTrigger(AnimationHandler.Panel);
                 EventSystem.current.sendNavigationEvents = true;
                 return;
             }
 
             if (isActiveAndEnabled && battleMenu.activeSelf && eventType.InventoryEventType == MMInventoryEventType.InventoryOpens) 
             {
-                GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
+                animator.SetTrigger(AnimationHandler.Panel);
             }
         }
 
