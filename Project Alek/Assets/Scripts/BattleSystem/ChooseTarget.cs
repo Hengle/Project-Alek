@@ -85,12 +85,12 @@ namespace BattleSystem
             thisUnitBase.Unit.outline.enabled = true;
             thisUnitBase.Unit.button.interactable = false;
 
-            BattleInputManager._inputModule.enabled = false;
-            BattleInputManager._canOpenBox = false;
+            BattleInput._inputModule.enabled = false;
+            BattleInput._canOpenBox = false;
 
             while (_isMultiTarget)
             {
-                if (BattleInputManager._controls.Menu.Confirm.triggered)
+                if (BattleInput._controls.Menu.Confirm.triggered)
                 {
                     AddMultiHitCommand();
                     break;
@@ -99,8 +99,8 @@ namespace BattleSystem
                 yield return Timing.WaitForOneFrame;
             }
             
-            BattleInputManager._inputModule.enabled = true;
-            BattleInputManager._canOpenBox = true;
+            BattleInput._inputModule.enabled = true;
+            BattleInput._canOpenBox = true;
 
             thisUnitBase.Unit.button.interactable = true;
             thisUnitBase.Unit.outline.enabled = false;

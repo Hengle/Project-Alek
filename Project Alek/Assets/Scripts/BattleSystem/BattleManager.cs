@@ -158,15 +158,15 @@ namespace BattleSystem
             
             main_menu:
             CharacterEvents.Trigger(CEventType.CharacterTurn, character);
-            BattleInputManager._canPressBack = false;
+            BattleInput._canPressBack = false;
             ((BattleOptionsPanel) character.battleOptionsPanel).ShowBattlePanel();
             
             while (_choosingOption) yield return Timing.WaitForOneFrame;
 
             while (_choosingAbility) 
             {
-                BattleInputManager._canPressBack = true;
-                if (BattleInputManager.CancelCondition) goto main_menu;
+                BattleInput._canPressBack = true;
+                if (BattleInput.CancelCondition) goto main_menu;
                 yield return Timing.WaitForOneFrame;
             }
 
@@ -178,8 +178,8 @@ namespace BattleSystem
             while (_choosingTarget)
             {
                 yield return Timing.WaitForOneFrame;
-                BattleInputManager._canPressBack = true;
-                if (BattleInputManager.CancelCondition) goto main_menu;
+                BattleInput._canPressBack = true;
+                if (BattleInput.CancelCondition) goto main_menu;
             }
             
             character.CurrentAP -= character.Unit.actionCost;
@@ -268,8 +268,8 @@ namespace BattleSystem
             foreach (var member in MembersForThisBattle) _membersAndEnemies.Add(member);
             foreach (var enemy in EnemiesForThisBattle) _membersAndEnemies.Add(enemy);
             
-            _membersAndEnemies = _membersAndEnemies.
-                OrderByDescending(e => e.initiative.Value).ToList();
+            _membersAndEnemies = _membersAndEnemies.OrderByDescending
+                (e => e.initiative.Value).ToList();
         }
 
         private static void RemoveFromBattle(UnitBase unit)

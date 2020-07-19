@@ -28,10 +28,7 @@ namespace BattleSystem.Generator
             
             var inventory = GameObject.Find("Main Inventory").GetComponent<Inventory>();
 
-            foreach (var item in database.inventoryItems)
-            {
-                inventory.AddItem(item, 1);
-            }
+            database.inventoryItems.ForEach(i => inventory.AddItem(i, 1));
 
             SetupParty();
             SpawnAndSetupEnemyTeam();
@@ -197,7 +194,7 @@ namespace BattleSystem.Generator
 
             database.closeUpCameras[i + offset].SetActive(true);
             database.criticalCameras[i + offset].SetActive(true);
-            
+
             BattleManager.MembersForThisBattle.Add(character);
         }
 

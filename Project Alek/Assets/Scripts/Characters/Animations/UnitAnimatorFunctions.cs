@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Characters.ElementalTypes;
-using Input;
 using JetBrains.Annotations;
-using MEC;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
+using Input;
+using Characters.ElementalTypes;
 
 namespace Characters.Animations
 {
@@ -24,9 +22,29 @@ namespace Characters.Animations
         private void Awake()
         {
             unit = GetComponent<Unit>();
-            BattleInputManager._controls.Battle.Parry.performed += OnSuccessfulParry;
             GameEventsManager.AddListener(this);
         }
+        
+        private void OnEnable() => BattleInput._controls.Battle.Parry.performed += OnSuccessfulParry;
+        
+        private void OnDisable() => BattleInput._controls.Battle.Parry.performed -= OnSuccessfulParry;
+
+        private void OnSuccessfulParry(InputAction.CallbackContext callbackContext)
+        {
+            if (!windowOpen) return;
+
+            if (unit.currentAbility.isMultiTarget)
+            {
+                unit.multiHitTargets.ForEach(t => t.Unit.parry = true);
+                Logger.Log("The whole party hit the parry window!");
+                return;
+            }
+            
+            unit.currentTarget.Unit.parry = true;
+            Logger.Log("Hit the parry window!");
+        }
+
+        [UsedImplicitly] private void SetupParryWindow() => windowOpen = true;
 
         [UsedImplicitly] private void TryToInflictStatusEffect()
         {
@@ -89,7 +107,7 @@ namespace Characters.Animations
             if (unit.isAbility && unit.currentAbility.isMultiTarget)
             {
                 unit.damageValueList = new List<int>();
-
+                
                 unit.multiHitTargets.ForEach(t => unit.damageValueList.Add
                     (Calculator.CalculateAttackDamage(unitBase, t)));
 
@@ -102,16 +120,6 @@ namespace Characters.Animations
             TimeManager._slowTimeCrit = true;
         }
 
-        [UsedImplicitly] private void SetupParryWindow() => windowOpen = true;
-        
-        private void OnSuccessfulParry(InputAction.CallbackContext callbackContext)
-        {
-            if (!windowOpen) return;
-            
-            unit.currentTarget.Unit.parry = true;
-            Logger.Log("Hit the parry window!");
-        }
-        
         public void OnGameEvent(CharacterEvents eventType)
         {
             if (eventType._eventType != CEventType.CharacterAttacking) return;

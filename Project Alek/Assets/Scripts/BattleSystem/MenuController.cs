@@ -66,14 +66,14 @@ namespace BattleSystem
         }
 
         [UsedImplicitly]
-        public void DisableInput() => BattleInputManager._controls.Disable();
+        public void DisableInput() => BattleInput._controls.Disable();
     
         [UsedImplicitly] public void SetMainMenuFirstSelected()
         {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
             previousFirstSelected = mainMenuFirstSelected;
-            BattleInputManager._controls.Enable();
+            BattleInput._controls.Enable();
         }
 
         [UsedImplicitly] public void SetAbilityMenuFirstSelected()
@@ -81,7 +81,7 @@ namespace BattleSystem
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(abilityMenuFirstSelected);
             previousFirstSelected = abilityMenuFirstSelected;
-            BattleInputManager._controls.Enable();
+            BattleInput._controls.Enable();
         }
 
         public void SetTargetFirstSelected()
@@ -102,7 +102,7 @@ namespace BattleSystem
                     break;
             }
             
-            BattleInputManager._controls.Enable();
+            BattleInput._controls.Enable();
         }
 
         public bool SetPartySelectables()

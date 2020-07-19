@@ -1,16 +1,19 @@
 ﻿using System.Linq;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using Sirenix.OdinInspector;
+using Sirenix.Utilities;
+using DG.Tweening;
+using TMPro;
+using Input;
 using Characters;
 using Characters.StatusEffects;
-using DG.Tweening;
-using Input;
-using Sirenix.OdinInspector;
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
 
 namespace BattleSystem
 {
-    public class ProfileBoxManager : MonoBehaviour, IGameEventListener<UIEvents>
+    public class ProfileBoxManager : MonoBehaviour
     {
         #region FieldsAndProperties
         
@@ -113,7 +116,7 @@ namespace BattleSystem
         #endregion
 
         private void Start() => DOTween.Init();
-
+        
         public void SetupProfileBox(UnitBase character)
         {
             isOpen = false;
@@ -125,16 +128,12 @@ namespace BattleSystem
             description.text = character.description;
             background.color = color;
 
-            foreach (var element in character._elementalResistances)
-            {
-                Instantiate(element.Key.icon, resistancesBox, false);
-            }
+            character._elementalResistances.ForEach(e => Instantiate
+                (e.Key.icon, resistancesBox, false));
 
-            foreach (var element in character._elementalWeaknesses)
-            {
-                Instantiate(element.Key.icon, weaknessesBox, false);
-            }
-
+            character._elementalWeaknesses.ForEach(e => Instantiate
+                (e.Key.icon, weaknessesBox, false));
+            
             foreach (var icon in character._statusEffectResistances.Select
                 (status => Instantiate(status.Key.icon, resistancesBox, false)))
             {
@@ -148,7 +147,6 @@ namespace BattleSystem
             }
             
             profileBox.gameObject.SetActive(false);
-            GameEventsManager.AddListener(this);
         }
 
         private void ShowProfileBox()
@@ -166,7 +164,7 @@ namespace BattleSystem
                 $"RES: {unitBase.resistance.Value} {ResDiff}\n" +
                 $"CRIT: {unitBase.criticalChance.Value} {CritDiff}";
             
-            BattleInputManager._inputModule.enabled = false;
+            BattleInput._inputModule.enabled = false;
 
             profileBox.gameObject.SetActive(true);
             profileBox.DOScale(1, 0.5f);
@@ -178,17 +176,22 @@ namespace BattleSystem
             profileBox.DOScale(0.1f, 0.15f).
                 OnComplete(() => profileBox.gameObject.SetActive(false));
             
-            BattleInputManager._inputModule.enabled = true;
+            BattleInput._inputModule.enabled = true;
             isOpen = false;
         }
 
-        public void OnGameEvent(UIEvents eventType)
+        private void OnProfileBoxButton(InputAction.CallbackContext callbackContext)
         {
-            if (eventType._eventType != UIEventType.ToggleProfileBox) return;
-            if (!eventType._gameObject.TryGetComponent(out Unit unit) || unit != unitBase.Unit) return;
+            if (!BattleInput._canOpenBox) return;
+            if (!EventSystem.current.currentSelectedGameObject.TryGetComponent(out Unit unit)) return;
+            if (unit != unitBase.Unit) return;
             
             if (!isOpen) ShowProfileBox();
             else CloseProfileBox();
         }
+
+        private void OnEnable() => BattleInput._controls.Menu.TopButton.performed += OnProfileBoxButton;
+
+        private void OnDisable() => BattleInput._controls.Menu.TopButton.performed -= OnProfileBoxButton;
     }
 }

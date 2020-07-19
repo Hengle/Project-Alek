@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Characters.ElementalTypes;
-using Characters.StatusEffects;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
+using Characters.ElementalTypes;
+using Characters.StatusEffects;
 
 namespace Characters.Abilities
 {

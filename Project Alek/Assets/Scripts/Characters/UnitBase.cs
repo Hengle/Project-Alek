@@ -8,6 +8,7 @@ using Characters.StatusEffects;
 using DamagePrefab;
 using Kryz.CharacterStats;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 
 namespace Characters
 {
@@ -170,23 +171,20 @@ namespace Characters
         {
             if (Unit.isAbility && Unit.currentAbility.isMultiTarget)
             {
-                foreach (var target in Unit.multiHitTargets) 
-                    Unit.damageValueList.Add(Calculator.CalculateAttackDamage(this, target));
+                Unit.multiHitTargets.ForEach(t => Unit.damageValueList.Add
+                    (Calculator.CalculateAttackDamage(this, t)));
             }
 
             else
             {
-                Unit.currentTarget = GetNewTargetIfDead(Unit.currentTarget);
+                Unit.currentTarget = NullCheck(Unit.currentTarget);
                 Unit.currentDamage = Calculator.CalculateAttackDamage(this, Unit.currentTarget);
             }
         }
 
-        private UnitBase GetNewTargetIfDead(UnitBase target) 
-        {
-            if (target != null) return Unit.currentTarget.Unit.status != Status.Dead? target : this;
-            return this;
-        }
-
+        // TODO: This seems unnecessary, it does not seem like target can be null when called
+        private UnitBase NullCheck(UnitBase target) => target != null && target.Unit.status != Status.Dead? target : this;
+        
         public bool GetStatus()
         {
             switch (Unit.status)

@@ -2,7 +2,7 @@
 
 namespace Characters.StatusEffects
 {
-    // This could probably inherit from a base Timer script since i will probably need different types of timers
+    // TODO: This could probably inherit from a base Timer script since i will probably need different types of timers
     public class StatusEffectTimer : MonoBehaviour, IGameEventListener<BattleEvents>
     {
         [SerializeField] private int timer;

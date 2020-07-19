@@ -1,6 +1,6 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class InfoBoxScript : MonoBehaviour, ISelectHandler
 {

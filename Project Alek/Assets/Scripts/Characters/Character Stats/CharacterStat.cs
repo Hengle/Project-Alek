@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Kryz.CharacterStats
@@ -8,12 +9,14 @@ namespace Kryz.CharacterStats
 	[Serializable]
 	public class CharacterStat
 	{
-		[SerializeField] public float BaseValue;
+		[SerializeField] [HorizontalGroup("BaseValue")] [HideLabel] [LabelWidth(5)]
+		public float BaseValue;
 
 		protected bool isDirty = true;
 		protected float lastBaseValue;
 
 		protected float _value;
+		[ShowInInspector] [VerticalGroup("BaseValue/Value")] [LabelWidth(100)] [LabelText("Modded Value")]
 		public virtual float Value {
 			get {
 				if(isDirty || lastBaseValue != BaseValue) {

@@ -6,14 +6,13 @@ namespace Characters.StatusEffects
 {
     public static class InflictStatus
     {
-        // Update so that if there are multiple BeforeEveryAction effects, it will break after the first one triggers
+        // TODO: Update so that if there are multiple BeforeEveryAction effects, it will break after the first one triggers
         public static IEnumerator<float> OnThisUnit(UnitBase unitBase, RateOfInfliction rate, float delay, bool delayAfterInfliction)
         {
             if (unitBase.IsDead) yield break;
             
             foreach (var statusEffect in from statusEffect in unitBase.Unit.statusEffects
-                where statusEffect.rateOfInfliction.Contains(rate)
-                select statusEffect)
+                where statusEffect.rateOfInfliction.Contains(rate) select statusEffect)
             {
                 if (!delayAfterInfliction) yield return Timing.WaitForSeconds(delay);
                 
@@ -47,6 +46,7 @@ namespace Characters.StatusEffects
             }
 
             if (attacker.Unit.currentTarget.Unit.attackerHasMissed || attacker.Unit.currentTarget.IsDead) yield break;
+            
             foreach (var statusEffect in from statusEffect in attacker.Unit.currentTarget.Unit.statusEffects
                 where statusEffect.rateOfInfliction.Contains(rate) select statusEffect)
             {
