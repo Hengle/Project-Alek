@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.UI;
 using System.Linq;
 using Characters;
 using BattleSystem.Generator;
@@ -13,9 +12,7 @@ using MEC;
 
 namespace BattleSystem
 {
-    // Need to rework the enums. They are not good right now
     public enum BattleState { Start, PartyTurn, EnemyTurn, Won, Lost }
-    //[RequireComponent(typeof(InputSystemUIInputModule))]
     public class BattleManager : MonoBehaviour, IGameEventListener<CharacterEvents>
     {
         #region FieldsAndProperties

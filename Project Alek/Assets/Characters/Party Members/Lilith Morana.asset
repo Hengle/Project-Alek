@@ -172,28 +172,28 @@ MonoBehaviour:
   characterName: Lilith Morana
   characterPrefab: {fileID: 1526218485019349028, guid: c480ece643ae0c54099692d3bbb9649d,
     type: 3}
-  level: 20
+  level: 1
   health:
-    BaseValue: 2070
+    BaseValue: 635
   strength:
-    BaseValue: 18
+    BaseValue: 8
   magic:
-    BaseValue: 7
+    BaseValue: 4
   accuracy:
-    BaseValue: 23
-  initiative:
-    BaseValue: 20
-  defense:
     BaseValue: 12
+  initiative:
+    BaseValue: 8
+  defense:
+    BaseValue: 5
   resistance:
-    BaseValue: 5
+    BaseValue: 3
   criticalChance:
-    BaseValue: 5
+    BaseValue: 3
   description: A very long description about an amazing girl named Lilith. I tell
     you when I come up with a good description, it will be legendary!
-  weaponMight: 16
+  weaponMight: 10
   magicMight: 2
-  weaponAccuracy: 110
+  weaponAccuracy: 90
   weaponCriticalChance: 4
   abilities:
   - {fileID: 11400000, guid: 8e151e58900d509469c607fa4066a172, type: 2}

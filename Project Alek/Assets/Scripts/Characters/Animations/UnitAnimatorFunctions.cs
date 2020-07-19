@@ -1,8 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Characters.ElementalTypes;
+using Input;
 using JetBrains.Annotations;
+using MEC;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 namespace Characters.Animations
 {
@@ -13,15 +18,17 @@ namespace Characters.Animations
 
         private ElementalType ElementalCondition => unit != null && unit.isAbility && unit.currentAbility.hasElemental?
             unit.currentAbility.elementalType : null;
-        
+
+        private bool windowOpen;
 
         private void Awake()
         {
             unit = GetComponent<Unit>();
+            BattleInputManager._controls.Battle.Parry.performed += OnSuccessfulParry;
             GameEventsManager.AddListener(this);
         }
 
-        [UsedImplicitly] public void TryToInflictStatusEffect()
+        [UsedImplicitly] private void TryToInflictStatusEffect()
         {
             if (!unit.isAbility || !unit.currentAbility.hasStatusEffect) return;
             
@@ -60,42 +67,51 @@ namespace Characters.Animations
             }
         }
 
-        [UsedImplicitly] public void TargetTakeDamage()
+        [UsedImplicitly] private void TargetTakeDamage()
         {
+            windowOpen = false;
+            
             if (!unit.isAbility || !unit.currentAbility.isMultiTarget) 
             {
                 unit.currentTarget.TakeDamage(unit.currentDamage, ElementalCondition);
                 unit.isCrit = false;
                 return;
             }
-
-            for (var i = 0; i < unit.multiHitTargets.Count; i++)
-            {
-                unit.multiHitTargets[i].TakeDamage(unit.damageValueList[i], ElementalCondition);
-            }
+            
+            unit.multiHitTargets.ForEach(t => t.TakeDamage
+                (unit.damageValueList[unit.multiHitTargets.IndexOf(t)], ElementalCondition));
 
             unit.isCrit = false;
         }
 
-        [UsedImplicitly] public void RecalculateDamage() 
+        [UsedImplicitly] private void RecalculateDamage() 
         {
             if (unit.isAbility && unit.currentAbility.isMultiTarget)
             {
                 unit.damageValueList = new List<int>();
-                
-                foreach (var target in unit.multiHitTargets)
-                {
-                    unit.damageValueList.Add(Calculator.CalculateAttackDamage(unitBase, target));
-                }
-                
+
+                unit.multiHitTargets.ForEach(t => unit.damageValueList.Add
+                    (Calculator.CalculateAttackDamage(unitBase, t)));
+
                 return;
             }
             
             unit.currentDamage = Calculator.CalculateAttackDamage(unitBase, unit.currentTarget);
+            
             if (unitBase.id != CharacterType.PartyMember || !unit.isCrit) return;
             TimeManager._slowTimeCrit = true;
         }
 
+        [UsedImplicitly] private void SetupParryWindow() => windowOpen = true;
+        
+        private void OnSuccessfulParry(InputAction.CallbackContext callbackContext)
+        {
+            if (!windowOpen) return;
+            
+            unit.currentTarget.Unit.parry = true;
+            Logger.Log("Hit the parry window!");
+        }
+        
         public void OnGameEvent(CharacterEvents eventType)
         {
             if (eventType._eventType != CEventType.CharacterAttacking) return;

@@ -37,10 +37,10 @@ namespace Characters
 
             var requirement = enemy.checkmateRequirements[index];
             var type = requirement.GetType();
-            Logger.Log(type.Name);
 
-            icons[index].sprite = type == typeof(ElementalType) ?
-                ((ElementalType) requirement).Icon : ((StatusEffect) requirement).Icon;
+            icons[index].sprite = type == typeof(ElementalType)
+                ? ((ElementalType) requirement).Icon
+                : ((StatusEffect) requirement).Icon;
 
             index++;
         }

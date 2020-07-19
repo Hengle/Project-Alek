@@ -16,7 +16,7 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 0900000014000000
-  lastScan: 637304587619379563
+  lastScan: 637306179107584427
   supportSerializedTypes:
   - TypeName: System.Action, mscorlib
     IsCustom: 0
@@ -36,11 +36,11 @@ MonoBehaviour:
     IsCustom: 0
     Emit: 1
   - TypeName: System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
-      ProjectAlek],[Characters.ElementalTypes.ElementalScaler, ProjectAlek]], mscorlib
+      ProjectAlek],[Characters.ElementalTypes.ElementalScalar, ProjectAlek]], mscorlib
     IsCustom: 0
     Emit: 1
   - TypeName: System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
-      ProjectAlek],[Characters.ElementalTypes.ElementalWeaknessScaler, ProjectAlek]],
+      ProjectAlek],[Characters.ElementalTypes.ElementalWeaknessScalar, ProjectAlek]],
       mscorlib
     IsCustom: 0
     Emit: 1
@@ -49,13 +49,13 @@ MonoBehaviour:
       mscorlib
     IsCustom: 0
     Emit: 1
-  - TypeName: Characters.ElementalTypes.ElementalScaler, ProjectAlek
+  - TypeName: Characters.ElementalTypes.ElementalScalar, ProjectAlek
     IsCustom: 0
     Emit: 1
   - TypeName: Characters.ElementalTypes.ElementalType, ProjectAlek
     IsCustom: 0
     Emit: 1
-  - TypeName: Characters.ElementalTypes.ElementalWeaknessScaler, ProjectAlek
+  - TypeName: Characters.ElementalTypes.ElementalWeaknessScalar, ProjectAlek
     IsCustom: 0
     Emit: 1
   - TypeName: System.Collections.Generic.IEqualityComparer`1[[Characters.ElementalTypes.ElementalType,

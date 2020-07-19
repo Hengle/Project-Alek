@@ -172,29 +172,29 @@ MonoBehaviour:
   characterName: Leandra Valentina
   characterPrefab: {fileID: 1526218485019349028, guid: 55418c9ff21905d4c9ac6a87a12001cb,
     type: 3}
-  level: 20
+  level: 1
   health:
-    BaseValue: 2160
+    BaseValue: 670
   strength:
-    BaseValue: 23
+    BaseValue: 10
   magic:
-    BaseValue: 8
+    BaseValue: 3
   accuracy:
-    BaseValue: 18
+    BaseValue: 14
   initiative:
-    BaseValue: 23
+    BaseValue: 8
   defense:
-    BaseValue: 15
-  resistance:
     BaseValue: 7
+  resistance:
+    BaseValue: 2
   criticalChance:
-    BaseValue: 4
+    BaseValue: 2
   description: This is a description for yah girl Leandra. She is boss and won't
     take anyone's crap. Uggghhh extra stuff to increase text count.
-  weaponMight: 12
-  magicMight: 4
-  weaponAccuracy: 95
-  weaponCriticalChance: 3
+  weaponMight: 5
+  magicMight: 1
+  weaponAccuracy: 85
+  weaponCriticalChance: 2
   abilities:
   - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}
   - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}

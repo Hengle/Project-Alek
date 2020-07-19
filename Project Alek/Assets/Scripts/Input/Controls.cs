@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Input/Controls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Input/Controls.inputactions'
 
 using System;
 using System.Collections;
@@ -957,6 +957,44 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Battle"",
+            ""id"": ""aadf909a-c34f-4d9e-b166-c019b3dd4184"",
+            ""actions"": [
+                {
+                    ""name"": ""Parry"",
+                    ""type"": ""Button"",
+                    ""id"": ""d5058b80-866b-4784-9d13-05307c97985b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""35a4fc74-2647-41f6-b3cf-8820605d0c84"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Parry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c8f81621-67fc-492f-b01c-60d497de53b3"",
+                    ""path"": ""<SwitchProControllerHID>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Parry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -995,6 +1033,9 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
         m_Inventory_EquipOrUse = m_Inventory.FindAction("EquipOrUse", throwIfNotFound: true);
         m_Inventory_CloseInventory = m_Inventory.FindAction("CloseInventory", throwIfNotFound: true);
+        // Battle
+        m_Battle = asset.FindActionMap("Battle", throwIfNotFound: true);
+        m_Battle_Parry = m_Battle.FindAction("Parry", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1243,6 +1284,39 @@ public class @Controls : IInputActionCollection, IDisposable
         }
     }
     public InventoryActions @Inventory => new InventoryActions(this);
+
+    // Battle
+    private readonly InputActionMap m_Battle;
+    private IBattleActions m_BattleActionsCallbackInterface;
+    private readonly InputAction m_Battle_Parry;
+    public struct BattleActions
+    {
+        private @Controls m_Wrapper;
+        public BattleActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Parry => m_Wrapper.m_Battle_Parry;
+        public InputActionMap Get() { return m_Wrapper.m_Battle; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(BattleActions set) { return set.Get(); }
+        public void SetCallbacks(IBattleActions instance)
+        {
+            if (m_Wrapper.m_BattleActionsCallbackInterface != null)
+            {
+                @Parry.started -= m_Wrapper.m_BattleActionsCallbackInterface.OnParry;
+                @Parry.performed -= m_Wrapper.m_BattleActionsCallbackInterface.OnParry;
+                @Parry.canceled -= m_Wrapper.m_BattleActionsCallbackInterface.OnParry;
+            }
+            m_Wrapper.m_BattleActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Parry.started += instance.OnParry;
+                @Parry.performed += instance.OnParry;
+                @Parry.canceled += instance.OnParry;
+            }
+        }
+    }
+    public BattleActions @Battle => new BattleActions(this);
     private int m_NewcontrolschemeSchemeIndex = -1;
     public InputControlScheme NewcontrolschemeScheme
     {
@@ -1276,5 +1350,9 @@ public class @Controls : IInputActionCollection, IDisposable
     {
         void OnEquipOrUse(InputAction.CallbackContext context);
         void OnCloseInventory(InputAction.CallbackContext context);
+    }
+    public interface IBattleActions
+    {
+        void OnParry(InputAction.CallbackContext context);
     }
 }

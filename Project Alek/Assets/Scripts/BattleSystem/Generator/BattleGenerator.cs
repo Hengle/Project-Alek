@@ -5,28 +5,30 @@ using UnityEngine.UI;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
 using MoreMountains.InventoryEngine;
-//using Input;
 using TMPro;
+using Random = UnityEngine.Random;
 
 namespace BattleSystem.Generator
 {
     public class BattleGenerator : MonoBehaviour
     {
-        [SerializeField] private BattleGeneratorDatabase battleGeneratorDatabase;
+        private BattleGeneratorDatabase database;
 
         private int offset;
         private int enemyOffset;
 
+        private void Awake() => database = GetComponent<BattleGeneratorDatabase>();
+        
         #region Setup
 
         public bool SetupBattle()
         {
             offset = PartyManager._instance.partyMembers.Count == 2? 1 : 0;
-            enemyOffset = battleGeneratorDatabase.enemies.Count == 2? 1 : 0;
+            enemyOffset = database.enemies.Count == 2? 1 : 0;
             
             var inventory = GameObject.Find("Main Inventory").GetComponent<Inventory>();
 
-            foreach (var item in battleGeneratorDatabase.inventoryItems)
+            foreach (var item in database.inventoryItems)
             {
                 inventory.AddItem(item, 1);
             }
@@ -61,12 +63,12 @@ namespace BattleSystem.Generator
         {
             var position = character.Unit.transform.position;
             var newPosition = new Vector3(position.x, position.y + 1.5f, position.z + 3);
-            var rotation = battleGeneratorDatabase.boPanel.battlePanel.transform.rotation;
+            var rotation = database.boPanel.battlePanel.transform.rotation;
             
-            character.battlePanel = Instantiate(battleGeneratorDatabase.boPanel.battlePanel, newPosition, rotation);
+            character.battlePanel = Instantiate(database.boPanel.battlePanel, newPosition, rotation);
             character.battlePanel.transform.SetParent(character.Unit.transform.parent, true);
             
-            character.battleOptionsPanel = Instantiate(battleGeneratorDatabase.boPanel);
+            character.battleOptionsPanel = Instantiate(database.boPanel);
             ((BattleOptionsPanel) character.battleOptionsPanel).character = character;
             
             var mainMenu = character.battlePanel.transform.Find("Battle Menu").transform.Find("Main Options").transform;
@@ -139,7 +141,7 @@ namespace BattleSystem.Generator
             var armorInventory = Instantiate(character.armorInventory, character.Unit.transform, true);
             armorInventory.name = character.armorInventory.name;
 
-            character.inventoryDisplay = battleGeneratorDatabase.inventoryCanvases[i];
+            character.inventoryDisplay = database.inventoryCanvases[i];
             
             var mainDisplay = character.inventoryDisplay.transform.Find("InventoryDisplay").GetComponent<InventoryDisplay>();
             mainDisplay.TargetInventoryName = $"{inventory.name}";
@@ -160,7 +162,7 @@ namespace BattleSystem.Generator
         private void SetupProfileBox(UnitBase character)
         {
             var parent = GameObject.FindGameObjectWithTag("Canvas").transform.Find("Profiles");
-            var profileBox = Instantiate(battleGeneratorDatabase.profileBox, parent, false);
+            var profileBox = Instantiate(database.profileBox, parent, false);
             profileBox.gameObject.GetComponent<ProfileBoxManager>().SetupProfileBox(character);
         }
 
@@ -170,7 +172,7 @@ namespace BattleSystem.Generator
 
         private void SpawnAndSetupThisMember(PartyMember character, int i)
         {
-            var memberGo = Instantiate(character.characterPrefab, battleGeneratorDatabase.characterSpawnPoints[i+offset].transform);
+            var memberGo = Instantiate(character.characterPrefab, database.characterSpawnPoints[i+offset].transform);
             memberGo.GetComponent<Unit>().Setup(character);
             
             var chooseTarget = character.Unit.gameObject.GetComponent<ChooseTarget>();
@@ -184,7 +186,7 @@ namespace BattleSystem.Generator
 
             memberGo.transform.localScale = character.scale;
             
-            var panel = battleGeneratorDatabase.characterPanels[i + offset];
+            var panel = database.characterPanels[i + offset];
             var statusBoxController = panel.transform.GetChild(panel.transform.childCount - 1).GetComponent<StatusEffectControllerUI>();
             
             panel.GetComponent<CharacterPanelController>().member = character;
@@ -193,8 +195,8 @@ namespace BattleSystem.Generator
             statusBoxController.member = character;
             statusBoxController.Initialize();
 
-            battleGeneratorDatabase.closeUpCameras[i + offset].SetActive(true);
-            battleGeneratorDatabase.criticalCameras[i + offset].SetActive(true);
+            database.closeUpCameras[i + offset].SetActive(true);
+            database.criticalCameras[i + offset].SetActive(true);
             
             BattleManager.MembersForThisBattle.Add(character);
         }
@@ -202,11 +204,11 @@ namespace BattleSystem.Generator
         private void SpawnAndSetupEnemyTeam()
         {
             var i = 0;
-            foreach (var clone in battleGeneratorDatabase.enemies.Select(Instantiate))
+            foreach (var clone in database.enemies.Select(Instantiate))
             {
                 clone.initiative.BaseValue = (int) Random.Range(clone.initiative.BaseValue - 2, clone.initiative.BaseValue + 2); // Temporary until i make a randomizer
                 
-                var enemyGo = Instantiate(clone.characterPrefab, battleGeneratorDatabase.enemySpawnPoints[i+enemyOffset].transform);
+                var enemyGo = Instantiate(clone.characterPrefab, database.enemySpawnPoints[i+enemyOffset].transform);
                 enemyGo.name = clone.name;
                 enemyGo.transform.localScale = clone.scale;
                 
@@ -226,8 +228,8 @@ namespace BattleSystem.Generator
                 var position = enemyGo.transform.position;
                 var newPosition = new Vector3(position.x, position.y + 1.5f, position.z);
 
-                var statusBox = Instantiate(battleGeneratorDatabase.enemyStatusBox, newPosition,
-                    battleGeneratorDatabase.enemyStatusBox.rotation);
+                var statusBox = Instantiate(database.enemyStatusBox, newPosition,
+                    database.enemyStatusBox.rotation);
                 
                 statusBox.transform.SetParent(clone.Unit.transform);
                 
@@ -240,8 +242,8 @@ namespace BattleSystem.Generator
                 
                 newPosition = new Vector3(position.x, position.y - 1.5f, position.z);
                 
-                var requirementBox = Instantiate(battleGeneratorDatabase.requirementsBox, newPosition,
-                    battleGeneratorDatabase.requirementsBox.rotation);
+                var requirementBox = Instantiate(database.requirementsBox, newPosition,
+                    database.requirementsBox.rotation);
                 
                 requirementBox.transform.SetParent(clone.Unit.transform);
 

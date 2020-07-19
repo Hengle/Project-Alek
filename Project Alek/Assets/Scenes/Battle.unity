@@ -2416,7 +2416,7 @@ MonoBehaviour:
     type: 3}
   m_PointAction: {fileID: 115998374818049254, guid: 60be2553078ae3a4b93c82d4499eb66b,
     type: 3}
-  m_MoveAction: {fileID: -7491701530474055952, guid: 60be2553078ae3a4b93c82d4499eb66b,
+  m_MoveAction: {fileID: 6998947656576237046, guid: 60be2553078ae3a4b93c82d4499eb66b,
     type: 3}
   m_SubmitAction: {fileID: -3144622182287432187, guid: 60be2553078ae3a4b93c82d4499eb66b,
     type: 3}
@@ -19708,6 +19708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618828660cdc4c048a96e85a472b78dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolCount: 10
   damagePool: []
   damagePrefab: {fileID: 8969152545699550996, guid: 550389b2b634b0f40a6d9f4ab65535e0,
     type: 3}
@@ -21927,7 +21928,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f55069b8636054bb78aed793df5e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleGeneratorDatabase: {fileID: 1849992121}
 --- !u!4 &1849992117
 Transform:
   m_ObjectHideFlags: 0
@@ -22117,9 +22117,9 @@ MonoBehaviour:
   - {fileID: 1604568445}
   - {fileID: 1549244034}
   enemies:
-  - {fileID: 11400000, guid: 1df9f50e46e40b9468aa47faa3e8d642, type: 2}
-  - {fileID: 11400000, guid: 168e2ee240bc6774a9b0a0910072d4e8, type: 2}
   - {fileID: 11400000, guid: d21b0091d32140842b56761a4ba8483a, type: 2}
+  - {fileID: 11400000, guid: 168e2ee240bc6774a9b0a0910072d4e8, type: 2}
+  - {fileID: 11400000, guid: 1df9f50e46e40b9468aa47faa3e8d642, type: 2}
   - {fileID: 11400000, guid: cedfc901c08aaf64db9d5d3d449ec512, type: 2}
   boPanel: {fileID: 11400000, guid: edd3f92f7919c58458f2e4f297327c4d, type: 2}
   enemyStatusBox: {fileID: 4792203347304205839, guid: d1b0d1817473ff14882a6febe1ab5156,

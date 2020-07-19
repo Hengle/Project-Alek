@@ -28,7 +28,7 @@ MonoBehaviour:
     - Name: _elementalResistances
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
-        ProjectAlek],[Characters.ElementalTypes.ElementalScaler, ProjectAlek]], mscorlib
+        ProjectAlek],[Characters.ElementalTypes.ElementalScalar, ProjectAlek]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.ElementalTypes.ElementalType,
@@ -60,7 +60,7 @@ MonoBehaviour:
     - Name: _elementalWeaknesses
       Entry: 7
       Data: 2|System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
-        ProjectAlek],[Characters.ElementalTypes.ElementalWeaknessScaler, ProjectAlek]],
+        ProjectAlek],[Characters.ElementalTypes.ElementalWeaknessScalar, ProjectAlek]],
         mscorlib
     - Name: comparer
       Entry: 9
@@ -175,28 +175,28 @@ MonoBehaviour:
   characterName: Fallen Angel
   characterPrefab: {fileID: 1109450531332189788, guid: 4c66f5057c296d34987d4b8965774b8f,
     type: 3}
-  level: 22
+  level: 4
   health:
-    BaseValue: 2340
+    BaseValue: 760
   strength:
-    BaseValue: 16
+    BaseValue: 6
   magic:
-    BaseValue: 21
+    BaseValue: 10
   accuracy:
-    BaseValue: 23
+    BaseValue: 14
   initiative:
-    BaseValue: 18
+    BaseValue: 8
   defense:
-    BaseValue: 13
-  resistance:
-    BaseValue: 24
-  criticalChance:
     BaseValue: 5
+  resistance:
+    BaseValue: 10
+  criticalChance:
+    BaseValue: 3
   description: what a shame...
-  weaponMight: 13
-  magicMight: 15
+  weaponMight: 3
+  magicMight: 11
   weaponAccuracy: 80
-  weaponCriticalChance: 2
+  weaponCriticalChance: 5
   abilities:
   - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
   - {fileID: 11400000, guid: e558d404ab0ced340bb9314e1e677569, type: 2}

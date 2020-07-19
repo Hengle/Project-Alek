@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 
@@ -7,14 +8,17 @@ namespace DamagePrefab
     public class DamagePrefabManager : MonoBehaviour
     {
         private static DamagePrefabManager instance;
-        
+
         private readonly List<TextMeshPro> damageTextList = new List<TextMeshPro>();
-        [SerializeField] private List<GameObject> damagePool = new List<GameObject>();
+        
+        [SerializeField] private int poolCount = 15;
+
+        [SerializeField] [ReadOnly]
+        private List<GameObject> damagePool = new List<GameObject>();
 
         [SerializeField] private GameObject damagePrefab;
         [SerializeField] private GameObject prefabParent;
-
-        // This may need to be refactored to account for multiple targets at the same time
+        
         [SerializeField] private Color damageTextColor;
         [SerializeField] private Color criticalTextColor;
 
@@ -28,7 +32,7 @@ namespace DamagePrefab
 
         private void Awake() => instance = this;
 
-        private void Start() => damagePool = GeneratePrefabs(15);
+        private void Start() => damagePool = GeneratePrefabs(poolCount);
 
         private List<GameObject> GeneratePrefabs(int amount)
         {

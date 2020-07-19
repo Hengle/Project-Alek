@@ -188,27 +188,27 @@ MonoBehaviour:
   characterName: Ugly Wizard
   characterPrefab: {fileID: 1109450531332189788, guid: 855eb21ea4a7ba14a850a0f6daae31c5,
     type: 3}
-  level: 21
+  level: 3
   health:
-    BaseValue: 2075
+    BaseValue: 725
   strength:
-    BaseValue: 11
+    BaseValue: 4
   magic:
-    BaseValue: 24
+    BaseValue: 11
   accuracy:
-    BaseValue: 20
+    BaseValue: 13
   initiative:
-    BaseValue: 17
+    BaseValue: 6
   defense:
-    BaseValue: 12
+    BaseValue: 7
   resistance:
-    BaseValue: 22
+    BaseValue: 12
   criticalChance:
     BaseValue: 4
   description: ewww
-  weaponMight: 7
-  magicMight: 18
-  weaponAccuracy: 90
+  weaponMight: 3
+  magicMight: 9
+  weaponAccuracy: 85
   weaponCriticalChance: 1
   abilities:
   - {fileID: 11400000, guid: e558d404ab0ced340bb9314e1e677569, type: 2}

@@ -172,28 +172,28 @@ MonoBehaviour:
   characterName: Hero Knight
   characterPrefab: {fileID: 1526218485019349028, guid: d31dfb895a5ac204485d636d12c3ffff,
     type: 3}
-  level: 20
+  level: 1
   health:
-    BaseValue: 2445
+    BaseValue: 660
   strength:
-    BaseValue: 19
+    BaseValue: 9
   magic:
-    BaseValue: 14
+    BaseValue: 6
   accuracy:
-    BaseValue: 19
+    BaseValue: 10
   initiative:
-    BaseValue: 17
+    BaseValue: 5
   defense:
-    BaseValue: 16
+    BaseValue: 10
   resistance:
-    BaseValue: 11
+    BaseValue: 5
   criticalChance:
     BaseValue: 3
   description: 'Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a
     hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! '
-  weaponMight: 17
-  magicMight: 6
-  weaponAccuracy: 75
+  weaponMight: 7
+  magicMight: 5
+  weaponAccuracy: 80
   weaponCriticalChance: 2
   abilities:
   - {fileID: 11400000, guid: 8697ec229a0734b4b9c69d6087505ba9, type: 2}

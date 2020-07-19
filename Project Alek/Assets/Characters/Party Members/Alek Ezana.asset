@@ -172,28 +172,28 @@ MonoBehaviour:
   characterName: Alek Ezana
   characterPrefab: {fileID: 1526218485019349028, guid: 38e223593cf5fd94cb9a317771507f77,
     type: 3}
-  level: 20
+  level: 1
   health:
-    BaseValue: 2310
+    BaseValue: 645
   strength:
-    BaseValue: 21
+    BaseValue: 11
   magic:
-    BaseValue: 18
+    BaseValue: 7
   accuracy:
-    BaseValue: 21
-  initiative:
-    BaseValue: 19
-  defense:
-    BaseValue: 15
-  resistance:
     BaseValue: 10
-  criticalChance:
+  initiative:
     BaseValue: 6
+  defense:
+    BaseValue: 9
+  resistance:
+    BaseValue: 5
+  criticalChance:
+    BaseValue: 3
   description: Bruh it is the one. The ONLY. The ONE and ONLY. The ONE and ONLY GOD
     among MEN. It is.... ya boi.... tha GAWD.... Alek.
-  weaponMight: 17
-  magicMight: 5
-  weaponAccuracy: 85
+  weaponMight: 9
+  magicMight: 2
+  weaponAccuracy: 75
   weaponCriticalChance: 3
   abilities:
   - {fileID: 11400000, guid: 5c5fa03193734104c98ec2f8d6543cfa, type: 2}

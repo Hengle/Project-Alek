@@ -206,6 +206,7 @@ namespace Characters
         {
             if (dmg != -1)
             {
+                if (Unit.parry) { dmg = (int) (dmg * 0.80f); Unit.parry = false; }
                 CurrentHP -= dmg;
                 if (elementalDmg != null) onElementalDamageReceived?.Invoke(elementalDmg);
             }
@@ -219,6 +220,7 @@ namespace Characters
             if (Unit.targetHasCrit) Unit.targetHasCrit = false;
 
             // Damage is set to -1 when it misses
+            // TODO: Add condition for parry to trigger parry animation, challenge event (which will stop attacker's animation)
             if (dmg == -1 && Unit.currentHP > 0) return;
             if (Unit.currentHP > 0) Unit.anim.SetTrigger(AnimationHandler.HurtTrigger);
             else Die();

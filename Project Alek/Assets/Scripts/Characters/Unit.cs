@@ -27,6 +27,7 @@ namespace Characters
         [HideInInspector] public bool isCrit;
         [HideInInspector] public bool isAbility;
         [HideInInspector] public bool attackerHasMissed;
+        public bool parry;
         
         [HideInInspector] public int commandActionOption;
         [HideInInspector] public int maxHealthRef;

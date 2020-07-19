@@ -175,28 +175,28 @@ MonoBehaviour:
   characterName: Skeleton
   characterPrefab: {fileID: 1109450531332189788, guid: 46c69567f6d4d924ca3cfc4c96675443,
     type: 3}
-  level: 24
+  level: 6
   health:
-    BaseValue: 2780
+    BaseValue: 835
   strength:
-    BaseValue: 22
+    BaseValue: 14
   magic:
-    BaseValue: 15
+    BaseValue: 6
   accuracy:
-    BaseValue: 22
+    BaseValue: 13
   initiative:
-    BaseValue: 19
+    BaseValue: 7
   defense:
-    BaseValue: 17
+    BaseValue: 10
   resistance:
-    BaseValue: 11
+    BaseValue: 5
   criticalChance:
-    BaseValue: 8
+    BaseValue: 7
   description: I mean, he's a...
-  weaponMight: 19
-  magicMight: 8
+  weaponMight: 15
+  magicMight: 3
   weaponAccuracy: 75
-  weaponCriticalChance: 3
+  weaponCriticalChance: 5
   abilities:
   - {fileID: 11400000, guid: 8697ec229a0734b4b9c69d6087505ba9, type: 2}
   maxAP: 6
