@@ -188,7 +188,7 @@ MonoBehaviour:
   resistance:
     BaseValue: 2
   criticalChance:
-    BaseValue: 2
+    BaseValue: 3
   description: This is a description for yah girl Leandra. She is boss and won't
     take anyone's crap. Uggghhh extra stuff to increase text count.
   weaponMight: 5

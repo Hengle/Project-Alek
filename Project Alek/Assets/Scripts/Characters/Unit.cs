@@ -23,12 +23,6 @@ namespace Characters
         [HideInInspector] public SpriteOutline outline;
         [HideInInspector] public Button button;
 
-        [HideInInspector] public bool targetHasCrit;
-        [HideInInspector] public bool isCrit;
-        [HideInInspector] public bool isAbility;
-        [HideInInspector] public bool attackerHasMissed;
-        public bool parry;
-        
         [HideInInspector] public int commandActionOption;
         [HideInInspector] public int maxHealthRef;
         [HideInInspector] public int currentAP;
@@ -63,6 +57,12 @@ namespace Characters
         [ReadOnly] public List<StatusEffect> statusEffects = new List<StatusEffect>();
         [ReadOnly] public List<UnitBase> multiHitTargets = new List<UnitBase>();
         [ReadOnly] public List<int> damageValueList = new List<int>();
+        
+        [ReadOnly] public bool targetHasCrit;
+        [ReadOnly] public bool isCrit;
+        [ReadOnly] public bool isAbility;
+        [ReadOnly] public bool attackerHasMissed;
+        [ReadOnly] public bool parry;
 
         #endregion
 

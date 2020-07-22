@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Linq;
 using Characters;
 using BattleSystem.Generator;
+using Characters.CharacterExtensions;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
 using MoreMountains.InventoryEngine;
@@ -112,8 +113,8 @@ namespace BattleSystem
             {
                 if (PartyOrEnemyTeamIsDead) break;
 
-                yield return Timing.WaitUntilDone(InflictStatus.OnThisUnit
-                    (character, RateOfInfliction.EveryTurn, 1, true));
+                yield return Timing.WaitUntilDone(character.InflictStatus
+                    (Rate.EveryTurn, 1, true));
 
                 if (PartyOrEnemyTeamIsDead || character.IsDead) break;
 
@@ -184,20 +185,17 @@ namespace BattleSystem
             
             character.CurrentAP -= character.Unit.actionCost;
 
-            yield return Timing.WaitUntilDone(InflictStatus.OnThisUnit
-                (character, RateOfInfliction.BeforeEveryAction, 1, true));
+            yield return Timing.WaitUntilDone(character.InflictStatus
+                (Rate.BeforeEveryAction, 1, true));
 
             if (!_canGiveCommand) _canGiveCommand = true;
-            else 
-            {
-                CharacterEvents.Trigger(CEventType.CharacterAttacking, character);
-                CharacterEvents.Trigger(CEventType.NewCommand, character);
-            }
+            else { CharacterEvents.Trigger(CEventType.CharacterAttacking, character);
+                CharacterEvents.Trigger(CEventType.NewCommand, character); }
 
             yield return Timing.WaitUntilFalse(() => _performingAction);
 
-            yield return Timing.WaitUntilDone(InflictStatus.OnThisUnit
-                (character, RateOfInfliction.AfterEveryAction, 1, true));
+            yield return Timing.WaitUntilDone(character.InflictStatus
+                (Rate.AfterEveryAction, 1, true));
 
             if (PartyOrEnemyTeamIsDead || character.IsDead) goto end_of_turn;
             
@@ -223,16 +221,16 @@ namespace BattleSystem
 
                 enemy.CurrentAP -= enemy.Unit.actionCost;
 
-                yield return Timing.WaitUntilDone(InflictStatus.OnThisUnit
-                    (enemy, RateOfInfliction.BeforeEveryAction, 1, true));
+                yield return Timing.WaitUntilDone(enemy.InflictStatus
+                    (Rate.BeforeEveryAction, 1, true));
 
                 if (!_canGiveCommand) _canGiveCommand = true;
                 else CharacterEvents.Trigger(CEventType.NewCommand, enemy);
 
                 yield return Timing.WaitUntilFalse(() => _performingAction);
 
-                yield return Timing.WaitUntilDone(InflictStatus.OnThisUnit
-                    (enemy, RateOfInfliction.AfterEveryAction, 1, true));
+                yield return Timing.WaitUntilDone(enemy.InflictStatus
+                    (Rate.AfterEveryAction, 1, true));
 
                 if (PartyOrEnemyTeamIsDead || enemy.IsDead) break;
 

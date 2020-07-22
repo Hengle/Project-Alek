@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Characters.StatusEffects;
 using MEC;
 
-namespace Characters.StatusEffects
+namespace Characters.CharacterExtensions
 {
-    public static class InflictStatus
+    public static class InflictStatusExtension
     {
         // TODO: Update so that if there are multiple BeforeEveryAction effects, it will break after the first one triggers
-        public static IEnumerator<float> OnThisUnit(UnitBase unitBase, RateOfInfliction rate, float delay, bool delayAfterInfliction)
+        public static IEnumerator<float> InflictStatus(this UnitBase unitBase, Rate rate, float delay, bool delayAfterInfliction)
         {
             if (unitBase.IsDead) yield break;
             
@@ -23,7 +24,7 @@ namespace Characters.StatusEffects
             }
         }
         
-        public static IEnumerator<float> OnTargetsOf(UnitBase attacker, RateOfInfliction rate, float delay, bool delayAfterInfliction)
+        public static IEnumerator<float> InflictOnTargets(this UnitBase attacker, Rate rate, float delay, bool delayAfterInfliction)
         {
             if (attacker.Unit.isAbility && attacker.Unit.currentAbility.isMultiTarget)
             {

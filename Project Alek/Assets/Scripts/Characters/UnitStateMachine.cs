@@ -25,10 +25,8 @@ namespace Characters
         {
             unitBase = unit;
             
-            for (var i = 0; i < objects.Count; i++)
-            {
-                checkmateRequirements.Add(new KeyValuePair<ScriptableObject, TransitionRequirements>(objects[i], requirements[i]));
-            }
+            for (var i = 0; i < objects.Count; i++) checkmateRequirements.Add
+                (new KeyValuePair<ScriptableObject, TransitionRequirements>(objects[i], requirements[i]));
             
             InitializeStack();
 
@@ -129,9 +127,7 @@ namespace Characters
             if (eventType._battleEventType != BattleEventType.NewRound) return;
             if (currentState != UnitStates.Checkmate) return;
             
-            // Prevent unit from being checkmated again
             states.Clear();
-            
             unitBase.onElementalDamageReceived -= EvaluateState;
             unitBase.onStatusEffectReceived -= EvaluateState;
             unitBase.onStatusEffectRemoved -= EvaluateStateOnRemoval;

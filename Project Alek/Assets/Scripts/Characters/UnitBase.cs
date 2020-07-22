@@ -117,7 +117,7 @@ namespace Characters
                     return Color.yellow;
                 }
                 Unit.outline.color = Color.green;
-                return Color.green;;
+                return Color.green;
             }
         }
 

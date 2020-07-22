@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace Characters.StatusEffects
 {
     public enum EffectType { DamageOverTime, Inhibiting, AI, StatChange }
-    public enum RateOfInfliction { EveryTurn, BeforeEveryAction, AfterEveryAction, AfterAttacked, Once }
+    public enum Rate { EveryTurn, BeforeEveryAction, AfterEveryAction, AfterAttacked, Once }
     public enum InflictionChanceModifier { Normal = 25, Moderate = 50, Significant = 75, Major = 100 }
     public abstract class StatusEffect : ScriptableObject
     {
@@ -27,7 +27,7 @@ namespace Characters.StatusEffects
 
         [HideIf(nameof(effectType), EffectType.StatChange)] [HideIf(nameof(name), "Susceptible")]
         [Space, Tooltip("How often the effect is inflicted"), VerticalGroup("Icon/Info"), EnumPaging]
-        public List<RateOfInfliction> rateOfInfliction = new List<RateOfInfliction>();
+        public List<Rate> rateOfInfliction = new List<Rate>();
         
         [HideIf(nameof(effectType), EffectType.StatChange)] [HideIf(nameof(name), "Susceptible")] 
         [Space, VerticalGroup("Icon/Info"), ColorPalette, HideLabel] 

@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Linq;
-using BattleSystem;
 using JetBrains.Annotations;
-using UnityEngine;
-using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
+using BattleSystem;
 using Characters.ElementalTypes;
 
 namespace Characters.Animations
@@ -14,10 +13,12 @@ namespace Characters.Animations
         private Unit unit;
         private UnitBase unitBase;
 
+        private bool windowOpen;
+        private bool missedWindow;
+        private bool hitWindow;
+
         private ElementalType ElementalCondition => unit != null && unit.isAbility && unit.currentAbility.hasElemental?
             unit.currentAbility.elementalType : null;
-
-        private bool windowOpen;
 
         private void Awake()
         {
@@ -25,23 +26,32 @@ namespace Characters.Animations
             GameEventsManager.AddListener(this);
         }
         
-        private void OnEnable() => BattleInput._controls.Battle.Parry.performed += OnSuccessfulParry;
-        
-        private void OnDisable() => BattleInput._controls.Battle.Parry.performed -= OnSuccessfulParry;
+        private void OnEnable() => BattleInput._controls.Battle.Parry.performed += ctx => OnParry();
 
-        private void OnSuccessfulParry(InputAction.CallbackContext callbackContext)
+        private void OnParry()
         {
-            if (!windowOpen) return;
+            if (missedWindow || hitWindow) return;
+            if (!windowOpen && !unit.animationHandler.isAttacking) return;
+            if (!windowOpen && unit.animationHandler.isAttacking)
+            {
+                Logger.Log("You missed the parry window...");
+                missedWindow = true;
+                return;
+            }
 
             if (unit.currentAbility.isMultiTarget)
             {
                 unit.multiHitTargets.ForEach(t => t.Unit.parry = true);
+                hitWindow = true;
                 Logger.Log("The whole party hit the parry window!");
                 return;
             }
             
             unit.currentTarget.Unit.parry = true;
+            hitWindow = true;
+            windowOpen = false;
             Logger.Log("Hit the parry window!");
+            
         }
 
         [UsedImplicitly] private void SetupParryWindow() => windowOpen = true;
@@ -88,7 +98,7 @@ namespace Characters.Animations
         [UsedImplicitly] private void TargetTakeDamage()
         {
             windowOpen = false;
-            
+
             if (!unit.isAbility || !unit.currentAbility.isMultiTarget) 
             {
                 unit.currentTarget.TakeDamage(unit.currentDamage, ElementalCondition);
@@ -100,6 +110,8 @@ namespace Characters.Animations
                 (unit.damageValueList[unit.multiHitTargets.IndexOf(t)], ElementalCondition));
 
             unit.isCrit = false;
+            hitWindow = false;
+            missedWindow = false;
         }
 
         [UsedImplicitly] private void RecalculateDamage() 

@@ -5,6 +5,7 @@ using UnityEngine;
 using Characters;
 using Characters.Abilities;
 using Characters.Animations;
+using Characters.CharacterExtensions;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
 using MEC;
@@ -117,8 +118,8 @@ namespace BattleSystem
             TimeManager._slowTime = false;
             TimeManager._slowTimeCrit = false;
 
-            yield return Timing.WaitUntilDone(InflictStatus.OnTargetsOf
-                (unitBase, RateOfInfliction.AfterAttacked, 0.5f, false));
+            yield return Timing.WaitUntilDone(unitBase.InflictOnTargets
+                (Rate.AfterAttacked, 0.5f, false));
 
             // TODO: Move this out of this function
             unit.multiHitTargets = new List<UnitBase>();
