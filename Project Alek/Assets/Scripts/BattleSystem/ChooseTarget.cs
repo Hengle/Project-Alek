@@ -50,8 +50,7 @@ namespace BattleSystem
         private static void AddMultiHitCommand() 
         {
             character.Unit.multiHitTargets = new List<UnitBase>();
-            character.Unit.damageValueList = new List<int>();
-            
+
             switch (_targetOptions)
             {
                 case 0: foreach (var enemy in BattleManager.EnemiesForThisBattle)

@@ -179,7 +179,7 @@ namespace BattleSystem
             isOpen = false;
         }
 
-        private void OnProfileBoxButton(InputAction.CallbackContext callbackContext)
+        private void OnProfileBoxButton()
         {
             if (!BattleInput._canOpenBox) return;
             if (!EventSystem.current.currentSelectedGameObject.TryGetComponent(out Unit unit)) return;
@@ -189,8 +189,6 @@ namespace BattleSystem
             else CloseProfileBox();
         }
 
-        private void OnEnable() => BattleInput._controls.Menu.TopButton.performed += OnProfileBoxButton;
-
-        private void OnDisable() => BattleInput._controls.Menu.TopButton.performed -= OnProfileBoxButton;
+        private void OnEnable() => BattleInput._controls.Menu.TopButton.performed += ctx => OnProfileBoxButton();
     }
 }

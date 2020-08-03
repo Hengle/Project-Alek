@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4760f1c8fd2d6214986da2731bc0ab7b, type: 3}
-  m_Name: Hero Knight
+  m_Name: Elias Adwin
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -169,8 +169,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: f2ea487f62fd65944b6389c00e56eb6b, type: 3}
   scale: {x: 50, y: 50, z: 0}
   id: 0
-  characterName: Hero Knight
-  characterPrefab: {fileID: 1526218485019349028, guid: d31dfb895a5ac204485d636d12c3ffff,
+  characterName: Elias Adwin
+  characterPrefab: {fileID: 1526218485019349028, guid: 26eeaf0931e2c7848aecbf4da262a084,
     type: 3}
   level: 1
   health:
@@ -189,8 +189,7 @@ MonoBehaviour:
     BaseValue: 5
   criticalChance:
     BaseValue: 3
-  description: 'Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a
-    hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! Hes a hero! '
+  description: This is Elias. He is an artist. That is all
   weaponMight: 7
   magicMight: 5
   weaponAccuracy: 80

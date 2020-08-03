@@ -8,6 +8,7 @@ using Characters.ElementalTypes;
 
 namespace Characters.Animations
 {
+    // DO NOT CHANGE THE NAMES OF ANY ANIMATOR FUNCTIONS UNLESS YOU WANT TO MANUALLY UPDATE EVERY ANIMATION EVENT
     public class UnitAnimatorFunctions : MonoBehaviour, IGameEventListener<CharacterEvents>
     {
         private Unit unit;
@@ -32,17 +33,16 @@ namespace Characters.Animations
         {
             if (missedWindow || hitWindow) return;
             if (!windowOpen && !unit.animationHandler.isAttacking) return;
-            if (!windowOpen && unit.animationHandler.isAttacking)
-            {
-                Logger.Log("You missed the parry window...");
+            if (!windowOpen && unit.animationHandler.isAttacking) {
                 missedWindow = true;
+                Logger.Log("You missed the parry window...");
                 return;
             }
 
             if (unit.currentAbility.isMultiTarget)
             {
-                unit.multiHitTargets.ForEach(t => t.Unit.parry = true);
                 hitWindow = true;
+                unit.multiHitTargets.ForEach(t => t.Unit.parry = true);
                 Logger.Log("The whole party hit the parry window!");
                 return;
             }
@@ -53,8 +53,8 @@ namespace Characters.Animations
             Logger.Log("Hit the parry window!");
             
         }
-
-        [UsedImplicitly] private void SetupParryWindow() => windowOpen = true;
+        
+        [UsedImplicitly] private void OpenParryWindow() => windowOpen = true;
 
         [UsedImplicitly] private void TryToInflictStatusEffect()
         {

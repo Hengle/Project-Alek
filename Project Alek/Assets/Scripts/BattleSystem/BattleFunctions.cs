@@ -120,10 +120,6 @@ namespace BattleSystem
 
             yield return Timing.WaitUntilDone(unitBase.InflictOnTargets
                 (Rate.AfterAttacked, 0.5f, false));
-
-            // TODO: Move this out of this function
-            unit.multiHitTargets = new List<UnitBase>();
-            unit.damageValueList = new List<int>();
         }
         
         #endregion
@@ -143,8 +139,7 @@ namespace BattleSystem
 
             while (parent.position != targetPosition)
             {
-                parent.position = Vector3.MoveTowards
-                    (parent.position, targetPosition,
+                parent.position = Vector3.MoveTowards(parent.position, targetPosition, 
                     TimeManager._moveSpeed * Time.deltaTime);
                 
                 yield return Timing.WaitForOneFrame;
@@ -161,8 +156,7 @@ namespace BattleSystem
             
             while (parent.position != originPosition)
             {
-                parent.position = Vector3.MoveTowards
-                    (parent.position, originPosition,
+                parent.position = Vector3.MoveTowards(parent.position, originPosition,
                     TimeManager._moveSpeed * Time.deltaTime);
                 
                 yield return Timing.WaitForOneFrame;
