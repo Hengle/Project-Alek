@@ -23,7 +23,7 @@ MonoBehaviour:
   description: Water bullet...
   hasElemental: 1
   elementalType: {fileID: 11400000, guid: 366775002164acb45983c6014a20dd29, type: 2}
-  elementalScaler: 75
+  elementalScalar: 50
   hasStatusEffect: 0
   statusEffects: []
   chanceOfInfliction: 0

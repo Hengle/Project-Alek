@@ -23,7 +23,7 @@ MonoBehaviour:
   description: Whoosh!
   hasElemental: 1
   elementalType: {fileID: 11400000, guid: 5b7dd86029ea2ce49beaee4e4d702b94, type: 2}
-  elementalScaler: 75
+  elementalScalar: 50
   hasStatusEffect: 0
   statusEffects: []
   chanceOfInfliction: 0

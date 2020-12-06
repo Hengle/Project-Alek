@@ -23,7 +23,7 @@ MonoBehaviour:
   description: A blow so hard it might put the enemy into shock!
   hasElemental: 1
   elementalType: {fileID: 11400000, guid: c39d538e0733abc409ae3ae8b371cbf4, type: 2}
-  elementalScaler: 100
+  elementalScalar: 25
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: 856a4a808bf1c3d47b06852f07eb68bc, type: 2}

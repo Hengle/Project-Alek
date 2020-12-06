@@ -23,7 +23,7 @@ MonoBehaviour:
   description: Electric bullet...
   hasElemental: 1
   elementalType: {fileID: 11400000, guid: c39d538e0733abc409ae3ae8b371cbf4, type: 2}
-  elementalScaler: 50
+  elementalScalar: 50
   hasStatusEffect: 0
   statusEffects: []
   chanceOfInfliction: 0

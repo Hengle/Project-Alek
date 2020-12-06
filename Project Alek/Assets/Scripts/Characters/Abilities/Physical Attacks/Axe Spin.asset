@@ -17,13 +17,13 @@ MonoBehaviour:
   targetOptions: 0
   icon: {fileID: 21300000, guid: df306da214fdd3d4f8a67768c21a380e, type: 3}
   actionCost: 3
-  damageMultiplier: 1
+  damageMultiplier: 0.7
   attackState: 2
   isMultiTarget: 0
-  description: Attack twice at 75% strength
+  description: Attack twice at 70% strength
   hasElemental: 0
   elementalType: {fileID: 0}
-  elementalScaler: 0
+  elementalScalar: 0
   hasStatusEffect: 0
   statusEffects: []
   chanceOfInfliction: 0
