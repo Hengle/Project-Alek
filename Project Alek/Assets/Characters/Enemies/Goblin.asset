@@ -18,6 +18,7 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 366775002164acb45983c6014a20dd29, type: 2}
     - {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
+    - {fileID: 11400000, guid: c39d538e0733abc409ae3ae8b371cbf4, type: 2}
     - {fileID: 11400000, guid: 856a4a808bf1c3d47b06852f07eb68bc, type: 2}
     - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
     - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
@@ -68,7 +69,7 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 
@@ -78,6 +79,18 @@ MonoBehaviour:
     - Name: $v
       Entry: 3
       Data: 175
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 2
+    - Name: $v
+      Entry: 3
+      Data: 150
     - Name: 
       Entry: 8
       Data: 
@@ -107,7 +120,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 10
-      Data: 2
+      Data: 3
     - Name: $v
       Entry: 3
       Data: 75
@@ -136,7 +149,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 10
-      Data: 3
+      Data: 4
     - Name: $v
       Entry: 3
       Data: 75
@@ -148,7 +161,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 10
-      Data: 4
+      Data: 5
     - Name: $v
       Entry: 3
       Data: 50
@@ -170,6 +183,9 @@ MonoBehaviour:
     - Name: onNewState
       Entry: 6
       Data: 
+    - Name: onShieldValueChanged
+      Entry: 6
+      Data: 
     - Name: onElementalDamageReceived
       Entry: 6
       Data: 
@@ -177,9 +193,6 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: onStatusEffectRemoved
-      Entry: 6
-      Data: 
-    - Name: stateMachine
       Entry: 6
       Data: 
   icon: {fileID: 0}
@@ -214,5 +227,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}
   - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
   maxAP: 6
-  checkmateRequirements: []
-  transitionRequirements: 
+  shieldCount: 2

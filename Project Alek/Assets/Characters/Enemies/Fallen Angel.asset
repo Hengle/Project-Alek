@@ -157,6 +157,9 @@ MonoBehaviour:
     - Name: onNewState
       Entry: 6
       Data: 
+    - Name: onShieldValueChanged
+      Entry: 6
+      Data: 
     - Name: onElementalDamageReceived
       Entry: 6
       Data: 
@@ -164,9 +167,6 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: onStatusEffectRemoved
-      Entry: 6
-      Data: 
-    - Name: stateMachine
       Entry: 6
       Data: 
   icon: {fileID: 0}
@@ -201,8 +201,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
   - {fileID: 11400000, guid: e558d404ab0ced340bb9314e1e677569, type: 2}
   maxAP: 6
-  checkmateRequirements:
-  - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
-  - {fileID: 11400000, guid: 69edb0df81ead1c4fb7df7bfa4cd9381, type: 2}
-  - {fileID: 11400000, guid: 5b7dd86029ea2ce49beaee4e4d702b94, type: 2}
-  transitionRequirements: 000000000000000001000000
+  shieldCount: 2

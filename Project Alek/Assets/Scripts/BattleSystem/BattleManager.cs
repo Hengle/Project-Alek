@@ -210,6 +210,7 @@ namespace BattleSystem
         private static IEnumerator<float> ThisEnemyTurn(Enemy enemy)
         {
             state = BattleState.EnemyTurn;
+            CharacterEvents.Trigger(CEventType.EnemyTurn, enemy);
             enemy.ResetAP();
 
             while (enemy.CurrentAP > 0)

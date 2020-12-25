@@ -4,6 +4,7 @@ using UnityEngine;
 public enum CEventType
 {
         CharacterTurn,
+        EnemyTurn,
         ChoosingTarget,
         EndOfTurn,
         CharacterAttacking,

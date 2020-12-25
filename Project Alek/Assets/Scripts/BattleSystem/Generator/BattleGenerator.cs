@@ -232,8 +232,7 @@ namespace BattleSystem.Generator
                 statusBoxController.member = clone;
                 statusBoxController.Initialize();
 
-                if (clone.checkmateRequirements.Count > 0 && clone.ValidateLists()) clone.stateMachine = new UnitStateMachine
-                    (clone, clone.checkmateRequirements, clone.transitionRequirements);
+                clone.stateMachine = new UnitStateMachine(clone, clone.shieldCount);
                 
                 newPosition = new Vector3(position.x, position.y - 1.5f, position.z);
                 
@@ -242,9 +241,9 @@ namespace BattleSystem.Generator
                 
                 requirementBox.transform.SetParent(clone.Unit.transform);
 
-                var requirementBoxController = requirementBox.GetComponentInChildren<RequirementBoxControllerUI>();
-                requirementBoxController.enemy = clone;
-                requirementBoxController.Initialize();
+                // var requirementBoxController = requirementBox.GetComponentInChildren<RequirementBoxControllerUI>();
+                // requirementBoxController.enemy = clone;
+                // requirementBoxController.Initialize();
 
                 BattleManager.EnemiesForThisBattle.Add(clone);
                 i++;

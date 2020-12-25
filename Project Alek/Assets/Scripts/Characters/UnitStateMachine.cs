@@ -1,66 +1,62 @@
-﻿using System.Collections.Generic;
-using Characters.ElementalTypes;
+﻿using Characters.ElementalTypes;
 using Characters.StatusEffects;
-using UnityEngine;
 
 namespace Characters
 {
-    public enum UnitStates { Normal, Susceptible, Intermediate, Checkmate }
-    public enum TransitionRequirements { StatusEffect, ElementalDamage }
-    public class UnitStateMachine : IGameEventListener<BattleEvents>
+    public enum UnitStates { Normal, Susceptible, Weakened, Checkmate }
+    public class UnitStateMachine : IGameEventListener<BattleEvents>, IGameEventListener<CharacterEvents>
     {
-        private int requirementIndex;
+        private readonly int maxShieldCount;
+        private int currentShieldCount;
+
+        // Weakened state resets once a new round passes and then at the start of the enemy's turn
+        private bool newRoundCondition;
+        private bool enemyTurnCondition;
         
-        private TransitionRequirements currentRequirement;
         private UnitStates currentState;
         
         private readonly UnitBase unitBase;
 
-        private readonly List<KeyValuePair<ScriptableObject, TransitionRequirements>> checkmateRequirements =
-            new List<KeyValuePair<ScriptableObject, TransitionRequirements>>();
-
-        private readonly Stack<UnitStates> states = new Stack<UnitStates>();
-
-        public UnitStateMachine(UnitBase unit, IReadOnlyList<ScriptableObject> objects, IReadOnlyList<TransitionRequirements> requirements)
+        public UnitStateMachine(UnitBase unit, int count)
         {
             unitBase = unit;
-            
-            for (var i = 0; i < objects.Count; i++) checkmateRequirements.Add
-                (new KeyValuePair<ScriptableObject, TransitionRequirements>(objects[i], requirements[i]));
-            
-            InitializeStack();
+            maxShieldCount = count;
+            currentShieldCount = count;
+
+            currentState = UnitStates.Normal;
+            unitBase.Unit.currentState = currentState;
 
             unitBase.onElementalDamageReceived += EvaluateState;
             unitBase.onStatusEffectReceived += EvaluateState;
             unitBase.onStatusEffectRemoved += EvaluateStateOnRemoval;
             
-            GameEventsManager.AddListener(this);
+            GameEventsManager.AddListener<BattleEvents>(this);
+            GameEventsManager.AddListener<CharacterEvents>(this);
         }
 
-        private void InitializeStack()
+        private void Reset()
         {
-            states.Push(UnitStates.Checkmate);
-            
-            for (var i = 0; i < checkmateRequirements.Count; i++)
-                states.Push(UnitStates.Intermediate);
-            
-            states.Push(UnitStates.Susceptible);
-            states.Push(UnitStates.Normal);
-            
-            currentState = states.Pop();
+            currentState = UnitStates.Normal;
             unitBase.Unit.currentState = currentState;
 
-            requirementIndex = 0;
-            currentRequirement = checkmateRequirements[requirementIndex].Value;
+            currentShieldCount = maxShieldCount;
+            newRoundCondition = false;
+            enemyTurnCondition = false;
+            
+            Logger.Log($"{unitBase.characterName}'s shield has been reset");
         }
-
+        
         private void EvaluateStateOnRemoval(StatusEffect effect)
         {
-            if (currentState != UnitStates.Susceptible) return;
-            if (effect as Susceptible == null) return;
-            
-            states.Clear();
-            InitializeStack();
+            if (currentState == UnitStates.Susceptible)
+            {
+                if (effect as Susceptible == null) return;
+                Reset();
+            }
+
+            if (currentState != UnitStates.Checkmate) return;
+            if (effect as Checkmate == null) return;
+            Reset();
         }
         
         private void EvaluateState(StatusEffect effect)
@@ -70,71 +66,75 @@ namespace Characters
                 case UnitStates.Checkmate: return;
                 
                 case UnitStates.Normal when effect as Susceptible != null:
-                    currentState = states.Pop();
-                    unitBase.onNewState?.Invoke(currentState);
+                    currentState = UnitStates.Susceptible;
                     unitBase.Unit.currentState = currentState;
+                    unitBase.onNewState?.Invoke(currentState);
+                    return;
+                
+                case UnitStates.Weakened when effect as Checkmate != null:
+                    currentState = UnitStates.Checkmate;
+                    unitBase.Unit.currentState = currentState;
+                    unitBase.Unit.status = Status.UnableToPerformAction;
+                    unitBase.onNewState?.Invoke(currentState);
+                    Logger.Log($"{unitBase.characterName} is in checkmate!");
                     return;
                 
                 case UnitStates.Normal: return;
             }
-            
-            if (currentRequirement != TransitionRequirements.StatusEffect) return;
-
-            var tryGetEffect = checkmateRequirements[requirementIndex].Key as StatusEffect;
-
-            if (tryGetEffect != null && tryGetEffect == effect) RequirementMet();
         }
-
+        
         private void EvaluateState(ElementalType elementalType)
         {
-            if (currentState == UnitStates.Checkmate || currentState == UnitStates.Normal) return;
-            if (currentRequirement != TransitionRequirements.ElementalDamage) return;
-            
-            var tryGetElement = checkmateRequirements[requirementIndex].Key as ElementalType;
+            if (currentState == UnitStates.Checkmate) return;
 
-            if (tryGetElement != null && tryGetElement == elementalType) RequirementMet();
+            var tryGetElement = unitBase._elementalWeaknesses.ContainsKey(elementalType);
+            if (tryGetElement) EvaluateShield();
         }
 
-        private void RequirementMet()
+        // This is where the enemy's shield will be evaluated and lowered
+        private void EvaluateShield()
         {
-            currentState = states.Pop();
+            if (currentState == UnitStates.Weakened || currentState == UnitStates.Checkmate) return;
 
-            Logger.Log($"Requirement met for {unitBase.characterName}! Stack count: {states.Count}");
+            currentShieldCount -= 1;
+            unitBase.onShieldValueChanged?.Invoke(currentShieldCount);
 
-            if (states.Peek() != UnitStates.Checkmate)
-            {
-                requirementIndex++;
-                currentRequirement = checkmateRequirements[requirementIndex].Value;
-                
-                unitBase.Unit.currentState = currentState;
-                unitBase.onNewState?.Invoke(currentState);
-                return;
-            }
+            Logger.Log($"{unitBase.characterName}'s shield has been lowered! Shield count: {currentShieldCount}");
+
+            if (currentShieldCount > 0) return;
             
-            currentState = states.Pop();
+            Logger.Log($"{unitBase.characterName}'s shield has been broken!");
+
+            currentState = UnitStates.Weakened;
             unitBase.Unit.currentState = currentState;
             unitBase.onNewState?.Invoke(currentState);
-            unitBase.Unit.status = Status.UnableToPerformAction;
-            
-            var checkmate = ScriptableObject.CreateInstance<Checkmate>();
-            checkmate.name = "Checkmate";
-            checkmate.OnAdded(unitBase);
-            unitBase.Unit.statusEffects.Add(checkmate);
-        }
 
+            // var checkmate = ScriptableObject.CreateInstance<Checkmate>();
+            // checkmate.name = "Checkmate";
+            // checkmate.OnAdded(unitBase);
+            // unitBase.Unit.statusEffects.Add(checkmate);
+        }
+        
         public void OnGameEvent(BattleEvents eventType)
         {
-            if (eventType._battleEventType != BattleEventType.NewRound) return;
-            if (currentState != UnitStates.Checkmate) return;
-            
-            states.Clear();
-            unitBase.onElementalDamageReceived -= EvaluateState;
-            unitBase.onStatusEffectReceived -= EvaluateState;
-            unitBase.onStatusEffectRemoved -= EvaluateStateOnRemoval;
-            
-            GameEventsManager.RemoveListener(this);
+            if (eventType._battleEventType == BattleEventType.NewRound)
+            {
+                if (currentState == UnitStates.Weakened) newRoundCondition = true;
+            }
 
-            unitBase.Unit.currentState = UnitStates.Normal;
+            if (currentState != UnitStates.Weakened) return;
+            if (newRoundCondition && enemyTurnCondition) Reset();
+        }
+
+        public void OnGameEvent(CharacterEvents eventType)
+        {
+            if (eventType._eventType == CEventType.EnemyTurn)
+            {
+                if (currentState == UnitStates.Weakened) enemyTurnCondition = true;
+            }
+            
+            if (currentState != UnitStates.Weakened) return;
+            if (newRoundCondition && enemyTurnCondition) Reset();
         }
     }
 }

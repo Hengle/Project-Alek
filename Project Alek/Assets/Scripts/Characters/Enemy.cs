@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using Characters.ElementalTypes;
 using Characters.PartyMembers;
-using Characters.StatusEffects;
-using Sirenix.OdinInspector;
 using Random = UnityEngine.Random;
 
 namespace Characters
@@ -14,15 +11,7 @@ namespace Characters
     {
         [HideInInspector] public UnitStateMachine stateMachine;
 
-        [TabGroup("Tabs","Checkmate Requirements")]
-        [FoldoutGroup("Tabs/Checkmate Requirements/Requirements")]
-        [HorizontalGroup("Tabs/Checkmate Requirements/Requirements/Requirement Lists")]
-        public List<ScriptableObject> checkmateRequirements = new List<ScriptableObject>();
-        
-        [TabGroup("Tabs","Checkmate Requirements")]
-        [FoldoutGroup("Tabs/Checkmate Requirements/Requirements")]
-        [HorizontalGroup("Tabs/Checkmate Requirements/Requirements/Requirement Lists")]
-        public List<TransitionRequirements> transitionRequirements = new List<TransitionRequirements>();
+        public int shieldCount = 1;
 
         public int CurrentAP 
         {
@@ -31,44 +20,6 @@ namespace Characters
         }
 
         private void Awake() => id = CharacterType.Enemy;
-
-        [TabGroup("Tabs","Checkmate Requirements")]
-        [FoldoutGroup("Tabs/Checkmate Requirements/Requirements")]
-        [Button] public bool ValidateLists()
-        {
-            if (checkmateRequirements.Count != transitionRequirements.Count)
-            {
-                Debug.LogError("Requirement lists count do not match!");
-                return false;
-            }
-
-            for (var i = 0; i < checkmateRequirements.Count; i++)
-            {
-                var tryGetStatus = checkmateRequirements[i] as StatusEffect;
-                var tryGetElement = checkmateRequirements[i] as ElementalType;
-
-                if (tryGetStatus != null && transitionRequirements[i] != TransitionRequirements.StatusEffect)
-                {
-                    Debug.LogError($"Requirement lists do not match! index: {i}");
-                    return false;
-                }
-                
-                if (tryGetElement != null && transitionRequirements[i] != TransitionRequirements.ElementalDamage)
-                {
-                    Debug.LogError($"Requirement lists do not match! index: {i}");
-                    return false;
-                }
-
-                if (tryGetStatus == null && tryGetElement == null)
-                {
-                    Debug.LogError("List contains object that isn't of type StatusEffect or ElementalType");
-                    return false;
-                }
-            }
-            
-            if (!Application.isPlaying) Debug.Log("No Errors in Requirements Lists");
-            return true;
-        }
 
         public bool SetAI(List<PartyMember> targets)
         {

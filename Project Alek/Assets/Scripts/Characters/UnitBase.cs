@@ -128,6 +128,7 @@ namespace Characters
         [HideInInspector] public Action<UnitBase> onDeath;
         [HideInInspector] public Action onHpValueChanged;
         [HideInInspector] public Action<UnitStates> onNewState;
+        [HideInInspector] public Action<int> onShieldValueChanged;
         [HideInInspector] public Action<ElementalType> onElementalDamageReceived;
         [HideInInspector] public Action<StatusEffect> onStatusEffectReceived;
         [HideInInspector] public Action<StatusEffect> onStatusEffectRemoved;
@@ -204,7 +205,8 @@ namespace Characters
         {
             if (dmg != -1)
             {
-                if (Unit.parry) { dmg = (int) (dmg * 0.80f); Unit.parry = false; }
+                // TODO: Make the parry damage reduction a variable that can be accessed from inspector
+                if (Unit.parry) { dmg = (int) (dmg * 0.90f); Unit.parry = false; }
                 CurrentHP -= dmg;
                 if (elementalDmg != null) onElementalDamageReceived?.Invoke(elementalDmg);
             }
