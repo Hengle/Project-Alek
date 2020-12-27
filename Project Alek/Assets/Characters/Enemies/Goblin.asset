@@ -195,6 +195,9 @@ MonoBehaviour:
     - Name: onStatusEffectRemoved
       Entry: 6
       Data: 
+    - Name: stateMachine
+      Entry: 6
+      Data: 
   icon: {fileID: 0}
   scale: {x: 50, y: 50, z: 1}
   id: 1
@@ -205,7 +208,7 @@ MonoBehaviour:
   health:
     BaseValue: 720
   strength:
-    BaseValue: 11
+    BaseValue: 8
   magic:
     BaseValue: 4
   accuracy:

@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3083832404750006354}
   - component: {fileID: 2263040554003969802}
   - component: {fileID: 4282789488221277996}
+  - component: {fileID: 9146564575788554301}
   m_Layer: 0
   m_Name: Elias Adwin
   m_TagString: Untagged
@@ -153,6 +154,8 @@ MonoBehaviour:
   isAbility: 0
   attackerHasMissed: 0
   parry: 0
+  timedAttack: 0
+  parent: {fileID: 0}
 --- !u!114 &4243244753647906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,5 +300,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a04daac25b1f4aa1ab3aa0f2c261a0a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9146564575788554301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526218485019349028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11194286ad7d7804f97d15da4e8a42fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

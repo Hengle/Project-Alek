@@ -15,7 +15,7 @@ namespace Characters
     public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler, IGameEventListener<CharacterEvents>
     {
         #region HideInInspector
-
+        
         [HideInInspector] public UnitBase currentTarget;
         [HideInInspector] public Ability currentAbility;
         [HideInInspector] public Animator anim;
@@ -63,15 +63,21 @@ namespace Characters
         [ReadOnly] public bool isAbility;
         [ReadOnly] public bool attackerHasMissed;
         [ReadOnly] public bool parry;
+        [ReadOnly] public bool timedAttack;
 
         #endregion
 
         #region OtherFieldsAndProperies
         
+        [HideInInspector] public Action<bool> onTimedAttack;
+        [HideInInspector] public Action<bool> onTimedDefense;
+        [HideInInspector] public Action<int, bool> onDmgValueChanged;
+        [HideInInspector] public Action<int, bool> onDefValueChanged;
+        
         public Action onSelect;
         public Action onDeselect;
 
-        private UnitBase parent;
+        public UnitBase parent;
         
         #endregion
 

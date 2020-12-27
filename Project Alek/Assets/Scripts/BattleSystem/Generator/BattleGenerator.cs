@@ -23,9 +23,14 @@ namespace BattleSystem.Generator
 
         public void SetupBattle()
         {
-            offset = PartyManager._instance.partyMembers.Count == 2? 1 : 0;
-            enemyOffset = database.enemies.Count == 2? 1 : 0;
+            if (PartyManager._instance.partyMembers.Count == 1) offset = 2;
+            else if (PartyManager._instance.partyMembers.Count == 4) offset = 0;
+            else offset = 1;
             
+            if (database.enemies.Count == 1) enemyOffset = 2;
+            else if (database.enemies.Count == 4) enemyOffset = 0;
+            else enemyOffset = 1;
+
             var inventory = GameObject.Find("Main Inventory").GetComponent<Inventory>();
 
             database.inventoryItems.ForEach(i => inventory.AddItem(i, 1));
@@ -182,7 +187,7 @@ namespace BattleSystem.Generator
             memberGo.transform.localScale = character.scale;
             
             var panel = database.characterPanels[i + offset];
-            var statusBoxController = panel.transform.GetChild(panel.transform.childCount - 1).GetComponent<StatusEffectControllerUI>();
+            var statusBoxController = panel.transform.GetChild(panel.transform.childCount - 3).GetComponent<StatusEffectControllerUI>();
             
             panel.GetComponent<CharacterPanelController>().member = character;
             panel.SetActive(true);

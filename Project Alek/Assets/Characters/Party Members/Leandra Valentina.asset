@@ -157,6 +157,9 @@ MonoBehaviour:
     - Name: onNewState
       Entry: 6
       Data: 
+    - Name: onShieldValueChanged
+      Entry: 6
+      Data: 
     - Name: onElementalDamageReceived
       Entry: 6
       Data: 
@@ -182,7 +185,7 @@ MonoBehaviour:
   accuracy:
     BaseValue: 14
   initiative:
-    BaseValue: 8
+    BaseValue: 10
   defense:
     BaseValue: 7
   resistance:

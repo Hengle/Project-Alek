@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -15,6 +16,11 @@ namespace Characters.PartyMembers
         [SerializeField] private TextMeshProUGUI nameUGUI;
         [SerializeField] private TextMeshProUGUI healthUGUI;
         [SerializeField] private Slider slider;
+        [SerializeField] private List<GameObject> dmgBoostBars;
+        [SerializeField] private List<GameObject> defBoostBars;
+
+        private int dmgBoostLvl;
+        private int defBoostLvl;
         
         #endregion
 
@@ -26,7 +32,16 @@ namespace Characters.PartyMembers
             healthUGUI.text = $"HP: {member.health.BaseValue}";
             slider.maxValue = member.health.BaseValue;
             slider.value = member.health.BaseValue;
+
+            dmgBoostLvl = 0;
+            defBoostLvl = 0;
+            
+            dmgBoostBars.ForEach(o => o.gameObject.SetActive(false));
+            defBoostBars.ForEach(o => o.gameObject.SetActive(false));
+            
             member.onHpValueChanged += OnHpValueChanged;
+            member.Unit.onDmgValueChanged += OnDmgBoostValueChanged;
+            member.Unit.onDefValueChanged += OnDefBoostValueChanged;
         }
 
         private void OnHpValueChanged() 
@@ -36,6 +51,39 @@ namespace Characters.PartyMembers
             healthUGUI.text = $"HP: {member.Unit.currentHP}";
         }
 
-        private void OnDisable() => member.onHpValueChanged -= OnHpValueChanged;
+        private void OnDmgBoostValueChanged(int val, bool condition)
+        {
+            if (condition)
+            {
+                if (dmgBoostLvl < 5) dmgBoostBars[val-1].gameObject.SetActive(true);
+            }
+            else
+            {
+                dmgBoostBars.ForEach(o => o.gameObject.SetActive(false));
+            }
+
+            dmgBoostLvl = val;
+        }
+        
+        private void OnDefBoostValueChanged(int val, bool condition)
+        {
+            if (condition)
+            {
+                if (defBoostLvl < 5) defBoostBars[val-1].gameObject.SetActive(true);
+            }
+            else
+            {
+                defBoostBars.ForEach(o => o.gameObject.SetActive(false));
+            }
+
+            defBoostLvl = val;
+        }
+
+        private void OnDisable()
+        {
+            member.onHpValueChanged -= OnHpValueChanged;
+            member.Unit.onDmgValueChanged -= OnDmgBoostValueChanged;
+            member.Unit.onDefValueChanged -= OnDefBoostValueChanged;
+        }
     }
 }

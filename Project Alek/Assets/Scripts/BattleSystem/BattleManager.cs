@@ -226,7 +226,8 @@ namespace BattleSystem
                     (Rate.BeforeEveryAction, 1, true));
 
                 if (!_canGiveCommand) _canGiveCommand = true;
-                else CharacterEvents.Trigger(CEventType.NewCommand, enemy);
+                else { CharacterEvents.Trigger(CEventType.CharacterAttacking, enemy);
+                    CharacterEvents.Trigger(CEventType.NewCommand, enemy); }
 
                 yield return Timing.WaitUntilFalse(() => _performingAction);
 

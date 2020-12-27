@@ -45,7 +45,7 @@
                     "path": "<SwitchProControllerHID>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "New control scheme",
+                    "groups": "",
                     "action": "Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -67,7 +67,7 @@
                     "path": "<SwitchProControllerHID>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "New control scheme",
+                    "groups": "",
                     "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -963,7 +963,7 @@
                     "name": "",
                     "id": "35a4fc74-2647-41f6-b3cf-8820605d0c84",
                     "path": "<Keyboard>/p",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
                     "action": "Parry",
@@ -974,7 +974,7 @@
                     "name": "",
                     "id": "c8f81621-67fc-492f-b01c-60d497de53b3",
                     "path": "<SwitchProControllerHID>/buttonWest",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
                     "action": "Parry",
@@ -984,17 +984,5 @@
             ]
         }
     ],
-    "controlSchemes": [
-        {
-            "name": "New control scheme",
-            "bindingGroup": "New control scheme",
-            "devices": [
-                {
-                    "devicePath": "<SwitchProControllerHID>",
-                    "isOptional": true,
-                    "isOR": false
-                }
-            ]
-        }
-    ]
+    "controlSchemes": []
 }

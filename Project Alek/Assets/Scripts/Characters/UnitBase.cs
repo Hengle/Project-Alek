@@ -206,7 +206,23 @@ namespace Characters
             if (dmg != -1)
             {
                 // TODO: Make the parry damage reduction a variable that can be accessed from inspector
-                if (Unit.parry) { dmg = (int) (dmg * 0.90f); Unit.parry = false; }
+                if (Unit.parry)
+                {
+                    //Logger.Log("Damage Before: " + dmg);
+                    dmg = (int) (dmg * 0.90f);
+                    Unit.parry = false;
+                    Logger.Log($"{Unit.name} took less damage!");
+                    //Logger.Log("Damage After: " + dmg);
+                }
+                else if (Unit.timedAttack)
+                {
+                    //Logger.Log("Damage Before: " + dmg);
+                    dmg = (int) (dmg * 1.10f);
+                    Unit.timedAttack = false;
+                    Logger.Log($"{Unit.name} took more damage!");
+                    //Logger.Log("Damage After: " + dmg);
+                }
+                
                 CurrentHP -= dmg;
                 if (elementalDmg != null) onElementalDamageReceived?.Invoke(elementalDmg);
             }

@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using BattleSystem;
 using Characters.Abilities;
 using Random = UnityEngine.Random;
 
@@ -24,6 +25,19 @@ namespace Characters
 
             var totalDamage = (int) dealerDamage - targetDefense;
 
+            if (damageDealer.id == CharacterType.PartyMember)
+            {
+                var damageVal = damageDealer.Unit.gameObject.GetComponent<BoostSystem>().FinalDamageBoostVal;
+                Logger.Log("Damage Boost Value: " + damageVal);
+                totalDamage = (int)(totalDamage * damageVal);
+            }
+            else
+            {
+                var defVal = target.Unit.gameObject.GetComponent<BoostSystem>().FinalDefenseBoostVal;
+                Logger.Log("Defense Boost Value: " + defVal);
+                totalDamage = (int)(totalDamage * defVal);
+            }
+            
             var critical = CalculateCritChance(damageDealer);
             if (!critical) return totalDamage < 0 ? 0 : Random.Range((int) (0.95f * totalDamage), (int) (1.05f * totalDamage));
             
@@ -31,7 +45,7 @@ namespace Characters
             target.Unit.targetHasCrit = true;
             damageDealer.Unit.isCrit = true;
 
-            return totalDamage < 0 ? 0 : Random.Range((int)(0.95f * totalDamage), (int)(1.05f * totalDamage));
+            return totalDamage < 0 ? 0 : Random.Range((int)(0.97f * totalDamage), (int)(1.03f * totalDamage));
         }
 
         private static int CalculateAbilityDamage(UnitBase damageDealer, UnitBase target)
@@ -80,6 +94,19 @@ namespace Characters
             Logger.Log($"Elemental Damage: {elementalDamage} \t Total Damage: {totalDamage}");
             
             SkipElemental:
+            if (damageDealer.id == CharacterType.PartyMember)
+            {
+                var damageVal = damageDealer.Unit.gameObject.GetComponent<BoostSystem>().FinalDamageBoostVal;
+                Logger.Log("Damage Boost Value: " + damageVal);
+                totalDamage = (int)(totalDamage * damageVal);
+            }
+            else
+            {
+                var defVal = target.Unit.gameObject.GetComponent<BoostSystem>().FinalDefenseBoostVal;
+                Logger.Log("Defense Boost Value: " + defVal);
+                totalDamage = (int)(totalDamage * defVal);
+            }
+            
             var critical = CalculateCritChance(damageDealer);
             if (!critical) return totalDamage < 0 ? 0 : Random.Range((int) (0.95f * totalDamage), (int) (1.05f * totalDamage));
 

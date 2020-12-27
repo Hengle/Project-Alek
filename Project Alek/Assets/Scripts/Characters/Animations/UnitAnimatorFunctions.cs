@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -6,53 +7,90 @@ using Random = UnityEngine.Random;
 using BattleSystem;
 using Characters.ElementalTypes;
 using Characters.StatusEffects;
+using Sirenix.OdinInspector;
+using UnityEngine.InputSystem;
 
 namespace Characters.Animations
 {
     // DO NOT CHANGE THE NAMES OF ANY ANIMATOR FUNCTIONS UNLESS YOU WANT TO MANUALLY UPDATE EVERY ANIMATION EVENT
     public class UnitAnimatorFunctions : MonoBehaviour, IGameEventListener<CharacterEvents>
     {
+        private BattleInputManager inputManager;
+        
         private Unit unit;
         private UnitBase unitBase;
 
-        private bool windowOpen;
-        private bool missedWindow;
-        private bool hitWindow;
+        [ShowInInspector] private bool thisCharacterTurn;
+        [ShowInInspector] private bool windowOpen;
+        [ShowInInspector] private bool missedWindow;
+        [ShowInInspector] private bool hitWindow;
 
         private ElementalType ElementalCondition => unit != null && unit.isAbility && unit.currentAbility.hasElemental?
             unit.currentAbility.elementalType : null;
 
         private void Awake()
         {
+            inputManager = FindObjectOfType<BattleInputManager>();
             unit = GetComponent<Unit>();
             GameEventsManager.AddListener(this);
         }
         
-        private void OnEnable() => BattleInput._controls.Battle.Parry.performed += ctx => OnParry();
+        //private void OnEnable() => BattleInput._controls.Battle.Parry.performed += ctx => OnParry();
 
-        private void OnParry()
+        private void OnEnable()
         {
+            BattleInput._controls.Battle.Parry.performed += OnParry;
+            inputManager.parryButton.performed += OnParry;
+        }
+
+        private void Update()
+        {
+            if (windowOpen || unit.animationHandler.isAttacking) return;
+            missedWindow = false;
+            hitWindow = false;
+        }
+
+        private void OnParry(InputAction.CallbackContext ctx)
+        {
+            if (!thisCharacterTurn) return;
             if (missedWindow || hitWindow) return;
             if (!windowOpen && !unit.animationHandler.isAttacking) return;
             if (!windowOpen && unit.animationHandler.isAttacking) {
                 missedWindow = true;
+                SendTimedButtonEventResult(false);
+                windowOpen = false;
                 Logger.Log("You missed the parry window...");
                 return;
             }
 
-            if (unit.currentAbility.isMultiTarget)
-            {
-                hitWindow = true;
-                unit.multiHitTargets.ForEach(t => t.Unit.parry = true);
-                Logger.Log("The whole party hit the parry window!");
-                return;
-            }
-            
-            unit.currentTarget.Unit.parry = true;
+            // TODO: Might scrap this
+            // if (unit.currentAbility.isMultiTarget)
+            // {
+            //     hitWindow = true;
+            //     unit.multiHitTargets.ForEach(t => t.Unit.parry = true);
+            //     Logger.Log("The whole party hit the parry window!");
+            //     return;
+            // }
+
+            SendTimedButtonEventResult(true);
             hitWindow = true;
             windowOpen = false;
             Logger.Log("Hit the parry window!");
             
+        }
+
+        private void SendTimedButtonEventResult(bool result)
+        {
+            if (unit.parent.id == CharacterType.Enemy)
+            {
+                unit.currentTarget.Unit.parry = result;
+                unit.currentTarget.Unit.onTimedDefense?.Invoke(result);
+            }
+            else
+            {
+                unit.currentTarget.Unit.timedAttack = result;
+                unit.onTimedAttack?.Invoke(result);
+            }
         }
         
         [UsedImplicitly] private void OpenParryWindow() => windowOpen = true;
@@ -101,6 +139,8 @@ namespace Characters.Animations
         {
             windowOpen = false;
 
+            if (!missedWindow && !hitWindow) SendTimedButtonEventResult(false);
+
             if (!unit.isAbility || !unit.currentAbility.isMultiTarget) 
             {
                 unit.currentTarget.TakeDamage(unit.currentDamage, ElementalCondition);
@@ -112,8 +152,6 @@ namespace Characters.Animations
                 (unit.damageValueList[unit.multiHitTargets.IndexOf(t)], ElementalCondition));
 
             unit.isCrit = false;
-            hitWindow = false;
-            missedWindow = false;
         }
 
         [UsedImplicitly] private void RecalculateDamage() 
@@ -139,8 +177,11 @@ namespace Characters.Animations
             if (eventType._eventType != CEventType.CharacterAttacking) return;
 
             var character = (UnitBase) eventType._character;
-            if (character.Unit != unit) return;
+            
+            // Fixes issue where the parry button registers for each character in the battle
+            if (character.Unit != unit) { thisCharacterTurn = false; return;}
 
+            thisCharacterTurn = true;
             unitBase = character;
         }
     }

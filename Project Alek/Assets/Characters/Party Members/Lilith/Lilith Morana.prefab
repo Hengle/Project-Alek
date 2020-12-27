@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 4347508395630985930}
   - component: {fileID: 7746142154120565516}
   - component: {fileID: 1623609619814212742}
+  - component: {fileID: 2476218044067116746}
   m_Layer: 0
   m_Name: Lilith Morana
   m_TagString: Untagged
@@ -123,28 +124,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a35d465435e2d2478d6cc7424f3de5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battlePanelRef: {fileID: 0}
-  id: 1
-  parent: {fileID: 0}
-  unitRef: {fileID: 0}
   currentTarget: {fileID: 0}
   currentAbility: {fileID: 0}
   anim: {fileID: 0}
   animationHandler: {fileID: 0}
   outline: {fileID: 0}
   button: {fileID: 0}
-  targetHasCrit: 0
-  isCrit: 0
-  isAbility: 0
-  attackerHasMissed: 0
   commandActionOption: 0
   maxHealthRef: 1750
   currentAP: 0
-  weaponMT: 20
   actionCost: 0
   currentDamage: 0
   commandActionName: 
   status: 0
+  currentState: 0
   level: 0
   currentHP: 0
   currentStrength: 0
@@ -157,6 +150,13 @@ MonoBehaviour:
   statusEffects: []
   multiHitTargets: []
   damageValueList: 
+  targetHasCrit: 0
+  isCrit: 0
+  isAbility: 0
+  attackerHasMissed: 0
+  parry: 0
+  timedAttack: 0
+  parent: {fileID: 0}
 --- !u!114 &4243244753647906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,5 +316,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a04daac25b1f4aa1ab3aa0f2c261a0a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2476218044067116746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526218485019349028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11194286ad7d7804f97d15da4e8a42fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
