@@ -13474,7 +13474,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   partyMembers:
   - {fileID: 11400000, guid: d6f9f6976ec82a845b32a3da08e83dad, type: 2}
-  - {fileID: 11400000, guid: bce5c1264c07e43488e2ea4155308e40, type: 2}
 --- !u!4 &1224894415
 Transform:
   m_ObjectHideFlags: 0
@@ -20210,13 +20209,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618828660cdc4c048a96e85a472b78dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolCount: 10
+  poolCount: 15
   damagePool: []
   damagePrefab: {fileID: 8969152545699550996, guid: 550389b2b634b0f40a6d9f4ab65535e0,
     type: 3}
   prefabParent: {fileID: 912919872}
-  damageTextColor: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 0}
-  criticalTextColor: {r: 0, g: 0.85568786, b: 1, a: 0}
+  damageTextColor: {r: 1, g: 1, b: 1, a: 0}
+  criticalTextColor: {r: 0, g: 0.5551176, b: 1, a: 0}
 --- !u!4 &1717918459
 Transform:
   m_ObjectHideFlags: 0
@@ -22620,7 +22619,6 @@ MonoBehaviour:
   - {fileID: 1549244034}
   enemies:
   - {fileID: 11400000, guid: 1df9f50e46e40b9468aa47faa3e8d642, type: 2}
-  - {fileID: 11400000, guid: d21b0091d32140842b56761a4ba8483a, type: 2}
   boPanel: {fileID: 11400000, guid: edd3f92f7919c58458f2e4f297327c4d, type: 2}
   enemyStatusBox: {fileID: 4792203347304205839, guid: d1b0d1817473ff14882a6febe1ab5156,
     type: 3}

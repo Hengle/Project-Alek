@@ -30,7 +30,7 @@ namespace BattleSystem
         public static List<UnitBase> _membersAndEnemies = new List<UnitBase>();
 
         [ShowInInspector] [ReadOnly]
-        public static PartyMember _activePartyMember;
+        public static UnitBase _activeUnit;
         
         [ShowInInspector] [ReadOnly]
         public static bool _choosingOption;
@@ -144,7 +144,7 @@ namespace BattleSystem
 
         private static IEnumerator<float> ThisPlayerTurn(PartyMember character)
         {
-            _activePartyMember = character;
+            _activeUnit = character;
             
             _inventoryInputManager.TargetInventoryContainer =
                 character.inventoryDisplay.GetComponent<CanvasGroup>();
@@ -209,6 +209,8 @@ namespace BattleSystem
 
         private static IEnumerator<float> ThisEnemyTurn(Enemy enemy)
         {
+            _activeUnit = enemy;
+            
             state = BattleState.EnemyTurn;
             CharacterEvents.Trigger(CEventType.EnemyTurn, enemy);
             enemy.ResetAP();
@@ -282,7 +284,7 @@ namespace BattleSystem
 
         private static void ResetStaticVariables()
         {
-            _activePartyMember = null;
+            _activeUnit = null;
             _choosingOption = false;
             _choosingTarget = false;
             _performingAction = false;

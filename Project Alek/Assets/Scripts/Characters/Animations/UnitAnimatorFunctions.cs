@@ -34,8 +34,6 @@ namespace Characters.Animations
             unit = GetComponent<Unit>();
             GameEventsManager.AddListener(this);
         }
-        
-        //private void OnEnable() => BattleInput._controls.Battle.Parry.performed += ctx => OnParry();
 
         private void OnEnable()
         {
@@ -63,37 +61,44 @@ namespace Characters.Animations
                 return;
             }
 
-            // TODO: Might scrap this
-            // if (unit.currentAbility.isMultiTarget)
-            // {
-            //     hitWindow = true;
-            //     unit.multiHitTargets.ForEach(t => t.Unit.parry = true);
-            //     Logger.Log("The whole party hit the parry window!");
-            //     return;
-            // }
-
             SendTimedButtonEventResult(true);
             hitWindow = true;
             windowOpen = false;
-            Logger.Log("Hit the window!");
-            
         }
 
         private void SendTimedButtonEventResult(bool result)
         {
-            // TODO: Account for multi hit attacks
             if (unit.parent.id == CharacterType.Enemy)
             {
+                if (unit.currentAbility.isMultiTarget)
+                {
+                    unit.multiHitTargets.ForEach(t => t.Unit.parry = result);
+
+                    if (result == false) 
+                        unit.multiHitTargets.ForEach(t => t.Unit.onTimedDefense?.Invoke(false));
+
+                    return;
+                }
+                
                 unit.currentTarget.Unit.parry = result;
-                unit.currentTarget.Unit.onTimedDefense?.Invoke(result);
+                if (result == false) unit.currentTarget.Unit.onTimedDefense?.Invoke(false);
             }
             else
             {
-                unit.currentTarget.Unit.timedAttack = result;
-                unit.onTimedAttack?.Invoke(result);
+                if (unit.currentAbility != null && unit.currentAbility.isMultiTarget)
+                {
+                    unit.multiHitTargets.ForEach(t => t.Unit.timedAttack = result);
+                    unit.onTimedAttack?.Invoke(result);
+                }
+                else
+                {
+                    unit.currentTarget.Unit.timedAttack = result;
+                    if (!unit.currentTarget.Unit.isCountered) unit.onTimedAttack?.Invoke(result);
+                }
             }
         }
         
+        // TODO: Separate window into a normal window and a perfect parry window (only for timed defense)
         [UsedImplicitly] private void OpenParryWindow() => windowOpen = true;
 
         [UsedImplicitly] private void TryToInflictStatusEffect()
@@ -144,6 +149,7 @@ namespace Characters.Animations
 
             if (!unit.isAbility || !unit.currentAbility.isMultiTarget) 
             {
+                if (unit.currentTarget.Unit.isCountered) RecalculateDamage();
                 unit.currentTarget.TakeDamage(unit.currentDamage, ElementalCondition);
                 unit.isCrit = false;
                 return;

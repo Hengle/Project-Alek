@@ -209,23 +209,32 @@ namespace Characters
                 // TODO: Make the parry damage reduction a variable that can be accessed from inspector
                 if (Unit.parry)
                 {
-                    //Logger.Log("Damage Before: " + dmg);
                     dmg = (int) (dmg * 0.90f);
+                    CurrentHP -= dmg;
                     Unit.parry = false;
+                    Unit.onTimedDefense?.Invoke(true);
                     Logger.Log($"{Unit.name} took less damage!");
-                    //Logger.Log("Damage After: " + dmg);
                 }
                 else if (Unit.timedAttack)
                 {
-                    //Logger.Log("Damage Before: " + dmg);
                     dmg = (int) (dmg * 1.10f);
+                    CurrentHP -= dmg;
                     Unit.timedAttack = false;
                     Logger.Log($"{Unit.name} took more damage!");
-                    //Logger.Log("Damage After: " + dmg);
                 }
+                else CurrentHP -= dmg;
                 
-                CurrentHP -= dmg;
                 if (elementalDmg != null) onElementalDamageReceived?.Invoke(elementalDmg);
+            }
+
+            else
+            {
+                if (Unit.parry)
+                {
+                    Unit.parry = false;
+                    Unit.onTimedDefense?.Invoke(true);
+                    Logger.Log($"{Unit.name} dodged and countered!");
+                }
             }
 
             var position = Unit.gameObject.transform.position;
@@ -235,9 +244,7 @@ namespace Characters
             damage.transform.position = newPosition;
 
             if (Unit.targetHasCrit) Unit.targetHasCrit = false;
-
-            // Damage is set to -1 when it misses
-            // TODO: Add condition for parry to trigger parry animation, challenge event (which will stop attacker's animation)
+            
             if (dmg == -1 && Unit.currentHP > 0) return;
             if (Unit.currentHP > 0) Unit.anim.SetTrigger(AnimationHandler.HurtTrigger);
             else Die();

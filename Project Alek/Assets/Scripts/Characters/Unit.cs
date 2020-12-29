@@ -67,6 +67,7 @@ namespace Characters
         [ReadOnly] public bool attackerHasMissed;
         [ReadOnly] public bool parry;
         [ReadOnly] public bool timedAttack;
+        [ReadOnly] public bool isCountered;
 
         #endregion
 

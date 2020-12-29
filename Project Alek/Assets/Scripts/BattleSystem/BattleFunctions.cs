@@ -114,6 +114,7 @@ namespace BattleSystem
 
             yield return Timing.WaitForOneFrame;
             yield return Timing.WaitUntilFalse(() => animHandler.isAttacking);
+            yield return Timing.WaitUntilFalse(() => unit.isCountered);
 
             TimeManager._slowTime = false;
             TimeManager._slowTimeCrit = false;

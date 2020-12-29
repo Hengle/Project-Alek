@@ -25,7 +25,7 @@ namespace MoreMountains.InventoryEngine
 		public override bool Use()
 		{
 			base.Use();
-			BattleManager._activePartyMember.Heal(HealthBonus);
+			BattleManager._activeUnit.Heal(HealthBonus);
 			// This is where you would increase your character's health,
 			// with something like : 
 			// Player.Life += HealthValue;

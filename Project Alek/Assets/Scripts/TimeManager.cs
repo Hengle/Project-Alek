@@ -5,6 +5,7 @@ public class TimeManager : MonoBehaviour
     public static int _moveSpeed = 45;
     public static bool _slowTime;
     public static bool _slowTimeCrit;
+    public static bool _slowTimeCounter;
 
     private void Start()
     {
@@ -15,9 +16,9 @@ public class TimeManager : MonoBehaviour
 
     private void Update()
     {
-        if (_slowTime)
+        if (_slowTimeCounter)
         {
-            Time.timeScale = 0.05f;
+            Time.timeScale = 0.35f;
             Time.fixedDeltaTime = 0.02F * Time.timeScale;
             _moveSpeed = 20;
         }

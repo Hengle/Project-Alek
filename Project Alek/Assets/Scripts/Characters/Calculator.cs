@@ -11,42 +11,27 @@ namespace Characters
         // TODO: OVERHAUL THE CRAP OUT OF THIS CRAPPY CODE!!!!!!!!!!!!!!!
         public static int CalculateAttackDamage(UnitBase damageDealer, UnitBase target)
         {
+            Logger.Log($"{damageDealer.characterName} should be doing damage to {target.characterName}");
             if (damageDealer.Unit == target.Unit) return 0;
-            
+
             var hitChance = CalculateAccuracy(damageDealer, target);
             if (!hitChance) { target.Unit.attackerHasMissed = true; return -1; }
 
-            float dealerDamage = 0;
-            var targetDefense = 0;
-
             if (damageDealer.Unit.isAbility) return CalculateAbilityDamage(damageDealer, target);
             
-            dealerDamage = (int) damageDealer.strength.Value * damageDealer.weaponMight;
-            targetDefense = (int) target.defense.Value * (target.Unit.level / 2);
+            float dealerDamage = (int) damageDealer.strength.Value * damageDealer.weaponMight;
+            var targetDefense = (int) target.defense.Value * (target.Unit.level / 2);
 
             var totalDamage = (int) dealerDamage - targetDefense;
-
-            if (damageDealer.id == CharacterType.PartyMember)
-            {
-                var damageVal = damageDealer.Unit.gameObject.GetComponent<BoostSystem>().FinalDamageBoostVal;
-                totalDamage = (int)(totalDamage * damageVal);
-            }
-            else
-            {
-                var defVal = target.Unit.gameObject.GetComponent<BoostSystem>().FinalDefenseBoostVal;
-                totalDamage = (int)(totalDamage * defVal);
-            }
-
-            totalDamage = (int) (totalDamage * damageDealer.Unit.conversionFactor);
             
+            Logger.Log("Damage: " + totalDamage);
+
+            totalDamage = CalculateBoostFactor(damageDealer, target, totalDamage);
+            totalDamage = CalculateConversionFactor(damageDealer, totalDamage);
+
             var critical = CalculateCritChance(damageDealer);
-            if (!critical) return totalDamage < 0 ? 0 : Random.Range((int) (0.97f * totalDamage), (int) (1.03f * totalDamage));
             
-            totalDamage = (int)(totalDamage * 1.25f);
-            target.Unit.targetHasCrit = true;
-            damageDealer.Unit.isCrit = true;
-
-            return totalDamage < 0 ? 0 : Random.Range((int)(0.97f * totalDamage), (int)(1.03f * totalDamage));
+            return CalculateFinalDamageAmount(damageDealer, target, totalDamage, critical);
         }
 
         private static int CalculateAbilityDamage(UnitBase damageDealer, UnitBase target)
@@ -95,27 +80,11 @@ namespace Characters
             Logger.Log($"Elemental Damage: {elementalDamage} \t Total Damage: {totalDamage}");
             
             SkipElemental:
-            if (damageDealer.id == CharacterType.PartyMember)
-            {
-                var damageVal = damageDealer.Unit.gameObject.GetComponent<BoostSystem>().FinalDamageBoostVal;
-                totalDamage = (int)(totalDamage * damageVal);
-            }
-            else
-            {
-                var defVal = target.Unit.gameObject.GetComponent<BoostSystem>().FinalDefenseBoostVal;
-                totalDamage = (int)(totalDamage * defVal);
-            }
-            
-            totalDamage = (int) (totalDamage * damageDealer.Unit.conversionFactor);
+            totalDamage = CalculateBoostFactor(damageDealer, target, totalDamage);
+            totalDamage = CalculateConversionFactor(damageDealer, totalDamage);
             
             var critical = CalculateCritChance(damageDealer);
-            if (!critical) return totalDamage < 0 ? 0 : Random.Range((int) (0.97f * totalDamage), (int) (1.03f * totalDamage));
-
-            totalDamage = (int)(totalDamage * 1.25f);
-            target.Unit.targetHasCrit = true;
-            damageDealer.Unit.isCrit = true;
-
-            return totalDamage < 0 ? 0 : Random.Range((int)(0.97f * totalDamage), (int)(1.03f * totalDamage));
+            return CalculateFinalDamageAmount(damageDealer, target, totalDamage, critical);
         }
         
         private static bool CalculateCritChance(UnitBase damageDealer)
@@ -126,6 +95,17 @@ namespace Characters
             return randomValue <= critChance;
         }
 
+        private static int CalculateFinalDamageAmount(UnitBase damageDealer, UnitBase target, int totalDamage, bool isCritical)
+        {
+            if (!isCritical) return totalDamage < 0 ? 0 : Random.Range((int) (0.97f * totalDamage), (int) (1.03f * totalDamage));
+
+            totalDamage = (int)(totalDamage * 1.25f);
+            target.Unit.targetHasCrit = true;
+            damageDealer.Unit.isCrit = true;
+            
+            return totalDamage < 0 ? 0 : Random.Range((int)(0.97f * totalDamage), (int)(1.03f * totalDamage));
+        }
+
         private static bool CalculateAccuracy(UnitBase damageDealer, UnitBase target)
         {
             target.Unit.attackerHasMissed = false;
@@ -134,5 +114,20 @@ namespace Characters
             
             return randomValue <= hitChance;
         }
+
+        private static int CalculateBoostFactor(UnitBase damageDealer, UnitBase target, int totalDamage)
+        {
+            if (damageDealer.id == CharacterType.PartyMember)
+            {
+                var damageVal = damageDealer.Unit.gameObject.GetComponent<BoostSystem>().FinalDamageBoostVal;
+                return (int)(totalDamage * damageVal);
+            }
+
+            var defVal = target.Unit.gameObject.GetComponent<BoostSystem>().FinalDefenseBoostVal;
+            return (int)(totalDamage * defVal);
+        }
+        
+        private static int CalculateConversionFactor(UnitBase damageDealer, int totalDamage) =>
+            (int) (totalDamage * damageDealer.Unit.conversionFactor);
     }
 }
