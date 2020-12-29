@@ -157,6 +157,9 @@ MonoBehaviour:
     - Name: onNewState
       Entry: 6
       Data: 
+    - Name: onShieldValueChanged
+      Entry: 6
+      Data: 
     - Name: onElementalDamageReceived
       Entry: 6
       Data: 
@@ -174,7 +177,7 @@ MonoBehaviour:
     type: 3}
   level: 1
   health:
-    BaseValue: 635
+    BaseValue: 725
   strength:
     BaseValue: 8
   magic:
@@ -184,7 +187,7 @@ MonoBehaviour:
   initiative:
     BaseValue: 8
   defense:
-    BaseValue: 5
+    BaseValue: 6
   resistance:
     BaseValue: 3
   criticalChance:

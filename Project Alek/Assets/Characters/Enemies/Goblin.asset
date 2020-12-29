@@ -208,7 +208,7 @@ MonoBehaviour:
   health:
     BaseValue: 720
   strength:
-    BaseValue: 8
+    BaseValue: 7
   magic:
     BaseValue: 4
   accuracy:

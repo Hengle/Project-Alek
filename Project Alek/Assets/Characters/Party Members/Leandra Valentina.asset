@@ -149,7 +149,52 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: onDeath
-      Entry: 6
+      Entry: 7
+      Data: 6|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: declaringType
+      Entry: 7
+      Data: 7|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BattleSystem.BattleManager, ProjectAlek
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: RemoveFromBattle
+    - Name: delegateType
+      Entry: 7
+      Data: 8|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 9|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 10|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Characters.UnitBase, ProjectAlek
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
     - Name: onHpValueChanged
       Entry: 6
@@ -177,7 +222,7 @@ MonoBehaviour:
     type: 3}
   level: 1
   health:
-    BaseValue: 670
+    BaseValue: 870
   strength:
     BaseValue: 10
   magic:
@@ -187,7 +232,7 @@ MonoBehaviour:
   initiative:
     BaseValue: 10
   defense:
-    BaseValue: 7
+    BaseValue: 12
   resistance:
     BaseValue: 2
   criticalChance:

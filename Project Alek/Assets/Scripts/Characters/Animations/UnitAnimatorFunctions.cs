@@ -59,7 +59,7 @@ namespace Characters.Animations
                 missedWindow = true;
                 SendTimedButtonEventResult(false);
                 windowOpen = false;
-                Logger.Log("You missed the parry window...");
+                Logger.Log("You missed the window...");
                 return;
             }
 
@@ -75,12 +75,13 @@ namespace Characters.Animations
             SendTimedButtonEventResult(true);
             hitWindow = true;
             windowOpen = false;
-            Logger.Log("Hit the parry window!");
+            Logger.Log("Hit the window!");
             
         }
 
         private void SendTimedButtonEventResult(bool result)
         {
+            // TODO: Account for multi hit attacks
             if (unit.parent.id == CharacterType.Enemy)
             {
                 unit.currentTarget.Unit.parry = result;

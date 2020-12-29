@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BattleSystem;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -11,7 +12,7 @@ using Sirenix.OdinInspector;
 namespace Characters
 {
     // TODO: Use these with status effects (like inhibiting)
-    public enum Status { Normal, Dead, UnableToPerformAction }
+    public enum Status { Normal, Dead, UnableToPerformAction, Overexerted }
     public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler, IGameEventListener<CharacterEvents>
     {
         #region HideInInspector
@@ -33,12 +34,14 @@ namespace Characters
         #endregion
 
         #region ReadOnly
-        
+
         [ReadOnly] public Status status = Status.Normal;
         [ReadOnly] public UnitStates currentState;
         [ReadOnly] public int level;
         [ReadOnly] public int currentHP;
-        
+        [ReadOnly] public int conversionAmount;
+        [ReadOnly] public float conversionFactor = 1;
+
         [SerializeField] [ReadOnly] 
         private protected int currentStrength;
         [SerializeField] [ReadOnly]
@@ -69,10 +72,12 @@ namespace Characters
 
         #region OtherFieldsAndProperies
         
-        [HideInInspector] public Action<bool> onTimedAttack;
-        [HideInInspector] public Action<bool> onTimedDefense;
-        [HideInInspector] public Action<int, bool> onDmgValueChanged;
-        [HideInInspector] public Action<int, bool> onDefValueChanged;
+        public Action<bool> onTimedAttack;
+        public Action<bool> onTimedDefense;
+        public Action<int, bool> onDmgValueChanged;
+        public Action<int, bool> onDefValueChanged;
+        public Action<int> borrowAP;
+        public Action<UnitBase> recoveredFromOverexertion;
         
         public Action onSelect;
         public Action onDeselect;
@@ -103,6 +108,12 @@ namespace Characters
         {
             outline.enabled = false;
             onDeselect?.Invoke();
+        }
+
+        public bool CanBorrow(int amount)
+        {
+            var loanSystem = GetComponent<LoanSystem>();
+            return amount <= loanSystem._maxLoan;
         }
 
         public void Setup(UnitBase unitBase)

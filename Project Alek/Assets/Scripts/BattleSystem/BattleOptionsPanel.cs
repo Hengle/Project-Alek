@@ -56,9 +56,15 @@ namespace BattleSystem
             var commandActionOption = int.Parse(commandActionOptionString);
             var commandTargetOptions = int.Parse(commandTargetOptionsString);
             var commandCost = int.Parse(commandCostString);
+            commandCost += character.Unit.conversionAmount;
             
             var notEnoughAP = character.CurrentAP - commandCost < 0;
-            if (notEnoughAP) return;
+            if (notEnoughAP)
+            {
+                var amountToBorrow = commandCost - character.CurrentAP;
+                if (character.Unit.CanBorrow(amountToBorrow)) character.Unit.borrowAP(amountToBorrow);
+                else return;
+            }
             
             ChooseTarget._targetOptions = commandTargetOptions;
             ChooseTarget.GetCurrentCommand(commandActionName, commandActionOption);

@@ -20,6 +20,8 @@ GameObject:
   - component: {fileID: 2263040554003969802}
   - component: {fileID: 4282789488221277996}
   - component: {fileID: 2865512365133778739}
+  - component: {fileID: 1439071686144559760}
+  - component: {fileID: 8978146095185980752}
   m_Layer: 0
   m_Name: Alek Ezana
   m_TagString: Untagged
@@ -134,6 +136,8 @@ MonoBehaviour:
   currentAP: 0
   actionCost: 0
   currentDamage: 0
+  conversionAmount: 0
+  conversionFactor: 1
   commandActionName: 
   status: 0
   currentState: 0
@@ -154,6 +158,8 @@ MonoBehaviour:
   isAbility: 0
   attackerHasMissed: 0
   parry: 0
+  timedAttack: 0
+  parent: {fileID: 0}
 --- !u!114 &4243244753647906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,5 +316,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11194286ad7d7804f97d15da4e8a42fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1439071686144559760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526218485019349028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 363c4cc7b2cdb1641945e531feb27a2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8978146095185980752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526218485019349028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1edbf0fd54e94c043b305151a2598c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

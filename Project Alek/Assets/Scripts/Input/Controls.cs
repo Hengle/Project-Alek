@@ -49,6 +49,22 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""LeftSelect"",
+                    ""type"": ""Button"",
+                    ""id"": ""8b0f7e33-e501-43e5-b7b4-2be3fd190587"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""RightSelect"",
+                    ""type"": ""Button"",
+                    ""id"": ""82e91945-be51-423e-8f73-07974bfd92cb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -381,6 +397,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7dddbc32-88d9-4954-8fd3-68b4debd5e1a"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftSelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f73143f2-38d4-48ef-b369-2c663982e351"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightSelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1005,6 +1043,8 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Menu_Back = m_Menu.FindAction("Back", throwIfNotFound: true);
         m_Menu_Move = m_Menu.FindAction("Move", throwIfNotFound: true);
         m_Menu_TopButton = m_Menu.FindAction("TopButton", throwIfNotFound: true);
+        m_Menu_LeftSelect = m_Menu.FindAction("LeftSelect", throwIfNotFound: true);
+        m_Menu_RightSelect = m_Menu.FindAction("RightSelect", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1077,6 +1117,8 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Menu_Back;
     private readonly InputAction m_Menu_Move;
     private readonly InputAction m_Menu_TopButton;
+    private readonly InputAction m_Menu_LeftSelect;
+    private readonly InputAction m_Menu_RightSelect;
     public struct MenuActions
     {
         private @Controls m_Wrapper;
@@ -1085,6 +1127,8 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Back => m_Wrapper.m_Menu_Back;
         public InputAction @Move => m_Wrapper.m_Menu_Move;
         public InputAction @TopButton => m_Wrapper.m_Menu_TopButton;
+        public InputAction @LeftSelect => m_Wrapper.m_Menu_LeftSelect;
+        public InputAction @RightSelect => m_Wrapper.m_Menu_RightSelect;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1106,6 +1150,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @TopButton.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnTopButton;
                 @TopButton.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnTopButton;
                 @TopButton.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnTopButton;
+                @LeftSelect.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnLeftSelect;
+                @LeftSelect.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnLeftSelect;
+                @LeftSelect.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnLeftSelect;
+                @RightSelect.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnRightSelect;
+                @RightSelect.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnRightSelect;
+                @RightSelect.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnRightSelect;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -1122,6 +1172,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @TopButton.started += instance.OnTopButton;
                 @TopButton.performed += instance.OnTopButton;
                 @TopButton.canceled += instance.OnTopButton;
+                @LeftSelect.started += instance.OnLeftSelect;
+                @LeftSelect.performed += instance.OnLeftSelect;
+                @LeftSelect.canceled += instance.OnLeftSelect;
+                @RightSelect.started += instance.OnRightSelect;
+                @RightSelect.performed += instance.OnRightSelect;
+                @RightSelect.canceled += instance.OnRightSelect;
             }
         }
     }
@@ -1311,6 +1367,8 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnBack(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnTopButton(InputAction.CallbackContext context);
+        void OnLeftSelect(InputAction.CallbackContext context);
+        void OnRightSelect(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

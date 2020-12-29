@@ -13473,10 +13473,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partyMembers:
-  - {fileID: 11400000, guid: 373387c9350c0a44fb7b0f7a1b6fa996, type: 2}
   - {fileID: 11400000, guid: d6f9f6976ec82a845b32a3da08e83dad, type: 2}
   - {fileID: 11400000, guid: bce5c1264c07e43488e2ea4155308e40, type: 2}
-  - {fileID: 11400000, guid: 16c0a33b5b556224684facafa2139eee, type: 2}
 --- !u!4 &1224894415
 Transform:
   m_ObjectHideFlags: 0
@@ -22621,8 +22619,6 @@ MonoBehaviour:
   - {fileID: 1604568445}
   - {fileID: 1549244034}
   enemies:
-  - {fileID: 11400000, guid: 1df9f50e46e40b9468aa47faa3e8d642, type: 2}
-  - {fileID: 11400000, guid: cedfc901c08aaf64db9d5d3d449ec512, type: 2}
   - {fileID: 11400000, guid: 1df9f50e46e40b9468aa47faa3e8d642, type: 2}
   - {fileID: 11400000, guid: d21b0091d32140842b56761a4ba8483a, type: 2}
   boPanel: {fileID: 11400000, guid: edd3f92f7919c58458f2e4f297327c4d, type: 2}

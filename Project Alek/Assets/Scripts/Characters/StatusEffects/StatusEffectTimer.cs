@@ -18,6 +18,7 @@ namespace Characters.StatusEffects
             
             GameEventsManager.AddListener(this);
             targetUnit.onDeath += RemoveTimerAndEffect;
+            targetUnit.Unit.recoveredFromOverexertion += RemoveTimerAndEffect;
         }
 
         private void DecrementTimer()
@@ -45,7 +46,11 @@ namespace Characters.StatusEffects
 
         private void OnDisable()
         {
-            if (targetUnit!= null) targetUnit.onDeath -= RemoveTimerAndEffect;
+            if (targetUnit != null)
+            {
+                targetUnit.onDeath -= RemoveTimerAndEffect;
+                targetUnit.Unit.recoveredFromOverexertion -= RemoveTimerAndEffect;
+            }
         }
 
         public void OnGameEvent(BattleEvents eventType)

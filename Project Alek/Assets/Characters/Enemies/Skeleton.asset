@@ -178,11 +178,11 @@ MonoBehaviour:
   characterName: Skeleton
   characterPrefab: {fileID: 1109450531332189788, guid: 46c69567f6d4d924ca3cfc4c96675443,
     type: 3}
-  level: 6
+  level: 4
   health:
     BaseValue: 835
   strength:
-    BaseValue: 10
+    BaseValue: 9
   magic:
     BaseValue: 6
   accuracy:

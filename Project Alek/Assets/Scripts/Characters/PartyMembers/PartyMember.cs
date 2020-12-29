@@ -28,7 +28,7 @@ namespace Characters.PartyMembers
             get => Unit.currentAP;
             set
             {
-                Unit.currentAP = value;
+                Unit.currentAP = value < 0 ? 0 : value;
                 actionPointAnim.SetInteger(AnimationHandler.APVal, Unit.currentAP);
             }
         }

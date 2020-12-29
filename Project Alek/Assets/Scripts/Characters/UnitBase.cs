@@ -193,6 +193,7 @@ namespace Characters
                 case Status.Normal: return true;
                 case Status.Dead: return false;
                 case Status.UnableToPerformAction: return false;
+                case Status.Overexerted: return false;
                 default: return true;
             }
         }
