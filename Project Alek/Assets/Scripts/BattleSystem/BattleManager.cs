@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Linq;
 using Characters;
 using BattleSystem.Generator;
+using Characters.Animations;
 using Characters.CharacterExtensions;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
@@ -36,6 +37,8 @@ namespace BattleSystem
         public static bool _choosingOption;
         [ShowInInspector] [ReadOnly]
         public static bool _choosingTarget;
+        [ShowInInspector] [ReadOnly]
+        public static bool _usingItem;
         [ShowInInspector] [ReadOnly]
         public static bool _performingAction;
         [ShowInInspector] [ReadOnly]
@@ -160,6 +163,7 @@ namespace BattleSystem
             main_menu:
             CharacterEvents.Trigger(CEventType.CharacterTurn, character);
             BattleInput._canPressBack = false;
+            _usingItem = false;
             ((BattleOptionsPanel) character.battleOptionsPanel).ShowBattlePanel();
 
             yield return Timing.WaitUntilFalse(() => _choosingOption);
@@ -182,6 +186,19 @@ namespace BattleSystem
                 BattleInput._canPressBack = true;
                 if (BattleInput.CancelCondition) goto main_menu;
             }
+
+            if (_usingItem)
+            {
+                // TODO: Update to account for AP Cost Increase System
+                character.CurrentAP -= 1;
+                yield return Timing.WaitForOneFrame;
+                
+                while (character.Unit.animationHandler.usingItem) 
+                    yield return Timing.WaitForOneFrame;
+                
+                yield return Timing.WaitForSeconds(0.5f);
+                goto skip_command_execution;
+            }
             
             character.CurrentAP -= character.Unit.actionCost;
 
@@ -197,6 +214,7 @@ namespace BattleSystem
             yield return Timing.WaitUntilDone(character.InflictStatus
                 (Rate.AfterEveryAction, 1, true));
 
+            skip_command_execution:
             if (PartyOrEnemyTeamIsDead || character.IsDead) goto end_of_turn;
             
             if (character.CurrentAP > 0) goto main_menu;
@@ -249,6 +267,7 @@ namespace BattleSystem
         private IEnumerator<float> WonBattleSequence()
         {
             yield return Timing.WaitForSeconds(0.5f);
+            MembersForThisBattle.ForEach(member => member.Unit.anim.SetTrigger(AnimationHandler.VictoryTrigger));
             Logger.Log("yay, you won");
         }
 
@@ -293,6 +312,7 @@ namespace BattleSystem
             allMembersDead = false;
             allEnemiesDead = false;
             _canGiveCommand = true;
+            _usingItem = false;
         }
         
         #endregion

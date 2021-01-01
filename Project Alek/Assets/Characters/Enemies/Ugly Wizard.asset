@@ -167,9 +167,6 @@ MonoBehaviour:
     - Name: onHpValueChanged
       Entry: 6
       Data: 
-    - Name: onNewState
-      Entry: 6
-      Data: 
     - Name: onShieldValueChanged
       Entry: 6
       Data: 
@@ -180,6 +177,9 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: onStatusEffectRemoved
+      Entry: 6
+      Data: 
+    - Name: stateMachine
       Entry: 6
       Data: 
   icon: {fileID: 0}
@@ -213,4 +213,4 @@ MonoBehaviour:
   abilities:
   - {fileID: 11400000, guid: e558d404ab0ced340bb9314e1e677569, type: 2}
   maxAP: 6
-  shieldCount: 2
+  maxShieldCount: 3

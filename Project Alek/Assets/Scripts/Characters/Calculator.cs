@@ -28,6 +28,7 @@ namespace Characters
 
             totalDamage = CalculateBoostFactor(damageDealer, target, totalDamage);
             totalDamage = CalculateConversionFactor(damageDealer, totalDamage);
+            totalDamage = CalculateShieldFactor(damageDealer, target, totalDamage);
 
             var critical = CalculateCritChance(damageDealer);
             
@@ -82,6 +83,7 @@ namespace Characters
             SkipElemental:
             totalDamage = CalculateBoostFactor(damageDealer, target, totalDamage);
             totalDamage = CalculateConversionFactor(damageDealer, totalDamage);
+            totalDamage = CalculateShieldFactor(damageDealer, target, totalDamage);
             
             var critical = CalculateCritChance(damageDealer);
             return CalculateFinalDamageAmount(damageDealer, target, totalDamage, critical);
@@ -113,6 +115,12 @@ namespace Characters
             var randomValue = Random.value;
             
             return randomValue <= hitChance;
+        }
+
+        private static int CalculateShieldFactor(UnitBase damageDealer, UnitBase target, int totalDamage)
+        {
+            if (damageDealer.id == CharacterType.Enemy) return totalDamage;
+            return (int) (totalDamage * target.Unit.ShieldFactor);
         }
 
         private static int CalculateBoostFactor(UnitBase damageDealer, UnitBase target, int totalDamage)

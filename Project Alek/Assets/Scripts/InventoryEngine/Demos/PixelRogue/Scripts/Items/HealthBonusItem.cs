@@ -4,8 +4,6 @@ using MoreMountains.Tools;
 using System;
 using BattleSystem;
 
-//using BattleSystem;
-
 namespace MoreMountains.InventoryEngine
 {	
 	[CreateAssetMenu(fileName = "HealthBonusItem", menuName = "MoreMountains/InventoryEngine/HealthBonusItem", order = 1)]
@@ -25,13 +23,12 @@ namespace MoreMountains.InventoryEngine
 		public override bool Use()
 		{
 			base.Use();
-			BattleManager._activeUnit.Heal(HealthBonus);
-			// This is where you would increase your character's health,
-			// with something like : 
-			// Player.Life += HealthValue;
-			// of course this all depends on your game codebase.
-			Debug.LogFormat("increase character's health by "+HealthBonus);
-            return true;
+			ChooseTarget._targetOptions = targetOptions;
+			ChooseTarget._itemHealOrDamageAmount = HealthBonus;
+			ChooseTarget.GetItemCommand();
+			BattleManager._usingItem = true;
+			BattleManager._choosingOption = false;
+			return true;
 		}
 		
 	}

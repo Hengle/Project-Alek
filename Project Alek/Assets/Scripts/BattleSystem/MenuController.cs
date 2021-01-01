@@ -131,6 +131,7 @@ namespace BattleSystem
         
         public void OnMMEvent(MMInventoryEvent eventType)
         {
+            if (BattleManager._usingItem) return;
             if (isEnabled && isActiveAndEnabled && eventType.InventoryEventType == MMInventoryEventType.InventoryCloses)
             {
                 animator.SetTrigger(AnimationHandler.Panel);

@@ -17,7 +17,7 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: c39d538e0733abc409ae3ae8b371cbf4, type: 2}
-    - {fileID: 11400000, guid: eb1b5a0f67771a842832b379372ae131, type: 2}
+    - {fileID: 11400000, guid: 366775002164acb45983c6014a20dd29, type: 2}
     - {fileID: 11400000, guid: 5b7dd86029ea2ce49beaee4e4d702b94, type: 2}
     - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
     SerializedBytesString: 
@@ -154,9 +154,6 @@ MonoBehaviour:
     - Name: onHpValueChanged
       Entry: 6
       Data: 
-    - Name: onNewState
-      Entry: 6
-      Data: 
     - Name: onShieldValueChanged
       Entry: 6
       Data: 
@@ -203,4 +200,4 @@ MonoBehaviour:
   abilities:
   - {fileID: 11400000, guid: 8697ec229a0734b4b9c69d6087505ba9, type: 2}
   maxAP: 6
-  shieldCount: 2
+  maxShieldCount: 4

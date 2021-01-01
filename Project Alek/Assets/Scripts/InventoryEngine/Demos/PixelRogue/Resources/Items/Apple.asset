@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemID: Apple
   TargetInventoryName: Main Inventory
+  targetOptions: 1
   Usable: 1
   Equippable: 0
   Quantity: 0

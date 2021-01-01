@@ -19,6 +19,8 @@ namespace BattleSystem
             currentLoan = 0;
 
             unit.borrowAP += BorrowAP;
+            unit.parent.onDeath += OnDeath;
+            
             GameEventsManager.AddListener<BattleEvents>(this);
             GameEventsManager.AddListener<CharacterEvents>(this);
         }
@@ -59,9 +61,16 @@ namespace BattleSystem
             isRecovered = false;
         }
 
+        private void OnDeath(UnitBase unit)
+        {
+            currentLoan = 0;
+        }
+
         private void OnDisable()
         {
-            unit.borrowAP = BorrowAP;
+            unit.borrowAP -= BorrowAP;
+            unit.parent.onDeath -= OnDeath;
+            
             GameEventsManager.RemoveListener<BattleEvents>(this);
             GameEventsManager.RemoveListener<CharacterEvents>(this);
         }

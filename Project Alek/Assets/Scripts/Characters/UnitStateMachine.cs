@@ -43,6 +43,7 @@ namespace Characters
             newRoundCondition = false;
             enemyTurnCondition = false;
             
+            unitBase.onShieldValueChanged?.Invoke(currentShieldCount);
             Logger.Log($"{unitBase.characterName}'s shield has been reset");
         }
         
@@ -68,14 +69,16 @@ namespace Characters
                 case UnitStates.Normal when effect as Susceptible != null:
                     currentState = UnitStates.Susceptible;
                     unitBase.Unit.currentState = currentState;
-                    unitBase.onNewState?.Invoke(currentState);
+
+                    unitBase.OnNewState(currentState);
                     return;
                 
                 case UnitStates.Weakened when effect as Checkmate != null:
                     currentState = UnitStates.Checkmate;
                     unitBase.Unit.currentState = currentState;
                     unitBase.Unit.status = Status.UnableToPerformAction;
-                    unitBase.onNewState?.Invoke(currentState);
+
+                    unitBase.OnNewState(currentState);
                     Logger.Log($"{unitBase.characterName} is in checkmate!");
                     return;
                 
@@ -90,8 +93,7 @@ namespace Characters
             var tryGetElement = unitBase._elementalWeaknesses.ContainsKey(elementalType);
             if (tryGetElement) EvaluateShield();
         }
-
-        // This is where the enemy's shield will be evaluated and lowered
+        
         private void EvaluateShield()
         {
             if (currentState == UnitStates.Weakened || currentState == UnitStates.Checkmate) return;
@@ -107,12 +109,7 @@ namespace Characters
 
             currentState = UnitStates.Weakened;
             unitBase.Unit.currentState = currentState;
-            unitBase.onNewState?.Invoke(currentState);
-
-            // var checkmate = ScriptableObject.CreateInstance<Checkmate>();
-            // checkmate.name = "Checkmate";
-            // checkmate.OnAdded(unitBase);
-            // unitBase.Unit.statusEffects.Add(checkmate);
+            unitBase.OnNewState(currentState);
         }
         
         public void OnGameEvent(BattleEvents eventType)

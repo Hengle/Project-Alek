@@ -154,9 +154,6 @@ MonoBehaviour:
     - Name: onHpValueChanged
       Entry: 6
       Data: 
-    - Name: onNewState
-      Entry: 6
-      Data: 
     - Name: onShieldValueChanged
       Entry: 6
       Data: 

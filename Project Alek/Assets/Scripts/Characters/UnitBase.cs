@@ -127,7 +127,7 @@ namespace Characters
 
         [HideInInspector] public Action<UnitBase> onDeath;
         [HideInInspector] public Action onHpValueChanged;
-        [HideInInspector] public Action<UnitStates> onNewState;
+        //[HideInInspector] public Action<UnitStates> onNewState;
         [HideInInspector] public Action<int> onShieldValueChanged;
         [HideInInspector] public Action<ElementalType> onElementalDamageReceived;
         [HideInInspector] public Action<StatusEffect> onStatusEffectReceived;
@@ -155,7 +155,28 @@ namespace Characters
             onStatusEffectReceived = null;
             onStatusEffectRemoved = null;
             onDeath = null;
-            onNewState = null;
+            //onNewState = null;
+        }
+
+        public void OnNewState(UnitStates state)
+        {
+            switch (state)
+            {
+                case UnitStates.Checkmate:
+                    var checkmate = CreateInstance<Checkmate>();
+                    checkmate.name = "Checkmate";
+                    checkmate.OnAdded(this);
+                    Unit.statusEffects.Add(checkmate);
+                    break;
+                case UnitStates.Susceptible:
+                    // Do something
+                    break;
+                case UnitStates.Weakened:
+                    // Do something
+                    break;
+                default: break;
+            }
+            
         }
 
         public virtual void ResetAP() 

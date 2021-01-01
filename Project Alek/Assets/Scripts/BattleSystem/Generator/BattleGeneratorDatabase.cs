@@ -20,6 +20,6 @@ namespace BattleSystem.Generator
         public BattleOptionsPanel boPanel;
         public Transform enemyStatusBox;
         public Transform profileBox;
-        public Transform requirementsBox;
+        public Transform shieldTransform;
     }
 }

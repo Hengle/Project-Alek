@@ -20,6 +20,9 @@ namespace MoreMountains.InventoryEngine
 		/// the inventory name into which this item will be stored
 		public string TargetInventoryName = "MainInventory";
 
+		[MMInformation("0 = Enemy, 1 = Party Members, 2 = Both",MMInformationAttribute.InformationType.Info,false)]
+		[Range(0,2)] public int targetOptions;
+
 		[Header("Methods")]
 		/// whether or not this item can be "used" (via the Use method) - important, this is only the INITIAL state of this object, IsUsable is to be used anytime after that
 		[MMInformation("Here you can determine whether your object is Usable, Equippable, or both. Usable objects are typically bombs, potions, stuff like that. Equippables are usually weapons or armor.",MMInformationAttribute.InformationType.Info,false)]

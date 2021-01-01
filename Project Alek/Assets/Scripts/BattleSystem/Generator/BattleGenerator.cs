@@ -237,18 +237,18 @@ namespace BattleSystem.Generator
                 statusBoxController.member = clone;
                 statusBoxController.Initialize();
 
-                clone.stateMachine = new UnitStateMachine(clone, clone.shieldCount);
+                clone.stateMachine = new UnitStateMachine(clone, clone.maxShieldCount);
                 
                 newPosition = new Vector3(position.x, position.y - 1.5f, position.z);
                 
-                var requirementBox = Instantiate(database.requirementsBox, newPosition,
-                    database.requirementsBox.rotation);
+                var shieldTransform = Instantiate(database.shieldTransform, newPosition,
+                    database.shieldTransform.rotation);
                 
-                requirementBox.transform.SetParent(clone.Unit.transform);
+                shieldTransform.transform.SetParent(clone.Unit.transform);
 
-                // var requirementBoxController = requirementBox.GetComponentInChildren<RequirementBoxControllerUI>();
-                // requirementBoxController.enemy = clone;
-                // requirementBoxController.Initialize();
+                var shieldController = shieldTransform.GetComponent<BreakSystemControllerUI>();
+                shieldController.enemy = clone;
+                shieldController.Initialize();
 
                 BattleManager.EnemiesForThisBattle.Add(clone);
                 i++;

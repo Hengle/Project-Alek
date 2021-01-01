@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Special Attack1 (TBD)
+  m_Name: EliasUseItem
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -30,7 +30,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 1
+        time: 0.51666665
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -41,44 +41,38 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: isAttacking
+    attribute: usingItem
     path: 
     classID: 114
     script: {fileID: 11500000, guid: adc95e01ab5ac944496260dc76404184, type: 3}
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -4424136841789468814, guid: 3863917b23e66dd44b72fb3d17e7c79c,
+      value: {fileID: 4111629317867855345, guid: d192fade7085fcd4ea55555591d386ca,
         type: 3}
-    - time: 0.11111111
-      value: {fileID: 6934344163493565426, guid: 3863917b23e66dd44b72fb3d17e7c79c,
+    - time: 0.083333336
+      value: {fileID: 4197026397742574491, guid: d192fade7085fcd4ea55555591d386ca,
         type: 3}
-    - time: 0.22222222
-      value: {fileID: 1918532450269638726, guid: 3863917b23e66dd44b72fb3d17e7c79c,
+    - time: 0.16666667
+      value: {fileID: 7172283131567881834, guid: d192fade7085fcd4ea55555591d386ca,
+        type: 3}
+    - time: 0.25
+      value: {fileID: 5302405983298258748, guid: d192fade7085fcd4ea55555591d386ca,
         type: 3}
     - time: 0.33333334
-      value: {fileID: -4322335530665874658, guid: 3863917b23e66dd44b72fb3d17e7c79c,
+      value: {fileID: -8608726931610816174, guid: d192fade7085fcd4ea55555591d386ca,
         type: 3}
-    - time: 0.44444445
-      value: {fileID: -8960959957819466453, guid: 3863917b23e66dd44b72fb3d17e7c79c,
+    - time: 0.41666666
+      value: {fileID: 863709900277164126, guid: d192fade7085fcd4ea55555591d386ca,
         type: 3}
-    - time: 0.5555556
-      value: {fileID: -621421379918864354, guid: 3863917b23e66dd44b72fb3d17e7c79c,
-        type: 3}
-    - time: 0.6666667
-      value: {fileID: -6451022485927633561, guid: 3863917b23e66dd44b72fb3d17e7c79c,
-        type: 3}
-    - time: 0.7777778
-      value: {fileID: -7533912350241694502, guid: 3863917b23e66dd44b72fb3d17e7c79c,
-        type: 3}
-    - time: 0.8888889
-      value: {fileID: 3107639549393152974, guid: 3863917b23e66dd44b72fb3d17e7c79c,
+    - time: 0.5
+      value: {fileID: 9083853179677952857, guid: d192fade7085fcd4ea55555591d386ca,
         type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 9
+  m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -87,7 +81,7 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 0
-      attribute: 973584577
+      attribute: 3880623418
       script: {fileID: 11500000, guid: adc95e01ab5ac944496260dc76404184, type: 3}
       typeID: 114
       customType: 0
@@ -100,21 +94,19 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -4424136841789468814, guid: 3863917b23e66dd44b72fb3d17e7c79c, type: 3}
-    - {fileID: 6934344163493565426, guid: 3863917b23e66dd44b72fb3d17e7c79c, type: 3}
-    - {fileID: 1918532450269638726, guid: 3863917b23e66dd44b72fb3d17e7c79c, type: 3}
-    - {fileID: -4322335530665874658, guid: 3863917b23e66dd44b72fb3d17e7c79c, type: 3}
-    - {fileID: -8960959957819466453, guid: 3863917b23e66dd44b72fb3d17e7c79c, type: 3}
-    - {fileID: -621421379918864354, guid: 3863917b23e66dd44b72fb3d17e7c79c, type: 3}
-    - {fileID: -6451022485927633561, guid: 3863917b23e66dd44b72fb3d17e7c79c, type: 3}
-    - {fileID: -7533912350241694502, guid: 3863917b23e66dd44b72fb3d17e7c79c, type: 3}
-    - {fileID: 3107639549393152974, guid: 3863917b23e66dd44b72fb3d17e7c79c, type: 3}
+    - {fileID: 4111629317867855345, guid: d192fade7085fcd4ea55555591d386ca, type: 3}
+    - {fileID: 4197026397742574491, guid: d192fade7085fcd4ea55555591d386ca, type: 3}
+    - {fileID: 7172283131567881834, guid: d192fade7085fcd4ea55555591d386ca, type: 3}
+    - {fileID: 5302405983298258748, guid: d192fade7085fcd4ea55555591d386ca, type: 3}
+    - {fileID: -8608726931610816174, guid: d192fade7085fcd4ea55555591d386ca, type: 3}
+    - {fileID: 863709900277164126, guid: d192fade7085fcd4ea55555591d386ca, type: 3}
+    - {fileID: 9083853179677952857, guid: d192fade7085fcd4ea55555591d386ca, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 0.51666665
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -143,7 +135,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 1
+        time: 0.51666665
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -154,32 +146,11 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: isAttacking
+    attribute: usingItem
     path: 
     classID: 114
     script: {fileID: 11500000, guid: adc95e01ab5ac944496260dc76404184, type: 3}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.22222222
-    functionName: OpenParryWindow
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.44444445
-    functionName: TargetTakeDamage
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.5555556
-    functionName: TryToInflictStatusEffect
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

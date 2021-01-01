@@ -36,7 +36,6 @@ namespace Characters.PartyMembers
         public override void Heal(float amount)
         {
             CurrentHP += (int) amount;
-            CurrentAP -= 1;
         }
         
         public bool SetAI() => true;

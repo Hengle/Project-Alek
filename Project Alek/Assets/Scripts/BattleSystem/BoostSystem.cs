@@ -67,12 +67,14 @@ namespace BattleSystem
             
             unit.onTimedAttack += EvaluateDamageBoostLevel;
             unit.onTimedDefense += EvaluateDefenseBoostLevel;
+            unit.parent.onDeath += OnDeath;
         }
 
         private void EvaluateDamageBoostLevel(bool condition)
         {
-            if (condition) 
+            if (condition)
             {
+                if (unit.HasMissedAllTargets) return;
                 if (damageBoostLvl < DamageBoostLvl.Level5) damageBoostLvl += 1;
             }
             else damageBoostLvl = DamageBoostLvl.Level0;
@@ -82,7 +84,8 @@ namespace BattleSystem
         
         private void EvaluateDefenseBoostLevel(bool condition)
         {
-            if (condition) {
+            if (condition)
+            {
                 if (defenseBoostLvl < DefenseBoostLvl.Level5) defenseBoostLvl += 1;
             }
             else defenseBoostLvl = DefenseBoostLvl.Level0;
@@ -90,10 +93,17 @@ namespace BattleSystem
             unit.onDefValueChanged.Invoke((int)defenseBoostLvl, condition);
         }
 
+        private void OnDeath(UnitBase unit)
+        {
+            EvaluateDamageBoostLevel(false);
+            EvaluateDefenseBoostLevel(false);
+        }
+
         private void OnDisable()
         {
             unit.onTimedAttack -= EvaluateDamageBoostLevel;
             unit.onTimedDefense -= EvaluateDefenseBoostLevel;
+            unit.parent.onDeath -= OnDeath;
         }
     }
 }

@@ -1,0 +1,1208 @@
+fileFormatVersion: 2
+guid: cbfe9f95abc5a5e4a890d818af76a704
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6515455346552626181
+    second: Leandra_Recovery_0
+  - first:
+      213: 7111210043697034930
+    second: Leandra_Recovery_1
+  - first:
+      213: -5255165771876517585
+    second: Leandra_Recovery_2
+  - first:
+      213: -7791471131304565045
+    second: Leandra_Recovery_3
+  - first:
+      213: 9160112631635217010
+    second: Leandra_Recovery_4
+  - first:
+      213: -4755675113437790055
+    second: Leandra_Recovery_5
+  - first:
+      213: 6905012685515772596
+    second: Leandra_Recovery_6
+  - first:
+      213: 8669676214321902800
+    second: Leandra_Recovery_7
+  - first:
+      213: 8994772705974935889
+    second: Leandra_PowerUp_0
+  - first:
+      213: 8833014273079905716
+    second: Leandra_PowerUp_1
+  - first:
+      213: 1611531210693012295
+    second: Leandra_PowerUp_2
+  - first:
+      213: 5797828189153625460
+    second: Leandra_PowerUp_3
+  - first:
+      213: -5418518708177576208
+    second: Leandra_PowerUp_4
+  - first:
+      213: -6050071066859363147
+    second: Leandra_PowerUp_5
+  - first:
+      213: -8359941720718034218
+    second: Leandra_PowerUp_6
+  - first:
+      213: 1286054000251789337
+    second: Leandra_PowerUp_7
+  - first:
+      213: 6860943952505960255
+    second: Leandra_PowerUp_8
+  - first:
+      213: 3385706117553439022
+    second: LeandraSprites2_17
+  - first:
+      213: 6131420618784624436
+    second: Leandra_PowerUp_9
+  - first:
+      213: -6982215570705436530
+    second: Leandra_Victory_0
+  - first:
+      213: -7538983326319336691
+    second: Leandra_Victory_1
+  - first:
+      213: 1715048777939671541
+    second: Leandra_Victory_2
+  - first:
+      213: 426956055540348402
+    second: Leandra_Victory_3
+  - first:
+      213: -4322661765740735945
+    second: Leandra_Victory_4
+  - first:
+      213: 2452060675802748408
+    second: Leandra_Victory_5
+  - first:
+      213: -6347866475239456155
+    second: Leandra_Victory_6
+  - first:
+      213: 2285722714014035749
+    second: Leandra_Victory_7
+  - first:
+      213: -7762500629026482895
+    second: Leandra_Victory_8
+  - first:
+      213: -8803988408945884004
+    second: Leandra_Victory_9
+  - first:
+      213: 176402961700316933
+    second: Leandra_Guard_0
+  - first:
+      213: -1561827487659110216
+    second: Leandra_Guard_1
+  - first:
+      213: -2002200275337407984
+    second: Leandra_Guard_2
+  - first:
+      213: -5688431714727185542
+    second: Leandra_Guard_3
+  - first:
+      213: 7842218793714697089
+    second: Leandra_Guard_4
+  - first:
+      213: -3055573654627838698
+    second: Leandra_Guard_5
+  - first:
+      213: -7578653793021606736
+    second: Leandra_Guard_6
+  - first:
+      213: 2165721204461305129
+    second: Leandra_Guard_7
+  - first:
+      213: 3661093774916962356
+    second: Leandra_UseItem_0
+  - first:
+      213: -706155356184352412
+    second: Leandra_UseItem_1
+  - first:
+      213: -501890814119682329
+    second: Leandra_UseItem_2
+  - first:
+      213: 7851222119355941669
+    second: Leandra_UseItem_3
+  - first:
+      213: 8851145197419889556
+    second: Leandra_UseItem_4
+  - first:
+      213: 7361752611189007198
+    second: Leandra_UseItem_5
+  - first:
+      213: 6823571114824570302
+    second: Leandra_UseItem_6
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 2
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Leandra_Recovery_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 263
+        width: 39
+        height: 13
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50c50390e1c8b6a50800000000000000
+      internalID: 6515455346552626181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Recovery_1
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 265
+        width: 36
+        height: 13
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b670c1abd710b260800000000000000
+      internalID: 7111210043697034930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Recovery_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 265
+        width: 33
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f293283d296e117b0800000000000000
+      internalID: -5255165771876517585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Recovery_3
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 265
+        width: 32
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc661ec79422fd390800000000000000
+      internalID: -7791471131304565045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Recovery_4
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 265
+        width: 32
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27a8f27f7e14f1f70800000000000000
+      internalID: 9160112631635217010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Recovery_5
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 265
+        width: 27
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99000645ea2700eb0800000000000000
+      internalID: -4755675113437790055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Recovery_6
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 265
+        width: 25
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b2dbb1047883df50800000000000000
+      internalID: 6905012685515772596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Recovery_7
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 265
+        width: 25
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d47f404590e05870800000000000000
+      internalID: 8669676214321902800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_PowerUp_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 201
+        width: 25
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 151e307ae1ad3dc70800000000000000
+      internalID: 8994772705974935889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_PowerUp_1
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 201
+        width: 28
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bd02ea9eab259a70800000000000000
+      internalID: 8833014273079905716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_PowerUp_2
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 201
+        width: 26
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74befcd091f4d5610800000000000000
+      internalID: 1611531210693012295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_PowerUp_3
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 201
+        width: 24
+        height: 44
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4758f331506067050800000000000000
+      internalID: 5797828189153625460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_PowerUp_4
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 201
+        width: 21
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fe544681fd8dc4b0800000000000000
+      internalID: -5418518708177576208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_PowerUp_5
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 201
+        width: 22
+        height: 47
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b4aaf95b64d90ca0800000000000000
+      internalID: -6050071066859363147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_PowerUp_6
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 201
+        width: 25
+        height: 44
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6da32a14c458bfb80800000000000000
+      internalID: -8359941720718034218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_PowerUp_7
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 201
+        width: 38
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9106af6ac4bf8d110800000000000000
+      internalID: 1286054000251789337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_PowerUp_8
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 201
+        width: 37
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f377bf88c28f63f50800000000000000
+      internalID: 6860943952505960255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LeandraSprites2_17
+      rect:
+        serializedVersion: 2
+        x: 558
+        y: 203
+        width: 6
+        height: 5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e21c3a296c17cfe20800000000000000
+      internalID: 3385706117553439022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_PowerUp_9
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 201
+        width: 51
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43fc92f219e271550800000000000000
+      internalID: 6131420618784624436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Victory_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 137
+        width: 29
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e80b6ea8eef2a1f90800000000000000
+      internalID: -6982215570705436530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Victory_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 137
+        width: 27
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d03a423ab96206790800000000000000
+      internalID: -7538983326319336691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Victory_2
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 137
+        width: 22
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f9df8dd6c31dc710800000000000000
+      internalID: 1715048777939671541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Victory_3
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 137
+        width: 23
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f53f29354adce500800000000000000
+      internalID: 426956055540348402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Victory_4
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 137
+        width: 24
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7325cd8c602d204c0800000000000000
+      internalID: -4322661765740735945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Victory_5
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 137
+        width: 24
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f55dec6138770220800000000000000
+      internalID: 2452060675802748408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Victory_6
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 137
+        width: 24
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 562cdbdb219d7e7a0800000000000000
+      internalID: -6347866475239456155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Victory_7
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 137
+        width: 24
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52f29d7b2b488bf10800000000000000
+      internalID: 2285722714014035749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Victory_8
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 137
+        width: 24
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 135512e2ece064490800000000000000
+      internalID: -7762500629026482895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Victory_9
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 137
+        width: 24
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c94cf160033f1d580800000000000000
+      internalID: -8803988408945884004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Guard_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 73
+        width: 29
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 507697d1f85b27200800000000000000
+      internalID: 176402961700316933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Guard_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 73
+        width: 26
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b053a5cc26435ae0800000000000000
+      internalID: -1561827487659110216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Guard_2
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 73
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 012135b2571c634e0800000000000000
+      internalID: -2002200275337407984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Guard_3
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 73
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a73be9a7e71ae01b0800000000000000
+      internalID: -5688431714727185542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Guard_4
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 73
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 183c14a617825dc60800000000000000
+      internalID: 7842218793714697089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Guard_5
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 73
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6159dd243fb6895d0800000000000000
+      internalID: -3055573654627838698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Guard_6
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 73
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b4c747578633d690800000000000000
+      internalID: -7578653793021606736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_Guard_7
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 73
+        width: 26
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92d727206ff2e0e10800000000000000
+      internalID: 2165721204461305129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_UseItem_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 9
+        width: 29
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 438c1571461dec230800000000000000
+      internalID: 3661093774916962356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_UseItem_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 9
+        width: 26
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4696466e17b3336f0800000000000000
+      internalID: -706155356184352412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_UseItem_2
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 9
+        width: 23
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ee5d54b6fce809f0800000000000000
+      internalID: -501890814119682329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_UseItem_3
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 9
+        width: 24
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52386e48be425fc60800000000000000
+      internalID: 7851222119355941669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_UseItem_4
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 9
+        width: 24
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4930e9369a595da70800000000000000
+      internalID: 8851145197419889556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_UseItem_5
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 9
+        width: 23
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e53a932eef23a2660800000000000000
+      internalID: 7361752611189007198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leandra_UseItem_6
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 9
+        width: 26
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb51cbea6c132be50800000000000000
+      internalID: 6823571114824570302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 90461acd6241a274486bdcb20e856e18
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

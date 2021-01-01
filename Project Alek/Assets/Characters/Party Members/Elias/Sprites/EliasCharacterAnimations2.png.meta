@@ -1,7 +1,133 @@
 fileFormatVersion: 2
 guid: d192fade7085fcd4ea55555591d386ca
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -5347907607917589703
+    second: Elias_Recovery_0
+  - first:
+      213: -8653104651663742888
+    second: Elias_Recovery_1
+  - first:
+      213: -8958517579313776605
+    second: Elias_Recovery_2
+  - first:
+      213: 1008079765494732338
+    second: Elias_Recovery_3
+  - first:
+      213: 2363019144136437744
+    second: Elias_Recovery_4
+  - first:
+      213: -1816231233375511590
+    second: Elias_Recovery_5
+  - first:
+      213: -665233839862082857
+    second: Elias_Recovery_6
+  - first:
+      213: 8557185647796887004
+    second: Elias_Recovery_7
+  - first:
+      213: 2215834552362118221
+    second: Elias_Recovery_8
+  - first:
+      213: 7949231757920477315
+    second: Elias_Victory_0
+  - first:
+      213: -60568831934747524
+    second: Elias_Victory_1
+  - first:
+      213: 837010334791868740
+    second: Elias_Victory_2
+  - first:
+      213: -1659991390836440779
+    second: Elias_Victory_3
+  - first:
+      213: 2078278376170373457
+    second: Elias_Victory_4
+  - first:
+      213: 91378153132118719
+    second: Elias_Victory_5
+  - first:
+      213: -5634677315039336512
+    second: Elias_Victory_6
+  - first:
+      213: -6479222043421351311
+    second: Elias_Victory_7
+  - first:
+      213: -2252101818253649001
+    second: Elias_Command_0
+  - first:
+      213: -8218564102700235640
+    second: Elias_Command_1
+  - first:
+      213: 2500620271620384556
+    second: Elias_Command_2
+  - first:
+      213: 4850239001925904468
+    second: Elias_Command_3
+  - first:
+      213: -6925421729622297160
+    second: Elias_Command_4
+  - first:
+      213: 3703679929349971582
+    second: Elias_Command_5
+  - first:
+      213: -95223575118249452
+    second: Elias_Command_6
+  - first:
+      213: -7297412372655426199
+    second: Elias_Command_7
+  - first:
+      213: -7920327750855508515
+    second: Elias_Guard_0
+  - first:
+      213: -1023527958938386495
+    second: Elias_Guard_1
+  - first:
+      213: 3157357136031203588
+    second: Elias_Guard_2
+  - first:
+      213: 8858089169326066536
+    second: Elias_Guard_3
+  - first:
+      213: -8029493489433201979
+    second: Elias_Guard_4
+  - first:
+      213: -4148448662533579556
+    second: Elias_Guard_5
+  - first:
+      213: -8322269254676071170
+    second: Elias_Guard_6
+  - first:
+      213: -412661818780649501
+    second: Elias_Guard_7
+  - first:
+      213: 1130461494064516517
+    second: Elias_Guard_8
+  - first:
+      213: 5297734161306797683
+    second: Elias_Guard_9
+  - first:
+      213: 4111629317867855345
+    second: Elias_UseItem_0
+  - first:
+      213: 4197026397742574491
+    second: Elias_UseItem_1
+  - first:
+      213: 7172283131567881834
+    second: Elias_UseItem_2
+  - first:
+      213: 5302405983298258748
+    second: Elias_UseItem_3
+  - first:
+      213: -8608726931610816174
+    second: Elias_UseItem_4
+  - first:
+      213: 863709900277164126
+    second: Elias_UseItem_5
+  - first:
+      213: 9083853179677952857
+    second: Elias_UseItem_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -47,7 +173,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -133,11 +259,893 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Elias_Recovery_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 265
+        width: 36
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93b86727d5a68c5b0800000000000000
+      internalID: -5347907607917589703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Recovery_1
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 264
+        width: 31
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8586d495a2ff9e780800000000000000
+      internalID: -8653104651663742888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Recovery_2
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 265
+        width: 31
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 328f8e2d9b3fca380800000000000000
+      internalID: -8958517579313776605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Recovery_3
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 265
+        width: 31
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2369297a43b6dfd00800000000000000
+      internalID: 1008079765494732338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Recovery_4
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 265
+        width: 31
+        height: 30
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ff23bb44612bc020800000000000000
+      internalID: 2363019144136437744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Recovery_5
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 265
+        width: 31
+        height: 30
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adbdea8e0537bc6e0800000000000000
+      internalID: -1816231233375511590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Recovery_6
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 265
+        width: 26
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d29372e85d94c6f0800000000000000
+      internalID: -665233839862082857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Recovery_7
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 265
+        width: 23
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdd110e320b31c670800000000000000
+      internalID: 8557185647796887004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Recovery_8
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 265
+        width: 24
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4ca49e09c930ce10800000000000000
+      internalID: 2215834552362118221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Victory_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 201
+        width: 24
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 380aa10ca28515e60800000000000000
+      internalID: 7949231757920477315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Victory_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 201
+        width: 26
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7ca110e7f0d82ff0800000000000000
+      internalID: -60568831934747524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Victory_2
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 201
+        width: 23
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 441a99ef678ad9b00800000000000000
+      internalID: 837010334791868740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Victory_3
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 201
+        width: 23
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 531ccf200a686f8e0800000000000000
+      internalID: -1659991390836440779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Victory_4
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 201
+        width: 21
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 151c2040c2787dc10800000000000000
+      internalID: 2078278376170373457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Victory_5
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 201
+        width: 21
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb2dba532f3a44100800000000000000
+      internalID: 91378153132118719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Victory_6
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 201
+        width: 21
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c7e025f5da9dc1b0800000000000000
+      internalID: -5634677315039336512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Victory_7
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 201
+        width: 21
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1726df041ed2516a0800000000000000
+      internalID: -6479222043421351311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Command_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 137
+        width: 24
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79bdaf4145deeb0e0800000000000000
+      internalID: -2252101818253649001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Command_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 137
+        width: 30
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88486ce0e7bc1fd80800000000000000
+      internalID: -8218564102700235640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Command_2
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 137
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c27e21063ecf3b220800000000000000
+      internalID: 2500620271620384556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Command_3
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 137
+        width: 35
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 458e981bca28f4340800000000000000
+      internalID: 4850239001925904468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Command_4
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 137
+        width: 36
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b5771e11a5f3ef90800000000000000
+      internalID: -6925421729622297160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Command_5
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 137
+        width: 36
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7e16a6d54d166330800000000000000
+      internalID: 3703679929349971582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Command_6
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 137
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41285d6b9a2bdaef0800000000000000
+      internalID: -95223575118249452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Command_7
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 137
+        width: 30
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96535544c126aba90800000000000000
+      internalID: -7297412372655426199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Guard_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 73
+        width: 24
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dddb691dfd7551290800000000000000
+      internalID: -7920327750855508515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Guard_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 73
+        width: 30
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cffbc58eb2bbc1f0800000000000000
+      internalID: -1023527958938386495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Guard_2
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 73
+        width: 35
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4014f2a369f21db20800000000000000
+      internalID: 3157357136031203588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Guard_3
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 73
+        width: 27
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86b4a66da214eea70800000000000000
+      internalID: 8858089169326066536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Guard_4
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 73
+        width: 22
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c2b504a632819090800000000000000
+      internalID: -8029493489433201979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Guard_5
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 73
+        width: 21
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdcddbcbbefbd66c0800000000000000
+      internalID: -4148448662533579556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Guard_6
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 73
+        width: 21
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efcb0e5c43c518c80800000000000000
+      internalID: -8322269254676071170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Guard_7
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 73
+        width: 27
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e7763f134ee54af0800000000000000
+      internalID: -412661818780649501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Guard_8
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 73
+        width: 35
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ad09f94db430bf00800000000000000
+      internalID: 1130461494064516517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Guard_9
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 73
+        width: 30
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 376c42fa625558940800000000000000
+      internalID: 5297734161306797683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_UseItem_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 9
+        width: 24
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fd589b84117f0930800000000000000
+      internalID: 4111629317867855345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_UseItem_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 9
+        width: 22
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9b226e9545de3a30800000000000000
+      internalID: 4197026397742574491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_UseItem_2
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 9
+        width: 22
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6e31adf181198360800000000000000
+      internalID: 7172283131567881834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_UseItem_3
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 9
+        width: 22
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c370661062ee59940800000000000000
+      internalID: 5302405983298258748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_UseItem_4
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 9
+        width: 22
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 251bff87778a78880800000000000000
+      internalID: -8608726931610816174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_UseItem_5
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 9
+        width: 22
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e58220304938cfb00800000000000000
+      internalID: 863709900277164126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_UseItem_6
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 9
+        width: 22
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95bc18ea654501e70800000000000000
+      internalID: 9083853179677952857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c9844f88e6ca44b4b89b2ecb3aa46cff
     internalID: 0
     vertices: []
     indices: 

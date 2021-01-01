@@ -331,6 +331,7 @@ namespace MoreMountains.InventoryEngine
             if (CurrentlySelectedInventorySlot.Usable())
             {
                 CurrentlySelectedInventorySlot.Use();
+                CloseInventory();
             }
         }
 

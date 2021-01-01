@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Characters;
+using Characters.Animations;
 using Characters.PartyMembers;
 using MEC;
 using Sirenix.OdinInspector;
@@ -21,6 +22,8 @@ namespace BattleSystem
         private static int classOption;
         private static string className;
 
+        public static int _itemHealOrDamageAmount;
+
         public static void GetCurrentCommand(string name, int option)
         {
             className = name;
@@ -36,8 +39,31 @@ namespace BattleSystem
             }
         }
 
+        public static void GetItemCommand()
+        {
+            switch (_targetOptions)
+            {
+                case 0: targetOptionsCharacterType = CharacterType.Enemy;
+                    break;
+                case 1: targetOptionsCharacterType = CharacterType.PartyMember;
+                    break;
+                case 2: break;
+            }
+        }
+
+        // This function is called from an onclick event attached to each character
         private void AddCommand()
         {
+            // TODO: Account for revival items and other types
+            if (BattleManager._usingItem)
+            {
+                if (thisUnitBase.Unit.status == Status.Dead) return;
+                character.Unit.anim.SetTrigger(AnimationHandler.ItemTrigger);
+                BattleManager._choosingTarget = false;
+                EventSystem.current.SetSelectedGameObject(null);
+                thisUnitBase.Heal(_itemHealOrDamageAmount);
+            }
+            
             if (thisUnitBase.Unit.status == Status.Dead) return;
             
             character.Unit.currentTarget = thisUnitBase;

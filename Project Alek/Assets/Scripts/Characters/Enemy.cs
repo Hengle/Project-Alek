@@ -11,7 +11,7 @@ namespace Characters
     {
         [HideInInspector] public UnitStateMachine stateMachine;
 
-        public int shieldCount = 1;
+        public int maxShieldCount = 1;
 
         public int CurrentAP 
         {

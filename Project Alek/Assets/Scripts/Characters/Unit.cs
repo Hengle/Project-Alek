@@ -16,8 +16,7 @@ namespace Characters
     public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler, IGameEventListener<CharacterEvents>
     {
         #region HideInInspector
-        
-        [HideInInspector] public UnitBase currentTarget;
+
         [HideInInspector] public Ability currentAbility;
         [HideInInspector] public Animator anim;
         [HideInInspector] public AnimationHandler animationHandler;
@@ -34,7 +33,8 @@ namespace Characters
         #endregion
 
         #region ReadOnly
-
+        
+        [ReadOnly] public UnitBase currentTarget;
         [ReadOnly] public Status status = Status.Normal;
         [ReadOnly] public UnitStates currentState;
         [ReadOnly] public int level;
@@ -82,6 +82,17 @@ namespace Characters
         
         public Action onSelect;
         public Action onDeselect;
+
+        public float ShieldFactor =>
+            currentState == UnitStates.Weakened || currentState == UnitStates.Checkmate ? 1.0f : 0.80f;
+
+        public bool HasMissedAllTargets {
+            get { if (currentTarget != null) return currentTarget.Unit.attackerHasMissed;
+
+                return multiHitTargets.Count > 0 && multiHitTargets.TrueForAll
+                           (t => t.Unit.attackerHasMissed);
+            }
+        }
 
         public UnitBase parent;
         
@@ -146,6 +157,13 @@ namespace Characters
             currentResistance = (int) parent.resistance.Value;
         }
 
+        private void ResetTargets()
+        {
+            currentTarget = null;
+            multiHitTargets.Clear();
+            damageValueList.Clear();
+        }
+
         public void OnGameEvent(CharacterEvents eventType)
         {
             switch (eventType._eventType)
@@ -153,6 +171,7 @@ namespace Characters
                 case CEventType.CharacterTurn:
                     outline.enabled = false;
                     button.enabled = false;
+                    if (eventType._character == parent) ResetTargets();
                     break;
                 
                 case CEventType.ChoosingTarget: button.enabled = true;

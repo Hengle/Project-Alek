@@ -180,9 +180,6 @@ MonoBehaviour:
     - Name: onHpValueChanged
       Entry: 6
       Data: 
-    - Name: onNewState
-      Entry: 6
-      Data: 
     - Name: onShieldValueChanged
       Entry: 6
       Data: 
@@ -230,4 +227,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}
   - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
   maxAP: 6
-  shieldCount: 2
+  maxShieldCount: 2

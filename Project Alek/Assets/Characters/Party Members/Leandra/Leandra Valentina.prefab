@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 4558575751816808350}
   - component: {fileID: 3961203987289263741}
   - component: {fileID: 376577726162994539}
+  - component: {fileID: 6354075532016656245}
   m_Layer: 0
   m_Name: Leandra Valentina
   m_TagString: Untagged
@@ -160,6 +161,7 @@ MonoBehaviour:
   attackerHasMissed: 0
   parry: 0
   timedAttack: 0
+  isCountered: 0
   parent: {fileID: 0}
 --- !u!114 &4243244753647906
 MonoBehaviour:
@@ -174,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAttacking: 0
+  usingItem: 0
 --- !u!114 &113878214394390572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,5 +356,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 278d9511a282e1f4797817acd1390faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6354075532016656245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526218485019349028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df53782f636bd84b92acd514842ad3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
