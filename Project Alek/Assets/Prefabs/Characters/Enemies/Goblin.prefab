@@ -48,7 +48,7 @@ SpriteRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109450531332189788}
   m_Enabled: 1
-  m_CastShadows: 0
+  m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -122,30 +122,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a35d465435e2d2478d6cc7424f3de5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battlePanelRef: {fileID: 0}
-  id: 0
-  parent: {fileID: 0}
-  unitRef: {fileID: 0}
-  currentTarget: {fileID: 0}
   currentAbility: {fileID: 0}
   anim: {fileID: 0}
   animationHandler: {fileID: 0}
   outline: {fileID: 0}
   button: {fileID: 0}
-  targetHasCrit: 0
-  isCrit: 0
-  isAbility: 0
-  attackerHasMissed: 0
   commandActionOption: 0
   maxHealthRef: 20000
   currentAP: 6
-  weaponMT: 20
   actionCost: 0
   currentDamage: 0
   commandActionName: 
+  currentTarget: {fileID: 0}
   status: 0
+  currentState: 0
   level: 23
   currentHP: 20000
+  conversionAmount: 0
+  conversionFactor: 1
   currentStrength: 25
   currentMagic: 13
   currentAccuracy: 36
@@ -156,6 +150,14 @@ MonoBehaviour:
   statusEffects: []
   multiHitTargets: []
   damageValueList: 
+  targetHasCrit: 0
+  isCrit: 0
+  isAbility: 0
+  attackerHasMissed: 0
+  parry: 0
+  timedAttack: 0
+  isCountered: 0
+  parent: {fileID: 0}
 --- !u!114 &8809269014472016896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAttacking: 0
+  usingItem: 0
 --- !u!114 &5235832782362982261
 MonoBehaviour:
   m_ObjectHideFlags: 0

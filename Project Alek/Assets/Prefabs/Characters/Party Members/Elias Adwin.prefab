@@ -53,7 +53,7 @@ SpriteRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526218485019349028}
   m_Enabled: 1
-  m_CastShadows: 0
+  m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -127,7 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a35d465435e2d2478d6cc7424f3de5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTarget: {fileID: 0}
   currentAbility: {fileID: 0}
   anim: {fileID: 0}
   animationHandler: {fileID: 0}
@@ -139,6 +138,7 @@ MonoBehaviour:
   actionCost: 0
   currentDamage: 0
   commandActionName: 
+  currentTarget: {fileID: 0}
   status: 0
   currentState: 0
   level: 0

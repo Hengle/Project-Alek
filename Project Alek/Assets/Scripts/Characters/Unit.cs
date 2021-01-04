@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BattleSystem;
+using BattleSystem.Generator;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -83,6 +84,10 @@ namespace Characters
         public Action onSelect;
         public Action onDeselect;
 
+        [SerializeField] private Material material;
+        private SpriteRenderer spriteRenderer;
+        private BattleGeneratorDatabase database;
+
         public float ShieldFactor =>
             currentState == UnitStates.Weakened || currentState == UnitStates.Checkmate ? 1.0f : 0.80f;
 
@@ -104,6 +109,11 @@ namespace Characters
             outline = GetComponent<SpriteOutline>();
             button = GetComponent<Button>();
             animationHandler = GetComponent<AnimationHandler>();
+            database = FindObjectOfType<BattleGeneratorDatabase>();
+            material = GetComponent<SpriteRenderer>().material;
+            spriteRenderer = GetComponent<SpriteRenderer>();
+
+            //spriteRenderer.material = database.shadowMaterial;
             
             outline.enabled = false;
             status = Status.Normal;
@@ -116,7 +126,7 @@ namespace Characters
             onSelect?.Invoke();
         }
 
-        public void OnDeselect(BaseEventData eventData) 
+        public void OnDeselect(BaseEventData eventData)
         {
             outline.enabled = false;
             onDeselect?.Invoke();
