@@ -1,0 +1,212 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4760f1c8fd2d6214986da2731bc0ab7b, type: 3}
+  m_Name: Alek Ezana
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: eb1b5a0f67771a842832b379372ae131, type: 2}
+    - {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
+    - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
+    - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _elementalResistances
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
+        ProjectAlek],[Characters.ElementalTypes.ElementalScalar, ProjectAlek]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.ElementalTypes.ElementalType,
+        ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 25
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _elementalWeaknesses
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
+        ProjectAlek],[Characters.ElementalTypes.ElementalWeaknessScalar, ProjectAlek]],
+        mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 1
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 175
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _statusEffectResistances
+      Entry: 7
+      Data: 3|System.Collections.Generic.Dictionary`2[[Characters.StatusEffects.StatusEffect,
+        ProjectAlek],[Characters.StatusEffects.InflictionChanceModifier, ProjectAlek]],
+        mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 4|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.StatusEffects.StatusEffect,
+        ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 2
+    - Name: $v
+      Entry: 3
+      Data: 50
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _statusEffectWeaknesses
+      Entry: 7
+      Data: 5|System.Collections.Generic.Dictionary`2[[Characters.StatusEffects.StatusEffect,
+        ProjectAlek],[Characters.StatusEffects.InflictionChanceModifier, ProjectAlek]],
+        mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 4
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 3
+    - Name: $v
+      Entry: 3
+      Data: 50
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: onDeath
+      Entry: 6
+      Data: 
+    - Name: onHpValueChanged
+      Entry: 6
+      Data: 
+    - Name: onShieldValueChanged
+      Entry: 6
+      Data: 
+    - Name: onElementalDamageReceived
+      Entry: 6
+      Data: 
+    - Name: onStatusEffectReceived
+      Entry: 6
+      Data: 
+    - Name: onStatusEffectRemoved
+      Entry: 6
+      Data: 
+  icon: {fileID: 21300000, guid: 93a66ee4446eb5741900a389e401cdb0, type: 3}
+  scale: {x: 55, y: 55, z: 1}
+  id: 0
+  characterName: Alek Ezana
+  characterPrefab: {fileID: 1526218485019349028, guid: 38e223593cf5fd94cb9a317771507f77,
+    type: 3}
+  level: 1
+  health:
+    BaseValue: 845
+  strength:
+    BaseValue: 11
+  magic:
+    BaseValue: 7
+  accuracy:
+    BaseValue: 10
+  initiative:
+    BaseValue: 6
+  defense:
+    BaseValue: 9
+  resistance:
+    BaseValue: 5
+  criticalChance:
+    BaseValue: 3
+  description: Bruh it is the one. The ONLY. The ONE and ONLY. The ONE and ONLY GOD
+    among MEN. It is.... ya boi.... tha GAWD.... Alek.
+  weaponMight: 9
+  magicMight: 2
+  weaponAccuracy: 75
+  weaponCriticalChance: 3
+  abilities:
+  - {fileID: 11400000, guid: 5c5fa03193734104c98ec2f8d6543cfa, type: 2}
+  - {fileID: 11400000, guid: 6c09b3176a3b3e54ca0946ee458d3fa6, type: 2}
+  - {fileID: 11400000, guid: 1306999bff8e7c14892abd85b0b028c7, type: 2}
+  maxAP: 6
+  actionPointAnim: {fileID: 0}
+  positionInParty: 2
+  weaponInventory: {fileID: 5917402227159465644, guid: 1d94ebccb9928a445b4a7e1dbacb9d53,
+    type: 3}
+  armorInventory: {fileID: 5917402227159465644, guid: 73160e3893c2b7843b6db9576b98ff50,
+    type: 3}
+  equippedWeapon: {fileID: 0}
+  battleOptionsPanel: {fileID: 0}
+  battlePanel: {fileID: 0}
+  inventoryDisplay: {fileID: 0}

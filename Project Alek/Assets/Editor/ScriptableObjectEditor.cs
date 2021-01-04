@@ -50,8 +50,8 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
             {"Create New/Elemental Type", createNewElementalType}
         };
         
-        tree.AddAllAssetsAtPath("Party Members", "Characters/Party Members", typeof(PartyMember));
-        tree.AddAllAssetsAtPath("Enemies", "Characters/Enemies", typeof(Enemy));
+        tree.AddAllAssetsAtPath("Party Members", "Scriptable Objects/Characters/Party Members", typeof(PartyMember));
+        tree.AddAllAssetsAtPath("Enemies", "Scriptable Objects/Characters/Enemies", typeof(Enemy));
         tree.AddAllAssetsAtPath("Abilities/Physical Attacks","Scripts/Characters/Abilities/Physical Attacks", typeof(Ability));
         tree.AddAllAssetsAtPath("Abilities/Ranged Attacks","Scripts/Characters/Abilities/Ranged Attacks", typeof(Ability));
         tree.AddAllAssetsAtPath("Abilities/Non-Attacks","Scripts/Characters/Abilities/Non-attacks", typeof(Ability));
