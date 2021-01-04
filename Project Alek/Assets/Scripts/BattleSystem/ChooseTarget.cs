@@ -12,6 +12,7 @@ namespace BattleSystem
     public class ChooseTarget : MonoBehaviour, IGameEventListener<CharacterEvents>
     {
         public static int _targetOptions = 0;
+
         [ShowInInspector] public static bool _isMultiTarget;
         [HideInInspector] public UnitBase thisUnitBase;
 
@@ -21,8 +22,6 @@ namespace BattleSystem
 
         private static int classOption;
         private static string className;
-
-        public static int _itemHealOrDamageAmount;
 
         public static void GetCurrentCommand(string name, int option)
         {
@@ -58,10 +57,19 @@ namespace BattleSystem
             if (BattleManager._usingItem)
             {
                 if (thisUnitBase.Unit.status == Status.Dead) return;
+
+                var notEnoughAP = character.Unit.currentAP - 2 < 0;
+                if (notEnoughAP)
+                {
+                    var amountToBorrow = 2 - character.Unit.currentAP;
+                    if (character.Unit.CanBorrow(amountToBorrow)) character.Unit.borrowAP(amountToBorrow);
+                    else return;
+                }
+
                 character.Unit.anim.SetTrigger(AnimationHandler.ItemTrigger);
+                BattleManager._inventoryInputManager.CurrentlySelectedInventorySlot.Use();
                 BattleManager._choosingTarget = false;
                 EventSystem.current.SetSelectedGameObject(null);
-                thisUnitBase.Heal(_itemHealOrDamageAmount);
             }
             
             if (thisUnitBase.Unit.status == Status.Dead) return;

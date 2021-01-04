@@ -189,8 +189,7 @@ namespace BattleSystem
 
             if (_usingItem)
             {
-                // TODO: Update to account for AP Cost Increase System
-                character.CurrentAP -= 1;
+                character.CurrentAP -= 2;
                 yield return Timing.WaitForOneFrame;
                 
                 while (character.Unit.animationHandler.usingItem) 

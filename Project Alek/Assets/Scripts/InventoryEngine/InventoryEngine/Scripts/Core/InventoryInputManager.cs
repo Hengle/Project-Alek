@@ -330,7 +330,9 @@ namespace MoreMountains.InventoryEngine
             }
             if (CurrentlySelectedInventorySlot.Usable())
             {
-                CurrentlySelectedInventorySlot.Use();
+                //CurrentlySelectedInventorySlot.Use();
+                MMInventoryEvent.Trigger(MMInventoryEventType.PickTarget, CurrentlySelectedInventorySlot,
+                    TargetInventoryDisplay.TargetInventoryName, TargetInventoryDisplay.TargetInventory.Content[CurrentlySelectedInventorySlot.Index], 0, 0);
                 CloseInventory();
             }
         }
@@ -342,7 +344,10 @@ namespace MoreMountains.InventoryEngine
 
         public virtual void Use()
         {
-            CurrentlySelectedInventorySlot.Use();
+            //CurrentlySelectedInventorySlot.Use();
+            MMInventoryEvent.Trigger(MMInventoryEventType.PickTarget, CurrentlySelectedInventorySlot,
+                TargetInventoryDisplay.TargetInventoryName, TargetInventoryDisplay.TargetInventory.Content[CurrentlySelectedInventorySlot.Index], 0, 0);
+            CloseInventory();
         }
 
         public virtual void UnEquip()

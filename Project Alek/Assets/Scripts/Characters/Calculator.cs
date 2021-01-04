@@ -11,7 +11,6 @@ namespace Characters
         // TODO: OVERHAUL THE CRAP OUT OF THIS CRAPPY CODE!!!!!!!!!!!!!!!
         public static int CalculateAttackDamage(UnitBase damageDealer, UnitBase target)
         {
-            Logger.Log($"{damageDealer.characterName} should be doing damage to {target.characterName}");
             if (damageDealer.Unit == target.Unit) return 0;
 
             var hitChance = CalculateAccuracy(damageDealer, target);
@@ -23,8 +22,6 @@ namespace Characters
             var targetDefense = (int) target.defense.Value * (target.Unit.level / 2);
 
             var totalDamage = (int) dealerDamage - targetDefense;
-            
-            Logger.Log("Damage: " + totalDamage);
 
             totalDamage = CalculateBoostFactor(damageDealer, target, totalDamage);
             totalDamage = CalculateConversionFactor(damageDealer, totalDamage);
@@ -61,7 +58,7 @@ namespace Characters
 
             if (tryGetRes)
             {
-                Logger.Log($"{target.characterName} resists {ability.elementalType.name}!");
+                //Logger.Log($"{target.characterName} resists {ability.elementalType.name}!");
                 var resistanceScalar = 1 - (float) target._elementalResistances.Single
                     (s => s.Key == ability.elementalType).Value / 100;
 
@@ -70,7 +67,7 @@ namespace Characters
                     
             else if (tryGetWeakness)
             {
-                Logger.Log($"{target.characterName} is weak to {ability.elementalType.name}!");
+                //Logger.Log($"{target.characterName} is weak to {ability.elementalType.name}!");
                 var weaknessScalar = (float) target._elementalWeaknesses.Single
                     (s => s.Key == ability.elementalType).Value / 100;
 
@@ -78,7 +75,7 @@ namespace Characters
             }
             
             totalDamage = (int) ((normalDamage + elementalDamage) * damageDealer.Unit.currentAbility.damageMultiplier) - targetDefense;
-            Logger.Log($"Elemental Damage: {elementalDamage} \t Total Damage: {totalDamage}");
+            //Logger.Log($"Elemental Damage: {elementalDamage} \t Total Damage: {totalDamage}");
             
             SkipElemental:
             totalDamage = CalculateBoostFactor(damageDealer, target, totalDamage);

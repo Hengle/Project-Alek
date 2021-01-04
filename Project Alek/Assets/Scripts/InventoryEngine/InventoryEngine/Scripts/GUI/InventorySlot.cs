@@ -155,6 +155,11 @@ namespace MoreMountains.InventoryEngine
 			MMInventoryEvent.Trigger(MMInventoryEventType.UseRequest, this, ParentInventoryDisplay.TargetInventoryName, ParentInventoryDisplay.TargetInventory.Content[Index], 0, Index);
 		}
 
+		public virtual void PickTarget()
+		{
+			if (!SlotEnabled) { return; }
+		}
+
 		/// <summary>
 		/// Equip this item if possible.
 		/// </summary>

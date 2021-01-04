@@ -154,9 +154,6 @@ MonoBehaviour:
     - Name: onHpValueChanged
       Entry: 6
       Data: 
-    - Name: onNewState
-      Entry: 6
-      Data: 
     - Name: onShieldValueChanged
       Entry: 6
       Data: 
@@ -185,7 +182,7 @@ MonoBehaviour:
   accuracy:
     BaseValue: 12
   initiative:
-    BaseValue: 8
+    BaseValue: 11
   defense:
     BaseValue: 6
   resistance:

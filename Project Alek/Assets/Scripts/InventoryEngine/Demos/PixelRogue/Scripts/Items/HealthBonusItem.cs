@@ -3,6 +3,8 @@ using System.Collections;
 using MoreMountains.Tools;
 using System;
 using BattleSystem;
+using Characters;
+using UnityEngine.EventSystems;
 
 namespace MoreMountains.InventoryEngine
 {	
@@ -23,13 +25,9 @@ namespace MoreMountains.InventoryEngine
 		public override bool Use()
 		{
 			base.Use();
-			ChooseTarget._targetOptions = targetOptions;
-			ChooseTarget._itemHealOrDamageAmount = HealthBonus;
-			ChooseTarget.GetItemCommand();
-			BattleManager._usingItem = true;
-			BattleManager._choosingOption = false;
+			UnitBase target = EventSystem.current.currentSelectedGameObject.GetComponent<Unit>().parent;
+			target.Heal(HealthBonus);
 			return true;
 		}
-		
 	}
 }

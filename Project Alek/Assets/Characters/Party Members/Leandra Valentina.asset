@@ -182,7 +182,7 @@ MonoBehaviour:
   accuracy:
     BaseValue: 14
   initiative:
-    BaseValue: 10
+    BaseValue: 9
   defense:
     BaseValue: 12
   resistance:

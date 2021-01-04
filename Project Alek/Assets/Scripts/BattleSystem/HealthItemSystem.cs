@@ -24,7 +24,7 @@ namespace BattleSystem
             if (unit.HasMissedAllTargets) return;
 
             var randomValue = Random.value;
-            if (randomValue < 1) AddItems();
+            if (randomValue < 0.40f) AddItems();
         }
         
         private void AddItems()
@@ -38,7 +38,7 @@ namespace BattleSystem
                 var id = Random.Range(0, HealthItemPrefabManager.Instance.healthItems.Count - 1);
                 inventory.AddItem(HealthItemPrefabManager.Instance.healthItems[id], 1);
 
-                if (!unit.currentAbility.isMultiTarget)
+                if (!unit.isAbility || !unit.currentAbility.isMultiTarget)
                 {
                     var position = unit.currentTarget.Unit.gameObject.transform.position;
                     var newPosition = new Vector3(position.x + count, position.y, position.z);

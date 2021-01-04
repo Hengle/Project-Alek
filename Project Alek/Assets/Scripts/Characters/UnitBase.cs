@@ -8,7 +8,6 @@ using Characters.StatusEffects;
 using DamagePrefab;
 using Kryz.CharacterStats;
 using Sirenix.OdinInspector;
-using Sirenix.Utilities;
 
 namespace Characters
 {
@@ -127,7 +126,6 @@ namespace Characters
 
         [HideInInspector] public Action<UnitBase> onDeath;
         [HideInInspector] public Action onHpValueChanged;
-        //[HideInInspector] public Action<UnitStates> onNewState;
         [HideInInspector] public Action<int> onShieldValueChanged;
         [HideInInspector] public Action<ElementalType> onElementalDamageReceived;
         [HideInInspector] public Action<StatusEffect> onStatusEffectReceived;
@@ -155,7 +153,6 @@ namespace Characters
             onStatusEffectReceived = null;
             onStatusEffectRemoved = null;
             onDeath = null;
-            //onNewState = null;
         }
 
         public void OnNewState(UnitStates state)
@@ -234,14 +231,12 @@ namespace Characters
                     CurrentHP -= dmg;
                     Unit.parry = false;
                     Unit.onTimedDefense?.Invoke(true);
-                    Logger.Log($"{Unit.name} took less damage!");
                 }
                 else if (Unit.timedAttack)
                 {
                     dmg = (int) (dmg * 1.10f);
                     CurrentHP -= dmg;
                     Unit.timedAttack = false;
-                    Logger.Log($"{Unit.name} took more damage!");
                 }
                 else CurrentHP -= dmg;
                 
@@ -254,7 +249,6 @@ namespace Characters
                 {
                     Unit.parry = false;
                     Unit.onTimedDefense?.Invoke(true);
-                    Logger.Log($"{Unit.name} dodged and countered!");
                 }
             }
 
