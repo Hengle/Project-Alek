@@ -58,7 +58,14 @@ namespace BattleSystem
         }
 
         [UsedImplicitly] public void DisableInput() => BattleInput._controls.Disable();
-    
+
+        public void OpenMenu()
+        {
+            return;
+        }
+
+        #region SetSelected
+
         [UsedImplicitly] public void SetMainMenuFirstSelected()
         {
             EventSystem.current.SetSelectedGameObject(null);
@@ -128,7 +135,9 @@ namespace BattleSystem
                 unit.button.navigation = nav;
             }
         }
-        
+
+        #endregion
+
         public void OnMMEvent(MMInventoryEvent eventType)
         {
             if (BattleManager._usingItem) return;

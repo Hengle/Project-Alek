@@ -13,7 +13,7 @@ namespace BattleSystem
         public void ShowBattlePanel()
         {
             BattleManager._choosingOption = true;
-            character.actionPointAnim.SetInteger(AnimationHandler.APVal, character.CurrentAP);
+            //character.actionPointAnim.SetInteger(AnimationHandler.APVal, character.CurrentAP);
             
             // This is triggered at the start of a party member's turn
             if (!character.battlePanel.activeSelf)

@@ -21,16 +21,13 @@ namespace BattleSystem
 
         [SerializeField] private TextMeshProUGUI description;
         [SerializeField] private TextMeshProUGUI stats;
-
-        [SerializeField] private Image background;
+        
         [SerializeField] private Image spriteImage;
 
         [SerializeField] private Transform profileBox;
         [SerializeField] private Transform weaknessesBox;
         [SerializeField] private Transform resistancesBox;
 
-        [SerializeField] private Color color;
-        
         #endregion
 
         #region StatValDifferences
@@ -125,7 +122,6 @@ namespace BattleSystem
             description.text = character.description;
             spriteImage.sprite = character.Unit.gameObject.GetComponent<SpriteRenderer>().sprite;
             description.text = character.description;
-            background.color = color;
 
             character._elementalResistances.ForEach(e => Instantiate
                 (e.Key.icon, resistancesBox, false));
@@ -166,7 +162,7 @@ namespace BattleSystem
             BattleInput._inputModule.enabled = false;
 
             profileBox.gameObject.SetActive(true);
-            profileBox.DOScale(1, 0.5f);
+            profileBox.DOScale(0.75f, 0.5f);
         }
 
         private void CloseProfileBox()

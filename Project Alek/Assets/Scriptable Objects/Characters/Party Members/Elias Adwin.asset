@@ -166,7 +166,10 @@ MonoBehaviour:
     - Name: onStatusEffectRemoved
       Entry: 6
       Data: 
-  icon: {fileID: 21300000, guid: f2ea487f62fd65944b6389c00e56eb6b, type: 3}
+    - Name: onApValChanged
+      Entry: 6
+      Data: 
+  icon: {fileID: 21300000, guid: f53c7b84bd1f75a418adbfd96b7d21b9, type: 3}
   scale: {x: 50, y: 50, z: 0}
   id: 0
   characterName: Elias Adwin

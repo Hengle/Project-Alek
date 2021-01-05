@@ -14,6 +14,7 @@ namespace BattleSystem.Generator
         public List<GameObject> closeUpCameras = new List<GameObject>();
         public List<GameObject> criticalCameras = new List<GameObject>();
         public List<GameObject> characterPanels = new List<GameObject>();
+        public List<GameObject> battlePanels = new List<GameObject>();
         public List<GameObject> characterSpawnPoints = new List<GameObject>();
         public List<GameObject> enemySpawnPoints = new List<GameObject>();
         public List<Enemy> enemies = new List<Enemy>();

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Characters.Animations;
 using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
@@ -21,6 +22,8 @@ namespace Characters.PartyMembers
         [HideInInspector] public ScriptableObject battleOptionsPanel;
         [HideInInspector] public GameObject battlePanel;
         [HideInInspector] public GameObject inventoryDisplay;
+
+        public Action<int> onApValChanged;
         private GameObject unitGO;
 
         public int CurrentAP 
@@ -29,7 +32,8 @@ namespace Characters.PartyMembers
             set
             {
                 Unit.currentAP = value < 0 ? 0 : value;
-                actionPointAnim.SetInteger(AnimationHandler.APVal, Unit.currentAP);
+                onApValChanged?.Invoke(Unit.currentAP);
+                //actionPointAnim.SetInteger(AnimationHandler.APVal, Unit.currentAP);
             }
         }
 

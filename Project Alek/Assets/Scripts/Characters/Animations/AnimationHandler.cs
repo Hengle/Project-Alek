@@ -11,7 +11,9 @@ namespace Characters.Animations
         public static readonly int GuardTrigger = Animator.StringToHash("Guard");
         public static readonly int ItemTrigger = Animator.StringToHash("Item");
         public static readonly int PhysAttackState = Animator.StringToHash("PhysAttackState");
-        public static readonly int APVal = Animator.StringToHash("AP State");
+        public static readonly int maxAP = Animator.StringToHash("MaxAP");
+        public static readonly int maxDmgBoost = Animator.StringToHash("MaxDamageBoost");
+        public static readonly int maxDefBoost = Animator.StringToHash("MaxDefenseBoost");
         public static readonly int Panel = Animator.StringToHash("Panel");
         public static readonly int AbilityMenu = Animator.StringToHash("Ability Menu");
         

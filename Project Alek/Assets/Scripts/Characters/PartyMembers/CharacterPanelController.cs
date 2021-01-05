@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Characters.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -9,7 +10,7 @@ namespace Characters.PartyMembers
     {
         #region FieldsAndProperties
         
-        public UnitBase member;
+        public PartyMember member;
 
         private Image fillRectImage;
         [SerializeField] private Image icon;
@@ -18,15 +19,25 @@ namespace Characters.PartyMembers
         [SerializeField] private Slider slider;
         [SerializeField] private List<GameObject> dmgBoostBars;
         [SerializeField] private List<GameObject> defBoostBars;
+        [SerializeField] private List<GameObject> apBars;
+
+        private Animator apBarAnim;
+        private Animator dmgBoostAnim;
+        private Animator defBoostAnim;
 
         private int dmgBoostLvl;
         private int defBoostLvl;
+        private int currentAP;
         
         #endregion
 
         private void Awake()
         {
+            apBarAnim = transform.Find("AP Bar").GetComponent<Animator>();
+            dmgBoostAnim = transform.Find("DmgBoost Bar").GetComponent<Animator>();
+            defBoostAnim = transform.Find("DefBoost Bar").GetComponent<Animator>();
             fillRectImage = slider.fillRect.GetComponent<Image>();
+            
             icon.sprite = member.icon;
             nameUGUI.text = member.characterName.ToUpper();
             healthUGUI.text = $"HP: {member.health.BaseValue}";
@@ -35,13 +46,18 @@ namespace Characters.PartyMembers
 
             dmgBoostLvl = 0;
             defBoostLvl = 0;
-            
+
             dmgBoostBars.ForEach(o => o.gameObject.SetActive(false));
             defBoostBars.ForEach(o => o.gameObject.SetActive(false));
+            apBars.ForEach(o => o.gameObject.SetActive(true));
             
             member.onHpValueChanged += OnHpValueChanged;
             member.Unit.onDmgValueChanged += OnDmgBoostValueChanged;
             member.Unit.onDefValueChanged += OnDefBoostValueChanged;
+            member.onApValChanged += OnAPValueChanged;
+            
+            currentAP = member.maxAP;
+            apBarAnim.SetTrigger(AnimationHandler.maxAP);
         }
 
         private void OnHpValueChanged() 
@@ -49,6 +65,35 @@ namespace Characters.PartyMembers
             fillRectImage.color = member.Color;
             slider.value = member.Unit.currentHP;
             healthUGUI.text = $"HP: {member.Unit.currentHP}";
+        }
+
+        private void OnAPValueChanged(int val)
+        {
+            if (val > currentAP)
+            {
+                for (var i = currentAP; i < val; i++)
+                {
+                    apBars[i].gameObject.SetActive(true);
+                }
+            }
+            
+            else if (val == 0)
+            {
+                apBars.ForEach(o => o.gameObject.SetActive(false));
+            }
+            
+            else if (val < currentAP)
+            {
+                for (var i = currentAP-1; i >= val; i--)
+                {
+                    apBars[i].gameObject.SetActive(false);
+                }
+            }
+            
+            if (val == member.maxAP) apBarAnim.SetTrigger(AnimationHandler.maxAP);
+            else if (currentAP == member.maxAP && val != currentAP) apBarAnim.SetTrigger(AnimationHandler.maxAP);
+
+            currentAP = val;
         }
 
         private void OnDmgBoostValueChanged(int val, bool condition)
@@ -60,9 +105,11 @@ namespace Characters.PartyMembers
             else
             {
                 dmgBoostBars.ForEach(o => o.gameObject.SetActive(false));
+                if (dmgBoostLvl == 5) dmgBoostAnim.SetTrigger(AnimationHandler.maxDmgBoost);
             }
 
             dmgBoostLvl = val;
+            if (dmgBoostLvl == 5) dmgBoostAnim.SetTrigger(AnimationHandler.maxDmgBoost);
         }
         
         private void OnDefBoostValueChanged(int val, bool condition)
@@ -74,9 +121,11 @@ namespace Characters.PartyMembers
             else
             {
                 defBoostBars.ForEach(o => o.gameObject.SetActive(false));
+                if (defBoostLvl == 5) defBoostAnim.SetTrigger(AnimationHandler.maxDefBoost);
             }
 
             defBoostLvl = val;
+            if (defBoostLvl == 5) defBoostAnim.SetTrigger(AnimationHandler.maxDefBoost);
         }
 
         private void OnDisable()
@@ -84,6 +133,7 @@ namespace Characters.PartyMembers
             member.onHpValueChanged -= OnHpValueChanged;
             member.Unit.onDmgValueChanged -= OnDmgBoostValueChanged;
             member.Unit.onDefValueChanged -= OnDefBoostValueChanged;
+            member.onApValChanged -= OnAPValueChanged;
         }
     }
 }

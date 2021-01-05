@@ -89,6 +89,30 @@ namespace BattleSystem.Generator
             character.battlePanel.SetActive(false);
         }
         
+        private void SetupBattlePanel2(PartyMember character, int i)
+        {
+            character.battlePanel = database.battlePanels[i];
+            character.battleOptionsPanel = Instantiate(database.boPanel);
+            ((BattleOptionsPanel) character.battleOptionsPanel).character = character;
+            
+            var mainMenu = character.battlePanel.transform.Find("Battle Menu").transform.Find("Main Options").transform;
+
+            mainMenu.Find("Attack Button").gameObject.GetComponent<Button>().onClick.AddListener
+                ( delegate { ((BattleOptionsPanel) character.battleOptionsPanel).GetCommandInformation("UniversalAction,1,0,2"); });
+
+            mainMenu.Find("Abilities Button").gameObject.GetComponent<Button>().onClick.AddListener
+                (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnAbilityMenuButton(); });
+            
+            mainMenu.Find("Inventory Button").gameObject.GetComponent<Button>().onClick.AddListener
+                (delegate { BattleManager._inventoryInputManager.OpenInventory(); });
+
+            mainMenu.Find("End Turn Button").gameObject.GetComponent<Button>().onClick.AddListener
+                (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnEndTurnButton(); });
+
+            //character.actionPointAnim = character.battlePanel.transform.Find("AP Box").GetComponent<Animator>();
+            character.battlePanel.SetActive(false);
+        }
+        
         private static void SetAbilityMenuOptions(PartyMember character)
         {
             var abilityMenu = character.battlePanel.transform.Find("Battle Menu").transform.Find("Ability Menu").transform;
@@ -99,7 +123,7 @@ namespace BattleSystem.Generator
             for (var buttonIndex = 0; buttonIndex < character.abilities.Count; buttonIndex++)
             {
                 var optionButton = abilityMenu.GetChild(buttonIndex).gameObject;
-                optionButton.GetComponentInChildren<TextMeshPro>().text = character.abilities[abilityListIndex].name;
+                optionButton.GetComponentInChildren<TextMeshProUGUI>().text = character.abilities[abilityListIndex].name;
                 
                 optionButton.transform.Find("Icon").GetComponent<Image>().sprite = character.abilities[abilityListIndex].icon;
                 optionButton.SetActive(true);
@@ -179,7 +203,8 @@ namespace BattleSystem.Generator
             chooseTarget.thisUnitBase = character;
             chooseTarget.enabled = true;
 
-            SetupBattlePanel(character);
+            //SetupBattlePanel(character);
+            SetupBattlePanel2(character, i);
             SetAbilityMenuOptions(character);
             SetupInventoryDisplay(character, i);
             SetupProfileBox(character);
@@ -187,7 +212,7 @@ namespace BattleSystem.Generator
             memberGo.transform.localScale = character.scale;
             
             var panel = database.characterPanels[i + offset];
-            var statusBoxController = panel.transform.GetChild(panel.transform.childCount - 3).GetComponent<StatusEffectControllerUI>();
+            var statusBoxController = panel.transform.Find("Status Effects").GetComponent<StatusEffectControllerUI>();
             
             panel.GetComponent<CharacterPanelController>().member = character;
             panel.SetActive(true);
