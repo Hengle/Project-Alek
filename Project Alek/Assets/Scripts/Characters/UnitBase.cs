@@ -130,9 +130,10 @@ namespace Characters
         [HideInInspector] public Action<ElementalType> onElementalDamageReceived;
         [HideInInspector] public Action<StatusEffect> onStatusEffectReceived;
         [HideInInspector] public Action<StatusEffect> onStatusEffectRemoved;
+        [HideInInspector] public Action<int> onApValChanged;
 
         public bool IsDead => Unit.status == Status.Dead;
-
+        
         protected int CurrentHP 
         {
             get => Unit.currentHP;
@@ -144,7 +145,20 @@ namespace Characters
                 Unit.outline.color = Color;
             } 
         }
-        
+
+        public int CurrentAP 
+        {
+            get => Unit.currentAP;
+            set
+            {
+                if (value < 0) Unit.currentAP = 0;
+                else if (value > 6) Unit.currentAP = 6;
+                else Unit.currentAP = value;
+                
+                onApValChanged?.Invoke(Unit.currentAP);
+            }
+        }
+
         #endregion
 
         private void OnValidate()
@@ -176,10 +190,9 @@ namespace Characters
             
         }
 
-        public virtual void ResetAP() 
+        public virtual void ReplenishAP() 
         {
-            Unit.currentAP += 2;
-            if (Unit.currentAP > 6) Unit.currentAP = 6;
+            CurrentAP += 2;
         }
 
         #region GetFunctions
@@ -210,8 +223,10 @@ namespace Characters
             {
                 case Status.Normal: return true;
                 case Status.Dead: return false;
-                case Status.UnableToPerformAction: return false;
-                case Status.Overexerted: return false;
+                case Status.UnableToPerformAction: CharacterEvents.Trigger(CEventType.SkipTurn, this);
+                    return false;
+                case Status.Overexerted: CharacterEvents.Trigger(CEventType.SkipTurn, this);
+                    return false;
                 default: return true;
             }
         }

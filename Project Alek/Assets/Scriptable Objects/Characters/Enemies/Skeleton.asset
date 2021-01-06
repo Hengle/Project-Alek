@@ -166,10 +166,13 @@ MonoBehaviour:
     - Name: onStatusEffectRemoved
       Entry: 6
       Data: 
+    - Name: onApValChanged
+      Entry: 6
+      Data: 
     - Name: stateMachine
       Entry: 6
       Data: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 7d0b750a0ca7210499b7ec15bc2db2f9, type: 3}
   scale: {x: 45, y: 45, z: 1}
   id: 1
   characterName: Skeleton
@@ -177,7 +180,7 @@ MonoBehaviour:
     type: 3}
   level: 4
   health:
-    BaseValue: 835
+    BaseValue: 135
   strength:
     BaseValue: 9
   magic:

@@ -14,7 +14,7 @@ namespace Characters
 {
     // TODO: Use these with status effects (like inhibiting)
     public enum Status { Normal, Dead, UnableToPerformAction, Overexerted }
-    public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler, IGameEventListener<CharacterEvents>
+    public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler, IGameEventListener<CharacterEvents>, IGameEventListener<BattleEvents>
     {
         #region HideInInspector
 
@@ -57,6 +57,9 @@ namespace Characters
         private protected int currentDefense;
         [SerializeField] [ReadOnly]
         private protected int currentResistance;
+
+        [ReadOnly] public int finalInitVal;
+        [ReadOnly] public float initModifier;
         
         [ReadOnly] public List<StatusEffect> statusEffects = new List<StatusEffect>();
         [ReadOnly] public List<UnitBase> multiHitTargets = new List<UnitBase>();
@@ -69,6 +72,7 @@ namespace Characters
         [ReadOnly] public bool parry;
         [ReadOnly] public bool timedAttack;
         [ReadOnly] public bool isCountered;
+        [ReadOnly] public bool hasPerformedTurn;
 
         #endregion
 
@@ -117,7 +121,14 @@ namespace Characters
             
             outline.enabled = false;
             status = Status.Normal;
-            GameEventsManager.AddListener(this);
+            GameEventsManager.AddListener<CharacterEvents>(this);
+            GameEventsManager.AddListener<BattleEvents>(this);
+        }
+
+        private void OnDisable()
+        {
+            GameEventsManager.RemoveListener<CharacterEvents>(this);
+            GameEventsManager.RemoveListener<BattleEvents>(this);
         }
 
         public void OnSelect(BaseEventData eventData)
@@ -192,6 +203,20 @@ namespace Characters
                 
                 case CEventType.StatChange when eventType._character == parent: SetStats();
                     break;
+                
+                case CEventType.EndOfTurn when eventType._character == parent: hasPerformedTurn = true;
+                    break;
+                
+                case CEventType.SkipTurn when eventType._character == parent: hasPerformedTurn = true;
+                    break;
+            }
+        }
+
+        public void OnGameEvent(BattleEvents eventType)
+        {
+            if (eventType._battleEventType == BattleEventType.NewRound)
+            {
+                hasPerformedTurn = false;
             }
         }
     }

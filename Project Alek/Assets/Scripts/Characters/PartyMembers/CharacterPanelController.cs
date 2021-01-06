@@ -90,8 +90,8 @@ namespace Characters.PartyMembers
                 }
             }
             
-            if (val == member.maxAP) apBarAnim.SetTrigger(AnimationHandler.maxAP);
-            else if (currentAP == member.maxAP && val != currentAP) apBarAnim.SetTrigger(AnimationHandler.maxAP);
+            if (val == member.maxAP) apBarAnim.SetBool(AnimationHandler.maxAP, true);
+            else if (currentAP == member.maxAP && val != currentAP) apBarAnim.SetBool(AnimationHandler.maxAP, false);
 
             currentAP = val;
         }

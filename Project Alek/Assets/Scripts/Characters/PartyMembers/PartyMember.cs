@@ -23,19 +23,8 @@ namespace Characters.PartyMembers
         [HideInInspector] public GameObject battlePanel;
         [HideInInspector] public GameObject inventoryDisplay;
 
-        public Action<int> onApValChanged;
         private GameObject unitGO;
-
-        public int CurrentAP 
-        {
-            get => Unit.currentAP;
-            set
-            {
-                Unit.currentAP = value < 0 ? 0 : value;
-                onApValChanged?.Invoke(Unit.currentAP);
-                //actionPointAnim.SetInteger(AnimationHandler.APVal, Unit.currentAP);
-            }
-        }
+        
 
         public override void Heal(float amount)
         {

@@ -28,7 +28,7 @@ namespace BattleSystem
         private GameObject memberFirstSelected;
 
         private Animator animator;
-        private bool isEnabled;
+        [SerializeField] private bool isEnabled;
 
         #endregion
         
@@ -55,14 +55,11 @@ namespace BattleSystem
 
             MMEventManager.AddListener(this);
             GameEventsManager.AddListener(this);
+
+            isEnabled = true;
         }
 
         [UsedImplicitly] public void DisableInput() => BattleInput._controls.Disable();
-
-        public void OpenMenu()
-        {
-            return;
-        }
 
         #region SetSelected
 
@@ -158,7 +155,8 @@ namespace BattleSystem
         {
             if (eventType._eventType != CEventType.CharacterTurn && eventType._eventType != CEventType.EndOfTurn) return;
             if (eventType._character.GetType() != typeof(PartyMember)) return;
-
+            
+            // May be able to delete this
             var character = (PartyMember) eventType._character;
             if (character.battlePanel.GetComponent<MenuController>() == this)
             {

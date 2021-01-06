@@ -11,7 +11,8 @@ public enum CEventType
         CharacterDeath,
         StatChange,
         CantPerformAction,
-        NewCommand
+        NewCommand,
+        SkipTurn
 }
 
 public struct CharacterEvents

@@ -59,37 +59,7 @@ namespace BattleSystem.Generator
             }
         }
 
-        private void SetupBattlePanel(PartyMember character)
-        {
-            var position = character.Unit.transform.position;
-            var newPosition = new Vector3(position.x, position.y + 1.5f, position.z + 3);
-            var rotation = database.boPanel.battlePanel.transform.rotation;
-            
-            character.battlePanel = Instantiate(database.boPanel.battlePanel, newPosition, rotation);
-            character.battlePanel.transform.SetParent(character.Unit.transform.parent, true);
-            
-            character.battleOptionsPanel = Instantiate(database.boPanel);
-            ((BattleOptionsPanel) character.battleOptionsPanel).character = character;
-            
-            var mainMenu = character.battlePanel.transform.Find("Battle Menu").transform.Find("Main Options").transform;
-
-            mainMenu.Find("Attack Button").gameObject.GetComponent<Button>().onClick.AddListener
-                ( delegate { ((BattleOptionsPanel) character.battleOptionsPanel).GetCommandInformation("UniversalAction,1,0,2"); });
-
-            mainMenu.Find("Abilities Button").gameObject.GetComponent<Button>().onClick.AddListener
-                (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnAbilityMenuButton(); });
-            
-            mainMenu.Find("Inventory Button").gameObject.GetComponent<Button>().onClick.AddListener
-                (delegate { BattleManager._inventoryInputManager.OpenInventory(); });
-
-            mainMenu.Find("End Turn Button").gameObject.GetComponent<Button>().onClick.AddListener
-                (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnEndTurnButton(); });
-
-            character.actionPointAnim = character.battlePanel.transform.Find("AP Box").GetComponent<Animator>();
-            character.battlePanel.SetActive(false);
-        }
-        
-        private void SetupBattlePanel2(PartyMember character, int i)
+        private void SetupBattlePanel(PartyMember character, int i)
         {
             character.battlePanel = database.battlePanels[i];
             character.battleOptionsPanel = Instantiate(database.boPanel);
@@ -108,8 +78,7 @@ namespace BattleSystem.Generator
 
             mainMenu.Find("End Turn Button").gameObject.GetComponent<Button>().onClick.AddListener
                 (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnEndTurnButton(); });
-
-            //character.actionPointAnim = character.battlePanel.transform.Find("AP Box").GetComponent<Animator>();
+            
             character.battlePanel.SetActive(false);
         }
         
@@ -202,9 +171,8 @@ namespace BattleSystem.Generator
             var chooseTarget = character.Unit.gameObject.GetComponent<ChooseTarget>();
             chooseTarget.thisUnitBase = character;
             chooseTarget.enabled = true;
-
-            //SetupBattlePanel(character);
-            SetupBattlePanel2(character, i);
+            
+            SetupBattlePanel(character, i);
             SetAbilityMenuOptions(character);
             SetupInventoryDisplay(character, i);
             SetupProfileBox(character);

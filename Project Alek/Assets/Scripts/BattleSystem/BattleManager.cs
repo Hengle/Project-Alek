@@ -29,6 +29,10 @@ namespace BattleSystem
         public static readonly List<PartyMember> MembersForThisBattle = new List<PartyMember>();
         [ShowInInspector] [ReadOnly]
         public static List<UnitBase> _membersAndEnemies = new List<UnitBase>();
+        [ShowInInspector] [ReadOnly]
+        public static List<UnitBase> _membersAndEnemiesThisTurn = new List<UnitBase>();
+        [ShowInInspector] [ReadOnly]
+        public static List<UnitBase> _membersAndEnemiesNextTurn = new List<UnitBase>();
 
         [ShowInInspector] [ReadOnly]
         public static UnitBase _activeUnit;
@@ -93,8 +97,6 @@ namespace BattleSystem
                 partyMember.battlePanel.GetComponent<MenuController>().SetPartySelectables();
             }
 
-            SortByInitiative();
-
             MembersForThisBattle.ForEach(m => m.onDeath += RemoveFromBattle);
             EnemiesForThisBattle.ForEach(e => e.onDeath += RemoveFromBattle);
 
@@ -110,6 +112,7 @@ namespace BattleSystem
             BattleEvents.Trigger(BattleEventType.NewRound);
             
             SortByInitiative();
+            yield return Timing.WaitForSeconds(1);
 
             foreach (var character in from character in _membersAndEnemies
                 let checkMemberStatus = character.GetStatus() where checkMemberStatus select character)
@@ -158,7 +161,7 @@ namespace BattleSystem
             character.inventoryDisplay.SetActive(true);
 
             state = BattleState.PartyTurn;
-            character.ResetAP();
+            character.ReplenishAP();
             
             main_menu:
             CharacterEvents.Trigger(CEventType.CharacterTurn, character);
@@ -230,7 +233,7 @@ namespace BattleSystem
             
             state = BattleState.EnemyTurn;
             CharacterEvents.Trigger(CEventType.EnemyTurn, enemy);
-            enemy.ResetAP();
+            enemy.ReplenishAP();
 
             while (enemy.CurrentAP > 0)
             {
@@ -254,9 +257,11 @@ namespace BattleSystem
                     (Rate.AfterEveryAction, 1, true));
 
                 if (PartyOrEnemyTeamIsDead || enemy.IsDead) break;
-
+                
                 yield return Timing.WaitForSeconds(0.5f);
             }
+            
+            CharacterEvents.Trigger(CEventType.EndOfTurn, enemy);
         }
         
         #endregion
@@ -278,23 +283,102 @@ namespace BattleSystem
         
         #endregion
 
-        #region Misc
+        #region Sorting
 
         private static void SortByInitiative()
         {
+            if (_membersAndEnemiesNextTurn.Count > 0)
+            {
+                _membersAndEnemies = _membersAndEnemiesNextTurn;
+                _membersAndEnemiesThisTurn = new List<UnitBase>(_membersAndEnemies);
+                GetNewListNextTurn();
+            }
+            else
+            {
+                GetNewList();
+                GetNewListNextTurn();
+            }
+            
+            BattleEvents.Trigger(BattleEventType.ThisTurnListCreated);
+            BattleEvents.Trigger(BattleEventType.NextTurnListCreated);
+        }
+
+        private static void GetNewList()
+        {
             _membersAndEnemies = new List<UnitBase>();
+            _membersAndEnemiesThisTurn = new List<UnitBase>();
             
             foreach (var member in MembersForThisBattle) _membersAndEnemies.Add(member);
             foreach (var enemy in EnemiesForThisBattle) _membersAndEnemies.Add(enemy);
-            
+                
             _membersAndEnemies = _membersAndEnemies.OrderByDescending
                 (e => e.initiative.Value).ToList();
+
+            GetFinalInitValues(_membersAndEnemies);
+                
+            _membersAndEnemies = _membersAndEnemies.OrderByDescending
+                (e => e.Unit.finalInitVal).ToList();
+
+            _membersAndEnemiesThisTurn = new List<UnitBase>(_membersAndEnemies);
         }
+        
+        private static void GetNewListNextTurn()
+        {
+            _membersAndEnemiesNextTurn = new List<UnitBase>();
+            
+            foreach (var member in MembersForThisBattle) _membersAndEnemiesNextTurn.Add(member);
+            foreach (var enemy in EnemiesForThisBattle) _membersAndEnemiesNextTurn.Add(enemy);
+                
+            _membersAndEnemiesNextTurn = _membersAndEnemiesNextTurn.OrderByDescending
+                (e => e.initiative.Value).ToList();
+
+            GetFinalInitValues(_membersAndEnemiesNextTurn);
+                
+            _membersAndEnemiesNextTurn = _membersAndEnemiesNextTurn.OrderByDescending
+                (e => e.Unit.finalInitVal).ToList();
+        }
+        
+        private static void GetFinalInitValues(List<UnitBase> list)
+        {
+            var minModifier = 1.8f;
+            foreach (var t in list)
+            {
+                t.Unit.initModifier = Random.Range(minModifier, 2.0f);
+                t.Unit.finalInitVal = (int) (t.initiative.Value * t.Unit.initModifier);
+                minModifier -= 0.1f;
+            }
+        }
+
+        private static void ResortNextTurnOrder()
+        {
+            _membersAndEnemiesNextTurn.ForEach(t => t.Unit.finalInitVal = (int) (t.initiative.Value * t.Unit.initModifier));
+            _membersAndEnemiesNextTurn = _membersAndEnemiesNextTurn.OrderByDescending
+                (e => e.Unit.finalInitVal).ToList();
+            
+            BattleEvents.Trigger(BattleEventType.NextTurnListCreated);
+        }
+        
+        #endregion
+
+        #region Misc
 
         private static void RemoveFromBattle(UnitBase unit)
         {
-            if (unit.id == CharacterType.Enemy) EnemiesForThisBattle.Remove((Enemy) unit);
-            else MembersForThisBattle.Remove((PartyMember) unit);
+            if (unit.id == CharacterType.Enemy)
+            {
+                EnemiesForThisBattle.Remove((Enemy) unit);
+                _membersAndEnemiesThisTurn.Remove((Enemy) unit);
+                _membersAndEnemiesNextTurn.Remove((Enemy) unit);
+            }
+            else
+            {
+                MembersForThisBattle.Remove((PartyMember) unit);
+                _membersAndEnemiesThisTurn.Remove((PartyMember) unit);
+                _membersAndEnemiesNextTurn.Remove((PartyMember) unit);
+            }
+            
+            ResortNextTurnOrder();
+            CharacterEvents.Trigger(CEventType.CharacterDeath, unit);
 
             if (MembersForThisBattle.Count == 0) allMembersDead = true;
             if (EnemiesForThisBattle.Count == 0) allEnemiesDead = true;
@@ -302,6 +386,10 @@ namespace BattleSystem
 
         private static void ResetStaticVariables()
         {
+            _membersAndEnemies = new List<UnitBase>();
+            _membersAndEnemiesNextTurn = new List<UnitBase>();
+            _membersAndEnemiesThisTurn = new List<UnitBase>();
+            
             _activeUnit = null;
             _choosingOption = false;
             _choosingTarget = false;
@@ -321,6 +409,11 @@ namespace BattleSystem
             if (eventType._eventType == CEventType.CantPerformAction)
             {
                 _canGiveCommand = false;
+            }
+            
+            else if (eventType._eventType == CEventType.StatChange)
+            {
+                ResortNextTurnOrder();
             }
         }
     }

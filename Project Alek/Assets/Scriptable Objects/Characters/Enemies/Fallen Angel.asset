@@ -166,10 +166,13 @@ MonoBehaviour:
     - Name: onStatusEffectRemoved
       Entry: 6
       Data: 
+    - Name: onApValChanged
+      Entry: 6
+      Data: 
     - Name: stateMachine
       Entry: 6
       Data: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 1a670e302477a74479feecbc9c976ed2, type: 3}
   scale: {x: 50, y: 50, z: 1}
   id: 1
   characterName: Fallen Angel

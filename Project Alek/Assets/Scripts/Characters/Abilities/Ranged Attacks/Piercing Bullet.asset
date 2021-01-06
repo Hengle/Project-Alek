@@ -16,16 +16,18 @@ MonoBehaviour:
   damageType: 0
   targetOptions: 0
   icon: {fileID: 21300000, guid: cef78516ce2023a4b9a7503ff3411acc, type: 3}
-  actionCost: 3
+  actionCost: 1
   damageMultiplier: 1.25
   attackState: 2
   isMultiTarget: 0
   description: THE RANGE THO
   hasElemental: 0
   elementalType: {fileID: 0}
-  elementalScaler: 25
+  elementalScalar: 0
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
+  - {fileID: 11400000, guid: f4239f80d8d630c4789fbf2b31419836, type: 2}
+  - {fileID: 11400000, guid: 25203b00b92499543bc7bb0cbb802ba5, type: 2}
   chanceOfInfliction: 1
   lookAtTarget: 1
