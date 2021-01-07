@@ -41,6 +41,12 @@ namespace Characters.Animations
             inputManager.parryButton.performed += OnParry;
         }
 
+        private void OnDisable()
+        {
+            BattleInput._controls.Battle.Parry.performed -= OnParry;
+            inputManager.parryButton.performed -= OnParry;
+        }
+
         private void Update()
         {
             if (windowOpen || unit.animationHandler.isAttacking) return;

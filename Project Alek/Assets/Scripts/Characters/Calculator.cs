@@ -98,7 +98,7 @@ namespace Characters
         {
             if (!isCritical) return totalDamage < 0 ? 0 : Random.Range((int) (0.97f * totalDamage), (int) (1.03f * totalDamage));
 
-            totalDamage = (int)(totalDamage * 1.25f);
+            totalDamage = (int)(totalDamage * BattleManager.Instance.globalVariables.criticalDamageFactor);
             target.Unit.targetHasCrit = true;
             damageDealer.Unit.isCrit = true;
             

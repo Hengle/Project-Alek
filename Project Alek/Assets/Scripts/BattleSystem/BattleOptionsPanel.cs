@@ -1,4 +1,5 @@
-﻿using Characters.Animations;
+﻿using Characters;
+using Characters.Animations;
 using Characters.PartyMembers;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ namespace BattleSystem
         
         public void ShowBattlePanel()
         {
-            BattleManager._choosingOption = true;
+            BattleManager.Instance.choosingOption = true;
 
             // This is triggered at the start of a party member's turn
             if (!character.battlePanel.activeSelf)
@@ -21,24 +22,24 @@ namespace BattleSystem
             }
             
             // This is triggered when going back to main menu from the ability menu
-            else if (BattleManager._choosingAbility) 
+            else if (BattleManager.Instance.choosingAbility) 
             {
                 character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.AbilityMenu);
-                BattleManager._choosingAbility = false;
+                BattleManager.Instance.choosingAbility = false;
             }
             
             // This is triggered when going back while choosing a target from the ability menu
-            else if (BattleManager._choosingTarget && BattleManager._choosingAbility) 
+            else if (BattleManager.Instance.choosingTarget && BattleManager.Instance.choosingAbility) 
             {
                 character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
-                BattleManager._choosingTarget = false;
+                BattleManager.Instance.choosingTarget = false;
             }
             
             // This is triggered when going back while choosing a target from the main menu (attack button)
             else 
             {
                 character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
-                BattleManager._choosingTarget = false;
+                BattleManager.Instance.choosingTarget = false;
             }
         }
 
@@ -55,13 +56,13 @@ namespace BattleSystem
             var commandActionOption = int.Parse(commandActionOptionString);
             var commandTargetOptions = int.Parse(commandTargetOptionsString);
             var commandCost = int.Parse(commandCostString);
-            commandCost += character.Unit.conversionAmount;
+            commandCost += character.Unit.conversionLevel;
             
             var notEnoughAP = character.CurrentAP - commandCost < 0;
             if (notEnoughAP)
             {
                 var amountToBorrow = commandCost - character.CurrentAP;
-                if (character.Unit.CanBorrow(amountToBorrow)) character.Unit.borrowAP(amountToBorrow);
+                if (Unit.CanBorrow(amountToBorrow)) character.Unit.borrowAP(amountToBorrow);
                 else return;
             }
             
@@ -70,22 +71,22 @@ namespace BattleSystem
             character.Unit.actionCost = commandCost;
             
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
-            if (!BattleManager._choosingOption) BattleManager._choosingAbility = false;
-            else BattleManager._choosingOption = false;
+            if (!BattleManager.Instance.choosingOption) BattleManager.Instance.choosingAbility = false;
+            else BattleManager.Instance.choosingOption = false;
         }
 
         public void OnAbilityMenuButton()
         {
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.AbilityMenu);
-            BattleManager._choosingAbility = true;
-            BattleManager._choosingOption = false;
+            BattleManager.Instance.choosingAbility = true;
+            BattleManager.Instance.choosingOption = false;
         }
 
         public void OnEndTurnButton()
         {
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
-            BattleManager._endThisMembersTurn = true;
-            BattleManager._choosingOption = false;
+            BattleManager.Instance.endThisMembersTurn = true;
+            BattleManager.Instance.choosingOption = false;
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Characters;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +9,8 @@ namespace BattleSystem
     {
         [SerializeField] private List<GameObject> thisTurnList = new List<GameObject>();
         [SerializeField] private List<GameObject> nextTurnList = new List<GameObject>();
-        [SerializeField] private List<UnitBase> combatants = new List<UnitBase>();
+        [SerializeField] private List<Image> thisTurnIcons = new List<Image>();
+        [SerializeField] private List<Image> nextTurnIcons = new List<Image>();
 
         private void Start()
         {
@@ -23,14 +24,9 @@ namespace BattleSystem
             GameEventsManager.RemoveListener<CharacterEvents>(this);
         }
 
-        private void Setup()
-        {
-            combatants = BattleManager._membersAndEnemies;
-        }
-        
         private void OnThisTurnListCreated()
         {
-            var count = BattleManager._membersAndEnemiesThisTurn.Count;
+            var count = BattleManager.Instance.membersAndEnemiesThisTurn.Count;
 
             for (var i = 0; i < thisTurnList.Count; i++)
             {
@@ -40,22 +36,20 @@ namespace BattleSystem
                     continue;
                 }
 
-                if (BattleManager._membersAndEnemiesThisTurn[i].Unit.hasPerformedTurn)
+                if (BattleManager.Instance.membersAndEnemiesThisTurn[i].Unit.hasPerformedTurn)
                 {
                     thisTurnList[i].SetActive(false);
                     continue;
                 }
-
-                thisTurnList[i].transform.Find("Icon").
-                    GetComponent<Image>().sprite = BattleManager._membersAndEnemiesThisTurn[i].icon;
                 
+                thisTurnIcons[i].sprite = BattleManager.Instance.membersAndEnemiesThisTurn[i].icon;
                 thisTurnList[i].SetActive(true);
             }
         }
 
         private void OnNextTurnListCreated()
         {
-            var count = BattleManager._membersAndEnemiesNextTurn.Count;
+            var count = BattleManager.Instance.membersAndEnemiesNextTurn.Count;
 
             for (var i = 0; i < nextTurnList.Count; i++)
             {
@@ -65,18 +59,15 @@ namespace BattleSystem
                     continue;
                 }
                 
-                nextTurnList[i].transform.Find("Icon").
-                    GetComponent<Image>().sprite = BattleManager._membersAndEnemiesNextTurn[i].icon;
-                
+                nextTurnIcons[i].sprite = BattleManager.Instance.membersAndEnemiesNextTurn[i].icon;
                 nextTurnList[i].SetActive(true);
             }
         }
 
         private void UpdateThisTurnList()
         {
-            foreach (var t in thisTurnList)
+            foreach (var t in thisTurnList.Where(t => t.activeInHierarchy))
             {
-                if (!t.activeInHierarchy) continue;
                 t.SetActive(false);
                 break;
             }
@@ -86,8 +77,6 @@ namespace BattleSystem
         {
             switch (eventType._battleEventType)
             {
-                case BattleEventType.SetupComplete: Setup();
-                    break;
                 case BattleEventType.ThisTurnListCreated: OnThisTurnListCreated();
                     break;
                 case BattleEventType.NextTurnListCreated: OnNextTurnListCreated();

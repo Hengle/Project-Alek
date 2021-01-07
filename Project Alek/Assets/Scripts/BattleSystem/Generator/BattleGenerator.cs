@@ -50,9 +50,9 @@ namespace BattleSystem.Generator
 
         private static void SetupPartyMenuController()
         {
-            foreach (var member in BattleManager.MembersForThisBattle)
+            foreach (var member in BattleManager.Instance._membersForThisBattle)
             {
-                foreach (var partyMember in BattleManager.MembersForThisBattle)
+                foreach (var partyMember in BattleManager.Instance._membersForThisBattle)
                 {
                     member.battlePanel.GetComponent<MenuController>().memberSelectable.Add(partyMember.Unit.gameObject);
                 }
@@ -64,8 +64,11 @@ namespace BattleSystem.Generator
             character.battlePanel = database.battlePanels[i];
             character.battleOptionsPanel = Instantiate(database.boPanel);
             ((BattleOptionsPanel) character.battleOptionsPanel).character = character;
+
+            var apConversionBox = character.battlePanel.transform.Find("AP Conversion Box").gameObject;
+            apConversionBox.GetComponent<APConversionControllerUI>().unit = character.Unit;
             
-            var mainMenu = character.battlePanel.transform.Find("Battle Menu").transform.Find("Main Options").transform;
+            var mainMenu = character.battlePanel.transform.Find("Mask").transform.Find("Battle Menu").transform.Find("Main Options");
 
             mainMenu.Find("Attack Button").gameObject.GetComponent<Button>().onClick.AddListener
                 ( delegate { ((BattleOptionsPanel) character.battleOptionsPanel).GetCommandInformation("UniversalAction,1,0,2"); });
@@ -74,7 +77,7 @@ namespace BattleSystem.Generator
                 (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnAbilityMenuButton(); });
             
             mainMenu.Find("Inventory Button").gameObject.GetComponent<Button>().onClick.AddListener
-                (delegate { BattleManager._inventoryInputManager.OpenInventory(); });
+                (delegate { BattleManager.Instance.inventoryInputManager.OpenInventory(); });
 
             mainMenu.Find("End Turn Button").gameObject.GetComponent<Button>().onClick.AddListener
                 (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnEndTurnButton(); });
@@ -84,7 +87,7 @@ namespace BattleSystem.Generator
         
         private static void SetAbilityMenuOptions(PartyMember character)
         {
-            var abilityMenu = character.battlePanel.transform.Find("Battle Menu").transform.Find("Ability Menu").transform;
+            var abilityMenu = character.battlePanel.transform.Find("Mask").transform.Find("Battle Menu").transform.Find("Ability Menu").transform;
             var abilityListIndex = 0;
             
             while (character.abilities.Count > 5) character.abilities.Remove(character.abilities[character.abilities.Count-1]);
@@ -190,8 +193,8 @@ namespace BattleSystem.Generator
 
             database.closeUpCameras[i + offset].SetActive(true);
             database.criticalCameras[i + offset].SetActive(true);
-
-            BattleManager.MembersForThisBattle.Add(character);
+            
+            BattleManager.Instance._membersForThisBattle.Add(character);
         }
 
         private void SpawnAndSetupEnemyTeam()
@@ -205,7 +208,7 @@ namespace BattleSystem.Generator
                 enemyGo.name = clone.name;
                 enemyGo.transform.localScale = clone.scale;
                 
-                foreach (var partyMember in BattleManager.MembersForThisBattle)
+                foreach (var partyMember in BattleManager.Instance._membersForThisBattle)
                 {
                     partyMember.battlePanel.GetComponent<MenuController>().enemySelectable.Add(enemyGo);
                 }
@@ -243,7 +246,7 @@ namespace BattleSystem.Generator
                 shieldController.enemy = clone;
                 shieldController.Initialize();
 
-                BattleManager.EnemiesForThisBattle.Add(clone);
+                BattleManager.Instance._enemiesForThisBattle.Add(clone);
                 i++;
             }
         }

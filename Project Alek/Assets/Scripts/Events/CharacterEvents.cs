@@ -12,7 +12,8 @@ public enum CEventType
         StatChange,
         CantPerformAction,
         NewCommand,
-        SkipTurn
+        SkipTurn,
+        APConversion,
 }
 
 public struct CharacterEvents

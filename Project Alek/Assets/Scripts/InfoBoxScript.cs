@@ -8,8 +8,19 @@ public class InfoBoxScript : MonoBehaviour, ISelectHandler
     [HideInInspector] [SerializeField]
     private TextMeshProUGUI infoText;
 
-    private void Awake() => infoText = GameObject.FindGameObjectWithTag("Canvas").transform.
-        Find("Info Box").GetComponentInChildren<TextMeshProUGUI>();
+    private GameObject parent;
 
-    public void OnSelect(BaseEventData eventData) => infoText.text = information;
+    private void Awake()
+    {
+        infoText = GameObject.FindGameObjectWithTag("Canvas").transform.Find("Info Box")
+            .GetComponentInChildren<TextMeshProUGUI>();
+
+        parent = infoText.gameObject.transform.parent.gameObject;
+    }
+
+    public void OnSelect(BaseEventData eventData)
+    {
+        infoText.text = information;
+        parent.SetActive(information != "");
+    }
 }

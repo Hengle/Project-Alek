@@ -1,7 +1,7 @@
-﻿using System;
-using Characters;
+﻿using Characters;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace BattleSystem
 {
@@ -9,60 +9,65 @@ namespace BattleSystem
     {
         private Unit unit;
         [ShowInInspector] private bool thisUnitTurn;
-        private int maxConversionAmount = 4;
+        private const int MaxConversionAmount = 4;
 
         private float ConversionFactor
         {
             get
             {
-                switch (unit.conversionAmount)
+                switch (unit.conversionLevel)
                 {
-                    case 1: return 1.2f;
-                    case 2: return 1.4f;
-                    case 3: return 1.8f;
-                    case 4: return 2.25f;
+                    case 1: return BattleManager.Instance.globalVariables.conversionFactorLvl1;
+                    case 2: return BattleManager.Instance.globalVariables.conversionFactorLvl2;
+                    case 3: return BattleManager.Instance.globalVariables.conversionFactorLvl3;
+                    case 4: return BattleManager.Instance.globalVariables.conversionFactorLvl4;
                     default: return 1.0f;
                 }
             }
         }
 
         private bool CanDecreaseConversion =>
-            BattleInput._controls.Menu.LeftSelect.triggered
-            && unit.conversionAmount > 0;
-        
+            thisUnitTurn && BattleManager.Instance.choosingAbility && BattleInput._controls.Menu.LeftSelect.triggered
+            && unit.conversionLevel > 0;
+
         private bool CanIncreaseConversion =>
-            BattleInput._controls.Menu.RightSelect.triggered
-            && unit.conversionAmount < maxConversionAmount;
+            thisUnitTurn && BattleManager.Instance.choosingAbility && BattleInput._controls.Menu.RightSelect.triggered
+            && unit.conversionLevel < MaxConversionAmount;
 
         void Start()
         {
             unit = GetComponent<Unit>();
+
+            BattleInput._controls.Menu.LeftSelect.performed += AdjustConversionAmount;
+            BattleInput._controls.Menu.RightSelect.performed += AdjustConversionAmount;
             GameEventsManager.AddListener(this);
         }
 
-        void Update()
+        private void AdjustConversionAmount(InputAction.CallbackContext ctx)
         {
-            if (!thisUnitTurn) return;
-            if (!BattleManager._choosingAbility) return;
-            if (CanDecreaseConversion) AdjustConversionAmount(false);
-            if (CanIncreaseConversion) AdjustConversionAmount(true);
-        }
-
-        private void AdjustConversionAmount(bool increase)
-        {
-            if (increase) unit.conversionAmount += 1;
-            else unit.conversionAmount -= 1;
-
+            if (CanIncreaseConversion) unit.conversionLevel += 1;
+            else if (CanDecreaseConversion) unit.conversionLevel -= 1;
+            else return;
+            
             unit.conversionFactor = ConversionFactor;
+            
+            CharacterEvents.Trigger(CEventType.APConversion, unit.parent);
         }
 
         private void ResetConversion()
         {
-            unit.conversionAmount = 0;
+            unit.conversionLevel = 0;
             unit.conversionFactor = 1;
+            
+            CharacterEvents.Trigger(CEventType.APConversion, unit.parent);
         }
 
-        private void OnDisable() => GameEventsManager.RemoveListener(this);
+        private void OnDisable()
+        {
+            BattleInput._controls.Menu.LeftSelect.performed -= AdjustConversionAmount;
+            BattleInput._controls.Menu.RightSelect.performed -= AdjustConversionAmount;
+            GameEventsManager.RemoveListener(this);
+        }
 
         public void OnGameEvent(CharacterEvents eventType)
         {

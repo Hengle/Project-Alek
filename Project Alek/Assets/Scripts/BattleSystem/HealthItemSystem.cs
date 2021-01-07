@@ -24,12 +24,12 @@ namespace BattleSystem
             if (unit.HasMissedAllTargets) return;
 
             var randomValue = Random.value;
-            if (randomValue < 0.40f) AddItems();
+            if (randomValue < BattleManager.Instance.globalVariables.healthItemChance) AddItems();
         }
         
         private void AddItems()
         {
-            var count = Random.Range(1, 3);
+            var count = Random.Range(1, BattleManager.Instance.globalVariables.maxHealthItemAmount);
             
             Logger.Log($"Adding {count} item(s) to inventory!");
             

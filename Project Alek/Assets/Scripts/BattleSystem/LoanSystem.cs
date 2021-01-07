@@ -11,7 +11,6 @@ namespace BattleSystem
         [ShowInInspector] private bool isRecovered;
         [ShowInInspector] private int currentLoan;
         [ShowInInspector] private int initialLoan;
-        [ShowInInspector] public readonly int _maxLoan = 4;
 
         private void Start()
         {
@@ -27,7 +26,7 @@ namespace BattleSystem
 
         private void BorrowAP(int amount)
         {
-            if (amount > _maxLoan) return;
+            if (amount > BattleManager.Instance.globalVariables.maxLoanAmount) return;
             currentLoan = amount;
             initialLoan = amount;
             unit.status = Status.Overexerted;
@@ -51,11 +50,7 @@ namespace BattleSystem
         private void GiveRecoverBenefits()
         {
             unit.recoveredFromOverexertion?.Invoke(unit.parent);
-            
-            if (initialLoan == _maxLoan)
-            {
-                unit.recoveredFromOverexertion?.Invoke(unit.parent);
-            }
+            if (initialLoan == BattleManager.Instance.globalVariables.maxLoanAmount) unit.recoveredFromMaxOverexertion?.Invoke(unit.parent);
             
             initialLoan = 0;
             isRecovered = false;

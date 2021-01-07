@@ -166,6 +166,9 @@ MonoBehaviour:
     - Name: onStatusEffectRemoved
       Entry: 6
       Data: 
+    - Name: onApValChanged
+      Entry: 6
+      Data: 
   icon: {fileID: 21300000, guid: 93a66ee4446eb5741900a389e401cdb0, type: 3}
   scale: {x: 55, y: 55, z: 1}
   id: 0
@@ -180,7 +183,7 @@ MonoBehaviour:
   magic:
     BaseValue: 7
   accuracy:
-    BaseValue: 10
+    BaseValue: 11
   initiative:
     BaseValue: 6
   defense:

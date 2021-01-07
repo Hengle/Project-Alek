@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-public enum BattleEventType { NewRound, WonBattle, LostBattle, ThisTurnListCreated, NextTurnListCreated, SetupComplete }
+public enum BattleEventType { NewRound, WonBattle, LostBattle, ThisTurnListCreated, NextTurnListCreated }
 public struct BattleEvents
 {
     public BattleEventType _battleEventType;

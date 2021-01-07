@@ -22,15 +22,15 @@ namespace BattleSystem
                     case DamageBoostLvl.Level0:
                         return 1.0f;
                     case DamageBoostLvl.Level1:
-                        return 1.03f;
+                        return 1 + BattleManager.Instance.globalVariables.damageBoostIncrement;
                     case DamageBoostLvl.Level2:
-                        return 1.06f;
+                        return 1 + BattleManager.Instance.globalVariables.damageBoostIncrement * 2;
                     case DamageBoostLvl.Level3:
-                        return 1.09f;
+                        return 1 + BattleManager.Instance.globalVariables.damageBoostIncrement * 3;
                     case DamageBoostLvl.Level4:
-                        return 1.12f;
+                        return 1 + BattleManager.Instance.globalVariables.damageBoostIncrement * 4;
                     case DamageBoostLvl.Level5:
-                        return 1.15f;
+                        return 1 + BattleManager.Instance.globalVariables.damageBoostIncrement * 5;
                     default: return 1.0f;
                 }
             }
@@ -45,15 +45,15 @@ namespace BattleSystem
                     case DefenseBoostLvl.Level0:
                         return 1.0f;
                     case DefenseBoostLvl.Level1:
-                        return 0.97f;
+                        return 1 - BattleManager.Instance.globalVariables.defenseBoostIncrement;
                     case DefenseBoostLvl.Level2:
-                        return 0.94f;
+                        return 1 - BattleManager.Instance.globalVariables.defenseBoostIncrement * 2;
                     case DefenseBoostLvl.Level3:
-                        return 0.91f;
+                        return 1 - BattleManager.Instance.globalVariables.defenseBoostIncrement * 3;
                     case DefenseBoostLvl.Level4:
-                        return 0.88f;
+                        return 1 - BattleManager.Instance.globalVariables.defenseBoostIncrement * 4;
                     case DefenseBoostLvl.Level5:
-                        return 0.85f;
+                        return 1 - BattleManager.Instance.globalVariables.defenseBoostIncrement * 5;
                     default: return 1.0f;
                 }
             }
@@ -79,7 +79,7 @@ namespace BattleSystem
             }
             else damageBoostLvl = DamageBoostLvl.Level0;
             
-            unit.onDmgValueChanged.Invoke((int)damageBoostLvl, condition);
+            unit.onDmgValueChanged?.Invoke((int)damageBoostLvl, condition);
         }
         
         private void EvaluateDefenseBoostLevel(bool condition)
@@ -90,7 +90,7 @@ namespace BattleSystem
             }
             else defenseBoostLvl = DefenseBoostLvl.Level0;
             
-            unit.onDefValueChanged.Invoke((int)defenseBoostLvl, condition);
+            unit.onDefValueChanged?.Invoke((int)defenseBoostLvl, condition);
         }
 
         private void OnDeath(UnitBase unit)

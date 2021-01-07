@@ -18,45 +18,48 @@ namespace BattleSystem
     {
         #region FieldsAndProperties
         
-        [ShowInInspector] [ReadOnly]
-        private static BattleState state;
+        public GlobalVariables globalVariables;
+
+        private static BattleManager instance;
         
-        public static InventoryInputManager _inventoryInputManager;
+        public static BattleManager Instance {
+            get { if (instance == null) 
+                    Debug.LogError("BattleManager is null");
+                return instance; }
+        }
 
         [ShowInInspector] [ReadOnly]
-        public static readonly List<Enemy> EnemiesForThisBattle = new List<Enemy>();
-        [ShowInInspector] [ReadOnly]
-        public static readonly List<PartyMember> MembersForThisBattle = new List<PartyMember>();
-        [ShowInInspector] [ReadOnly]
-        public static List<UnitBase> _membersAndEnemies = new List<UnitBase>();
-        [ShowInInspector] [ReadOnly]
-        public static List<UnitBase> _membersAndEnemiesThisTurn = new List<UnitBase>();
-        [ShowInInspector] [ReadOnly]
-        public static List<UnitBase> _membersAndEnemiesNextTurn = new List<UnitBase>();
-
-        [ShowInInspector] [ReadOnly]
-        public static UnitBase _activeUnit;
+        private  BattleState state;
+        
+        [ReadOnly] public InventoryInputManager inventoryInputManager;
         
         [ShowInInspector] [ReadOnly]
-        public static bool _choosingOption;
+        public readonly List<Enemy> _enemiesForThisBattle = new List<Enemy>();
         [ShowInInspector] [ReadOnly]
-        public static bool _choosingTarget;
+        public readonly List<PartyMember> _membersForThisBattle = new List<PartyMember>();
         [ShowInInspector] [ReadOnly]
-        public static bool _usingItem;
+        public List<UnitBase> membersAndEnemies = new List<UnitBase>();
         [ShowInInspector] [ReadOnly]
-        public static bool _performingAction;
+        public List<UnitBase> membersAndEnemiesThisTurn = new List<UnitBase>();
         [ShowInInspector] [ReadOnly]
-        public static bool _endThisMembersTurn;
+        public List<UnitBase> membersAndEnemiesNextTurn = new List<UnitBase>();
+        
+        [ReadOnly] public UnitBase activeUnit;
+        
+        [SerializeField] [ReadOnly]
+        private int roundCount;
+        
+        [ReadOnly] public bool choosingOption;
+        [ReadOnly] public bool choosingTarget;
+        [ReadOnly] public bool usingItem;
+        [ReadOnly] public bool performingAction;
+        [ReadOnly] public bool endThisMembersTurn;
+        [ReadOnly] public bool choosingAbility;
+        [ReadOnly] public bool canGiveCommand = true;
+        [ReadOnly] private bool allMembersDead;
+        [ReadOnly] private bool allEnemiesDead;
         [ShowInInspector] [ReadOnly]
-        public static bool _choosingAbility;
-        [ShowInInspector] [ReadOnly]
-        public static bool _canGiveCommand;
-        [ShowInInspector] [ReadOnly]
-        private static bool allMembersDead;
-        [ShowInInspector] [ReadOnly]
-        private static bool allEnemiesDead;
-        [ShowInInspector] [ReadOnly]
-        private static bool PartyOrEnemyTeamIsDead
+        private bool PartyOrEnemyTeamIsDead
         {
             get
             {
@@ -65,23 +68,22 @@ namespace BattleSystem
                 return allMembersDead || allEnemiesDead;
             }
         }
-
+        
         private BattleGenerator generator;
-
-        [SerializeField] [ReadOnly]
-        private int roundCount;
 
         #endregion
 
         #region SettingUpBattle
         
+        private void Awake() => instance = this;
+        
         private void Start()
         {
-            _inventoryInputManager = FindObjectOfType<InventoryInputManager>();
+            inventoryInputManager = FindObjectOfType<InventoryInputManager>();
             roundCount = 0;
             generator = GetComponent<BattleGenerator>();
+            canGiveCommand = true;
 
-            ResetStaticVariables();
             SetupBattle();
             state = BattleState.Start;
             GameEventsManager.AddListener(this);
@@ -91,14 +93,14 @@ namespace BattleSystem
         {
             generator.SetupBattle();
 
-            foreach (var partyMember in MembersForThisBattle)
+            foreach (var partyMember in _membersForThisBattle)
             {
                 partyMember.battlePanel.GetComponent<MenuController>().SetEnemySelectables();
                 partyMember.battlePanel.GetComponent<MenuController>().SetPartySelectables();
             }
 
-            MembersForThisBattle.ForEach(m => m.onDeath += RemoveFromBattle);
-            EnemiesForThisBattle.ForEach(e => e.onDeath += RemoveFromBattle);
+            _membersForThisBattle.ForEach(m => m.onDeath += RemoveFromBattle);
+            _enemiesForThisBattle.ForEach(e => e.onDeath += RemoveFromBattle);
 
             Timing.RunCoroutine(PerformThisRound());
         }
@@ -114,14 +116,14 @@ namespace BattleSystem
             SortByInitiative();
             yield return Timing.WaitForSeconds(1);
 
-            foreach (var character in from character in _membersAndEnemies
+            foreach (var character in from character in membersAndEnemies
                 let checkMemberStatus = character.GetStatus() where checkMemberStatus select character)
             {
                 if (PartyOrEnemyTeamIsDead) break;
 
                 yield return Timing.WaitUntilDone(character.InflictStatus
                     (Rate.EveryTurn, 1, true));
-
+                
                 if (PartyOrEnemyTeamIsDead || character.IsDead) break;
 
                 yield return Timing.WaitUntilDone(character.id == CharacterType.PartyMember
@@ -148,14 +150,14 @@ namespace BattleSystem
             }
         }
 
-        private static IEnumerator<float> ThisPlayerTurn(PartyMember character)
+        private IEnumerator<float> ThisPlayerTurn(PartyMember character)
         {
-            _activeUnit = character;
+            activeUnit = character;
             
-            _inventoryInputManager.TargetInventoryContainer =
+            inventoryInputManager.TargetInventoryContainer =
                 character.inventoryDisplay.GetComponent<CanvasGroup>();
             
-            _inventoryInputManager.TargetInventoryDisplay =
+            inventoryInputManager.TargetInventoryDisplay =
                 character.inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
             
             character.inventoryDisplay.SetActive(true);
@@ -166,31 +168,31 @@ namespace BattleSystem
             main_menu:
             CharacterEvents.Trigger(CEventType.CharacterTurn, character);
             BattleInput._canPressBack = false;
-            _usingItem = false;
+            usingItem = false;
             ((BattleOptionsPanel) character.battleOptionsPanel).ShowBattlePanel();
 
-            yield return Timing.WaitUntilFalse(() => _choosingOption);
+            yield return Timing.WaitUntilFalse(() => choosingOption);
             
-            while (_choosingAbility) 
+            while (choosingAbility) 
             {
                 BattleInput._canPressBack = true;
                 if (BattleInput.CancelCondition) goto main_menu;
                 yield return Timing.WaitForOneFrame;
             }
 
-            if (_endThisMembersTurn) goto end_of_turn;
+            if (endThisMembersTurn) goto end_of_turn;
             
             yield return Timing.WaitForOneFrame;
             CharacterEvents.Trigger(CEventType.ChoosingTarget, character);
 
-            while (_choosingTarget)
+            while (choosingTarget)
             {
                 yield return Timing.WaitForOneFrame;
                 BattleInput._canPressBack = true;
                 if (BattleInput.CancelCondition) goto main_menu;
             }
 
-            if (_usingItem)
+            if (usingItem)
             {
                 character.CurrentAP -= 2;
                 yield return Timing.WaitForOneFrame;
@@ -207,11 +209,11 @@ namespace BattleSystem
             yield return Timing.WaitUntilDone(character.InflictStatus
                 (Rate.BeforeEveryAction, 1, true));
 
-            if (!_canGiveCommand) _canGiveCommand = true;
+            if (!canGiveCommand) canGiveCommand = true;
             else { CharacterEvents.Trigger(CEventType.CharacterAttacking, character);
                 CharacterEvents.Trigger(CEventType.NewCommand, character); }
 
-            yield return Timing.WaitUntilFalse(() => _performingAction);
+            yield return Timing.WaitUntilFalse(() => performingAction);
 
             yield return Timing.WaitUntilDone(character.InflictStatus
                 (Rate.AfterEveryAction, 1, true));
@@ -222,15 +224,15 @@ namespace BattleSystem
             if (character.CurrentAP > 0) goto main_menu;
             
             end_of_turn:
-            _endThisMembersTurn = false;
+            endThisMembersTurn = false;
             CharacterEvents.Trigger(CEventType.EndOfTurn, character);
             character.inventoryDisplay.SetActive(false); // TODO: Make this a part of the EndOfTurn event
         }
 
-        private static IEnumerator<float> ThisEnemyTurn(Enemy enemy)
+        private IEnumerator<float> ThisEnemyTurn(Enemy enemy)
         {
-            _activeUnit = enemy;
-            
+            activeUnit = enemy;
+
             state = BattleState.EnemyTurn;
             CharacterEvents.Trigger(CEventType.EnemyTurn, enemy);
             enemy.ReplenishAP();
@@ -239,7 +241,7 @@ namespace BattleSystem
             {
                 if (enemy.IsDead) break;
 
-                var shouldAttack = enemy.SetAI(MembersForThisBattle);
+                var shouldAttack = enemy.SetAI(_membersForThisBattle);
                 if (!shouldAttack) break;
 
                 enemy.CurrentAP -= enemy.Unit.actionCost;
@@ -247,11 +249,11 @@ namespace BattleSystem
                 yield return Timing.WaitUntilDone(enemy.InflictStatus
                     (Rate.BeforeEveryAction, 1, true));
 
-                if (!_canGiveCommand) _canGiveCommand = true;
+                if (!canGiveCommand) canGiveCommand = true;
                 else { CharacterEvents.Trigger(CEventType.CharacterAttacking, enemy);
                     CharacterEvents.Trigger(CEventType.NewCommand, enemy); }
 
-                yield return Timing.WaitUntilFalse(() => _performingAction);
+                yield return Timing.WaitUntilFalse(() => performingAction);
 
                 yield return Timing.WaitUntilDone(enemy.InflictStatus
                     (Rate.AfterEveryAction, 1, true));
@@ -271,7 +273,7 @@ namespace BattleSystem
         private IEnumerator<float> WonBattleSequence()
         {
             yield return Timing.WaitForSeconds(0.5f);
-            MembersForThisBattle.ForEach(member => member.Unit.anim.SetTrigger(AnimationHandler.VictoryTrigger));
+            _membersForThisBattle.ForEach(member => member.Unit.anim.SetTrigger(AnimationHandler.VictoryTrigger));
             Logger.Log("yay, you won");
         }
 
@@ -285,12 +287,12 @@ namespace BattleSystem
 
         #region Sorting
 
-        private static void SortByInitiative()
+        private void SortByInitiative()
         {
-            if (_membersAndEnemiesNextTurn.Count > 0)
+            if (membersAndEnemiesNextTurn.Count > 0)
             {
-                _membersAndEnemies = _membersAndEnemiesNextTurn;
-                _membersAndEnemiesThisTurn = new List<UnitBase>(_membersAndEnemies);
+                membersAndEnemies = membersAndEnemiesNextTurn;
+                membersAndEnemiesThisTurn = new List<UnitBase>(membersAndEnemies);
                 GetNewListNextTurn();
             }
             else
@@ -303,38 +305,38 @@ namespace BattleSystem
             BattleEvents.Trigger(BattleEventType.NextTurnListCreated);
         }
 
-        private static void GetNewList()
+        private void GetNewList()
         {
-            _membersAndEnemies = new List<UnitBase>();
-            _membersAndEnemiesThisTurn = new List<UnitBase>();
+            membersAndEnemies = new List<UnitBase>();
+            membersAndEnemiesThisTurn = new List<UnitBase>();
             
-            foreach (var member in MembersForThisBattle) _membersAndEnemies.Add(member);
-            foreach (var enemy in EnemiesForThisBattle) _membersAndEnemies.Add(enemy);
+            foreach (var member in _membersForThisBattle) membersAndEnemies.Add(member);
+            foreach (var enemy in _enemiesForThisBattle) membersAndEnemies.Add(enemy);
                 
-            _membersAndEnemies = _membersAndEnemies.OrderByDescending
+            membersAndEnemies = membersAndEnemies.OrderByDescending
                 (e => e.initiative.Value).ToList();
 
-            GetFinalInitValues(_membersAndEnemies);
+            GetFinalInitValues(membersAndEnemies);
                 
-            _membersAndEnemies = _membersAndEnemies.OrderByDescending
+            membersAndEnemies = membersAndEnemies.OrderByDescending
                 (e => e.Unit.finalInitVal).ToList();
 
-            _membersAndEnemiesThisTurn = new List<UnitBase>(_membersAndEnemies);
+            membersAndEnemiesThisTurn = new List<UnitBase>(membersAndEnemies);
         }
-        
-        private static void GetNewListNextTurn()
+
+        private void GetNewListNextTurn()
         {
-            _membersAndEnemiesNextTurn = new List<UnitBase>();
+            membersAndEnemiesNextTurn = new List<UnitBase>();
             
-            foreach (var member in MembersForThisBattle) _membersAndEnemiesNextTurn.Add(member);
-            foreach (var enemy in EnemiesForThisBattle) _membersAndEnemiesNextTurn.Add(enemy);
+            foreach (var member in _membersForThisBattle) membersAndEnemiesNextTurn.Add(member);
+            foreach (var enemy in _enemiesForThisBattle) membersAndEnemiesNextTurn.Add(enemy);
                 
-            _membersAndEnemiesNextTurn = _membersAndEnemiesNextTurn.OrderByDescending
+            membersAndEnemiesNextTurn = membersAndEnemiesNextTurn.OrderByDescending
                 (e => e.initiative.Value).ToList();
 
-            GetFinalInitValues(_membersAndEnemiesNextTurn);
+            GetFinalInitValues(membersAndEnemiesNextTurn);
                 
-            _membersAndEnemiesNextTurn = _membersAndEnemiesNextTurn.OrderByDescending
+            membersAndEnemiesNextTurn = membersAndEnemiesNextTurn.OrderByDescending
                 (e => e.Unit.finalInitVal).ToList();
         }
         
@@ -349,10 +351,10 @@ namespace BattleSystem
             }
         }
 
-        private static void ResortNextTurnOrder()
+        private void ResortNextTurnOrder()
         {
-            _membersAndEnemiesNextTurn.ForEach(t => t.Unit.finalInitVal = (int) (t.initiative.Value * t.Unit.initModifier));
-            _membersAndEnemiesNextTurn = _membersAndEnemiesNextTurn.OrderByDescending
+            membersAndEnemiesNextTurn.ForEach(t => t.Unit.finalInitVal = (int) (t.initiative.Value * t.Unit.initModifier));
+            membersAndEnemiesNextTurn = membersAndEnemiesNextTurn.OrderByDescending
                 (e => e.Unit.finalInitVal).ToList();
             
             BattleEvents.Trigger(BattleEventType.NextTurnListCreated);
@@ -362,45 +364,28 @@ namespace BattleSystem
 
         #region Misc
 
-        private static void RemoveFromBattle(UnitBase unit)
+        private void RemoveFromBattle(UnitBase unit)
         {
             if (unit.id == CharacterType.Enemy)
             {
-                EnemiesForThisBattle.Remove((Enemy) unit);
-                _membersAndEnemiesThisTurn.Remove((Enemy) unit);
-                _membersAndEnemiesNextTurn.Remove((Enemy) unit);
+                _enemiesForThisBattle.Remove((Enemy) unit);
+                membersAndEnemiesThisTurn.Remove((Enemy) unit);
+                membersAndEnemiesNextTurn.Remove((Enemy) unit);
             }
             else
             {
-                MembersForThisBattle.Remove((PartyMember) unit);
-                _membersAndEnemiesThisTurn.Remove((PartyMember) unit);
-                _membersAndEnemiesNextTurn.Remove((PartyMember) unit);
+                _membersForThisBattle.Remove((PartyMember) unit);
+                membersAndEnemiesThisTurn.Remove((PartyMember) unit);
+                membersAndEnemiesNextTurn.Remove((PartyMember) unit);
             }
             
             ResortNextTurnOrder();
             CharacterEvents.Trigger(CEventType.CharacterDeath, unit);
 
-            if (MembersForThisBattle.Count == 0) allMembersDead = true;
-            if (EnemiesForThisBattle.Count == 0) allEnemiesDead = true;
+            if (_membersForThisBattle.Count == 0) allMembersDead = true;
+            if (_enemiesForThisBattle.Count == 0) allEnemiesDead = true;
         }
-
-        private static void ResetStaticVariables()
-        {
-            _membersAndEnemies = new List<UnitBase>();
-            _membersAndEnemiesNextTurn = new List<UnitBase>();
-            _membersAndEnemiesThisTurn = new List<UnitBase>();
-            
-            _activeUnit = null;
-            _choosingOption = false;
-            _choosingTarget = false;
-            _performingAction = false;
-            _endThisMembersTurn = false;
-            _choosingAbility = false;
-            allMembersDead = false;
-            allEnemiesDead = false;
-            _canGiveCommand = true;
-            _usingItem = false;
-        }
+        
         
         #endregion
 
@@ -408,7 +393,7 @@ namespace BattleSystem
         {
             if (eventType._eventType == CEventType.CantPerformAction)
             {
-                _canGiveCommand = false;
+                canGiveCommand = false;
             }
             
             else if (eventType._eventType == CEventType.StatChange)

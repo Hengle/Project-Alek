@@ -54,7 +54,7 @@ namespace BattleSystem
         private void AddCommand()
         {
             // TODO: Account for revival items and other types
-            if (BattleManager._usingItem)
+            if (BattleManager.Instance.usingItem)
             {
                 if (thisUnitBase.Unit.status == Status.Dead) return;
 
@@ -62,13 +62,13 @@ namespace BattleSystem
                 if (notEnoughAP)
                 {
                     var amountToBorrow = 2 - character.Unit.currentAP;
-                    if (character.Unit.CanBorrow(amountToBorrow)) character.Unit.borrowAP(amountToBorrow);
+                    if (Unit.CanBorrow(amountToBorrow)) character.Unit.borrowAP(amountToBorrow);
                     else return;
                 }
 
                 character.Unit.anim.SetTrigger(AnimationHandler.ItemTrigger);
-                BattleManager._inventoryInputManager.CurrentlySelectedInventorySlot.Use();
-                BattleManager._choosingTarget = false;
+                BattleManager.Instance.inventoryInputManager.CurrentlySelectedInventorySlot.Use();
+                BattleManager.Instance.choosingTarget = false;
                 EventSystem.current.SetSelectedGameObject(null);
             }
             
@@ -77,7 +77,7 @@ namespace BattleSystem
             character.Unit.currentTarget = thisUnitBase;
             character.Unit.commandActionName = className;
             character.Unit.commandActionOption = classOption;
-            BattleManager._choosingTarget = false;
+            BattleManager.Instance.choosingTarget = false;
             EventSystem.current.SetSelectedGameObject(null);
         }
 
@@ -87,14 +87,14 @@ namespace BattleSystem
 
             switch (_targetOptions)
             {
-                case 0: foreach (var enemy in BattleManager.EnemiesForThisBattle)
+                case 0: foreach (var enemy in BattleManager.Instance._enemiesForThisBattle)
                     {
                         character.Unit.multiHitTargets.Add(enemy);
                         enemy.Unit.onDeselect?.Invoke();
                     }
                     break;
                 
-                case 1: foreach (var member in BattleManager.MembersForThisBattle)
+                case 1: foreach (var member in BattleManager.Instance._membersForThisBattle)
                     {
                         character.Unit.multiHitTargets.Add(member);
                         member.Unit.onDeselect?.Invoke();
@@ -106,7 +106,7 @@ namespace BattleSystem
             
             character.Unit.commandActionName = className;
             character.Unit.commandActionOption = classOption;
-            BattleManager._choosingTarget = false;
+            BattleManager.Instance.choosingTarget = false;
             EventSystem.current.SetSelectedGameObject(null);
         }
 
@@ -148,7 +148,7 @@ namespace BattleSystem
                     break;
 
                 case CEventType.ChoosingTarget:
-                    BattleManager._choosingTarget = true;
+                    BattleManager.Instance.choosingTarget = true;
                     character = (PartyMember) eventType._character;
 
                     menuController = character.battlePanel.GetComponent<MenuController>();

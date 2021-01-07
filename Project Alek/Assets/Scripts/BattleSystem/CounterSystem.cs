@@ -34,7 +34,7 @@ namespace BattleSystem
             if (unit.currentHP == 0) return;
 
             CharacterEvents.Trigger(CEventType.CharacterAttacking, unit.parent);
-            unit.currentTarget = BattleManager._activeUnit;
+            unit.currentTarget = BattleManager.Instance.activeUnit;
             unit.currentTarget.Unit.isCountered = true;
             isCountering = true;
 
@@ -66,10 +66,8 @@ namespace BattleSystem
 
         private static void SlowTime() => TimeManager._slowTimeCounter = true;
         
-
         private static void RestoreTime() => TimeManager._slowTimeCounter = false;
         
-
         private void OnDisable() => unit.onTimedDefense -= SetupCounterAttack;
         
     }

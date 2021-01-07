@@ -23,8 +23,9 @@ namespace BattleSystem
             
             ChooseTarget._targetOptions = eventType.EventItem.targetOptions;
             ChooseTarget.GetItemCommand();
-            BattleManager._usingItem = true;
-            BattleManager._choosingOption = false;
+
+            BattleManager.Instance.usingItem = true;
+            BattleManager.Instance.choosingOption = false;
         }
     }
 }

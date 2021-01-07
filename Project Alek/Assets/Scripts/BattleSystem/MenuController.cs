@@ -36,12 +36,12 @@ namespace BattleSystem
         {
             animator = GetComponent<Animator>();
             
-            battleMenu = transform.Find("Battle Menu").gameObject;
+            battleMenu = transform.Find("Mask").transform.Find("Battle Menu").gameObject;
             
             mainMenu = battleMenu.gameObject.transform.Find("Main Options").gameObject;
             mainMenuFirstSelected = mainMenu.transform.GetChild(0).gameObject;
             
-            abilityMenu = transform.Find("Battle Menu").gameObject.transform.Find("Ability Menu").gameObject;
+            abilityMenu = transform.Find("Mask").transform.Find("Battle Menu").gameObject.transform.Find("Ability Menu").gameObject;
             abilityMenuFirstSelected = abilityMenu.transform.GetChild(0).gameObject;
 
             EventSystem.current.SetSelectedGameObject(null);
@@ -137,7 +137,7 @@ namespace BattleSystem
 
         public void OnMMEvent(MMInventoryEvent eventType)
         {
-            if (BattleManager._usingItem) return;
+            if (BattleManager.Instance.usingItem) return;
             if (isEnabled && isActiveAndEnabled && eventType.InventoryEventType == MMInventoryEventType.InventoryCloses)
             {
                 animator.SetTrigger(AnimationHandler.Panel);

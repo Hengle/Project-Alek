@@ -28,7 +28,7 @@ namespace BattleSystem
 
         private void GetCommand(UnitBase unitBaseParam)
         {
-            BattleManager._performingAction = true;
+            BattleManager.Instance.performingAction = true;
             
             unitBase = unitBaseParam;
             unit = unitBase.Unit;
@@ -67,7 +67,7 @@ namespace BattleSystem
                 case AbilityType.Ranged: Timing.RunCoroutine(RangedAttack());
                     yield break;
                 case AbilityType.NonAttack: Logger.Log("Non-Attack: " + unit.currentAbility.name);
-                    BattleManager._performingAction = false;
+                    BattleManager.Instance.performingAction = false;
                     yield break;
                 default: Logger.Log("This message should not be displaying...");
                     yield break;
@@ -88,7 +88,7 @@ namespace BattleSystem
 
             yield return Timing.WaitUntilDone(MoveBackToOriginPosition());
 
-            BattleManager._performingAction = false;
+            BattleManager.Instance.performingAction = false;
         }
         
         private IEnumerator<float> RangedAttack()
@@ -100,8 +100,8 @@ namespace BattleSystem
             yield return Timing.WaitUntilDone(ExecuteAttack());
 
             unit.transform.rotation = originalRotation;
-
-            BattleManager._performingAction = false;
+            
+            BattleManager.Instance.performingAction = false;
         }
 
         private IEnumerator<float> ExecuteAttack()

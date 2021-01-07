@@ -9,6 +9,7 @@ using Characters.Abilities;
 using Characters.Animations;
 using Characters.StatusEffects;
 using Sirenix.OdinInspector;
+using UnityEngine.Serialization;
 
 namespace Characters
 {
@@ -40,7 +41,8 @@ namespace Characters
         [ReadOnly] public UnitStates currentState;
         [ReadOnly] public int level;
         [ReadOnly] public int currentHP;
-        [ReadOnly] public int conversionAmount;
+        [FormerlySerializedAs("conversionAmount")]
+        [ReadOnly] public int conversionLevel;
         [ReadOnly] public float conversionFactor = 1;
 
         [SerializeField] [ReadOnly] 
@@ -84,6 +86,7 @@ namespace Characters
         public Action<int, bool> onDefValueChanged;
         public Action<int> borrowAP;
         public Action<UnitBase> recoveredFromOverexertion;
+        public Action<UnitBase> recoveredFromMaxOverexertion;
         
         public Action onSelect;
         public Action onDeselect;
@@ -143,12 +146,8 @@ namespace Characters
             onDeselect?.Invoke();
         }
 
-        public bool CanBorrow(int amount)
-        {
-            var loanSystem = GetComponent<LoanSystem>();
-            return amount <= loanSystem._maxLoan;
-        }
-
+        public static bool CanBorrow(int amount) => amount <= BattleManager.Instance.globalVariables.maxLoanAmount;
+        
         public void Setup(UnitBase unitBase)
         {
             unitBase.Unit = this;
