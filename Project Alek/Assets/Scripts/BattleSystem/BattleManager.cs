@@ -225,7 +225,7 @@ namespace BattleSystem
             
             end_of_turn:
             endThisMembersTurn = false;
-            CharacterEvents.Trigger(CEventType.EndOfTurn, character);
+            if (!character.IsDead) CharacterEvents.Trigger(CEventType.EndOfTurn, character);
             character.inventoryDisplay.SetActive(false); // TODO: Make this a part of the EndOfTurn event
         }
 
@@ -263,7 +263,7 @@ namespace BattleSystem
                 yield return Timing.WaitForSeconds(0.5f);
             }
             
-            CharacterEvents.Trigger(CEventType.EndOfTurn, enemy);
+            if (!enemy.IsDead) CharacterEvents.Trigger(CEventType.EndOfTurn, enemy);
         }
         
         #endregion

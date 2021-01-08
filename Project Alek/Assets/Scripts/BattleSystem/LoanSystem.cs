@@ -36,6 +36,8 @@ namespace BattleSystem
         {
             if (!isRecovered) currentLoan -= 2;
             if (currentLoan < 0) currentLoan = 0;
+            
+            unit.parent.onApValChanged?.Invoke(currentLoan);
             if (currentLoan != 0) return;
 
             if (!isRecovered)
@@ -78,6 +80,11 @@ namespace BattleSystem
 
         public void OnGameEvent(CharacterEvents eventType)
         {
+            if (eventType._eventType == CEventType.EndOfTurn && eventType._character == unit.parent &&
+                unit.status == Status.Overexerted)
+            {
+                unit.parent.onApValChanged?.Invoke(currentLoan);
+            }
             if (eventType._eventType != CEventType.CharacterTurn) return;
             if (eventType._character != unit.parent) return;
             if (isRecovered) GiveRecoverBenefits();

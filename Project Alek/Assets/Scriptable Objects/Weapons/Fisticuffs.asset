@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4829572fcd2f98479c803ffaf809268, type: 3}
+  m_Name: Fisticuffs
+  m_EditorClassIdentifier: 
+  ItemID: Fisticuffs
+  TargetInventoryName: Leandra Valentina Weapon Inventory
+  targetOptions: 0
+  Usable: 0
+  Equippable: 1
+  Quantity: 1
+  ItemName: Fisticuffs
+  ShortDescription: Leandras badass fisticuffs
+  Description: Don't feel like putting a long description
+  CanMoveObject: 1
+  CanSwapObject: 1
+  Icon: {fileID: 21300000, guid: 2978e214a62beee449d7882b1a12a347, type: 3}
+  Prefab: {fileID: 0}
+  SpawnShape: 1
+  PrefabDropMinDistance: {x: 2, y: 2, z: 0}
+  PrefabDropMaxDistance: {x: 3, y: 3, z: 0}
+  MaximumStack: 1
+  ItemClass: 2
+  TargetEquipmentInventoryName: Leandra Valentina Weapon Inventory
+  EquippedSound: {fileID: 0}
+  UsedSound: {fileID: 0}
+  MovedSound: {fileID: 0}
+  DroppedSound: {fileID: 0}
+  UseDefaultSoundsIfNull: 1
+  WeaponSprite: {fileID: 0}
+  damageType: 2
+  weaponMight: 6
+  magicMight: 0
+  weaponAccuracy: 85
+  weaponCriticalChance: 3
+  strength: 4
+  magic: 0
+  accuracy: 5
+  initiative: 1
+  defense: 2
+  resistance: 0
+  criticalChance: 1
+  partyMember: {fileID: 11400000, guid: bce5c1264c07e43488e2ea4155308e40, type: 2}

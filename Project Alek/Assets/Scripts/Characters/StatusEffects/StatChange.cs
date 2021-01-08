@@ -10,6 +10,8 @@ namespace Characters.StatusEffects
     public class StatChange : StatusEffect
     {
         #region FieldsAndProperties
+
+        public string shortStatName;
         
         [Space] [SerializeField] [Title("Buffs"), VerticalGroup("Icon/Info"), LabelWidth(120)]
         [HideIf(nameof(name), "Checkmate")]

@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: DefDebuffModerate
   m_EditorClassIdentifier: 
   effectType: 3
-  icon: {fileID: 6377904230404883206, guid: 7d6682148f995b048b3f815f933cdbe6, type: 3}
+  icon: {fileID: 6377904230404883206, guid: f5c322ca2cbe68449956ca1b140cd1e8, type: 3}
   rateOfInfliction: 
   color: {r: 0, g: 0, b: 0, a: 0}
   turnDuration: 3
+  shortStatName: DEF
   buffs: 0
   buffedStat: 0
   buffMultiplier: 0

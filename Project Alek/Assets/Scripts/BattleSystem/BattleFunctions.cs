@@ -42,7 +42,7 @@ namespace BattleSystem
         
         [UsedImplicitly] private IEnumerator UniversalAction()
         {
-            unitBase.Unit.isAbility = false;
+            //unitBase.Unit.isAbility = false;
             
             switch (unitBase.Unit.commandActionOption)
             {
@@ -57,7 +57,9 @@ namespace BattleSystem
         
         [UsedImplicitly] private IEnumerator AbilityAction()
         {
-            unit.currentAbility = unitBase.GetAndSetAbility(unit.commandActionOption);
+            if (unit.currentAbility == null)
+                unit.currentAbility = unitBase.GetAndSetAbility(unit.commandActionOption);
+            
             unit.isAbility = true;
 
             switch (unit.currentAbility.abilityType)
@@ -106,7 +108,7 @@ namespace BattleSystem
 
         private IEnumerator<float> ExecuteAttack()
         {
-            TimeManager._slowTimeCrit = unitBase.Unit.isCrit;
+            //TimeManager._slowTimeCrit = unitBase.Unit.isCrit;
             
             unit.anim.SetInteger(AnimationHandler.PhysAttackState, unit.isAbility?
                 unit.currentAbility.attackState : 0);
@@ -116,8 +118,8 @@ namespace BattleSystem
             yield return Timing.WaitUntilFalse(() => animHandler.isAttacking);
             yield return Timing.WaitUntilFalse(() => unit.isCountered);
 
-            TimeManager._slowTime = false;
-            TimeManager._slowTimeCrit = false;
+            //TimeManager._slowTime = false;
+            //TimeManager._slowTimeCrit = false;
 
             yield return Timing.WaitUntilDone(unitBase.InflictOnTargets
                 (Rate.AfterAttacked, 0.5f, false));

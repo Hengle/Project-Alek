@@ -101,9 +101,11 @@ namespace BattleSystem.Generator
                 optionButton.SetActive(true);
                 
                 var param = character.abilities[abilityListIndex].GetParameters(abilityListIndex);
+                var ability = character.abilities[abilityListIndex];
                 
                 optionButton.GetComponent<Button>().onClick.
-                    AddListener(delegate { ((BattleOptionsPanel) character.battleOptionsPanel).GetCommandInformation(param); });
+                    AddListener(delegate { ((BattleOptionsPanel) character.battleOptionsPanel).GetCommandInformation(param);
+                        character.Unit.currentAbility = ability; character.Unit.isAbility = true; });
 
                 if (character.abilities[abilityListIndex].isMultiTarget) optionButton.GetComponent<Button>().onClick.
                     AddListener(delegate { ChooseTarget._isMultiTarget = true; });
@@ -153,6 +155,11 @@ namespace BattleSystem.Generator
 
             var details = character.inventoryDisplay.GetComponentInChildren<InventoryDetails>();
             details.TargetInventoryName = $"{inventory.name}";
+
+            if (character.equippedWeapon == null) Debug.LogError($"{character.characterName} has no weapon!");
+            character.equippedWeapon.partyMember = character;
+            weaponInventory.AddItem(character.equippedWeapon, 1);
+            weaponInventory.Content[0].Equip();
         }
 
         private void SetupProfileBox(UnitBase character)

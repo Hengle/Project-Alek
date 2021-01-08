@@ -20,6 +20,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: eb1b5a0f67771a842832b379372ae131, type: 2}
     - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
     - {fileID: 11400000, guid: 69edb0df81ead1c4fb7df7bfa4cd9381, type: 2}
+    - {fileID: 0}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -149,7 +150,55 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: onDeath
-      Entry: 6
+      Entry: 7
+      Data: 6|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 4
+    - Name: declaringType
+      Entry: 7
+      Data: 7|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BattleSystem.BattleManager, ProjectAlek
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: RemoveFromBattle
+    - Name: delegateType
+      Entry: 7
+      Data: 8|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 9|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 10|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Characters.UnitBase, ProjectAlek
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
     - Name: onHpValueChanged
       Entry: 6
@@ -160,10 +209,16 @@ MonoBehaviour:
     - Name: onElementalDamageReceived
       Entry: 6
       Data: 
+    - Name: onWeaponDamageTypeReceived
+      Entry: 6
+      Data: 
     - Name: onStatusEffectReceived
       Entry: 6
       Data: 
     - Name: onStatusEffectRemoved
+      Entry: 6
+      Data: 
+    - Name: onApValChanged
       Entry: 6
       Data: 
   icon: {fileID: 21300000, guid: 9ffa2a80407c9364db839b73e127de83, type: 3}
@@ -178,23 +233,24 @@ MonoBehaviour:
   strength:
     BaseValue: 10
   magic:
-    BaseValue: 3
+    BaseValue: 5
   accuracy:
-    BaseValue: 14
+    BaseValue: 13
   initiative:
     BaseValue: 9
   defense:
     BaseValue: 12
   resistance:
-    BaseValue: 2
+    BaseValue: 4
   criticalChance:
-    BaseValue: 3
+    BaseValue: 2
   description: This is a description for yah girl Leandra. She is boss and won't
     take anyone's crap. Uggghhh extra stuff to increase text count.
-  weaponMight: 5
-  magicMight: 1
+  damageTypeWeaknesses: 
+  weaponMight: 6
+  magicMight: 0
   weaponAccuracy: 85
-  weaponCriticalChance: 2
+  weaponCriticalChance: 3
   abilities:
   - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}
   - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
@@ -202,13 +258,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 29e5f87674d2cba4b9282fcecc4fe2ca, type: 2}
   - {fileID: 11400000, guid: e558d404ab0ced340bb9314e1e677569, type: 2}
   maxAP: 6
-  actionPointAnim: {fileID: 0}
   positionInParty: 3
   weaponInventory: {fileID: 2363339618168879057, guid: 3b3a696505e47b2409e90ac00429c493,
     type: 3}
   armorInventory: {fileID: 2363339618168879057, guid: fe5e8dd8d6dd25641a5f62d19d40ecd8,
     type: 3}
-  equippedWeapon: {fileID: 0}
+  equippedWeapon: {fileID: 11400000, guid: b2cc5ac9aaadbb747ad7dd7b61fcb3c2, type: 2}
   battleOptionsPanel: {fileID: 0}
   battlePanel: {fileID: 0}
   inventoryDisplay: {fileID: 0}

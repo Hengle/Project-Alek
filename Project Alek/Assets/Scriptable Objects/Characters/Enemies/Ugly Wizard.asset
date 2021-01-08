@@ -173,6 +173,9 @@ MonoBehaviour:
     - Name: onElementalDamageReceived
       Entry: 6
       Data: 
+    - Name: onWeaponDamageTypeReceived
+      Entry: 6
+      Data: 
     - Name: onStatusEffectReceived
       Entry: 6
       Data: 
@@ -205,14 +208,15 @@ MonoBehaviour:
   defense:
     BaseValue: 7
   resistance:
-    BaseValue: 12
+    BaseValue: 14
   criticalChance:
     BaseValue: 4
   description: ewww
+  damageTypeWeaknesses: 02000000
   weaponMight: 3
-  magicMight: 9
+  magicMight: 12
   weaponAccuracy: 85
-  weaponCriticalChance: 1
+  weaponCriticalChance: 2
   abilities:
   - {fileID: 11400000, guid: e558d404ab0ced340bb9314e1e677569, type: 2}
   maxAP: 6

@@ -23,8 +23,9 @@ MonoBehaviour:
   description: Big Brain plays
   hasElemental: 0
   elementalType: {fileID: 11400000, guid: 5b7dd86029ea2ce49beaee4e4d702b94, type: 2}
-  elementalScaler: 50
+  elementalScalar: 0
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
+  - {fileID: 11400000, guid: 5b3cb6ed67b2c1d4ba981e75701621ec, type: 2}
   chanceOfInfliction: 1

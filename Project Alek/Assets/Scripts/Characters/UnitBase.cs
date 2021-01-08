@@ -8,6 +8,7 @@ using Characters.StatusEffects;
 using DamagePrefab;
 using Kryz.CharacterStats;
 using Sirenix.OdinInspector;
+using MoreMountains.InventoryEngine;
 
 namespace Characters
 {
@@ -86,6 +87,10 @@ namespace Characters
         [DictionaryDrawerSettings(KeyLabel = "Status Effect", ValueLabel = "Weakness Level", DisplayMode = DictionaryDisplayOptions.ExpandedFoldout)]
         public readonly Dictionary<StatusEffect, InflictionChanceModifier> _statusEffectWeaknesses = new Dictionary<StatusEffect, InflictionChanceModifier>();
         
+        [TabGroup("Tabs/Resistances & Weaknesses", "Damage Types")] [EnumPaging]
+        [HideIf(nameof(id), CharacterType.PartyMember)]
+        public List<WeaponDamageType> damageTypeWeaknesses = new List<WeaponDamageType>();
+
         [Range(1,99), TabGroup("Tabs","Weapon Stats")] public int weaponMight;
         [Range(1,99), TabGroup("Tabs","Weapon Stats")] public int magicMight;
         [Range(1,150), TabGroup("Tabs","Weapon Stats")] public int weaponAccuracy;
@@ -128,12 +133,13 @@ namespace Characters
         [HideInInspector] public Action onHpValueChanged;
         [HideInInspector] public Action<int> onShieldValueChanged;
         [HideInInspector] public Action<ElementalType> onElementalDamageReceived;
+        [HideInInspector] public Action<WeaponDamageType> onWeaponDamageTypeReceived;
         [HideInInspector] public Action<StatusEffect> onStatusEffectReceived;
         [HideInInspector] public Action<StatusEffect> onStatusEffectRemoved;
         [HideInInspector] public Action<int> onApValChanged;
 
         public bool IsDead => Unit.status == Status.Dead;
-        
+
         protected int CurrentHP 
         {
             get => Unit.currentHP;
@@ -235,7 +241,7 @@ namespace Characters
 
         public virtual void Heal(float amount) {}
 
-        public virtual void TakeDamage(int dmg, ElementalType elementalDmg)
+        public virtual void TakeDamage(int dmg, ElementalType elementalDmg, WeaponDamageType weaponDamageType)
         {
             if (dmg != -1)
             {
@@ -256,6 +262,7 @@ namespace Characters
                 else CurrentHP -= dmg;
                 
                 if (elementalDmg != null) onElementalDamageReceived?.Invoke(elementalDmg);
+                if (weaponDamageType != WeaponDamageType.Null) onWeaponDamageTypeReceived?.Invoke(weaponDamageType);
             }
 
             else

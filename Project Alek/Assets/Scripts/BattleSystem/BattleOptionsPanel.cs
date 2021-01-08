@@ -65,7 +65,7 @@ namespace BattleSystem
                 if (Unit.CanBorrow(amountToBorrow)) character.Unit.borrowAP(amountToBorrow);
                 else return;
             }
-            
+
             ChooseTarget._targetOptions = commandTargetOptions;
             ChooseTarget.GetCurrentCommand(commandActionName, commandActionOption);
             character.Unit.actionCost = commandCost;

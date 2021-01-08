@@ -16,14 +16,14 @@ MonoBehaviour:
   damageType: 0
   targetOptions: 0
   icon: {fileID: 21300000, guid: d916209cbe8865a49a181e7c273271c1, type: 3}
-  actionCost: 1
+  actionCost: 4
   damageMultiplier: 0.9
   attackState: 2
   isMultiTarget: 1
   description: Everybody catchin' these hands, i mean these bullets
-  hasElemental: 0
-  elementalType: {fileID: 0}
-  elementalScalar: 0
+  hasElemental: 1
+  elementalType: {fileID: 11400000, guid: 5b7dd86029ea2ce49beaee4e4d702b94, type: 2}
+  elementalScalar: 75
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: b088e3235fe9f7d4e8a775a6a96f6f83, type: 2}

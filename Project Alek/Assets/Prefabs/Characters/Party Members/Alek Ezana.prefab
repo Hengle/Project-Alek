@@ -143,7 +143,7 @@ MonoBehaviour:
   currentState: 0
   level: 0
   currentHP: 0
-  conversionAmount: 0
+  conversionLevel: 0
   conversionFactor: 1
   currentStrength: 0
   currentMagic: 0
@@ -152,6 +152,8 @@ MonoBehaviour:
   currentCrit: 0
   currentDefense: 0
   currentResistance: 0
+  finalInitVal: 0
+  initModifier: 0
   statusEffects: []
   multiHitTargets: []
   damageValueList: 
@@ -162,6 +164,7 @@ MonoBehaviour:
   parry: 0
   timedAttack: 0
   isCountered: 0
+  hasPerformedTurn: 0
   material: {fileID: 0}
   parent: {fileID: 0}
 --- !u!114 &4243244753647906

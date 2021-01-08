@@ -15,10 +15,13 @@ MonoBehaviour:
   damageBoostIncrement: 0.5
   defenseBoostIncrement: 0.5
   maxLoanAmount: 4
-  criticalDamageFactor: 1.25
+  criticalDamageFactor: 1.35
   healthItemChance: 0.4
   maxHealthItemAmount: 3
   conversionFactorLvl1: 1.2
   conversionFactorLvl2: 1.4
   conversionFactorLvl3: 1.8
   conversionFactorLvl4: 2.25
+  originalAPColor: {r: 0, g: 0.85098046, b: 0.9960785, a: 1}
+  overexertedAPColor: {r: 0.5754717, g: 0, b: 0, a: 1}
+  battleMusic: {fileID: 0}

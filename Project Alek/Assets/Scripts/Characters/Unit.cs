@@ -19,7 +19,7 @@ namespace Characters
     {
         #region HideInInspector
 
-        [HideInInspector] public Ability currentAbility;
+        public Ability currentAbility;
         [HideInInspector] public Animator anim;
         [HideInInspector] public AnimationHandler animationHandler;
         [HideInInspector] public SpriteOutline outline;
@@ -191,6 +191,8 @@ namespace Characters
                 case CEventType.CharacterTurn:
                     outline.enabled = false;
                     button.enabled = false;
+                    isAbility = false;
+                    currentAbility = null;
                     if (eventType._character == parent) ResetTargets();
                     break;
                 

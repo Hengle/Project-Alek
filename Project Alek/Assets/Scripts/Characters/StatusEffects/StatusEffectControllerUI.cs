@@ -26,6 +26,7 @@ namespace Characters.StatusEffects
             if (effect.icon != null && alreadyHasIcon == null) {
                 var iconGO = Instantiate(effect.icon, transform, false);
                 iconGO.name = effect.name;
+
                 iconGO.GetComponent<StatusEffectTimer>().SetTimer(effect, member);
             }
             

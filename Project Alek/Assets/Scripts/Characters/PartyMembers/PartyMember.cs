@@ -9,15 +9,15 @@ namespace Characters.PartyMembers
     [CreateAssetMenu(fileName = "New Party Member", menuName = "Character/Party Member")]
     public class PartyMember : UnitBase
     {
-        [HideInInspector] public Animator actionPointAnim;
+        //[HideInInspector] public Animator actionPointAnim;
         [Range(0,4), VerticalGroup("Basic/Info")] public int positionInParty;
 
         [TabGroup("Tabs","Inventory")]
         public Inventory weaponInventory;
         [TabGroup("Tabs","Inventory")]
         public Inventory armorInventory;
-        [TabGroup("Tabs","Inventory")]
-        public InventoryItem equippedWeapon;
+        [TabGroup("Tabs","Inventory")] [SerializeField]
+        public WeaponItem equippedWeapon;
 
         [HideInInspector] public ScriptableObject battleOptionsPanel;
         [HideInInspector] public GameObject battlePanel;
@@ -25,7 +25,6 @@ namespace Characters.PartyMembers
 
         private GameObject unitGO;
         
-
         public override void Heal(float amount)
         {
             CurrentHP += (int) amount;

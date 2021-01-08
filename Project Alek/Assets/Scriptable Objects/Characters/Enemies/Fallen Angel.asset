@@ -160,6 +160,9 @@ MonoBehaviour:
     - Name: onElementalDamageReceived
       Entry: 6
       Data: 
+    - Name: onWeaponDamageTypeReceived
+      Entry: 6
+      Data: 
     - Name: onStatusEffectReceived
       Entry: 6
       Data: 
@@ -186,16 +189,17 @@ MonoBehaviour:
   magic:
     BaseValue: 9
   accuracy:
-    BaseValue: 14
+    BaseValue: 12
   initiative:
     BaseValue: 8
   defense:
     BaseValue: 5
   resistance:
-    BaseValue: 10
+    BaseValue: 14
   criticalChance:
     BaseValue: 3
   description: what a shame...
+  damageTypeWeaknesses: 01000000
   weaponMight: 3
   magicMight: 11
   weaponAccuracy: 80

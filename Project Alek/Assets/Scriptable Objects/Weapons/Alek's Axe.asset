@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Alek's Axe
   m_EditorClassIdentifier: 
   ItemID: AlekAxe
-  TargetInventoryName: Main Inventory
+  TargetInventoryName: Alek Ezana Weapon Inventory
   targetOptions: 0
   Usable: 0
   Equippable: 1
@@ -37,11 +37,11 @@ MonoBehaviour:
   DroppedSound: {fileID: 0}
   UseDefaultSoundsIfNull: 1
   WeaponSprite: {fileID: 0}
+  damageType: 1
   weaponMight: 12
   magicMight: 5
   weaponAccuracy: 80
   weaponCriticalChance: 3
-  health: 0
   strength: 3
   magic: 0
   accuracy: 0

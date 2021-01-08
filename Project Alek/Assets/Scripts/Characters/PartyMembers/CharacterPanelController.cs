@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Characters.Animations;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,7 +38,7 @@ namespace Characters.PartyMembers
             dmgBoostAnim = transform.Find("DmgBoost Bar").GetComponent<Animator>();
             defBoostAnim = transform.Find("DefBoost Bar").GetComponent<Animator>();
             fillRectImage = slider.fillRect.GetComponent<Image>();
-            
+
             icon.sprite = member.icon;
             nameUGUI.text = member.characterName.ToUpper();
             healthUGUI.text = $"HP: {member.health.BaseValue}";
@@ -60,6 +61,8 @@ namespace Characters.PartyMembers
             apBarAnim.SetTrigger(AnimationHandler.maxAP);
         }
 
+        private void Update() => apBarAnim.enabled = member.Unit.status != Status.Overexerted;
+        
         private void OnHpValueChanged() 
         {
             fillRectImage.color = member.Color;
@@ -69,6 +72,7 @@ namespace Characters.PartyMembers
 
         private void OnAPValueChanged(int val)
         {
+            if (member.Unit.status == Status.Overexerted) Logger.Log("yay??");
             if (val > currentAP)
             {
                 for (var i = currentAP; i < val; i++)

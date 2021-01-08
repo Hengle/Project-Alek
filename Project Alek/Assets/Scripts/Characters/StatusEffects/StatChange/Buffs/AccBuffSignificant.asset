@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: AccBuffSignificant
   m_EditorClassIdentifier: 
   effectType: 3
-  icon: {fileID: 6377904230404883206, guid: 7d6682148f995b048b3f815f933cdbe6, type: 3}
+  icon: {fileID: 6377904230404883206, guid: afde36356b6daef45b6c13b6a4563db3, type: 3}
   rateOfInfliction: 
   color: {r: 0, g: 0, b: 0, a: 0}
   turnDuration: 3
+  shortStatName: ACC
   buffs: 1
   buffedStat: 4
   buffMultiplier: 3

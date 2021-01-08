@@ -20,6 +20,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
     - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
     - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
+    - {fileID: 0}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -149,7 +150,55 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: onDeath
-      Entry: 6
+      Entry: 7
+      Data: 6|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 4
+    - Name: declaringType
+      Entry: 7
+      Data: 7|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BattleSystem.BattleManager, ProjectAlek
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: RemoveFromBattle
+    - Name: delegateType
+      Entry: 7
+      Data: 8|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 9|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 10|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Characters.UnitBase, ProjectAlek
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
     - Name: onHpValueChanged
       Entry: 6
@@ -158,6 +207,9 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: onElementalDamageReceived
+      Entry: 6
+      Data: 
+    - Name: onWeaponDamageTypeReceived
       Entry: 6
       Data: 
     - Name: onStatusEffectReceived
@@ -179,37 +231,37 @@ MonoBehaviour:
   health:
     BaseValue: 845
   strength:
-    BaseValue: 11
+    BaseValue: 12
   magic:
-    BaseValue: 7
+    BaseValue: 8
   accuracy:
     BaseValue: 11
   initiative:
-    BaseValue: 6
+    BaseValue: 7
   defense:
-    BaseValue: 9
+    BaseValue: 10
   resistance:
-    BaseValue: 5
+    BaseValue: 6
   criticalChance:
-    BaseValue: 3
+    BaseValue: 4
   description: Bruh it is the one. The ONLY. The ONE and ONLY. The ONE and ONLY GOD
     among MEN. It is.... ya boi.... tha GAWD.... Alek.
-  weaponMight: 9
-  magicMight: 2
-  weaponAccuracy: 75
+  damageTypeWeaknesses: 
+  weaponMight: 12
+  magicMight: 5
+  weaponAccuracy: 80
   weaponCriticalChance: 3
   abilities:
   - {fileID: 11400000, guid: 5c5fa03193734104c98ec2f8d6543cfa, type: 2}
   - {fileID: 11400000, guid: 6c09b3176a3b3e54ca0946ee458d3fa6, type: 2}
   - {fileID: 11400000, guid: 1306999bff8e7c14892abd85b0b028c7, type: 2}
   maxAP: 6
-  actionPointAnim: {fileID: 0}
   positionInParty: 2
   weaponInventory: {fileID: 5917402227159465644, guid: 1d94ebccb9928a445b4a7e1dbacb9d53,
     type: 3}
   armorInventory: {fileID: 5917402227159465644, guid: 73160e3893c2b7843b6db9576b98ff50,
     type: 3}
-  equippedWeapon: {fileID: 0}
+  equippedWeapon: {fileID: 11400000, guid: ec069cf5eefe2b542948c9199f54518c, type: 2}
   battleOptionsPanel: {fileID: 0}
   battlePanel: {fileID: 0}
   inventoryDisplay: {fileID: 0}

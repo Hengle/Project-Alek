@@ -160,6 +160,9 @@ MonoBehaviour:
     - Name: onElementalDamageReceived
       Entry: 6
       Data: 
+    - Name: onWeaponDamageTypeReceived
+      Entry: 6
+      Data: 
     - Name: onStatusEffectReceived
       Entry: 6
       Data: 
@@ -182,23 +185,24 @@ MonoBehaviour:
   health:
     BaseValue: 835
   strength:
-    BaseValue: 9
+    BaseValue: 12
   magic:
     BaseValue: 6
   accuracy:
-    BaseValue: 13
+    BaseValue: 10
   initiative:
     BaseValue: 7
   defense:
-    BaseValue: 10
+    BaseValue: 11
   resistance:
     BaseValue: 5
   criticalChance:
-    BaseValue: 7
+    BaseValue: 5
   description: I mean, he's a...
-  weaponMight: 15
+  damageTypeWeaknesses: 00000000
+  weaponMight: 13
   magicMight: 3
-  weaponAccuracy: 75
+  weaponAccuracy: 70
   weaponCriticalChance: 5
   abilities:
   - {fileID: 11400000, guid: 8697ec229a0734b4b9c69d6087505ba9, type: 2}

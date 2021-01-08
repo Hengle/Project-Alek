@@ -21,7 +21,7 @@ namespace MoreMountains.InventoryEngine
 		public override bool Equip()
 		{
 			base.Equip();
-			InventoryDemoGameManager.Instance.Player.SetArmor(ArmorIndex);
+			//InventoryDemoGameManager.Instance.Player.SetArmor(ArmorIndex);
             return true;
         }	
 
@@ -31,7 +31,7 @@ namespace MoreMountains.InventoryEngine
 		public override bool UnEquip()
 		{
 			base.UnEquip();
-			InventoryDemoGameManager.Instance.Player.SetArmor(0);
+			//InventoryDemoGameManager.Instance.Player.SetArmor(0);
             return true;
         }		
 	}

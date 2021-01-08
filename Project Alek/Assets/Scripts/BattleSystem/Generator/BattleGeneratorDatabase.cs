@@ -22,6 +22,7 @@ namespace BattleSystem.Generator
         public Transform enemyStatusBox;
         public Transform profileBox;
         public Transform shieldTransform;
+        public GameObject weaknessIndicator;
         public Material shadowMaterial;
         public Material outlineMaterial;
     }

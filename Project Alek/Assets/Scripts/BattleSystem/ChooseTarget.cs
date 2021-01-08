@@ -116,6 +116,7 @@ namespace BattleSystem
             
             thisUnitBase.Unit.outline.enabled = true;
             thisUnitBase.Unit.button.interactable = false;
+            thisUnitBase.Unit.onSelect?.Invoke();
 
             BattleInput._inputModule.enabled = false;
             BattleInput._canOpenBox = false;
@@ -137,6 +138,7 @@ namespace BattleSystem
             thisUnitBase.Unit.button.interactable = true;
             thisUnitBase.Unit.outline.enabled = false;
             _isMultiTarget = false;
+            thisUnitBase.Unit.onDeselect?.Invoke();
         }
         
         public void OnGameEvent(CharacterEvents eventType)

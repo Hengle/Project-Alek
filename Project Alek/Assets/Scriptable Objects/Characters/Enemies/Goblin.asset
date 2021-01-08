@@ -186,6 +186,9 @@ MonoBehaviour:
     - Name: onElementalDamageReceived
       Entry: 6
       Data: 
+    - Name: onWeaponDamageTypeReceived
+      Entry: 6
+      Data: 
     - Name: onStatusEffectReceived
       Entry: 6
       Data: 
@@ -212,7 +215,7 @@ MonoBehaviour:
   magic:
     BaseValue: 4
   accuracy:
-    BaseValue: 12
+    BaseValue: 15
   initiative:
     BaseValue: 9
   defense:
@@ -220,11 +223,12 @@ MonoBehaviour:
   resistance:
     BaseValue: 5
   criticalChance:
-    BaseValue: 6
+    BaseValue: 8
   description: What's a goon to a...
-  weaponMight: 7
+  damageTypeWeaknesses: 0100000002000000
+  weaponMight: 8
   magicMight: 3
-  weaponAccuracy: 85
+  weaponAccuracy: 90
   weaponCriticalChance: 4
   abilities:
   - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}

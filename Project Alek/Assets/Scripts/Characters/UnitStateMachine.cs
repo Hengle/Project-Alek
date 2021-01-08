@@ -1,5 +1,6 @@
 ﻿using Characters.ElementalTypes;
 using Characters.StatusEffects;
+using MoreMountains.InventoryEngine;
 
 namespace Characters
 {
@@ -26,6 +27,7 @@ namespace Characters
             currentState = UnitStates.Normal;
             unitBase.Unit.currentState = currentState;
 
+            unitBase.onWeaponDamageTypeReceived += EvaluateState;
             unitBase.onElementalDamageReceived += EvaluateState;
             unitBase.onStatusEffectReceived += EvaluateState;
             unitBase.onStatusEffectRemoved += EvaluateStateOnRemoval;
@@ -92,6 +94,14 @@ namespace Characters
 
             var tryGetElement = unitBase._elementalWeaknesses.ContainsKey(elementalType);
             if (tryGetElement) EvaluateShield();
+        }
+
+        private void EvaluateState(WeaponDamageType damageType)
+        {
+            if (currentState == UnitStates.Checkmate) return;
+
+            var tryGetType = unitBase.damageTypeWeaknesses.Contains(damageType);
+            if (tryGetType) EvaluateShield();
         }
         
         private void EvaluateShield()

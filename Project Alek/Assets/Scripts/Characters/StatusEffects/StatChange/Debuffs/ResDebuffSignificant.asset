@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: ResDebuffSignificant
   m_EditorClassIdentifier: 
   effectType: 3
-  icon: {fileID: 6377904230404883206, guid: 7d6682148f995b048b3f815f933cdbe6, type: 3}
+  icon: {fileID: 6377904230404883206, guid: 33dbef8b6eb7d3f4fbb17d6fa2bd12df, type: 3}
   rateOfInfliction: 
   color: {r: 0, g: 0, b: 0, a: 0}
   turnDuration: 3
+  shortStatName: RES
   buffs: 0
   buffedStat: 0
   buffMultiplier: 0

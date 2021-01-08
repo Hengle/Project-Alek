@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5337024881006674529}
   - component: {fileID: 417493762244957691}
   m_Layer: 0
-  m_Name: Hero Knight Weapon Inventory
+  m_Name: Elias Adwin Weapon Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

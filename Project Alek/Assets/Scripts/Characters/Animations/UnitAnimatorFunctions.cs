@@ -6,7 +6,9 @@ using JetBrains.Annotations;
 using Random = UnityEngine.Random;
 using BattleSystem;
 using Characters.ElementalTypes;
+using Characters.PartyMembers;
 using Characters.StatusEffects;
+using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.InputSystem;
 
@@ -17,8 +19,8 @@ namespace Characters.Animations
     {
         private BattleInputManager inputManager;
         
-        private Unit unit;
-        private UnitBase unitBase;
+        [SerializeField] private Unit unit;
+        [SerializeField] private UnitBase unitBase;
 
         [ShowInInspector] private bool thisCharacterTurn;
         [ShowInInspector] private bool windowOpen;
@@ -27,6 +29,11 @@ namespace Characters.Animations
 
         private ElementalType ElementalCondition => unit != null && unit.isAbility && unit.currentAbility.hasElemental?
             unit.currentAbility.elementalType : null;
+
+        private WeaponDamageType WeaponDamageTypeCondition =>
+            unit != null && unit.parent.id == CharacterType.PartyMember && unit.isAbility
+                ? ((PartyMember) unit.parent).equippedWeapon.damageType
+                : WeaponDamageType.Null;
 
         private void Awake()
         {
@@ -156,13 +163,13 @@ namespace Characters.Animations
             if (!unit.isAbility || !unit.currentAbility.isMultiTarget) 
             {
                 if (unit.currentTarget.Unit.isCountered) RecalculateDamage();
-                unit.currentTarget.TakeDamage(unit.currentDamage, ElementalCondition);
+                unit.currentTarget.TakeDamage(unit.currentDamage, ElementalCondition, WeaponDamageTypeCondition);
                 unit.isCrit = false;
                 return;
             }
             
             unit.multiHitTargets.ForEach(t => t.TakeDamage
-                (unit.damageValueList[unit.multiHitTargets.IndexOf(t)], ElementalCondition));
+                (unit.damageValueList[unit.multiHitTargets.IndexOf(t)], ElementalCondition, WeaponDamageTypeCondition));
 
             unit.isCrit = false;
         }
@@ -181,8 +188,8 @@ namespace Characters.Animations
             
             unit.currentDamage = Calculator.CalculateAttackDamage(unitBase, unit.currentTarget);
             
-            if (unitBase.id != CharacterType.PartyMember || !unit.isCrit) return;
-            TimeManager._slowTimeCrit = true;
+            //if (unitBase.id != CharacterType.PartyMember || !unit.isCrit) return;
+            //TimeManager._slowTimeCrit = true;
         }
 
         public void OnGameEvent(CharacterEvents eventType)

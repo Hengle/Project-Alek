@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: CritDebuffSlight
   m_EditorClassIdentifier: 
   effectType: 3
-  icon: {fileID: 6377904230404883206, guid: 7d6682148f995b048b3f815f933cdbe6, type: 3}
+  icon: {fileID: 6377904230404883206, guid: fd5095dd052a9e147b941c06bd7d8ebd, type: 3}
   rateOfInfliction: 
   color: {r: 0, g: 0, b: 0, a: 0}
   turnDuration: 3
+  shortStatName: CRIT
   buffs: 0
   buffedStat: 0
   buffMultiplier: 0

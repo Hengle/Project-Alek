@@ -144,7 +144,7 @@ MonoBehaviour:
   currentState: 0
   level: 0
   currentHP: 0
-  conversionAmount: 0
+  conversionLevel: 0
   conversionFactor: 1
   currentStrength: 0
   currentMagic: 0
