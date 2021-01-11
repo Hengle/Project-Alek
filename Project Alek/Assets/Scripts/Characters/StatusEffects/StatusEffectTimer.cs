@@ -46,16 +46,23 @@ namespace Characters.StatusEffects
 
         private void OnDisable()
         {
-            if (targetUnit != null)
-            {
-                targetUnit.onDeath -= RemoveTimerAndEffect;
-                targetUnit.Unit.recoveredFromOverexertion -= RemoveTimerAndEffect;
-            }
+            if (targetUnit == null) return;
+ 
+            targetUnit.onDeath -= RemoveTimerAndEffect;
+            targetUnit.Unit.recoveredFromOverexertion -= RemoveTimerAndEffect;
         }
 
         public void OnGameEvent(BattleEvents eventType)
         {
-            if (eventType._battleEventType == BattleEventType.NewRound) DecrementTimer();
+            switch (eventType._battleEventType)
+            {
+                case BattleEventType.NewRound: DecrementTimer();
+                    break;
+                case BattleEventType.LostBattle: RemoveTimerAndEffect(targetUnit);
+                    break;
+                case BattleEventType.WonBattle: RemoveTimerAndEffect(targetUnit);
+                    break;
+            }
         }
     }
 }

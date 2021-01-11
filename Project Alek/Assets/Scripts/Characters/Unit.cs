@@ -15,7 +15,7 @@ namespace Characters
 {
     // TODO: Use these with status effects (like inhibiting)
     public enum Status { Normal, Dead, UnableToPerformAction, Overexerted }
-    public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler, IGameEventListener<CharacterEvents>, IGameEventListener<BattleEvents>
+    public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler, IGameEventListener<CharacterEvents>
     {
         #region HideInInspector
 
@@ -74,7 +74,6 @@ namespace Characters
         [ReadOnly] public bool parry;
         [ReadOnly] public bool timedAttack;
         [ReadOnly] public bool isCountered;
-        [ReadOnly] public bool hasPerformedTurn;
 
         #endregion
 
@@ -124,14 +123,12 @@ namespace Characters
             
             outline.enabled = false;
             status = Status.Normal;
-            GameEventsManager.AddListener<CharacterEvents>(this);
-            GameEventsManager.AddListener<BattleEvents>(this);
+            GameEventsManager.AddListener(this);
         }
 
         private void OnDisable()
         {
-            GameEventsManager.RemoveListener<CharacterEvents>(this);
-            GameEventsManager.RemoveListener<BattleEvents>(this);
+            GameEventsManager.RemoveListener(this);
         }
 
         public void OnSelect(BaseEventData eventData)
@@ -204,20 +201,6 @@ namespace Characters
                 
                 case CEventType.StatChange when eventType._character == parent: SetStats();
                     break;
-                
-                case CEventType.EndOfTurn when eventType._character == parent: hasPerformedTurn = true;
-                    break;
-                
-                case CEventType.SkipTurn when eventType._character == parent: hasPerformedTurn = true;
-                    break;
-            }
-        }
-
-        public void OnGameEvent(BattleEvents eventType)
-        {
-            if (eventType._battleEventType == BattleEventType.NewRound)
-            {
-                hasPerformedTurn = false;
             }
         }
     }

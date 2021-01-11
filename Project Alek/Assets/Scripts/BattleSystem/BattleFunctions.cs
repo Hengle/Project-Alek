@@ -42,8 +42,6 @@ namespace BattleSystem
         
         [UsedImplicitly] private IEnumerator UniversalAction()
         {
-            //unitBase.Unit.isAbility = false;
-            
             switch (unitBase.Unit.commandActionOption)
             {
                 case 1: Timing.RunCoroutine(CloseRangeAttack());
@@ -108,8 +106,6 @@ namespace BattleSystem
 
         private IEnumerator<float> ExecuteAttack()
         {
-            //TimeManager._slowTimeCrit = unitBase.Unit.isCrit;
-            
             unit.anim.SetInteger(AnimationHandler.PhysAttackState, unit.isAbility?
                 unit.currentAbility.attackState : 0);
             unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
@@ -117,9 +113,6 @@ namespace BattleSystem
             yield return Timing.WaitForOneFrame;
             yield return Timing.WaitUntilFalse(() => animHandler.isAttacking);
             yield return Timing.WaitUntilFalse(() => unit.isCountered);
-
-            //TimeManager._slowTime = false;
-            //TimeManager._slowTimeCrit = false;
 
             yield return Timing.WaitUntilDone(unitBase.InflictOnTargets
                 (Rate.AfterAttacked, 0.5f, false));

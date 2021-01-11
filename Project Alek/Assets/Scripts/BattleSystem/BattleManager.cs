@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 using Characters;
 using BattleSystem.Generator;
 using Characters.Animations;
@@ -13,8 +12,7 @@ using MEC;
 
 namespace BattleSystem
 {
-    public enum BattleState { Start, PartyTurn, EnemyTurn, Won, Lost }
-    public class BattleManager : MonoBehaviour, IGameEventListener<CharacterEvents>
+    public class BattleManager : MonoBehaviour, IGameEventListener<CharacterEvents>, IGameEventListener<BattleEvents>
     {
         #region FieldsAndProperties
         
@@ -28,17 +26,13 @@ namespace BattleSystem
                 return instance; }
         }
 
-        [ShowInInspector] [ReadOnly]
-        private  BattleState state;
-        
         [ReadOnly] public InventoryInputManager inventoryInputManager;
         
         [ShowInInspector] [ReadOnly]
         public readonly List<Enemy> _enemiesForThisBattle = new List<Enemy>();
         [ShowInInspector] [ReadOnly]
         public readonly List<PartyMember> _membersForThisBattle = new List<PartyMember>();
-        [ShowInInspector] [ReadOnly]
-        public List<UnitBase> membersAndEnemies = new List<UnitBase>();
+
         [ShowInInspector] [ReadOnly]
         public List<UnitBase> membersAndEnemiesThisTurn = new List<UnitBase>();
         [ShowInInspector] [ReadOnly]
@@ -56,19 +50,13 @@ namespace BattleSystem
         [ReadOnly] public bool endThisMembersTurn;
         [ReadOnly] public bool choosingAbility;
         [ReadOnly] public bool canGiveCommand = true;
-        [ReadOnly] private bool allMembersDead;
-        [ReadOnly] private bool allEnemiesDead;
-        [ShowInInspector] [ReadOnly]
-        private bool PartyOrEnemyTeamIsDead
-        {
-            get
-            {
-                if (allEnemiesDead) state = BattleState.Won;
-                else if (allMembersDead) state = BattleState.Lost;
-                return allMembersDead || allEnemiesDead;
-            }
-        }
         
+        [ReadOnly] private bool AllMembersDead => _membersForThisBattle.Count == 0;
+        [ReadOnly] private bool AllEnemiesDead => _enemiesForThisBattle.Count == 0;
+        
+        [ShowInInspector] [ReadOnly]
+        private bool PartyOrEnemyTeamIsDead => AllMembersDead || AllEnemiesDead;
+
         private BattleGenerator generator;
 
         #endregion
@@ -80,13 +68,14 @@ namespace BattleSystem
         private void Start()
         {
             inventoryInputManager = FindObjectOfType<InventoryInputManager>();
-            roundCount = 0;
             generator = GetComponent<BattleGenerator>();
+            
             canGiveCommand = true;
-
+            roundCount = 0;
             SetupBattle();
-            state = BattleState.Start;
-            GameEventsManager.AddListener(this);
+            
+            GameEventsManager.AddListener<CharacterEvents>(this);
+            GameEventsManager.AddListener<BattleEvents>(this);
         }
 
         private void SetupBattle()
@@ -101,53 +90,35 @@ namespace BattleSystem
 
             _membersForThisBattle.ForEach(m => m.onDeath += RemoveFromBattle);
             _enemiesForThisBattle.ForEach(e => e.onDeath += RemoveFromBattle);
-
-            Timing.RunCoroutine(PerformThisRound());
+            
+            Timing.RunCoroutine(GetNextTurn());
         }
 
         #endregion
 
         #region RoundsAndCharacterTurns
-        
-        private IEnumerator<float> PerformThisRound()
+
+        private IEnumerator<float> GetNextTurn()
         {
-            BattleEvents.Trigger(BattleEventType.NewRound);
+            if (PartyOrEnemyTeamIsDead) { EndOfBattle(); yield break; }
+
+            yield return Timing.WaitForSeconds(0.5f);
             
-            SortByInitiative();
-            yield return Timing.WaitForSeconds(1);
+            if (membersAndEnemiesThisTurn.Count == 0) { BattleEvents.Trigger(BattleEventType.NewRound);
+                yield return Timing.WaitUntilTrue(SortingCalculator.SortByInitiative); }
 
-            foreach (var character in from character in membersAndEnemies
-                let checkMemberStatus = character.GetStatus() where checkMemberStatus select character)
-            {
-                if (PartyOrEnemyTeamIsDead) break;
-
-                yield return Timing.WaitUntilDone(character.InflictStatus
-                    (Rate.EveryTurn, 1, true));
+            var character = membersAndEnemiesThisTurn[0];
                 
-                if (PartyOrEnemyTeamIsDead || character.IsDead) break;
-
-                yield return Timing.WaitUntilDone(character.id == CharacterType.PartyMember
-                    ? ThisPlayerTurn((PartyMember) character)
-                    : ThisEnemyTurn((Enemy) character));
-            }
-
-            switch (state)
-            {
-                case BattleState.Won:
-                    BattleEvents.Trigger(BattleEventType.WonBattle);
-                    Timing.RunCoroutine(WonBattleSequence());
-                    break;
+            yield return Timing.WaitUntilDone(character.InflictStatus
+                (Rate.EveryTurn, 1, true));
                 
-                case BattleState.Lost:
-                    BattleEvents.Trigger(BattleEventType.LostBattle);
-                    Timing.RunCoroutine(LostBattleSequence());
-                    break;
-                
-                default:
-                    roundCount++;
-                    Timing.RunCoroutine(PerformThisRound());
-                    break;
-            }
+            if (PartyOrEnemyTeamIsDead) EndOfBattle();
+            
+            else if (!character.GetStatus()) CharacterEvents.Trigger(CEventType.SkipTurn, character);
+            
+            else Timing.RunCoroutine(character.id == CharacterType.PartyMember
+                ? ThisPlayerTurn((PartyMember) character)
+                : ThisEnemyTurn((Enemy) character));
         }
 
         private IEnumerator<float> ThisPlayerTurn(PartyMember character)
@@ -161,8 +132,7 @@ namespace BattleSystem
                 character.inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
             
             character.inventoryDisplay.SetActive(true);
-
-            state = BattleState.PartyTurn;
+            
             character.ReplenishAP();
             
             main_menu:
@@ -219,28 +189,25 @@ namespace BattleSystem
                 (Rate.AfterEveryAction, 1, true));
 
             skip_command_execution:
-            if (PartyOrEnemyTeamIsDead || character.IsDead) goto end_of_turn;
-            
-            if (character.CurrentAP > 0) goto main_menu;
+            if (PartyOrEnemyTeamIsDead) goto end_of_turn;
+
+            if (character.GetStatus() && character.CurrentAP > 0) goto main_menu;
             
             end_of_turn:
             endThisMembersTurn = false;
-            if (!character.IsDead) CharacterEvents.Trigger(CEventType.EndOfTurn, character);
+            CharacterEvents.Trigger(CEventType.EndOfTurn, character);
             character.inventoryDisplay.SetActive(false); // TODO: Make this a part of the EndOfTurn event
         }
 
         private IEnumerator<float> ThisEnemyTurn(Enemy enemy)
         {
             activeUnit = enemy;
-
-            state = BattleState.EnemyTurn;
+            
             CharacterEvents.Trigger(CEventType.EnemyTurn, enemy);
             enemy.ReplenishAP();
 
-            while (enemy.CurrentAP > 0)
+            while (enemy.GetStatus() && enemy.CurrentAP > 0)
             {
-                if (enemy.IsDead) break;
-
                 var shouldAttack = enemy.SetAI(_membersForThisBattle);
                 if (!shouldAttack) break;
 
@@ -258,17 +225,23 @@ namespace BattleSystem
                 yield return Timing.WaitUntilDone(enemy.InflictStatus
                     (Rate.AfterEveryAction, 1, true));
 
-                if (PartyOrEnemyTeamIsDead || enemy.IsDead) break;
+                if (PartyOrEnemyTeamIsDead) break;
                 
-                yield return Timing.WaitForSeconds(0.5f);
+                yield return Timing.WaitForSeconds(0.25f);
             }
             
-            if (!enemy.IsDead) CharacterEvents.Trigger(CEventType.EndOfTurn, enemy);
+            CharacterEvents.Trigger(CEventType.EndOfTurn, enemy);
         }
         
         #endregion
 
         #region EndOfBattle
+
+        private void EndOfBattle()
+        {
+            if (AllEnemiesDead) BattleEvents.Trigger(BattleEventType.WonBattle);
+            else if (AllMembersDead) BattleEvents.Trigger(BattleEventType.LostBattle);
+        }
 
         private IEnumerator<float> WonBattleSequence()
         {
@@ -284,121 +257,66 @@ namespace BattleSystem
         }
         
         #endregion
-
-        #region Sorting
-
-        private void SortByInitiative()
-        {
-            if (membersAndEnemiesNextTurn.Count > 0)
-            {
-                membersAndEnemies = membersAndEnemiesNextTurn;
-                membersAndEnemiesThisTurn = new List<UnitBase>(membersAndEnemies);
-                GetNewListNextTurn();
-            }
-            else
-            {
-                GetNewList();
-                GetNewListNextTurn();
-            }
-            
-            BattleEvents.Trigger(BattleEventType.ThisTurnListCreated);
-            BattleEvents.Trigger(BattleEventType.NextTurnListCreated);
-        }
-
-        private void GetNewList()
-        {
-            membersAndEnemies = new List<UnitBase>();
-            membersAndEnemiesThisTurn = new List<UnitBase>();
-            
-            foreach (var member in _membersForThisBattle) membersAndEnemies.Add(member);
-            foreach (var enemy in _enemiesForThisBattle) membersAndEnemies.Add(enemy);
-                
-            membersAndEnemies = membersAndEnemies.OrderByDescending
-                (e => e.initiative.Value).ToList();
-
-            GetFinalInitValues(membersAndEnemies);
-                
-            membersAndEnemies = membersAndEnemies.OrderByDescending
-                (e => e.Unit.finalInitVal).ToList();
-
-            membersAndEnemiesThisTurn = new List<UnitBase>(membersAndEnemies);
-        }
-
-        private void GetNewListNextTurn()
-        {
-            membersAndEnemiesNextTurn = new List<UnitBase>();
-            
-            foreach (var member in _membersForThisBattle) membersAndEnemiesNextTurn.Add(member);
-            foreach (var enemy in _enemiesForThisBattle) membersAndEnemiesNextTurn.Add(enemy);
-                
-            membersAndEnemiesNextTurn = membersAndEnemiesNextTurn.OrderByDescending
-                (e => e.initiative.Value).ToList();
-
-            GetFinalInitValues(membersAndEnemiesNextTurn);
-                
-            membersAndEnemiesNextTurn = membersAndEnemiesNextTurn.OrderByDescending
-                (e => e.Unit.finalInitVal).ToList();
-        }
         
-        private static void GetFinalInitValues(List<UnitBase> list)
-        {
-            var minModifier = 1.8f;
-            foreach (var t in list)
-            {
-                t.Unit.initModifier = Random.Range(minModifier, 2.0f);
-                t.Unit.finalInitVal = (int) (t.initiative.Value * t.Unit.initModifier);
-                minModifier -= 0.1f;
-            }
-        }
+        #region Removal
 
-        private void ResortNextTurnOrder()
-        {
-            membersAndEnemiesNextTurn.ForEach(t => t.Unit.finalInitVal = (int) (t.initiative.Value * t.Unit.initModifier));
-            membersAndEnemiesNextTurn = membersAndEnemiesNextTurn.OrderByDescending
-                (e => e.Unit.finalInitVal).ToList();
-            
-            BattleEvents.Trigger(BattleEventType.NextTurnListCreated);
-        }
+        private void RemoveFromTurn(UnitBase unit) => membersAndEnemiesThisTurn.Remove(unit);
         
-        #endregion
-
-        #region Misc
-
         private void RemoveFromBattle(UnitBase unit)
         {
-            if (unit.id == CharacterType.Enemy)
-            {
-                _enemiesForThisBattle.Remove((Enemy) unit);
-                membersAndEnemiesThisTurn.Remove((Enemy) unit);
-                membersAndEnemiesNextTurn.Remove((Enemy) unit);
-            }
-            else
-            {
-                _membersForThisBattle.Remove((PartyMember) unit);
-                membersAndEnemiesThisTurn.Remove((PartyMember) unit);
-                membersAndEnemiesNextTurn.Remove((PartyMember) unit);
-            }
+            if (unit.id == CharacterType.Enemy) _enemiesForThisBattle.Remove((Enemy) unit);
+            else _membersForThisBattle.Remove((PartyMember) unit);
             
-            ResortNextTurnOrder();
-            CharacterEvents.Trigger(CEventType.CharacterDeath, unit);
+            membersAndEnemiesThisTurn.Remove(unit);
+            membersAndEnemiesNextTurn.Remove(unit);
+            
+            SortingCalculator.ResortThisTurnOrder();
+            SortingCalculator.ResortNextTurnOrder();
 
-            if (_membersForThisBattle.Count == 0) allMembersDead = true;
-            if (_enemiesForThisBattle.Count == 0) allEnemiesDead = true;
+            unit.onDeath -= RemoveFromBattle;
+            CharacterEvents.Trigger(CEventType.CharacterDeath, unit);
         }
         
-        
         #endregion
-
+        
+        private void OnDisable()
+        {
+            _membersForThisBattle.ForEach(m => m.onDeath -= RemoveFromBattle);
+            _enemiesForThisBattle.ForEach(e => e.onDeath -= RemoveFromBattle);
+            
+            GameEventsManager.RemoveListener<CharacterEvents>(this);
+            GameEventsManager.RemoveListener<BattleEvents>(this);
+        }
+        
         public void OnGameEvent(CharacterEvents eventType)
         {
-            if (eventType._eventType == CEventType.CantPerformAction)
+            switch (eventType._eventType)
             {
-                canGiveCommand = false;
+                case CEventType.CantPerformAction: canGiveCommand = false;
+                    break;
+                case CEventType.StatChange:
+                    SortingCalculator.ResortThisTurnOrder();
+                    SortingCalculator.ResortNextTurnOrder();
+                    break;
+                case CEventType.EndOfTurn: 
+                    RemoveFromTurn((UnitBase) eventType._character);
+                    Timing.RunCoroutine(GetNextTurn());
+                    break;
+                case CEventType.SkipTurn:
+                    RemoveFromTurn((UnitBase) eventType._character);
+                    Timing.RunCoroutine(GetNextTurn());
+                    break;
             }
-            
-            else if (eventType._eventType == CEventType.StatChange)
+        }
+
+        public void OnGameEvent(BattleEvents eventType)
+        {
+            switch (eventType._battleEventType)
             {
-                ResortNextTurnOrder();
+                case BattleEventType.WonBattle: Timing.RunCoroutine(WonBattleSequence());
+                    break;
+                case BattleEventType.LostBattle: Timing.RunCoroutine(LostBattleSequence());
+                    break;
             }
         }
     }

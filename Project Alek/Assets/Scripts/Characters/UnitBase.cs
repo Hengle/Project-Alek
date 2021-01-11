@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BattleSystem;
 using UnityEngine;
 using Characters.Abilities;
 using Characters.Animations;
@@ -9,6 +10,7 @@ using DamagePrefab;
 using Kryz.CharacterStats;
 using Sirenix.OdinInspector;
 using MoreMountains.InventoryEngine;
+using Sirenix.Utilities;
 
 namespace Characters
 {
@@ -167,14 +169,6 @@ namespace Characters
 
         #endregion
 
-        private void OnValidate()
-        {
-            onHpValueChanged = null;
-            onStatusEffectReceived = null;
-            onStatusEffectRemoved = null;
-            onDeath = null;
-        }
-
         public void OnNewState(UnitStates state)
         {
             switch (state)
@@ -191,9 +185,7 @@ namespace Characters
                 case UnitStates.Weakened:
                     // Do something
                     break;
-                default: break;
             }
-            
         }
 
         public virtual void ReplenishAP() 
@@ -229,10 +221,8 @@ namespace Characters
             {
                 case Status.Normal: return true;
                 case Status.Dead: return false;
-                case Status.UnableToPerformAction: CharacterEvents.Trigger(CEventType.SkipTurn, this);
-                    return false;
-                case Status.Overexerted: CharacterEvents.Trigger(CEventType.SkipTurn, this);
-                    return false;
+                case Status.UnableToPerformAction: return false;
+                case Status.Overexerted: return false;
                 default: return true;
             }
         }
@@ -310,5 +300,21 @@ namespace Characters
 
             return originalRotation;
         }
+
+        private void RemoveMods()
+        {
+            health = new CharacterStat(health.BaseValue);
+            strength = new CharacterStat(strength.BaseValue);
+            magic = new CharacterStat(magic.BaseValue);
+            accuracy = new CharacterStat(accuracy.BaseValue);
+            initiative = new CharacterStat(initiative.BaseValue);
+            defense = new CharacterStat(defense.BaseValue);
+            resistance = new CharacterStat(resistance.BaseValue);
+            criticalChance = new CharacterStat(criticalChance.BaseValue);
+        }
+
+        private void OnEnable() => RemoveMods();
+
+        private void OnDisable() => RemoveMods();
     }
 }

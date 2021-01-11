@@ -1,5 +1,6 @@
 ﻿using BattleSystem;
 using BattleSystem.Generator;
+using Characters.PartyMembers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -20,9 +21,12 @@ namespace Characters
                        unit.parent._elementalWeaknesses.ContainsKey(ability.elementalType);
             }
         }
-        
-        //TODO: Add IsWeakToDamageType
-        
+
+        //TODO: Have to account for spells, which don't use weapon damage types
+        private bool IsWeakToDamageType =>
+            unit.parent.damageTypeWeaknesses.Contains(((PartyMember) BattleManager.Instance.activeUnit)
+                .equippedWeapon.damageType);
+
         void Start()
         {
             database = FindObjectOfType<BattleGeneratorDatabase>();
@@ -46,7 +50,7 @@ namespace Characters
             indicator.SetActive(false);
         }
 
-        private bool IsWeak() => IsWeakToAbility;
+        private bool IsWeak() => IsWeakToAbility || IsWeakToDamageType;
         
         private void OnMultiSelect() => indicator.SetActive(IsWeak());
         

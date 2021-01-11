@@ -1,4 +1,5 @@
-﻿using Kryz.CharacterStats;
+﻿using BattleSystem;
+using Kryz.CharacterStats;
 using UnityEngine;
 
 namespace Characters.StatusEffects
@@ -28,13 +29,20 @@ namespace Characters.StatusEffects
 
         private void AddModifiers(UnitBase target)
         {
-            target.strength.AddModifier(new StatModifier(ModerateDebuff, StatModType.PercentAdd, this));
-            target.magic.AddModifier(new StatModifier(ModerateDebuff, StatModType.PercentAdd, this));
-            target.accuracy.AddModifier(new StatModifier(ModerateDebuff, StatModType.PercentAdd, this));
-            target.initiative.AddModifier(new StatModifier(ModerateDebuff, StatModType.PercentAdd, this));
-            target.criticalChance.AddModifier(new StatModifier(ModerateDebuff, StatModType.PercentAdd, this));
-            target.defense.AddModifier(new StatModifier(ModerateDebuff, StatModType.PercentAdd, this));
-            target.resistance.AddModifier(new StatModifier(ModerateDebuff, StatModType.PercentAdd, this));
+            target.strength.AddModifier(new StatModifier
+                (BattleManager.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
+            target.magic.AddModifier(new StatModifier
+                (BattleManager.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
+            target.accuracy.AddModifier(new StatModifier
+                (BattleManager.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
+            target.initiative.AddModifier(new StatModifier
+                (BattleManager.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
+            target.criticalChance.AddModifier(new StatModifier
+                (BattleManager.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
+            target.defense.AddModifier(new StatModifier
+                (BattleManager.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
+            target.resistance.AddModifier(new StatModifier
+                (BattleManager.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
         }
 
         private void RemoveModifiers(UnitBase target)

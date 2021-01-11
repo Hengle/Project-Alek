@@ -121,7 +121,7 @@ namespace Characters
             unitBase.Unit.currentState = currentState;
             unitBase.OnNewState(currentState);
         }
-        
+
         public void OnGameEvent(BattleEvents eventType)
         {
             if (eventType._battleEventType == BattleEventType.NewRound)

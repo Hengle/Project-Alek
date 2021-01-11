@@ -187,9 +187,6 @@ namespace Characters.Animations
             }
             
             unit.currentDamage = Calculator.CalculateAttackDamage(unitBase, unit.currentTarget);
-            
-            //if (unitBase.id != CharacterType.PartyMember || !unit.isCrit) return;
-            //TimeManager._slowTimeCrit = true;
         }
 
         public void OnGameEvent(CharacterEvents eventType)

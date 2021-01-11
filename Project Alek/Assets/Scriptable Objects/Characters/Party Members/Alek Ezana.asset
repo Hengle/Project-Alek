@@ -20,7 +20,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
     - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
     - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
-    - {fileID: 0}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -150,55 +149,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: onDeath
-      Entry: 7
-      Data: 6|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: target
-      Entry: 10
-      Data: 4
-    - Name: declaringType
-      Entry: 7
-      Data: 7|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: BattleSystem.BattleManager, ProjectAlek
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: methodName
-      Entry: 1
-      Data: RemoveFromBattle
-    - Name: delegateType
-      Entry: 7
-      Data: 8|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: signature
-      Entry: 7
-      Data: 9|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 10|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: Characters.UnitBase, ProjectAlek
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
+      Entry: 6
       Data: 
     - Name: onHpValueChanged
       Entry: 6
@@ -233,7 +184,7 @@ MonoBehaviour:
   strength:
     BaseValue: 12
   magic:
-    BaseValue: 8
+    BaseValue: 6
   accuracy:
     BaseValue: 11
   initiative:

@@ -4,6 +4,7 @@ using Characters.ElementalTypes;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
 using JetBrains.Annotations;
+using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using UnityEditor;
@@ -61,6 +62,8 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
         tree.AddAllAssetsAtPath("Status Effects/Inhibiting", "Scripts/Characters/StatusEffects/InhibitingEffect", typeof(StatusEffect));
         tree.AddAllAssetsAtPath("Status Effects/AI Effect", "Scripts/Characters/StatusEffects/AIEffect", typeof(StatusEffect));
         tree.AddAllAssetsAtPath("Elemental Types", "Assets/Scripts/Characters/ElementalTypes", typeof(ElementalType));
+        tree.AddAllAssetsAtPath("Weapons", "Scriptable Objects/Weapons", typeof(WeaponItem));
+        tree.AddAllAssetsAtPath("", "Scriptable Objects", typeof(GlobalVariables));
 
         return tree;
     }

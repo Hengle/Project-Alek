@@ -20,7 +20,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: eb1b5a0f67771a842832b379372ae131, type: 2}
     - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
     - {fileID: 11400000, guid: 69edb0df81ead1c4fb7df7bfa4cd9381, type: 2}
-    - {fileID: 0}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -150,55 +149,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: onDeath
-      Entry: 7
-      Data: 6|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: target
-      Entry: 10
-      Data: 4
-    - Name: declaringType
-      Entry: 7
-      Data: 7|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: BattleSystem.BattleManager, ProjectAlek
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: methodName
-      Entry: 1
-      Data: RemoveFromBattle
-    - Name: delegateType
-      Entry: 7
-      Data: 8|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: signature
-      Entry: 7
-      Data: 9|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 10|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: Characters.UnitBase, ProjectAlek
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
+      Entry: 6
       Data: 
     - Name: onHpValueChanged
       Entry: 6
@@ -248,7 +199,7 @@ MonoBehaviour:
     take anyone's crap. Uggghhh extra stuff to increase text count.
   damageTypeWeaknesses: 
   weaponMight: 6
-  magicMight: 0
+  magicMight: 1
   weaponAccuracy: 85
   weaponCriticalChance: 3
   abilities:

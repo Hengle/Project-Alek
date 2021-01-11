@@ -27,9 +27,6 @@ MonoBehaviour:
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
-  - {fileID: 11400000, guid: f4239f80d8d630c4789fbf2b31419836, type: 2}
-  - {fileID: 11400000, guid: 0bc6011b9e099494a92c8a45d2488d23, type: 2}
-  - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
-  - {fileID: 11400000, guid: 2b1d483dd2eadf041823a29785246f76, type: 2}
+  - {fileID: 11400000, guid: 44dd6fe786b69c042827684d206f2972, type: 2}
   chanceOfInfliction: 1
   lookAtTarget: 1

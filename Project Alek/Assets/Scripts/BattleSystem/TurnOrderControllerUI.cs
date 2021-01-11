@@ -30,18 +30,8 @@ namespace BattleSystem
 
             for (var i = 0; i < thisTurnList.Count; i++)
             {
-                if (i >= count)
-                {
-                    thisTurnList[i].SetActive(false);
-                    continue;
-                }
+                if (i >= count) { thisTurnList[i].SetActive(false); continue; }
 
-                if (BattleManager.Instance.membersAndEnemiesThisTurn[i].Unit.hasPerformedTurn)
-                {
-                    thisTurnList[i].SetActive(false);
-                    continue;
-                }
-                
                 thisTurnIcons[i].sprite = BattleManager.Instance.membersAndEnemiesThisTurn[i].icon;
                 thisTurnList[i].SetActive(true);
             }
@@ -53,11 +43,7 @@ namespace BattleSystem
 
             for (var i = 0; i < nextTurnList.Count; i++)
             {
-                if (i >= count)
-                {
-                    nextTurnList[i].SetActive(false);
-                    continue;
-                }
+                if (i >= count) { nextTurnList[i].SetActive(false); continue; }
                 
                 nextTurnIcons[i].sprite = BattleManager.Instance.membersAndEnemiesNextTurn[i].icon;
                 nextTurnList[i].SetActive(true);
@@ -88,8 +74,6 @@ namespace BattleSystem
         {
             switch (eventType._eventType)
             {
-                case CEventType.CharacterDeath: OnThisTurnListCreated();
-                    break;
                 case CEventType.EndOfTurn: UpdateThisTurnList();
                     break;
                 case CEventType.SkipTurn: UpdateThisTurnList();

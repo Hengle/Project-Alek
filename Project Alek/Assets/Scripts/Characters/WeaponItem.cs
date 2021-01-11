@@ -39,18 +39,12 @@ namespace MoreMountains.InventoryEngine
 		public override bool Equip()
 		{
 			base.Equip();
-			Debug.Log("Weapon is equipped");
 
 			partyMember.weaponMight = weaponMight;
 			partyMember.magicMight = magicMight;
 			partyMember.weaponAccuracy = weaponAccuracy;
 			partyMember.weaponCriticalChance = weaponCriticalChance;
 
-			// if (health > 0)
-			// {
-			// 	partyMember.health.AddModifier(new StatModifier(health, StatModType.Flat, this));
-			// 	partyMember.CurrentHP = (int)partyMember.health.Value;
-			// }
 			if (strength > 0) partyMember.strength.AddModifier(new StatModifier(strength, StatModType.Flat, this));
 			if (magic > 0) partyMember.magic.AddModifier(new StatModifier(magic, StatModType.Flat, this));
 			if (accuracy > 0) partyMember.accuracy.AddModifier(new StatModifier(accuracy, StatModType.Flat, this));
@@ -83,6 +77,5 @@ namespace MoreMountains.InventoryEngine
 			partyMember.criticalChance.RemoveAllModifiersFromSource(this);
             return true;
         }
-		
 	}
 }

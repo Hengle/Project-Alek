@@ -45,8 +45,8 @@ MonoBehaviour:
   strength: 4
   magic: 0
   accuracy: 5
-  initiative: 1
+  initiative: 0
   defense: 2
   resistance: 0
-  criticalChance: 1
+  criticalChance: 0
   partyMember: {fileID: 11400000, guid: bce5c1264c07e43488e2ea4155308e40, type: 2}

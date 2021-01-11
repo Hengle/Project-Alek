@@ -1,4 +1,6 @@
-﻿using Kryz.CharacterStats;
+﻿using System;
+using BattleSystem;
+using Kryz.CharacterStats;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -37,15 +39,6 @@ namespace Characters.StatusEffects
         [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
         public Multiplier debuffMultiplier;
 
-        private const float SlightBuff = 0.05f;
-        private const float SlightDebuff = -0.05f;
-
-        private const float ModerateBuff = 0.10f;
-        protected const float ModerateDebuff = -0.10f;
-
-        private const float SignificantBuff = 0.20f;
-        private const float SignificantDebuff = -0.20f;
-
         private StatModifier modifier;
         
         private float BuffMultiplier {
@@ -53,22 +46,23 @@ namespace Characters.StatusEffects
             {
                 switch (buffMultiplier)
                 {
-                    case Multiplier.Slight: return SlightBuff;
-                    case Multiplier.Moderate: return ModerateBuff;
-                    case Multiplier.Significant: return SignificantBuff;
+                    case Multiplier.Slight: return BattleManager.Instance.globalVariables.slightBuff;
+                    case Multiplier.Moderate: return BattleManager.Instance.globalVariables.moderateBuff;
+                    case Multiplier.Significant: return BattleManager.Instance.globalVariables.significantBuff;
                     case Multiplier.None: return 1;
                     default: return 1;
                 }
             }
         }
-        protected float DebuffMultiplier {
+
+        private float DebuffMultiplier {
             get
             {
                 switch (debuffMultiplier)
                 {
-                    case Multiplier.Slight: return SlightDebuff;
-                    case Multiplier.Moderate: return ModerateDebuff;
-                    case Multiplier.Significant: return SignificantDebuff;
+                    case Multiplier.Slight: return BattleManager.Instance.globalVariables.slightDebuff;
+                    case Multiplier.Moderate: return BattleManager.Instance.globalVariables.moderateDebuff;
+                    case Multiplier.Significant: return BattleManager.Instance.globalVariables.significantDebuff;
                     case Multiplier.None: return 1;
                     default: return 1;
                 }

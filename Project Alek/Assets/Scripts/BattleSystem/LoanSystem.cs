@@ -52,7 +52,8 @@ namespace BattleSystem
         private void GiveRecoverBenefits()
         {
             unit.recoveredFromOverexertion?.Invoke(unit.parent);
-            if (initialLoan == BattleManager.Instance.globalVariables.maxLoanAmount) unit.recoveredFromMaxOverexertion?.Invoke(unit.parent);
+            if (initialLoan == BattleManager.Instance.globalVariables.maxLoanAmount)
+                unit.recoveredFromMaxOverexertion?.Invoke(unit.parent);
             
             initialLoan = 0;
             isRecovered = false;

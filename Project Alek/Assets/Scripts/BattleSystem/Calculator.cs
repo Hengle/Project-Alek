@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using BattleSystem;
+using Characters;
 using Characters.Abilities;
 using Random = UnityEngine.Random;
 
-namespace Characters
+namespace BattleSystem
 {
     public static class Calculator
     {
