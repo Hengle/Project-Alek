@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +8,7 @@ namespace Characters.StatusEffects
 {
     public enum EffectType { DamageOverTime, Inhibiting, AI, StatChange }
     public enum Rate { EveryTurn, BeforeEveryAction, AfterEveryAction, AfterAttacked, Once }
-    public enum InflictionChanceModifier { Normal = 25, Moderate = 50, Significant = 75, Major = 100 }
+    [EnumPaging] [LabelWidth(90)] public enum InflictionChanceModifier { Normal = 25, Moderate = 50, Significant = 75, Major = 100 }
     public abstract class StatusEffect : ScriptableObject
     {
         #region FieldsAndProperties
@@ -52,18 +53,22 @@ namespace Characters.StatusEffects
             unitBase.onStatusEffectRemoved?.Invoke(this);
         }
         
-        public float StatusEffectModifier( UnitBase target)
+        public float StatusEffectModifier(UnitBase target)
         {
-            if (target._statusEffectResistances.TryGetValue(this, out var resistanceModifier))
+            foreach (var effect in target._statusEffectResistances.
+                Where(effect => effect.Key._effect == this))
             {
                 Logger.Log($"{target.characterName} resists {name}!");
-                return 1.0f - (float) resistanceModifier / 100;
+                Logger.Log($"Modifier: { 1.0f - (float) effect.Key._modifier / 100}");
+                return 1.0f - (float) effect.Key._modifier / 100;
             }
-
-            if (target._statusEffectWeaknesses.TryGetValue(this, out var weaknessModifier))
+            
+            foreach (var effect in target._statusEffectWeaknesses.
+                Where(effect => effect.Key._effect == this))
             {
                 Logger.Log($"{target.characterName} is weak to {name}!");
-                return 1.0f + (float) weaknessModifier / 100;
+                Logger.Log($"Modifier: { 1.0f + (float) effect.Key._modifier / 100}");
+                return 1.0f + (float) effect.Key._modifier / 100;
             }
 
             return 1;

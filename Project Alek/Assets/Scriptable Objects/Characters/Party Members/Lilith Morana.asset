@@ -16,10 +16,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 5b7dd86029ea2ce49beaee4e4d702b94, type: 2}
-    - {fileID: 11400000, guid: c39d538e0733abc409ae3ae8b371cbf4, type: 2}
-    - {fileID: 11400000, guid: 69edb0df81ead1c4fb7df7bfa4cd9381, type: 2}
-    - {fileID: 11400000, guid: 856a4a808bf1c3d47b06852f07eb68bc, type: 2}
+    - {fileID: 11400000, guid: 366775002164acb45983c6014a20dd29, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -27,11 +24,31 @@ MonoBehaviour:
     SerializationNodes:
     - Name: _elementalResistances
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
-        ProjectAlek],[Characters.ElementalTypes.ElementalScalar, ProjectAlek]], mscorlib
+      Data: 0|System.Collections.Generic.Dictionary`2[[Characters.UnitBase+ElementalResStruct,
+        ProjectAlek],[System.Boolean, mscorlib]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.ElementalTypes.ElementalType,
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.UnitBase+ElementalResStruct,
+        ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _elementalWeaknesses
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[Characters.UnitBase+ElementalWeaknessStruct,
+        ProjectAlek],[System.Boolean, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 3|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.UnitBase+ElementalWeaknessStruct,
         ProjectAlek]], mscorlib
     - Name: 
       Entry: 8
@@ -43,40 +60,20 @@ MonoBehaviour:
       Entry: 7
       Data: 
     - Name: $k
+      Entry: 7
+      Data: Characters.UnitBase+ElementalWeaknessStruct, ProjectAlek
+    - Name: _type
       Entry: 10
       Data: 0
-    - Name: $v
+    - Name: _scalar
       Entry: 3
-      Data: 25
+      Data: 150
     - Name: 
       Entry: 8
       Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: _elementalWeaknesses
-      Entry: 7
-      Data: 2|System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
-        ProjectAlek],[Characters.ElementalTypes.ElementalWeaknessScalar, ProjectAlek]],
-        mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 1
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 10
-      Data: 1
     - Name: $v
-      Entry: 3
-      Data: 175
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 8
       Data: 
@@ -88,31 +85,18 @@ MonoBehaviour:
       Data: 
     - Name: _statusEffectResistances
       Entry: 7
-      Data: 3|System.Collections.Generic.Dictionary`2[[Characters.StatusEffects.StatusEffect,
-        ProjectAlek],[Characters.StatusEffects.InflictionChanceModifier, ProjectAlek]],
-        mscorlib
+      Data: 4|UnityEngine.Rendering.SerializedDictionary`2[[Characters.UnitBase+StatusEffectStruct,
+        ProjectAlek],[System.Boolean, mscorlib]], Unity.RenderPipelines.Core.Runtime
     - Name: comparer
       Entry: 7
-      Data: 4|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.StatusEffects.StatusEffect,
+      Data: 5|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.UnitBase+StatusEffectStruct,
         ProjectAlek]], mscorlib
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 10
-      Data: 2
-    - Name: $v
-      Entry: 3
-      Data: 50
-    - Name: 
-      Entry: 8
-      Data: 
+      Data: 0
     - Name: 
       Entry: 13
       Data: 
@@ -121,27 +105,34 @@ MonoBehaviour:
       Data: 
     - Name: _statusEffectWeaknesses
       Entry: 7
-      Data: 5|System.Collections.Generic.Dictionary`2[[Characters.StatusEffects.StatusEffect,
-        ProjectAlek],[Characters.StatusEffects.InflictionChanceModifier, ProjectAlek]],
-        mscorlib
+      Data: 6|UnityEngine.Rendering.SerializedDictionary`2[[Characters.UnitBase+StatusEffectStruct,
+        ProjectAlek],[System.Boolean, mscorlib]], Unity.RenderPipelines.Core.Runtime
     - Name: comparer
       Entry: 9
-      Data: 4
+      Data: 5
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 0
     - Name: 
-      Entry: 7
+      Entry: 13
       Data: 
-    - Name: $k
-      Entry: 10
-      Data: 3
-    - Name: $v
-      Entry: 3
-      Data: 50
     - Name: 
       Entry: 8
       Data: 
+    - Name: _damageTypeWeaknesses
+      Entry: 7
+      Data: 7|System.Collections.Generic.Dictionary`2[[Characters.WeaponDamageType,
+        ProjectAlek],[System.Boolean, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 8|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.WeaponDamageType,
+        ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
     - Name: 
       Entry: 13
       Data: 
@@ -180,7 +171,7 @@ MonoBehaviour:
     type: 3}
   level: 1
   health:
-    BaseValue: 725
+    BaseValue: 745
   strength:
     BaseValue: 8
   magic:
@@ -197,7 +188,6 @@ MonoBehaviour:
     BaseValue: 3
   description: A very long description about an amazing girl named Lilith. I tell
     you when I come up with a good description, it will be legendary!
-  damageTypeWeaknesses: 
   weaponMight: 14
   magicMight: 2
   weaponAccuracy: 90

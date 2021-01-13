@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b99e9268da4a9390a078ed0424328b, type: 3}
   m_Name: Global Variables
   m_EditorClassIdentifier: 
-  showDamageBoostIncrements: 0
-  damageBoostIncrement: 0.5
-  defenseBoostIncrement: 0.5
+  showBoostIncrements: 0
+  damageBoostIncrement: 0.3
+  defenseBoostIncrement: 0.3
   maxLoanAmount: 4
   criticalDamageFactor: 1.35
   healthItemChance: 0.4
@@ -34,3 +34,4 @@ MonoBehaviour:
   showAPColors: 0
   originalAPColor: {r: 0, g: 0.85098046, b: 0.9960785, a: 1}
   overexertedAPColor: {r: 0.5754717, g: 0, b: 0, a: 1}
+  mysteryIcon: {fileID: 21300014, guid: a1fbd1aaf76d0b94e88551b7c406ee2c, type: 3}

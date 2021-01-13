@@ -1,33 +1,35 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class RandomSeed : MonoBehaviour
+namespace AllIn1SpriteShader
 {
-    //If you want to randomize UI Images, you'll need to create different materials
-    void Start()
+    public class RandomSeed : MonoBehaviour
     {
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        if (sr != null)
+        //If you want to randomize UI Images, you'll need to create different materials
+        void Start()
         {
-            Renderer r = GetComponent<Renderer>();
-            if (r != null && r.material != null)
+            Renderer sr = GetComponent<Renderer>();
+            if (sr != null)
             {
-                r.material.SetFloat("_RandomSeed", Random.Range(0, 1000f));
-            }
-            else Debug.LogError("Missing Renderer or Material: " + gameObject.name);
-        }
-        else
-        {
-            Image i = GetComponent<Image>();
-            if (i != null)
-            {
-                if (i.material != null)
+                if (sr.material != null)
                 {
-                    i.material.SetFloat("_RandomSeed", Random.Range(0, 1000f));
+                    sr.material.SetFloat("_RandomSeed", Random.Range(0, 1000f));
                 }
-                else Debug.LogError("Missing Material on UI Image: " + gameObject.name);
+                else Debug.LogError("Missing Renderer or Material: " + gameObject.name);
             }
-            else Debug.LogError("Missing Sprite Renderer or UI Image on: " + gameObject.name);
+            else
+            {
+                Image i = GetComponent<Image>();
+                if (i != null)
+                {
+                    if (i.material != null)
+                    {
+                        i.material.SetFloat("_RandomSeed", Random.Range(0, 1000f));
+                    }
+                    else Debug.LogError("Missing Material on UI Image: " + gameObject.name);
+                }
+                else Debug.LogError("Missing Renderer or UI Image on: " + gameObject.name);
+            }
         }
     }
 }

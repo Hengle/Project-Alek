@@ -37,7 +37,7 @@ MonoBehaviour:
   DroppedSound: {fileID: 0}
   UseDefaultSoundsIfNull: 1
   WeaponSprite: {fileID: 0}
-  damageType: 1
+  damageType: {fileID: 11400000, guid: 4320bf8c008e3714ca91e4ead67d7224, type: 2}
   weaponMight: 12
   magicMight: 5
   weaponAccuracy: 80

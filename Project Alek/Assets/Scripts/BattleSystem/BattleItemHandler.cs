@@ -1,5 +1,4 @@
-﻿using System;
-using MoreMountains.InventoryEngine;
+﻿using MoreMountains.InventoryEngine;
 using MoreMountains.Tools;
 using UnityEngine;
 
@@ -7,16 +6,10 @@ namespace BattleSystem
 {
     public class BattleItemHandler : MonoBehaviour, MMEventListener<MMInventoryEvent>
     {
-        private void Start()
-        {
-            MMEventManager.AddListener(this);
-        }
-
-        private void OnDisable()
-        {
-            MMEventManager.RemoveListener(this);
-        }
-
+        private void Start() => MMEventManager.AddListener(this);
+        
+        private void OnDisable() => MMEventManager.RemoveListener(this);
+        
         public void OnMMEvent(MMInventoryEvent eventType)
         {
             if (eventType.InventoryEventType != MMInventoryEventType.PickTarget) return;

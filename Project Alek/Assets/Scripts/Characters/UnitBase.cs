@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using BattleSystem;
+using BattleSystem.Calculators;
+using BattleSystem.Mechanics;
 using UnityEngine;
 using Characters.Abilities;
 using Characters.Animations;
@@ -9,8 +10,6 @@ using Characters.StatusEffects;
 using DamagePrefab;
 using Kryz.CharacterStats;
 using Sirenix.OdinInspector;
-using MoreMountains.InventoryEngine;
-using Sirenix.Utilities;
 
 namespace Characters
 {
@@ -75,23 +74,45 @@ namespace Characters
         [PropertySpace(SpaceBefore = 20, SpaceAfter = 20), TextArea(5,15), Title("Description"), HideLabel]
         public string  description;
         
+        [InlineProperty(LabelWidth = 115)]
+        public struct ElementalResStruct
+        {
+            public ElementalType _type;
+            public ElementalResistanceScalar _scalar;
+        }
+        
+        [InlineProperty(LabelWidth = 115)]
+        public struct ElementalWeaknessStruct
+        {
+            public ElementalType _type;
+            public ElementalWeaknessScalar _scalar;
+        }
+        
+        [InlineProperty(LabelWidth = 115)]
+        public struct StatusEffectStruct
+        {
+            public StatusEffect _effect;
+            public InflictionChanceModifier _modifier;
+        }
+
         [ShowInInspector] [TabGroup("Tabs/Resistances & Weaknesses", "Elements")]
-        [DictionaryDrawerSettings(KeyLabel = "Element", ValueLabel = "Resistance Level", DisplayMode = DictionaryDisplayOptions.ExpandedFoldout)]
-        public readonly Dictionary<ElementalType, ElementalScalar> _elementalResistances = new Dictionary<ElementalType, ElementalScalar>();
+        [DictionaryDrawerSettings(KeyLabel = "Revealed?", DisplayMode = DictionaryDisplayOptions.Foldout)]
+        public readonly Dictionary<ElementalResStruct, bool> _elementalResistances = new Dictionary<ElementalResStruct, bool>();
         [ShowInInspector] [TabGroup("Tabs/Resistances & Weaknesses", "Elements")]
-        [DictionaryDrawerSettings(KeyLabel = "Element", ValueLabel = "Weakness Level", DisplayMode = DictionaryDisplayOptions.ExpandedFoldout)]
-        public readonly Dictionary<ElementalType, ElementalWeaknessScalar> _elementalWeaknesses = new Dictionary<ElementalType, ElementalWeaknessScalar>();
+        [DictionaryDrawerSettings(KeyLabel = "Revealed?", DisplayMode = DictionaryDisplayOptions.Foldout)]
+        public readonly Dictionary<ElementalWeaknessStruct, bool> _elementalWeaknesses = new Dictionary<ElementalWeaknessStruct, bool>();
   
         [ShowInInspector] [TabGroup("Tabs/Resistances & Weaknesses", "Status Effects")]
-        [DictionaryDrawerSettings(KeyLabel = "Status Effect", ValueLabel = "Resistance Level", DisplayMode = DictionaryDisplayOptions.ExpandedFoldout)]
-        public readonly Dictionary<StatusEffect, InflictionChanceModifier> _statusEffectResistances = new Dictionary<StatusEffect, InflictionChanceModifier>();
+        [DictionaryDrawerSettings(KeyLabel = "Revealed?", DisplayMode = DictionaryDisplayOptions.Foldout)]
+        public readonly Dictionary<StatusEffectStruct, bool> _statusEffectResistances = new Dictionary<StatusEffectStruct, bool>();
         [ShowInInspector] [TabGroup("Tabs/Resistances & Weaknesses", "Status Effects")]
-        [DictionaryDrawerSettings(KeyLabel = "Status Effect", ValueLabel = "Weakness Level", DisplayMode = DictionaryDisplayOptions.ExpandedFoldout)]
-        public readonly Dictionary<StatusEffect, InflictionChanceModifier> _statusEffectWeaknesses = new Dictionary<StatusEffect, InflictionChanceModifier>();
+        [DictionaryDrawerSettings(KeyLabel = "Revealed?", DisplayMode = DictionaryDisplayOptions.Foldout)]
+        public readonly Dictionary<StatusEffectStruct, bool> _statusEffectWeaknesses = new Dictionary<StatusEffectStruct, bool>();
         
-        [TabGroup("Tabs/Resistances & Weaknesses", "Damage Types")] [EnumPaging]
+        [TabGroup("Tabs/Resistances & Weaknesses", "Damage Types")]
+        [DictionaryDrawerSettings(KeyLabel = "Damage Type", ValueLabel = "Revealed?", DisplayMode = DictionaryDisplayOptions.Foldout)]
         [HideIf(nameof(id), CharacterType.PartyMember)]
-        public List<WeaponDamageType> damageTypeWeaknesses = new List<WeaponDamageType>();
+        public readonly Dictionary<WeaponDamageType, bool> _damageTypeWeaknesses = new Dictionary<WeaponDamageType, bool>();
 
         [Range(1,99), TabGroup("Tabs","Weapon Stats")] public int weaponMight;
         [Range(1,99), TabGroup("Tabs","Weapon Stats")] public int magicMight;
@@ -252,7 +273,7 @@ namespace Characters
                 else CurrentHP -= dmg;
                 
                 if (elementalDmg != null) onElementalDamageReceived?.Invoke(elementalDmg);
-                if (weaponDamageType != WeaponDamageType.Null) onWeaponDamageTypeReceived?.Invoke(weaponDamageType);
+                if (weaponDamageType != null) onWeaponDamageTypeReceived?.Invoke(weaponDamageType);
             }
 
             else

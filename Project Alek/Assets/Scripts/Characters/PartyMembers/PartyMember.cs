@@ -9,7 +9,6 @@ namespace Characters.PartyMembers
     [CreateAssetMenu(fileName = "New Party Member", menuName = "Character/Party Member")]
     public class PartyMember : UnitBase
     {
-        //[HideInInspector] public Animator actionPointAnim;
         [Range(0,4), VerticalGroup("Basic/Info")] public int positionInParty;
 
         [TabGroup("Tabs","Inventory")]

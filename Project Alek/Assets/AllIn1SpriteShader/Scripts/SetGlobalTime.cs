@@ -16,7 +16,7 @@ namespace AllIn1SpriteShader
 
         void Update()
         {
-            Shader.SetGlobalFloat(globalTime, Time.unscaledTime / 20f);
+            Shader.SetGlobalFloat(globalTime, Time.time / 20f);
         }
     }
 }

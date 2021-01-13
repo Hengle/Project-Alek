@@ -141,12 +141,12 @@ namespace BattleSystem
                 yield return Timing.WaitForOneFrame;
             }
             
-            if (unit.isCrit) CriticalCamController._onCritical(unitBase);
+            //if (unit.isCrit) CriticalCamController._onCritical(unitBase);
         }
 
         private IEnumerator<float> MoveBackToOriginPosition()
         {
-            CriticalCamController._disableCam(unitBase);
+            //CriticalCamController._disableCam(unitBase);
             
             var parent = unit.transform.parent.transform;
             

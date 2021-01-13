@@ -2,45 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Demo2AutoScroll : MonoBehaviour
+namespace AllIn1SpriteShader
 {
-    private Transform[] children;
-    public float totalTime;
-    public GameObject sceneDescription;
-
-    void Start()
+    public class Demo2AutoScroll : MonoBehaviour
     {
-        sceneDescription.SetActive(false);
-        Camera.main.fieldOfView = 60f;
-        children = GetComponentsInChildren<Transform>();
-        for (int i = 0; i < children.Length; i++)
+        private Transform[] children;
+        public float totalTime;
+        public GameObject sceneDescription = null;
+
+        void Start()
         {
-            if (children[i].gameObject != gameObject)
+            sceneDescription.SetActive(false);
+            Camera.main.fieldOfView = 60f;
+            children = GetComponentsInChildren<Transform>();
+            for (int i = 0; i < children.Length; i++)
             {
-                children[i].gameObject.SetActive(false);
-                children[i].localPosition = Vector3.zero;
+                if (children[i].gameObject != gameObject)
+                {
+                    children[i].gameObject.SetActive(false);
+                    children[i].localPosition = Vector3.zero;
+                }
             }
+
+            totalTime = totalTime / (float)children.Length;
+
+            StartCoroutine(ScrollElements());
         }
 
-        totalTime = totalTime / (float)children.Length;
-
-        StartCoroutine(ScrollElements());
-    }
-
-    IEnumerator ScrollElements()
-    {
-        int i = 0;
-        while(true)
+        IEnumerator ScrollElements()
         {
-            if (children[i].gameObject == gameObject)
+            int i = 0;
+            while (true)
             {
+                if (children[i].gameObject == gameObject)
+                {
+                    i = (i + 1) % children.Length;
+                    continue;
+                }
+                children[i].gameObject.SetActive(true);
+                yield return new WaitForSeconds(totalTime);
+                children[i].gameObject.SetActive(false);
                 i = (i + 1) % children.Length;
-                continue;
             }
-            children[i].gameObject.SetActive(true);
-            yield return new WaitForSeconds(totalTime);
-            children[i].gameObject.SetActive(false);
-            i = (i + 1) % children.Length;
         }
     }
 }

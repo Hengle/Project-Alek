@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BattleSystem.Calculators;
 using UnityEngine;
 using Characters;
 using BattleSystem.Generator;
@@ -57,7 +58,7 @@ namespace BattleSystem
         [ShowInInspector] [ReadOnly]
         private bool PartyOrEnemyTeamIsDead => AllMembersDead || AllEnemiesDead;
 
-        private BattleGenerator generator;
+        public BattleGenerator generator;
 
         #endregion
 
@@ -102,7 +103,7 @@ namespace BattleSystem
         {
             if (PartyOrEnemyTeamIsDead) { EndOfBattle(); yield break; }
 
-            yield return Timing.WaitForSeconds(0.5f);
+            yield return Timing.WaitForSeconds(0.25f);
             
             if (membersAndEnemiesThisTurn.Count == 0) { BattleEvents.Trigger(BattleEventType.NewRound);
                 yield return Timing.WaitUntilTrue(SortingCalculator.SortByInitiative); }

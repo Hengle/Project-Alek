@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Audio
 {
+    //TODO: Don't use this in animations functions, call from code directly
     public class SoundEffects : MonoBehaviour
     {
         public List<AudioClip> audioClips = new List<AudioClip>();

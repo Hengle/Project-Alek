@@ -4,10 +4,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Global Variables")]
 public class GlobalVariables : ScriptableObject
 {
-    public bool showDamageBoostIncrements;
-    [ShowIf(nameof(showDamageBoostIncrements))]
+    public bool showBoostIncrements;
+    [ShowIf(nameof(showBoostIncrements))]
     [Range(0.1f,0.5f)] public float damageBoostIncrement = 0.3f;
-    [ShowIf(nameof(showDamageBoostIncrements))]
+    [ShowIf(nameof(showBoostIncrements))]
     [Range(0.1f,0.5f)] public float defenseBoostIncrement = 0.3f;
     
     [Space(10)] [Range(0,6)] public int maxLoanAmount = 4;
@@ -45,4 +45,6 @@ public class GlobalVariables : ScriptableObject
     public bool showAPColors;
     [Space(10)] [ShowIf(nameof(showAPColors))] public Color originalAPColor;
     [ShowIf(nameof(showAPColors))] public Color overexertedAPColor;
+
+    public Sprite mysteryIcon;
 }

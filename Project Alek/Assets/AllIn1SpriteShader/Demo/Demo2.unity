@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 12
+    serializedVersion: 10
     m_Resolution: 2
     m_BakeResolution: 40
     m_AtlasSize: 1024
@@ -62,7 +62,6 @@ LightmapSettings:
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
-    m_ExtractAmbientOcclusion: 0
     m_Padding: 2
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
@@ -77,16 +76,10 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 512
     m_PVRBounces: 2
-    m_PVREnvironmentSampleCount: 256
-    m_PVREnvironmentReferencePointCount: 2048
-    m_PVRFilteringMode: 1
-    m_PVRDenoiserTypeDirect: 1
-    m_PVRDenoiserTypeIndirect: 1
-    m_PVRDenoiserTypeAO: 1
     m_PVRFilterTypeDirect: 0
     m_PVRFilterTypeIndirect: 0
     m_PVRFilterTypeAO: 0
-    m_PVREnvironmentMIS: 1
+    m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
@@ -95,7 +88,6 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-    m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -151,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!114 &22377054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!114 &56751285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +421,9 @@ Material:
     - _Glow: 17.1
     - _GlowTexUsed: 1
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -580,6 +577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!114 &252177638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -685,6 +683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!212 &290590335
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -913,6 +912,9 @@ Material:
     - _Glow: 10
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -1066,6 +1068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!114 &353408741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1176,6 +1179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 0
 --- !u!114 &356332868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1194,8 +1198,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -1258,6 +1260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!212 &368348658
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1414,6 +1417,9 @@ Material:
     - _Glow: 10
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -1618,6 +1624,9 @@ Material:
     - _Glow: 10
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -1823,6 +1832,9 @@ Material:
     - _Glow: 0
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -1976,6 +1988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!212 &471382086
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2132,6 +2145,9 @@ Material:
     - _Glow: 10
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -2285,6 +2301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!114 &519649709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2390,6 +2407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!114 &520228358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2646,6 +2664,9 @@ Material:
     - _Glow: 10
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -2851,6 +2872,9 @@ Material:
     - _Glow: 10
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -3055,6 +3079,9 @@ Material:
     - _Glow: 0.2
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -3208,6 +3235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!212 &746759205
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3313,6 +3341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!114 &786925993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3470,6 +3499,9 @@ Material:
     - _Glow: 1.2
     - _GlowTexUsed: 0
     - _GradBlend: 0.465
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -3674,6 +3706,9 @@ Material:
     - _Glow: 10
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -3791,7 +3826,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: AllIn1SpriteShader/AllIn1SpriteShader
   m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
-  m_ShaderKeywords: COLORRAMP_ON ETC1_EXTERNAL_ALPHA OUTBASE_ON TEXTURESCROLL_ON
+  m_ShaderKeywords: COLORRAMP_ON ETC1_EXTERNAL_ALPHA OUTBASE8DIR_ON OUTBASE_ON TEXTURESCROLL_ON
+    _OUTLINE8DIRECTIONS_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -3827,7 +3863,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 5, y: 5}
+        m_Scale: {x: 4, y: 4}
         m_Offset: {x: 0, y: 0}
     - _OutlineDistortTex:
         m_Texture: {fileID: 2800000, guid: 7aad8c583ef292e48b06af0d1f2fab97, type: 3}
@@ -3878,6 +3914,9 @@ Material:
     - _Glow: 10
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -3918,7 +3957,7 @@ Material:
     - _OffsetUvY: 0
     - _OnlyInnerOutline: 0
     - _OnlyOutline: 0
-    - _Outline8Directions: 0
+    - _Outline8Directions: 1
     - _OutlineAlpha: 1
     - _OutlineDistortAmount: 0.5
     - _OutlineDistortTexXSpeed: 5
@@ -3931,7 +3970,7 @@ Material:
     - _OutlineTexToggle: 0
     - _OutlineTexXSpeed: 10
     - _OutlineTexYSpeed: 0
-    - _OutlineWidth: 0.0144
+    - _OutlineWidth: 0.03
     - _PinchUvAmount: 0.35
     - _PixelateSize: 32
     - _PosterizeGamma: 0.75
@@ -4017,6 +4056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!114 &938057644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4187,6 +4227,9 @@ Material:
     - _Glow: 10
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -4340,6 +4383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!212 &984096430
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4497,6 +4541,9 @@ Material:
     - _Glow: 1.5
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -4650,6 +4697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!114 &1038353161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4720,7 +4768,8 @@ Material:
   m_Name: AllIn1SpriteShader/AllIn1SpriteShader
   m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
   m_ShaderKeywords: COLORSWAP_ON ETC1_EXTERNAL_ALPHA GLOWTEX_ON GLOW_ON OUTBASE8DIR_ON
-    OUTBASE_ON OUTDIST_ON _GLOWTEXUSED_ON _OUTLINE8DIRECTIONS_ON _OUTLINEDISTORTTOGGLE_ON
+    OUTBASE_ON OUTDIST_ON OUTTEX_ON _GLOWTEXUSED_ON _OUTLINE8DIRECTIONS_ON _OUTLINEDISTORTTOGGLE_ON
+    _OUTLINETEXTOGGLE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -4763,7 +4812,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OutlineTex:
-        m_Texture: {fileID: 2800000, guid: 74087f6d03f233e4a8a142fa01f9e5cf, type: 3}
+        m_Texture: {fileID: 2800000, guid: 677cca399782dea41aedc1d292ecb67d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ShineMask:
@@ -4807,6 +4856,9 @@ Material:
     - _Glow: 6.1
     - _GlowTexUsed: 1
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -4853,13 +4905,13 @@ Material:
     - _OutlineDistortTexXSpeed: 0
     - _OutlineDistortTexYSpeed: -4
     - _OutlineDistortToggle: 1
-    - _OutlineGlow: 3.9
+    - _OutlineGlow: 11
     - _OutlineIsPixel: 0
     - _OutlinePixelWidth: 1
     - _OutlineTexGrey: 0
-    - _OutlineTexToggle: 0
-    - _OutlineTexXSpeed: 10
-    - _OutlineTexYSpeed: 0
+    - _OutlineTexToggle: 1
+    - _OutlineTexXSpeed: 1
+    - _OutlineTexYSpeed: -5
     - _OutlineWidth: 0.0172
     - _PinchUvAmount: 0.35
     - _PixelateSize: 32
@@ -4960,6 +5012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!212 &1073973765
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5065,6 +5118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!114 &1119325825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5170,6 +5224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!212 &1229041068
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5243,7 +5298,7 @@ GameObject:
   - component: {fileID: 1239183346}
   - component: {fileID: 1239183350}
   - component: {fileID: 1239183349}
-  m_Layer: 8
+  m_Layer: 4
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -5270,10 +5325,9 @@ Camera:
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 0}
   m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
+  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -5297,7 +5351,7 @@ Camera:
   m_HDR: 1
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -5347,7 +5401,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 1239183348}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 16
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 1
   antialiasingMode: 0
@@ -5437,6 +5491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 0
 --- !u!114 &1350115733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5594,6 +5649,9 @@ Material:
     - _Glow: 5.2
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -5607,14 +5665,14 @@ Material:
     - _HologramFlickerAlpha: 0
     - _HologramFlickerFreq: 0.2
     - _HologramFlickerPercent: 0.05
-    - _HologramMaxAlpha: 1
+    - _HologramMaxAlpha: 1.4
     - _HologramMinAlpha: 0.43
     - _HologramStripesAlpha: 0.362
-    - _HologramStripesAmount: 0.069
+    - _HologramStripesAmount: 0.071
     - _HologramStripesFill: 0.334
     - _HologramStripesLuminosity: 1.26
     - _HologramStripesSpeed: 3.19
-    - _HologramUnmodAmount: 0.11
+    - _HologramUnmodAmount: 0
     - _HsvBright: 1
     - _HsvSaturation: 1
     - _HsvShift: 180
@@ -5697,7 +5755,7 @@ Material:
     - _GradTopRightCol: {r: 1, g: 0, b: 0, a: 1}
     - _GreyscaleTintColor: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
     - _HitEffectColor: {r: 1, g: 1, b: 1, a: 1}
-    - _HologramStripeColor: {r: 0, g: 0.3496034, b: 0.5188679, a: 1}
+    - _HologramStripeColor: {r: 0, g: 0.67701864, b: 1, a: 1}
     - _InnerOutlineColor: {r: 1, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0.43268147, b: 0.67058825, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
@@ -5747,6 +5805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!212 &1434614530
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5904,6 +5963,9 @@ Material:
     - _Glow: 10
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -6108,6 +6170,9 @@ Material:
     - _Glow: 0
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -6261,6 +6326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!114 &1507269765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6366,6 +6432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 0
 --- !u!114 &1675838111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6522,6 +6589,9 @@ Material:
     - _Glow: 10
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -6726,6 +6796,9 @@ Material:
     - _Glow: 0.5
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -6842,7 +6915,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: AllIn1SpriteShader/AllIn1SpriteShader
   m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
-  m_ShaderKeywords: COLORRAMP_ON ETC1_EXTERNAL_ALPHA
+  m_ShaderKeywords: COLORRAMP_ON ETC1_EXTERNAL_ALPHA OUTBASE8DIR_ON OUTBASE_ON RADIALGRADIENT_ON
+    _GRADISRADIAL_ON _OUTLINE8DIRECTIONS_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -6853,7 +6927,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _ColorRampTex:
-        m_Texture: {fileID: 2800000, guid: 279657edc397ece4b8029c727adf6ddc, type: 3}
+        m_Texture: {fileID: 2800000, guid: 763e13699209a614b8800c76fc9dee48, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ColorSwapTex:
@@ -6928,7 +7002,10 @@ Material:
     - _GlitchSize: 1
     - _Glow: 10
     - _GlowTexUsed: 0
-    - _GradBlend: 1
+    - _GradBlend: 0
+    - _GradBoostX: 0.77
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 1
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -6952,7 +7029,7 @@ Material:
     - _HologramUnmodAmount: 0.4
     - _HsvBright: 1
     - _HsvSaturation: 1
-    - _HsvShift: 180
+    - _HsvShift: 15
     - _InnerOutlineAlpha: 1
     - _InnerOutlineGlow: 1
     - _InnerOutlineThickness: 1
@@ -6969,7 +7046,7 @@ Material:
     - _OffsetUvY: 0
     - _OnlyInnerOutline: 0
     - _OnlyOutline: 0
-    - _Outline8Directions: 0
+    - _Outline8Directions: 1
     - _OutlineAlpha: 1
     - _OutlineDistortAmount: 0.5
     - _OutlineDistortTexXSpeed: 5
@@ -6982,7 +7059,7 @@ Material:
     - _OutlineTexToggle: 0
     - _OutlineTexXSpeed: 10
     - _OutlineTexYSpeed: 0
-    - _OutlineWidth: 0.004
+    - _OutlineWidth: 0.035
     - _PinchUvAmount: 0.35
     - _PixelateSize: 32
     - _PosterizeGamma: 0.75
@@ -7134,6 +7211,9 @@ Material:
     - _Glow: 2.5
     - _GlowTexUsed: 1
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 6.9
@@ -7339,6 +7419,9 @@ Material:
     - _Glow: 5.6
     - _GlowTexUsed: 1
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -7544,6 +7627,9 @@ Material:
     - _Glow: 10
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 8
@@ -7697,6 +7783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!114 &1875180454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7853,6 +7940,9 @@ Material:
     - _Glow: 10
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -8057,6 +8147,9 @@ Material:
     - _Glow: 10
     - _GlowTexUsed: 0
     - _GradBlend: 0.858
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -8210,6 +8303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!114 &1927382524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8315,6 +8409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!212 &1931308737
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8420,6 +8515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 4
 --- !u!114 &1934762266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8525,6 +8621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 0
 --- !u!212 &1988936580
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8640,10 +8737,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 868b1fc2a144d3d459c5f34d64b52eb0, type: 3}
+    m_Font: {fileID: 12800000, guid: a4e6a5491519adb45919dc87eff28e55, type: 3}
     m_FontSize: 98
     m_FontStyle: 0
     m_BestFit: 0
@@ -8760,6 +8855,9 @@ Material:
     - _Glow: 10
     - _GlowTexUsed: 0
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2
@@ -8913,6 +9011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 0
 --- !u!114 &2045252514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9069,6 +9168,9 @@ Material:
     - _Glow: 3.3
     - _GlowTexUsed: 1
     - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassSpeed: 2

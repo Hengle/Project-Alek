@@ -23,10 +23,9 @@ MonoBehaviour:
   description: THE RANGE THO
   hasElemental: 0
   elementalType: {fileID: 0}
-  elementalScalar: 0
+  elementalScalar: 75
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
-  - {fileID: 11400000, guid: 44dd6fe786b69c042827684d206f2972, type: 2}
   chanceOfInfliction: 1
   lookAtTarget: 1

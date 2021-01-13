@@ -8,7 +8,6 @@ namespace BattleSystem
     [CreateAssetMenu(fileName = "Battle Options Panel")]
     public class BattleOptionsPanel : ScriptableObject
     {
-        public GameObject battlePanel;
         public PartyMember character;
         
         public void ShowBattlePanel()
@@ -16,10 +15,7 @@ namespace BattleSystem
             BattleManager.Instance.choosingOption = true;
 
             // This is triggered at the start of a party member's turn
-            if (!character.battlePanel.activeSelf)
-            {
-                character.battlePanel.SetActive(true);
-            }
+            if (!character.battlePanel.activeSelf) character.battlePanel.SetActive(true);
             
             // This is triggered when going back to main menu from the ability menu
             else if (BattleManager.Instance.choosingAbility) 

@@ -50,7 +50,7 @@ namespace Characters.Abilities
         public ElementalType elementalType;
         
         [ShowIf(nameof(hasElemental)), SerializeField, EnumPaging, HorizontalGroup("Scalar"), LabelWidth(120)] 
-        private ElementalScalar elementalScalar;
+        private ElementalResistanceScalar elementalScalar;
         
         [ShowInInspector, ShowIf(nameof(hasElemental)), HideLabel, VerticalGroup("Scalar/Value"), LabelWidth(5)]
         public float ElementalScalar => (float) elementalScalar / 100;

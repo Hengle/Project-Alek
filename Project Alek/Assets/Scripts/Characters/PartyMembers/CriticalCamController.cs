@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Characters.PartyMembers
 {
+    //TODO: Could potentially re-purpose this for special attacks
     public class CriticalCamController : MonoBehaviour
     {
         public static Action<UnitBase> _onCritical;

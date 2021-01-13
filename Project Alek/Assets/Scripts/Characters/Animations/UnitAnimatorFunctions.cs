@@ -1,10 +1,11 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Random = UnityEngine.Random;
 using BattleSystem;
+using BattleSystem.Calculators;
+using BattleSystem.Mechanics;
 using Characters.ElementalTypes;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
@@ -17,8 +18,6 @@ namespace Characters.Animations
     // DO NOT CHANGE THE NAMES OF ANY ANIMATOR FUNCTIONS UNLESS YOU WANT TO MANUALLY UPDATE EVERY ANIMATION EVENT
     public class UnitAnimatorFunctions : MonoBehaviour, IGameEventListener<CharacterEvents>
     {
-        private BattleInputManager inputManager;
-        
         [SerializeField] private Unit unit;
         [SerializeField] private UnitBase unitBase;
 
@@ -33,25 +32,20 @@ namespace Characters.Animations
         private WeaponDamageType WeaponDamageTypeCondition =>
             unit != null && unit.parent.id == CharacterType.PartyMember && unit.isAbility
                 ? ((PartyMember) unit.parent).equippedWeapon.damageType
-                : WeaponDamageType.Null;
+                : null;
 
         private void Awake()
         {
-            inputManager = FindObjectOfType<BattleInputManager>();
             unit = GetComponent<Unit>();
             GameEventsManager.AddListener(this);
         }
 
-        private void OnEnable()
-        {
-            BattleInput._controls.Battle.Parry.performed += OnParry;
-            inputManager.parryButton.performed += OnParry;
-        }
-
+        private void OnEnable() => BattleInput._controls.Battle.Parry.performed += OnParry;
+        
         private void OnDisable()
         {
             BattleInput._controls.Battle.Parry.performed -= OnParry;
-            inputManager.parryButton.performed -= OnParry;
+            GameEventsManager.RemoveListener(this);
         }
 
         private void Update()
@@ -121,7 +115,7 @@ namespace Characters.Animations
             if (!unit.currentAbility.isMultiTarget)
             {
                 if (unit.currentTarget.Unit.attackerHasMissed || unit.currentTarget.IsDead) return;
-
+                
                 foreach (var effect in from effect in unit.currentAbility.statusEffects
                     where !(from statusEffect in unit.currentTarget.Unit.statusEffects
                     where statusEffect.name == effect.name select statusEffect).Any()

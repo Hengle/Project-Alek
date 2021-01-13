@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BattleSystem;
 using BattleSystem.Generator;
+using BattleSystem.Mechanics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -75,6 +76,8 @@ namespace Characters
         [ReadOnly] public bool timedAttack;
         [ReadOnly] public bool isCountered;
 
+        public GameObject clone;
+
         #endregion
 
         #region OtherFieldsAndProperies
@@ -91,7 +94,7 @@ namespace Characters
         public Action onDeselect;
 
         [SerializeField] private Material material;
-        private SpriteRenderer spriteRenderer;
+        public SpriteRenderer spriteRenderer;
         private BattleGeneratorDatabase database;
 
         public float ShieldFactor =>
@@ -117,10 +120,10 @@ namespace Characters
             animationHandler = GetComponent<AnimationHandler>();
             database = FindObjectOfType<BattleGeneratorDatabase>();
             material = GetComponent<SpriteRenderer>().material;
-            spriteRenderer = GetComponent<SpriteRenderer>();
+            //spriteRenderer = GetComponent<SpriteRenderer>();
 
-            //spriteRenderer.material = database.shadowMaterial;
-            
+            //spriteRenderer.materials = new[] { database.shadowMaterial, material };
+
             outline.enabled = false;
             status = Status.Normal;
             GameEventsManager.AddListener(this);
@@ -133,12 +136,14 @@ namespace Characters
 
         public void OnSelect(BaseEventData eventData)
         {
+            //spriteRenderer.enabled = true;
             outline.enabled = true;
             onSelect?.Invoke();
         }
 
         public void OnDeselect(BaseEventData eventData)
         {
+            //spriteRenderer.enabled = false;
             outline.enabled = false;
             onDeselect?.Invoke();
         }

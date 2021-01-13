@@ -16,10 +16,10 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: c39d538e0733abc409ae3ae8b371cbf4, type: 2}
-    - {fileID: 11400000, guid: 366775002164acb45983c6014a20dd29, type: 2}
     - {fileID: 11400000, guid: 5b7dd86029ea2ce49beaee4e4d702b94, type: 2}
-    - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
+    - {fileID: 11400000, guid: 366775002164acb45983c6014a20dd29, type: 2}
+    - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
+    - {fileID: 11400000, guid: b43ae3106abe31b409ccb3acb53a0731, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -27,11 +27,11 @@ MonoBehaviour:
     SerializationNodes:
     - Name: _elementalResistances
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
-        ProjectAlek],[Characters.ElementalTypes.ElementalScalar, ProjectAlek]], mscorlib
+      Data: 0|System.Collections.Generic.Dictionary`2[[Characters.UnitBase+ElementalResStruct,
+        ProjectAlek],[System.Boolean, mscorlib]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.ElementalTypes.ElementalType,
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.UnitBase+ElementalResStruct,
         ProjectAlek]], mscorlib
     - Name: 
       Entry: 8
@@ -43,11 +43,20 @@ MonoBehaviour:
       Entry: 7
       Data: 
     - Name: $k
+      Entry: 7
+      Data: Characters.UnitBase+ElementalResStruct, ProjectAlek
+    - Name: _type
       Entry: 10
       Data: 0
-    - Name: $v
+    - Name: _scalar
       Entry: 3
-      Data: 25
+      Data: 75
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: $v
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -59,36 +68,36 @@ MonoBehaviour:
       Data: 
     - Name: _elementalWeaknesses
       Entry: 7
-      Data: 2|System.Collections.Generic.Dictionary`2[[Characters.ElementalTypes.ElementalType,
-        ProjectAlek],[Characters.ElementalTypes.ElementalWeaknessScalar, ProjectAlek]],
-        mscorlib
+      Data: 2|System.Collections.Generic.Dictionary`2[[Characters.UnitBase+ElementalWeaknessStruct,
+        ProjectAlek],[System.Boolean, mscorlib]], mscorlib
     - Name: comparer
-      Entry: 9
-      Data: 1
+      Entry: 7
+      Data: 3|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.UnitBase+ElementalWeaknessStruct,
+        ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 7
       Data: 
     - Name: $k
+      Entry: 7
+      Data: Characters.UnitBase+ElementalWeaknessStruct, ProjectAlek
+    - Name: _type
       Entry: 10
       Data: 1
-    - Name: $v
+    - Name: _scalar
       Entry: 3
       Data: 150
     - Name: 
       Entry: 8
       Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 10
-      Data: 2
     - Name: $v
-      Entry: 3
-      Data: 150
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 8
       Data: 
@@ -100,12 +109,68 @@ MonoBehaviour:
       Data: 
     - Name: _statusEffectResistances
       Entry: 7
-      Data: 3|System.Collections.Generic.Dictionary`2[[Characters.StatusEffects.StatusEffect,
-        ProjectAlek],[Characters.StatusEffects.InflictionChanceModifier, ProjectAlek]],
-        mscorlib
+      Data: 4|UnityEngine.Rendering.SerializedDictionary`2[[Characters.UnitBase+StatusEffectStruct,
+        ProjectAlek],[System.Boolean, mscorlib]], Unity.RenderPipelines.Core.Runtime
     - Name: comparer
       Entry: 7
-      Data: 4|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.StatusEffects.StatusEffect,
+      Data: 5|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.UnitBase+StatusEffectStruct,
+        ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _statusEffectWeaknesses
+      Entry: 7
+      Data: 6|UnityEngine.Rendering.SerializedDictionary`2[[Characters.UnitBase+StatusEffectStruct,
+        ProjectAlek],[System.Boolean, mscorlib]], Unity.RenderPipelines.Core.Runtime
+    - Name: comparer
+      Entry: 9
+      Data: 5
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 7
+      Data: Characters.UnitBase+StatusEffectStruct, ProjectAlek
+    - Name: _effect
+      Entry: 10
+      Data: 2
+    - Name: _modifier
+      Entry: 3
+      Data: 50
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: $v
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _damageTypeWeaknesses
+      Entry: 7
+      Data: 7|System.Collections.Generic.Dictionary`2[[Characters.WeaponDamageType,
+        ProjectAlek],[System.Boolean, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 8|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.WeaponDamageType,
         ProjectAlek]], mscorlib
     - Name: 
       Entry: 8
@@ -120,28 +185,11 @@ MonoBehaviour:
       Entry: 10
       Data: 3
     - Name: $v
-      Entry: 3
-      Data: 100
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 8
       Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: _statusEffectWeaknesses
-      Entry: 7
-      Data: 5|System.Collections.Generic.Dictionary`2[[Characters.StatusEffects.StatusEffect,
-        ProjectAlek],[Characters.StatusEffects.InflictionChanceModifier, ProjectAlek]],
-        mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 4
-    - Name: 
-      Entry: 12
-      Data: 0
     - Name: 
       Entry: 13
       Data: 
@@ -172,9 +220,6 @@ MonoBehaviour:
     - Name: onApValChanged
       Entry: 6
       Data: 
-    - Name: stateMachine
-      Entry: 6
-      Data: 
   icon: {fileID: 21300000, guid: 7d0b750a0ca7210499b7ec15bc2db2f9, type: 3}
   scale: {x: 45, y: 45, z: 1}
   id: 1
@@ -183,7 +228,7 @@ MonoBehaviour:
     type: 3}
   level: 4
   health:
-    BaseValue: 835
+    BaseValue: 925
   strength:
     BaseValue: 12
   magic:
@@ -199,7 +244,6 @@ MonoBehaviour:
   criticalChance:
     BaseValue: 5
   description: I mean, he's a...
-  damageTypeWeaknesses: 00000000
   weaponMight: 13
   magicMight: 3
   weaponAccuracy: 70

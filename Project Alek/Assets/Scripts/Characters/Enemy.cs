@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
+using BattleSystem;
+using BattleSystem.Mechanics;
+using Characters.ElementalTypes;
 using UnityEngine;
 using Characters.PartyMembers;
+using Sirenix.OdinInspector;
 using Random = UnityEngine.Random;
 
 namespace Characters
@@ -9,15 +13,10 @@ namespace Characters
     [CreateAssetMenu(fileName = "New Enemy", menuName = "Character/Enemy")]
     public class Enemy : UnitBase
     {
-        [HideInInspector] public UnitStateMachine stateMachine;
+        public BreakSystem BreakSystem { get; set; }
 
+        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(120), Range(1,10)]
         public int maxShieldCount = 1;
-
-        public int CurrentAP 
-        {
-            get => Unit.currentAP;
-            set => Unit.currentAP = value;
-        }
 
         private void Awake() => id = CharacterType.Enemy;
 

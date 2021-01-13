@@ -9,7 +9,7 @@ namespace Kryz.CharacterStats
 	[Serializable]
 	public class CharacterStat
 	{
-		[SerializeField] [HorizontalGroup("BaseValue")] [HideLabel] [LabelWidth(5)]
+		[SerializeField] [HorizontalGroup("BaseValue")] [HideLabel] [LabelWidth(5)] [Range(1,9999)]
 		public float BaseValue;
 
 		protected bool isDirty = true;
@@ -36,7 +36,7 @@ namespace Kryz.CharacterStats
 			statModifiers = new List<StatModifier>();
 			StatModifiers = statModifiers.AsReadOnly();
 		}
-
+		
 		public CharacterStat(float baseValue) : this()
 		{
 			BaseValue = baseValue;

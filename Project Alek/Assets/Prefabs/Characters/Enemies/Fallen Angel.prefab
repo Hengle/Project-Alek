@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 957301847818594226}
   - component: {fileID: 1020753303541151688}
   - component: {fileID: 6703010948611041521}
+  - component: {fileID: 8269091589900971514}
   m_Layer: 0
   m_Name: Fallen Angel
   m_TagString: Untagged
@@ -159,8 +160,9 @@ MonoBehaviour:
   parry: 0
   timedAttack: 0
   isCountered: 0
-  hasPerformedTurn: 0
+  clone: {fileID: 0}
   material: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   parent: {fileID: 0}
 --- !u!114 &8809269014472016896
 MonoBehaviour:
@@ -309,6 +311,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04daac25b1f4aa1ab3aa0f2c261a0a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unit: {fileID: 0}
+  unitBase: {fileID: 0}
 --- !u!114 &6703010948611041521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,5 +323,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c2e6a9e9d23b2a45909c46158d1f7c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8269091589900971514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109450531332189788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb8dba92c5e444c3b50dd97d82a89fd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
