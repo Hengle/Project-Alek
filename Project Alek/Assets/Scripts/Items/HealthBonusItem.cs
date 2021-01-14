@@ -16,12 +16,8 @@ namespace MoreMountains.InventoryEngine
 	public class HealthBonusItem : InventoryItem 
 	{
 		[Header("Health Bonus")]
-		/// the amount of health to add to the player when the item is used
 		public int HealthBonus;
-
-		/// <summary>
-		/// What happens when the object is used 
-		/// </summary>
+		
 		public override bool Use()
 		{
 			base.Use();

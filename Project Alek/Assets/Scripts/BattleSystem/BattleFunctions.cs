@@ -86,6 +86,14 @@ namespace BattleSystem
 
             yield return Timing.WaitUntilDone(ExecuteAttack());
 
+            if (unitBase.IsDead)
+            {
+                unit.DestroyGO();
+                Timing.RunCoroutine(MoveBackToOriginPosition());
+                BattleManager.Instance.performingAction = false;
+                yield break;
+            }
+
             yield return Timing.WaitUntilDone(MoveBackToOriginPosition());
 
             BattleManager.Instance.performingAction = false;
@@ -140,14 +148,10 @@ namespace BattleSystem
                 
                 yield return Timing.WaitForOneFrame;
             }
-            
-            //if (unit.isCrit) CriticalCamController._onCritical(unitBase);
         }
 
         private IEnumerator<float> MoveBackToOriginPosition()
         {
-            //CriticalCamController._disableCam(unitBase);
-            
             var parent = unit.transform.parent.transform;
             
             while (parent.position != originPosition)

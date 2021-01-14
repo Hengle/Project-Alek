@@ -35,7 +35,7 @@ namespace BattleSystem.Mechanics
             
             for (var i = 0; i < count; i++)
             {
-                var id = Random.Range(0, HealthItemPrefabManager.Instance.healthItems.Count - 1);
+                var id = Random.Range(0, HealthItemPrefabManager.Instance.healthItems.Count);
                 inventory.AddItem(HealthItemPrefabManager.Instance.healthItems[id], 1);
 
                 if (!unit.isAbility || !unit.currentAbility.isMultiTarget)

@@ -13,7 +13,7 @@ using Sirenix.OdinInspector;
 
 namespace Characters
 {
-    public enum CharacterType { PartyMember, Enemy }
+    public enum CharacterType { PartyMember, Enemy, Both }
     public abstract class UnitBase : SerializedScriptableObject
     {
         #region FieldsAndProperties
@@ -153,6 +153,7 @@ namespace Characters
         [HideInInspector] public int maxAP = 6;
 
         [HideInInspector] public Action<UnitBase> onDeath;
+        [HideInInspector] public Action<UnitBase> onRevival;
         [HideInInspector] public Action onHpValueChanged;
         [HideInInspector] public Action<int> onShieldValueChanged;
         [HideInInspector] public Action<ElementalType> onElementalDamageReceived;
@@ -301,8 +302,19 @@ namespace Characters
         protected virtual void Die()
         {
             Unit.status = Status.Dead;
+            CurrentAP = 0;
             onDeath?.Invoke(this);
             Unit.anim.SetBool(AnimationHandler.DeathTrigger, true);
+        }
+
+        public virtual void Revive(float percentage, int apAmount)
+        {
+            Unit.status = Status.Normal;
+            //Heal(health.BaseValue * percentage);
+            CurrentHP = (int)(health.BaseValue * percentage);
+            CurrentAP = apAmount;
+            onRevival?.Invoke(this);
+            Unit.anim.SetTrigger(AnimationHandler.RecoverTrigger);
         }
 
         public Quaternion LookAtTarget()
@@ -336,6 +348,6 @@ namespace Characters
 
         private void OnEnable() => RemoveMods();
 
-        private void OnDisable() => RemoveMods();
+        //private void OnDisable() => RemoveMods();
     }
 }

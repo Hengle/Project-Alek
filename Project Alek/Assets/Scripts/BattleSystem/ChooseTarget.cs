@@ -5,7 +5,9 @@ using Characters;
 using Characters.Animations;
 using Characters.PartyMembers;
 using MEC;
+using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
+using UnityEngine.UI;
 
 namespace BattleSystem
 {
@@ -15,13 +17,49 @@ namespace BattleSystem
 
         [ShowInInspector] public static bool _isMultiTarget;
         [HideInInspector] public UnitBase thisUnitBase;
+        private Selectable button;
+        [SerializeField] private Selectable selectOnLeft;
+        [SerializeField] private Selectable selectOnRight;
 
         private static CharacterType targetOptionsCharacterType;
         private static MenuController menuController;
         private static PartyMember character;
+        public static InventoryItem _currentlySelectedItem;
 
         private static int classOption;
         private static string className;
+
+        private void Awake() => button = GetComponent<Selectable>();
+        
+        public void Setup()
+        {
+            var navigation = button.navigation;
+            selectOnLeft = navigation.selectOnLeft;
+            selectOnRight = navigation.selectOnRight;
+            button.navigation = navigation;
+        }
+
+        private void SetNavigation()
+        {
+            var navigation = button.navigation;
+            if (navigation.selectOnLeft != null) selectOnLeft = navigation.selectOnLeft;
+            if (navigation.selectOnRight != null) selectOnRight = navigation.selectOnRight;
+            
+            switch (targetOptionsCharacterType)
+            {
+                case CharacterType.Enemy: navigation.selectOnLeft = null;
+                    button.navigation = navigation;
+                    break;
+                case CharacterType.PartyMember: navigation.selectOnRight = null;
+                    button.navigation = navigation;
+                    break;
+                case CharacterType.Both:
+                    navigation.selectOnLeft = selectOnLeft;
+                    navigation.selectOnRight = selectOnRight;
+                    button.navigation = navigation;
+                    break;
+            }
+        }
 
         public static void GetCurrentCommand(string name, int option)
         {
@@ -34,7 +72,8 @@ namespace BattleSystem
                     break;
                 case 1: targetOptionsCharacterType = CharacterType.PartyMember;
                     break;
-                case 2: break;
+                case 2: targetOptionsCharacterType = CharacterType.Both;
+                    break;
             }
         }
 
@@ -46,7 +85,8 @@ namespace BattleSystem
                     break;
                 case 1: targetOptionsCharacterType = CharacterType.PartyMember;
                     break;
-                case 2: break;
+                case 2: targetOptionsCharacterType = CharacterType.Both;
+                    break;
             }
         }
 
@@ -56,8 +96,13 @@ namespace BattleSystem
             // TODO: Account for revival items and other types
             if (BattleManager.Instance.usingItem)
             {
+                if (thisUnitBase.Unit.status == Status.Dead && _currentlySelectedItem as RevivalItem)
+                {
+                    goto try_use_item;
+                }
                 if (thisUnitBase.Unit.status == Status.Dead) return;
 
+                try_use_item:
                 var notEnoughAP = character.Unit.currentAP - 2 < 0;
                 if (notEnoughAP)
                 {
@@ -152,6 +197,8 @@ namespace BattleSystem
                 case CEventType.ChoosingTarget:
                     BattleManager.Instance.choosingTarget = true;
                     character = (PartyMember) eventType._character;
+                    
+                    SetNavigation();
 
                     menuController = character.battlePanel.GetComponent<MenuController>();
                     menuController.SetTargetFirstSelected();

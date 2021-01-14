@@ -54,10 +54,11 @@ namespace BattleSystem.Generator
         {
             foreach (var member in BattleManager.Instance._membersForThisBattle)
             {
-                foreach (var partyMember in BattleManager.Instance._membersForThisBattle)
-                {
-                    member.battlePanel.GetComponent<MenuController>().memberSelectable.Add(partyMember.Unit.gameObject);
-                }
+                SelectableObjectManager._memberSelectable.Add(member.Unit.gameObject);
+                // foreach (var partyMember in BattleManager.Instance._membersForThisBattle)
+                // {
+                //     member.battlePanel.GetComponent<MenuController>()._memberSelectable.Add(partyMember.Unit.gameObject);
+                // }
             }
         }
 
@@ -211,7 +212,7 @@ namespace BattleSystem.Generator
             var chooseTarget = character.Unit.gameObject.GetComponent<ChooseTarget>();
             chooseTarget.thisUnitBase = character;
             chooseTarget.enabled = true;
-            
+
             SetupBattlePanel(character, i);
             SetAbilityMenuOptions(character);
             SetupInventoryDisplay(character, i);
@@ -243,10 +244,11 @@ namespace BattleSystem.Generator
                 enemyGo.name = clone.name;
                 enemyGo.transform.localScale = clone.scale;
                 
-                foreach (var partyMember in BattleManager.Instance._membersForThisBattle)
-                {
-                    partyMember.battlePanel.GetComponent<MenuController>().enemySelectable.Add(enemyGo);
-                }
+                SelectableObjectManager._enemySelectable.Add(enemyGo);
+                // foreach (var partyMember in BattleManager.Instance._membersForThisBattle)
+                // {
+                //     partyMember.battlePanel.GetComponent<MenuController>()._enemySelectable.Add(enemyGo);
+                // }
 
                 // New stuff
                 // var enemyClone = Instantiate(clone.characterPrefab, database.enemySpawnPoints[i+enemyOffset].transform);
@@ -279,7 +281,7 @@ namespace BattleSystem.Generator
                 var chooseTarget = clone.Unit.gameObject.GetComponent<ChooseTarget>();
                 chooseTarget.thisUnitBase = clone;
                 chooseTarget.enabled = true;
-                
+
                 SetupProfileBox(clone);
 
                 var position = enemyGo.transform.position;

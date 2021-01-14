@@ -41,5 +41,12 @@ namespace Characters
             CurrentHP += (int) amount;
             CurrentAP -= 1;
         }
+
+        // protected override void Die()
+        // {
+        //     base.Die();
+        //     
+        //     Unit.gameObject.SetActive(false);
+        // }
     }
 }

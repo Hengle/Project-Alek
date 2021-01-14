@@ -199,6 +199,9 @@ MonoBehaviour:
     - Name: onDeath
       Entry: 6
       Data: 
+    - Name: onRevival
+      Entry: 6
+      Data: 
     - Name: onHpValueChanged
       Entry: 6
       Data: 

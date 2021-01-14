@@ -12,13 +12,19 @@ namespace BattleSystem
         
         public void OnMMEvent(MMInventoryEvent eventType)
         {
-            if (eventType.InventoryEventType != MMInventoryEventType.PickTarget) return;
-            
-            ChooseTarget._targetOptions = eventType.EventItem.targetOptions;
-            ChooseTarget.GetItemCommand();
+            switch (eventType.InventoryEventType)
+            {
+                case MMInventoryEventType.PickTarget:
+                    ChooseTarget._targetOptions = eventType.EventItem.targetOptions;
+                    ChooseTarget.GetItemCommand();
 
-            BattleManager.Instance.usingItem = true;
-            BattleManager.Instance.choosingOption = false;
+                    BattleManager.Instance.usingItem = true;
+                    BattleManager.Instance.choosingOption = false;
+                    break;
+                case MMInventoryEventType.Select:
+                    ChooseTarget._currentlySelectedItem = eventType.EventItem;
+                    break;
+            }
         }
     }
 }

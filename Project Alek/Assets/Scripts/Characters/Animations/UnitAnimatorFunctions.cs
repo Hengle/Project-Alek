@@ -154,8 +154,9 @@ namespace Characters.Animations
 
             if (!missedWindow && !hitWindow) SendTimedButtonEventResult(false);
 
-            if (!unit.isAbility || !unit.currentAbility.isMultiTarget) 
+            if (!unit.isAbility || !unit.currentAbility.isMultiTarget)
             {
+                if (unit.currentTarget == null) return;
                 if (unit.currentTarget.Unit.isCountered) RecalculateDamage();
                 unit.currentTarget.TakeDamage(unit.currentDamage, ElementalCondition, WeaponDamageTypeCondition);
                 unit.isCrit = false;
@@ -180,6 +181,7 @@ namespace Characters.Animations
                 return;
             }
             
+            if (unit.currentTarget == null) return;
             unit.currentDamage = Calculator.CalculateAttackDamage(unitBase, unit.currentTarget);
         }
 

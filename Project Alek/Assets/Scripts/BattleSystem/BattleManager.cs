@@ -47,7 +47,7 @@ namespace BattleSystem
         [ReadOnly] public bool choosingOption;
         [ReadOnly] public bool choosingTarget;
         [ReadOnly] public bool usingItem;
-        [ReadOnly] public bool performingAction;
+        public bool performingAction;
         [ReadOnly] public bool endThisMembersTurn;
         [ReadOnly] public bool choosingAbility;
         [ReadOnly] public bool canGiveCommand = true;
@@ -83,14 +83,19 @@ namespace BattleSystem
         {
             generator.SetupBattle();
 
+            SelectableObjectManager.SetEnemySelectables();
+            SelectableObjectManager.SetPartySelectables();
             foreach (var partyMember in _membersForThisBattle)
             {
-                partyMember.battlePanel.GetComponent<MenuController>().SetEnemySelectables();
-                partyMember.battlePanel.GetComponent<MenuController>().SetPartySelectables();
+                // partyMember.battlePanel.GetComponent<MenuController>().SetEnemySelectables();
+                // partyMember.battlePanel.GetComponent<MenuController>().SetPartySelectables();
+                partyMember.Unit.GetComponent<ChooseTarget>().Setup();
             }
 
-            _membersForThisBattle.ForEach(m => m.onDeath += RemoveFromBattle);
-            _enemiesForThisBattle.ForEach(e => e.onDeath += RemoveFromBattle);
+            _enemiesForThisBattle.ForEach(e => e.Unit.GetComponent<ChooseTarget>().Setup());
+
+            _membersForThisBattle.ForEach(m => { m.onDeath += RemoveFromBattle; m.onRevival += AddToBattle; });
+            _enemiesForThisBattle.ForEach(e => { e.onDeath += RemoveFromBattle; e.onRevival += AddToBattle; });
             
             Timing.RunCoroutine(GetNextTurn());
         }
@@ -271,14 +276,29 @@ namespace BattleSystem
             membersAndEnemiesThisTurn.Remove(unit);
             membersAndEnemiesNextTurn.Remove(unit);
             
+            CharacterEvents.Trigger(CEventType.CharacterDeath, unit);
+            
             SortingCalculator.ResortThisTurnOrder();
             SortingCalculator.ResortNextTurnOrder();
 
             unit.onDeath -= RemoveFromBattle;
-            CharacterEvents.Trigger(CEventType.CharacterDeath, unit);
         }
         
         #endregion
+
+        private void AddToBattle(UnitBase unit)
+        {
+            if (unit.id == CharacterType.Enemy) _enemiesForThisBattle.Add((Enemy) unit);
+            else _membersForThisBattle.Add((PartyMember) unit);
+            
+            membersAndEnemiesThisTurn.Add(unit);
+            membersAndEnemiesNextTurn.Add(unit);
+            
+            SortingCalculator.ResortThisTurnOrder();
+            SortingCalculator.ResortNextTurnOrder();
+            
+            unit.onDeath += RemoveFromBattle;
+        }
         
         private void OnDisable()
         {

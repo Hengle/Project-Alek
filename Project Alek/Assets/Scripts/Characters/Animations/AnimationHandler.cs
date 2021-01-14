@@ -7,6 +7,7 @@ namespace Characters.Animations
         public static readonly int AttackTrigger = Animator.StringToHash("Attack");
         public static readonly int HurtTrigger = Animator.StringToHash("Hurt");
         public static readonly int DeathTrigger = Animator.StringToHash("Dead");
+        public static readonly int RecoverTrigger = Animator.StringToHash("Recover");
         public static readonly int VictoryTrigger = Animator.StringToHash("Victory");
         public static readonly int GuardTrigger = Animator.StringToHash("Guard");
         public static readonly int ItemTrigger = Animator.StringToHash("Item");

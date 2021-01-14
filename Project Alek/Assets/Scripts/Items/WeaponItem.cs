@@ -12,9 +12,6 @@ namespace MoreMountains.InventoryEngine
 	[Serializable]
 	public class WeaponItem : InventoryItem 
 	{
-		[Header("Weapon")]
-		public Sprite WeaponSprite;
-
 		public WeaponDamageType damageType;
 
 		[Header("Weapon Stats")]

@@ -17,8 +17,8 @@ MonoBehaviour:
   defenseBoostIncrement: 0.3
   maxLoanAmount: 4
   criticalDamageFactor: 1.35
-  healthItemChance: 0.4
-  maxHealthItemAmount: 3
+  healthItemChance: 0.6
+  maxHealthItemAmount: 5
   showConversionFactors: 0
   conversionFactorLvl1: 1.2
   conversionFactorLvl2: 1.4

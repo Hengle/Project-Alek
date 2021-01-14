@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemID: Sword
   TargetInventoryName: Main Inventory
+  targetOptions: 0
   Usable: 0
   Equippable: 1
   Quantity: 0
@@ -36,4 +37,16 @@ MonoBehaviour:
   MovedSound: {fileID: 0}
   DroppedSound: {fileID: 0}
   UseDefaultSoundsIfNull: 1
-  WeaponSprite: {fileID: 21300008, guid: 678058abcbfe36f42902c11d9e5f64fc, type: 3}
+  damageType: {fileID: 0}
+  weaponMight: 0
+  magicMight: 0
+  weaponAccuracy: 0
+  weaponCriticalChance: 0
+  strength: 0
+  magic: 0
+  accuracy: 0
+  initiative: 0
+  defense: 0
+  resistance: 0
+  criticalChance: 0
+  partyMember: {fileID: 0}

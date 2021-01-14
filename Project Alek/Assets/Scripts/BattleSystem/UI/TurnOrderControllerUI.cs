@@ -52,6 +52,7 @@ namespace BattleSystem.UI
 
         private void UpdateThisTurnList()
         {
+            Logger.Log("This Turn List updated!");
             foreach (var t in thisTurnList.Where(t => t.activeInHierarchy))
             {
                 t.SetActive(false);

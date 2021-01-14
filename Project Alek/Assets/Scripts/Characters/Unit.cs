@@ -186,6 +186,12 @@ namespace Characters
             damageValueList.Clear();
         }
 
+        public void DestroyGO()
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject, 3);
+        }
+
         public void OnGameEvent(CharacterEvents eventType)
         {
             switch (eventType._eventType)
@@ -202,6 +208,10 @@ namespace Characters
                     break;
                 
                 case CEventType.CharacterAttacking: outline.enabled = false;
+                    break;
+                
+                case CEventType.CharacterDeath when eventType._character == parent && eventType._character as Enemy:
+                    DestroyGO();
                     break;
                 
                 case CEventType.StatChange when eventType._character == parent: SetStats();
