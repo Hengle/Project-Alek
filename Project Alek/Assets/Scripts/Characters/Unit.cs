@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using BattleSystem;
-using BattleSystem.Generator;
 using BattleSystem.Mechanics;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -10,7 +10,6 @@ using Characters.Abilities;
 using Characters.Animations;
 using Characters.StatusEffects;
 using Sirenix.OdinInspector;
-using UnityEngine.Serialization;
 
 namespace Characters
 {
@@ -20,7 +19,7 @@ namespace Characters
     {
         #region HideInInspector
 
-        public Ability currentAbility;
+        [HideInInspector] public Ability currentAbility;
         [HideInInspector] public Animator anim;
         [HideInInspector] public AnimationHandler animationHandler;
         [HideInInspector] public SpriteOutline outline;
@@ -40,26 +39,10 @@ namespace Characters
         [ReadOnly] public UnitBase currentTarget;
         [ReadOnly] public Status status = Status.Normal;
         [ReadOnly] public UnitStates currentState;
-        [ReadOnly] public int level;
+        
         [ReadOnly] public int currentHP;
-        [FormerlySerializedAs("conversionAmount")]
         [ReadOnly] public int conversionLevel;
         [ReadOnly] public float conversionFactor = 1;
-
-        [SerializeField] [ReadOnly] 
-        private protected int currentStrength;
-        [SerializeField] [ReadOnly]
-        private protected int currentMagic;
-        [SerializeField] [ReadOnly]
-        private protected int currentAccuracy;
-        [SerializeField] [ReadOnly]
-        private protected int currentInitiative;
-        [SerializeField] [ReadOnly]
-        private protected int currentCrit;
-        [SerializeField] [ReadOnly]
-        private protected int currentDefense;
-        [SerializeField] [ReadOnly]
-        private protected int currentResistance;
 
         [ReadOnly] public int finalInitVal;
         [ReadOnly] public float initModifier;
@@ -69,14 +52,11 @@ namespace Characters
         [ReadOnly] public List<int> damageValueList = new List<int>();
         
         [ReadOnly] public bool targetHasCrit;
-        [ReadOnly] public bool isCrit;
         [ReadOnly] public bool isAbility;
         [ReadOnly] public bool attackerHasMissed;
         [ReadOnly] public bool parry;
         [ReadOnly] public bool timedAttack;
         [ReadOnly] public bool isCountered;
-
-        public GameObject clone;
 
         #endregion
 
@@ -89,19 +69,14 @@ namespace Characters
         public Action<int> borrowAP;
         public Action<UnitBase> recoveredFromOverexertion;
         public Action<UnitBase> recoveredFromMaxOverexertion;
-        
         public Action onSelect;
         public Action onDeselect;
 
-        [SerializeField] private Material material;
-        public SpriteRenderer spriteRenderer;
-        private BattleGeneratorDatabase database;
-
-        public float ShieldFactor =>
-            currentState == UnitStates.Weakened || currentState == UnitStates.Checkmate ? 1.0f : 0.80f;
+        public float ShieldFactor => currentState == UnitStates.Weakened ||
+                                     currentState == UnitStates.Checkmate ? 1.0f : 0.80f;
 
         public bool HasMissedAllTargets {
-            get { if (currentTarget != null) return currentTarget.Unit.attackerHasMissed;
+            get { if (currentTarget) return currentTarget.Unit.attackerHasMissed;
 
                 return multiHitTargets.Count > 0 && multiHitTargets.TrueForAll
                            (t => t.Unit.attackerHasMissed);
@@ -118,11 +93,6 @@ namespace Characters
             outline = GetComponent<SpriteOutline>();
             button = GetComponent<Button>();
             animationHandler = GetComponent<AnimationHandler>();
-            database = FindObjectOfType<BattleGeneratorDatabase>();
-            material = GetComponent<SpriteRenderer>().material;
-            //spriteRenderer = GetComponent<SpriteRenderer>();
-
-            //spriteRenderer.materials = new[] { database.shadowMaterial, material };
 
             outline.enabled = false;
             status = Status.Normal;
@@ -136,14 +106,12 @@ namespace Characters
 
         public void OnSelect(BaseEventData eventData)
         {
-            //spriteRenderer.enabled = true;
             outline.enabled = true;
             onSelect?.Invoke();
         }
 
         public void OnDeselect(BaseEventData eventData)
         {
-            //spriteRenderer.enabled = false;
             outline.enabled = false;
             onDeselect?.Invoke();
         }
@@ -155,28 +123,14 @@ namespace Characters
             unitBase.Unit = this;
             parent = unitBase;
             name = unitBase.characterName;
-            level = unitBase.level;
             status = Status.Normal;
             
             // TODO: Would need to update UI slider if i want to be able to modify max health
             maxHealthRef = (int) parent.health.Value;
             currentHP = (int) parent.health.Value;
-            
-            SetStats();
-            
+     
             currentAP = unitBase.maxAP;
             outline.color = unitBase.Color;
-        }
-
-        private void SetStats()
-        {
-            currentStrength = (int) parent.strength.Value;
-            currentMagic = (int) parent.magic.Value;
-            currentAccuracy = (int) parent.accuracy.Value;
-            currentInitiative = (int) parent.initiative.Value;
-            currentCrit = (int) parent.criticalChance.Value;
-            currentDefense = (int) parent.defense.Value;
-            currentResistance = (int) parent.resistance.Value;
         }
 
         private void ResetTargets()
@@ -186,6 +140,7 @@ namespace Characters
             damageValueList.Clear();
         }
 
+        [SuppressMessage("ReSharper", "Unity.InefficientPropertyAccess")]
         public void DestroyGO()
         {
             gameObject.SetActive(false);
@@ -212,9 +167,6 @@ namespace Characters
                 
                 case CEventType.CharacterDeath when eventType._character == parent && eventType._character as Enemy:
                     DestroyGO();
-                    break;
-                
-                case CEventType.StatChange when eventType._character == parent: SetStats();
                     break;
             }
         }

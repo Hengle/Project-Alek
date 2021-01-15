@@ -22,7 +22,6 @@ namespace BattleSystem
         [SerializeField] private Selectable selectOnRight;
 
         private static CharacterType targetOptionsCharacterType;
-        private static MenuController menuController;
         private static PartyMember character;
         public static InventoryItem _currentlySelectedItem;
 
@@ -42,8 +41,8 @@ namespace BattleSystem
         private void SetNavigation()
         {
             var navigation = button.navigation;
-            if (navigation.selectOnLeft != null) selectOnLeft = navigation.selectOnLeft;
-            if (navigation.selectOnRight != null) selectOnRight = navigation.selectOnRight;
+            if (navigation.selectOnLeft) selectOnLeft = navigation.selectOnLeft;
+            if (navigation.selectOnRight) selectOnRight = navigation.selectOnRight;
             
             switch (targetOptionsCharacterType)
             {
@@ -199,9 +198,7 @@ namespace BattleSystem
                     character = (PartyMember) eventType._character;
                     
                     SetNavigation();
-
-                    menuController = character.battlePanel.GetComponent<MenuController>();
-                    menuController.SetTargetFirstSelected();
+                    MenuController.SetTargetFirstSelected();
                     
                     if (_isMultiTarget) Timing.RunCoroutine(WaitForMultiTargetConfirmation());
                     break;

@@ -23,7 +23,7 @@ namespace Characters.StatusEffects
             var dmg = (int) (damagePercentage * modifier * unitBase.Unit.maxHealthRef);
             dmg = Random.Range((int)(0.98f * dmg), (int)(1.02f * dmg));
             unitBase.TakeDamage(dmg, null, null);
-            Logger.Log($"{unitBase.characterName} is unable to attack due to {name}");
+ 
             // show shocked visual effect
             CharacterEvents.Trigger(CEventType.CantPerformAction, unitBase);
         }

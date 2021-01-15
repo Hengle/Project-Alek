@@ -73,7 +73,6 @@ namespace BattleSystem.UI
 
         private void OnAPValueChanged(int val)
         {
-            if (member.Unit.status == Status.Overexerted) Logger.Log("yay??");
             if (val > currentAP)
             {
                 for (var i = currentAP; i < val; i++)
@@ -82,10 +81,7 @@ namespace BattleSystem.UI
                 }
             }
             
-            else if (val == 0)
-            {
-                apBars.ForEach(o => o.gameObject.SetActive(false));
-            }
+            else if (val == 0) apBars.ForEach(o => o.gameObject.SetActive(false));
             
             else if (val < currentAP)
             {

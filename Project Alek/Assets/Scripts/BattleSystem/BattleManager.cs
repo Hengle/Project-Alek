@@ -47,7 +47,7 @@ namespace BattleSystem
         [ReadOnly] public bool choosingOption;
         [ReadOnly] public bool choosingTarget;
         [ReadOnly] public bool usingItem;
-        public bool performingAction;
+        [ReadOnly] public bool performingAction;
         [ReadOnly] public bool endThisMembersTurn;
         [ReadOnly] public bool choosingAbility;
         [ReadOnly] public bool canGiveCommand = true;
@@ -85,13 +85,8 @@ namespace BattleSystem
 
             SelectableObjectManager.SetEnemySelectables();
             SelectableObjectManager.SetPartySelectables();
-            foreach (var partyMember in _membersForThisBattle)
-            {
-                // partyMember.battlePanel.GetComponent<MenuController>().SetEnemySelectables();
-                // partyMember.battlePanel.GetComponent<MenuController>().SetPartySelectables();
-                partyMember.Unit.GetComponent<ChooseTarget>().Setup();
-            }
-
+      
+            _membersForThisBattle.ForEach(m => m.Unit.GetComponent<ChooseTarget>().Setup());
             _enemiesForThisBattle.ForEach(e => e.Unit.GetComponent<ChooseTarget>().Setup());
 
             _membersForThisBattle.ForEach(m => { m.onDeath += RemoveFromBattle; m.onRevival += AddToBattle; });
@@ -130,13 +125,8 @@ namespace BattleSystem
         private IEnumerator<float> ThisPlayerTurn(PartyMember character)
         {
             activeUnit = character;
-            
-            inventoryInputManager.TargetInventoryContainer =
-                character.inventoryDisplay.GetComponent<CanvasGroup>();
-            
-            inventoryInputManager.TargetInventoryDisplay =
-                character.inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
-            
+            inventoryInputManager.TargetInventoryContainer = character.Container;
+            inventoryInputManager.TargetInventoryDisplay = character.InventoryDisplay;
             character.inventoryDisplay.SetActive(true);
             
             character.ReplenishAP();
@@ -319,10 +309,7 @@ namespace BattleSystem
                     SortingCalculator.ResortThisTurnOrder();
                     SortingCalculator.ResortNextTurnOrder();
                     break;
-                case CEventType.EndOfTurn: 
-                    RemoveFromTurn((UnitBase) eventType._character);
-                    Timing.RunCoroutine(GetNextTurn());
-                    break;
+                case CEventType.EndOfTurn:
                 case CEventType.SkipTurn:
                     RemoveFromTurn((UnitBase) eventType._character);
                     Timing.RunCoroutine(GetNextTurn());

@@ -20,7 +20,7 @@ namespace BattleSystem.Calculators
             if (damageDealer.Unit.isAbility) return CalculateAbilityDamage(damageDealer, target);
             
             float dealerDamage = (int) damageDealer.strength.Value * damageDealer.weaponMight;
-            var targetDefense = (int) target.defense.Value * (target.Unit.level / 2);
+            var targetDefense = (int) target.defense.Value * (target.level / 2);
 
             var totalDamage = (int) dealerDamage - targetDefense;
 
@@ -103,7 +103,7 @@ namespace BattleSystem.Calculators
 
             totalDamage = (int)(totalDamage * BattleManager.Instance.globalVariables.criticalDamageFactor);
             target.Unit.targetHasCrit = true;
-            damageDealer.Unit.isCrit = true;
+            //damageDealer.Unit.isCrit = true;
             
             return totalDamage < 0 ? 0 : Random.Range((int)(0.97f * totalDamage), (int)(1.03f * totalDamage));
         }

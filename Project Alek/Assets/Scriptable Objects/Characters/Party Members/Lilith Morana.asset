@@ -17,6 +17,7 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 366775002164acb45983c6014a20dd29, type: 2}
+    - {fileID: 0}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -142,6 +143,57 @@ MonoBehaviour:
     - Name: onDeath
       Entry: 6
       Data: 
+    - Name: onRevival
+      Entry: 7
+      Data: 9|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 1
+    - Name: declaringType
+      Entry: 7
+      Data: 10|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BattleSystem.BattleManager, ProjectAlek
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: AddToBattle
+    - Name: delegateType
+      Entry: 7
+      Data: 11|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 12|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 13|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Characters.UnitBase, ProjectAlek
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: onHpValueChanged
       Entry: 6
       Data: 
@@ -185,7 +237,7 @@ MonoBehaviour:
   resistance:
     BaseValue: 3
   criticalChance:
-    BaseValue: 3
+    BaseValue: 99
   description: A very long description about an amazing girl named Lilith. I tell
     you when I come up with a good description, it will be legendary!
   weaponMight: 14

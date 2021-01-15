@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Characters;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -9,22 +8,14 @@ namespace BattleSystem
 {
     public class SelectableObjectManager : MonoBehaviour, IGameEventListener<CharacterEvents>
     {
-        [ShowInInspector] public static List<GameObject> _enemySelectable = new List<GameObject>();
-        [ShowInInspector] public static List<GameObject> _memberSelectable = new List<GameObject>();
+        [ShowInInspector] public static List<Selectable> _enemySelectable = new List<Selectable>();
+        [ShowInInspector] public static List<Selectable> _memberSelectable = new List<Selectable>();
         [ShowInInspector] public static GameObject _memberFirstSelected;
-        private static bool update;
 
-        private void Start()
-        {
-            GameEventsManager.AddListener(this);
-            update = false;
-        }
-
-        private void OnDisable()
-        {
-            GameEventsManager.RemoveListener(this);
-        }
-
+        private void Start() => GameEventsManager.AddListener(this);
+        
+        private void OnDisable() => GameEventsManager.RemoveListener(this);
+        
         public static void SetPartySelectables()
         {
             for (var i = 0; i < _memberSelectable.Count; i++)
@@ -72,60 +63,25 @@ namespace BattleSystem
         
         private static void UpdateEnemySelectables(UnitBase enemy)
         {
-            Logger.Log("Updating selectables!...");
-            //var found = false;
-            
-            _enemySelectable.Remove(enemy.Unit.gameObject);
-            //Destroy(enemy.Unit.gameObject);
-            
-            Logger.Log("Removed! Count: " + _enemySelectable.Count);
-            
+            _enemySelectable.Remove(enemy.Selectable);
+
             for (var i = 0; i < _enemySelectable.Count; i++)
             {
-                // if (_enemySelectable[i] != enemy.Unit.gameObject) continue;
-                //     
-                // found = true;
-                // var prevElement = i == 0 ? _enemySelectable.Count - 1 : i - 1;
-                // var nextElement = i == _enemySelectable.Count - 1 ? 0 : i + 1;
-                //
-                // if (prevElement == nextElement) return;
-                //
-                // var button1 = _enemySelectable[prevElement].GetComponent<Selectable>();
-                // var nav1 = button1.navigation;
-                //         
-                // var button2 = _enemySelectable[nextElement].GetComponent<Selectable>();
-                // var nav2 = button2.navigation;
-                //
-                // nav1.selectOnDown = _enemySelectable[nextElement].GetComponent<Selectable>();
-                // nav2.selectOnUp = _enemySelectable[prevElement].GetComponent<Selectable>();
-                //
-                // button1.navigation = nav1;
-                // button2.navigation = nav2;
-                
-                var button = _enemySelectable[i].GetComponent<Selectable>();
+                var button = _enemySelectable[i];
                 var nav = button.navigation;
 
-                if (_enemySelectable.Contains(nav.selectOnUp.gameObject) &&
-                    _enemySelectable.Contains(nav.selectOnDown.gameObject)) continue;
-                
-                Logger.Log($"Found yah {_memberSelectable[i].gameObject.name}");
+                if (_enemySelectable.Contains(nav.selectOnUp) &&
+                    _enemySelectable.Contains(nav.selectOnDown)) continue;
 
-                nav.selectOnUp = i > 0 ?
-                    _enemySelectable[i - 1].GetComponent<Selectable>() :
-                    _enemySelectable[_enemySelectable.Count - 1].GetComponent<Selectable>();
+                nav.selectOnUp = i > 0 ? _enemySelectable[i - 1] :
+                    _enemySelectable[_enemySelectable.Count - 1];
                 
                 nav.selectOnDown = i < _enemySelectable.Count-1 ?
-                    _enemySelectable[i + 1].GetComponent<Selectable>() :
-                    _enemySelectable[0].GetComponent<Selectable>();
-                
-                // nav.selectOnUp = i < _enemySelectable.Count ?
-                //     _enemySelectable[i].GetComponent<Selectable>() :
-                //     _enemySelectable[_enemySelectable.Count - 1].GetComponent<Selectable>();
+                    _enemySelectable[i + 1] :
+                    _enemySelectable[0];
 
                 button.navigation = nav;
             }
-            //if (found) _enemySelectable.Remove(enemy.Unit.gameObject);
-            
             
             UpdatePartySelectables();
         }
@@ -134,16 +90,13 @@ namespace BattleSystem
         {
             for (var i = 0; i < _memberSelectable.Count; i++)
             {
-                var button = _memberSelectable[i].GetComponent<Selectable>();
+                var button = _memberSelectable[i];
                 var nav = button.navigation;
 
-                if (_enemySelectable.Contains(nav.selectOnRight.gameObject)) continue;
-                
-                Logger.Log($"Found yah {_memberSelectable[i].gameObject.name}");
-                
-                nav.selectOnRight = i < _enemySelectable.Count ?
-                    _enemySelectable[i].GetComponent<Selectable>() :
-                    _enemySelectable[_enemySelectable.Count - 1].GetComponent<Selectable>();
+                if (_enemySelectable.Contains(nav.selectOnRight)) continue;
+
+                nav.selectOnRight = i < _enemySelectable.Count ? _enemySelectable[i] :
+                    _enemySelectable[_enemySelectable.Count - 1];
 
                 button.navigation = nav;
             }

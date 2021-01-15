@@ -73,7 +73,9 @@ namespace BattleSystem.Calculators
 
         public static void ResortThisTurnOrder()
         {
-            BattleManager.Instance.membersAndEnemiesThisTurn.ForEach(t => t.Unit.finalInitVal = (int) (t.initiative.Value * t.Unit.initModifier));
+            BattleManager.Instance.membersAndEnemiesThisTurn.ForEach
+                (t => t.Unit.finalInitVal = (int) (t.initiative.Value * t.Unit.initModifier));
+            
             BattleManager.Instance.membersAndEnemiesThisTurn = BattleManager.Instance.membersAndEnemiesThisTurn.OrderByDescending
                 (e => e.Unit.finalInitVal).ToList();
 
@@ -85,7 +87,9 @@ namespace BattleSystem.Calculators
 
         public static void ResortNextTurnOrder()
         {
-            BattleManager.Instance.membersAndEnemiesNextTurn.ForEach(t => t.Unit.finalInitVal = (int) (t.initiative.Value * t.Unit.initModifier));
+            BattleManager.Instance.membersAndEnemiesNextTurn.ForEach
+                (t => t.Unit.finalInitVal = (int) (t.initiative.Value * t.Unit.initModifier));
+            
             BattleManager.Instance.membersAndEnemiesNextTurn = BattleManager.Instance.membersAndEnemiesNextTurn.OrderByDescending
                 (e => e.Unit.finalInitVal).ToList();
             

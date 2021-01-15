@@ -15,8 +15,11 @@ MonoBehaviour:
   showBoostIncrements: 0
   damageBoostIncrement: 0.3
   defenseBoostIncrement: 0.3
+  showMaxLoanAmount: 0
   maxLoanAmount: 4
+  showCritDamageFactor: 0
   criticalDamageFactor: 1.35
+  showBattleItemValues: 0
   healthItemChance: 0.6
   maxHealthItemAmount: 5
   showConversionFactors: 0
@@ -31,7 +34,11 @@ MonoBehaviour:
   moderateDebuff: -0.1
   significantBuff: 0.2
   significantDebuff: -0.2
+  showTimedAttackAndDefenseValues: 0
+  timedAttackBonus: 1.1
+  timedDefenseBonus: 0.9
   showAPColors: 0
   originalAPColor: {r: 0, g: 0.85098046, b: 0.9960785, a: 1}
   overexertedAPColor: {r: 0.5754717, g: 0, b: 0, a: 1}
+  showMysteryIcon: 0
   mysteryIcon: {fileID: 21300014, guid: a1fbd1aaf76d0b94e88551b7c406ee2c, type: 3}

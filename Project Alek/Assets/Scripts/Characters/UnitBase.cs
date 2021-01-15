@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BattleSystem;
 using BattleSystem.Calculators;
 using BattleSystem.Mechanics;
 using UnityEngine;
@@ -10,6 +11,7 @@ using Characters.StatusEffects;
 using DamagePrefab;
 using Kryz.CharacterStats;
 using Sirenix.OdinInspector;
+using UnityEngine.UI;
 
 namespace Characters
 {
@@ -149,7 +151,10 @@ namespace Characters
         }
 
         public Unit Unit { get; set; }
-        
+        public MenuController MenuController { get; set; }
+        public Selectable Selectable { get; set; }
+        public Animator BattlePanelAnim { get; set; }
+
         [HideInInspector] public int maxAP = 6;
 
         [HideInInspector] public Action<UnitBase> onDeath;
@@ -210,10 +215,7 @@ namespace Characters
             }
         }
 
-        public virtual void ReplenishAP() 
-        {
-            CurrentAP += 2;
-        }
+        public virtual void ReplenishAP() => CurrentAP += 2;
 
         #region GetFunctions
 
@@ -257,24 +259,23 @@ namespace Characters
         {
             if (dmg != -1)
             {
-                // TODO: Make the parry damage reduction a variable that can be accessed from inspector
                 if (Unit.parry)
                 {
-                    dmg = (int) (dmg * 0.90f);
+                    dmg = (int) (dmg * BattleManager.Instance.globalVariables.timedDefenseBonus);
                     CurrentHP -= dmg;
                     Unit.parry = false;
                     Unit.onTimedDefense?.Invoke(true);
                 }
                 else if (Unit.timedAttack)
                 {
-                    dmg = (int) (dmg * 1.10f);
+                    dmg = (int) (dmg * BattleManager.Instance.globalVariables.timedAttackBonus);
                     CurrentHP -= dmg;
                     Unit.timedAttack = false;
                 }
                 else CurrentHP -= dmg;
                 
-                if (elementalDmg != null) onElementalDamageReceived?.Invoke(elementalDmg);
-                if (weaponDamageType != null) onWeaponDamageTypeReceived?.Invoke(weaponDamageType);
+                if (elementalDmg) onElementalDamageReceived?.Invoke(elementalDmg);
+                if (weaponDamageType) onWeaponDamageTypeReceived?.Invoke(weaponDamageType);
             }
 
             else
@@ -310,7 +311,6 @@ namespace Characters
         public virtual void Revive(float percentage, int apAmount)
         {
             Unit.status = Status.Normal;
-            //Heal(health.BaseValue * percentage);
             CurrentHP = (int)(health.BaseValue * percentage);
             CurrentAP = apAmount;
             onRevival?.Invoke(this);
@@ -336,6 +336,7 @@ namespace Characters
 
         private void RemoveMods()
         {
+            if (!this) return;
             health = new CharacterStat(health.BaseValue);
             strength = new CharacterStat(strength.BaseValue);
             magic = new CharacterStat(magic.BaseValue);
@@ -347,7 +348,5 @@ namespace Characters
         }
 
         private void OnEnable() => RemoveMods();
-
-        //private void OnDisable() => RemoveMods();
     }
 }

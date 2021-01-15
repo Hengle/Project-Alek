@@ -9,7 +9,6 @@ using BattleSystem.Mechanics;
 using Characters.ElementalTypes;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
-using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.InputSystem;
 
@@ -64,7 +63,6 @@ namespace Characters.Animations
                 missedWindow = true;
                 SendTimedButtonEventResult(false);
                 windowOpen = false;
-                Logger.Log("You missed the window...");
                 return;
             }
 
@@ -81,8 +79,8 @@ namespace Characters.Animations
                 {
                     unit.multiHitTargets.ForEach(t => t.Unit.parry = result);
 
-                    if (result == false) 
-                        unit.multiHitTargets.ForEach(t => t.Unit.onTimedDefense?.Invoke(false));
+                    if (result == false) unit.multiHitTargets.ForEach
+                        (t => t.Unit.onTimedDefense?.Invoke(false));
 
                     return;
                 }
@@ -159,14 +157,11 @@ namespace Characters.Animations
                 if (unit.currentTarget == null) return;
                 if (unit.currentTarget.Unit.isCountered) RecalculateDamage();
                 unit.currentTarget.TakeDamage(unit.currentDamage, ElementalCondition, WeaponDamageTypeCondition);
-                unit.isCrit = false;
                 return;
             }
             
             unit.multiHitTargets.ForEach(t => t.TakeDamage
                 (unit.damageValueList[unit.multiHitTargets.IndexOf(t)], ElementalCondition, WeaponDamageTypeCondition));
-
-            unit.isCrit = false;
         }
 
         [UsedImplicitly] private void RecalculateDamage() 
@@ -190,8 +185,7 @@ namespace Characters.Animations
             if (eventType._eventType != CEventType.CharacterAttacking) return;
 
             var character = (UnitBase) eventType._character;
-            
-            // Fixes issue where the parry button registers for each character in the battle
+
             if (character.Unit != unit) { thisCharacterTurn = false; return;}
 
             thisCharacterTurn = true;

@@ -6,7 +6,6 @@ using Characters;
 using Characters.Abilities;
 using Characters.Animations;
 using Characters.CharacterExtensions;
-using Characters.PartyMembers;
 using Characters.StatusEffects;
 using MEC;
 

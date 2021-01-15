@@ -11,14 +11,14 @@ GameObject:
   - component: {fileID: 2945183222853160254}
   - component: {fileID: 1526218485019349034}
   - component: {fileID: 1526218485019349029}
-  - component: {fileID: 6706325538701338281}
-  - component: {fileID: 4243244753647906}
-  - component: {fileID: 113878214394390572}
   - component: {fileID: 4244821272085735028}
-  - component: {fileID: 915347324334117536}
   - component: {fileID: 3083832404750006354}
   - component: {fileID: 2263040554003969802}
+  - component: {fileID: 915347324334117536}
+  - component: {fileID: 4243244753647906}
+  - component: {fileID: 113878214394390572}
   - component: {fileID: 4282789488221277996}
+  - component: {fileID: 6706325538701338281}
   - component: {fileID: 2865512365133778739}
   - component: {fileID: 1439071686144559760}
   - component: {fileID: 8978146095185980752}
@@ -115,86 +115,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6706325538701338281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526218485019349028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a35d465435e2d2478d6cc7424f3de5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentAbility: {fileID: 0}
-  anim: {fileID: 0}
-  animationHandler: {fileID: 0}
-  outline: {fileID: 0}
-  button: {fileID: 0}
-  commandActionOption: 0
-  maxHealthRef: 1750
-  currentAP: 0
-  actionCost: 0
-  currentDamage: 0
-  commandActionName: 
-  currentTarget: {fileID: 0}
-  status: 0
-  currentState: 0
-  level: 0
-  currentHP: 0
-  conversionLevel: 0
-  conversionFactor: 1
-  currentStrength: 0
-  currentMagic: 0
-  currentAccuracy: 0
-  currentInitiative: 0
-  currentCrit: 0
-  currentDefense: 0
-  currentResistance: 0
-  finalInitVal: 0
-  initModifier: 0
-  statusEffects: []
-  multiHitTargets: []
-  damageValueList: 
-  targetHasCrit: 0
-  isCrit: 0
-  isAbility: 0
-  attackerHasMissed: 0
-  parry: 0
-  timedAttack: 0
-  isCountered: 0
-  clone: {fileID: 0}
-  material: {fileID: 2100000, guid: fbc501589d798c5409325dcdd683585f, type: 2}
-  spriteRenderer: {fileID: 0}
-  parent: {fileID: 0}
---- !u!114 &4243244753647906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526218485019349028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adc95e01ab5ac944496260dc76404184, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isAttacking: 0
-  usingItem: 0
---- !u!114 &113878214394390572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526218485019349028}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d160996f11afd0d468f00cb61d4715e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisUnitBase: {fileID: 0}
 --- !u!65 &4244821272085735028
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -208,20 +128,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.34356612, y: 0.39153838, z: 0.2}
   m_Center: {x: -0.0118201375, y: 0.19290283, z: 0}
---- !u!114 &915347324334117536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526218485019349028}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bcf6c7f1d63ac848a457d3fd271ec3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 1, g: 1, b: 1, a: 1}
-  outlineSize: 1
 --- !u!54 &3083832404750006354
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -303,6 +209,49 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &915347324334117536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526218485019349028}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bcf6c7f1d63ac848a457d3fd271ec3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 1, b: 1, a: 1}
+  outlineSize: 1
+--- !u!114 &4243244753647906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526218485019349028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adc95e01ab5ac944496260dc76404184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAttacking: 0
+  usingItem: 0
+--- !u!114 &113878214394390572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526218485019349028}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d160996f11afd0d468f00cb61d4715e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisUnitBase: {fileID: 0}
+  selectOnLeft: {fileID: 0}
+  selectOnRight: {fileID: 0}
 --- !u!114 &4282789488221277996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +266,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unit: {fileID: 0}
   unitBase: {fileID: 0}
+--- !u!114 &6706325538701338281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526218485019349028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a35d465435e2d2478d6cc7424f3de5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentAbility: {fileID: 0}
+  anim: {fileID: 0}
+  animationHandler: {fileID: 0}
+  outline: {fileID: 0}
+  button: {fileID: 0}
+  commandActionOption: 0
+  maxHealthRef: 1750
+  currentAP: 0
+  actionCost: 0
+  currentDamage: 0
+  commandActionName: 
+  currentTarget: {fileID: 0}
+  status: 0
+  currentState: 0
+  level: 0
+  currentHP: 0
+  conversionLevel: 0
+  conversionFactor: 1
+  currentStrength: 0
+  currentMagic: 0
+  currentAccuracy: 0
+  currentInitiative: 0
+  currentCrit: 0
+  currentDefense: 0
+  currentResistance: 0
+  finalInitVal: 0
+  initModifier: 0
+  statusEffects: []
+  multiHitTargets: []
+  damageValueList: 
+  targetHasCrit: 0
+  isCrit: 0
+  isAbility: 0
+  attackerHasMissed: 0
+  parry: 0
+  timedAttack: 0
+  isCountered: 0
+  clone: {fileID: 0}
+  material: {fileID: 2100000, guid: fbc501589d798c5409325dcdd683585f, type: 2}
+  spriteRenderer: {fileID: 0}
+  parent: {fileID: 0}
 --- !u!114 &2865512365133778739
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -43,13 +43,11 @@ namespace Characters.StatusEffects
 
         public virtual void OnAdded(UnitBase target)
         {
-            Logger.Log($"{target.characterName} is inflicted with {name}.");
             target.onStatusEffectReceived?.Invoke(this);
         }
 
         public virtual void OnRemoval(UnitBase unitBase)
         {
-            Logger.Log($"{unitBase.characterName} is no longer inflicted with {name}.");
             unitBase.onStatusEffectRemoved?.Invoke(this);
         }
         
@@ -58,16 +56,12 @@ namespace Characters.StatusEffects
             foreach (var effect in target._statusEffectResistances.
                 Where(effect => effect.Key._effect == this))
             {
-                Logger.Log($"{target.characterName} resists {name}!");
-                Logger.Log($"Modifier: { 1.0f - (float) effect.Key._modifier / 100}");
                 return 1.0f - (float) effect.Key._modifier / 100;
             }
             
             foreach (var effect in target._statusEffectWeaknesses.
                 Where(effect => effect.Key._effect == this))
             {
-                Logger.Log($"{target.characterName} is weak to {name}!");
-                Logger.Log($"Modifier: { 1.0f + (float) effect.Key._modifier / 100}");
                 return 1.0f + (float) effect.Key._modifier / 100;
             }
 

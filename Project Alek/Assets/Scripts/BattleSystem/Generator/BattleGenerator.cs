@@ -54,11 +54,8 @@ namespace BattleSystem.Generator
         {
             foreach (var member in BattleManager.Instance._membersForThisBattle)
             {
-                SelectableObjectManager._memberSelectable.Add(member.Unit.gameObject);
-                // foreach (var partyMember in BattleManager.Instance._membersForThisBattle)
-                // {
-                //     member.battlePanel.GetComponent<MenuController>()._memberSelectable.Add(partyMember.Unit.gameObject);
-                // }
+                SelectableObjectManager._memberSelectable.Add(member.Selectable);
+                member.MenuController = member.battlePanel.GetComponent<MenuController>();
             }
         }
 
@@ -84,6 +81,8 @@ namespace BattleSystem.Generator
 
             mainMenu.Find("End Turn Button").gameObject.GetComponent<Button>().onClick.AddListener
                 (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnEndTurnButton(); });
+
+            character.BattlePanelAnim = character.battlePanel.GetComponent<Animator>();
             
             character.battlePanel.SetActive(false);
         }
@@ -172,52 +171,8 @@ namespace BattleSystem.Generator
             profileBox.gameObject.GetComponent<ProfileBoxManagerUI>().SetupProfileBox(character);
         }
 
-        #endregion
-
-        #region Spawning
-
-        private void SpawnAndSetupThisMember(PartyMember character, int i)
+        private void SetupCharacterPanel(PartyMember character, int i)
         {
-            var memberGo = Instantiate(character.characterPrefab, database.characterSpawnPoints[i+offset].transform);
-            memberGo.transform.localScale = character.scale;
-
-            // New stuff
-            // var memberClone = Instantiate(character.characterPrefab, database.characterSpawnPoints[i+offset].transform);
-            // memberClone.transform.localScale = memberGo.transform.localScale;
-            // var position = memberClone.transform.position;
-            // memberClone.transform.position = new Vector3(position.x, position.y, position.z - 0.05f);
-            //
-            // foreach (var component in memberClone.GetComponents(typeof(Component)))
-            // {
-            //     switch (component)
-            //     {
-            //         case Transform _:
-            //         case SpriteRenderer _: memberClone.GetComponent<SpriteRenderer>().material = database.outlineMaterial;
-            //             continue;
-            //         case Animator _:
-            //         case SpriteOutline _: memberGo.GetComponent<Unit>().outline = component as SpriteOutline;
-            //             continue;
-            //         case BoxCollider _:    
-            //         case Rigidbody _:    
-            //             continue;
-            //     }
-            //
-            //     Destroy(component);
-            // }
-            //
-            // memberClone.GetComponent<SpriteRenderer>().enabled = false;
-            // memberGo.GetComponent<Unit>().spriteRenderer = memberClone.GetComponent<SpriteRenderer>();
-            memberGo.GetComponent<Unit>().Setup(character);
-
-            var chooseTarget = character.Unit.gameObject.GetComponent<ChooseTarget>();
-            chooseTarget.thisUnitBase = character;
-            chooseTarget.enabled = true;
-
-            SetupBattlePanel(character, i);
-            SetAbilityMenuOptions(character);
-            SetupInventoryDisplay(character, i);
-            SetupProfileBox(character);
-
             var panel = database.characterPanels[i + offset];
             var statusBoxController = panel.transform.Find("Status Effects").GetComponent<StatusEffectControllerUI>();
             
@@ -226,9 +181,66 @@ namespace BattleSystem.Generator
             
             statusBoxController.member = character;
             statusBoxController.Initialize();
+        }
+
+        private static void SetupChooseTargetScript(UnitBase character)
+        {
+            var chooseTarget = character.Unit.gameObject.GetComponent<ChooseTarget>();
+            chooseTarget.thisUnitBase = character;
+            chooseTarget.enabled = true;
+        }
+
+        private void SetupEnemyStatusBox(UnitBase clone, GameObject enemyGo)
+        {
+            var position = enemyGo.transform.position;
+            var newPosition = new Vector3(position.x, position.y + 1.5f, position.z);
+
+            var statusBox = Instantiate(database.enemyStatusBox, newPosition,
+                database.enemyStatusBox.rotation);
+                
+            statusBox.transform.SetParent(clone.Unit.transform);
+                
+            var statusBoxController = statusBox.GetComponentInChildren<StatusEffectControllerUI>();
+            statusBoxController.member = clone;
+            statusBoxController.Initialize();
+        }
+
+        private void SetupEnemyShield(Enemy clone, GameObject enemyGo)
+        {
+            var position = enemyGo.transform.position;
+            var newPosition = new Vector3(position.x, position.y - 1.5f, position.z);
+                
+            var shieldTransform = Instantiate(database.shieldTransform, newPosition,
+                database.shieldTransform.rotation);
+                
+            shieldTransform.transform.SetParent(clone.Unit.transform);
+
+            var shieldController = shieldTransform.GetComponent<BreakSystemControllerUI>();
+            shieldController.enemy = clone;
+            shieldController.Initialize();
+        }
+
+        #endregion
+
+        #region Spawning
+
+        private void SpawnAndSetupThisMember(PartyMember character, int i)
+        {
+            var memberGo = Instantiate(character.characterPrefab, database.characterSpawnPoints[i+offset].transform);
+            memberGo.transform.localScale = character.scale;
+            memberGo.GetComponent<Unit>().Setup(character);
+
+            SetupChooseTargetScript(character);
+            SetupBattlePanel(character, i);
+            SetAbilityMenuOptions(character);
+            SetupInventoryDisplay(character, i);
+            SetupProfileBox(character);
+            SetupCharacterPanel(character, i);
 
             database.closeUpCameras[i + offset].SetActive(true);
             database.criticalCameras[i + offset].SetActive(true);
+
+            character.Selectable = character.Unit.gameObject.GetComponent<Selectable>();
             
             BattleManager.Instance._membersForThisBattle.Add(character);
         }
@@ -238,76 +250,24 @@ namespace BattleSystem.Generator
             var i = 0;
             foreach (var clone in database.enemies.Select(Instantiate))
             {
-                clone.initiative.BaseValue = (int) Random.Range(clone.initiative.BaseValue - 2, clone.initiative.BaseValue + 2); // Temporary until i make a randomizer
+                //TODO: Make randomizer for enemy stats
+                clone.initiative.BaseValue = (int) Random.Range(clone.initiative.BaseValue - 2, clone.initiative.BaseValue + 2);
                 
                 var enemyGo = Instantiate(clone.characterPrefab, database.enemySpawnPoints[i+enemyOffset].transform);
                 enemyGo.name = clone.name;
                 enemyGo.transform.localScale = clone.scale;
-                
-                SelectableObjectManager._enemySelectable.Add(enemyGo);
-                // foreach (var partyMember in BattleManager.Instance._membersForThisBattle)
-                // {
-                //     partyMember.battlePanel.GetComponent<MenuController>()._enemySelectable.Add(enemyGo);
-                // }
 
-                // New stuff
-                // var enemyClone = Instantiate(clone.characterPrefab, database.enemySpawnPoints[i+enemyOffset].transform);
-                // enemyClone.transform.localScale = enemyGo.transform.localScale;
-                // var position2 = enemyClone.transform.position;
-                // enemyClone.transform.position = new Vector3(position2.x, position2.y, position2.z - 0.05f);
-                //
-                // foreach (var component in enemyClone.GetComponents(typeof(Component)))
-                // {
-                //     switch (component)
-                //     {
-                //         case Transform _:
-                //         case SpriteRenderer _: enemyClone.GetComponent<SpriteRenderer>().material = database.outlineMaterial;
-                //             continue;
-                //         case Animator _:
-                //         case SpriteOutline _: enemyGo.GetComponent<Unit>().outline = component as SpriteOutline;
-                //             continue;
-                //         case BoxCollider _:    
-                //         case Rigidbody _:
-                //             continue;
-                //     }
-                //
-                //     Destroy(component);
-                // }
-                //
-                // enemyClone.GetComponent<SpriteRenderer>().enabled = false;
-                // enemyGo.GetComponent<Unit>().spriteRenderer = enemyClone.GetComponent<SpriteRenderer>();
                 enemyGo.GetComponent<Unit>().Setup(clone);
                 
-                var chooseTarget = clone.Unit.gameObject.GetComponent<ChooseTarget>();
-                chooseTarget.thisUnitBase = clone;
-                chooseTarget.enabled = true;
+                clone.Selectable = clone.Unit.gameObject.GetComponent<Selectable>();
+                SelectableObjectManager._enemySelectable.Add(clone.Selectable);
 
+                SetupChooseTargetScript(clone);
                 SetupProfileBox(clone);
-
-                var position = enemyGo.transform.position;
-                var newPosition = new Vector3(position.x, position.y + 1.5f, position.z);
-
-                var statusBox = Instantiate(database.enemyStatusBox, newPosition,
-                    database.enemyStatusBox.rotation);
-                
-                statusBox.transform.SetParent(clone.Unit.transform);
-                
-                var statusBoxController = statusBox.GetComponentInChildren<StatusEffectControllerUI>();
-                statusBoxController.member = clone;
-                statusBoxController.Initialize();
+                SetupEnemyStatusBox(clone, enemyGo);
+                SetupEnemyShield(clone, enemyGo);
 
                 clone.BreakSystem = new BreakSystem(clone, clone.maxShieldCount);
-
-                newPosition = new Vector3(position.x, position.y - 1.5f, position.z);
-                
-                var shieldTransform = Instantiate(database.shieldTransform, newPosition,
-                    database.shieldTransform.rotation);
-                
-                shieldTransform.transform.SetParent(clone.Unit.transform);
-
-                var shieldController = shieldTransform.GetComponent<BreakSystemControllerUI>();
-                shieldController.enemy = clone;
-                shieldController.Initialize();
 
                 enemyGo.GetComponent<WeakAndResUnlockSystem>().Initialize(clone);
 

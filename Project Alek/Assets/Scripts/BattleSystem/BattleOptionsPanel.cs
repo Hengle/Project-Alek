@@ -20,21 +20,21 @@ namespace BattleSystem
             // This is triggered when going back to main menu from the ability menu
             else if (BattleManager.Instance.choosingAbility) 
             {
-                character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.AbilityMenu);
+                character.BattlePanelAnim.SetTrigger(AnimationHandler.AbilityMenu);
                 BattleManager.Instance.choosingAbility = false;
             }
             
             // This is triggered when going back while choosing a target from the ability menu
             else if (BattleManager.Instance.choosingTarget && BattleManager.Instance.choosingAbility) 
             {
-                character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
+                character.BattlePanelAnim.SetTrigger(AnimationHandler.Panel);
                 BattleManager.Instance.choosingTarget = false;
             }
             
             // This is triggered when going back while choosing a target from the main menu (attack button)
             else 
             {
-                character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
+                character.BattlePanelAnim.SetTrigger(AnimationHandler.Panel);
                 BattleManager.Instance.choosingTarget = false;
             }
         }

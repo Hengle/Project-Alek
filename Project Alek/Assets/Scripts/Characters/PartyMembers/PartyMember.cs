@@ -21,9 +21,10 @@ namespace Characters.PartyMembers
         [HideInInspector] public ScriptableObject battleOptionsPanel;
         [HideInInspector] public GameObject battlePanel;
         [HideInInspector] public GameObject inventoryDisplay;
-
-        private GameObject unitGO;
         
+        public CanvasGroup Container => inventoryDisplay.GetComponent<CanvasGroup>();
+        public InventoryDisplay InventoryDisplay => inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
+
         public override void Heal(float amount)
         {
             CurrentHP += (int) amount;
