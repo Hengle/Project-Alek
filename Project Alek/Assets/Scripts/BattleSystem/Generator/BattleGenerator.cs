@@ -115,20 +115,43 @@ namespace BattleSystem.Generator
                 optionButton.GetComponent<InfoBoxUI>().information = 
                     $"{character.abilities[abilityListIndex].description} ( {character.abilities[abilityListIndex].actionCost} AP )";
                 
+                ability.attackState = abilityListIndex+1;
+                character.Unit.animOverride[$"Ability {abilityListIndex+1}"] = ability.animation;
+
                 abilityListIndex++;
 
                 if (buttonIndex != character.abilities.Count - 1) continue;
+                
+                var specialAttackIndex = character.abilities.Count;
+                var specialAttackButton = abilityMenu.GetChild(specialAttackIndex).gameObject;
+                specialAttackButton.GetComponentInChildren<TextMeshProUGUI>().text = character.specialAttack.name;
+                
+                specialAttackButton.transform.Find("Icon").GetComponent<Image>().sprite = character.specialAttack.icon;
+                specialAttackButton.SetActive(true);
+
+                specialAttackButton.GetComponent<Button>().onClick.AddListener
+                    ( delegate { ((BattleOptionsPanel) character.battleOptionsPanel).
+                    GetCommandInformation($"UniversalAction,2,0,{character.CurrentAP}");
+                    character.Unit.specialAttackAP = character.Unit.currentAP;
+                    character.Unit.currentAbility = character.specialAttack; });
+                
+                specialAttackButton.GetComponent<InfoBoxUI>().information = $"{character.specialAttack.description}";
 
                 var firstOption = abilityMenu.GetChild(0).gameObject;
                 var firstOpNav = firstOption.GetComponent<Selectable>().navigation;
-                var nav = optionButton.GetComponent<Selectable>().navigation;
+                //var nav = optionButton.GetComponent<Selectable>().navigation;
+                var nav = specialAttackButton.GetComponent<Selectable>().navigation;
 
                 nav.selectOnDown = firstOption.GetComponent<Button>();
-                optionButton.GetComponent<Selectable>().navigation = nav;
+                //optionButton.GetComponent<Selectable>().navigation = nav;
+                specialAttackButton.GetComponent<Selectable>().navigation = nav;
 
-                firstOpNav.selectOnUp = optionButton.GetComponent<Button>();
+                //firstOpNav.selectOnUp = optionButton.GetComponent<Button>();
+                firstOpNav.selectOnUp = specialAttackButton.GetComponent<Button>();
                 firstOption.GetComponent<Selectable>().navigation = firstOpNav;
             }
+
+            character.Unit.anim.runtimeAnimatorController = character.Unit.animOverride;
         }
 
         private void SetupInventoryDisplay(PartyMember character, int i)
@@ -258,6 +281,13 @@ namespace BattleSystem.Generator
                 enemyGo.transform.localScale = clone.scale;
 
                 enemyGo.GetComponent<Unit>().Setup(clone);
+                
+                for (var a = 0; a < clone.abilities.Count; a++)
+                {
+                    clone.abilities[a].attackState = a+1;
+                    clone.Unit.animOverride[$"Ability {a+1}"] = clone.abilities[a].animation;
+                }
+                clone.Unit.anim.runtimeAnimatorController = clone.Unit.animOverride;
                 
                 clone.Selectable = clone.Unit.gameObject.GetComponent<Selectable>();
                 SelectableObjectManager._enemySelectable.Add(clone.Selectable);

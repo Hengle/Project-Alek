@@ -45,7 +45,7 @@ namespace BattleSystem
             {
                 case 1: Timing.RunCoroutine(CloseRangeAttack());
                     yield break;
-                case 2: // TODO: Item. May not need this depending on how the inventory system integration goes
+                case 2: Timing.RunCoroutine(SpecialAttack());
                     yield break;
                 case 3: // TODO: Flee
                     yield break;
@@ -79,7 +79,7 @@ namespace BattleSystem
         
         private IEnumerator<float> CloseRangeAttack()
         {
-            unitBase.GetDamageValues();
+            unitBase.GetDamageValues(false);
 
             yield return Timing.WaitUntilDone(MoveToTargetPosition());
 
@@ -100,7 +100,7 @@ namespace BattleSystem
         
         private IEnumerator<float> RangedAttack()
         {
-            unitBase.GetDamageValues();
+            unitBase.GetDamageValues(false);
 
             var originalRotation = unitBase.LookAtTarget();
 
@@ -111,11 +111,35 @@ namespace BattleSystem
             BattleManager.Instance.performingAction = false;
         }
 
+        private IEnumerator<float> SpecialAttack()
+        {
+            Logger.Log("Special Attack!");
+            unitBase.GetDamageValues(true);
+
+            yield return Timing.WaitUntilDone(MoveToTargetPosition());
+            
+            yield return Timing.WaitUntilDone(ExecuteSpecialAttack());
+            
+            yield return Timing.WaitUntilDone(MoveBackToOriginPosition());
+
+            BattleManager.Instance.performingAction = false;
+        }
+
+        private IEnumerator<float> ExecuteSpecialAttack()
+        {
+            unit.anim.SetTrigger(AnimationHandler.SpecialAttackTrigger);
+            yield return Timing.WaitForOneFrame;
+            yield return Timing.WaitUntilFalse(() => animHandler.performingSpecial);
+        }
+
         private IEnumerator<float> ExecuteAttack()
         {
-            unit.anim.SetInteger(AnimationHandler.PhysAttackState, unit.isAbility?
-                unit.currentAbility.attackState : 0);
-            unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
+            // unit.anim.SetInteger(AnimationHandler.PhysAttackState, unit.isAbility?
+            //     unit.currentAbility.attackState : 0);
+            // unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
+
+            if (!unit.isAbility) unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
+            else unit.anim.Play($"Ability {unit.currentAbility.attackState}", 0);
 
             yield return Timing.WaitForOneFrame;
             yield return Timing.WaitUntilFalse(() => animHandler.isAttacking);

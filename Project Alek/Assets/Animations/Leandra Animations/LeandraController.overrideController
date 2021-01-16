@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: LeandraController
+  m_Controller: {fileID: 9100000, guid: 163604032a76c9a4da486b1c555e8ff5, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 1ef0206257f3e784093b33f88ad6cd5e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 86b95cea58dfce248bdae953250c6d48, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d73a292185fba4b4c9aab290d8fb4dc7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3eacae6a0e2c9eb47a813237e647da8e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d0ec610916458af42b21e62ac99e544f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5070385bf97923847920a7fd6b1c9459, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 8b1882d96efef7243af948919b6c4b11, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3503d0629ad2d0b4fb93d1294c395ef8, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b9c557ef09b769a4ea44b3f0489e0a82, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4246845ed7e595f40b849fe12524ca13, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 1a6f76197433fe140bd2e74bf4cb31bb, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cf0c2f0be9094564793968d1948f375a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 64870bbb765db6d45b1ca8fa18e87408, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0fa4a4bee725d594bbd17e984990d7fc, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6d0d2f37faaf5ae43942aae5bee5aa6f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ff9cce7f5d8a00943a7fb0d1cb8be575, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4e9518d5325acbf4986ba55c1922c156, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4731647c40326794886dee3a654d1f8b, type: 2}

@@ -19,6 +19,7 @@ MonoBehaviour:
   actionCost: 2
   damageMultiplier: 0.7
   attackState: 2
+  animation: {fileID: 7400000, guid: 96958b3234baf644bad6ce69e5379a35, type: 2}
   isMultiTarget: 0
   description: Attack twice at 70% strength
   hasElemental: 0

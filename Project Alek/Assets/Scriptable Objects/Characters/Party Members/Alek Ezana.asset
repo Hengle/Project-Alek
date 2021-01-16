@@ -97,21 +97,15 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: damageTypeWeaknesses
+    - Name: _damageTypeWeaknesses
       Entry: 7
-      Data: 7|System.Collections.Generic.Dictionary`2[[MoreMountains.InventoryEngine.WeaponDamageType,
+      Data: 7|System.Collections.Generic.Dictionary`2[[Characters.WeaponDamageType,
         ProjectAlek],[System.Boolean, mscorlib]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 8|System.Collections.Generic.EnumEqualityComparer`1[[MoreMountains.InventoryEngine.WeaponDamageType,
+      Data: 8|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.WeaponDamageType,
         ProjectAlek]], mscorlib
     - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
       Entry: 8
       Data: 
     - Name: 
@@ -122,11 +116,11 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 8
-      Data: 
-    - Name: testing
-      Entry: 6
       Data: 
     - Name: onDeath
+      Entry: 6
+      Data: 
+    - Name: onRevival
       Entry: 6
       Data: 
     - Name: onHpValueChanged
@@ -182,7 +176,6 @@ MonoBehaviour:
   abilities:
   - {fileID: 11400000, guid: 5c5fa03193734104c98ec2f8d6543cfa, type: 2}
   - {fileID: 11400000, guid: 6c09b3176a3b3e54ca0946ee458d3fa6, type: 2}
-  - {fileID: 11400000, guid: 1306999bff8e7c14892abd85b0b028c7, type: 2}
   maxAP: 6
   positionInParty: 2
   weaponInventory: {fileID: 5917402227159465644, guid: 1d94ebccb9928a445b4a7e1dbacb9d53,
@@ -190,6 +183,7 @@ MonoBehaviour:
   armorInventory: {fileID: 5917402227159465644, guid: 73160e3893c2b7843b6db9576b98ff50,
     type: 3}
   equippedWeapon: {fileID: 11400000, guid: ec069cf5eefe2b542948c9199f54518c, type: 2}
+  specialAttack: {fileID: 11400000, guid: 5b5f83dbd20860548ae3ccecafe7b008, type: 2}
   battleOptionsPanel: {fileID: 0}
   battlePanel: {fileID: 0}
   inventoryDisplay: {fileID: 0}

@@ -102,7 +102,7 @@ Animator:
   m_GameObject: {fileID: 1109450531332189788}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8ccb4071208506647972a058f2e0fbfd, type: 2}
+  m_Controller: {fileID: 22100000, guid: 17394cd1dcacf4343a03da5f01ac70f7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentAbility: {fileID: 0}
   anim: {fileID: 0}
+  animOverride: {fileID: 0}
   animationHandler: {fileID: 0}
   outline: {fileID: 0}
   button: {fileID: 0}
@@ -137,32 +138,20 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   status: 0
   currentState: 0
-  level: 23
   currentHP: 20000
   conversionLevel: 0
   conversionFactor: 1
-  currentStrength: 25
-  currentMagic: 13
-  currentAccuracy: 36
-  currentInitiative: 2
-  currentCrit: 0
-  currentDefense: 21
-  currentResistance: 0
   finalInitVal: 0
   initModifier: 0
   statusEffects: []
   multiHitTargets: []
   damageValueList: 
   targetHasCrit: 0
-  isCrit: 0
   isAbility: 0
   attackerHasMissed: 0
   parry: 0
   timedAttack: 0
   isCountered: 0
-  clone: {fileID: 0}
-  material: {fileID: 0}
-  spriteRenderer: {fileID: 0}
   parent: {fileID: 0}
 --- !u!114 &8809269014472016896
 MonoBehaviour:
@@ -191,6 +180,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisUnitBase: {fileID: 0}
+  selectOnLeft: {fileID: 0}
+  selectOnRight: {fileID: 0}
 --- !u!65 &2191956961784660796
 BoxCollider:
   m_ObjectHideFlags: 0

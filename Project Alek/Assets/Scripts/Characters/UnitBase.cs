@@ -154,6 +154,8 @@ namespace Characters
         public MenuController MenuController { get; set; }
         public Selectable Selectable { get; set; }
         public Animator BattlePanelAnim { get; set; }
+        public UnitStates CurrentState => Unit.currentState;
+        public List<StatusEffect> StatusEffects => Unit.statusEffects;
 
         [HideInInspector] public int maxAP = 6;
 
@@ -201,10 +203,6 @@ namespace Characters
             switch (state)
             {
                 case UnitStates.Checkmate:
-                    var checkmate = CreateInstance<Checkmate>();
-                    checkmate.name = "Checkmate";
-                    checkmate.OnAdded(this);
-                    Unit.statusEffects.Add(checkmate);
                     break;
                 case UnitStates.Susceptible:
                     // Do something
@@ -221,14 +219,17 @@ namespace Characters
 
         public Ability GetAndSetAbility(int index) => abilities[index];
 
-        public void GetDamageValues()
+        public void GetDamageValues(bool isSpecial)
         {
-            if (Unit.isAbility && Unit.currentAbility.isMultiTarget)
+            if (isSpecial)
+            {
+                Unit.currentDamage = Calculator.CalculateSpecialAttackDamage(this, Unit.currentTarget);
+            }
+            else if (Unit.isAbility && Unit.currentAbility.isMultiTarget)
             {
                 Unit.multiHitTargets.ForEach(t => Unit.damageValueList.Add
                     (Calculator.CalculateAttackDamage(this, t)));
             }
-
             else
             {
                 Unit.currentTarget = NullCheck(Unit.currentTarget);
@@ -296,6 +297,20 @@ namespace Characters
             if (Unit.targetHasCrit) Unit.targetHasCrit = false;
             
             if (dmg == -1 && Unit.currentHP > 0) return;
+            if (Unit.currentHP > 0) Unit.anim.SetTrigger(AnimationHandler.HurtTrigger);
+            else Die();
+        }
+
+        public void TakeDamageSpecial(int dmg)
+        {
+            CurrentHP -= dmg;
+            
+            var position = Unit.gameObject.transform.position;
+            var newPosition = new Vector3(position.x, position.y + 3, position.z);
+            
+            var damage = DamagePrefabManager.Instance.ShowDamage(dmg, false);
+            damage.transform.position = newPosition;
+            
             if (Unit.currentHP > 0) Unit.anim.SetTrigger(AnimationHandler.HurtTrigger);
             else Die();
         }

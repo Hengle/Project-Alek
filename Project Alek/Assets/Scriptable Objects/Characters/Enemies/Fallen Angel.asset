@@ -142,6 +142,9 @@ MonoBehaviour:
     - Name: onDeath
       Entry: 6
       Data: 
+    - Name: onRevival
+      Entry: 6
+      Data: 
     - Name: onHpValueChanged
       Entry: 6
       Data: 
@@ -191,8 +194,6 @@ MonoBehaviour:
   magicMight: 11
   weaponAccuracy: 80
   weaponCriticalChance: 5
-  abilities:
-  - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
-  - {fileID: 11400000, guid: e558d404ab0ced340bb9314e1e677569, type: 2}
+  abilities: []
   maxAP: 6
   maxShieldCount: 2

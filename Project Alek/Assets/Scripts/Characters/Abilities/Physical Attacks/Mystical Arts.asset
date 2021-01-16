@@ -19,6 +19,7 @@ MonoBehaviour:
   actionCost: 1
   damageMultiplier: 1.15
   attackState: 2
+  animation: {fileID: 7400000, guid: 2c4f6f69ff7015b48b774c5d2f6a2c25, type: 2}
   isMultiTarget: 0
   description: OoOoH MaAgic
   hasElemental: 0

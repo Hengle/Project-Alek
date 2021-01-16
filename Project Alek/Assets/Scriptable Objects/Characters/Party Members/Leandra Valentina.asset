@@ -15,7 +15,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 0}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -97,21 +98,15 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: damageTypeWeaknesses
+    - Name: _damageTypeWeaknesses
       Entry: 7
-      Data: 7|System.Collections.Generic.Dictionary`2[[MoreMountains.InventoryEngine.WeaponDamageType,
+      Data: 7|System.Collections.Generic.Dictionary`2[[Characters.WeaponDamageType,
         ProjectAlek],[System.Boolean, mscorlib]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 8|System.Collections.Generic.EnumEqualityComparer`1[[MoreMountains.InventoryEngine.WeaponDamageType,
+      Data: 8|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.WeaponDamageType,
         ProjectAlek]], mscorlib
     - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
       Entry: 8
       Data: 
     - Name: 
@@ -122,12 +117,60 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 8
-      Data: 
-    - Name: testing
-      Entry: 6
       Data: 
     - Name: onDeath
       Entry: 6
+      Data: 
+    - Name: onRevival
+      Entry: 7
+      Data: 9|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 10|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BattleSystem.BattleManager, ProjectAlek
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: AddToBattle
+    - Name: delegateType
+      Entry: 7
+      Data: 11|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 12|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 13|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Characters.UnitBase, ProjectAlek
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
     - Name: onHpValueChanged
       Entry: 6
@@ -180,11 +223,7 @@ MonoBehaviour:
   weaponAccuracy: 85
   weaponCriticalChance: 3
   abilities:
-  - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}
-  - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
-  - {fileID: 11400000, guid: 1306999bff8e7c14892abd85b0b028c7, type: 2}
   - {fileID: 11400000, guid: 29e5f87674d2cba4b9282fcecc4fe2ca, type: 2}
-  - {fileID: 11400000, guid: e558d404ab0ced340bb9314e1e677569, type: 2}
   maxAP: 6
   positionInParty: 3
   weaponInventory: {fileID: 2363339618168879057, guid: 3b3a696505e47b2409e90ac00429c493,

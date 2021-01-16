@@ -119,21 +119,15 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: damageTypeWeaknesses
+    - Name: _damageTypeWeaknesses
       Entry: 7
-      Data: 7|System.Collections.Generic.Dictionary`2[[MoreMountains.InventoryEngine.WeaponDamageType,
+      Data: 7|System.Collections.Generic.Dictionary`2[[Characters.WeaponDamageType,
         ProjectAlek],[System.Boolean, mscorlib]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 8|System.Collections.Generic.EnumEqualityComparer`1[[MoreMountains.InventoryEngine.WeaponDamageType,
+      Data: 8|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.WeaponDamageType,
         ProjectAlek]], mscorlib
     - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
       Entry: 8
       Data: 
     - Name: 
@@ -144,11 +138,11 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 8
-      Data: 
-    - Name: testing
-      Entry: 6
       Data: 
     - Name: onDeath
+      Entry: 6
+      Data: 
+    - Name: onRevival
       Entry: 6
       Data: 
     - Name: onHpValueChanged
@@ -202,6 +196,5 @@ MonoBehaviour:
   weaponCriticalChance: 4
   abilities:
   - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}
-  - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
   maxAP: 6
   maxShieldCount: 2

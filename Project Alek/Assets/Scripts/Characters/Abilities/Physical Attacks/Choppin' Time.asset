@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe0785f3733400495ac195eb98ba710, type: 3}
+  m_Name: Choppin' Time
+  m_EditorClassIdentifier: 
+  abilityType: 0
+  damageType: 2
+  targetOptions: 0
+  icon: {fileID: 21300000, guid: 03380d547f7aba4499043568e5fddb25, type: 3}
+  actionCost: 1
+  damageMultiplier: 1.5
+  attackState: 2
+  animation: {fileID: 7400000, guid: 9bf41f8d088290442ac4200980a4b1b4, type: 2}
+  isMultiTarget: 0
+  description: A special combo attack that can put a weakened enemy in checkmate!
+  hasElemental: 0
+  elementalType: {fileID: 0}
+  elementalScalar: 0
+  hasStatusEffect: 1
+  statusEffects:
+  - {fileID: 11400000, guid: 36cd878da8e17a84ba8777f48afcd570, type: 2}
+  chanceOfInfliction: 1

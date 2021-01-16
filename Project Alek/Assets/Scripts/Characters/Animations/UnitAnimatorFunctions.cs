@@ -25,6 +25,8 @@ namespace Characters.Animations
         [ShowInInspector] private bool missedWindow;
         [ShowInInspector] private bool hitWindow;
 
+        private int timedAttackCount;
+
         private ElementalType ElementalCondition => unit != null && unit.isAbility && unit.currentAbility.hasElemental?
             unit.currentAbility.elementalType : null;
 
@@ -33,17 +35,27 @@ namespace Characters.Animations
                 ? ((PartyMember) unit.parent).equippedWeapon.damageType
                 : null;
 
+        private bool CheckmateCondition => 
+            timedAttackCount == 5 &&
+            unit.currentTarget.CurrentState == UnitStates.Weakened && 
+            !unit.currentTarget.StatusEffects.Contains(unit.currentAbility.statusEffects[0]);
+
         private void Awake()
         {
             unit = GetComponent<Unit>();
             GameEventsManager.AddListener(this);
         }
 
-        private void OnEnable() => BattleInput._controls.Battle.Parry.performed += OnParry;
-        
+        private void OnEnable()
+        {
+            BattleInput._controls.Battle.Parry.performed += OnTimedButtonPress;
+            BattleInput._controls.Battle.Parry.performed += OnTimedButtonPressSpecialAttack;
+        }
+
         private void OnDisable()
         {
-            BattleInput._controls.Battle.Parry.performed -= OnParry;
+            BattleInput._controls.Battle.Parry.performed -= OnTimedButtonPress;
+            BattleInput._controls.Battle.Parry.performed -= OnTimedButtonPressSpecialAttack;
             GameEventsManager.RemoveListener(this);
         }
 
@@ -54,9 +66,10 @@ namespace Characters.Animations
             hitWindow = false;
         }
 
-        private void OnParry(InputAction.CallbackContext ctx)
+        private void OnTimedButtonPress(InputAction.CallbackContext ctx)
         {
             if (!thisCharacterTurn) return;
+            if (unit.animationHandler.performingSpecial) return;
             if (missedWindow || hitWindow) return;
             if (!windowOpen && !unit.animationHandler.isAttacking) return;
             if (!windowOpen && unit.animationHandler.isAttacking) {
@@ -69,6 +82,16 @@ namespace Characters.Animations
             SendTimedButtonEventResult(true);
             hitWindow = true;
             windowOpen = false;
+        }
+
+        private void OnTimedButtonPressSpecialAttack(InputAction.CallbackContext ctx)
+        {
+            if (!thisCharacterTurn) return;
+            if (!unit.animationHandler.performingSpecial) return;
+            if (!windowOpen) return;
+
+            timedAttackCount += 1;
+            Logger.Log("Hit Window! Count: " + timedAttackCount);
         }
 
         private void SendTimedButtonEventResult(bool result)
@@ -106,6 +129,13 @@ namespace Characters.Animations
         // TODO: Separate window into a normal window and a perfect parry window (only for timed defense)
         [UsedImplicitly] private void OpenParryWindow() => windowOpen = true;
 
+        [UsedImplicitly]
+        private void CloseParryWindow()
+        {
+            windowOpen = false;
+            unit.currentTarget.Unit.anim.SetTrigger(AnimationHandler.HurtTrigger);
+        }
+
         [UsedImplicitly] private void TryToInflictStatusEffect()
         {
             if (!unit.isAbility || !unit.currentAbility.hasStatusEffect) return;
@@ -123,7 +153,7 @@ namespace Characters.Animations
 
                     where !(randomValue > unit.currentAbility.chanceOfInfliction * modifier) select effect)
                 {
-                    if (effect as Checkmate && unit.currentTarget.Unit.currentState != UnitStates.Weakened) continue;
+                    //if (effect as Checkmate && unit.currentTarget.Unit.currentState != UnitStates.Weakened) continue;
                     effect.OnAdded(unit.currentTarget);
                     unit.currentTarget.Unit.statusEffects.Add(effect);
                 }
@@ -178,6 +208,31 @@ namespace Characters.Animations
             
             if (unit.currentTarget == null) return;
             unit.currentDamage = Calculator.CalculateAttackDamage(unitBase, unit.currentTarget);
+        }
+
+        [UsedImplicitly] private void PerformSpecialAttack()
+        {
+            double timedAttackModifier = 1 + timedAttackCount / 10f;
+            Logger.Log($"Timed Attack Modifier: {timedAttackModifier}");
+            
+            var apUsedModifier = 1.0f + unit.specialAttackAP * 5f / 100f;
+            Logger.Log($"AP Modifier: {apUsedModifier}");
+
+            var finalDamageAmt = unit.currentDamage * timedAttackModifier;
+            finalDamageAmt *= apUsedModifier;
+            
+            Logger.Log($"Final Damage: {(int)finalDamageAmt}");
+
+            unit.currentTarget.TakeDamageSpecial((int)finalDamageAmt);
+
+            if (CheckmateCondition)
+            {
+                var checkmate = unit.currentAbility.statusEffects[0];
+                checkmate.OnAdded(unit.currentTarget);
+                unit.currentTarget.StatusEffects.Add(checkmate);
+            }
+            
+            timedAttackCount = 0;
         }
 
         public void OnGameEvent(CharacterEvents eventType)

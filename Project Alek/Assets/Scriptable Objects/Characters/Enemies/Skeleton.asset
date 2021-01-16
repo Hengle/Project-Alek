@@ -253,5 +253,6 @@ MonoBehaviour:
   weaponCriticalChance: 5
   abilities:
   - {fileID: 11400000, guid: 8697ec229a0734b4b9c69d6087505ba9, type: 2}
+  - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
   maxAP: 6
   maxShieldCount: 4

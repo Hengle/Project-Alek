@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Characters.Abilities;
 using UnityEngine;
-using Characters.Animations;
 using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
 
@@ -17,6 +16,9 @@ namespace Characters.PartyMembers
         public Inventory armorInventory;
         [TabGroup("Tabs","Inventory")] [SerializeField]
         public WeaponItem equippedWeapon;
+
+        [TabGroup("Tabs", "Abilities")] [InlineEditor]
+        public Ability specialAttack;
 
         [HideInInspector] public ScriptableObject battleOptionsPanel;
         [HideInInspector] public GameObject battlePanel;

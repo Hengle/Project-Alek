@@ -21,6 +21,8 @@ namespace Characters
 
         [HideInInspector] public Ability currentAbility;
         [HideInInspector] public Animator anim;
+        public AnimatorOverrideController animOverride;
+        
         [HideInInspector] public AnimationHandler animationHandler;
         [HideInInspector] public SpriteOutline outline;
         [HideInInspector] public Button button;
@@ -29,6 +31,7 @@ namespace Characters
         [HideInInspector] public int maxHealthRef;
         [HideInInspector] public int currentAP;
         [HideInInspector] public int actionCost;
+        [HideInInspector] public int specialAttackAP;
         [HideInInspector] public int currentDamage;
         [HideInInspector] public string commandActionName;
 
@@ -90,6 +93,7 @@ namespace Characters
         private void Awake()
         {
             anim = GetComponent<Animator>();
+            animOverride = (AnimatorOverrideController) anim.runtimeAnimatorController;
             outline = GetComponent<SpriteOutline>();
             button = GetComponent<Button>();
             animationHandler = GetComponent<AnimationHandler>();

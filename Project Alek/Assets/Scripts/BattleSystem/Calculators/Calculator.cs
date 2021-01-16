@@ -33,6 +33,18 @@ namespace BattleSystem.Calculators
             return CalculateFinalDamageAmount(damageDealer, target, totalDamage, critical);
         }
 
+        public static int CalculateSpecialAttackDamage(UnitBase damageDealer, UnitBase target)
+        {
+            float dealerDamage = (int) damageDealer.strength.Value * damageDealer.weaponMight;
+            var targetDefense = (int) target.defense.Value * (target.level / 2);
+
+            var totalDamage = (int) (dealerDamage * damageDealer.Unit.currentAbility.damageMultiplier) - targetDefense;
+
+            totalDamage = CalculateBoostFactor(damageDealer, target, totalDamage);
+            
+            return CalculateFinalDamageAmount(damageDealer, target, totalDamage, false);
+        }
+
         private static int CalculateAbilityDamage(UnitBase damageDealer, UnitBase target)
         {
             var ability = damageDealer.Unit.currentAbility;

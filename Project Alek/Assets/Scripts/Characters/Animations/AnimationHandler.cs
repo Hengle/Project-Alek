@@ -5,6 +5,7 @@ namespace Characters.Animations
     public class AnimationHandler : MonoBehaviour
     {
         public static readonly int AttackTrigger = Animator.StringToHash("Attack");
+        public static readonly int SpecialAttackTrigger = Animator.StringToHash("Special Attack");
         public static readonly int HurtTrigger = Animator.StringToHash("Hurt");
         public static readonly int DeathTrigger = Animator.StringToHash("Dead");
         public static readonly int RecoverTrigger = Animator.StringToHash("Recover");
@@ -20,5 +21,6 @@ namespace Characters.Animations
         
         public bool isAttacking;
         public bool usingItem;
+        public bool performingSpecial;
     }
 }

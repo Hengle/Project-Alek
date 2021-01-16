@@ -19,6 +19,7 @@ MonoBehaviour:
   actionCost: 3
   damageMultiplier: 1.25
   attackState: 2
+  animation: {fileID: 7400000, guid: d7a773f0ccbb9b148a099bf86e9b70b7, type: 2}
   isMultiTarget: 0
   description: Big Brain plays
   hasElemental: 0

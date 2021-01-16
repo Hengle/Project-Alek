@@ -19,6 +19,7 @@ MonoBehaviour:
   actionCost: 1
   damageMultiplier: 1.25
   attackState: 2
+  animation: {fileID: 7400000, guid: 3de788add6cbf3a43b987122257ccdbb, type: 2}
   isMultiTarget: 0
   description: You got the juice??
   hasElemental: 1

@@ -19,11 +19,12 @@ MonoBehaviour:
   actionCost: 1
   damageMultiplier: 0.9
   attackState: 2
+  animation: {fileID: 7400000, guid: 10468bef8c71fa54581a422a1686b6db, type: 2}
   isMultiTarget: 0
   description: Drain all of the enemie's strength
   hasElemental: 0
   elementalType: {fileID: 0}
-  elementalScaler: 0
+  elementalScalar: 0
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: 5b78aaf94fa3c224c82d9dc641cad28e, type: 2}

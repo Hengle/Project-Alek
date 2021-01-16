@@ -9,5 +9,6 @@ public class Logger : MonoBehaviour
 
         private void Update() => displayLogs = showLogs;
 
-        public static void Log(string message) { if (displayLogs) Debug.Log(message); }
+        public static void Log(string message)
+        { if (displayLogs) Debug.Log(message); }
 }

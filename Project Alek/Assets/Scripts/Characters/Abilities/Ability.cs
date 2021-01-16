@@ -7,12 +7,12 @@ using Characters.StatusEffects;
 namespace Characters.Abilities
 {
     public enum AbilityType { CloseRange, Ranged, NonAttack }
-    public enum DamageType { Physical, Magic }
+    public enum DamageType { Physical, Magic, Special }
     public enum TargetOptions { Enemies = 0, PartyMembers = 1, Both = 2 }
     public abstract class Ability : ScriptableObject
     {
         #region FieldsAndProperties
-
+        
         [ReadOnly, HideLabel, VerticalGroup("Icon/Info"), LabelWidth(120)] 
         public AbilityType abilityType;
 
@@ -27,6 +27,7 @@ namespace Characters.Abilities
         public Sprite icon;
 
         [Range(1,6)] [VerticalGroup("Icon/Info"), LabelWidth(120)]
+        [HideIf(nameof(damageType), DamageType.Special)]
         public int actionCost;
 
         [Range(0,3)] [VerticalGroup("Icon/Info"), LabelWidth(120)]
@@ -34,9 +35,14 @@ namespace Characters.Abilities
         public float damageMultiplier = 1f;
 
         [VerticalGroup("Icon/Info"), LabelWidth(120)]
+        [HideIf(nameof(damageType), DamageType.Special)]
         public int attackState = 2;
 
+        [VerticalGroup("Icon/Info"), LabelWidth(120), InlineEditor(InlineEditorModes.LargePreview)]
+        public AnimationClip animation;
+
         [VerticalGroup("Icon/Info"), LabelWidth(120)]
+        [HideIf(nameof(damageType), DamageType.Special)]
         public bool isMultiTarget;
 
         [Space(15)] [TextArea(5,15)] [Title("Description"), HideLabel]
@@ -44,6 +50,7 @@ namespace Characters.Abilities
 
         [Space(15)] [Title("Elements"), LabelWidth(120)]
         [HideIf(nameof(abilityType), AbilityType.NonAttack)]
+        [HideIf(nameof(damageType), DamageType.Special)]
         public bool hasElemental;
         
         [ShowIf(nameof(hasElemental)), InlineEditor, LabelWidth(120)]

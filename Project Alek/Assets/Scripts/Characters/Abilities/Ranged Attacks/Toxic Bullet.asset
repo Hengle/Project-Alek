@@ -19,6 +19,7 @@ MonoBehaviour:
   actionCost: 1
   damageMultiplier: 1.05
   attackState: 2
+  animation: {fileID: 7400000, guid: 10468bef8c71fa54581a422a1686b6db, type: 2}
   isMultiTarget: 0
   description: A bullet with a high chance of inflicting poison
   hasElemental: 0

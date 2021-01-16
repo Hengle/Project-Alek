@@ -106,7 +106,7 @@ Animator:
   m_GameObject: {fileID: 1526218485019349028}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 32845bf34f4ac4a4a98fbeefb0de62e5, type: 2}
+  m_Controller: {fileID: 22100000, guid: 1647280e04625e440b25e30c6e57db80, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -280,6 +280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentAbility: {fileID: 0}
   anim: {fileID: 0}
+  animOverride: {fileID: 0}
   animationHandler: {fileID: 0}
   outline: {fileID: 0}
   button: {fileID: 0}
@@ -292,32 +293,20 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   status: 0
   currentState: 0
-  level: 0
   currentHP: 0
   conversionLevel: 0
   conversionFactor: 1
-  currentStrength: 0
-  currentMagic: 0
-  currentAccuracy: 0
-  currentInitiative: 0
-  currentCrit: 0
-  currentDefense: 0
-  currentResistance: 0
   finalInitVal: 0
   initModifier: 0
   statusEffects: []
   multiHitTargets: []
   damageValueList: 
   targetHasCrit: 0
-  isCrit: 0
   isAbility: 0
   attackerHasMissed: 0
   parry: 0
   timedAttack: 0
   isCountered: 0
-  clone: {fileID: 0}
-  material: {fileID: 2100000, guid: fbc501589d798c5409325dcdd683585f, type: 2}
-  spriteRenderer: {fileID: 0}
   parent: {fileID: 0}
 --- !u!114 &6910842410655718549
 MonoBehaviour:
