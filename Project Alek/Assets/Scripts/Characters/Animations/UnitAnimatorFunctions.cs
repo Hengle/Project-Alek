@@ -153,7 +153,6 @@ namespace Characters.Animations
 
                     where !(randomValue > unit.currentAbility.chanceOfInfliction * modifier) select effect)
                 {
-                    //if (effect as Checkmate && unit.currentTarget.Unit.currentState != UnitStates.Weakened) continue;
                     effect.OnAdded(unit.currentTarget);
                     unit.currentTarget.Unit.statusEffects.Add(effect);
                 }

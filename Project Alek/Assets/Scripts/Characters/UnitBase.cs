@@ -156,6 +156,14 @@ namespace Characters
         public Animator BattlePanelAnim { get; set; }
         public UnitStates CurrentState => Unit.currentState;
         public List<StatusEffect> StatusEffects => Unit.statusEffects;
+        public UnitBase CurrentTarget => Unit.currentTarget;
+
+        public Ability CurrentAbility
+        {
+            get => Unit. currentAbility;
+            set => Unit.currentAbility = value;
+        }
+        public AnimationHandler AnimationHandler => Unit.animationHandler;
 
         [HideInInspector] public int maxAP = 6;
 
@@ -171,7 +179,7 @@ namespace Characters
 
         public bool IsDead => Unit.status == Status.Dead;
 
-        protected int CurrentHP 
+        public int CurrentHP 
         {
             get => Unit.currentHP;
             set 
@@ -317,6 +325,7 @@ namespace Characters
 
         protected virtual void Die()
         {
+            //Logger.Log("Dying!");
             Unit.status = Status.Dead;
             CurrentAP = 0;
             onDeath?.Invoke(this);
@@ -361,6 +370,18 @@ namespace Characters
             resistance = new CharacterStat(resistance.BaseValue);
             criticalChance = new CharacterStat(criticalChance.BaseValue);
         }
+
+        // public void Construct(int hp, int str, int mag, int acc, int init, int def, int res, int crit)
+        // {
+        //     health = new CharacterStat(hp);
+        //     strength = new CharacterStat(str);
+        //     magic = new CharacterStat(mag);
+        //     accuracy = new CharacterStat(acc);
+        //     initiative = new CharacterStat(init);
+        //     defense = new CharacterStat(def);
+        //     resistance = new CharacterStat(res);
+        //     criticalChance = new CharacterStat(crit);
+        // }
 
         private void OnEnable() => RemoveMods();
     }

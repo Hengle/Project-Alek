@@ -47,7 +47,7 @@ namespace BattleSystem
         [ReadOnly] public bool choosingOption;
         [ReadOnly] public bool choosingTarget;
         [ReadOnly] public bool usingItem;
-        [ReadOnly] public bool performingAction;
+        public bool performingAction;
         [ReadOnly] public bool endThisMembersTurn;
         [ReadOnly] public bool choosingAbility;
         [ReadOnly] public bool canGiveCommand = true;

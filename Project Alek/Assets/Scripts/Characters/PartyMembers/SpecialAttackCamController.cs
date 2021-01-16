@@ -4,10 +4,9 @@ using UnityEngine;
 
 namespace Characters.PartyMembers
 {
-    //TODO: Could potentially re-purpose this for special attacks
-    public class CriticalCamController : MonoBehaviour
+    public class SpecialAttackCamController : MonoBehaviour
     {
-        public static Action<UnitBase> _onCritical;
+        public static Action<UnitBase> _onSpecialAttack;
         public static Action<UnitBase> _disableCam;
         
         private CinemachineVirtualCamera cvCamera;
@@ -18,7 +17,7 @@ namespace Characters.PartyMembers
             cvCamera = GetComponent<CinemachineVirtualCamera>();
             unit = transform.parent.GetComponentInChildren<Unit>();
             
-            _onCritical += OnCritical;
+            _onSpecialAttack += OnSpecialAttack;
             _disableCam += DisableCam;
             cvCamera.enabled = false;
         }
@@ -29,7 +28,7 @@ namespace Characters.PartyMembers
             cvCamera.enabled = false;
         }
 
-        private void OnCritical(UnitBase unitBase)
+        private void OnSpecialAttack(UnitBase unitBase)
         {
             if (unitBase.Unit != unit) return;
             cvCamera.enabled = true;

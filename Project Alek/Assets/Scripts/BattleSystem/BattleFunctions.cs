@@ -6,6 +6,7 @@ using Characters;
 using Characters.Abilities;
 using Characters.Animations;
 using Characters.CharacterExtensions;
+using Characters.PartyMembers;
 using Characters.StatusEffects;
 using MEC;
 
@@ -13,139 +14,140 @@ namespace BattleSystem
 {
     public class BattleFunctions : MonoBehaviour, IGameEventListener<CharacterEvents>
     {
-        #region FieldsAndProperties
-        
-        private Vector3 originPosition, targetPosition;
-        private AnimationHandler animHandler;
-        private UnitBase unitBase;
-        private UnitBase currentTarget;
-        private Unit unit;
-        
-        #endregion
-
         private void Start() => GameEventsManager.AddListener(this);
 
         private void GetCommand(UnitBase unitBaseParam)
         {
             BattleManager.Instance.performingAction = true;
-            
-            unitBase = unitBaseParam;
-            unit = unitBase.Unit;
-            currentTarget = unitBase.Unit.currentTarget;
-            animHandler = unitBase.Unit.animationHandler;
-            
-            StartCoroutine(unitBase.Unit.commandActionName);
+            StartCoroutine(unitBaseParam.Unit.commandActionName, unitBaseParam);
         }
 
         #region ImplicitFunctions
         
-        [UsedImplicitly] private IEnumerator UniversalAction()
+        [UsedImplicitly] private IEnumerator UniversalAction(UnitBase dealer)
         {
-            switch (unitBase.Unit.commandActionOption)
+            switch (dealer.Unit.commandActionOption)
             {
-                case 1: Timing.RunCoroutine(CloseRangeAttack());
+                case 1: Timing.RunCoroutine(CloseRangeAttack(dealer));
                     yield break;
-                case 2: Timing.RunCoroutine(SpecialAttack());
+                case 2: Timing.RunCoroutine(SpecialAttack(dealer));
                     yield break;
                 case 3: // TODO: Flee
                     yield break;
             }
         }
         
-        [UsedImplicitly] private IEnumerator AbilityAction()
+        [UsedImplicitly] private IEnumerator AbilityAction(UnitBase dealer)
         {
-            if (unit.currentAbility == null)
-                unit.currentAbility = unitBase.GetAndSetAbility(unit.commandActionOption);
+            if (dealer.CurrentAbility == null) dealer.CurrentAbility =
+                dealer.GetAndSetAbility(dealer.Unit.commandActionOption);
             
-            unit.isAbility = true;
-
-            switch (unit.currentAbility.abilityType)
+            dealer.Unit.isAbility = true;
+            
+            switch (dealer.CurrentAbility.abilityType)
             {
-                case AbilityType.CloseRange: Timing.RunCoroutine(CloseRangeAttack());
+                case AbilityType.CloseRange: Timing.RunCoroutine(CloseRangeAttack(dealer));
                     yield break;
-                case AbilityType.Ranged: Timing.RunCoroutine(RangedAttack());
+                case AbilityType.Ranged: Timing.RunCoroutine(RangedAttack(dealer));
                     yield break;
-                case AbilityType.NonAttack: Logger.Log("Non-Attack: " + unit.currentAbility.name);
-                    BattleManager.Instance.performingAction = false;
+                case AbilityType.NonAttack: BattleManager.Instance.performingAction = false;
                     yield break;
                 default: Logger.Log("This message should not be displaying...");
                     yield break;
             }
         }
         
+        //TODO: SpellAction
+        
         #endregion
 
         #region AttackCoroutines
         
-        private IEnumerator<float> CloseRangeAttack()
+        private static IEnumerator<float> CloseRangeAttack(UnitBase dealer)
         {
-            unitBase.GetDamageValues(false);
+            dealer.GetDamageValues(false);
+            
+            var parent = dealer.Unit.transform.parent.transform;
+            var originPosition = parent.position;
+            
+            var position = dealer.CurrentTarget.Unit.transform.position;
 
-            yield return Timing.WaitUntilDone(MoveToTargetPosition());
+            var targetPosition = dealer.id == CharacterType.PartyMember? 
+                new Vector3(position.x, originPosition.y, position.z - 2) :
+                new Vector3(position.x, position.y, position.z + 2);
 
-            yield return Timing.WaitUntilDone(ExecuteAttack());
+            yield return Timing.WaitUntilDone(MoveToTargetPosition(parent, targetPosition));
 
-            if (unitBase.IsDead)
+            yield return Timing.WaitUntilDone(ExecuteAttack(dealer));
+            
+            if (dealer.IsDead)
             {
-                unit.DestroyGO();
-                Timing.RunCoroutine(MoveBackToOriginPosition());
+                dealer.Unit.DestroyGO();
                 BattleManager.Instance.performingAction = false;
+                SetBackToOriginPosition(parent, originPosition);
                 yield break;
             }
 
-            yield return Timing.WaitUntilDone(MoveBackToOriginPosition());
+            yield return Timing.WaitUntilDone(MoveBackToOriginPosition(parent, originPosition));
 
             BattleManager.Instance.performingAction = false;
         }
         
-        private IEnumerator<float> RangedAttack()
+        private static IEnumerator<float> RangedAttack(UnitBase dealer)
         {
-            unitBase.GetDamageValues(false);
+            dealer.GetDamageValues(false);
+            
+            var originalRotation = dealer.LookAtTarget();
 
-            var originalRotation = unitBase.LookAtTarget();
+            yield return Timing.WaitUntilDone(ExecuteAttack(dealer));
 
-            yield return Timing.WaitUntilDone(ExecuteAttack());
-
-            unit.transform.rotation = originalRotation;
+            dealer.Unit.transform.rotation = originalRotation;
             
             BattleManager.Instance.performingAction = false;
         }
 
-        private IEnumerator<float> SpecialAttack()
+        private static IEnumerator<float> SpecialAttack(UnitBase dealer)
         {
-            Logger.Log("Special Attack!");
-            unitBase.GetDamageValues(true);
+            SpecialAttackCamController._onSpecialAttack?.Invoke(dealer);
+            dealer.GetDamageValues(true);
+            
+            var parent = dealer.Unit.transform.parent.transform;
+            var originPosition = parent.position;
+            
+            var position = dealer.CurrentTarget.Unit.transform.position;
 
-            yield return Timing.WaitUntilDone(MoveToTargetPosition());
+            var targetPosition = dealer.id == CharacterType.PartyMember? 
+                new Vector3(position.x, originPosition.y, position.z - 2) :
+                new Vector3(position.x, position.y, position.z + 2);
+
+            yield return Timing.WaitUntilDone(MoveToTargetPosition(parent, targetPosition));
             
-            yield return Timing.WaitUntilDone(ExecuteSpecialAttack());
+            yield return Timing.WaitUntilDone(ExecuteSpecialAttack(dealer));
             
-            yield return Timing.WaitUntilDone(MoveBackToOriginPosition());
+            yield return Timing.WaitUntilDone(MoveBackToOriginPosition(parent, originPosition));
 
             BattleManager.Instance.performingAction = false;
         }
 
-        private IEnumerator<float> ExecuteSpecialAttack()
+        private static IEnumerator<float> ExecuteSpecialAttack(UnitBase dealer)
         {
-            unit.anim.SetTrigger(AnimationHandler.SpecialAttackTrigger);
+            dealer.Unit.anim.SetTrigger(AnimationHandler.SpecialAttackTrigger);
             yield return Timing.WaitForOneFrame;
-            yield return Timing.WaitUntilFalse(() => animHandler.performingSpecial);
+            yield return Timing.WaitUntilFalse(() => dealer.AnimationHandler.performingSpecial);
+            SpecialAttackCamController._disableCam?.Invoke(dealer);
         }
 
-        private IEnumerator<float> ExecuteAttack()
+        private static IEnumerator<float> ExecuteAttack(UnitBase dealer)
         {
-            // unit.anim.SetInteger(AnimationHandler.PhysAttackState, unit.isAbility?
-            //     unit.currentAbility.attackState : 0);
-            // unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
-
-            if (!unit.isAbility) unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
-            else unit.anim.Play($"Ability {unit.currentAbility.attackState}", 0);
+            if (!dealer.Unit.isAbility) dealer.Unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
+            else dealer.Unit.anim.Play($"Ability {dealer.CurrentAbility.attackState}", 0);
 
             yield return Timing.WaitForOneFrame;
-            yield return Timing.WaitUntilFalse(() => animHandler.isAttacking);
-            yield return Timing.WaitUntilFalse(() => unit.isCountered);
 
-            yield return Timing.WaitUntilDone(unitBase.InflictOnTargets
+            yield return Timing.WaitUntilFalse(() => dealer.AnimationHandler.isAttacking);
+            yield return Timing.WaitUntilFalse(() => dealer.Unit.isCountered);
+            
+            if (!dealer.IsDead) yield return Timing.WaitUntilDone(dealer.InflictOnTargets
                 (Rate.AfterAttacked, 0.5f, false));
         }
         
@@ -153,17 +155,8 @@ namespace BattleSystem
 
         #region MovementCoroutines
 
-        private IEnumerator<float> MoveToTargetPosition()
+        private static IEnumerator<float> MoveToTargetPosition(Transform parent, Vector3 targetPosition)
         {
-            var parent = unit.transform.parent.transform;
-            originPosition = parent.position;
-            
-            var position = currentTarget.Unit.transform.position;
-
-            targetPosition = unitBase.id == CharacterType.PartyMember? 
-                new Vector3(position.x, originPosition.y, position.z - 2) :
-                new Vector3(position.x, position.y, position.z + 2);
-
             while (parent.position != targetPosition)
             {
                 parent.position = Vector3.MoveTowards(parent.position, targetPosition, 
@@ -173,10 +166,8 @@ namespace BattleSystem
             }
         }
 
-        private IEnumerator<float> MoveBackToOriginPosition()
+        private static IEnumerator<float> MoveBackToOriginPosition(Transform parent, Vector3 originPosition)
         {
-            var parent = unit.transform.parent.transform;
-            
             while (parent.position != originPosition)
             {
                 parent.position = Vector3.MoveTowards(parent.position, originPosition,
@@ -184,6 +175,11 @@ namespace BattleSystem
                 
                 yield return Timing.WaitForOneFrame;
             }
+        }
+        
+        private static void SetBackToOriginPosition(Transform parent, Vector3 originPosition)
+        {
+            parent.position = originPosition;
         }
         
         #endregion

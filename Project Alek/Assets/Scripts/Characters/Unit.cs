@@ -168,10 +168,6 @@ namespace Characters
                 
                 case CEventType.CharacterAttacking: outline.enabled = false;
                     break;
-                
-                case CEventType.CharacterDeath when eventType._character == parent && eventType._character as Enemy:
-                    DestroyGO();
-                    break;
             }
         }
     }
