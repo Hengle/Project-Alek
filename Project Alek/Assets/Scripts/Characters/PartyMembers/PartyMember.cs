@@ -8,7 +8,11 @@ namespace Characters.PartyMembers
     [CreateAssetMenu(fileName = "New Party Member", menuName = "Character/Party Member")]
     public class PartyMember : UnitBase
     {
-        [Range(0,4), VerticalGroup("Basic/Info")] public int positionInParty;
+        [Range(0,4), VerticalGroup("Basic/Info")]
+        public int positionInParty;
+
+        [Range(0, 1), VerticalGroup("Basic/Info")]
+        public float specialAttackBarVal;
 
         [TabGroup("Tabs","Inventory")]
         public Inventory weaponInventory;

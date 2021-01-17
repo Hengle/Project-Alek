@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Checkmate
   m_EditorClassIdentifier: 
   effectType: 3
-  icon: {fileID: 6377904230404883206, guid: 7d6682148f995b048b3f815f933cdbe6, type: 3}
+  icon: {fileID: 6377904230404883206, guid: dc13acd1ae40ced45b13d9f3ff23730e, type: 3}
   rateOfInfliction: 
   color: {r: 0, g: 0, b: 0, a: 0}
-  turnDuration: 3
+  turnDuration: 1
+  shortStatName: 
   buffs: 0
   buffedStat: 0
   buffMultiplier: 0

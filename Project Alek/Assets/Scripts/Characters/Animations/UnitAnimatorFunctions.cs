@@ -8,7 +8,6 @@ using BattleSystem.Calculators;
 using BattleSystem.Mechanics;
 using Characters.ElementalTypes;
 using Characters.PartyMembers;
-using Characters.StatusEffects;
 using Sirenix.OdinInspector;
 using UnityEngine.InputSystem;
 
@@ -129,8 +128,7 @@ namespace Characters.Animations
         // TODO: Separate window into a normal window and a perfect parry window (only for timed defense)
         [UsedImplicitly] private void OpenParryWindow() => windowOpen = true;
 
-        [UsedImplicitly]
-        private void CloseParryWindow()
+        [UsedImplicitly] private void CloseParryWindow()
         {
             windowOpen = false;
             unit.currentTarget.Unit.anim.SetTrigger(AnimationHandler.HurtTrigger);
@@ -239,7 +237,6 @@ namespace Characters.Animations
             if (eventType._eventType != CEventType.CharacterAttacking) return;
 
             var character = (UnitBase) eventType._character;
-
             if (character.Unit != unit) { thisCharacterTurn = false; return;}
 
             thisCharacterTurn = true;

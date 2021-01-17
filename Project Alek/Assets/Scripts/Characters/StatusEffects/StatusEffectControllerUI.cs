@@ -26,7 +26,6 @@ namespace Characters.StatusEffects
             if (effect.icon != null && alreadyHasIcon == null) {
                 var iconGO = Instantiate(effect.icon, transform, false);
                 iconGO.name = effect.name;
-
                 iconGO.GetComponent<StatusEffectTimer>().SetTimer(effect, member);
             }
             
@@ -34,20 +33,6 @@ namespace Characters.StatusEffects
                 alreadyHasIcon.gameObject.SetActive(true);
                 alreadyHasIcon.GetComponent<StatusEffectTimer>().SetTimer(effect, member);
             }
-            
-            // else if (effect.GetType() == typeof(Checkmate))
-            // {
-            //     if (alreadyHasIcon != null)
-            //     {
-            //         alreadyHasIcon.gameObject.SetActive(true);
-            //         alreadyHasIcon.GetComponent<StatusEffectTimer>().SetTimer(effect, member);
-            //     }
-            //     
-            //     var iconGO = Instantiate(checkmate.icon, transform, false);
-            //     iconGO.name = effect.name;
-            //     effect.turnDuration = checkmate.turnDuration;
-            //     iconGO.GetComponent<StatusEffectTimer>().SetTimer(effect, member);
-            // }
         }
 
         private void RemoveStatusEffectIcon(StatusEffect effect)

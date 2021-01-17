@@ -2,8 +2,6 @@
 using Characters;
 using Characters.ElementalTypes;
 using Characters.StatusEffects;
-using MoreMountains.InventoryEngine;
-using Sirenix.Utilities;
 
 namespace BattleSystem.Mechanics
 {
@@ -42,14 +40,13 @@ namespace BattleSystem.Mechanics
         private void Reset()
         {
             currentState = UnitStates.Normal;
-            unitBase.Unit.currentState = currentState;
+            unitBase.Unit.currentState = UnitStates.Normal;
 
             currentShieldCount = maxShieldCount;
             newRoundCondition = false;
             enemyTurnCondition = false;
             
             unitBase.onShieldValueChanged?.Invoke(currentShieldCount);
-            Logger.Log($"{unitBase.characterName}'s shield has been reset");
         }
         
         private void EvaluateStateOnRemoval(StatusEffect effect)
@@ -84,7 +81,6 @@ namespace BattleSystem.Mechanics
                     unitBase.Unit.status = Status.UnableToPerformAction;
 
                     unitBase.OnNewState(currentState);
-                    Logger.Log($"{unitBase.characterName} is in checkmate!");
                     return;
                 
                 case UnitStates.Normal: return;
@@ -116,11 +112,7 @@ namespace BattleSystem.Mechanics
             currentShieldCount -= 1;
             unitBase.onShieldValueChanged?.Invoke(currentShieldCount);
 
-            Logger.Log($"{unitBase.characterName}'s shield has been lowered! Shield count: {currentShieldCount}");
-
             if (currentShieldCount > 0) return;
-            
-            Logger.Log($"{unitBase.characterName}'s shield has been broken!");
 
             currentState = UnitStates.Weakened;
             unitBase.Unit.currentState = currentState;

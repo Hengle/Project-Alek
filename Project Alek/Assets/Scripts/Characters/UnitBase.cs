@@ -149,13 +149,23 @@ namespace Characters
                 return Color.green;
             }
         }
-
+        
         public Unit Unit { get; set; }
+        
         public MenuController MenuController { get; set; }
+        
         public Selectable Selectable { get; set; }
+        
         public Animator BattlePanelAnim { get; set; }
-        public UnitStates CurrentState => Unit.currentState;
+        
+        public UnitStates CurrentState
+        {
+            get => Unit.currentState;
+            set => Unit.currentState = value;
+        }
+        
         public List<StatusEffect> StatusEffects => Unit.statusEffects;
+        
         public UnitBase CurrentTarget => Unit.currentTarget;
 
         public Ability CurrentAbility
@@ -163,6 +173,7 @@ namespace Characters
             get => Unit. currentAbility;
             set => Unit.currentAbility = value;
         }
+        
         public AnimationHandler AnimationHandler => Unit.animationHandler;
 
         [HideInInspector] public int maxAP = 6;
@@ -179,7 +190,7 @@ namespace Characters
 
         public bool IsDead => Unit.status == Status.Dead;
 
-        public int CurrentHP 
+        protected int CurrentHP 
         {
             get => Unit.currentHP;
             set 
@@ -370,18 +381,6 @@ namespace Characters
             resistance = new CharacterStat(resistance.BaseValue);
             criticalChance = new CharacterStat(criticalChance.BaseValue);
         }
-
-        // public void Construct(int hp, int str, int mag, int acc, int init, int def, int res, int crit)
-        // {
-        //     health = new CharacterStat(hp);
-        //     strength = new CharacterStat(str);
-        //     magic = new CharacterStat(mag);
-        //     accuracy = new CharacterStat(acc);
-        //     initiative = new CharacterStat(init);
-        //     defense = new CharacterStat(def);
-        //     resistance = new CharacterStat(res);
-        //     criticalChance = new CharacterStat(crit);
-        // }
 
         private void OnEnable() => RemoveMods();
     }

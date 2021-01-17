@@ -114,7 +114,6 @@ namespace BattleSystem
             if (eventType._eventType != CEventType.CharacterTurn && eventType._eventType != CEventType.EndOfTurn) return;
             if (eventType._character.GetType() != typeof(PartyMember)) return;
 
-            // May be able to delete this
             var character = (PartyMember) eventType._character;
             if (character.MenuController == this)
             {

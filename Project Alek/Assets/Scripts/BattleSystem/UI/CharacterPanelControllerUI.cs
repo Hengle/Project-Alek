@@ -16,6 +16,7 @@ namespace BattleSystem.UI
 
         private Image fillRectImage;
         [SerializeField] private Image icon;
+        [SerializeField] private Image specialAttackBar;
         [SerializeField] private TextMeshProUGUI nameUGUI;
         [SerializeField] private TextMeshProUGUI healthUGUI;
         [SerializeField] private Slider slider;
@@ -57,6 +58,7 @@ namespace BattleSystem.UI
             member.Unit.onDmgValueChanged += OnDmgBoostValueChanged;
             member.Unit.onDefValueChanged += OnDefBoostValueChanged;
             member.onApValChanged += OnAPValueChanged;
+            member.Unit.onSpecialBarValChanged += OnSpecialBarValueChanged;
             
             currentAP = member.maxAP;
             apBarAnim.SetTrigger(AnimationHandler.maxAP);
@@ -69,6 +71,11 @@ namespace BattleSystem.UI
             fillRectImage.color = member.Color;
             slider.value = member.Unit.currentHP;
             healthUGUI.text = $"HP: {member.Unit.currentHP}";
+        }
+
+        private void OnSpecialBarValueChanged(float value)
+        {
+            specialAttackBar.fillAmount = value;
         }
 
         private void OnAPValueChanged(int val)
@@ -135,6 +142,7 @@ namespace BattleSystem.UI
             member.Unit.onDmgValueChanged -= OnDmgBoostValueChanged;
             member.Unit.onDefValueChanged -= OnDefBoostValueChanged;
             member.onApValChanged -= OnAPValueChanged;
+            member.Unit.onSpecialBarValChanged -= OnSpecialBarValueChanged;
         }
     }
 }

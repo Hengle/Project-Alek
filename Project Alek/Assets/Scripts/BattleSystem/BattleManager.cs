@@ -182,7 +182,7 @@ namespace BattleSystem
             yield return Timing.WaitUntilFalse(() => performingAction);
 
             yield return Timing.WaitUntilDone(character.InflictStatus
-                (Rate.AfterEveryAction, 1, true));
+                (Rate.AfterEveryAction, 0.5f, true));
 
             skip_command_execution:
             if (PartyOrEnemyTeamIsDead) goto end_of_turn;

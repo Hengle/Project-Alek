@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using BattleSystem;
 using BattleSystem.Mechanics;
-using Characters.ElementalTypes;
 using UnityEngine;
 using Characters.PartyMembers;
 using Sirenix.OdinInspector;
@@ -41,12 +39,5 @@ namespace Characters
             CurrentHP += (int) amount;
             CurrentAP -= 1;
         }
-
-        // protected override void Die()
-        // {
-        //     base.Die();
-        //     
-        //     Unit.gameObject.SetActive(false);
-        // }
     }
 }

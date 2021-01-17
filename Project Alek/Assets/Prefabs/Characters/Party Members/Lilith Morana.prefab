@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 1210678444631986092}
   - component: {fileID: 7595982145995434554}
   - component: {fileID: 4818271881561875000}
+  - component: {fileID: 4211647962204276898}
   m_Layer: 0
   m_Name: Lilith Morana
   m_TagString: Untagged
@@ -173,6 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttacking: 0
   usingItem: 0
+  performingSpecial: 0
 --- !u!114 &113878214394390572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,6 +306,7 @@ MonoBehaviour:
   maxHealthRef: 1750
   currentAP: 0
   actionCost: 0
+  specialAttackAP: 0
   currentDamage: 0
   commandActionName: 
   currentTarget: {fileID: 0}
@@ -384,3 +387,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df53782f636bd84b92acd514842ad3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4211647962204276898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526218485019349028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e36ef3e8b6ba4c6f807a19528d220b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  member: {fileID: 0}
+  specialBarVal: 0

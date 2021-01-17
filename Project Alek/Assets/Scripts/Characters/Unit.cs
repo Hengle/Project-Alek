@@ -64,7 +64,9 @@ namespace Characters
         #endregion
 
         #region OtherFieldsAndProperies
-        
+
+        public Action onSpecialAttack;
+        public Action<float> onSpecialBarValChanged;
         public Action<bool> onTimedAttack;
         public Action<bool> onTimedDefense;
         public Action<int, bool> onDmgValueChanged;

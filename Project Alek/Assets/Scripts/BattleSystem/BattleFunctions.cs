@@ -16,6 +16,8 @@ namespace BattleSystem
     {
         private void Start() => GameEventsManager.AddListener(this);
 
+        private void OnDisable() => GameEventsManager.RemoveListener(this);
+
         private void GetCommand(UnitBase unitBaseParam)
         {
             BattleManager.Instance.performingAction = true;
@@ -109,6 +111,7 @@ namespace BattleSystem
         private static IEnumerator<float> SpecialAttack(UnitBase dealer)
         {
             SpecialAttackCamController._onSpecialAttack?.Invoke(dealer);
+            dealer.Unit.onSpecialAttack?.Invoke();
             dealer.GetDamageValues(true);
             
             var parent = dealer.Unit.transform.parent.transform;

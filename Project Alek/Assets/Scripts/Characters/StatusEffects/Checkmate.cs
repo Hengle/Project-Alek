@@ -1,4 +1,5 @@
 ﻿using BattleSystem;
+using BattleSystem.Mechanics;
 using Kryz.CharacterStats;
 using UnityEngine;
 
@@ -22,6 +23,8 @@ namespace Characters.StatusEffects
         {
             Logger.Log($"{unitBase.characterName} is no longer in {name}.");
             unitBase.onStatusEffectRemoved?.Invoke(this);
+
+            unitBase.Unit.status = Status.Normal;
             
             RemoveModifiers(unitBase);
             CharacterEvents.Trigger(CEventType.StatChange, unitBase);

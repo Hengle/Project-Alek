@@ -127,6 +127,7 @@ namespace BattleSystem.Generator
                 specialAttackButton.GetComponentInChildren<TextMeshProUGUI>().text = character.specialAttack.name;
                 
                 specialAttackButton.transform.Find("Icon").GetComponent<Image>().sprite = character.specialAttack.icon;
+                specialAttackButton.AddComponent<SpecialAttackButtonUI>().member = character;
                 specialAttackButton.SetActive(true);
 
                 specialAttackButton.GetComponent<Button>().onClick.AddListener
@@ -259,6 +260,8 @@ namespace BattleSystem.Generator
             SetupInventoryDisplay(character, i);
             SetupProfileBox(character);
             SetupCharacterPanel(character, i);
+            
+            memberGo.GetComponent<SpecialAttackSystem>().Setup(character);
 
             database.closeUpCameras[i + offset].SetActive(true);
             database.criticalCameras[i + offset].SetActive(true);
