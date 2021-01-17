@@ -27,19 +27,19 @@ namespace BattleSystem.Mechanics
         }
 
         private bool CanDecreaseConversion =>
-            thisUnitTurn && BattleManager.Instance.choosingAbility && BattleInput._controls.Menu.LeftSelect.triggered
+            thisUnitTurn && BattleManager.Instance.choosingAbility && BattleInput._controls.Battle.LeftSelect.triggered
             && unit.conversionLevel > 0;
 
         private bool CanIncreaseConversion =>
-            thisUnitTurn && BattleManager.Instance.choosingAbility && BattleInput._controls.Menu.RightSelect.triggered
+            thisUnitTurn && BattleManager.Instance.choosingAbility && BattleInput._controls.Battle.RightSelect.triggered
             && unit.conversionLevel < MaxConversionAmount;
 
         private void Start()
         {
             unit = GetComponent<Unit>();
 
-            BattleInput._controls.Menu.LeftSelect.performed += AdjustConversionAmount;
-            BattleInput._controls.Menu.RightSelect.performed += AdjustConversionAmount;
+            BattleInput._controls.Battle.LeftSelect.performed += AdjustConversionAmount;
+            BattleInput._controls.Battle.RightSelect.performed += AdjustConversionAmount;
             GameEventsManager.AddListener(this);
         }
 
@@ -64,8 +64,8 @@ namespace BattleSystem.Mechanics
 
         private void OnDisable()
         {
-            BattleInput._controls.Menu.LeftSelect.performed -= AdjustConversionAmount;
-            BattleInput._controls.Menu.RightSelect.performed -= AdjustConversionAmount;
+            BattleInput._controls.Battle.LeftSelect.performed -= AdjustConversionAmount;
+            BattleInput._controls.Battle.RightSelect.performed -= AdjustConversionAmount;
             GameEventsManager.RemoveListener(this);
         }
 

@@ -47,14 +47,14 @@ namespace Characters.Animations
 
         private void OnEnable()
         {
-            BattleInput._controls.Battle.Parry.performed += OnTimedButtonPress;
-            BattleInput._controls.Battle.Parry.performed += OnTimedButtonPressSpecialAttack;
+            BattleInput._controls.Battle.Confirm.performed += OnTimedButtonPress;
+            BattleInput._controls.Battle.Confirm.performed += OnTimedButtonPressSpecialAttack;
         }
 
         private void OnDisable()
         {
-            BattleInput._controls.Battle.Parry.performed -= OnTimedButtonPress;
-            BattleInput._controls.Battle.Parry.performed -= OnTimedButtonPressSpecialAttack;
+            BattleInput._controls.Battle.Confirm.performed -= OnTimedButtonPress;
+            BattleInput._controls.Battle.Confirm.performed -= OnTimedButtonPressSpecialAttack;
             GameEventsManager.RemoveListener(this);
         }
 

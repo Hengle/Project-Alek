@@ -1,12 +1,108 @@
 fileFormatVersion: 2
 guid: b40ed3ad82dfedc45b4e48a42c755ba8
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -6092811790993438455
+    second: Alek_Walk_Right_0
+  - first:
+      213: 175885535579114538
+    second: Alek_Walk_Right_1
+  - first:
+      213: -5441660228498067485
+    second: Alek_Walk_Right_2
+  - first:
+      213: 2276953155900637179
+    second: Alek_Walk_Right_3
+  - first:
+      213: 1196316168738733190
+    second: Alek_Walk_Right_4
+  - first:
+      213: 7069015533468159082
+    second: Alek_Walk_Right_5
+  - first:
+      213: -4065793203138870264
+    second: Alek_Walk_Right_6
+  - first:
+      213: 2502494716029837801
+    second: Alek_Walk_Right_7
+  - first:
+      213: -6593496603518886981
+    second: Alek_Walk_Left_0
+  - first:
+      213: 7844785782235640036
+    second: Alek_Walk_Left_1
+  - first:
+      213: 8986469047527545812
+    second: Alek_Walk_Left_2
+  - first:
+      213: -3495401991751730541
+    second: Alek_Walk_Left_3
+  - first:
+      213: 2871431132813017396
+    second: Alek_Walk_Left_4
+  - first:
+      213: -2444961212274859565
+    second: Alek_Walk_Left_5
+  - first:
+      213: -8794023554814806954
+    second: Alek_Walk_Left_6
+  - first:
+      213: 5057518443409563757
+    second: Alek_Walk_Left_7
+  - first:
+      213: -7948361810023272552
+    second: Alek_Run_Right_0
+  - first:
+      213: 6880499136931202401
+    second: Alek_Run_Right_1
+  - first:
+      213: 2974291355110533040
+    second: Alek_Run_Right_2
+  - first:
+      213: 2793291116412809328
+    second: Alek_Run_Right_3
+  - first:
+      213: 2551134271892474104
+    second: Alek_Run_Right_4
+  - first:
+      213: 4796445414091357086
+    second: Alek_Run_Right_5
+  - first:
+      213: -101847854770806506
+    second: Alek_Run_Right_6
+  - first:
+      213: 4951429606727232210
+    second: Alek_Run_Right_7
+  - first:
+      213: -8716288726618318227
+    second: Alek_Run_Left_0
+  - first:
+      213: -9134823116689918065
+    second: Alek_Run_Left_1
+  - first:
+      213: -3409442997730106487
+    second: Alek_Run_Left_2
+  - first:
+      213: -7222643800939756547
+    second: Alek_Run_Left_3
+  - first:
+      213: 7066103392128668066
+    second: Alek_Run_Left_4
+  - first:
+      213: -8241264996930073712
+    second: Alek_Run_Left_5
+  - first:
+      213: 5749215995657365286
+    second: Alek_Run_Left_6
+  - first:
+      213: 5360507789942666768
+    second: Alek_Run_Left_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -31,27 +127,27 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: 2
     mipBias: -100
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   maxTextureSizeSet: 0
@@ -119,13 +215,697 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Alek_Walk_Right_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 201
+        width: 24
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 909468a05fbf17ba0800000000000000
+      internalID: -6092811790993438455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Walk_Right_1
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 201
+        width: 20
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2c825576fed07200800000000000000
+      internalID: 175885535579114538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Walk_Right_2
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 201
+        width: 16
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ef60047ad65b74b0800000000000000
+      internalID: -5441660228498067485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Walk_Right_3
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 201
+        width: 16
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bff79abd4dc599f10800000000000000
+      internalID: 2276953155900637179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Walk_Right_4
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 201
+        width: 23
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68c7ab4973b2a9010800000000000000
+      internalID: 1196316168738733190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Walk_Right_5
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 201
+        width: 16
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6c8618ac203a1260800000000000000
+      internalID: 7069015533468159082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Walk_Right_6
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 201
+        width: 13
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 804c5bc8f966397c0800000000000000
+      internalID: -4065793203138870264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Walk_Right_7
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 201
+        width: 19
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e120497fa5aab220800000000000000
+      internalID: 2502494716029837801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Walk_Left_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 137
+        width: 24
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbb138fd5c13f74a0800000000000000
+      internalID: -6593496603518886981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Walk_Left_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 137
+        width: 20
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e0b0310b174edc60800000000000000
+      internalID: 7844785782235640036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Walk_Left_2
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 137
+        width: 16
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4db1ce28cf956bc70800000000000000
+      internalID: 8986469047527545812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Walk_Left_3
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 137
+        width: 16
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39af17e6866dd7fc0800000000000000
+      internalID: -3495401991751730541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Walk_Left_4
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 137
+        width: 23
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 431415cd66f59d720800000000000000
+      internalID: 2871431132813017396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Walk_Left_5
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 137
+        width: 16
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d1afbc3bb0c11ed0800000000000000
+      internalID: -2444961212274859565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Walk_Left_6
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 137
+        width: 13
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65478dc6b2a55f580800000000000000
+      internalID: -8794023554814806954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Walk_Left_7
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 137
+        width: 19
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d60e9687a3aef2640800000000000000
+      internalID: 5057518443409563757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Run_Right_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 78
+        width: 32
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89f2847cb0fb1b190800000000000000
+      internalID: -7948361810023272552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Run_Right_1
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 73
+        width: 30
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1658a26b2817c7f50800000000000000
+      internalID: 6880499136931202401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Run_Right_2
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 73
+        width: 24
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b7e0ef9a3ec64920800000000000000
+      internalID: 2974291355110533040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Run_Right_3
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 73
+        width: 16
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0703a0c8873c3c620800000000000000
+      internalID: 2793291116412809328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Run_Right_4
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 78
+        width: 30
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f8c9729a13776320800000000000000
+      internalID: 2551134271892474104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Run_Right_5
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 73
+        width: 29
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9b777301b5609240800000000000000
+      internalID: 4796445414091357086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Run_Right_6
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 73
+        width: 22
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 611204b6ae9269ef0800000000000000
+      internalID: -101847854770806506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Run_Right_7
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 73
+        width: 19
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2da24575ef207b440800000000000000
+      internalID: 4951429606727232210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Run_Left_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 14
+        width: 30
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6a5c228595890780800000000000000
+      internalID: -8716288726618318227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Run_Left_1
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 9
+        width: 30
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f87bba316c69a3180800000000000000
+      internalID: -9134823116689918065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Run_Left_2
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 9
+        width: 24
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 983aa5658a93fa0d0800000000000000
+      internalID: -3409442997730106487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Run_Left_3
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 9
+        width: 16
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df30fc1fab304cb90800000000000000
+      internalID: -7222643800939756547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Run_Left_4
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 14
+        width: 30
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a1130ae897df0260800000000000000
+      internalID: 7066103392128668066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Run_Left_5
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 9
+        width: 29
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09b4f1e362521ad80800000000000000
+      internalID: -8241264996930073712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Run_Left_6
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 9
+        width: 22
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 627a626cc7159cf40800000000000000
+      internalID: 5749215995657365286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alek_Run_Left_7
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 9
+        width: 19
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0163f3b0f69546a40800000000000000
+      internalID: 5360507789942666768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 92830849c6acfeb49b18d1f020bed3cc
     internalID: 0
     vertices: []
     indices: 

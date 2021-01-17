@@ -15,8 +15,7 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 0}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -122,55 +121,7 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: onRevival
-      Entry: 7
-      Data: 9|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: target
-      Entry: 10
-      Data: 0
-    - Name: declaringType
-      Entry: 7
-      Data: 10|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: BattleSystem.BattleManager, ProjectAlek
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: methodName
-      Entry: 1
-      Data: AddToBattle
-    - Name: delegateType
-      Entry: 7
-      Data: 11|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: signature
-      Entry: 7
-      Data: 12|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 13|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: Characters.UnitBase, ProjectAlek
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
+      Entry: 6
       Data: 
     - Name: onHpValueChanged
       Entry: 6
@@ -226,11 +177,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 29e5f87674d2cba4b9282fcecc4fe2ca, type: 2}
   maxAP: 6
   positionInParty: 3
+  specialAttackBarVal: 0
   weaponInventory: {fileID: 2363339618168879057, guid: 3b3a696505e47b2409e90ac00429c493,
     type: 3}
   armorInventory: {fileID: 2363339618168879057, guid: fe5e8dd8d6dd25641a5f62d19d40ecd8,
     type: 3}
   equippedWeapon: {fileID: 11400000, guid: b2cc5ac9aaadbb747ad7dd7b61fcb3c2, type: 2}
+  specialAttack: {fileID: 11400000, guid: 8353cd5e6a7431542b02995b609a52ac, type: 2}
   battleOptionsPanel: {fileID: 0}
   battlePanel: {fileID: 0}
   inventoryDisplay: {fileID: 0}

@@ -167,7 +167,7 @@ namespace BattleSystem
 
             while (_isMultiTarget)
             {
-                if (BattleInput._controls.Menu.Confirm.triggered)
+                if (BattleInput._controls.Battle.Confirm.triggered)
                 {
                     AddMultiHitCommand();
                     break;

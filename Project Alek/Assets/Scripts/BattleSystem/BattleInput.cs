@@ -10,7 +10,7 @@ namespace BattleSystem
 
         public static bool _canPressBack;
         public static bool _canOpenBox;
-        public static bool CancelCondition => _controls.Menu.Back.triggered && _canPressBack;
+        public static bool CancelCondition => _controls.Battle.Back.triggered && _canPressBack;
 
         private void Awake()
         {

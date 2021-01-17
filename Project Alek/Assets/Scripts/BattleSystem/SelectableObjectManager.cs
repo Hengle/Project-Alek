@@ -30,7 +30,7 @@ namespace BattleSystem
                 if (i - 1 >= 0) nav.selectOnUp = _memberSelectable[i - 1].gameObject.GetComponent<Button>();
                 else if (i == 0) nav.selectOnUp = _memberSelectable[_memberSelectable.Count-1].gameObject.GetComponent<Button>();
 
-                nav.selectOnRight = _enemySelectable[i] != null ?
+                nav.selectOnRight = i < _enemySelectable.Count ?
                     _enemySelectable[i].gameObject.GetComponent<Button>() :
                     _enemySelectable[_enemySelectable.Count-1].gameObject.GetComponent<Button>();
 
@@ -104,10 +104,10 @@ namespace BattleSystem
 
         public void OnGameEvent(CharacterEvents eventType)
         {
-            if (eventType._eventType == CEventType.CharacterDeath && eventType._character as Enemy)
-            {
-                UpdateEnemySelectables((UnitBase)eventType._character);
-            }
+            if (eventType._eventType != CEventType.CharacterDeath || !(eventType._character as Enemy)) return;
+            if (_enemySelectable.Count == 1) return;
+            
+            UpdateEnemySelectables((UnitBase)eventType._character);
         }
     }
 }

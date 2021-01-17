@@ -175,11 +175,13 @@ MonoBehaviour:
   abilities: []
   maxAP: 6
   positionInParty: 1
+  specialAttackBarVal: 0
   weaponInventory: {fileID: 417493762244957691, guid: 8dd491fe5bbd13742a4a9ed04d140e08,
     type: 3}
   armorInventory: {fileID: 417493762244957691, guid: ca6cb5b0feff6be4d82fc29d76668972,
     type: 3}
   equippedWeapon: {fileID: 11400000, guid: c091b8aa2102f3240964e8b861199cb9, type: 2}
+  specialAttack: {fileID: 11400000, guid: d7d9990f9cfe8ed4fac3e0a90065940a, type: 2}
   battleOptionsPanel: {fileID: 0}
   battlePanel: {fileID: 0}
   inventoryDisplay: {fileID: 0}

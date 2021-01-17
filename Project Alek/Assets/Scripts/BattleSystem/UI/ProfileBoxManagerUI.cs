@@ -177,7 +177,7 @@ namespace BattleSystem.UI
         {
             BattleInput._inputModule.enabled = false;
             BattleInput._controls.Disable();
-            BattleInput._controls.Menu.TopButton.Enable();
+            BattleInput._controls.Battle.TopButton.Enable();
             isOpen = true;
 
             stats.text =
@@ -290,6 +290,6 @@ namespace BattleSystem.UI
             unitBase.onWeaponDamageTypeReceived -= RevealWeakness;
         }
 
-        private void OnEnable() => BattleInput._controls.Menu.TopButton.performed += ctx => OnProfileBoxButton();
+        private void OnEnable() => BattleInput._controls.Battle.TopButton.performed += ctx => OnProfileBoxButton();
     }
 }

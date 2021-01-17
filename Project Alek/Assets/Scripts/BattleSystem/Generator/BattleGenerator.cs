@@ -138,16 +138,15 @@ namespace BattleSystem.Generator
                 
                 specialAttackButton.GetComponent<InfoBoxUI>().information = $"{character.specialAttack.description}";
 
+                if (character.abilities.Count == 5) return;
+                
                 var firstOption = abilityMenu.GetChild(0).gameObject;
                 var firstOpNav = firstOption.GetComponent<Selectable>().navigation;
-                //var nav = optionButton.GetComponent<Selectable>().navigation;
                 var nav = specialAttackButton.GetComponent<Selectable>().navigation;
 
                 nav.selectOnDown = firstOption.GetComponent<Button>();
-                //optionButton.GetComponent<Selectable>().navigation = nav;
                 specialAttackButton.GetComponent<Selectable>().navigation = nav;
-
-                //firstOpNav.selectOnUp = optionButton.GetComponent<Button>();
+                
                 firstOpNav.selectOnUp = specialAttackButton.GetComponent<Button>();
                 firstOption.GetComponent<Selectable>().navigation = firstOpNav;
             }
