@@ -73,7 +73,7 @@ MonoBehaviour:
       Data: 
     - Name: $v
       Entry: 5
-      Data: false
+      Data: true
     - Name: 
       Entry: 8
       Data: 
@@ -174,7 +174,7 @@ MonoBehaviour:
     type: 3}
   level: 4
   health:
-    BaseValue: 840
+    BaseValue: 1140
   strength:
     BaseValue: 6
   magic:

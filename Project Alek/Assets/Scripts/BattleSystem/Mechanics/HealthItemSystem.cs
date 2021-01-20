@@ -30,9 +30,7 @@ namespace BattleSystem.Mechanics
         private void AddItems()
         {
             var count = Random.Range(1, BattleManager.Instance.globalVariables.maxHealthItemAmount);
-            
-            Logger.Log($"Adding {count} item(s) to inventory!");
-            
+
             for (var i = 0; i < count; i++)
             {
                 var id = Random.Range(0, HealthItemPrefabManager.Instance.healthItems.Count);

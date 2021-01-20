@@ -55,7 +55,6 @@ namespace BattleSystem.Mechanics
     
         private IEnumerator<float> ExecuteAttack()
         {
-            //unit.anim.SetInteger(AnimationHandler.PhysAttackState,  0);
             unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
 
             yield return Timing.WaitForOneFrame;

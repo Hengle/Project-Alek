@@ -100,6 +100,7 @@ namespace Characters
             button = GetComponent<Button>();
             animationHandler = GetComponent<AnimationHandler>();
 
+            anim.SetInteger("AnimState", 1);
             outline.enabled = false;
             status = Status.Normal;
             GameEventsManager.AddListener(this);

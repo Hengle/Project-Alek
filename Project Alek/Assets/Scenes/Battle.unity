@@ -1966,12 +1966,12 @@ PrefabInstance:
     - target: {fileID: 8473642520762601358, guid: 542a8d56842e1534eaf4493b4f93c398,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -408
+      value: -525
       objectReference: {fileID: 0}
     - target: {fileID: 8473642520762601358, guid: 542a8d56842e1534eaf4493b4f93c398,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -62.5
+      value: -95
       objectReference: {fileID: 0}
     - target: {fileID: 8473642520762601358, guid: 542a8d56842e1534eaf4493b4f93c398,
         type: 3}
@@ -12194,12 +12194,12 @@ PrefabInstance:
     - target: {fileID: 8473642520762601358, guid: 542a8d56842e1534eaf4493b4f93c398,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -408
+      value: -525
       objectReference: {fileID: 0}
     - target: {fileID: 8473642520762601358, guid: 542a8d56842e1534eaf4493b4f93c398,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -62.5
+      value: -95
       objectReference: {fileID: 0}
     - target: {fileID: 8473642520762601358, guid: 542a8d56842e1534eaf4493b4f93c398,
         type: 3}
@@ -13783,12 +13783,12 @@ PrefabInstance:
     - target: {fileID: 8473642520762601358, guid: 542a8d56842e1534eaf4493b4f93c398,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -408
+      value: -525
       objectReference: {fileID: 0}
     - target: {fileID: 8473642520762601358, guid: 542a8d56842e1534eaf4493b4f93c398,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -62.5
+      value: -95
       objectReference: {fileID: 0}
     - target: {fileID: 8473642520762601358, guid: 542a8d56842e1534eaf4493b4f93c398,
         type: 3}
@@ -33196,6 +33196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   globalVariables: {fileID: 11400000, guid: 72ce419412cfe164b969a3047001ae66, type: 2}
   inventoryInputManager: {fileID: 0}
+  generator: {fileID: 0}
   membersAndEnemiesThisTurn: []
   membersAndEnemiesNextTurn: []
   activeUnit: {fileID: 0}
@@ -33207,7 +33208,6 @@ MonoBehaviour:
   endThisMembersTurn: 0
   choosingAbility: 0
   canGiveCommand: 0
-  generator: {fileID: 0}
 --- !u!82 &1849992119
 AudioSource:
   m_ObjectHideFlags: 0
@@ -33372,6 +33372,8 @@ MonoBehaviour:
   enemies:
   - {fileID: 11400000, guid: 1df9f50e46e40b9468aa47faa3e8d642, type: 2}
   - {fileID: 11400000, guid: d21b0091d32140842b56761a4ba8483a, type: 2}
+  - {fileID: 11400000, guid: cedfc901c08aaf64db9d5d3d449ec512, type: 2}
+  - {fileID: 11400000, guid: cedfc901c08aaf64db9d5d3d449ec512, type: 2}
   boPanel: {fileID: 11400000, guid: edd3f92f7919c58458f2e4f297327c4d, type: 2}
   enemyStatusBox: {fileID: 4792203347304205839, guid: d1b0d1817473ff14882a6febe1ab5156,
     type: 3}
@@ -34246,15 +34248,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 177638, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11496292, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
       propertyPath: m_graphModulePosition
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11496292, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
       propertyPath: m_advancedModulePosition
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496292, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_advancedModuleState
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496292, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_fpsModuleState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496292, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_audioModuleState
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496292, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_ramModuleState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 22424132, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -35249,7 +35267,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-81064
+  m_Name: pb_Mesh-92664
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -43528,12 +43546,12 @@ PrefabInstance:
     - target: {fileID: 8473642520762601358, guid: 542a8d56842e1534eaf4493b4f93c398,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -408
+      value: -525
       objectReference: {fileID: 0}
     - target: {fileID: 8473642520762601358, guid: 542a8d56842e1534eaf4493b4f93c398,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -62.5
+      value: -95
       objectReference: {fileID: 0}
     - target: {fileID: 8473642520762601358, guid: 542a8d56842e1534eaf4493b4f93c398,
         type: 3}

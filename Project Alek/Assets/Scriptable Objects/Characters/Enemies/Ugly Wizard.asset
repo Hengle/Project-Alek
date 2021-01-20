@@ -174,7 +174,7 @@ MonoBehaviour:
     type: 3}
   level: 3
   health:
-    BaseValue: 1025
+    BaseValue: 1225
   strength:
     BaseValue: 4
   magic:

@@ -19,7 +19,8 @@ namespace BattleSystem
         private GameObject abilityMenuFirstSelected;
 
         private Animator animator;
-        [SerializeField] private bool isEnabled;
+        
+        private bool isEnabled;
 
         #endregion
         
@@ -72,15 +73,15 @@ namespace BattleSystem
         {
             switch (ChooseTarget._targetOptions)
             {
-                case 0:
+                case 0: // Enemy
                     EventSystem.current.SetSelectedGameObject(null);
                     EventSystem.current.SetSelectedGameObject(SelectableObjectManager._enemySelectable[0].gameObject);
                     break;
-                case 1:
+                case 1: // Party Member
                     EventSystem.current.SetSelectedGameObject(null);
                     EventSystem.current.SetSelectedGameObject(SelectableObjectManager._memberFirstSelected);
                     break;
-                case 2:
+                case 2: // Both
                     EventSystem.current.SetSelectedGameObject(null);
                     EventSystem.current.SetSelectedGameObject(SelectableObjectManager._memberFirstSelected);
                     break;
@@ -94,16 +95,14 @@ namespace BattleSystem
         public void OnMMEvent(MMInventoryEvent eventType)
         {
             if (BattleManager.Instance.usingItem) return;
-            if (isEnabled && isActiveAndEnabled &&
-                eventType.InventoryEventType == MMInventoryEventType.InventoryCloses)
+            if (isEnabled && isActiveAndEnabled && eventType.InventoryEventType == MMInventoryEventType.InventoryCloses)
             {
                 animator.SetTrigger(AnimationHandler.Panel);
                 EventSystem.current.sendNavigationEvents = true;
                 return;
             }
 
-            if (isActiveAndEnabled && battleMenu.activeSelf &&
-                eventType.InventoryEventType == MMInventoryEventType.InventoryOpens) 
+            if (isActiveAndEnabled && battleMenu.activeSelf && eventType.InventoryEventType == MMInventoryEventType.InventoryOpens) 
             {
                 animator.SetTrigger(AnimationHandler.Panel);
             }

@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace BattleSystem.Mechanics
 {
-    public class LoanSystem : MonoBehaviour, IGameEventListener<BattleEvents>, IGameEventListener<CharacterEvents>
+    public class OverexertionSystem : MonoBehaviour, IGameEventListener<BattleEvents>, IGameEventListener<CharacterEvents>
     {
         private Unit unit;
         [ShowInInspector] private bool isRecovered;
-        [ShowInInspector] private int currentLoan;
-        [ShowInInspector] private int initialLoan;
+        [ShowInInspector] private int currentApExerted;
+        [ShowInInspector] private int initialApExerted;
 
         private void Start()
         {
             unit = GetComponent<Unit>();
-            currentLoan = 0;
+            currentApExerted = 0;
 
             unit.borrowAP += BorrowAP;
             unit.parent.onDeath += OnDeath;
@@ -26,18 +26,18 @@ namespace BattleSystem.Mechanics
         private void BorrowAP(int amount)
         {
             if (amount > BattleManager.Instance.globalVariables.maxLoanAmount) return;
-            currentLoan = amount;
-            initialLoan = amount;
+            currentApExerted = amount;
+            initialApExerted = amount;
             unit.status = Status.Overexerted;
         }
 
         private void Recover()
         {
-            if (!isRecovered) currentLoan -= 2;
-            if (currentLoan < 0) currentLoan = 0;
+            if (!isRecovered) currentApExerted -= 2;
+            if (currentApExerted < 0) currentApExerted = 0;
             
-            unit.parent.onApValChanged?.Invoke(currentLoan);
-            if (currentLoan != 0) return;
+            unit.parent.onApValChanged?.Invoke(currentApExerted);
+            if (currentApExerted != 0) return;
 
             if (!isRecovered)
             {
@@ -51,16 +51,16 @@ namespace BattleSystem.Mechanics
         private void GiveRecoverBenefits()
         {
             unit.recoveredFromOverexertion?.Invoke(unit.parent);
-            if (initialLoan == BattleManager.Instance.globalVariables.maxLoanAmount)
+            if (initialApExerted == BattleManager.Instance.globalVariables.maxLoanAmount)
                 unit.recoveredFromMaxOverexertion?.Invoke(unit.parent);
             
-            initialLoan = 0;
+            initialApExerted = 0;
             isRecovered = false;
         }
 
         private void OnDeath(UnitBase unitBase)
         {
-            currentLoan = 0;
+            currentApExerted = 0;
         }
 
         private void OnDisable()
@@ -84,7 +84,7 @@ namespace BattleSystem.Mechanics
             if (eventType._eventType == CEventType.EndOfTurn && eventType._character == unit.parent &&
                 unit.status == Status.Overexerted)
             {
-                unit.parent.onApValChanged?.Invoke(currentLoan);
+                unit.parent.onApValChanged?.Invoke(currentApExerted);
             }
             if (eventType._eventType != CEventType.CharacterTurn) return;
             if (eventType._character != unit.parent) return;

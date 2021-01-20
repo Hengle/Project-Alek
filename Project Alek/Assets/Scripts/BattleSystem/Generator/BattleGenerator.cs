@@ -14,7 +14,7 @@ namespace BattleSystem.Generator
 {
     public class BattleGenerator : MonoBehaviour
     {
-        public BattleGeneratorDatabase database;
+        [HideInInspector] public BattleGeneratorDatabase database;
 
         private int offset;
         private int enemyOffset;

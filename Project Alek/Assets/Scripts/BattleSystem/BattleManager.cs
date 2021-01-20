@@ -22,43 +22,35 @@ namespace BattleSystem
         private static BattleManager instance;
         
         public static BattleManager Instance {
-            get { if (instance == null) 
-                    Debug.LogError("BattleManager is null");
+            get { if (!instance) Debug.LogError("BattleManager is null");
                 return instance; }
         }
 
-        [ReadOnly] public InventoryInputManager inventoryInputManager;
-        
-        [ShowInInspector] [ReadOnly]
-        public readonly List<Enemy> _enemiesForThisBattle = new List<Enemy>();
-        [ShowInInspector] [ReadOnly]
-        public readonly List<PartyMember> _membersForThisBattle = new List<PartyMember>();
+        [HideInInspector] public InventoryInputManager inventoryInputManager;
+        [HideInInspector] public BattleGenerator generator;
 
-        [ShowInInspector] [ReadOnly]
-        public List<UnitBase> membersAndEnemiesThisTurn = new List<UnitBase>();
-        [ShowInInspector] [ReadOnly]
-        public List<UnitBase> membersAndEnemiesNextTurn = new List<UnitBase>();
-        
+        [ReadOnly] public readonly List<Enemy> _enemiesForThisBattle = new List<Enemy>();
+        [ReadOnly] public readonly List<PartyMember> _membersForThisBattle = new List<PartyMember>();
+
+        [ReadOnly] public List<UnitBase> membersAndEnemiesThisTurn = new List<UnitBase>();
+        [ReadOnly] public List<UnitBase> membersAndEnemiesNextTurn = new List<UnitBase>();
+
         [ReadOnly] public UnitBase activeUnit;
-        
+
         [SerializeField] [ReadOnly]
         private int roundCount;
-        
+
         [ReadOnly] public bool choosingOption;
         [ReadOnly] public bool choosingTarget;
         [ReadOnly] public bool usingItem;
-        public bool performingAction;
+        [ReadOnly] public bool performingAction;
         [ReadOnly] public bool endThisMembersTurn;
         [ReadOnly] public bool choosingAbility;
         [ReadOnly] public bool canGiveCommand = true;
-        
-        [ReadOnly] private bool AllMembersDead => _membersForThisBattle.Count == 0;
-        [ReadOnly] private bool AllEnemiesDead => _enemiesForThisBattle.Count == 0;
-        
-        [ShowInInspector] [ReadOnly]
-        private bool PartyOrEnemyTeamIsDead => AllMembersDead || AllEnemiesDead;
 
-        public BattleGenerator generator;
+        private bool AllMembersDead => _membersForThisBattle.Count == 0;
+        private bool AllEnemiesDead => _enemiesForThisBattle.Count == 0;
+        private bool PartyOrEnemyTeamIsDead => AllMembersDead || AllEnemiesDead;
 
         #endregion
 

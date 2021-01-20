@@ -336,7 +336,6 @@ namespace Characters
 
         protected virtual void Die()
         {
-            //Logger.Log("Dying!");
             Unit.status = Status.Dead;
             CurrentAP = 0;
             onDeath?.Invoke(this);
