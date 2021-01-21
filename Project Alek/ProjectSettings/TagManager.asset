@@ -7,6 +7,10 @@ TagManager:
   - EventSystem
   - Canvas
   - BattleManager
+  - VirtualCamera
+  - MainSceneCamCollider
+  - Wall
+  - GlobalVolume
   layers:
   - Default
   - TransparentFX

@@ -28,8 +28,7 @@ namespace BattleSystem
         private void Awake() => instance = this;
         
         private void Start() => itemPool = GeneratePrefabs(poolCount);
-
-        //TODO: Make the item distribution more predictable so you dont end up with 11 potions and 4 revival items, for ex
+        
         private List<GameObject> GeneratePrefabs(int amount)
         {
             for (var i = 0; i < amount; i++)
@@ -55,7 +54,11 @@ namespace BattleSystem
                 return t;
             }
 
-            return itemPool[0];
+            var healthGO = Instantiate(healthItems[id].Prefab, prefabParent.transform, true);
+            healthGO.name = healthItems[id].Prefab.name;
+            itemPool.Add(healthGO);
+            
+            return healthGO;
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿using Sirenix.OdinInspector;
+﻿using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 namespace Overworld
@@ -113,6 +115,14 @@ namespace Overworld
             anim.SetBool(IsWalkingHash, true);
             enemy.speed = chaseSpeed;
             enemy.SetDestination(player.position);
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (other.transform.CompareTag("Player"))
+            {
+                SceneLoader.Instance.LoadBattle();
+            }
         }
     }
 }

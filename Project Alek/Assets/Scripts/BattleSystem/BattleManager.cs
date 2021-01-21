@@ -66,6 +66,8 @@ namespace BattleSystem
             canGiveCommand = true;
             roundCount = 0;
             SetupBattle();
+
+            Timing.RunCoroutine(SceneLoader.Instance.ResetLens());
             
             GameEventsManager.AddListener<CharacterEvents>(this);
             GameEventsManager.AddListener<BattleEvents>(this);
