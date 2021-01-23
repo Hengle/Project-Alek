@@ -1,11 +1,12 @@
-﻿using Sirenix.OdinInspector;
+﻿using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 namespace Overworld
 {
-    public class EnemyAIOverworld : MonoBehaviour
+    public class EnemyAIOverworld : Spawnable
     {
         private NavMeshAgent enemy;
         private Animator anim;
@@ -34,6 +35,7 @@ namespace Overworld
         [SerializeField] [ReadOnly]
         private bool walkPointSet;
 
+        private bool PlayerIsTooFarAway => Math.Abs(transform.position.x - player.position.x) > 30f;
         private bool PlayerOnRightSide => transform.position.x - player.position.x <= 0;
         private bool PlayerOnLeftSide => transform.position.x - player.position.x >= 0;
         private bool WalkPointReached => DistanceToWalkPoint.magnitude < 1f;
@@ -63,6 +65,8 @@ namespace Overworld
             enemy = GetComponent<NavMeshAgent>();
             anim = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
+
+            player = GameObject.FindWithTag("Player").transform;
             
             anim.SetInteger(AnimState, 0);
             anim.SetBool(IsWalkingHash, true);
@@ -72,10 +76,12 @@ namespace Overworld
 
         private void Update()
         {
+            if (PlayerIsTooFarAway) Destroy(gameObject);
             if (InRangeAndFacingTarget) canChase = true;
             
             anim.SetFloat(HorizontalHash, enemy.velocity.x);
             
+            if (!enemy.isOnNavMesh) return;
             if (canChase) ChasePlayer();
             else Patrolling();
         }
@@ -84,7 +90,7 @@ namespace Overworld
         {
             if (wait && tempWaitTime > 0) { tempWaitTime -= Time.deltaTime; return; }
             wait = false;
-            
+
             anim.SetBool(IsWalkingHash, true);
             enemy.speed = normalSpeed;
             
@@ -102,8 +108,8 @@ namespace Overworld
         {
             var randomZ = Random.Range(-walkPointRange, walkPointRange);
             var randomX = Random.Range(-walkPointRange, walkPointRange);
-
             var position = transform.position;
+            
             walkPoint = new Vector3(position.x + randomX, position.y, position.z + randomZ);
             walkPointSet = DestinationIsOnWalkableGround;
         }
