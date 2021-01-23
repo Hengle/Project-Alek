@@ -33,19 +33,19 @@ namespace Characters.StatusEffects
         private void AddModifiers(UnitBase target)
         {
             target.strength.AddModifier(new StatModifier
-                (BattleManager.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
+                (BattleEngine.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
             target.magic.AddModifier(new StatModifier
-                (BattleManager.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
+                (BattleEngine.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
             target.accuracy.AddModifier(new StatModifier
-                (BattleManager.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
+                (BattleEngine.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
             target.initiative.AddModifier(new StatModifier
-                (BattleManager.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
+                (BattleEngine.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
             target.criticalChance.AddModifier(new StatModifier
-                (BattleManager.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
+                (BattleEngine.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
             target.defense.AddModifier(new StatModifier
-                (BattleManager.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
+                (BattleEngine.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
             target.resistance.AddModifier(new StatModifier
-                (BattleManager.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
+                (BattleEngine.Instance.globalVariables.moderateDebuff, StatModType.PercentAdd, this));
         }
 
         private void RemoveModifiers(UnitBase target)

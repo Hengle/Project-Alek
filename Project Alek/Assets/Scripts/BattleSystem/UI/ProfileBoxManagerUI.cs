@@ -127,7 +127,7 @@ namespace BattleSystem.UI
                 var obj = Instantiate(e.Key._type.icon, resistancesBox, false);
                 obj.name = e.Key._type.icon.name;
                 obj.GetComponent<Image>().sprite = e.Value ?
-                    e.Key._type.Icon : BattleManager.Instance.globalVariables.mysteryIcon;
+                    e.Key._type.Icon : BattleEngine.Instance.globalVariables.mysteryIcon;
             });
             
             character._elementalWeaknesses.ForEach(e =>
@@ -135,7 +135,7 @@ namespace BattleSystem.UI
                 var obj = Instantiate(e.Key._type.icon, weaknessesBox, false);
                 obj.name = e.Key._type.icon.name;
                 obj.GetComponent<Image>().sprite = e.Value ?
-                    e.Key._type.Icon : BattleManager.Instance.globalVariables.mysteryIcon;
+                    e.Key._type.Icon : BattleEngine.Instance.globalVariables.mysteryIcon;
             });
 
             character._statusEffectResistances.ForEach(status =>
@@ -143,7 +143,7 @@ namespace BattleSystem.UI
                 var obj = Instantiate(status.Key._effect.icon, resistancesBox, false);
                 obj.name = status.Key._effect.icon.name;
                 obj.GetComponent<Image>().sprite = status.Value ?
-                    status.Key._effect.Icon : BattleManager.Instance.globalVariables.mysteryIcon;
+                    status.Key._effect.Icon : BattleEngine.Instance.globalVariables.mysteryIcon;
                 obj.GetComponent<StatusEffectTimer>().enabled = false;
             });
 
@@ -152,7 +152,7 @@ namespace BattleSystem.UI
                 var obj = Instantiate(status.Key._effect.icon, weaknessesBox, false);
                 obj.name = status.Key._effect.icon.name;
                 obj.GetComponent<Image>().sprite = status.Value ?
-                    status.Key._effect.Icon : BattleManager.Instance.globalVariables.mysteryIcon;
+                    status.Key._effect.Icon : BattleEngine.Instance.globalVariables.mysteryIcon;
                 obj.GetComponent<StatusEffectTimer>().enabled = false;
             });
             
@@ -161,7 +161,7 @@ namespace BattleSystem.UI
                 var obj = Instantiate(t.Key.icon, weaknessesBox, false);
                 obj.name = t.Key.icon.name;
                 obj.GetComponent<Image>().sprite = t.Value ?
-                    t.Key.Icon : BattleManager.Instance.globalVariables.mysteryIcon;
+                    t.Key.Icon : BattleEngine.Instance.globalVariables.mysteryIcon;
             });
             
             profileBox.gameObject.SetActive(false);

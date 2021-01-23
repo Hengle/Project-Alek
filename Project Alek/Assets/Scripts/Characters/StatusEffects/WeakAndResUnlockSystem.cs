@@ -31,8 +31,8 @@ namespace Characters.StatusEffects
                 if (type.Value) continue;
                 found = true;
                 eStruct = type;
-
-                var enemies = BattleManager.Instance.generator.database.enemies;
+                
+                var enemies = EnemyManager._instance.enemies;
                 foreach (var t in enemies.Where(t => t.characterName == enemy.characterName))
                 {
                     t._elementalWeaknesses[type.Key] = true;
@@ -53,8 +53,8 @@ namespace Characters.StatusEffects
                 if (type.Value) continue;
                 found = true;
                 eStruct = type;
-
-                var enemies = BattleManager.Instance.generator.database.enemies;
+                
+                var enemies = EnemyManager._instance.enemies;
                 foreach (var t in enemies.Where(t => t.characterName == enemy.characterName))
                 {
                     t._elementalResistances[type.Key] = true;
@@ -75,8 +75,8 @@ namespace Characters.StatusEffects
                 if (type.Value) continue;
                 found = true;
                 eStruct = type;
-
-                var enemies = BattleManager.Instance.generator.database.enemies;
+                
+                var enemies = EnemyManager._instance.enemies;
                 foreach (var t in enemies.Where(t => t.characterName == enemy.characterName))
                 {
                     t._statusEffectWeaknesses[type.Key] = true;
@@ -97,8 +97,8 @@ namespace Characters.StatusEffects
                 if (type.Value) continue;
                 found = true;
                 eStruct = type;
-
-                var enemies = BattleManager.Instance.generator.database.enemies;
+                
+                var enemies = EnemyManager._instance.enemies;
                 foreach (var t in enemies.Where(t => t.characterName == enemy.characterName))
                 {
                     t._statusEffectResistances[type.Key] = true;
@@ -119,8 +119,8 @@ namespace Characters.StatusEffects
                 if (type.Value) continue;
                 found = true;
                 eStruct = type;
-
-                var enemies = BattleManager.Instance.generator.database.enemies;
+                
+                var enemies = EnemyManager._instance.enemies;
                 foreach (var t in enemies.Where(t => t.characterName == enemy.characterName))
                 {
                     t._damageTypeWeaknesses[type.Key] = true;

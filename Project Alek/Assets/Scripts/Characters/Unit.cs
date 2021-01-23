@@ -123,22 +123,7 @@ namespace Characters
             onDeselect?.Invoke();
         }
 
-        public static bool CanBorrow(int amount) => amount <= BattleManager.Instance.globalVariables.maxLoanAmount;
-        
-        public void Setup(UnitBase unitBase)
-        {
-            unitBase.Unit = this;
-            parent = unitBase;
-            name = unitBase.characterName;
-            status = Status.Normal;
-            
-            // TODO: Would need to update UI slider if i want to be able to modify max health
-            maxHealthRef = (int) parent.health.Value;
-            currentHP = (int) parent.health.Value;
-     
-            currentAP = unitBase.maxAP;
-            outline.color = unitBase.Color;
-        }
+        public static bool CanBorrow(int amount) => amount <= BattleEngine.Instance.globalVariables.maxLoanAmount;
 
         private void ResetTargets()
         {

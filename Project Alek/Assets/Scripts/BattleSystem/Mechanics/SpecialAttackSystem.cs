@@ -18,7 +18,7 @@ namespace BattleSystem.Mechanics
         private const float RegAttackPointAmount = 0.05f;
         private const float NewRoundPointAmount = 0.05f;
 
-        private float SpecialBarVal
+        public float SpecialBarVal
         {
             get => specialBarVal;
             set
@@ -27,12 +27,6 @@ namespace BattleSystem.Mechanics
                 member.specialAttackBarVal = specialBarVal;
                 unit.onSpecialBarValChanged?.Invoke(specialBarVal);
             }
-        }
-
-        public void Setup(PartyMember unitBase)
-        {
-            member = unitBase;
-            SpecialBarVal = member.specialAttackBarVal;
         }
 
         private void Awake()

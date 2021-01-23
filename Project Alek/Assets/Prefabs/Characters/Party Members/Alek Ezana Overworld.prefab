@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 126515401636583589}
   - component: {fileID: 1288630209757398659}
   - component: {fileID: 3023072938974832518}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Alek Ezana Overworld
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5b0bc317862dc5642808511fe7d4ce3c, type: 2}
+  - {fileID: 2100000, guid: fbc501589d798c5409325dcdd683585f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -133,7 +133,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &3023072938974832518
 MonoBehaviour:
   m_ObjectHideFlags: 0

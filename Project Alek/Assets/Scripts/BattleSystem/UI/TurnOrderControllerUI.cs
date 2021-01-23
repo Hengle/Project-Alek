@@ -26,26 +26,26 @@ namespace BattleSystem.UI
 
         private void OnThisTurnListCreated()
         {
-            var count = BattleManager.Instance.membersAndEnemiesThisTurn.Count;
+            var count = BattleEngine.Instance.membersAndEnemiesThisTurn.Count;
 
             for (var i = 0; i < thisTurnList.Count; i++)
             {
                 if (i >= count) { thisTurnList[i].SetActive(false); continue; }
 
-                thisTurnIcons[i].sprite = BattleManager.Instance.membersAndEnemiesThisTurn[i].icon;
+                thisTurnIcons[i].sprite = BattleEngine.Instance.membersAndEnemiesThisTurn[i].icon;
                 thisTurnList[i].SetActive(true);
             }
         }
 
         private void OnNextTurnListCreated()
         {
-            var count = BattleManager.Instance.membersAndEnemiesNextTurn.Count;
+            var count = BattleEngine.Instance.membersAndEnemiesNextTurn.Count;
 
             for (var i = 0; i < nextTurnList.Count; i++)
             {
                 if (i >= count) { nextTurnList[i].SetActive(false); continue; }
                 
-                nextTurnIcons[i].sprite = BattleManager.Instance.membersAndEnemiesNextTurn[i].icon;
+                nextTurnIcons[i].sprite = BattleEngine.Instance.membersAndEnemiesNextTurn[i].icon;
                 nextTurnList[i].SetActive(true);
             }
         }

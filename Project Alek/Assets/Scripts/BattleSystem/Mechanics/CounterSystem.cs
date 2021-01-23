@@ -34,7 +34,7 @@ namespace BattleSystem.Mechanics
             if (unit.currentHP == 0) return;
 
             CharacterEvents.Trigger(CEventType.CharacterAttacking, unit.parent);
-            unit.currentTarget = BattleManager.Instance.activeUnit;
+            unit.currentTarget = BattleEngine.Instance.activeUnit;
             unit.currentTarget.Unit.isCountered = true;
             isCountering = true;
 

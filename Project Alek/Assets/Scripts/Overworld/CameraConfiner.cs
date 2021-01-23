@@ -1,5 +1,4 @@
-﻿using System;
-using Cinemachine;
+﻿using Cinemachine;
 using UnityEngine;
 
 namespace Overworld
@@ -12,19 +11,12 @@ namespace Overworld
 
         private void Awake()
         {
-            //boxCollider = GetComponent<BoxCollider>();
             mainSceneCollider = GameObject.FindWithTag("MainSceneCamCollider").GetComponent<BoxCollider>();
             vCamera = GameObject.FindWithTag("VirtualCamera").GetComponent<CinemachineConfiner>();
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            vCamera.m_BoundingVolume = boxCollider;
-        }
+        private void OnTriggerEnter(Collider other) => vCamera.m_BoundingVolume = boxCollider;
 
-        private void OnTriggerExit(Collider other)
-        {
-            vCamera.m_BoundingVolume = mainSceneCollider;
-        }
+        private void OnTriggerExit(Collider other) => vCamera.m_BoundingVolume = mainSceneCollider;
     }
 }

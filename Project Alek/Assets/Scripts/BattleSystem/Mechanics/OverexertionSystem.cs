@@ -25,7 +25,7 @@ namespace BattleSystem.Mechanics
 
         private void BorrowAP(int amount)
         {
-            if (amount > BattleManager.Instance.globalVariables.maxLoanAmount) return;
+            if (amount > BattleEngine.Instance.globalVariables.maxLoanAmount) return;
             currentApExerted = amount;
             initialApExerted = amount;
             unit.status = Status.Overexerted;
@@ -51,7 +51,7 @@ namespace BattleSystem.Mechanics
         private void GiveRecoverBenefits()
         {
             unit.recoveredFromOverexertion?.Invoke(unit.parent);
-            if (initialApExerted == BattleManager.Instance.globalVariables.maxLoanAmount)
+            if (initialApExerted == BattleEngine.Instance.globalVariables.maxLoanAmount)
                 unit.recoveredFromMaxOverexertion?.Invoke(unit.parent);
             
             initialApExerted = 0;

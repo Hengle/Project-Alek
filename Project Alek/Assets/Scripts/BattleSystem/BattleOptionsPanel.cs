@@ -12,30 +12,30 @@ namespace BattleSystem
         
         public void ShowBattlePanel()
         {
-            BattleManager.Instance.choosingOption = true;
+            BattleEngine.Instance.choosingOption = true;
 
             // This is triggered at the start of a party member's turn
             if (!character.battlePanel.activeSelf) character.battlePanel.SetActive(true);
             
             // This is triggered when going back to main menu from the ability menu
-            else if (BattleManager.Instance.choosingAbility) 
+            else if (BattleEngine.Instance.choosingAbility) 
             {
                 character.BattlePanelAnim.SetTrigger(AnimationHandler.AbilityMenu);
-                BattleManager.Instance.choosingAbility = false;
+                BattleEngine.Instance.choosingAbility = false;
             }
             
             // This is triggered when going back while choosing a target from the ability menu
-            else if (BattleManager.Instance.choosingTarget && BattleManager.Instance.choosingAbility) 
+            else if (BattleEngine.Instance.choosingTarget && BattleEngine.Instance.choosingAbility) 
             {
                 character.BattlePanelAnim.SetTrigger(AnimationHandler.Panel);
-                BattleManager.Instance.choosingTarget = false;
+                BattleEngine.Instance.choosingTarget = false;
             }
             
             // This is triggered when going back while choosing a target from the main menu (attack button)
             else 
             {
                 character.BattlePanelAnim.SetTrigger(AnimationHandler.Panel);
-                BattleManager.Instance.choosingTarget = false;
+                BattleEngine.Instance.choosingTarget = false;
             }
         }
 
@@ -67,22 +67,22 @@ namespace BattleSystem
             character.Unit.actionCost = commandCost;
             
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
-            if (!BattleManager.Instance.choosingOption) BattleManager.Instance.choosingAbility = false;
-            else BattleManager.Instance.choosingOption = false;
+            if (!BattleEngine.Instance.choosingOption) BattleEngine.Instance.choosingAbility = false;
+            else BattleEngine.Instance.choosingOption = false;
         }
 
         public void OnAbilityMenuButton()
         {
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.AbilityMenu);
-            BattleManager.Instance.choosingAbility = true;
-            BattleManager.Instance.choosingOption = false;
+            BattleEngine.Instance.choosingAbility = true;
+            BattleEngine.Instance.choosingOption = false;
         }
 
         public void OnEndTurnButton()
         {
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
-            BattleManager.Instance.endThisMembersTurn = true;
-            BattleManager.Instance.choosingOption = false;
+            BattleEngine.Instance.endThisMembersTurn = true;
+            BattleEngine.Instance.choosingOption = false;
         }
     }
 }

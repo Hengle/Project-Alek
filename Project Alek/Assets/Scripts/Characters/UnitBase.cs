@@ -281,14 +281,14 @@ namespace Characters
             {
                 if (Unit.parry)
                 {
-                    dmg = (int) (dmg * BattleManager.Instance.globalVariables.timedDefenseBonus);
+                    dmg = (int) (dmg * BattleEngine.Instance.globalVariables.timedDefenseBonus);
                     CurrentHP -= dmg;
                     Unit.parry = false;
                     Unit.onTimedDefense?.Invoke(true);
                 }
                 else if (Unit.timedAttack)
                 {
-                    dmg = (int) (dmg * BattleManager.Instance.globalVariables.timedAttackBonus);
+                    dmg = (int) (dmg * BattleEngine.Instance.globalVariables.timedAttackBonus);
                     CurrentHP -= dmg;
                     Unit.timedAttack = false;
                 }

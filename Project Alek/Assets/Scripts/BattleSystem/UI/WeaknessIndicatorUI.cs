@@ -17,7 +17,7 @@ namespace BattleSystem.UI
         {
             get 
             {
-                var ability = BattleManager.Instance.activeUnit.Unit.currentAbility;
+                var ability = BattleEngine.Instance.activeUnit.Unit.currentAbility;
                 return ability != null && ability.hasElemental && unit.parent._elementalWeaknesses.
                     Any(kvp => kvp.Key._type == ability.elementalType && kvp.Value);
             }
@@ -25,7 +25,7 @@ namespace BattleSystem.UI
 
         //TODO: Have to account for spells, which don't use weapon damage types
         private bool IsWeakToDamageType => unit.parent._damageTypeWeaknesses.Any(type => 
-                type.Key == ((PartyMember) BattleManager.Instance.activeUnit).equippedWeapon.damageType && type.Value);
+                type.Key == ((PartyMember) BattleEngine.Instance.activeUnit).equippedWeapon.damageType && type.Value);
 
         private void Start()
         {

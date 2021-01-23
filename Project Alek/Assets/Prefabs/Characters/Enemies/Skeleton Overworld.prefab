@@ -177,8 +177,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   normalSpeed: 3.5
-  chaseSpeed: 10
+  chaseSpeed: 7
   walkPointRange: 5
   range: 15
+  waitTime: 3
   playerInRange: 0
   canChase: 0
+  wait: 0
+  walkPointSet: 0

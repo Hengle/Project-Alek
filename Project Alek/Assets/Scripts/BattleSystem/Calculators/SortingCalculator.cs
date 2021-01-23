@@ -9,9 +9,9 @@ namespace BattleSystem.Calculators
     {
         public static bool SortByInitiative()
         {
-            if (BattleManager.Instance.membersAndEnemiesNextTurn.Count > 0)
+            if (BattleEngine.Instance.membersAndEnemiesNextTurn.Count > 0)
             {
-                BattleManager.Instance.membersAndEnemiesThisTurn = new List<UnitBase>(BattleManager.Instance.membersAndEnemiesNextTurn);
+                BattleEngine.Instance.membersAndEnemiesThisTurn = new List<UnitBase>(BattleEngine.Instance.membersAndEnemiesNextTurn);
                 GetNewListNextTurn();
             }
             
@@ -29,34 +29,34 @@ namespace BattleSystem.Calculators
 
         private static void GetNewList()
         {
-            BattleManager.Instance.membersAndEnemiesThisTurn = new List<UnitBase>();
-            BattleManager.Instance.membersAndEnemiesThisTurn = new List<UnitBase>();
+            BattleEngine.Instance.membersAndEnemiesThisTurn = new List<UnitBase>();
+            BattleEngine.Instance.membersAndEnemiesThisTurn = new List<UnitBase>();
             
-            foreach (var member in BattleManager.Instance._membersForThisBattle) BattleManager.Instance.membersAndEnemiesThisTurn.Add(member);
-            foreach (var enemy in BattleManager.Instance._enemiesForThisBattle) BattleManager.Instance.membersAndEnemiesThisTurn.Add(enemy);
+            foreach (var member in BattleEngine.Instance._membersForThisBattle) BattleEngine.Instance.membersAndEnemiesThisTurn.Add(member);
+            foreach (var enemy in BattleEngine.Instance._enemiesForThisBattle) BattleEngine.Instance.membersAndEnemiesThisTurn.Add(enemy);
                 
-            BattleManager.Instance.membersAndEnemiesThisTurn = BattleManager.Instance.membersAndEnemiesThisTurn.OrderByDescending
+            BattleEngine.Instance.membersAndEnemiesThisTurn = BattleEngine.Instance.membersAndEnemiesThisTurn.OrderByDescending
                 (e => e.initiative.Value).ToList();
 
-            GetFinalInitValues(BattleManager.Instance.membersAndEnemiesThisTurn);
+            GetFinalInitValues(BattleEngine.Instance.membersAndEnemiesThisTurn);
                 
-            BattleManager.Instance.membersAndEnemiesThisTurn = BattleManager.Instance.membersAndEnemiesThisTurn.OrderByDescending
+            BattleEngine.Instance.membersAndEnemiesThisTurn = BattleEngine.Instance.membersAndEnemiesThisTurn.OrderByDescending
                 (e => e.Unit.finalInitVal).ToList();
         }
 
         private static void GetNewListNextTurn()
         {
-            BattleManager.Instance.membersAndEnemiesNextTurn = new List<UnitBase>();
+            BattleEngine.Instance.membersAndEnemiesNextTurn = new List<UnitBase>();
             
-            foreach (var member in BattleManager.Instance._membersForThisBattle) BattleManager.Instance.membersAndEnemiesNextTurn.Add(member);
-            foreach (var enemy in BattleManager.Instance._enemiesForThisBattle) BattleManager.Instance.membersAndEnemiesNextTurn.Add(enemy);
+            foreach (var member in BattleEngine.Instance._membersForThisBattle) BattleEngine.Instance.membersAndEnemiesNextTurn.Add(member);
+            foreach (var enemy in BattleEngine.Instance._enemiesForThisBattle) BattleEngine.Instance.membersAndEnemiesNextTurn.Add(enemy);
                 
-            BattleManager.Instance.membersAndEnemiesNextTurn = BattleManager.Instance.membersAndEnemiesNextTurn.OrderByDescending
+            BattleEngine.Instance.membersAndEnemiesNextTurn = BattleEngine.Instance.membersAndEnemiesNextTurn.OrderByDescending
                 (e => e.initiative.Value).ToList();
 
-            GetFinalInitValues(BattleManager.Instance.membersAndEnemiesNextTurn);
+            GetFinalInitValues(BattleEngine.Instance.membersAndEnemiesNextTurn);
                 
-            BattleManager.Instance.membersAndEnemiesNextTurn = BattleManager.Instance.membersAndEnemiesNextTurn.OrderByDescending
+            BattleEngine.Instance.membersAndEnemiesNextTurn = BattleEngine.Instance.membersAndEnemiesNextTurn.OrderByDescending
                 (e => e.Unit.finalInitVal).ToList();
         }
         
@@ -73,24 +73,24 @@ namespace BattleSystem.Calculators
 
         public static void ResortThisTurnOrder()
         {
-            BattleManager.Instance.membersAndEnemiesThisTurn.ForEach
+            BattleEngine.Instance.membersAndEnemiesThisTurn.ForEach
                 (t => t.Unit.finalInitVal = (int) (t.initiative.Value * t.Unit.initModifier));
             
-            BattleManager.Instance.membersAndEnemiesThisTurn = BattleManager.Instance.membersAndEnemiesThisTurn.OrderByDescending
+            BattleEngine.Instance.membersAndEnemiesThisTurn = BattleEngine.Instance.membersAndEnemiesThisTurn.OrderByDescending
                 (e => e.Unit.finalInitVal).ToList();
 
-            BattleManager.Instance.membersAndEnemiesThisTurn.Remove(BattleManager.Instance.activeUnit);
-            BattleManager.Instance.membersAndEnemiesThisTurn.Insert(0, BattleManager.Instance.activeUnit);
+            BattleEngine.Instance.membersAndEnemiesThisTurn.Remove(BattleEngine.Instance.activeUnit);
+            BattleEngine.Instance.membersAndEnemiesThisTurn.Insert(0, BattleEngine.Instance.activeUnit);
             
             BattleEvents.Trigger(BattleEventType.ThisTurnListCreated);
         }
 
         public static void ResortNextTurnOrder()
         {
-            BattleManager.Instance.membersAndEnemiesNextTurn.ForEach
+            BattleEngine.Instance.membersAndEnemiesNextTurn.ForEach
                 (t => t.Unit.finalInitVal = (int) (t.initiative.Value * t.Unit.initModifier));
             
-            BattleManager.Instance.membersAndEnemiesNextTurn = BattleManager.Instance.membersAndEnemiesNextTurn.OrderByDescending
+            BattleEngine.Instance.membersAndEnemiesNextTurn = BattleEngine.Instance.membersAndEnemiesNextTurn.OrderByDescending
                 (e => e.Unit.finalInitVal).ToList();
             
             BattleEvents.Trigger(BattleEventType.NextTurnListCreated);

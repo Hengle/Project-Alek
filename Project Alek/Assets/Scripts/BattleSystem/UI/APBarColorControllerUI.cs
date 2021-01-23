@@ -1,5 +1,4 @@
 ﻿using Characters;
-using Characters.PartyMembers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,8 +16,8 @@ namespace BattleSystem.UI
         {
             if (unit == null) return;
             fill.color = unit.status == Status.Overexerted ?
-                 BattleManager.Instance.globalVariables.overexertedAPColor :
-                 BattleManager.Instance.globalVariables.originalAPColor;
+                 BattleEngine.Instance.globalVariables.overexertedAPColor :
+                 BattleEngine.Instance.globalVariables.originalAPColor;
         }
     }
 }

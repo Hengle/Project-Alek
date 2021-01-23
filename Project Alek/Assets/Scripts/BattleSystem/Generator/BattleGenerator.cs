@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using BattleSystem.Mechanics;
 using BattleSystem.UI;
 using Characters;
+using Characters.Enemies;
 using UnityEngine;
 using UnityEngine.UI;
 using Characters.PartyMembers;
@@ -23,36 +25,45 @@ namespace BattleSystem.Generator
         
         #region Setup
 
+        [SuppressMessage("ReSharper", "ConvertIfStatementToSwitchStatement")]
         public void SetupBattle()
+        {
+            SetOffsetPositions();
+            SetupMainInventory();
+            SetupParty();
+            SpawnAndSetupEnemyTeam();
+            SetupPartyMenuController();
+        }
+
+        private void SetupMainInventory()
+        {
+            var inventory = GameObject.Find("Main Inventory").GetComponent<Inventory>();
+            database.inventoryItems.ForEach(i => inventory.AddItem(i, 1));
+        }
+
+        private void SetOffsetPositions()
         {
             if (PartyManager._instance.partyMembers.Count == 1) offset = 2;
             else if (PartyManager._instance.partyMembers.Count == 4) offset = 0;
             else offset = 1;
-            
-            if (database.enemies.Count == 1) enemyOffset = 2;
-            else if (database.enemies.Count == 4) enemyOffset = 0;
+
+            if (EnemyManager._instance.enemies.Count == 1) enemyOffset = 2;
+            else if (EnemyManager._instance.enemies.Count == 4) enemyOffset = 0;
             else enemyOffset = 1;
-
-            var inventory = GameObject.Find("Main Inventory").GetComponent<Inventory>();
-
-            database.inventoryItems.ForEach(i => inventory.AddItem(i, 1));
-
-            SetupParty();
-            SpawnAndSetupEnemyTeam();
-            SetupPartyMenuController();
         }
 
         private void SetupParty()
         {
             for (var i = 0; i < PartyManager._instance.partyMembers.Count; i++)
             {
-                SpawnAndSetupThisMember(PartyManager._instance.partyMembers[i], i);
+                var memberGo = SpawnThisMember(PartyManager._instance.partyMembers[i], i);
+                SetupThisMember(PartyManager._instance.partyMembers[i], i, memberGo);
             }
         }
 
         private static void SetupPartyMenuController()
         {
-            foreach (var member in BattleManager.Instance._membersForThisBattle)
+            foreach (var member in BattleEngine.Instance._membersForThisBattle)
             {
                 SelectableObjectManager._memberSelectable.Add(member.Selectable);
                 member.MenuController = member.battlePanel.GetComponent<MenuController>();
@@ -77,7 +88,7 @@ namespace BattleSystem.Generator
                 (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnAbilityMenuButton(); });
             
             mainMenu.Find("Inventory Button").gameObject.GetComponent<Button>().onClick.AddListener
-                (delegate { BattleManager.Instance.inventoryInputManager.OpenInventory(); });
+                (delegate { BattleEngine.Instance.inventoryInputManager.OpenInventory(); });
 
             mainMenu.Find("End Turn Button").gameObject.GetComponent<Button>().onClick.AddListener
                 (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnEndTurnButton(); });
@@ -242,54 +253,94 @@ namespace BattleSystem.Generator
             shieldController.enemy = clone;
             shieldController.Initialize();
         }
+        
+        private static void SetupUnit(UnitBase character, GameObject unitGo)
+        {
+            var unit = unitGo.GetComponent<Unit>();
+            character.Unit = unit;
+            unit.parent = character;
+            unit.name = character.characterName;
+            unit.status = Status.Normal;
+            
+            // TODO: Would need to update UI slider if i want to be able to modify max health
+            unit.maxHealthRef = (int) unit.parent.health.Value;
+            unit.currentHP = (int) unit.parent.health.Value;
+     
+            unit.currentAP = character.maxAP;
+            unit.outline.color = character.Color;
+        }
+
+        private static void SetupSpecialAttackSystem(PartyMember character, GameObject unitGo)
+        {
+            var system = unitGo.GetComponent<SpecialAttackSystem>();
+            system.member = character;
+            system.SpecialBarVal = system.member.specialAttackBarVal;
+        }
+
+        private void SetupMemberCameras(int i)
+        {
+            database.closeUpCameras[i + offset].SetActive(true);
+            database.criticalCameras[i + offset].SetActive(true);
+        }
+
+        private static void SetupEnemyAbilities(UnitBase enemy)
+        {
+            for (var a = 0; a < enemy.abilities.Count; a++)
+            {
+                enemy.abilities[a].attackState = a+1;
+                enemy.Unit.animOverride[$"Ability {a+1}"] = enemy.abilities[a].animation;
+            }
+            enemy.Unit.anim.runtimeAnimatorController = enemy.Unit.animOverride;
+        }
 
         #endregion
 
         #region Spawning
 
-        private void SpawnAndSetupThisMember(PartyMember character, int i)
+        private void SetupThisMember(PartyMember character, int i, GameObject memberGo)
         {
-            var memberGo = Instantiate(character.characterPrefab, database.characterSpawnPoints[i+offset].transform);
-            memberGo.transform.localScale = character.scale;
-            memberGo.GetComponent<Unit>().Setup(character);
-
+            SetupUnit(character, memberGo);
             SetupChooseTargetScript(character);
             SetupBattlePanel(character, i);
             SetAbilityMenuOptions(character);
             SetupInventoryDisplay(character, i);
             SetupProfileBox(character);
             SetupCharacterPanel(character, i);
-            
-            memberGo.GetComponent<SpecialAttackSystem>().Setup(character);
-
-            database.closeUpCameras[i + offset].SetActive(true);
-            database.criticalCameras[i + offset].SetActive(true);
+            SetupSpecialAttackSystem(character, memberGo);
+            SetupMemberCameras(i);
 
             character.Selectable = character.Unit.gameObject.GetComponent<Selectable>();
             
-            BattleManager.Instance._membersForThisBattle.Add(character);
+            BattleEngine.Instance._membersForThisBattle.Add(character);
+        }
+
+        private GameObject SpawnThisMember(UnitBase character, int i)
+        {
+            var memberGo = Instantiate(character.characterPrefab, database.characterSpawnPoints[i + offset].transform);
+            memberGo.transform.localScale = character.scale;
+            return memberGo;
+        }
+        
+        private GameObject SpawnThisEnemy(UnitBase character, int i)
+        {
+            var enemyGo = Instantiate(character.characterPrefab, database.enemySpawnPoints[i+enemyOffset].transform);
+            enemyGo.name = character.name;
+            enemyGo.transform.localScale = character.scale;
+            return enemyGo;
         }
 
         private void SpawnAndSetupEnemyTeam()
         {
             var i = 0;
-            foreach (var clone in database.enemies.Select(Instantiate))
+            foreach (var clone in EnemyManager._instance.enemies.Select(Instantiate))
             {
                 //TODO: Make randomizer for enemy stats
                 clone.initiative.BaseValue = (int) Random.Range(clone.initiative.BaseValue - 2, clone.initiative.BaseValue + 2);
-                
-                var enemyGo = Instantiate(clone.characterPrefab, database.enemySpawnPoints[i+enemyOffset].transform);
-                enemyGo.name = clone.name;
-                enemyGo.transform.localScale = clone.scale;
 
-                enemyGo.GetComponent<Unit>().Setup(clone);
+                var enemyGo = SpawnThisEnemy(clone, i);
+                SetupUnit(clone, enemyGo);
                 
-                for (var a = 0; a < clone.abilities.Count; a++)
-                {
-                    clone.abilities[a].attackState = a+1;
-                    clone.Unit.animOverride[$"Ability {a+1}"] = clone.abilities[a].animation;
-                }
-                clone.Unit.anim.runtimeAnimatorController = clone.Unit.animOverride;
+                SetupEnemyAbilities(clone);
                 
                 clone.Selectable = clone.Unit.gameObject.GetComponent<Selectable>();
                 SelectableObjectManager._enemySelectable.Add(clone.Selectable);
@@ -303,7 +354,7 @@ namespace BattleSystem.Generator
 
                 enemyGo.GetComponent<WeakAndResUnlockSystem>().Initialize(clone);
 
-                BattleManager.Instance._enemiesForThisBattle.Add(clone);
+                BattleEngine.Instance._enemiesForThisBattle.Add(clone);
                 i++;
             }
         }

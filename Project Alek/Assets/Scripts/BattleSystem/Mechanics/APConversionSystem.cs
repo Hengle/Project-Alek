@@ -17,21 +17,21 @@ namespace BattleSystem.Mechanics
             {
                 switch (unit.conversionLevel)
                 {
-                    case 1: return BattleManager.Instance.globalVariables.conversionFactorLvl1;
-                    case 2: return BattleManager.Instance.globalVariables.conversionFactorLvl2;
-                    case 3: return BattleManager.Instance.globalVariables.conversionFactorLvl3;
-                    case 4: return BattleManager.Instance.globalVariables.conversionFactorLvl4;
+                    case 1: return BattleEngine.Instance.globalVariables.conversionFactorLvl1;
+                    case 2: return BattleEngine.Instance.globalVariables.conversionFactorLvl2;
+                    case 3: return BattleEngine.Instance.globalVariables.conversionFactorLvl3;
+                    case 4: return BattleEngine.Instance.globalVariables.conversionFactorLvl4;
                     default: return 1.0f;
                 }
             }
         }
 
         private bool CanDecreaseConversion =>
-            thisUnitTurn && BattleManager.Instance.choosingAbility && BattleInput._controls.Battle.LeftSelect.triggered
+            thisUnitTurn && BattleEngine.Instance.choosingAbility && BattleInput._controls.Battle.LeftSelect.triggered
             && unit.conversionLevel > 0;
 
         private bool CanIncreaseConversion =>
-            thisUnitTurn && BattleManager.Instance.choosingAbility && BattleInput._controls.Battle.RightSelect.triggered
+            thisUnitTurn && BattleEngine.Instance.choosingAbility && BattleInput._controls.Battle.RightSelect.triggered
             && unit.conversionLevel < MaxConversionAmount;
 
         private void Start()

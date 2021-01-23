@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using BattleSystem.Mechanics;
-using UnityEngine;
 using Characters.PartyMembers;
 using Sirenix.OdinInspector;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Characters
+namespace Characters.Enemies
 {
     // Update this later so that each enemy type is a different script obj, not just Enemy
     [CreateAssetMenu(fileName = "New Enemy", menuName = "Character/Enemy")]

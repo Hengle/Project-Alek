@@ -46,9 +46,9 @@ namespace Characters.StatusEffects
             {
                 switch (buffMultiplier)
                 {
-                    case Multiplier.Slight: return BattleManager.Instance.globalVariables.slightBuff;
-                    case Multiplier.Moderate: return BattleManager.Instance.globalVariables.moderateBuff;
-                    case Multiplier.Significant: return BattleManager.Instance.globalVariables.significantBuff;
+                    case Multiplier.Slight: return BattleEngine.Instance.globalVariables.slightBuff;
+                    case Multiplier.Moderate: return BattleEngine.Instance.globalVariables.moderateBuff;
+                    case Multiplier.Significant: return BattleEngine.Instance.globalVariables.significantBuff;
                     case Multiplier.None: return 1;
                     default: return 1;
                 }
@@ -60,9 +60,9 @@ namespace Characters.StatusEffects
             {
                 switch (debuffMultiplier)
                 {
-                    case Multiplier.Slight: return BattleManager.Instance.globalVariables.slightDebuff;
-                    case Multiplier.Moderate: return BattleManager.Instance.globalVariables.moderateDebuff;
-                    case Multiplier.Significant: return BattleManager.Instance.globalVariables.significantDebuff;
+                    case Multiplier.Slight: return BattleEngine.Instance.globalVariables.slightDebuff;
+                    case Multiplier.Moderate: return BattleEngine.Instance.globalVariables.moderateDebuff;
+                    case Multiplier.Significant: return BattleEngine.Instance.globalVariables.significantDebuff;
                     case Multiplier.None: return 1;
                     default: return 1;
                 }

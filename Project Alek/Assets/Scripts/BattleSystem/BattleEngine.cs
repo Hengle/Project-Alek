@@ -5,6 +5,7 @@ using Characters;
 using BattleSystem.Generator;
 using Characters.Animations;
 using Characters.CharacterExtensions;
+using Characters.Enemies;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
 using MoreMountains.InventoryEngine;
@@ -13,15 +14,15 @@ using MEC;
 
 namespace BattleSystem
 {
-    public class BattleManager : MonoBehaviour, IGameEventListener<CharacterEvents>, IGameEventListener<BattleEvents>
+    public class BattleEngine : MonoBehaviour, IGameEventListener<CharacterEvents>, IGameEventListener<BattleEvents>
     {
         #region FieldsAndProperties
         
         public GlobalVariables globalVariables;
 
-        private static BattleManager instance;
+        private static BattleEngine instance;
         
-        public static BattleManager Instance {
+        public static BattleEngine Instance {
             get { if (!instance) Debug.LogError("BattleManager is null");
                 return instance; }
         }
@@ -65,9 +66,10 @@ namespace BattleSystem
             
             canGiveCommand = true;
             roundCount = 0;
-            SetupBattle();
-
+            
             Timing.RunCoroutine(SceneLoader.Instance.ResetLens());
+            
+            SetupBattle();
             
             GameEventsManager.AddListener<CharacterEvents>(this);
             GameEventsManager.AddListener<BattleEvents>(this);
@@ -167,7 +169,7 @@ namespace BattleSystem
             character.CurrentAP -= character.Unit.actionCost;
 
             yield return Timing.WaitUntilDone(character.InflictStatus
-                (Rate.BeforeEveryAction, 1, true));
+                (Rate.BeforeEveryAction, 0.5f, true));
 
             if (!canGiveCommand) canGiveCommand = true;
             else { CharacterEvents.Trigger(CEventType.CharacterAttacking, character);
@@ -204,7 +206,7 @@ namespace BattleSystem
                 enemy.CurrentAP -= enemy.Unit.actionCost;
 
                 yield return Timing.WaitUntilDone(enemy.InflictStatus
-                    (Rate.BeforeEveryAction, 1, true));
+                    (Rate.BeforeEveryAction, 0.5f, true));
 
                 if (!canGiveCommand) canGiveCommand = true;
                 else { CharacterEvents.Trigger(CEventType.CharacterAttacking, enemy);
@@ -213,7 +215,7 @@ namespace BattleSystem
                 yield return Timing.WaitUntilFalse(() => performingAction);
 
                 yield return Timing.WaitUntilDone(enemy.InflictStatus
-                    (Rate.AfterEveryAction, 1, true));
+                    (Rate.AfterEveryAction, 0.5f, true));
 
                 if (PartyOrEnemyTeamIsDead) break;
                 

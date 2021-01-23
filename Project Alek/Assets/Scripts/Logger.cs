@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[ExecuteInEditMode]
 public class Logger : MonoBehaviour
 {
         [SerializeField] private bool showLogs = true;
@@ -10,5 +11,7 @@ public class Logger : MonoBehaviour
         private void Update() => displayLogs = showLogs;
 
         public static void Log(string message)
-        { if (displayLogs) Debug.Log(message); }
+        { 
+                if (displayLogs) Debug.Log(message);
+        }
 }

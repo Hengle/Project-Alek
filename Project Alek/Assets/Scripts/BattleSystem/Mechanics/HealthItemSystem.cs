@@ -24,12 +24,12 @@ namespace BattleSystem.Mechanics
             if (unit.HasMissedAllTargets) return;
 
             var randomValue = Random.value;
-            if (randomValue < BattleManager.Instance.globalVariables.healthItemChance) AddItems();
+            if (randomValue < BattleEngine.Instance.globalVariables.healthItemChance) AddItems();
         }
         
         private void AddItems()
         {
-            var count = Random.Range(1, BattleManager.Instance.globalVariables.maxHealthItemAmount);
+            var count = Random.Range(1, BattleEngine.Instance.globalVariables.maxHealthItemAmount);
 
             for (var i = 0; i < count; i++)
             {

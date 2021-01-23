@@ -20,7 +20,7 @@ namespace BattleSystem
 
         private void GetCommand(UnitBase unitBaseParam)
         {
-            BattleManager.Instance.performingAction = true;
+            BattleEngine.Instance.performingAction = true;
             StartCoroutine(unitBaseParam.Unit.commandActionName, unitBaseParam);
         }
 
@@ -52,7 +52,7 @@ namespace BattleSystem
                     yield break;
                 case AbilityType.Ranged: Timing.RunCoroutine(RangedAttack(dealer));
                     yield break;
-                case AbilityType.NonAttack: BattleManager.Instance.performingAction = false;
+                case AbilityType.NonAttack: BattleEngine.Instance.performingAction = false;
                     yield break;
                 default: Logger.Log("This message should not be displaying...");
                     yield break;
@@ -79,20 +79,19 @@ namespace BattleSystem
                 new Vector3(position.x, position.y, position.z + 2);
 
             yield return Timing.WaitUntilDone(MoveToTargetPosition(parent, targetPosition));
-
             yield return Timing.WaitUntilDone(ExecuteAttack(dealer));
             
             if (dealer.IsDead)
             {
                 dealer.Unit.DestroyGO();
-                BattleManager.Instance.performingAction = false;
+                BattleEngine.Instance.performingAction = false;
                 SetBackToOriginPosition(parent, originPosition);
                 yield break;
             }
 
             yield return Timing.WaitUntilDone(MoveBackToOriginPosition(parent, originPosition));
 
-            BattleManager.Instance.performingAction = false;
+            BattleEngine.Instance.performingAction = false;
         }
         
         private static IEnumerator<float> RangedAttack(UnitBase dealer)
@@ -105,7 +104,7 @@ namespace BattleSystem
 
             dealer.Unit.transform.rotation = originalRotation;
             
-            BattleManager.Instance.performingAction = false;
+            BattleEngine.Instance.performingAction = false;
         }
 
         private static IEnumerator<float> SpecialAttack(UnitBase dealer)
@@ -124,19 +123,20 @@ namespace BattleSystem
                 new Vector3(position.x, position.y, position.z + 2);
 
             yield return Timing.WaitUntilDone(MoveToTargetPosition(parent, targetPosition));
-            
             yield return Timing.WaitUntilDone(ExecuteSpecialAttack(dealer));
-            
             yield return Timing.WaitUntilDone(MoveBackToOriginPosition(parent, originPosition));
 
-            BattleManager.Instance.performingAction = false;
+            BattleEngine.Instance.performingAction = false;
         }
 
         private static IEnumerator<float> ExecuteSpecialAttack(UnitBase dealer)
         {
             dealer.Unit.anim.SetTrigger(AnimationHandler.SpecialAttackTrigger);
+            
             yield return Timing.WaitForOneFrame;
+            
             yield return Timing.WaitUntilFalse(() => dealer.AnimationHandler.performingSpecial);
+            
             SpecialAttackCamController._disableCam?.Invoke(dealer);
         }
 
