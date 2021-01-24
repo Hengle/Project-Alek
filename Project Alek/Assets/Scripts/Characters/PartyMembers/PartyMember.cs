@@ -1,4 +1,5 @@
-﻿using Characters.Abilities;
+﻿using System;
+using Characters.Abilities;
 using UnityEngine;
 using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
@@ -6,7 +7,7 @@ using Sirenix.OdinInspector;
 namespace Characters.PartyMembers
 {
     [CreateAssetMenu(fileName = "New Party Member", menuName = "Character/Party Member")]
-    public class PartyMember : UnitBase
+    public class PartyMember : UnitBase, ICanBeLeveled
     {
         [Range(0,4), VerticalGroup("Basic/Info")]
         public int positionInParty;
@@ -37,5 +38,53 @@ namespace Characters.PartyMembers
         }
         
         public bool SetAI() => true;
+
+        private int currentExperience;
+        
+        [ShowInInspector, ProgressBar(0, nameof(ExperienceToNextLevel)), VerticalGroup("Basic/Info"), LabelWidth(120)]
+        public int CurrentExperience
+        {
+            get => currentExperience;
+            set
+            {
+                if (value > ExperienceToNextLevel)
+                {
+                    currentExperience = value - ExperienceToNextLevel;
+                    ExperienceToNextLevel = GetNextExperienceThreshold(ExperienceToNextLevel);
+                    LevelUp();
+                }
+                else currentExperience = value;
+            }
+        }
+        
+        [ShowInInspector, VerticalGroup("Basic/Info")]
+        public int ExperienceToNextLevel { get; set; }
+        
+        [VerticalGroup("Basic/Info")]
+        [Button("Give EXP",ButtonSizes.Medium, ButtonStyle.Box)]
+        public void AdvanceTowardsNextLevel(int xp)
+        {
+            CurrentExperience += xp;
+        }
+        
+        public int GetNextExperienceThreshold(int prev)
+        {
+            return (int)(prev * 1.5f);
+        }
+
+        public Action LevelUpEvent { get; set; }
+
+        private int Level
+        {
+            get => level;
+            set => level = value;
+        }
+        
+        public void LevelUp()
+        {
+            Debug.Log($"Yay! {characterName} leveled up!");
+            Level += 1;
+            LevelUpEvent?.Invoke();
+        }
     }
 }

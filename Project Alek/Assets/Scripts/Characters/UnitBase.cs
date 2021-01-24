@@ -20,7 +20,7 @@ namespace Characters
     {
         #region FieldsAndProperties
 
-        [HorizontalGroup("Basic", 125), PreviewField(125), HideLabel] 
+        [HorizontalGroup("Basic", 175), PreviewField(175), HideLabel]
         public Sprite icon;
         
         [VerticalGroup("Basic/Info"), LabelWidth(120)] 
@@ -34,7 +34,8 @@ namespace Characters
         
         [VerticalGroup("Basic/Info"), LabelWidth(120)] 
         public GameObject characterPrefab;
-
+        
+        [PropertySpace(30)]
         [HideLabel, ShowInInspector, HorizontalGroup("Stat Data", 175), PreviewField(175), ShowIf(nameof(characterPrefab))] 
         public Sprite CharacterPrefab 
         {
@@ -45,10 +46,11 @@ namespace Characters
             }
             set => characterPrefab.GetComponent<SpriteRenderer>().sprite = value;
         }
-
-        [ProgressBar(1,99), VerticalGroup("Basic/Info"), LabelWidth(75)]
+        
+        [Range(1,99), VerticalGroup("Basic/Info"), LabelWidth(75)]
         public int level;
         
+        [Space(20)]
         [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty, Title("Stats")]
         public CharacterStat health;
         
@@ -370,7 +372,7 @@ namespace Characters
 
         private void RemoveMods()
         {
-            if (!this) return;
+            if (!Application.isPlaying) return;
             health = new CharacterStat(health.BaseValue);
             strength = new CharacterStat(strength.BaseValue);
             magic = new CharacterStat(magic.BaseValue);

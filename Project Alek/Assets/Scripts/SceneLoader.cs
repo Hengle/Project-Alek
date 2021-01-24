@@ -8,10 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    [SerializeField] private Volume volume;
-    private LensDistortion lensDistortion;
     private AsyncOperation operation;
-
+    
     private static SceneLoader instance;
     
     public static SceneLoader Instance {
@@ -21,38 +19,19 @@ public class SceneLoader : MonoBehaviour
 
     private void Awake() => instance = this;
 
-    private void Start()
-    {
-        if (!volume.profile.TryGet(out lensDistortion))
-        {
-            Debug.LogError("Lens distortion component could not be found!");
-        }
-
-        lensDistortion.intensity.overrideState = true;
-    }
-
     public void LoadBattle()
     {
         operation = SceneManager.LoadSceneAsync("Scenes/Battle");
         operation.allowSceneActivation = false;
-        Timing.RunCoroutine(DistortLens().Append(() => operation.allowSceneActivation = true));
+        Timing.RunCoroutine(SceneTransitionManager.Instance.BattleTransition().
+            Append(() => operation.allowSceneActivation = true));
     }
 
-    private IEnumerator<float> DistortLens()
+    public void LoadOverworld()
     {
-        while (Math.Abs(lensDistortion.intensity.value - lensDistortion.intensity.min) > 0.01f)
-        {
-            lensDistortion.intensity.value -= 0.01f;
-            yield return Timing.WaitForOneFrame;
-        }
-    }
-
-    public IEnumerator<float> ResetLens()
-    {
-        while (Math.Abs(lensDistortion.intensity.value - 0) > 0.01f)
-        {
-            lensDistortion.intensity.value += 0.01f;
-            yield return Timing.WaitForOneFrame;
-        }
+        operation = SceneManager.LoadSceneAsync("Overworld Demo");
+        operation.allowSceneActivation = false;
+        Timing.RunCoroutine(SceneTransitionManager.Instance.OverworldTransition(1, true).
+            Append(() => operation.allowSceneActivation = true));
     }
 }

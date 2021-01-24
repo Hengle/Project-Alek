@@ -9,11 +9,11 @@ namespace Characters.Enemies
 {
     // Update this later so that each enemy type is a different script obj, not just Enemy
     [CreateAssetMenu(fileName = "New Enemy", menuName = "Character/Enemy")]
-    public class Enemy : UnitBase
+    public class Enemy : UnitBase, IGiveExperience
     {
         public BreakSystem BreakSystem { get; set; }
 
-        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(120), Range(1,10)]
+        [SerializeField, VerticalGroup("Basic/Info"), LabelWidth(120), Range(1,10)]
         public int maxShieldCount = 1;
 
         private void Awake() => id = CharacterType.Enemy;
@@ -38,6 +38,19 @@ namespace Characters.Enemies
         {
             CurrentHP += (int) amount;
             CurrentAP -= 1;
+        }
+
+        [VerticalGroup("Basic/Info")]
+        [SerializeField] private int baseExperience;
+
+        public int CalculateExperience(int lvl)
+        {
+            var difference = level - lvl;
+            double modifier = 1 + difference * 0.25f;
+            var finalValue = baseExperience * modifier;
+            //Debug.Log($"Exp from {characterName}: {(int)finalValue}");
+
+            return (int)finalValue;
         }
     }
 }

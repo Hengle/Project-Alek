@@ -355,6 +355,7 @@ namespace BattleSystem.Generator
                 enemyGo.GetComponent<WeakAndResUnlockSystem>().Initialize(clone);
 
                 BattleEngine.Instance._enemiesForThisBattle.Add(clone);
+                BattleEngine.Instance._expGivers.Add(clone);
                 i++;
             }
         }

@@ -175,20 +175,28 @@ MonoBehaviour:
   level: 3
   health:
     BaseValue: 1225
+    maxValue: 9999
   strength:
     BaseValue: 4
+    maxValue: 99
   magic:
     BaseValue: 11
+    maxValue: 99
   accuracy:
     BaseValue: 13
+    maxValue: 99
   initiative:
     BaseValue: 6
+    maxValue: 99
   defense:
     BaseValue: 7
+    maxValue: 99
   resistance:
     BaseValue: 14
+    maxValue: 99
   criticalChance:
     BaseValue: 4
+    maxValue: 99
   description: ewww
   weaponMight: 3
   magicMight: 12
@@ -198,3 +206,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e558d404ab0ced340bb9314e1e677569, type: 2}
   maxAP: 6
   maxShieldCount: 1
+  baseExperience: 150

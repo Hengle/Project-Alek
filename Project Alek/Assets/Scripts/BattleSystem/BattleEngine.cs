@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using BattleSystem.Calculators;
 using UnityEngine;
 using Characters;
@@ -30,6 +31,8 @@ namespace BattleSystem
         [HideInInspector] public InventoryInputManager inventoryInputManager;
         [HideInInspector] public BattleGenerator generator;
 
+        //TODO: Make new list for enemies that is not updated for exp calculations
+        [ReadOnly] public readonly List<IGiveExperience> _expGivers = new List<IGiveExperience>();
         [ReadOnly] public readonly List<Enemy> _enemiesForThisBattle = new List<Enemy>();
         [ReadOnly] public readonly List<PartyMember> _membersForThisBattle = new List<PartyMember>();
 
@@ -66,9 +69,7 @@ namespace BattleSystem
             
             canGiveCommand = true;
             roundCount = 0;
-            
-            Timing.RunCoroutine(SceneLoader.Instance.ResetLens());
-            
+
             SetupBattle();
             
             GameEventsManager.AddListener<CharacterEvents>(this);
@@ -239,13 +240,22 @@ namespace BattleSystem
         {
             yield return Timing.WaitForSeconds(0.5f);
             _membersForThisBattle.ForEach(member => member.Unit.anim.SetTrigger(AnimationHandler.VictoryTrigger));
-            Logger.Log("yay, you won");
+      
+            foreach (var member in _membersForThisBattle)
+            {
+                var totalXp = _expGivers.Sum(giver => giver.CalculateExperience(member.level));
+                member.AdvanceTowardsNextLevel(totalXp);
+            }
+            
+            SceneLoader.Instance.LoadOverworld();
         }
 
         private IEnumerator<float> LostBattleSequence()
         {
             yield return Timing.WaitForSeconds(0.5f);
             Logger.Log("you lost idiot");
+            
+            SceneLoader.Instance.LoadOverworld();
         }
         
         #endregion

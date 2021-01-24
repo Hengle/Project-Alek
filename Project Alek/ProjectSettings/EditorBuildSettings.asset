@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Battle.unity
     guid: 5219a0f771636204a82309a9ac5762fa
+  - enabled: 1
+    path: Assets/Scenes/Overworld Demo.unity
+    guid: b0aee94b5dba78c4ea26db29475e8616
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 337f4f2051beb9048ac52cdfff5d09ce,
       type: 2}

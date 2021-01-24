@@ -152,7 +152,7 @@ MonoBehaviour:
       Data: 10|System.Delegate[], mscorlib
     - Name: 
       Entry: 12
-      Data: 8
+      Data: 3
     - Name: 
       Entry: 7
       Data: 11|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
@@ -164,7 +164,7 @@ MonoBehaviour:
       Data: 12|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: BattleSystem.BattleManager, ProjectAlek
+      Data: BattleSystem.BattleEngine, ProjectAlek
     - Name: 
       Entry: 8
       Data: 
@@ -242,171 +242,6 @@ MonoBehaviour:
       Data: 18|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
     - Name: target
       Entry: 10
-      Data: 1
-    - Name: declaringType
-      Entry: 9
-      Data: 12
-    - Name: methodName
-      Entry: 1
-      Data: AddToBattle
-    - Name: delegateType
-      Entry: 9
-      Data: 13
-    - Name: signature
-      Entry: 7
-      Data: 19|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 15
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 20|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: target
-      Entry: 10
-      Data: 1
-    - Name: declaringType
-      Entry: 9
-      Data: 12
-    - Name: methodName
-      Entry: 1
-      Data: AddToBattle
-    - Name: delegateType
-      Entry: 9
-      Data: 13
-    - Name: signature
-      Entry: 7
-      Data: 21|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 15
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 22|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: target
-      Entry: 10
-      Data: 1
-    - Name: declaringType
-      Entry: 9
-      Data: 12
-    - Name: methodName
-      Entry: 1
-      Data: AddToBattle
-    - Name: delegateType
-      Entry: 9
-      Data: 13
-    - Name: signature
-      Entry: 7
-      Data: 23|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 15
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 24|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: target
-      Entry: 10
-      Data: 1
-    - Name: declaringType
-      Entry: 9
-      Data: 12
-    - Name: methodName
-      Entry: 1
-      Data: AddToBattle
-    - Name: delegateType
-      Entry: 9
-      Data: 13
-    - Name: signature
-      Entry: 7
-      Data: 25|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 15
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 26|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: target
-      Entry: 10
-      Data: 1
-    - Name: declaringType
-      Entry: 9
-      Data: 12
-    - Name: methodName
-      Entry: 1
-      Data: AddToBattle
-    - Name: delegateType
-      Entry: 9
-      Data: 13
-    - Name: signature
-      Entry: 7
-      Data: 27|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 15
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 28|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: target
-      Entry: 10
       Data: 2
     - Name: declaringType
       Entry: 9
@@ -419,7 +254,7 @@ MonoBehaviour:
       Data: 13
     - Name: signature
       Entry: 7
-      Data: 29|System.Type[], mscorlib
+      Data: 19|System.Type[], mscorlib
     - Name: 
       Entry: 12
       Data: 1
@@ -471,23 +306,31 @@ MonoBehaviour:
   characterName: Lilith Morana
   characterPrefab: {fileID: 1526218485019349028, guid: c480ece643ae0c54099692d3bbb9649d,
     type: 3}
-  level: 1
+  level: 2
   health:
     BaseValue: 1045
+    maxValue: 9999
   strength:
     BaseValue: 8
+    maxValue: 99
   magic:
     BaseValue: 4
+    maxValue: 99
   accuracy:
     BaseValue: 16
+    maxValue: 99
   initiative:
     BaseValue: 11
+    maxValue: 99
   defense:
     BaseValue: 5
+    maxValue: 99
   resistance:
     BaseValue: 3
+    maxValue: 99
   criticalChance:
     BaseValue: 3
+    maxValue: 99
   description: A very long description about an amazing girl named Lilith. I tell
     you when I come up with a good description, it will be legendary!
   weaponMight: 14

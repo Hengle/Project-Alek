@@ -172,23 +172,31 @@ MonoBehaviour:
   characterName: Goblin
   characterPrefab: {fileID: 1109450531332189788, guid: a8ec9d4fb47d1b241981a2a4e89f88f2,
     type: 3}
-  level: 4
+  level: 2
   health:
     BaseValue: 1320
+    maxValue: 9999
   strength:
     BaseValue: 7
+    maxValue: 99
   magic:
     BaseValue: 4
+    maxValue: 99
   accuracy:
     BaseValue: 15
+    maxValue: 99
   initiative:
     BaseValue: 9
+    maxValue: 99
   defense:
     BaseValue: 6
+    maxValue: 99
   resistance:
     BaseValue: 5
+    maxValue: 99
   criticalChance:
     BaseValue: 8
+    maxValue: 99
   description: What's a goon to a...
   weaponMight: 8
   magicMight: 3
@@ -198,3 +206,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}
   maxAP: 6
   maxShieldCount: 2
+  baseExperience: 100

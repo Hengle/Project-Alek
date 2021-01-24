@@ -60,7 +60,7 @@ namespace BattleSystem.Mechanics
             yield return Timing.WaitForOneFrame;
             yield return Timing.WaitUntilFalse(() => animHandler.isAttacking);
             yield return Timing.WaitUntilDone(unit.parent.InflictOnTargets
-                (Rate.AfterAttacked, 0.5f, false));
+                (Rate.AfterAttacked, 0.25f, false));
         }
 
         private static void SlowTime() => TimeManager._slowTimeCounter = true;

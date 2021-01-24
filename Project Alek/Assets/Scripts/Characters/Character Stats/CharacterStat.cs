@@ -9,14 +9,15 @@ namespace Kryz.CharacterStats
 	[Serializable]
 	public class CharacterStat
 	{
-		[SerializeField] [HorizontalGroup("BaseValue")] [HideLabel] [LabelWidth(5)] [Range(1,9999)]
+		[SerializeField] [HorizontalGroup("BaseValue")]
+		[HideLabel] [LabelWidth(150)] [PropertyRange(1,nameof(maxValue))]
 		public float BaseValue;
 
 		protected bool isDirty = true;
 		protected float lastBaseValue;
 
 		protected float _value;
-		[ShowInInspector] [VerticalGroup("BaseValue/Value")] [LabelWidth(100)] [LabelText("Modded Value")]
+		[ShowInInspector] [VerticalGroup("BaseValue/Value")] [LabelWidth(50)] [LabelText("Modded")]
 		public virtual float Value {
 			get {
 				if(isDirty || lastBaseValue != BaseValue) {
@@ -27,6 +28,9 @@ namespace Kryz.CharacterStats
 				return _value;
 			}
 		}
+
+		[SerializeField] [VerticalGroup("BaseValue/Max")] [LabelWidth(30)] [LabelText("Max")]
+		public float maxValue;
 
 		protected readonly List<StatModifier> statModifiers;
 		public readonly ReadOnlyCollection<StatModifier> StatModifiers;
