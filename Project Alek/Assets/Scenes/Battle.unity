@@ -33186,7 +33186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eae4cc1ced1eb04b8999e60ee099fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalVariables: {fileID: 11400000, guid: 72ce419412cfe164b969a3047001ae66, type: 2}
   inventoryInputManager: {fileID: 0}
   generator: {fileID: 0}
   membersAndEnemiesThisTurn: []
@@ -35254,7 +35253,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-92664
+  m_Name: pb_Mesh-2368
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

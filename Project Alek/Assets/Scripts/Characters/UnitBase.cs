@@ -9,6 +9,7 @@ using Characters.Animations;
 using Characters.ElementalTypes;
 using Characters.StatusEffects;
 using DamagePrefab;
+using JetBrains.Annotations;
 using Kryz.CharacterStats;
 using Sirenix.OdinInspector;
 using UnityEngine.UI;
@@ -26,13 +27,13 @@ namespace Characters
         [VerticalGroup("Basic/Info"), LabelWidth(120)] 
         public Vector3 scale = Vector3.one;
 
-        [VerticalGroup("Basic/Info"), ReadOnly, LabelWidth(120)] 
+        [VerticalGroup("Basic/Info"), HideInInspector, LabelWidth(120)] 
         public CharacterType id;
 
-        [VerticalGroup("Basic/Info"), LabelWidth(120)] 
+        [HorizontalGroup("Basic/Info/Prefab"), LabelText("Name"), LabelWidth(50)] 
         public string characterName;
         
-        [VerticalGroup("Basic/Info"), LabelWidth(120)] 
+        [HorizontalGroup("Basic/Info/Prefab"), LabelText("Prefab"), LabelWidth(50)] 
         public GameObject characterPrefab;
         
         [PropertySpace(30)]
@@ -81,22 +82,22 @@ namespace Characters
         [InlineProperty(LabelWidth = 115)]
         public struct ElementalResStruct
         {
-            public ElementalType _type;
-            public ElementalResistanceScalar _scalar;
+            [UsedImplicitly] public ElementalType _type;
+            [UsedImplicitly] public ElementalResistanceScalar _scalar;
         }
         
         [InlineProperty(LabelWidth = 115)]
         public struct ElementalWeaknessStruct
         {
-            public ElementalType _type;
-            public ElementalWeaknessScalar _scalar;
+            [UsedImplicitly] public ElementalType _type;
+            [UsedImplicitly] public ElementalWeaknessScalar _scalar;
         }
         
         [InlineProperty(LabelWidth = 115)]
         public struct StatusEffectStruct
         {
-            public StatusEffect _effect;
-            public InflictionChanceModifier _modifier;
+            [UsedImplicitly] public StatusEffect _effect;
+            [UsedImplicitly] public InflictionChanceModifier _modifier;
         }
 
         [ShowInInspector] [TabGroup("Tabs/Resistances & Weaknesses", "Elements")]
@@ -283,14 +284,14 @@ namespace Characters
             {
                 if (Unit.parry)
                 {
-                    dmg = (int) (dmg * BattleEngine.Instance.globalVariables.timedDefenseBonus);
+                    dmg = (int) (dmg * GlobalVariables.Instance.timedDefenseBonus);
                     CurrentHP -= dmg;
                     Unit.parry = false;
                     Unit.onTimedDefense?.Invoke(true);
                 }
                 else if (Unit.timedAttack)
                 {
-                    dmg = (int) (dmg * BattleEngine.Instance.globalVariables.timedAttackBonus);
+                    dmg = (int) (dmg * GlobalVariables.Instance.timedAttackBonus);
                     CurrentHP -= dmg;
                     Unit.timedAttack = false;
                 }

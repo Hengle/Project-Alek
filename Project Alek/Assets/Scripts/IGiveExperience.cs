@@ -1,4 +1,4 @@
 ﻿public interface IGiveExperience
 {
-        int CalculateExperience(int level);
+        int CalculateExperience(int level, object source);
 }

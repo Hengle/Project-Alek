@@ -152,7 +152,7 @@ MonoBehaviour:
       Data: 10|System.Delegate[], mscorlib
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 2
     - Name: 
       Entry: 7
       Data: 11|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
@@ -209,39 +209,6 @@ MonoBehaviour:
       Data: 16|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
     - Name: target
       Entry: 10
-      Data: 1
-    - Name: declaringType
-      Entry: 9
-      Data: 12
-    - Name: methodName
-      Entry: 1
-      Data: AddToBattle
-    - Name: delegateType
-      Entry: 9
-      Data: 13
-    - Name: signature
-      Entry: 7
-      Data: 17|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 15
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 18|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: target
-      Entry: 10
       Data: 2
     - Name: declaringType
       Entry: 9
@@ -254,7 +221,7 @@ MonoBehaviour:
       Data: 13
     - Name: signature
       Entry: 7
-      Data: 19|System.Type[], mscorlib
+      Data: 17|System.Type[], mscorlib
     - Name: 
       Entry: 12
       Data: 1
@@ -306,7 +273,7 @@ MonoBehaviour:
   characterName: Lilith Morana
   characterPrefab: {fileID: 1526218485019349028, guid: c480ece643ae0c54099692d3bbb9649d,
     type: 3}
-  level: 2
+  level: 1
   health:
     BaseValue: 1045
     maxValue: 9999
@@ -314,19 +281,19 @@ MonoBehaviour:
     BaseValue: 8
     maxValue: 99
   magic:
-    BaseValue: 4
+    BaseValue: 3
     maxValue: 99
   accuracy:
-    BaseValue: 16
+    BaseValue: 14
     maxValue: 99
   initiative:
-    BaseValue: 11
+    BaseValue: 12
     maxValue: 99
   defense:
     BaseValue: 5
     maxValue: 99
   resistance:
-    BaseValue: 3
+    BaseValue: 2
     maxValue: 99
   criticalChance:
     BaseValue: 3
@@ -342,6 +309,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 47015355f94fcc74bbb9c212781f9416, type: 2}
   - {fileID: 11400000, guid: ee9a142c4223d434e863f4e4e1758255, type: 2}
   maxAP: 6
+  currentClass: {fileID: 11400000, guid: babdda5b7a9c9c04e93e85002ce0de84, type: 2}
   positionInParty: 4
   specialAttackBarVal: 1
   weaponInventory: {fileID: 9018186885891804427, guid: b53c59ae1a11e064b8d4a3e7c56bbfe6,

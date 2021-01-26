@@ -1,4 +1,5 @@
-﻿using Characters;
+﻿using System;
+using Characters;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,10 +18,10 @@ namespace BattleSystem.Mechanics
             {
                 switch (unit.conversionLevel)
                 {
-                    case 1: return BattleEngine.Instance.globalVariables.conversionFactorLvl1;
-                    case 2: return BattleEngine.Instance.globalVariables.conversionFactorLvl2;
-                    case 3: return BattleEngine.Instance.globalVariables.conversionFactorLvl3;
-                    case 4: return BattleEngine.Instance.globalVariables.conversionFactorLvl4;
+                    case 1: return GlobalVariables.Instance.conversionFactorLvl1;
+                    case 2: return GlobalVariables.Instance.conversionFactorLvl2;
+                    case 3: return GlobalVariables.Instance.conversionFactorLvl3;
+                    case 4: return GlobalVariables.Instance.conversionFactorLvl4;
                     default: return 1.0f;
                 }
             }
@@ -37,7 +38,10 @@ namespace BattleSystem.Mechanics
         private void Start()
         {
             unit = GetComponent<Unit>();
+        }
 
+        private void OnEnable()
+        {
             BattleInput._controls.Battle.LeftSelect.performed += AdjustConversionAmount;
             BattleInput._controls.Battle.RightSelect.performed += AdjustConversionAmount;
             GameEventsManager.AddListener(this);

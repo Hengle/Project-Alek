@@ -123,7 +123,7 @@ namespace Characters
             onDeselect?.Invoke();
         }
 
-        public static bool CanBorrow(int amount) => amount <= BattleEngine.Instance.globalVariables.maxLoanAmount;
+        public static bool CanBorrow(int amount) => amount <= GlobalVariables.Instance.maxLoanAmount;
 
         private void ResetTargets()
         {

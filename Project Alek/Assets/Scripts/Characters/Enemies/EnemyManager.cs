@@ -1,22 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Characters.Enemies;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour
+namespace Characters.Enemies
 {
-    public List<Enemy> enemies = new List<Enemy>();
-
-    public static EnemyManager _instance;
-
-    private void Awake()
+    public class EnemyManager : MonoBehaviour
     {
-        if (_instance == null) {
-            DontDestroyOnLoad(gameObject);
-            _instance = this;
-        }
+        public List<Enemy> enemies = new List<Enemy>();
+
+        public static EnemyManager _instance;
+
+        private void Awake()
+        {
+            if (_instance == null) {
+                DontDestroyOnLoad(gameObject);
+                _instance = this;
+            }
             
-        else if (_instance != this) Destroy(gameObject);
+            else if (_instance != this) Destroy(gameObject);
+        }
     }
 }

@@ -22,15 +22,15 @@ namespace BattleSystem.Mechanics
                     case DamageBoostLvl.Level0:
                         return 1.0f;
                     case DamageBoostLvl.Level1:
-                        return 1 + BattleEngine.Instance.globalVariables.damageBoostIncrement;
+                        return 1 + GlobalVariables.Instance.damageBoostIncrement;
                     case DamageBoostLvl.Level2:
-                        return 1 + BattleEngine.Instance.globalVariables.damageBoostIncrement * 2;
+                        return 1 + GlobalVariables.Instance.damageBoostIncrement * 2;
                     case DamageBoostLvl.Level3:
-                        return 1 + BattleEngine.Instance.globalVariables.damageBoostIncrement * 3;
+                        return 1 + GlobalVariables.Instance.damageBoostIncrement * 3;
                     case DamageBoostLvl.Level4:
-                        return 1 + BattleEngine.Instance.globalVariables.damageBoostIncrement * 4;
+                        return 1 + GlobalVariables.Instance.damageBoostIncrement * 4;
                     case DamageBoostLvl.Level5:
-                        return 1 + BattleEngine.Instance.globalVariables.damageBoostIncrement * 5;
+                        return 1 + GlobalVariables.Instance.damageBoostIncrement * 5;
                     default: return 1.0f;
                 }
             }
@@ -45,15 +45,15 @@ namespace BattleSystem.Mechanics
                     case DefenseBoostLvl.Level0:
                         return 1.0f;
                     case DefenseBoostLvl.Level1:
-                        return 1 - BattleEngine.Instance.globalVariables.defenseBoostIncrement;
+                        return 1 - GlobalVariables.Instance.defenseBoostIncrement;
                     case DefenseBoostLvl.Level2:
-                        return 1 - BattleEngine.Instance.globalVariables.defenseBoostIncrement * 2;
+                        return 1 - GlobalVariables.Instance.defenseBoostIncrement * 2;
                     case DefenseBoostLvl.Level3:
-                        return 1 - BattleEngine.Instance.globalVariables.defenseBoostIncrement * 3;
+                        return 1 - GlobalVariables.Instance.defenseBoostIncrement * 3;
                     case DefenseBoostLvl.Level4:
-                        return 1 - BattleEngine.Instance.globalVariables.defenseBoostIncrement * 4;
+                        return 1 - GlobalVariables.Instance.defenseBoostIncrement * 4;
                     case DefenseBoostLvl.Level5:
-                        return 1 - BattleEngine.Instance.globalVariables.defenseBoostIncrement * 5;
+                        return 1 - GlobalVariables.Instance.defenseBoostIncrement * 5;
                     default: return 1.0f;
                 }
             }

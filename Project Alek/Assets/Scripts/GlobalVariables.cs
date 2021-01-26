@@ -6,7 +6,7 @@ public class GlobalVariables : ScriptableObject
 {
     #region BoostIncrements
     
-    public bool showBoostIncrements;
+    [Space(10)] public bool showBoostIncrements;
     [ShowIf(nameof(showBoostIncrements))]
     [Range(0.1f,0.5f)] public float damageBoostIncrement = 0.3f;
     [ShowIf(nameof(showBoostIncrements))]
@@ -98,4 +98,12 @@ public class GlobalVariables : ScriptableObject
     [ShowIf(nameof(showMysteryIcon))] public Sprite mysteryIcon;
     
     #endregion
+    
+    public static GlobalVariables Instance { get; private set; }
+
+    [RuntimeInitializeOnLoadMethod] private static void Init()
+    {
+        Instance = Resources.Load<GlobalVariables>("Global Variables");
+        if (Instance == null) Debug.LogError("Global Variables could not be found!");
+    }
 }

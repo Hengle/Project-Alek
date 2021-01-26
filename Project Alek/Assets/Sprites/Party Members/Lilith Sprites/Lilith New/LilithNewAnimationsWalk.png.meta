@@ -1,12 +1,138 @@
 fileFormatVersion: 2
 guid: b707c47caeee94b4a8aa6a6b36a275c9
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 7130230871336844285
+    second: Lilith_Idle_0
+  - first:
+      213: -3525481310271501907
+    second: Lilith_Idle_1
+  - first:
+      213: 3939654454695816203
+    second: Lilith_Idle_2
+  - first:
+      213: -2802026834160596891
+    second: Lilith_Idle_3
+  - first:
+      213: -376890293365317114
+    second: Lilith_Idle_4
+  - first:
+      213: -5784739534235343788
+    second: Lilith_Idle_5
+  - first:
+      213: 6699512879094499883
+    second: Lilith_Idle_6
+  - first:
+      213: 1711680300669746990
+    second: Lilith_Idle_7
+  - first:
+      213: -7381317910146337391
+    second: Lilith_Idle_8
+  - first:
+      213: -345112773747866079
+    second: Lilith_Idle_9
+  - first:
+      213: 17188429126391874
+    second: Lilith_Walk_Right_0
+  - first:
+      213: -1624274327855423380
+    second: Lilith_Walk_Right_1
+  - first:
+      213: 2078980574693905095
+    second: Lilith_Walk_Right_2
+  - first:
+      213: 2065737540256391473
+    second: Lilith_Walk_Right_3
+  - first:
+      213: 2020204846945046035
+    second: Lilith_Walk_Right_4
+  - first:
+      213: 7186652321465477469
+    second: Lilith_Walk_Right_5
+  - first:
+      213: 8466097489497651428
+    second: Lilith_Walk_Right_6
+  - first:
+      213: 1356986278407309300
+    second: Lilith_Walk_Right_7
+  - first:
+      213: 5731971694238848669
+    second: Lilith_Walk_Left_0
+  - first:
+      213: 4536133588063172387
+    second: Lilith_Walk_Left_1
+  - first:
+      213: 7303440690377131564
+    second: Lilith_Walk_Left_2
+  - first:
+      213: 2837394579167582571
+    second: Lilith_Walk_Left_3
+  - first:
+      213: 2710906325019530640
+    second: Lilith_Walk_Left_4
+  - first:
+      213: -7936389747261478272
+    second: Lilith_Walk_Left_5
+  - first:
+      213: 2918001168932664827
+    second: Lilith_Walk_Left_6
+  - first:
+      213: -7656971411951485290
+    second: Lilith_Walk_Left_7
+  - first:
+      213: -7070230624838044820
+    second: Lilith_Run_Right_0
+  - first:
+      213: -9101706459243400016
+    second: Lilith_Run_Right_1
+  - first:
+      213: -4287688874217442208
+    second: Lilith_Run_Right_2
+  - first:
+      213: -6212873091697194365
+    second: Lilith_Run_Right_3
+  - first:
+      213: 4367340435995678677
+    second: Lilith_Run_Right_4
+  - first:
+      213: 5276496286130675868
+    second: Lilith_Run_Right_5
+  - first:
+      213: -3688728712413449657
+    second: Lilith_Run_Right_6
+  - first:
+      213: -5378145970317955123
+    second: Lilith_Run_Right_7
+  - first:
+      213: -803768104726308713
+    second: Lilith_Run_Left_0
+  - first:
+      213: 8863739347709993000
+    second: Lilith_Run_Left_1
+  - first:
+      213: -1888957977274342455
+    second: Lilith_Run_Left_2
+  - first:
+      213: -8479836287586651102
+    second: Lilith_Run_Left_3
+  - first:
+      213: 9215584141255700132
+    second: Lilith_Run_Left_4
+  - first:
+      213: -3568050552394326058
+    second: Lilith_Run_Left_5
+  - first:
+      213: 450335970081756266
+    second: Lilith_Run_Left_6
+  - first:
+      213: -6147134126225671846
+    second: Lilith_Run_Left_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -31,27 +157,27 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: 2
     mipBias: -100
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   maxTextureSizeSet: 0
@@ -119,13 +245,907 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lilith_Idle_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 265
+        width: 25
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfb7e8c233ba3f260800000000000000
+      internalID: 7130230871336844285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Idle_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 265
+        width: 25
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da90df65d69f21fc0800000000000000
+      internalID: -3525481310271501907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Idle_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 265
+        width: 25
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0cede57ad67ca630800000000000000
+      internalID: 3939654454695816203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Idle_3
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 265
+        width: 23
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 568cebaa0733d19d0800000000000000
+      internalID: -2802026834160596891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Idle_4
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 265
+        width: 22
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 602eaa8664405caf0800000000000000
+      internalID: -376890293365317114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Idle_5
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 265
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4546ebfda0a78bfa0800000000000000
+      internalID: -5784739534235343788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Idle_6
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 265
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2a059ec77379fc50800000000000000
+      internalID: 6699512879094499883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Idle_7
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 265
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2f34722a2c11c710800000000000000
+      internalID: 1711680300669746990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Idle_8
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 265
+        width: 22
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 195bf77f77a409990800000000000000
+      internalID: -7381317910146337391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Idle_9
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 265
+        width: 23
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1260f41c2c9e53bf0800000000000000
+      internalID: -345112773747866079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Walk_Right_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 201
+        width: 24
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 248535409c01d3000800000000000000
+      internalID: 17188429126391874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Walk_Right_1
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 201
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c602466ca1b6579e0800000000000000
+      internalID: -1624274327855423380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Walk_Right_2
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 201
+        width: 15
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c2519951d50adc10800000000000000
+      internalID: 2078980574693905095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Walk_Right_3
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 201
+        width: 15
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 131eb2e1959faac10800000000000000
+      internalID: 2065737540256391473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Walk_Right_4
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 201
+        width: 24
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31e8ea3da95390c10800000000000000
+      internalID: 2020204846945046035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Walk_Right_5
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 201
+        width: 19
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d59af29b53e1cb360800000000000000
+      internalID: 7186652321465477469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Walk_Right_6
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 201
+        width: 16
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e87557bfce9d7570800000000000000
+      internalID: 8466097489497651428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Walk_Right_7
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 201
+        width: 17
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f70c81a4dbf4d210800000000000000
+      internalID: 1356986278407309300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Walk_Left_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 137
+        width: 24
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9653b9f2ed0c8f40800000000000000
+      internalID: 5731971694238848669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Walk_Left_1
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 137
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3273932077593fe30800000000000000
+      internalID: 4536133588063172387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Walk_Left_2
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 137
+        width: 15
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c260014dc980b5560800000000000000
+      internalID: 7303440690377131564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Walk_Left_3
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 137
+        width: 15
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6917ea2653706720800000000000000
+      internalID: 2837394579167582571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Walk_Left_4
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 137
+        width: 24
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 095162a80f21f9520800000000000000
+      internalID: 2710906325019530640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Walk_Left_5
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 137
+        width: 19
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08a6d6bd2974cd190800000000000000
+      internalID: -7936389747261478272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Walk_Left_6
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 137
+        width: 16
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf5f7685a92de7820800000000000000
+      internalID: 2918001168932664827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Walk_Left_7
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 137
+        width: 17
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69e7f47b119fcb590800000000000000
+      internalID: -7656971411951485290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Run_Right_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 77
+        width: 29
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c63b076d4be71ed90800000000000000
+      internalID: -7070230624838044820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Run_Right_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 73
+        width: 26
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b43beeb23e30b180800000000000000
+      internalID: -9101706459243400016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Run_Right_2
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 73
+        width: 20
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 064ffd0afa11f74c0800000000000000
+      internalID: -4287688874217442208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Run_Right_3
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 73
+        width: 16
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38a4ece17d077c9a0800000000000000
+      internalID: -6212873091697194365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Run_Right_4
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 77
+        width: 28
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d7d8b4ccf8eb9c30800000000000000
+      internalID: 4367340435995678677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Run_Right_5
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 73
+        width: 23
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c90ac798a61e93940800000000000000
+      internalID: 5276496286130675868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Run_Right_6
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 73
+        width: 20
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 742ffcf97c00fccc0800000000000000
+      internalID: -3688728712413449657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Run_Right_7
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 73
+        width: 16
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcfeff01cbcfc55b0800000000000000
+      internalID: -5378145970317955123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Run_Left_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 13
+        width: 29
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 798dff3da2178d4f0800000000000000
+      internalID: -803768104726308713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Run_Left_1
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 9
+        width: 26
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82028e189f3520b70800000000000000
+      internalID: 8863739347709993000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Run_Left_2
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 9
+        width: 20
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c32ce05ab219c5e0800000000000000
+      internalID: -1888957977274342455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Run_Left_3
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 9
+        width: 16
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2243ee413d1915a80800000000000000
+      internalID: -8479836287586651102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Run_Left_4
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 13
+        width: 28
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aee44143f454ef70800000000000000
+      internalID: 9215584141255700132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Run_Left_5
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 9
+        width: 23
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6df56eb4decbb7ec0800000000000000
+      internalID: -3568050552394326058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Run_Left_6
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 9
+        width: 20
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a64dd46cd2aef3600800000000000000
+      internalID: 450335970081756266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lilith_Run_Left_7
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 9
+        width: 16
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5933a3c41ef0baa0800000000000000
+      internalID: -6147134126225671846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 16b034c8a9770424194598fb1feb4c71
     internalID: 0
     vertices: []
     indices: 

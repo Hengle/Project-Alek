@@ -2,6 +2,7 @@
 using System.Linq;
 using BattleSystem;
 using Characters.ElementalTypes;
+using Characters.Enemies;
 using UnityEngine;
 
 namespace Characters.StatusEffects

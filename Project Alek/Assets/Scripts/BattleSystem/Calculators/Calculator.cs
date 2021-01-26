@@ -113,7 +113,8 @@ namespace BattleSystem.Calculators
         {
             if (!isCritical) return totalDamage < 0 ? 0 : Random.Range((int) (0.97f * totalDamage), (int) (1.03f * totalDamage));
 
-            totalDamage = (int)(totalDamage * BattleEngine.Instance.globalVariables.criticalDamageFactor);
+            //totalDamage = (int)(totalDamage * BattleEngine.Instance.globalVariables.criticalDamageFactor);
+            totalDamage = (int)(totalDamage * GlobalVariables.Instance.criticalDamageFactor);
             target.Unit.targetHasCrit = true;
             //damageDealer.Unit.isCrit = true;
             

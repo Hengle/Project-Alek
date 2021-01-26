@@ -178,12 +178,13 @@ MonoBehaviour:
   description: This is a description for yah girl Leandra. She is boss and won't
     take anyone's crap. Uggghhh extra stuff to increase text count.
   weaponMight: 6
-  magicMight: 0
+  magicMight: 1
   weaponAccuracy: 85
   weaponCriticalChance: 3
   abilities:
   - {fileID: 11400000, guid: 29e5f87674d2cba4b9282fcecc4fe2ca, type: 2}
   maxAP: 6
+  currentClass: {fileID: 0}
   positionInParty: 3
   specialAttackBarVal: 0.05
   weaponInventory: {fileID: 2363339618168879057, guid: 3b3a696505e47b2409e90ac00429c493,

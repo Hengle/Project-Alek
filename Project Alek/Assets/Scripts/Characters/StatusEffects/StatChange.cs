@@ -17,7 +17,7 @@ namespace Characters.StatusEffects
         
         [Space] [SerializeField] [Title("Buffs"), VerticalGroup("Icon/Info"), LabelWidth(120)]
         [HideIf(nameof(name), "Checkmate")]
-        private bool buffs;
+        public bool buffs;
         
         [ShowIf(nameof(buffs))] [HideIf(nameof(name), "Checkmate")]
         [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
@@ -29,7 +29,7 @@ namespace Characters.StatusEffects
         
         [Space] [HideIf(nameof(name), "Checkmate")]
         [SerializeField] [Title("Debuffs"), VerticalGroup("Icon/Info"), LabelWidth(120)]
-        private bool debuffs;
+        public bool debuffs;
         
         [ShowIf(nameof(debuffs))] [HideIf(nameof(name), "Checkmate")]
         [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
@@ -46,9 +46,9 @@ namespace Characters.StatusEffects
             {
                 switch (buffMultiplier)
                 {
-                    case Multiplier.Slight: return BattleEngine.Instance.globalVariables.slightBuff;
-                    case Multiplier.Moderate: return BattleEngine.Instance.globalVariables.moderateBuff;
-                    case Multiplier.Significant: return BattleEngine.Instance.globalVariables.significantBuff;
+                    case Multiplier.Slight: return GlobalVariables.Instance.slightBuff;
+                    case Multiplier.Moderate: return GlobalVariables.Instance.moderateBuff;
+                    case Multiplier.Significant: return GlobalVariables.Instance.significantBuff;
                     case Multiplier.None: return 1;
                     default: return 1;
                 }
@@ -60,9 +60,9 @@ namespace Characters.StatusEffects
             {
                 switch (debuffMultiplier)
                 {
-                    case Multiplier.Slight: return BattleEngine.Instance.globalVariables.slightDebuff;
-                    case Multiplier.Moderate: return BattleEngine.Instance.globalVariables.moderateDebuff;
-                    case Multiplier.Significant: return BattleEngine.Instance.globalVariables.significantDebuff;
+                    case Multiplier.Slight: return GlobalVariables.Instance.slightDebuff;
+                    case Multiplier.Moderate: return GlobalVariables.Instance.moderateDebuff;
+                    case Multiplier.Significant: return GlobalVariables.Instance.significantDebuff;
                     case Multiplier.None: return 1;
                     default: return 1;
                 }

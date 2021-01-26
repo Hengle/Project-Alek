@@ -264,4 +264,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
   maxAP: 6
   maxShieldCount: 4
-  baseExperience: 200
+  baseExperience: 420

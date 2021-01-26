@@ -19,8 +19,6 @@ namespace BattleSystem
     {
         #region FieldsAndProperties
         
-        public GlobalVariables globalVariables;
-
         private static BattleEngine instance;
         
         public static BattleEngine Instance {
@@ -30,8 +28,7 @@ namespace BattleSystem
 
         [HideInInspector] public InventoryInputManager inventoryInputManager;
         [HideInInspector] public BattleGenerator generator;
-
-        //TODO: Make new list for enemies that is not updated for exp calculations
+        
         [ReadOnly] public readonly List<IGiveExperience> _expGivers = new List<IGiveExperience>();
         [ReadOnly] public readonly List<Enemy> _enemiesForThisBattle = new List<Enemy>();
         [ReadOnly] public readonly List<PartyMember> _membersForThisBattle = new List<PartyMember>();
@@ -106,7 +103,7 @@ namespace BattleSystem
                 yield return Timing.WaitUntilTrue(SortingCalculator.SortByInitiative); }
 
             var character = membersAndEnemiesThisTurn[0];
-                
+            
             yield return Timing.WaitUntilDone(character.InflictStatus
                 (Rate.EveryTurn, 1, true));
                 
@@ -243,8 +240,14 @@ namespace BattleSystem
       
             foreach (var member in _membersForThisBattle)
             {
-                var totalXp = _expGivers.Sum(giver => giver.CalculateExperience(member.level));
+                var totalXp = _expGivers.Sum(giver =>
+                    giver.CalculateExperience(member.level, member));
+                
+                var totalClassXp = _expGivers.Sum(giver =>
+                    giver.CalculateExperience(member.currentClass.level, member.currentClass));
+                
                 member.AdvanceTowardsNextLevel(totalXp);
+                member.currentClass.AdvanceTowardsNextLevel(totalClassXp);
             }
             
             SceneLoader.Instance.LoadOverworld();

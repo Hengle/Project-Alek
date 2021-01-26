@@ -43,14 +43,22 @@ namespace Characters.Enemies
         [VerticalGroup("Basic/Info")]
         [SerializeField] private int baseExperience;
 
-        public int CalculateExperience(int lvl)
+        public int CalculateExperience(int lvl, object source)
         {
-            var difference = level - lvl;
-            double modifier = 1 + difference * 0.25f;
-            var finalValue = baseExperience * modifier;
-            //Debug.Log($"Exp from {characterName}: {(int)finalValue}");
+            var type = source.GetType();
 
-            return (int)finalValue;
+            if (type == typeof(PartyMember))
+            {
+                var difference = level - lvl;
+                double modifier = 1 + difference * 0.25f;
+                var finalValue = baseExperience * modifier;
+
+                return (int)finalValue;
+            }
+            
+            if (type == typeof(Class)) return (int)(baseExperience / 5f);
+            
+            return 0;
         }
     }
 }

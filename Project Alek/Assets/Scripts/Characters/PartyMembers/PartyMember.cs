@@ -9,6 +9,12 @@ namespace Characters.PartyMembers
     [CreateAssetMenu(fileName = "New Party Member", menuName = "Character/Party Member")]
     public class PartyMember : UnitBase, ICanBeLeveled
     {
+        private const int MaxLevel = 99;
+        private const int BaseExperience = 500;
+
+        [VerticalGroup("Basic/Info")]
+        public Class currentClass;
+
         [Range(0,4), VerticalGroup("Basic/Info")]
         public int positionInParty;
 
@@ -32,13 +38,8 @@ namespace Characters.PartyMembers
         public CanvasGroup Container => inventoryDisplay.GetComponent<CanvasGroup>();
         public InventoryDisplay InventoryDisplay => inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
 
-        public override void Heal(float amount)
-        {
-            CurrentHP += (int) amount;
-        }
+        public override void Heal(float amount) => CurrentHP += (int) amount;
         
-        public bool SetAI() => true;
-
         private int currentExperience;
         
         [ShowInInspector, ProgressBar(0, nameof(ExperienceToNextLevel)), VerticalGroup("Basic/Info"), LabelWidth(120)]
@@ -47,44 +48,38 @@ namespace Characters.PartyMembers
             get => currentExperience;
             set
             {
-                if (value > ExperienceToNextLevel)
+                if (level == MaxLevel) return;
+                if (value >= ExperienceToNextLevel)
                 {
                     currentExperience = value - ExperienceToNextLevel;
-                    ExperienceToNextLevel = GetNextExperienceThreshold(ExperienceToNextLevel);
                     LevelUp();
+                    
+                    while (currentExperience >= ExperienceToNextLevel)
+                    {
+                        currentExperience -= ExperienceToNextLevel;
+                        LevelUp();
+                        if (level == MaxLevel) break;
+                    }
                 }
                 else currentExperience = value;
             }
         }
-        
+
         [ShowInInspector, VerticalGroup("Basic/Info")]
-        public int ExperienceToNextLevel { get; set; }
+        public int ExperienceToNextLevel => GetNextExperienceThreshold();
         
-        [VerticalGroup("Basic/Info")]
-        [Button("Give EXP",ButtonSizes.Medium, ButtonStyle.Box)]
-        public void AdvanceTowardsNextLevel(int xp)
-        {
-            CurrentExperience += xp;
-        }
+        [VerticalGroup("Basic/Info")] [Button("Give EXP",ButtonSizes.Medium, ButtonStyle.Box)]
+        public void AdvanceTowardsNextLevel(int xp) => CurrentExperience += xp;
         
-        public int GetNextExperienceThreshold(int prev)
-        {
-            return (int)(prev * 1.5f);
-        }
+        public int GetNextExperienceThreshold() => (int) (BaseExperience * Math.Pow(1.1f, level - 1));
+        
+        public Action<int> LevelUpEvent { get; set; }
 
-        public Action LevelUpEvent { get; set; }
-
-        private int Level
-        {
-            get => level;
-            set => level = value;
-        }
-        
         public void LevelUp()
         {
-            Debug.Log($"Yay! {characterName} leveled up!");
-            Level += 1;
-            LevelUpEvent?.Invoke();
+            level += 1;
+            currentClass.IncreaseStats();
+            LevelUpEvent?.Invoke(level);
         }
     }
 }

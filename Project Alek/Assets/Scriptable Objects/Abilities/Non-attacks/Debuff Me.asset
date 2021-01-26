@@ -9,19 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fe0785f3733400495ac195eb98ba710, type: 3}
-  m_Name: Lilith Special
+  m_Script: {fileID: 11500000, guid: c0f4c02d75c04da0803f9381a6c4f3a3, type: 3}
+  m_Name: Debuff Me
   m_EditorClassIdentifier: 
-  abilityType: 0
-  damageType: 2
-  targetOptions: 0
+  abilityType: 2
+  damageType: 0
+  targetOptions: 1
   icon: {fileID: 0}
   actionCost: 1
-  damageMultiplier: 1.5
+  damageMultiplier: 1
   attackState: 2
   animation: {fileID: 0}
   isMultiTarget: 0
-  description: Lilith special ability
+  description: Insert description for this ability
   hasElemental: 0
   elementalType: {fileID: 0}
   elementalScalar: 0

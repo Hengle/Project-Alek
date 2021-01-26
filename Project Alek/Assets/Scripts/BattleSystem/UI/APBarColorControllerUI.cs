@@ -16,8 +16,8 @@ namespace BattleSystem.UI
         {
             if (unit == null) return;
             fill.color = unit.status == Status.Overexerted ?
-                 BattleEngine.Instance.globalVariables.overexertedAPColor :
-                 BattleEngine.Instance.globalVariables.originalAPColor;
+                 GlobalVariables.Instance.overexertedAPColor :
+                 GlobalVariables.Instance.originalAPColor;
         }
     }
 }
