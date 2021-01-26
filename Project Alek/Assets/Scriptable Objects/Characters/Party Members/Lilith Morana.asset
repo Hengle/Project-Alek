@@ -18,7 +18,6 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 366775002164acb45983c6014a20dd29, type: 2}
     - {fileID: 0}
-    - {fileID: 0}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -147,21 +146,12 @@ MonoBehaviour:
     - Name: onRevival
       Entry: 7
       Data: 9|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: invocationList
-      Entry: 7
-      Data: 10|System.Delegate[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 11|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
     - Name: target
       Entry: 10
       Data: 1
     - Name: declaringType
       Entry: 7
-      Data: 12|System.RuntimeType, mscorlib
+      Data: 10|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: BattleSystem.BattleEngine, ProjectAlek
@@ -173,7 +163,7 @@ MonoBehaviour:
       Data: AddToBattle
     - Name: delegateType
       Entry: 7
-      Data: 13|System.RuntimeType, mscorlib
+      Data: 11|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
@@ -182,58 +172,16 @@ MonoBehaviour:
       Data: 
     - Name: signature
       Entry: 7
-      Data: 14|System.Type[], mscorlib
+      Data: 12|System.Type[], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 15|System.RuntimeType, mscorlib
+      Data: 13|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: Characters.UnitBase, ProjectAlek
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 16|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: target
-      Entry: 10
-      Data: 2
-    - Name: declaringType
-      Entry: 9
-      Data: 12
-    - Name: methodName
-      Entry: 1
-      Data: AddToBattle
-    - Name: delegateType
-      Entry: 9
-      Data: 13
-    - Name: signature
-      Entry: 7
-      Data: 17|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 15
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 8
       Data: 
