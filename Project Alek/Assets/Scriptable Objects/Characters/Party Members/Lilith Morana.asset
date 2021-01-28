@@ -221,7 +221,7 @@ MonoBehaviour:
   characterName: Lilith Morana
   characterPrefab: {fileID: 1526218485019349028, guid: c480ece643ae0c54099692d3bbb9649d,
     type: 3}
-  level: 1
+  level: 4
   health:
     BaseValue: 1045
     maxValue: 9999
@@ -256,6 +256,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8e151e58900d509469c607fa4066a172, type: 2}
   - {fileID: 11400000, guid: 47015355f94fcc74bbb9c212781f9416, type: 2}
   - {fileID: 11400000, guid: ee9a142c4223d434e863f4e4e1758255, type: 2}
+  - {fileID: 11400000, guid: 6eb5e2c11d395244e94b25794bf8f3dc, type: 2}
+  - {fileID: 11400000, guid: 1bd86029ab3f7364f926a2f94cc66e50, type: 2}
   maxAP: 6
   currentClass: {fileID: 11400000, guid: babdda5b7a9c9c04e93e85002ce0de84, type: 2}
   positionInParty: 4

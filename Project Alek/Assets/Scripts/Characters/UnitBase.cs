@@ -125,15 +125,11 @@ namespace Characters
         [Range(1,99), TabGroup("Tabs","Weapon Stats")] public int weaponCriticalChance;
 
         [TabGroup("Tabs","Abilities")] [InlineEditor]
-        [OnValueChanged(nameof(CheckAbilityCount))] 
+        [ValidateInput(nameof(CheckAbilityCount), "Cannot have more than 5 abilities equipped!")] 
         public List<Ability> abilities = new List<Ability>();
 
-        public void CheckAbilityCount() 
-        {
-            if (abilities.Count <= 5) return;
-            Debug.LogError("Cannot have more than 5 abilities at a time!");
-        }
-        
+        private bool CheckAbilityCount => abilities.Count <= 5;
+
         public Color Color 
         {
             get

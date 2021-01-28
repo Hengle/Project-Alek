@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BattleSystem.Calculators;
 using UnityEngine;
 using Characters;
@@ -66,8 +68,6 @@ namespace BattleSystem
             
             canGiveCommand = true;
             roundCount = 0;
-
-            SetupBattle();
             
             GameEventsManager.AddListener<CharacterEvents>(this);
             GameEventsManager.AddListener<BattleEvents>(this);
@@ -92,7 +92,7 @@ namespace BattleSystem
         #endregion
 
         #region RoundsAndCharacterTurns
-
+        
         private IEnumerator<float> GetNextTurn()
         {
             if (PartyOrEnemyTeamIsDead) { EndOfBattle(); yield break; }

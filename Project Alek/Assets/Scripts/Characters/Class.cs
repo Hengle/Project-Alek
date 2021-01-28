@@ -139,57 +139,59 @@ namespace Characters
             while (true)
             {
                 var count = 0;
+                var results = new List<string>();
 
                 if (CanIncreaseStrength)
                 {
                     partyMember.strength.BaseValue += 1;
                     count++;
-                    Debug.Log($"{partyMember.characterName}'s strength has been increased!");
+                    results.Add($"{partyMember.characterName}'s strength has been increased!\n");
                 }
 
                 if (CanIncreaseMagic)
                 {
                     partyMember.magic.BaseValue += 1;
                     count++;
-                    Debug.Log($"{partyMember.characterName}'s magic has been increased!");
+                    results.Add($"{partyMember.characterName}'s magic has been increased!\n");
                 }
 
                 if (CanIncreaseAccuracy)
                 {
                     partyMember.accuracy.BaseValue += 1;
                     count++;
-                    Debug.Log($"{partyMember.characterName}'s accuracy has been increased!");
+                    results.Add($"{partyMember.characterName}'s accuracy has been increased!\n");
                 }
 
                 if (CanIncreaseInitiative)
                 {
                     partyMember.initiative.BaseValue += 1;
                     count++;
-                    Debug.Log($"{partyMember.characterName}'s initiative has been increased!");
+                    results.Add($"{partyMember.characterName}'s initiative has been increased!\n");
                 }
 
                 if (CanIncreaseDefense)
                 {
                     partyMember.defense.BaseValue += 1;
                     count++;
-                    Debug.Log($"{partyMember.characterName}'s defense has been increased!");
+                    results.Add($"{partyMember.characterName}'s defense has been increased!\n");
                 }
 
                 if (CanIncreaseResistance)
                 {
                     partyMember.resistance.BaseValue += 1;
                     count++;
-                    Debug.Log($"{partyMember.characterName}'s resistance has been increased!");
+                    results.Add($"{partyMember.characterName}'s resistance has been increased!\n");
                 }
 
                 if (CanIncreaseCritical)
                 {
                     partyMember.criticalChance.BaseValue += 1;
                     count++;
-                    Debug.Log($"{partyMember.characterName}'s crit chance has been increased!");
+                    results.Add($"{partyMember.characterName}'s crit chance has been increased!\n");
                 }
 
                 if (count == 0) continue;
+                results.ForEach(Debug.Log);
                 break;
             }
         }

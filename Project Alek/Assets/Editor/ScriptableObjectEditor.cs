@@ -8,6 +8,7 @@ using JetBrains.Annotations;
 using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
+using Sirenix.Utilities.Editor;
 using UnityEditor;
 
 public class ScriptableObjectEditor : OdinMenuEditorWindow
@@ -17,7 +18,7 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
     {
         GetWindow<ScriptableObjectEditor>().Show();
     }
-
+    
     private CreateNewEnemy createNewEnemy;
     private CreateNewPhysicalAttack createNewPhysicalAttack;
     private CreateNewRangedAttack createNewRangedAttack;
@@ -33,8 +34,14 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
         
         if (createNewEnemy != null) DestroyImmediate(createNewEnemy._enemy);
         if (createNewPhysicalAttack != null) DestroyImmediate(createNewPhysicalAttack._ability);
+        if (createNewRangedAttack != null) DestroyImmediate(createNewRangedAttack._ability);
+        if (createNewNonAttack != null) DestroyImmediate(createNewNonAttack._ability);
+        if (createNewDotEffect != null) DestroyImmediate(createNewDotEffect._statusEffect);
+        if (createNewElementalType != null) DestroyImmediate(createNewElementalType._elementalType);
+        if (createNewClass != null) DestroyImmediate(createNewClass._class);
+        if (createNewWeapon != null) DestroyImmediate(createNewWeapon._weaponItem);
     }
-
+    
     protected override OdinMenuTree BuildMenuTree()
     {
         createNewEnemy = new CreateNewEnemy();
@@ -46,7 +53,7 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
         createNewClass = new CreateNewClass();
         createNewWeapon = new CreateNewWeapon();
 
-        var tree = new OdinMenuTree
+        var tree = new OdinMenuTree (supportsMultiSelect: true)
         {
             {"Create New/Enemy", createNewEnemy},
             {"Create New/Ability/Physical Attack", createNewPhysicalAttack},
@@ -75,10 +82,12 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
         tree.AddAllAssetsAtPath("Status Effects/AI Effect", "Scriptable Objects/Status Effects/AIEffect", typeof(StatusEffect));
         tree.AddAllAssetsAtPath("Elemental Types", "Scriptable Objects/ElementalTypes", typeof(ElementalType));
         tree.AddAllAssetsAtPath("Weapons", "Scriptable Objects/Weapons", typeof(WeaponItem));
-        tree.AddAllAssetsAtPath("", "Resources", typeof(GlobalVariables));
-
+        tree.AddAllAssetsAtPath("", "Resources", typeof(GlobalVariables)).AddIcon(EditorIcons.SettingsCog);
+        
         return tree;
     }
+
+    #region Create
     
     public class CreateNewEnemy
     {
@@ -287,4 +296,6 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
             _weaponItem = CreateInstance<WeaponItem>();
         }
     }
+    
+    #endregion
 }

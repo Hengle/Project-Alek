@@ -2414,18 +2414,18 @@ MonoBehaviour:
     m_SelectedSprite: {fileID: 21300010, guid: 7c1ffec91c2f2d44bb5cd98a294de6ce, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Highlighted
-    m_DisabledTrigger: Disabled
+    m_NormalTrigger: 5.2.1
+    m_HighlightedTrigger: 5.2.2
+    m_PressedTrigger: 5.2.3
+    m_SelectedTrigger: 5.3.1
+    m_DisabledTrigger: 5.6.1
   m_Interactable: 1
   m_TargetGraphic: {fileID: 154534941}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114707464271974175}
-        m_MethodName: Use
+        m_MethodName: .
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
