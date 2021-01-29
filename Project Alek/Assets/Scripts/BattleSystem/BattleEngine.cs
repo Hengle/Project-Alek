@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using BattleSystem.Calculators;
 using UnityEngine;
 using Characters;
@@ -14,13 +12,26 @@ using Characters.StatusEffects;
 using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
 using MEC;
+using ScriptableObjectArchitecture;
 
 namespace BattleSystem
 {
-    public class BattleEngine : MonoBehaviour, IGameEventListener<CharacterEvents>, IGameEventListener<BattleEvents>
+    public class BattleEngine : MonoBehaviour, IGameEventListener<BattleEvent>, IGameEventListener<UnitBase,CharacterGameEvent>
     {
         #region FieldsAndProperties
-        
+
+        [SerializeField] private BattleGameEvent battleEvent;
+        [SerializeField] private CharacterGameEvent characterTurnEvent;
+        [SerializeField] private CharacterGameEvent enemyTurnEvent;
+        [SerializeField] private CharacterGameEvent chooseTargetEvent;
+        [SerializeField] private CharacterGameEvent endOfTurnEvent;
+        [SerializeField] private CharacterGameEvent skipTurnEvent;
+        [SerializeField] private CharacterGameEvent characterAttackEvent;
+        [SerializeField] private CharacterGameEvent commandEvent;
+        [SerializeField] private CharacterGameEvent deathEvent;
+
+        private SortingCalculator sortingCalculator;
+
         private static BattleEngine instance;
         
         public static BattleEngine Instance {
@@ -65,12 +76,19 @@ namespace BattleSystem
         {
             inventoryInputManager = FindObjectOfType<InventoryInputManager>();
             generator = GetComponent<BattleGenerator>();
+            sortingCalculator = GetComponent<SortingCalculator>();
             
             canGiveCommand = true;
             roundCount = 0;
-            
-            GameEventsManager.AddListener<CharacterEvents>(this);
-            GameEventsManager.AddListener<BattleEvents>(this);
+
+            SetupBattle();
+        }
+
+        private void OnEnable()
+        {
+            battleEvent.AddListener(this);
+            endOfTurnEvent.AddListener(this);
+            skipTurnEvent.AddListener(this);
         }
 
         private void SetupBattle()
@@ -99,8 +117,8 @@ namespace BattleSystem
 
             yield return Timing.WaitForSeconds(0.25f);
             
-            if (membersAndEnemiesThisTurn.Count == 0) { BattleEvents.Trigger(BattleEventType.NewRound);
-                yield return Timing.WaitUntilTrue(SortingCalculator.SortByInitiative); }
+            if (membersAndEnemiesThisTurn.Count == 0) { battleEvent.Raise(BattleEvent.NewRound);
+                yield return Timing.WaitUntilTrue(sortingCalculator.SortByInitiative); }
 
             var character = membersAndEnemiesThisTurn[0];
             
@@ -108,9 +126,7 @@ namespace BattleSystem
                 (Rate.EveryTurn, 1, true));
                 
             if (PartyOrEnemyTeamIsDead) EndOfBattle();
-            
-            else if (!character.GetStatus()) CharacterEvents.Trigger(CEventType.SkipTurn, character);
-            
+            else if (!character.GetStatus()) skipTurnEvent.Raise(character, skipTurnEvent);
             else Timing.RunCoroutine(character.id == CharacterType.PartyMember
                 ? ThisPlayerTurn((PartyMember) character)
                 : ThisEnemyTurn((Enemy) character));
@@ -126,7 +142,7 @@ namespace BattleSystem
             character.ReplenishAP();
             
             main_menu:
-            CharacterEvents.Trigger(CEventType.CharacterTurn, character);
+            characterTurnEvent.Raise(character, characterTurnEvent);
             BattleInput._canPressBack = false;
             usingItem = false;
             ((BattleOptionsPanel) character.battleOptionsPanel).ShowBattlePanel();
@@ -143,7 +159,7 @@ namespace BattleSystem
             if (endThisMembersTurn) goto end_of_turn;
             
             yield return Timing.WaitForOneFrame;
-            CharacterEvents.Trigger(CEventType.ChoosingTarget, character);
+            chooseTargetEvent.Raise(character, chooseTargetEvent);
 
             while (choosingTarget)
             {
@@ -170,8 +186,8 @@ namespace BattleSystem
                 (Rate.BeforeEveryAction, 0.5f, true));
 
             if (!canGiveCommand) canGiveCommand = true;
-            else { CharacterEvents.Trigger(CEventType.CharacterAttacking, character);
-                CharacterEvents.Trigger(CEventType.NewCommand, character); }
+            else { characterAttackEvent.Raise(character, characterAttackEvent);
+                commandEvent.Raise(character, commandEvent); }
 
             yield return Timing.WaitUntilFalse(() => performingAction);
 
@@ -185,15 +201,15 @@ namespace BattleSystem
             
             end_of_turn:
             endThisMembersTurn = false;
-            CharacterEvents.Trigger(CEventType.EndOfTurn, character);
+            endOfTurnEvent.Raise(character, endOfTurnEvent);
             character.inventoryDisplay.SetActive(false); // TODO: Make this a part of the EndOfTurn event
         }
 
         private IEnumerator<float> ThisEnemyTurn(Enemy enemy)
         {
             activeUnit = enemy;
-            
-            CharacterEvents.Trigger(CEventType.EnemyTurn, enemy);
+
+            enemyTurnEvent.Raise(enemy, enemyTurnEvent);
             enemy.ReplenishAP();
 
             while (enemy.GetStatus() && enemy.CurrentAP > 0)
@@ -207,8 +223,8 @@ namespace BattleSystem
                     (Rate.BeforeEveryAction, 0.5f, true));
 
                 if (!canGiveCommand) canGiveCommand = true;
-                else { CharacterEvents.Trigger(CEventType.CharacterAttacking, enemy);
-                    CharacterEvents.Trigger(CEventType.NewCommand, enemy); }
+                else { characterAttackEvent.Raise(enemy, characterAttackEvent);
+                    commandEvent.Raise(enemy, commandEvent); }
 
                 yield return Timing.WaitUntilFalse(() => performingAction);
 
@@ -220,7 +236,7 @@ namespace BattleSystem
                 yield return Timing.WaitForSeconds(0.25f);
             }
             
-            CharacterEvents.Trigger(CEventType.EndOfTurn, enemy);
+            endOfTurnEvent.Raise(enemy, endOfTurnEvent);
         }
         
         #endregion
@@ -229,8 +245,8 @@ namespace BattleSystem
 
         private void EndOfBattle()
         {
-            if (AllEnemiesDead) BattleEvents.Trigger(BattleEventType.WonBattle);
-            else if (AllMembersDead) BattleEvents.Trigger(BattleEventType.LostBattle);
+            if (AllEnemiesDead) battleEvent.Raise(BattleEvent.WonBattle);
+            else if (AllMembersDead) battleEvent.Raise(BattleEvent.LostBattle);
         }
 
         private IEnumerator<float> WonBattleSequence()
@@ -274,11 +290,11 @@ namespace BattleSystem
             
             membersAndEnemiesThisTurn.Remove(unit);
             membersAndEnemiesNextTurn.Remove(unit);
+     
+            deathEvent.Raise(unit, deathEvent);
             
-            CharacterEvents.Trigger(CEventType.CharacterDeath, unit);
-            
-            SortingCalculator.ResortThisTurnOrder();
-            SortingCalculator.ResortNextTurnOrder();
+            sortingCalculator.ResortThisTurnOrder();
+            sortingCalculator.ResortNextTurnOrder();
 
             unit.onDeath -= RemoveFromBattle;
         }
@@ -293,8 +309,8 @@ namespace BattleSystem
             membersAndEnemiesThisTurn.Add(unit);
             membersAndEnemiesNextTurn.Add(unit);
             
-            SortingCalculator.ResortThisTurnOrder();
-            SortingCalculator.ResortNextTurnOrder();
+            sortingCalculator.ResortThisTurnOrder();
+            sortingCalculator.ResortNextTurnOrder();
             
             unit.onDeath += RemoveFromBattle;
         }
@@ -304,37 +320,27 @@ namespace BattleSystem
             _membersForThisBattle.ForEach(m => m.onDeath -= RemoveFromBattle);
             _enemiesForThisBattle.ForEach(e => e.onDeath -= RemoveFromBattle);
             
-            GameEventsManager.RemoveListener<CharacterEvents>(this);
-            GameEventsManager.RemoveListener<BattleEvents>(this);
+            battleEvent.RemoveListener(this);
+            endOfTurnEvent.RemoveListener(this);
+            skipTurnEvent.RemoveListener(this);
         }
-        
-        public void OnGameEvent(CharacterEvents eventType)
+
+        public void OnEventRaised(BattleEvent value)
         {
-            switch (eventType._eventType)
+            switch (value)
             {
-                case CEventType.CantPerformAction: canGiveCommand = false;
+                case BattleEvent.WonBattle: Timing.RunCoroutine(WonBattleSequence());
                     break;
-                case CEventType.StatChange:
-                    SortingCalculator.ResortThisTurnOrder();
-                    SortingCalculator.ResortNextTurnOrder();
-                    break;
-                case CEventType.EndOfTurn:
-                case CEventType.SkipTurn:
-                    RemoveFromTurn((UnitBase) eventType._character);
-                    Timing.RunCoroutine(GetNextTurn());
+                case BattleEvent.LostBattle: Timing.RunCoroutine(LostBattleSequence());
                     break;
             }
         }
 
-        public void OnGameEvent(BattleEvents eventType)
+        public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
         {
-            switch (eventType._battleEventType)
-            {
-                case BattleEventType.WonBattle: Timing.RunCoroutine(WonBattleSequence());
-                    break;
-                case BattleEventType.LostBattle: Timing.RunCoroutine(LostBattleSequence());
-                    break;
-            }
+            if (value2 != endOfTurnEvent && value2 != skipTurnEvent) return;
+            RemoveFromTurn(value1);
+            Timing.RunCoroutine(GetNextTurn());
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ScriptableObjectArchitecture;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace BattleSystem.UI
 {
-    public class TurnOrderControllerUI : MonoBehaviour, IGameEventListener<BattleEvents>, IGameEventListener<CharacterEvents>
+    public class TurnOrderControllerUI : MonoBehaviour//, IGEventListener<CharacterEvents>
     {
         [SerializeField] private List<GameObject> thisTurnList = new List<GameObject>();
         [SerializeField] private List<GameObject> nextTurnList = new List<GameObject>();
@@ -14,17 +15,15 @@ namespace BattleSystem.UI
 
         private void Start()
         {
-            GameEventsManager.AddListener<BattleEvents>(this);
-            GameEventsManager.AddListener<CharacterEvents>(this);
+            //GameEventsManager.AddListener<CharacterEvents>(this);
         }
 
         private void OnDisable()
         {
-            GameEventsManager.RemoveListener<BattleEvents>(this);
-            GameEventsManager.RemoveListener<CharacterEvents>(this);
+            //GameEventsManager.RemoveListener<CharacterEvents>(this);
         }
 
-        private void OnThisTurnListCreated()
+        public void OnThisTurnListCreated()
         {
             var count = BattleEngine.Instance.membersAndEnemiesThisTurn.Count;
 
@@ -37,7 +36,7 @@ namespace BattleSystem.UI
             }
         }
 
-        private void OnNextTurnListCreated()
+        public void OnNextTurnListCreated()
         {
             var count = BattleEngine.Instance.membersAndEnemiesNextTurn.Count;
 
@@ -50,7 +49,7 @@ namespace BattleSystem.UI
             }
         }
 
-        private void UpdateThisTurnList()
+        public void UpdateThisTurnList()
         {
             foreach (var t in thisTurnList.
                 Where(t => t.activeInHierarchy))
@@ -59,27 +58,16 @@ namespace BattleSystem.UI
                 break;
             }
         }
-
-        public void OnGameEvent(BattleEvents eventType)
-        {
-            switch (eventType._battleEventType)
-            {
-                case BattleEventType.ThisTurnListCreated: OnThisTurnListCreated();
-                    break;
-                case BattleEventType.NextTurnListCreated: OnNextTurnListCreated();
-                    break;
-            }
-        }
-
-        public void OnGameEvent(CharacterEvents eventType)
-        {
-            switch (eventType._eventType)
-            {
-                case CEventType.EndOfTurn: UpdateThisTurnList();
-                    break;
-                case CEventType.SkipTurn: UpdateThisTurnList();
-                    break;
-            }
-        }
+        
+        // public void OnGameEvent(CharacterEvents eventType)
+        // {
+        //     switch (eventType._eventType)
+        //     {
+        //         case CEventType.EndOfTurn: UpdateThisTurnList();
+        //             break;
+        //         case CEventType.SkipTurn: UpdateThisTurnList();
+        //             break;
+        //     }
+        // }
     }
 }

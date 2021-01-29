@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 8210935590015065884}
   - component: {fileID: 3712300272279887038}
   - component: {fileID: 1731030952916290372}
+  - component: {fileID: 97111778764182753}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Untagged
@@ -154,6 +155,10 @@ MonoBehaviour:
   parry: 0
   timedAttack: 0
   isCountered: 0
+  characterTurnEvent: {fileID: 11400000, guid: 34d2f1cdf289d714a80d463db5b95f01, type: 2}
+  characterAttackEvent: {fileID: 11400000, guid: f95948814cbd6ea4c8f313185bb3913e,
+    type: 2}
+  chooseTargetEvent: {fileID: 11400000, guid: b03bc6fd9438cd544bde07dd68e2b135, type: 2}
   parent: {fileID: 0}
 --- !u!114 &8809269014472016896
 MonoBehaviour:
@@ -182,6 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d160996f11afd0d468f00cb61d4715e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterTurnEvent: {fileID: 11400000, guid: 34d2f1cdf289d714a80d463db5b95f01, type: 2}
+  chooseTargetEvent: {fileID: 11400000, guid: b03bc6fd9438cd544bde07dd68e2b135, type: 2}
   thisUnitBase: {fileID: 0}
   selectOnLeft: {fileID: 0}
   selectOnRight: {fileID: 0}
@@ -305,6 +312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04daac25b1f4aa1ab3aa0f2c261a0a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterAttackEvent: {fileID: 11400000, guid: f95948814cbd6ea4c8f313185bb3913e,
+    type: 2}
   unit: {fileID: 0}
   unitBase: {fileID: 0}
 --- !u!114 &3712300272279887038
@@ -331,3 +340,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb8dba92c5e444c3b50dd97d82a89fd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &97111778764182753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109450531332189788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76a080d4bd03428aa3d8ed3b4ea0b8d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleEvent: {fileID: 11400000, guid: 1444b47f3ceceea4e87c3c1863b49ff9, type: 2}
+  enemyTurnEvent: {fileID: 11400000, guid: bfad83ec4bf88c443bab3b513f37354b, type: 2}

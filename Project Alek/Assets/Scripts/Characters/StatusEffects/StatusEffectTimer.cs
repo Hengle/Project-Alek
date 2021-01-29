@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using ScriptableObjectArchitecture;
+using UnityEngine;
 
 namespace Characters.StatusEffects
 {
     // TODO: This could probably inherit from a base Timer script since i will probably need different types of timers
-    public class StatusEffectTimer : MonoBehaviour, IGameEventListener<BattleEvents>
+    public class StatusEffectTimer : MonoBehaviour, /*IGEventListener<BattleEvents>,*/ IGameEventListener<BattleEvent>
     {
+        [SerializeField] private BattleGameEvent battleEvent;
         [SerializeField] private int timer;
 
         private UnitBase targetUnit;
@@ -16,7 +18,9 @@ namespace Characters.StatusEffects
             statusEffect = effect;
             timer = statusEffect.turnDuration;
             
-            GameEventsManager.AddListener(this);
+            //GameEventsManager.AddListener(this);
+            battleEvent.AddListener(this);
+            
             targetUnit.onDeath += RemoveTimerAndEffect;
             targetUnit.Unit.recoveredFromOverexertion += RemoveTimerAndEffect;
         }
@@ -48,19 +52,33 @@ namespace Characters.StatusEffects
         {
             if (targetUnit == null) return;
  
+            battleEvent.RemoveListener(this);
             targetUnit.onDeath -= RemoveTimerAndEffect;
             targetUnit.Unit.recoveredFromOverexertion -= RemoveTimerAndEffect;
         }
 
-        public void OnGameEvent(BattleEvents eventType)
+        // public void OnGameEvent(BattleEvents eventType)
+        // {
+        //     switch (eventType._battleEventType)
+        //     {
+        //         case BattleEventType.NewRound: DecrementTimer();
+        //             break;
+        //         case BattleEventType.LostBattle: RemoveTimerAndEffect(targetUnit);
+        //             break;
+        //         case BattleEventType.WonBattle: RemoveTimerAndEffect(targetUnit);
+        //             break;
+        //     }
+        // }
+
+        public void OnEventRaised(BattleEvent value)
         {
-            switch (eventType._battleEventType)
+            switch (value)
             {
-                case BattleEventType.NewRound: DecrementTimer();
+                case BattleEvent.NewRound: DecrementTimer();
                     break;
-                case BattleEventType.LostBattle: RemoveTimerAndEffect(targetUnit);
+                case BattleEvent.LostBattle: RemoveTimerAndEffect(targetUnit);
                     break;
-                case BattleEventType.WonBattle: RemoveTimerAndEffect(targetUnit);
+                case BattleEvent.WonBattle: RemoveTimerAndEffect(targetUnit);
                     break;
             }
         }

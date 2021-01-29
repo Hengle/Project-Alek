@@ -1,6 +1,7 @@
 ﻿using System;
 using BattleSystem;
 using Kryz.CharacterStats;
+using ScriptableObjectArchitecture;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -38,7 +39,8 @@ namespace Characters.StatusEffects
         [ShowIf(nameof(debuffs))] [HideIf(nameof(name), "Checkmate")]
         [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
         public Multiplier debuffMultiplier;
-
+        
+        [SerializeField] protected CharacterGameEvent statChangeEvent;
         private StatModifier modifier;
         
         private float BuffMultiplier {
@@ -78,7 +80,7 @@ namespace Characters.StatusEffects
             base.OnAdded(target);
             AddModifiers(buffedStat, target, true);
             AddModifiers(debuffedStat, target, false);
-            CharacterEvents.Trigger(CEventType.StatChange, target);
+            statChangeEvent.Raise(target, statChangeEvent);
         }
         
         public override void OnRemoval(UnitBase unitBase)
@@ -86,7 +88,7 @@ namespace Characters.StatusEffects
             base.OnRemoval(unitBase);
             RemoveModifier(buffedStat, unitBase);
             RemoveModifier(debuffedStat, unitBase);
-            CharacterEvents.Trigger(CEventType.StatChange, unitBase);
+            statChangeEvent.Raise(unitBase, statChangeEvent);
         }
         
         private void AddModifiers(AffectedStat stat, UnitBase unit, bool isBuff)

@@ -9,14 +9,17 @@ using Characters.CharacterExtensions;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
 using MEC;
+using ScriptableObjectArchitecture;
 
 namespace BattleSystem
 {
-    public class BattleFunctions : MonoBehaviour, IGameEventListener<CharacterEvents>
+    public class BattleFunctions : MonoBehaviour, IGameEventListener<UnitBase,CharacterGameEvent>
     {
-        private void Start() => GameEventsManager.AddListener(this);
+        [SerializeField] private CharacterGameEvent commandEvent;
 
-        private void OnDisable() => GameEventsManager.RemoveListener(this);
+        private void Start() => commandEvent.AddListener(this);
+
+        private void OnDisable() => commandEvent.RemoveListener(this);
 
         private void GetCommand(UnitBase unitBaseParam)
         {
@@ -186,13 +189,10 @@ namespace BattleSystem
         }
         
         #endregion
-
-        public void OnGameEvent(CharacterEvents eventType)
+        
+        public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
         {
-            if (eventType._eventType == CEventType.NewCommand)
-            {
-                GetCommand(eventType._character as UnitBase);
-            }
+            if (value2 == commandEvent) GetCommand(value1);
         }
     }
 }

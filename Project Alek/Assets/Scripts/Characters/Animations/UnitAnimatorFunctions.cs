@@ -8,14 +8,17 @@ using BattleSystem.Calculators;
 using BattleSystem.Mechanics;
 using Characters.ElementalTypes;
 using Characters.PartyMembers;
+using ScriptableObjectArchitecture;
 using Sirenix.OdinInspector;
 using UnityEngine.InputSystem;
 
 namespace Characters.Animations
 {
     // DO NOT CHANGE THE NAMES OF ANY ANIMATOR FUNCTIONS UNLESS YOU WANT TO MANUALLY UPDATE EVERY ANIMATION EVENT
-    public class UnitAnimatorFunctions : MonoBehaviour, IGameEventListener<CharacterEvents>
+    public class UnitAnimatorFunctions : MonoBehaviour, IGameEventListener<UnitBase,CharacterGameEvent>
     {
+        [SerializeField] private CharacterGameEvent characterAttackEvent;
+        
         [SerializeField] private Unit unit;
         [SerializeField] private UnitBase unitBase;
 
@@ -42,7 +45,7 @@ namespace Characters.Animations
         private void Awake()
         {
             unit = GetComponent<Unit>();
-            GameEventsManager.AddListener(this);
+            characterAttackEvent.AddListener(this);
         }
 
         private void OnEnable()
@@ -55,7 +58,7 @@ namespace Characters.Animations
         {
             BattleInput._controls.Battle.Confirm.performed -= OnTimedButtonPress;
             BattleInput._controls.Battle.Confirm.performed -= OnTimedButtonPressSpecialAttack;
-            GameEventsManager.RemoveListener(this);
+            characterAttackEvent.RemoveListener(this);
         }
 
         private void Update()
@@ -231,16 +234,14 @@ namespace Characters.Animations
             
             timedAttackCount = 0;
         }
-
-        public void OnGameEvent(CharacterEvents eventType)
+        
+        public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
         {
-            if (eventType._eventType != CEventType.CharacterAttacking) return;
-
-            var character = (UnitBase) eventType._character;
-            if (character.Unit != unit) { thisCharacterTurn = false; return;}
+            if (value2 != characterAttackEvent) return;
+            if (value1.Unit != unit) { thisCharacterTurn = false; return; }
 
             thisCharacterTurn = true;
-            unitBase = character;
+            unitBase = value1;
         }
     }
 }

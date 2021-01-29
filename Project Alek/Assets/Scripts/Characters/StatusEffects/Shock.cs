@@ -1,4 +1,5 @@
-﻿using DamagePrefab;
+﻿using BattleSystem;
+using DamagePrefab;
 using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -25,7 +26,8 @@ namespace Characters.StatusEffects
             unitBase.TakeDamage(dmg, null, null);
  
             // show shocked visual effect
-            CharacterEvents.Trigger(CEventType.CantPerformAction, unitBase);
+            BattleEngine.Instance.canGiveCommand = false;
+            //CharacterEvents.Trigger(CEventType.CantPerformAction, unitBase);
         }
     }
 }

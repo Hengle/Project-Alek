@@ -6,15 +6,19 @@ using Characters.Animations;
 using Characters.PartyMembers;
 using MEC;
 using MoreMountains.InventoryEngine;
+using ScriptableObjectArchitecture;
 using Sirenix.OdinInspector;
 using UnityEngine.UI;
 
 namespace BattleSystem
 {
-    public class ChooseTarget : MonoBehaviour, IGameEventListener<CharacterEvents>
+    public class ChooseTarget : MonoBehaviour, IGameEventListener<UnitBase,CharacterGameEvent>
     {
         public static int _targetOptions = 0;
 
+        [SerializeField] private CharacterGameEvent characterTurnEvent;
+        [SerializeField] private CharacterGameEvent chooseTargetEvent;
+        
         [ShowInInspector] public static bool _isMultiTarget;
         [HideInInspector] public UnitBase thisUnitBase;
         private Selectable button;
@@ -184,29 +188,32 @@ namespace BattleSystem
             _isMultiTarget = false;
             thisUnitBase.Unit.onDeselect?.Invoke();
         }
-        
-        public void OnGameEvent(CharacterEvents eventType)
-        {
-            switch (eventType._eventType)
-            {
-                case CEventType.CharacterTurn:
-                    _isMultiTarget = false;
-                    break;
 
-                case CEventType.ChoosingTarget:
-                    BattleEngine.Instance.choosingTarget = true;
-                    character = (PartyMember) eventType._character;
-                    
-                    SetNavigation();
-                    MenuController.SetTargetFirstSelected();
-                    
-                    if (_isMultiTarget) Timing.RunCoroutine(WaitForMultiTargetConfirmation());
-                    break;
-            }
+        private void OnEnable()
+        {
+            characterTurnEvent.AddListener(this);
+            chooseTargetEvent.AddListener(this);
         }
 
-        private void OnEnable() => GameEventsManager.AddListener(this);
-        
-        private void OnDisable() => GameEventsManager.RemoveListener(this);
+        private void OnDisable()
+        {
+            characterTurnEvent.RemoveListener(this);
+            chooseTargetEvent.RemoveListener(this);
+        }
+
+        public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
+        {
+            if (value2 == characterTurnEvent) _isMultiTarget = false;
+            else if (value2 == chooseTargetEvent)
+            {
+                BattleEngine.Instance.choosingTarget = true;
+                character = (PartyMember) value1;
+                    
+                SetNavigation();
+                MenuController.SetTargetFirstSelected();
+                    
+                if (_isMultiTarget) Timing.RunCoroutine(WaitForMultiTargetConfirmation());
+            }
+        }
     }
 }

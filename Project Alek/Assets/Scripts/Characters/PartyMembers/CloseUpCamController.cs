@@ -1,10 +1,13 @@
 ﻿using Cinemachine;
+using ScriptableObjectArchitecture;
 using UnityEngine;
 
 namespace Characters.PartyMembers
 {
-    public class CloseUpCamController : MonoBehaviour, IGameEventListener<CharacterEvents>
+    public class CloseUpCamController : MonoBehaviour, IGameEventListener<UnitBase,CharacterGameEvent>
     {
+        [SerializeField] private CharacterGameEvent characterTurnEvent;
+
         private CinemachineVirtualCamera cvCamera;
         private Unit unit;
 
@@ -13,19 +16,20 @@ namespace Characters.PartyMembers
             cvCamera = GetComponent<CinemachineVirtualCamera>();
             unit = transform.parent.GetComponentInChildren<Unit>();
             cvCamera.enabled = false;
-            GameEventsManager.AddListener(this);
+            characterTurnEvent.AddListener(this);
         }
 
-        public void OnGameEvent(CharacterEvents eventType)
+        private void OnDisable()
         {
-            if (eventType._eventType != CEventType.CharacterTurn &&
-                eventType._eventType != CEventType.ChoosingTarget && 
-                eventType._eventType != CEventType.EndOfTurn) return;
-            
-            if (eventType._character.GetType() != typeof(PartyMember)) return;
-            
-            var character = (PartyMember) eventType._character;
-            if (character.Unit == unit) cvCamera.enabled = eventType._eventType == CEventType.CharacterTurn;
+            characterTurnEvent.RemoveListener(this);
+        }
+        
+        public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
+        {
+            if (value2 == characterTurnEvent && value1.Unit == unit)
+            {
+                cvCamera.enabled = true;
+            }
         }
     }
 }

@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d5b6574366245d8b0342493b6373d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleEvent: {fileID: 11400000, guid: 1444b47f3ceceea4e87c3c1863b49ff9, type: 2}
   timer: 0
 --- !u!114 &3105522263289768121
 MonoBehaviour:
@@ -101,3 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaderTypes: 0
+  normalStrenght: 5
+  normalSmoothing: 1
+  computingNormal: 0

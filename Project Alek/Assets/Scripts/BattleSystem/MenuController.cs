@@ -1,17 +1,21 @@
-﻿using JetBrains.Annotations;
+﻿using Characters;
+using JetBrains.Annotations;
 using MoreMountains.InventoryEngine;
 using MoreMountains.Tools;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Characters.Animations;
-using Characters.PartyMembers;
+using ScriptableObjectArchitecture;
 
 namespace BattleSystem
 {
-    public class MenuController : MonoBehaviour, MMEventListener<MMInventoryEvent>, IGameEventListener<CharacterEvents>
+    public class MenuController : MonoBehaviour, MMEventListener<MMInventoryEvent>, IGameEventListener<UnitBase,CharacterGameEvent>
     {
         #region FieldsAndProperties
 
+        [SerializeField] private CharacterGameEvent characterTurnEvent;
+        [SerializeField] private CharacterGameEvent endOfTurnEvent;
+        
         private GameObject battleMenu;
         private GameObject mainMenu;
         private GameObject abilityMenu;
@@ -46,9 +50,16 @@ namespace BattleSystem
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
 
             MMEventManager.AddListener(this);
-            GameEventsManager.AddListener(this);
+            characterTurnEvent.AddListener(this);
+            endOfTurnEvent.AddListener(this);
 
             isEnabled = true;
+        }
+
+        private void OnDisable()
+        {
+            characterTurnEvent.RemoveListener(this);
+            endOfTurnEvent.RemoveListener(this);
         }
 
         [UsedImplicitly] public void DisableInput() => BattleInput._controls.Disable();
@@ -108,15 +119,13 @@ namespace BattleSystem
             }
         }
 
-        public void OnGameEvent(CharacterEvents eventType)
+        public void OnEventRaised(UnitBase character, CharacterGameEvent charEvent)
         {
-            if (eventType._eventType != CEventType.CharacterTurn && eventType._eventType != CEventType.EndOfTurn) return;
-            if (eventType._character.GetType() != typeof(PartyMember)) return;
+            if (charEvent != characterTurnEvent && charEvent != endOfTurnEvent) return;
 
-            var character = (PartyMember) eventType._character;
             if (character.MenuController == this)
             {
-                isEnabled = eventType._eventType == CEventType.CharacterTurn;
+                isEnabled = charEvent == characterTurnEvent;
             }
         }
     }

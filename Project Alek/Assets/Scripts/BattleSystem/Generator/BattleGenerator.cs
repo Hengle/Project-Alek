@@ -349,8 +349,8 @@ namespace BattleSystem.Generator
                 SetupProfileBox(clone);
                 SetupEnemyStatusBox(clone, enemyGo);
                 SetupEnemyShield(clone, enemyGo);
-
-                clone.BreakSystem = new BreakSystem(clone, clone.maxShieldCount);
+                
+                enemyGo.GetComponent<BreakSystem>().Init(clone, clone.maxShieldCount);
 
                 enemyGo.GetComponent<WeakAndResUnlockSystem>().Initialize(clone);
 

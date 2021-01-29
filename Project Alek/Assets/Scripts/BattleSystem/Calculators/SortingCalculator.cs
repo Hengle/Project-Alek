@@ -1,13 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Characters;
+using ScriptableObjectArchitecture;
 using UnityEngine;
 
 namespace BattleSystem.Calculators
 {
-    public static class SortingCalculator
+    public class SortingCalculator : MonoBehaviour
     {
-        public static bool SortByInitiative()
+        [SerializeField] private GameEvent thisTurnListCreatedEvent;
+        [SerializeField] private GameEvent nextTurnListCreatedEvent;
+
+        public bool SortByInitiative()
         {
             if (BattleEngine.Instance.membersAndEnemiesNextTurn.Count > 0)
             {
@@ -21,8 +25,8 @@ namespace BattleSystem.Calculators
                 GetNewListNextTurn();
             }
             
-            BattleEvents.Trigger(BattleEventType.ThisTurnListCreated);
-            BattleEvents.Trigger(BattleEventType.NextTurnListCreated);
+            thisTurnListCreatedEvent.Raise();
+            nextTurnListCreatedEvent.Raise();
 
             return true;
         }
@@ -71,7 +75,7 @@ namespace BattleSystem.Calculators
             }
         }
 
-        public static void ResortThisTurnOrder()
+        public void ResortThisTurnOrder()
         {
             BattleEngine.Instance.membersAndEnemiesThisTurn.ForEach
                 (t => t.Unit.finalInitVal = (int) (t.initiative.Value * t.Unit.initModifier));
@@ -82,10 +86,10 @@ namespace BattleSystem.Calculators
             BattleEngine.Instance.membersAndEnemiesThisTurn.Remove(BattleEngine.Instance.activeUnit);
             BattleEngine.Instance.membersAndEnemiesThisTurn.Insert(0, BattleEngine.Instance.activeUnit);
             
-            BattleEvents.Trigger(BattleEventType.ThisTurnListCreated);
+            thisTurnListCreatedEvent.Raise();
         }
 
-        public static void ResortNextTurnOrder()
+        public void ResortNextTurnOrder()
         {
             BattleEngine.Instance.membersAndEnemiesNextTurn.ForEach
                 (t => t.Unit.finalInitVal = (int) (t.initiative.Value * t.Unit.initModifier));
@@ -93,7 +97,7 @@ namespace BattleSystem.Calculators
             BattleEngine.Instance.membersAndEnemiesNextTurn = BattleEngine.Instance.membersAndEnemiesNextTurn.OrderByDescending
                 (e => e.Unit.finalInitVal).ToList();
             
-            BattleEvents.Trigger(BattleEventType.NextTurnListCreated);
+            nextTurnListCreatedEvent.Raise();
         }
     }
 }

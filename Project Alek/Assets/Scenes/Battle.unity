@@ -1338,6 +1338,9 @@ GameObject:
   - component: {fileID: 95354894}
   - component: {fileID: 95354893}
   - component: {fileID: 95354895}
+  - component: {fileID: 95354898}
+  - component: {fileID: 95354897}
+  - component: {fileID: 95354896}
   m_Layer: 0
   m_Name: Closeup Cam 3
   m_TagString: Untagged
@@ -1407,6 +1410,100 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351b84ca95d84648bf89321bb6e95892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterTurnEvent: {fileID: 11400000, guid: 34d2f1cdf289d714a80d463db5b95f01, type: 2}
+--- !u!114 &95354896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95354892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: b03bc6fd9438cd544bde07dd68e2b135, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 95354893}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &95354897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95354892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: 8a5a4a835d278b54f976dfebe6026bbe, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 95354893}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &95354898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95354892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: 6523c367b6f8dc4428c1d44411b1357e, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 95354893}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &116765991
 GameObject:
   m_ObjectHideFlags: 0
@@ -4767,6 +4864,9 @@ GameObject:
   - component: {fileID: 413769236}
   - component: {fileID: 413769235}
   - component: {fileID: 413769237}
+  - component: {fileID: 413769240}
+  - component: {fileID: 413769239}
+  - component: {fileID: 413769238}
   m_Layer: 0
   m_Name: Closeup Cam 4
   m_TagString: Untagged
@@ -4836,6 +4936,100 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351b84ca95d84648bf89321bb6e95892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterTurnEvent: {fileID: 11400000, guid: 34d2f1cdf289d714a80d463db5b95f01, type: 2}
+--- !u!114 &413769238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413769234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: b03bc6fd9438cd544bde07dd68e2b135, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 413769235}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &413769239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413769234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: 8a5a4a835d278b54f976dfebe6026bbe, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 413769235}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &413769240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413769234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: 6523c367b6f8dc4428c1d44411b1357e, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 413769235}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &424273105
 GameObject:
   m_ObjectHideFlags: 0
@@ -14630,6 +14824,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0308b10eac8b423f923d53f23c5a8768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterDeathEvent: {fileID: 11400000, guid: ac19a943372d1994399be98f91ea208e,
+    type: 2}
 --- !u!4 &1184636369
 Transform:
   m_ObjectHideFlags: 0
@@ -17320,11 +17516,11 @@ MonoBehaviour:
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 21300000, guid: bda834b2a65fffa42b0cb8ee84b4b852, type: 3}
   m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
+    m_NormalTrigger: 3.1.5
+    m_HighlightedTrigger: 3.1.6
+    m_PressedTrigger: 3.1.7
+    m_SelectedTrigger: 4.0.0
+    m_DisabledTrigger: 4.0.1
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1354894907}
   m_OnClick:
@@ -33140,6 +33336,8 @@ GameObject:
   - component: {fileID: 1849992120}
   - component: {fileID: 1849992123}
   - component: {fileID: 1849992122}
+  - component: {fileID: 1849992126}
+  - component: {fileID: 1849992124}
   m_Layer: 0
   m_Name: Battle Manager
   m_TagString: Untagged
@@ -33186,6 +33384,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eae4cc1ced1eb04b8999e60ee099fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleEvent: {fileID: 11400000, guid: 1444b47f3ceceea4e87c3c1863b49ff9, type: 2}
+  characterTurnEvent: {fileID: 11400000, guid: 34d2f1cdf289d714a80d463db5b95f01, type: 2}
+  enemyTurnEvent: {fileID: 11400000, guid: bfad83ec4bf88c443bab3b513f37354b, type: 2}
+  chooseTargetEvent: {fileID: 11400000, guid: b03bc6fd9438cd544bde07dd68e2b135, type: 2}
+  endOfTurnEvent: {fileID: 11400000, guid: 6523c367b6f8dc4428c1d44411b1357e, type: 2}
+  skipTurnEvent: {fileID: 11400000, guid: 8a5a4a835d278b54f976dfebe6026bbe, type: 2}
+  characterAttackEvent: {fileID: 11400000, guid: f95948814cbd6ea4c8f313185bb3913e,
+    type: 2}
+  commandEvent: {fileID: 11400000, guid: 6dd0845dbb2cf5e45a5ccca30a48f37e, type: 2}
+  deathEvent: {fileID: 11400000, guid: ac19a943372d1994399be98f91ea208e, type: 2}
   inventoryInputManager: {fileID: 0}
   generator: {fileID: 0}
   membersAndEnemiesThisTurn: []
@@ -33307,6 +33515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea5d48d5451dc84fb9b37e33906de21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commandEvent: {fileID: 11400000, guid: 6dd0845dbb2cf5e45a5ccca30a48f37e, type: 2}
 --- !u!114 &1849992121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33395,6 +33604,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 964c727844b84586b79ac474210ec3e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1849992124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849992115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: 6041a6a80fbebaa488e3df279ee3dd0a,
+    type: 2}
+  _event: {fileID: 11400000, guid: 6041a6a80fbebaa488e3df279ee3dd0a, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1849992126}
+        m_MethodName: ResortThisTurnOrder
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1849992126}
+        m_MethodName: ResortNextTurnOrder
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1849992126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849992115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1601e6dee38741eb9d962427bbdf1d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisTurnListCreatedEvent: {fileID: 11400000, guid: 0ef0f723c16a0cf4fa06cbbfcb8b38de,
+    type: 2}
+  nextTurnListCreatedEvent: {fileID: 11400000, guid: 6c4246ac83b11714eb04b16380c8ff23,
+    type: 2}
 --- !u!1 &1858873649
 GameObject:
   m_ObjectHideFlags: 0
@@ -33492,6 +33760,9 @@ GameObject:
   - component: {fileID: 1872706930}
   - component: {fileID: 1872706929}
   - component: {fileID: 1872706931}
+  - component: {fileID: 1872706934}
+  - component: {fileID: 1872706933}
+  - component: {fileID: 1872706932}
   m_Layer: 0
   m_Name: Closeup Cam 1
   m_TagString: Untagged
@@ -33561,6 +33832,100 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351b84ca95d84648bf89321bb6e95892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterTurnEvent: {fileID: 11400000, guid: 34d2f1cdf289d714a80d463db5b95f01, type: 2}
+--- !u!114 &1872706932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872706928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: b03bc6fd9438cd544bde07dd68e2b135, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1872706929}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1872706933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872706928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: 8a5a4a835d278b54f976dfebe6026bbe, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1872706929}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1872706934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872706928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: 6523c367b6f8dc4428c1d44411b1357e, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1872706929}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1882748665
 GameObject:
   m_ObjectHideFlags: 0
@@ -35253,7 +35618,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2368
+  m_Name: pb_Mesh-2374
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -35985,6 +36350,9 @@ GameObject:
   - component: {fileID: 2113295462}
   - component: {fileID: 2113295461}
   - component: {fileID: 2113295463}
+  - component: {fileID: 2113295466}
+  - component: {fileID: 2113295465}
+  - component: {fileID: 2113295464}
   m_Layer: 0
   m_Name: Closeup Cam 2
   m_TagString: Untagged
@@ -36054,6 +36422,100 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351b84ca95d84648bf89321bb6e95892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterTurnEvent: {fileID: 11400000, guid: 34d2f1cdf289d714a80d463db5b95f01, type: 2}
+--- !u!114 &2113295464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113295460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: b03bc6fd9438cd544bde07dd68e2b135, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2113295461}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2113295465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113295460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: 8a5a4a835d278b54f976dfebe6026bbe, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2113295461}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2113295466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113295460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: 6523c367b6f8dc4428c1d44411b1357e, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2113295461}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2113376719
 GameObject:
   m_ObjectHideFlags: 0
@@ -42107,11 +42569,17 @@ PrefabInstance:
     - target: {fileID: 1724326988139336557, guid: 5d4b48346e75eab48b1787da5dfda523,
         type: 3}
       propertyPath: enemies.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1724326988139336557, guid: 5d4b48346e75eab48b1787da5dfda523,
         type: 3}
       propertyPath: enemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: cedfc901c08aaf64db9d5d3d449ec512,
+        type: 2}
+    - target: {fileID: 1724326988139336557, guid: 5d4b48346e75eab48b1787da5dfda523,
+        type: 3}
+      propertyPath: enemies.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: d21b0091d32140842b56761a4ba8483a,
         type: 2}
@@ -42633,7 +43101,7 @@ PrefabInstance:
     - target: {fileID: 5903231738300934119, guid: 482abe573b3f5c242b2cd4da8ba8deac,
         type: 3}
       propertyPath: partyMembers.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5903231738300934119, guid: 482abe573b3f5c242b2cd4da8ba8deac,
         type: 3}
@@ -42646,6 +43114,12 @@ PrefabInstance:
       propertyPath: partyMembers.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: d6f9f6976ec82a845b32a3da08e83dad,
+        type: 2}
+    - target: {fileID: 5903231738300934119, guid: 482abe573b3f5c242b2cd4da8ba8deac,
+        type: 3}
+      propertyPath: partyMembers.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 373387c9350c0a44fb7b0f7a1b6fa996,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 482abe573b3f5c242b2cd4da8ba8deac, type: 3}
@@ -43014,6 +43488,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2868947031147997302, guid: f72530ab9298ec04ab09cc99cf2d7c88,
+        type: 3}
+      propertyPath: _previouslyRegisteredEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ef0f723c16a0cf4fa06cbbfcb8b38de,
+        type: 2}
+    - target: {fileID: 5372419515594290276, guid: f72530ab9298ec04ab09cc99cf2d7c88,
+        type: 3}
+      propertyPath: _previouslyRegisteredEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 6c4246ac83b11714eb04b16380c8ff23,
+        type: 2}
+    - target: {fileID: 6813688094459468553, guid: f72530ab9298ec04ab09cc99cf2d7c88,
+        type: 3}
+      propertyPath: _previouslyRegisteredEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 6523c367b6f8dc4428c1d44411b1357e,
+        type: 2}
+    - target: {fileID: 6858526016748942433, guid: f72530ab9298ec04ab09cc99cf2d7c88,
+        type: 3}
+      propertyPath: _previouslyRegisteredEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 8a5a4a835d278b54f976dfebe6026bbe,
+        type: 2}
     - target: {fileID: 7227322366302849666, guid: f72530ab9298ec04ab09cc99cf2d7c88,
         type: 3}
       propertyPath: m_Name

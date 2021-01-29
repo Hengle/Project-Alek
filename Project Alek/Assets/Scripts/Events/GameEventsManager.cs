@@ -9,7 +9,7 @@ using UnityEngine;
 
     static GameEventsManager() => SubscribersList = new Dictionary<Type, List<IGameEventListenerBase>>();
     
-    public static void AddListener<TGEvent>(IGameEventListener<TGEvent> listener) where TGEvent : struct
+    public static void AddListener<TGEvent>(IGEventListener<TGEvent> listener) where TGEvent : struct
     {
         var eventType = typeof(TGEvent);
 
@@ -18,7 +18,7 @@ using UnityEngine;
         if(!SubscriptionExists(eventType, listener)) SubscribersList[eventType].Add(listener);
     }
 
-    public static void RemoveListener<TGEvent>(IGameEventListener<TGEvent> listener) where TGEvent : struct
+    public static void RemoveListener<TGEvent>(IGEventListener<TGEvent> listener) where TGEvent : struct
     {
         var eventType = typeof(TGEvent);
 
@@ -42,7 +42,7 @@ using UnityEngine;
     {
         if (!SubscribersList.TryGetValue(typeof(TGEvent), out var list)) return;
         
-        for (var i= list.Count - 1; i >= 0; i--) (list[i] as IGameEventListener<TGEvent>)?.OnGameEvent(@event);
+        for (var i= list.Count - 1; i >= 0; i--) (list[i] as IGEventListener<TGEvent>)?.OnGameEvent(@event);
     }
     
     private static bool SubscriptionExists(Type type, IGameEventListenerBase receiver)
@@ -54,7 +54,7 @@ using UnityEngine;
 
 public interface IGameEventListenerBase { }
 
-public interface IGameEventListener<in T> : IGameEventListenerBase
+public interface IGEventListener<in T> : IGameEventListenerBase
 {
     void OnGameEvent( T eventType );
 }

@@ -1,6 +1,7 @@
 ﻿using BattleSystem;
 using BattleSystem.Mechanics;
 using Kryz.CharacterStats;
+using ScriptableObjectArchitecture;
 using UnityEngine;
 
 namespace Characters.StatusEffects
@@ -16,7 +17,8 @@ namespace Characters.StatusEffects
             target.onStatusEffectReceived?.Invoke(this);
             
             AddModifiers(target);
-            CharacterEvents.Trigger(CEventType.StatChange, target);
+            statChangeEvent.Raise(target, statChangeEvent);
+            //CharacterEvents.Trigger(CEventType.StatChange, target);
         }
         
         public override void OnRemoval(UnitBase unitBase)
@@ -27,7 +29,8 @@ namespace Characters.StatusEffects
             unitBase.Unit.status = Status.Normal;
             
             RemoveModifiers(unitBase);
-            CharacterEvents.Trigger(CEventType.StatChange, unitBase);
+            statChangeEvent.Raise(unitBase, statChangeEvent);
+            //CharacterEvents.Trigger(CEventType.StatChange, unitBase);
         }
 
         private void AddModifiers(UnitBase target)

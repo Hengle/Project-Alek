@@ -1,21 +1,22 @@
 ﻿using System.Collections.Generic;
 using Characters;
 using Characters.Enemies;
+using ScriptableObjectArchitecture;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace BattleSystem
 {
-    public class SelectableObjectManager : MonoBehaviour, IGameEventListener<CharacterEvents>
+    public class SelectableObjectManager : MonoBehaviour, IGameEventListener<UnitBase,CharacterGameEvent>
     {
+        [SerializeField] private CharacterGameEvent characterDeathEvent;
         [ShowInInspector] public static List<Selectable> _enemySelectable = new List<Selectable>();
         [ShowInInspector] public static List<Selectable> _memberSelectable = new List<Selectable>();
         [ShowInInspector] public static GameObject _memberFirstSelected;
 
-        private void Start() => GameEventsManager.AddListener(this);
-        
-        private void OnDisable() => GameEventsManager.RemoveListener(this);
+        private void Start() => characterDeathEvent.AddListener(this);
+        private void OnDisable() => characterDeathEvent.RemoveListener(this);
         
         public static void SetPartySelectables()
         {
@@ -103,12 +104,12 @@ namespace BattleSystem
             }
         }
 
-        public void OnGameEvent(CharacterEvents eventType)
+        public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
         {
-            if (eventType._eventType != CEventType.CharacterDeath || !(eventType._character as Enemy)) return;
+            if (value2 != characterDeathEvent || !(value1 as Enemy)) return;
             if (_enemySelectable.Count == 1) return;
             
-            UpdateEnemySelectables((UnitBase)eventType._character);
+            UpdateEnemySelectables(value1);
         }
     }
 }

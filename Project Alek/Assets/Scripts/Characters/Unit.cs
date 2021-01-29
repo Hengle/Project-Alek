@@ -9,13 +9,14 @@ using UnityEngine.UI;
 using Characters.Abilities;
 using Characters.Animations;
 using Characters.StatusEffects;
+using ScriptableObjectArchitecture;
 using Sirenix.OdinInspector;
 
 namespace Characters
 {
     // TODO: Use these with status effects (like inhibiting)
     public enum Status { Normal, Dead, UnableToPerformAction, Overexerted }
-    public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler, IGameEventListener<CharacterEvents>
+    public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler, IGameEventListener<UnitBase,CharacterGameEvent>
     {
         #region HideInInspector
 
@@ -65,6 +66,10 @@ namespace Characters
 
         #region OtherFieldsAndProperies
 
+        [SerializeField] private CharacterGameEvent characterTurnEvent;
+        [SerializeField] private CharacterGameEvent characterAttackEvent;
+        [SerializeField] private CharacterGameEvent chooseTargetEvent;
+        
         public Action onSpecialAttack;
         public Action<float> onSpecialBarValChanged;
         public Action<bool> onTimedAttack;
@@ -103,12 +108,16 @@ namespace Characters
             anim.SetInteger("AnimState", 1);
             outline.enabled = false;
             status = Status.Normal;
-            GameEventsManager.AddListener(this);
+            characterTurnEvent.AddListener(this);
+            characterAttackEvent.AddListener(this);
+            chooseTargetEvent.AddListener(this);
         }
 
         private void OnDisable()
         {
-            GameEventsManager.RemoveListener(this);
+            characterTurnEvent.RemoveListener(this);
+            characterAttackEvent.RemoveListener(this);
+            chooseTargetEvent.RemoveListener(this);
         }
 
         public void OnSelect(BaseEventData eventData)
@@ -139,24 +148,18 @@ namespace Characters
             Destroy(gameObject, 3);
         }
 
-        public void OnGameEvent(CharacterEvents eventType)
+        public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
         {
-            switch (eventType._eventType)
+            if (value2 == characterTurnEvent)
             {
-                case CEventType.CharacterTurn:
-                    outline.enabled = false;
-                    button.enabled = false;
-                    isAbility = false;
-                    currentAbility = null;
-                    if (eventType._character == parent) ResetTargets();
-                    break;
-                
-                case CEventType.ChoosingTarget: button.enabled = true;
-                    break;
-                
-                case CEventType.CharacterAttacking: outline.enabled = false;
-                    break;
+                outline.enabled = false;
+                button.enabled = false;
+                isAbility = false;
+                currentAbility = null;
+                if (value1 == parent) ResetTargets();
             }
+            else if (value2 == chooseTargetEvent) button.enabled = true;
+            else if (value2 == characterAttackEvent) outline.enabled = false;
         }
     }
 }

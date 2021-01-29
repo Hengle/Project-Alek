@@ -24,3 +24,4 @@ MonoBehaviour:
   debuffs: 1
   debuffedStat: 6
   debuffMultiplier: 2
+  statChangeEvent: {fileID: 11400000, guid: 6041a6a80fbebaa488e3df279ee3dd0a, type: 2}

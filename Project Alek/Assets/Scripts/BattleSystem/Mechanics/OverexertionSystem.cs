@@ -1,15 +1,19 @@
 ﻿using Characters;
+using ScriptableObjectArchitecture;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace BattleSystem.Mechanics
 {
-    public class OverexertionSystem : MonoBehaviour, IGameEventListener<BattleEvents>, IGameEventListener<CharacterEvents>
+    public class OverexertionSystem : MonoBehaviour, IGameEventListener<BattleEvent>,IGameEventListener<UnitBase,CharacterGameEvent>
     {
         private Unit unit;
         [ShowInInspector] private bool isRecovered;
         [ShowInInspector] private int currentApExerted;
         [ShowInInspector] private int initialApExerted;
+        [SerializeField] private BattleGameEvent battleEvent;
+        [SerializeField] private CharacterGameEvent characterTurnEvent;
+        [SerializeField] private CharacterGameEvent endOfTurnEvent;
 
         private void Start()
         {
@@ -19,8 +23,7 @@ namespace BattleSystem.Mechanics
             unit.borrowAP += BorrowAP;
             unit.parent.onDeath += OnDeath;
             
-            GameEventsManager.AddListener<BattleEvents>(this);
-            GameEventsManager.AddListener<CharacterEvents>(this);
+            battleEvent.AddListener(this);
         }
 
         private void BorrowAP(int amount)
@@ -69,25 +72,23 @@ namespace BattleSystem.Mechanics
             unit.borrowAP -= BorrowAP;
             unit.parent.onDeath -= OnDeath;
             
-            GameEventsManager.RemoveListener<BattleEvents>(this);
-            GameEventsManager.RemoveListener<CharacterEvents>(this);
+            battleEvent.RemoveListener(this);
         }
-
-        public void OnGameEvent(BattleEvents eventType)
+    
+        public void OnEventRaised(BattleEvent value)
         {
-            if (eventType._battleEventType != BattleEventType.NewRound) return;
+            if (value != BattleEvent.NewRound) return;
             if (unit.status == Status.Overexerted) Recover();
         }
 
-        public void OnGameEvent(CharacterEvents eventType)
+        public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
         {
-            if (eventType._eventType == CEventType.EndOfTurn && eventType._character == unit.parent &&
-                unit.status == Status.Overexerted)
+            if (value2 == endOfTurnEvent && value1 == unit.parent && unit.status == Status.Overexerted)
             {
                 unit.parent.onApValChanged?.Invoke(currentApExerted);
             }
-            if (eventType._eventType != CEventType.CharacterTurn) return;
-            if (eventType._character != unit.parent) return;
+            if (value2 != characterTurnEvent) return;
+            if (value1 != unit.parent) return;
             if (isRecovered) GiveRecoverBenefits();
         }
     }

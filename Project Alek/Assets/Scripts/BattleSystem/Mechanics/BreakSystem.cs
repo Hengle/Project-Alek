@@ -2,13 +2,18 @@
 using Characters;
 using Characters.ElementalTypes;
 using Characters.StatusEffects;
+using ScriptableObjectArchitecture;
+using UnityEngine;
 
 namespace BattleSystem.Mechanics
 {
     public enum UnitStates { Normal, Susceptible, Weakened, Checkmate }
-    public class BreakSystem : IGameEventListener<BattleEvents>, IGameEventListener<CharacterEvents>
+    public class BreakSystem : MonoBehaviour, IGameEventListener<BattleEvent>, IGameEventListener<UnitBase,CharacterGameEvent>
     {
-        private readonly int maxShieldCount;
+        [SerializeField] private BattleGameEvent battleEvent;
+        [SerializeField] private CharacterGameEvent enemyTurnEvent;
+        
+        private int maxShieldCount;
         private int currentShieldCount;
 
         // Weakened state resets once a new round passes and then at the start of the enemy's turn
@@ -16,10 +21,9 @@ namespace BattleSystem.Mechanics
         private bool enemyTurnCondition;
         
         private UnitStates currentState;
+        private UnitBase unitBase;
         
-        private readonly UnitBase unitBase;
-
-        public BreakSystem(UnitBase unit, int count)
+        public void Init(UnitBase unit, int count)
         {
             unitBase = unit;
             maxShieldCount = count;
@@ -33,8 +37,12 @@ namespace BattleSystem.Mechanics
             unitBase.onStatusEffectReceived += EvaluateState;
             unitBase.onStatusEffectRemoved += EvaluateStateOnRemoval;
             
-            GameEventsManager.AddListener<BattleEvents>(this);
-            GameEventsManager.AddListener<CharacterEvents>(this);
+            battleEvent.AddListener(this);
+        }
+
+        private void OnDisable()
+        {
+            battleEvent.RemoveListener(this);
         }
 
         private void Reset()
@@ -119,9 +127,9 @@ namespace BattleSystem.Mechanics
             unitBase.OnNewState(currentState);
         }
 
-        public void OnGameEvent(BattleEvents eventType)
+        public void OnEventRaised(BattleEvent value)
         {
-            if (eventType._battleEventType == BattleEventType.NewRound)
+            if (value == BattleEvent.NewRound)
             {
                 if (currentState == UnitStates.Weakened) newRoundCondition = true;
             }
@@ -130,9 +138,9 @@ namespace BattleSystem.Mechanics
             if (newRoundCondition && enemyTurnCondition) Reset();
         }
 
-        public void OnGameEvent(CharacterEvents eventType)
+        public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
         {
-            if (eventType._eventType == CEventType.EnemyTurn)
+            if (value2 == enemyTurnEvent && value1 == unitBase)
             {
                 if (currentState == UnitStates.Weakened) enemyTurnCondition = true;
             }

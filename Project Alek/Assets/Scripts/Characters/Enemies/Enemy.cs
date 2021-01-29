@@ -11,7 +11,7 @@ namespace Characters.Enemies
     [CreateAssetMenu(fileName = "New Enemy", menuName = "Character/Enemy")]
     public class Enemy : UnitBase, IGiveExperience
     {
-        public BreakSystem BreakSystem { get; set; }
+        //public BreakSystem BreakSystem { get; set; }
 
         [SerializeField, VerticalGroup("Basic/Info"), LabelWidth(120), Range(1,10)]
         public int maxShieldCount = 1;

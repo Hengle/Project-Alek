@@ -143,6 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d160996f11afd0d468f00cb61d4715e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterTurnEvent: {fileID: 11400000, guid: 34d2f1cdf289d714a80d463db5b95f01, type: 2}
+  chooseTargetEvent: {fileID: 11400000, guid: b03bc6fd9438cd544bde07dd68e2b135, type: 2}
   thisUnitBase: {fileID: 0}
   selectOnLeft: {fileID: 0}
   selectOnRight: {fileID: 0}
@@ -266,6 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04daac25b1f4aa1ab3aa0f2c261a0a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterAttackEvent: {fileID: 11400000, guid: f95948814cbd6ea4c8f313185bb3913e,
+    type: 2}
   unit: {fileID: 0}
   unitBase: {fileID: 0}
 --- !u!114 &6706325538701338281
@@ -310,6 +314,10 @@ MonoBehaviour:
   parry: 0
   timedAttack: 0
   isCountered: 0
+  characterTurnEvent: {fileID: 11400000, guid: 34d2f1cdf289d714a80d463db5b95f01, type: 2}
+  characterAttackEvent: {fileID: 11400000, guid: f95948814cbd6ea4c8f313185bb3913e,
+    type: 2}
+  chooseTargetEvent: {fileID: 11400000, guid: b03bc6fd9438cd544bde07dd68e2b135, type: 2}
   parent: {fileID: 0}
 --- !u!114 &9146564575788554301
 MonoBehaviour:
@@ -335,6 +343,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363c4cc7b2cdb1641945e531feb27a2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleEvent: {fileID: 11400000, guid: 1444b47f3ceceea4e87c3c1863b49ff9, type: 2}
+  characterTurnEvent: {fileID: 11400000, guid: 34d2f1cdf289d714a80d463db5b95f01, type: 2}
+  endOfTurnEvent: {fileID: 11400000, guid: 6523c367b6f8dc4428c1d44411b1357e, type: 2}
 --- !u!114 &8993765284307900563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,6 +358,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1edbf0fd54e94c043b305151a2598c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterTurnEvent: {fileID: 11400000, guid: 34d2f1cdf289d714a80d463db5b95f01, type: 2}
+  endOfTurnEvent: {fileID: 11400000, guid: 6523c367b6f8dc4428c1d44411b1357e, type: 2}
+  conversionEvent: {fileID: 11400000, guid: 4d7f7badaea36ed4fa4399c6b0f06670, type: 2}
 --- !u!114 &2894288211877275096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,6 +373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 278d9511a282e1f4797817acd1390faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterAttackEvent: {fileID: 11400000, guid: f95948814cbd6ea4c8f313185bb3913e,
+    type: 2}
 --- !u!114 &3888572098742243304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,4 +400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   member: {fileID: 0}
+  battleEvent: {fileID: 11400000, guid: 1444b47f3ceceea4e87c3c1863b49ff9, type: 2}
+  characterAttackEvent: {fileID: 11400000, guid: f95948814cbd6ea4c8f313185bb3913e,
+    type: 2}
   specialBarVal: 0

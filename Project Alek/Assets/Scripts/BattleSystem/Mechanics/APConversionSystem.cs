@@ -1,14 +1,18 @@
-﻿using System;
-using Characters;
+﻿using Characters;
+using ScriptableObjectArchitecture;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace BattleSystem.Mechanics
 {
-    public class APConversionSystem : MonoBehaviour, IGameEventListener<CharacterEvents>
+    public class APConversionSystem : MonoBehaviour, IGameEventListener<UnitBase,CharacterGameEvent>
     {
         private Unit unit;
+        [SerializeField] private CharacterGameEvent characterTurnEvent;
+        [SerializeField] private CharacterGameEvent endOfTurnEvent;
+        [SerializeField] private CharacterGameEvent conversionEvent;
+        
         [ShowInInspector] private bool thisUnitTurn;
         private const int MaxConversionAmount = 4;
 
@@ -44,7 +48,8 @@ namespace BattleSystem.Mechanics
         {
             BattleInput._controls.Battle.LeftSelect.performed += AdjustConversionAmount;
             BattleInput._controls.Battle.RightSelect.performed += AdjustConversionAmount;
-            GameEventsManager.AddListener(this);
+            characterTurnEvent.AddListener(this);
+            endOfTurnEvent.AddListener(this);
         }
 
         private void AdjustConversionAmount(InputAction.CallbackContext ctx)
@@ -54,8 +59,7 @@ namespace BattleSystem.Mechanics
             else return;
             
             unit.conversionFactor = ConversionFactor;
-            
-            CharacterEvents.Trigger(CEventType.APConversion, unit.parent);
+            conversionEvent.Raise(unit.parent, conversionEvent);
         }
 
         private void ResetConversion()
@@ -63,28 +67,29 @@ namespace BattleSystem.Mechanics
             unit.conversionLevel = 0;
             unit.conversionFactor = 1;
             
-            CharacterEvents.Trigger(CEventType.APConversion, unit.parent);
+            conversionEvent.Raise(unit.parent, conversionEvent);
         }
 
         private void OnDisable()
         {
             BattleInput._controls.Battle.LeftSelect.performed -= AdjustConversionAmount;
             BattleInput._controls.Battle.RightSelect.performed -= AdjustConversionAmount;
-            GameEventsManager.RemoveListener(this);
+            
+            characterTurnEvent.RemoveListener(this);
+            endOfTurnEvent.RemoveListener(this);
         }
 
-        public void OnGameEvent(CharacterEvents eventType)
+        public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
         {
-            switch (eventType._eventType)
+            if (value2 == characterTurnEvent && value1 == unit.parent)
             {
-                case CEventType.CharacterTurn when eventType._character == unit.parent:
-                    thisUnitTurn = true;
-                    ResetConversion();
-                    break;
-                case CEventType.EndOfTurn when eventType._character == unit.parent:
-                    thisUnitTurn = false;
-                    ResetConversion();
-                    break;
+                thisUnitTurn = true;
+                ResetConversion();
+            }
+            else if (value2 == endOfTurnEvent && value1 == unit.parent)
+            {
+                thisUnitTurn = false;
+                ResetConversion();
             }
         }
     }

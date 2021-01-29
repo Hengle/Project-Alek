@@ -4,12 +4,14 @@ using Characters.Animations;
 using Characters.CharacterExtensions;
 using Characters.StatusEffects;
 using MEC;
+using ScriptableObjectArchitecture;
 using UnityEngine;
 
 namespace BattleSystem.Mechanics
 {
     public class CounterSystem : MonoBehaviour
     {
+        [SerializeField] private CharacterGameEvent characterAttackEvent;
         private Unit unit;
         private Animator animator;
         private AnimationHandler animHandler;
@@ -33,7 +35,7 @@ namespace BattleSystem.Mechanics
             if (!hitWindow) return;
             if (unit.currentHP == 0) return;
 
-            CharacterEvents.Trigger(CEventType.CharacterAttacking, unit.parent);
+            characterAttackEvent.Raise(unit.parent, characterAttackEvent);
             unit.currentTarget = BattleEngine.Instance.activeUnit;
             unit.currentTarget.Unit.isCountered = true;
             isCountering = true;
