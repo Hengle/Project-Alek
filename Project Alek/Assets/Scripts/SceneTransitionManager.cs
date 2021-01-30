@@ -31,8 +31,8 @@ public class SceneTransitionManager : MonoBehaviour
 
         lensDistortion.intensity.overrideState = true;
 
-        if (SceneManager.GetActiveScene().name == "Battle") Timing.RunCoroutine(ResetLens());
-        else if (SceneManager.GetActiveScene().name == "Overworld Demo")
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Battle") Timing.RunCoroutine(ResetLens());
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Overworld Demo")
             Timing.RunCoroutine(OverworldTransition(0.01f, false));
     }
 

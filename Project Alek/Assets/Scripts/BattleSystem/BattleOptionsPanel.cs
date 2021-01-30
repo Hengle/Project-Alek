@@ -12,29 +12,35 @@ namespace BattleSystem
         
         public void ShowBattlePanel()
         {
-            BattleEngine.Instance.choosingOption = true;
-
             // This is triggered at the start of a party member's turn
-            if (!character.battlePanel.activeSelf) character.battlePanel.SetActive(true);
+            if (!character.battlePanel.activeSelf)
+            {
+                BattleEngine.Instance.choosingOption = true;
+                character.battlePanel.SetActive(true);
+            }
             
             // This is triggered when going back to main menu from the ability menu
             else if (BattleEngine.Instance.choosingAbility) 
             {
                 character.BattlePanelAnim.SetTrigger(AnimationHandler.AbilityMenu);
+                BattleEngine.Instance.choosingOption = true;
                 BattleEngine.Instance.choosingAbility = false;
             }
             
             // This is triggered when going back while choosing a target from the ability menu
-            else if (BattleEngine.Instance.choosingTarget && BattleEngine.Instance.choosingAbility) 
+            else if (BattleEngine.Instance.choosingTarget && BattleEngine.Instance.abilityMenuLast) 
             {
-                character.BattlePanelAnim.SetTrigger(AnimationHandler.Panel);
+                character.BattlePanelAnim.SetTrigger(AnimationHandler.AbilityMenu);
                 BattleEngine.Instance.choosingTarget = false;
+                BattleEngine.Instance.choosingAbility = true;
+                BattleEngine.Instance.abilityMenuLast = false;
             }
             
             // This is triggered when going back while choosing a target from the main menu (attack button)
             else 
             {
                 character.BattlePanelAnim.SetTrigger(AnimationHandler.Panel);
+                BattleEngine.Instance.choosingOption = true;
                 BattleEngine.Instance.choosingTarget = false;
             }
         }

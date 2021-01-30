@@ -25,7 +25,7 @@ namespace MoreMountains.InventoryEngine
 			if ((Destination != null) && (collider.gameObject.GetComponent<InventoryDemoCharacter>() != null))
 			{
 				MMGameEvent.Trigger("Save");
-				SceneManager.LoadScene(Destination);
+				UnityEngine.SceneManagement.SceneManager.LoadScene(Destination);
 			}
 		}
 	}

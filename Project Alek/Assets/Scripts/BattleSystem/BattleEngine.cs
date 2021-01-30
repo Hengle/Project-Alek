@@ -61,6 +61,7 @@ namespace BattleSystem
         [ReadOnly] public bool endThisMembersTurn;
         [ReadOnly] public bool choosingAbility;
         [ReadOnly] public bool canGiveCommand = true;
+        [ReadOnly] public bool abilityMenuLast = false;
 
         private bool AllMembersDead => _membersForThisBattle.Count == 0;
         private bool AllEnemiesDead => _enemiesForThisBattle.Count == 0;
@@ -149,10 +150,16 @@ namespace BattleSystem
 
             yield return Timing.WaitUntilFalse(() => choosingOption);
             
+            yield return Timing.WaitForOneFrame;
             while (choosingAbility) 
             {
                 BattleInput._canPressBack = true;
-                if (BattleInput.CancelCondition) goto main_menu;
+                abilityMenuLast = true;
+                if (BattleInput.CancelCondition)
+                {
+                    abilityMenuLast = false;
+                    goto main_menu;
+                }
                 yield return Timing.WaitForOneFrame;
             }
 
@@ -167,7 +174,9 @@ namespace BattleSystem
                 BattleInput._canPressBack = true;
                 if (BattleInput.CancelCondition) goto main_menu;
             }
-
+            
+            abilityMenuLast = false;
+            
             if (usingItem)
             {
                 character.CurrentAP -= 2;
@@ -196,7 +205,6 @@ namespace BattleSystem
 
             skip_command_execution:
             if (PartyOrEnemyTeamIsDead) goto end_of_turn;
-
             if (character.GetStatus() && character.CurrentAP > 0) goto main_menu;
             
             end_of_turn:
@@ -266,7 +274,7 @@ namespace BattleSystem
                 member.currentClass.AdvanceTowardsNextLevel(totalClassXp);
             }
             
-            SceneLoader.Instance.LoadOverworld();
+            LoadSceneManager.Instance.LoadOverworld();
         }
 
         private IEnumerator<float> LostBattleSequence()
@@ -274,7 +282,7 @@ namespace BattleSystem
             yield return Timing.WaitForSeconds(0.5f);
             Logger.Log("you lost idiot");
             
-            SceneLoader.Instance.LoadOverworld();
+            LoadSceneManager.Instance.LoadOverworld();
         }
         
         #endregion
