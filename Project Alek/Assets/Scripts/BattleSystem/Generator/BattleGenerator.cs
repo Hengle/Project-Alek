@@ -79,7 +79,8 @@ namespace BattleSystem.Generator
             var apConversionBox = character.battlePanel.transform.Find("AP Conversion Box").gameObject;
             apConversionBox.GetComponent<APConversionControllerUI>().unit = character.Unit;
             
-            var mainMenu = character.battlePanel.transform.Find("Mask").transform.Find("Battle Menu").transform.Find("Main Options");
+            //var mainMenu = character.battlePanel.transform.Find("Mask").transform.Find("Battle Menu").transform.Find("Main Options");
+            var mainMenu = character.battlePanel.transform.Find("Battle Menu").transform.Find("Main Options");
 
             mainMenu.Find("Attack Button").gameObject.GetComponent<Button>().onClick.AddListener
                 ( delegate { ((BattleOptionsPanel) character.battleOptionsPanel).GetCommandInformation("UniversalAction,1,0,2"); });
@@ -100,7 +101,8 @@ namespace BattleSystem.Generator
         
         private static void SetAbilityMenuOptions(PartyMember character)
         {
-            var abilityMenu = character.battlePanel.transform.Find("Mask").transform.Find("Battle Menu").transform.Find("Ability Menu").transform;
+            //var abilityMenu = character.battlePanel.transform.Find("Mask").transform.Find("Battle Menu").transform.Find("Ability Menu").transform;
+            var abilityMenu = character.battlePanel.transform.Find("Battle Menu").transform.Find("Ability Menu").transform;
             var abilityListIndex = 0;
             
             while (character.abilities.Count > 5) character.abilities.Remove(character.abilities[character.abilities.Count-1]);

@@ -1,4 +1,5 @@
-﻿using Characters;
+﻿using System;
+using Characters;
 using JetBrains.Annotations;
 using MoreMountains.InventoryEngine;
 using MoreMountains.Tools;
@@ -6,6 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Characters.Animations;
 using ScriptableObjectArchitecture;
+using UnityEngine.UI;
 
 namespace BattleSystem
 {
@@ -16,9 +18,13 @@ namespace BattleSystem
         [SerializeField] private CharacterGameEvent characterTurnEvent;
         [SerializeField] private CharacterGameEvent endOfTurnEvent;
         
-        private GameObject battleMenu;
-        private GameObject mainMenu;
-        private GameObject abilityMenu;
+        [SerializeField] private GameObject battleMenu;
+        [SerializeField] private GameObject mainMenu;
+        [SerializeField] private GameObject abilityMenu;
+
+        [SerializeField] private RadialLayoutGroup mainMenuLayout;
+        [SerializeField] private RadialLayoutGroup abilityMenuLayout;
+
         private GameObject mainMenuFirstSelected;
         private GameObject abilityMenuFirstSelected;
 
@@ -32,14 +38,21 @@ namespace BattleSystem
         {
             animator = GetComponent<Animator>();
             
-            battleMenu = transform.Find("Mask").transform.Find("Battle Menu").gameObject;
-            
-            mainMenu = battleMenu.gameObject.transform.Find("Main Options").gameObject;
-            mainMenuFirstSelected = mainMenu.transform.GetChild(0).gameObject;
-            
-            abilityMenu = transform.Find("Mask").transform.Find("Battle Menu").gameObject.transform.Find("Ability Menu").gameObject;
-            abilityMenuFirstSelected = abilityMenu.transform.GetChild(0).gameObject;
+            mainMenuFirstSelected = mainMenu.transform.Find("Attack Button").gameObject;
 
+            var count = abilityMenu.transform.childCount;
+            abilityMenuFirstSelected = abilityMenu.transform.GetChild(count-1).gameObject;
+
+            mainMenuLayout.Arc = 145;
+            mainMenuLayout.Offset = 30;
+            mainMenuLayout.Radius = 200;
+            mainMenuLayout.StartFrom = RadialLayoutGroup.RadialLayoutStart.bottom;
+            
+            abilityMenuLayout.Arc = 145;
+            abilityMenuLayout.Offset = 30;
+            abilityMenuLayout.Radius = 200;
+            abilityMenuLayout.StartFrom = RadialLayoutGroup.RadialLayoutStart.bottom;
+           
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
         }
@@ -64,6 +77,60 @@ namespace BattleSystem
 
         [UsedImplicitly] public void DisableInput() => BattleInput._controls.Disable();
 
+        #region MenuAnimation
+
+        [UsedImplicitly] private void EvaluateMainMenuState()
+        {
+            Debug.Log($"Main Menu: {mainMenuLayout.Radius}");
+            // if (Math.Abs(mainMenuLayout.Radius) < 0.01f) OpenMainMenu();
+            // else CloseMainMenu();
+        }
+
+        [UsedImplicitly] private void EvaluateAbilityMenuState()
+        {
+            Debug.Log($"Ability Menu: {abilityMenuLayout.Radius}");
+            // if (Math.Abs(abilityMenuLayout.Radius) < 0.01f) OpenAbilityMenu();
+            // else CloseAbilityMenu();
+        }
+        
+        private void OpenMainMenu()
+        {
+            Debug.Log($"Main Menu: {mainMenuLayout.Radius}");
+            // while (Math.Abs(mainMenuLayout.Radius - 200) > 0.001f)
+            // {
+            //     mainMenuLayout.Radius++;
+            // }
+        }
+        
+        private void OpenAbilityMenu()
+        {
+            Debug.Log($"Ability Menu: {abilityMenuLayout.Radius}");
+            // while (Math.Abs(abilityMenuLayout.Radius - 200) > 0.001f)
+            // {
+            //     abilityMenuLayout.Radius++;
+            // }
+        }
+
+        private void CloseMainMenu()
+        {
+            Debug.Log($"Main Menu: {mainMenuLayout.Radius}");
+            // while (Math.Abs(mainMenuLayout.Radius) > 0.001f)
+            // {
+            //     mainMenuLayout.Radius--;
+            // }
+        }
+        
+        private void CloseAbilityMenu()
+        {
+            Debug.Log($"Ability Menu: {abilityMenuLayout.Radius}");
+            // while (Math.Abs(abilityMenuLayout.Radius) > 0.001f)
+            // {
+            //     abilityMenuLayout.Radius--;
+            // }
+        }
+
+        #endregion
+        
         #region SetSelected
 
         [UsedImplicitly] public void SetMainMenuFirstSelected()
