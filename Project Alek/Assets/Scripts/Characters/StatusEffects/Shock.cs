@@ -1,6 +1,5 @@
 ﻿using BattleSystem;
 using DamagePrefab;
-using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -27,7 +26,6 @@ namespace Characters.StatusEffects
  
             // show shocked visual effect
             BattleEngine.Instance.canGiveCommand = false;
-            //CharacterEvents.Trigger(CEventType.CantPerformAction, unitBase);
         }
     }
 }

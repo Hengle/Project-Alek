@@ -6,7 +6,6 @@ namespace Characters.StatusEffects
     {
         public UnitBase member;
         private CanvasGroup group;
-        [SerializeField] private Checkmate checkmate;
 
         public void Initialize()
         {

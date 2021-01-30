@@ -689,7 +689,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "LeftSelect",
+                    "name": "LeftShoulder",
                     "type": "Button",
                     "id": "d7d2fe7f-e0bc-4c17-9471-5025cfe6a2a5",
                     "expectedControlType": "Button",
@@ -697,7 +697,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "RightSelect",
+                    "name": "RightShoulder",
                     "type": "Button",
                     "id": "ec558410-3cac-40c4-8490-030b0421152e",
                     "expectedControlType": "Button",
@@ -1142,18 +1142,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LeftSelect",
+                    "action": "LeftShoulder",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "1e2ed881-b06d-4f5c-a26b-8151182a18c8",
-                    "path": "<HID::Google Inc. Stadia Controller>/hat/left",
+                    "path": "<HID::Google Inc. Stadia Controller>/button7",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LeftSelect",
+                    "action": "LeftShoulder",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1164,18 +1164,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RightSelect",
+                    "action": "RightShoulder",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "56d350f0-44da-40b7-993c-ffc60f9c15db",
-                    "path": "<HID::Google Inc. Stadia Controller>/hat/right",
+                    "path": "<HID::Google Inc. Stadia Controller>/button8",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RightSelect",
+                    "action": "RightShoulder",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

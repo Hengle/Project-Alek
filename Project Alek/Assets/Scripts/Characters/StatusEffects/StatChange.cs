@@ -1,6 +1,4 @@
-﻿using System;
-using BattleSystem;
-using Kryz.CharacterStats;
+﻿using Kryz.CharacterStats;
 using ScriptableObjectArchitecture;
 using Sirenix.OdinInspector;
 using UnityEngine;

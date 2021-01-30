@@ -702,7 +702,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""LeftSelect"",
+                    ""name"": ""LeftShoulder"",
                     ""type"": ""Button"",
                     ""id"": ""d7d2fe7f-e0bc-4c17-9471-5025cfe6a2a5"",
                     ""expectedControlType"": ""Button"",
@@ -710,7 +710,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""RightSelect"",
+                    ""name"": ""RightShoulder"",
                     ""type"": ""Button"",
                     ""id"": ""ec558410-3cac-40c4-8490-030b0421152e"",
                     ""expectedControlType"": ""Button"",
@@ -1155,18 +1155,18 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LeftSelect"",
+                    ""action"": ""LeftShoulder"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""1e2ed881-b06d-4f5c-a26b-8151182a18c8"",
-                    ""path"": ""<HID::Google Inc. Stadia Controller>/hat/left"",
+                    ""path"": ""<HID::Google Inc. Stadia Controller>/button7"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LeftSelect"",
+                    ""action"": ""LeftShoulder"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1177,18 +1177,18 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightSelect"",
+                    ""action"": ""RightShoulder"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""56d350f0-44da-40b7-993c-ffc60f9c15db"",
-                    ""path"": ""<HID::Google Inc. Stadia Controller>/hat/right"",
+                    ""path"": ""<HID::Google Inc. Stadia Controller>/button8"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightSelect"",
+                    ""action"": ""RightShoulder"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1276,8 +1276,8 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Battle_Back = m_Battle.FindAction("Back", throwIfNotFound: true);
         m_Battle_Move = m_Battle.FindAction("Move", throwIfNotFound: true);
         m_Battle_TopButton = m_Battle.FindAction("TopButton", throwIfNotFound: true);
-        m_Battle_LeftSelect = m_Battle.FindAction("LeftSelect", throwIfNotFound: true);
-        m_Battle_RightSelect = m_Battle.FindAction("RightSelect", throwIfNotFound: true);
+        m_Battle_LeftShoulder = m_Battle.FindAction("LeftShoulder", throwIfNotFound: true);
+        m_Battle_RightShoulder = m_Battle.FindAction("RightShoulder", throwIfNotFound: true);
         // Overworld
         m_Overworld = asset.FindActionMap("Overworld", throwIfNotFound: true);
         m_Overworld_Move = m_Overworld.FindAction("Move", throwIfNotFound: true);
@@ -1481,8 +1481,8 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Battle_Back;
     private readonly InputAction m_Battle_Move;
     private readonly InputAction m_Battle_TopButton;
-    private readonly InputAction m_Battle_LeftSelect;
-    private readonly InputAction m_Battle_RightSelect;
+    private readonly InputAction m_Battle_LeftShoulder;
+    private readonly InputAction m_Battle_RightShoulder;
     public struct BattleActions
     {
         private @Controls m_Wrapper;
@@ -1491,8 +1491,8 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Back => m_Wrapper.m_Battle_Back;
         public InputAction @Move => m_Wrapper.m_Battle_Move;
         public InputAction @TopButton => m_Wrapper.m_Battle_TopButton;
-        public InputAction @LeftSelect => m_Wrapper.m_Battle_LeftSelect;
-        public InputAction @RightSelect => m_Wrapper.m_Battle_RightSelect;
+        public InputAction @LeftShoulder => m_Wrapper.m_Battle_LeftShoulder;
+        public InputAction @RightShoulder => m_Wrapper.m_Battle_RightShoulder;
         public InputActionMap Get() { return m_Wrapper.m_Battle; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1514,12 +1514,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @TopButton.started -= m_Wrapper.m_BattleActionsCallbackInterface.OnTopButton;
                 @TopButton.performed -= m_Wrapper.m_BattleActionsCallbackInterface.OnTopButton;
                 @TopButton.canceled -= m_Wrapper.m_BattleActionsCallbackInterface.OnTopButton;
-                @LeftSelect.started -= m_Wrapper.m_BattleActionsCallbackInterface.OnLeftSelect;
-                @LeftSelect.performed -= m_Wrapper.m_BattleActionsCallbackInterface.OnLeftSelect;
-                @LeftSelect.canceled -= m_Wrapper.m_BattleActionsCallbackInterface.OnLeftSelect;
-                @RightSelect.started -= m_Wrapper.m_BattleActionsCallbackInterface.OnRightSelect;
-                @RightSelect.performed -= m_Wrapper.m_BattleActionsCallbackInterface.OnRightSelect;
-                @RightSelect.canceled -= m_Wrapper.m_BattleActionsCallbackInterface.OnRightSelect;
+                @LeftShoulder.started -= m_Wrapper.m_BattleActionsCallbackInterface.OnLeftShoulder;
+                @LeftShoulder.performed -= m_Wrapper.m_BattleActionsCallbackInterface.OnLeftShoulder;
+                @LeftShoulder.canceled -= m_Wrapper.m_BattleActionsCallbackInterface.OnLeftShoulder;
+                @RightShoulder.started -= m_Wrapper.m_BattleActionsCallbackInterface.OnRightShoulder;
+                @RightShoulder.performed -= m_Wrapper.m_BattleActionsCallbackInterface.OnRightShoulder;
+                @RightShoulder.canceled -= m_Wrapper.m_BattleActionsCallbackInterface.OnRightShoulder;
             }
             m_Wrapper.m_BattleActionsCallbackInterface = instance;
             if (instance != null)
@@ -1536,12 +1536,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @TopButton.started += instance.OnTopButton;
                 @TopButton.performed += instance.OnTopButton;
                 @TopButton.canceled += instance.OnTopButton;
-                @LeftSelect.started += instance.OnLeftSelect;
-                @LeftSelect.performed += instance.OnLeftSelect;
-                @LeftSelect.canceled += instance.OnLeftSelect;
-                @RightSelect.started += instance.OnRightSelect;
-                @RightSelect.performed += instance.OnRightSelect;
-                @RightSelect.canceled += instance.OnRightSelect;
+                @LeftShoulder.started += instance.OnLeftShoulder;
+                @LeftShoulder.performed += instance.OnLeftShoulder;
+                @LeftShoulder.canceled += instance.OnLeftShoulder;
+                @RightShoulder.started += instance.OnRightShoulder;
+                @RightShoulder.performed += instance.OnRightShoulder;
+                @RightShoulder.canceled += instance.OnRightShoulder;
             }
         }
     }
@@ -1611,8 +1611,8 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnBack(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnTopButton(InputAction.CallbackContext context);
-        void OnLeftSelect(InputAction.CallbackContext context);
-        void OnRightSelect(InputAction.CallbackContext context);
+        void OnLeftShoulder(InputAction.CallbackContext context);
+        void OnRightShoulder(InputAction.CallbackContext context);
     }
     public interface IOverworldActions
     {

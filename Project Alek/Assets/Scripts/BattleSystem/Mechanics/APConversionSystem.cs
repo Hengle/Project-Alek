@@ -32,12 +32,15 @@ namespace BattleSystem.Mechanics
         }
 
         private bool CanDecreaseConversion =>
-            thisUnitTurn && BattleEngine.Instance.choosingAbility && BattleInput._controls.Battle.LeftSelect.triggered
+            thisUnitTurn && BattleEngine.Instance.choosingAbility && BattleInput._controls.Battle.LeftShoulder.triggered
             && unit.conversionLevel > 0;
 
         private bool CanIncreaseConversion =>
-            thisUnitTurn && BattleEngine.Instance.choosingAbility && BattleInput._controls.Battle.RightSelect.triggered
+            thisUnitTurn && BattleEngine.Instance.choosingAbility && BattleInput._controls.Battle.RightShoulder.triggered
             && unit.conversionLevel < MaxConversionAmount;
+
+        private bool CancelCondition =>
+            thisUnitTurn && BattleEngine.Instance.choosingAbility && BattleInput._controls.Battle.Move.triggered && unit.conversionLevel > 0;
 
         private void Start()
         {
@@ -46,14 +49,16 @@ namespace BattleSystem.Mechanics
 
         private void OnEnable()
         {
-            BattleInput._controls.Battle.LeftSelect.performed += AdjustConversionAmount;
-            BattleInput._controls.Battle.RightSelect.performed += AdjustConversionAmount;
+            BattleInput._controls.Battle.LeftShoulder.performed += AdjustConversionAmount;
+            BattleInput._controls.Battle.RightShoulder.performed += AdjustConversionAmount;
+            BattleInput._controls.Battle.Move.performed += AdjustConversionAmount;
             characterTurnEvent.AddListener(this);
             endOfTurnEvent.AddListener(this);
         }
 
         private void AdjustConversionAmount(InputAction.CallbackContext ctx)
         {
+            if (CancelCondition) ResetConversion();
             if (CanIncreaseConversion) unit.conversionLevel += 1;
             else if (CanDecreaseConversion) unit.conversionLevel -= 1;
             else return;
@@ -72,8 +77,8 @@ namespace BattleSystem.Mechanics
 
         private void OnDisable()
         {
-            BattleInput._controls.Battle.LeftSelect.performed -= AdjustConversionAmount;
-            BattleInput._controls.Battle.RightSelect.performed -= AdjustConversionAmount;
+            BattleInput._controls.Battle.LeftShoulder.performed -= AdjustConversionAmount;
+            BattleInput._controls.Battle.RightShoulder.performed -= AdjustConversionAmount;
             
             characterTurnEvent.RemoveListener(this);
             endOfTurnEvent.RemoveListener(this);

@@ -8,8 +8,6 @@ namespace BattleSystem.Calculators
 {
     public static class Calculator
     {
-        // TODO: Make this the base function that is called for everything and delegate to correct function based on action type
-        // TODO: OVERHAUL THE CRAP OUT OF THIS CRAPPY CODE!!!!!!!!!!!!!!!
         public static int CalculateAttackDamage(UnitBase damageDealer, UnitBase target)
         {
             if (damageDealer.Unit == target.Unit) return 0;
@@ -30,7 +28,7 @@ namespace BattleSystem.Calculators
 
             var critical = CalculateCritChance(damageDealer);
             
-            return CalculateFinalDamageAmount(damageDealer, target, totalDamage, critical);
+            return CalculateFinalDamageAmount(target, totalDamage, critical);
         }
 
         public static int CalculateSpecialAttackDamage(UnitBase damageDealer, UnitBase target)
@@ -42,7 +40,7 @@ namespace BattleSystem.Calculators
 
             totalDamage = CalculateBoostFactor(damageDealer, target, totalDamage);
             
-            return CalculateFinalDamageAmount(damageDealer, target, totalDamage, false);
+            return CalculateFinalDamageAmount(target, totalDamage, false);
         }
 
         private static int CalculateAbilityDamage(UnitBase damageDealer, UnitBase target)
@@ -98,7 +96,7 @@ namespace BattleSystem.Calculators
             totalDamage = CalculateShieldFactor(damageDealer, target, totalDamage);
             
             var critical = CalculateCritChance(damageDealer);
-            return CalculateFinalDamageAmount(damageDealer, target, totalDamage, critical);
+            return CalculateFinalDamageAmount(target, totalDamage, critical);
         }
         
         private static bool CalculateCritChance(UnitBase damageDealer)
@@ -109,15 +107,13 @@ namespace BattleSystem.Calculators
             return randomValue <= critChance;
         }
 
-        private static int CalculateFinalDamageAmount(UnitBase damageDealer, UnitBase target, int totalDamage, bool isCritical)
+        private static int CalculateFinalDamageAmount(UnitBase target, int totalDamage, bool isCritical)
         {
             if (!isCritical) return totalDamage < 0 ? 0 : Random.Range((int) (0.97f * totalDamage), (int) (1.03f * totalDamage));
-
-            //totalDamage = (int)(totalDamage * BattleEngine.Instance.globalVariables.criticalDamageFactor);
+            
             totalDamage = (int)(totalDamage * GlobalVariables.Instance.criticalDamageFactor);
             target.Unit.targetHasCrit = true;
-            //damageDealer.Unit.isCrit = true;
-            
+
             return totalDamage < 0 ? 0 : Random.Range((int)(0.97f * totalDamage), (int)(1.03f * totalDamage));
         }
 

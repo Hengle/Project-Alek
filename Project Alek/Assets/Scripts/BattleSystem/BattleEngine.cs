@@ -141,12 +141,13 @@ namespace BattleSystem
             character.inventoryDisplay.SetActive(true);
             
             character.ReplenishAP();
+            var battlePanel = (BattleOptionsPanel) character.battleOptionsPanel;
             
             main_menu:
             characterTurnEvent.Raise(character, characterTurnEvent);
             BattleInput._canPressBack = false;
             usingItem = false;
-            ((BattleOptionsPanel) character.battleOptionsPanel).ShowBattlePanel();
+            battlePanel.ShowBattlePanel();
 
             yield return Timing.WaitUntilFalse(() => choosingOption);
             

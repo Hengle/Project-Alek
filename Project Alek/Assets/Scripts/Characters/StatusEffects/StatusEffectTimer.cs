@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Characters.StatusEffects
 {
     // TODO: This could probably inherit from a base Timer script since i will probably need different types of timers
-    public class StatusEffectTimer : MonoBehaviour, /*IGEventListener<BattleEvents>,*/ IGameEventListener<BattleEvent>
+    public class StatusEffectTimer : MonoBehaviour, IGameEventListener<BattleEvent>
     {
         [SerializeField] private BattleGameEvent battleEvent;
         [SerializeField] private int timer;
@@ -17,8 +17,7 @@ namespace Characters.StatusEffects
             targetUnit = unit;
             statusEffect = effect;
             timer = statusEffect.turnDuration;
-            
-            //GameEventsManager.AddListener(this);
+    
             battleEvent.AddListener(this);
             
             targetUnit.onDeath += RemoveTimerAndEffect;
@@ -56,19 +55,6 @@ namespace Characters.StatusEffects
             targetUnit.onDeath -= RemoveTimerAndEffect;
             targetUnit.Unit.recoveredFromOverexertion -= RemoveTimerAndEffect;
         }
-
-        // public void OnGameEvent(BattleEvents eventType)
-        // {
-        //     switch (eventType._battleEventType)
-        //     {
-        //         case BattleEventType.NewRound: DecrementTimer();
-        //             break;
-        //         case BattleEventType.LostBattle: RemoveTimerAndEffect(targetUnit);
-        //             break;
-        //         case BattleEventType.WonBattle: RemoveTimerAndEffect(targetUnit);
-        //             break;
-        //     }
-        // }
 
         public void OnEventRaised(BattleEvent value)
         {

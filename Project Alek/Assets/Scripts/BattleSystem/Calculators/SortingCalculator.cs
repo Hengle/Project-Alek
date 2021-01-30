@@ -34,8 +34,7 @@ namespace BattleSystem.Calculators
         private static void GetNewList()
         {
             BattleEngine.Instance.membersAndEnemiesThisTurn = new List<UnitBase>();
-            BattleEngine.Instance.membersAndEnemiesThisTurn = new List<UnitBase>();
-            
+
             foreach (var member in BattleEngine.Instance._membersForThisBattle) BattleEngine.Instance.membersAndEnemiesThisTurn.Add(member);
             foreach (var enemy in BattleEngine.Instance._enemiesForThisBattle) BattleEngine.Instance.membersAndEnemiesThisTurn.Add(enemy);
                 

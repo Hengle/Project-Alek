@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BattleSystem;
+using Characters;
 using Characters.ElementalTypes;
 using Characters.Enemies;
+using Characters.StatusEffects;
 using UnityEngine;
 
-namespace Characters.StatusEffects
+namespace BattleSystem.Mechanics
 {
     public class WeakAndResUnlockSystem : MonoBehaviour
     {

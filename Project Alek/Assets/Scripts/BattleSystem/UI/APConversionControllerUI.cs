@@ -2,6 +2,7 @@
 using Characters;
 using ScriptableObjectArchitecture;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace BattleSystem.UI
 {
@@ -11,7 +12,17 @@ namespace BattleSystem.UI
         [SerializeField] private CharacterGameEvent conversionEvent;
         [SerializeField] private List<GameObject> arrows;
 
-        private void Start() => conversionEvent.AddListener(this);
+        private static Vector3 ArrowPosition
+        {
+            get
+            {
+                var position = EventSystem.current.currentSelectedGameObject.transform.localPosition;
+                var newPosition = new Vector3(position.x + 250, position.y, position.z);
+                return newPosition;
+            }
+        }
+
+        private void OnEnable() => conversionEvent.AddListener(this);
         
         private void AdjustConversionLevel()
         {
@@ -23,14 +34,15 @@ namespace BattleSystem.UI
             }
         }
 
+        private void SetArrowPosition() => transform.localPosition = ArrowPosition;
+
         private void OnDisable() => conversionEvent.RemoveListener(this);
 
         public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
         {
-            if (value1 == unit.parent && value2 == conversionEvent)
-            {
-                AdjustConversionLevel();
-            }
+            if (value1 != unit.parent || value2 != conversionEvent) return;
+            SetArrowPosition();
+            AdjustConversionLevel();
         }
     }
 }
