@@ -89,12 +89,12 @@ namespace BattleSystem.Mechanics
             if (value2 == characterTurnEvent && value1 == unit.parent)
             {
                 thisUnitTurn = true;
-                ResetConversion();
+                if (unit.conversionLevel > 0) ResetConversion();
             }
             else if (value2 == endOfTurnEvent && value1 == unit.parent)
             {
                 thisUnitTurn = false;
-                ResetConversion();
+                if (unit.conversionLevel > 0) ResetConversion();
             }
         }
     }

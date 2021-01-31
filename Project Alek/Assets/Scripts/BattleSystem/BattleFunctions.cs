@@ -8,6 +8,7 @@ using Characters.Animations;
 using Characters.CharacterExtensions;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
+using DG.Tweening;
 using MEC;
 using ScriptableObjectArchitecture;
 
@@ -18,13 +19,13 @@ namespace BattleSystem
         [SerializeField] private CharacterGameEvent commandEvent;
 
         private void Start() => commandEvent.AddListener(this);
-
+        
         private void OnDisable() => commandEvent.RemoveListener(this);
 
-        private void GetCommand(UnitBase unitBaseParam)
+        private void GetCommand(UnitBase unit)
         {
             BattleEngine.Instance.performingAction = true;
-            StartCoroutine(unitBaseParam.Unit.commandActionName, unitBaseParam);
+            StartCoroutine(unit.Unit.commandActionName, unit);
         }
 
         #region ImplicitFunctions
@@ -81,7 +82,7 @@ namespace BattleSystem
                 new Vector3(position.x, originPosition.y, position.z - 2) :
                 new Vector3(position.x, position.y, position.z + 2);
 
-            yield return Timing.WaitUntilDone(MoveToTargetPosition(parent, targetPosition));
+            yield return Timing.WaitUntilDone(MoveToPosition(parent, targetPosition));
             yield return Timing.WaitUntilDone(ExecuteAttack(dealer));
             
             if (dealer.IsDead)
@@ -91,8 +92,8 @@ namespace BattleSystem
                 SetBackToOriginPosition(parent, originPosition);
                 yield break;
             }
-
-            yield return Timing.WaitUntilDone(MoveBackToOriginPosition(parent, originPosition));
+            
+            yield return Timing.WaitUntilDone(MoveToPosition(parent, originPosition));
 
             BattleEngine.Instance.performingAction = false;
         }
@@ -125,9 +126,9 @@ namespace BattleSystem
                 new Vector3(position.x, originPosition.y, position.z - 2) :
                 new Vector3(position.x, position.y, position.z + 2);
 
-            yield return Timing.WaitUntilDone(MoveToTargetPosition(parent, targetPosition));
+            yield return Timing.WaitUntilDone(MoveToPosition(parent, targetPosition));
             yield return Timing.WaitUntilDone(ExecuteSpecialAttack(dealer));
-            yield return Timing.WaitUntilDone(MoveBackToOriginPosition(parent, originPosition));
+            yield return Timing.WaitUntilDone(MoveToPosition(parent, originPosition));
 
             BattleEngine.Instance.performingAction = false;
         }
@@ -161,7 +162,7 @@ namespace BattleSystem
 
         #region MovementCoroutines
 
-        private static IEnumerator<float> MoveToTargetPosition(Transform parent, Vector3 targetPosition)
+        private static IEnumerator<float> MoveToPosition(Transform parent, Vector3 targetPosition)
         {
             while (parent.position != targetPosition)
             {
@@ -172,17 +173,6 @@ namespace BattleSystem
             }
         }
 
-        private static IEnumerator<float> MoveBackToOriginPosition(Transform parent, Vector3 originPosition)
-        {
-            while (parent.position != originPosition)
-            {
-                parent.position = Vector3.MoveTowards(parent.position, originPosition,
-                    TimeManager._moveSpeed * Time.deltaTime);
-                
-                yield return Timing.WaitForOneFrame;
-            }
-        }
-        
         private static void SetBackToOriginPosition(Transform parent, Vector3 originPosition)
         {
             parent.position = originPosition;

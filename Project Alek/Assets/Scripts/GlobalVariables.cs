@@ -11,7 +11,7 @@ public class GlobalVariables : ScriptableObject
     [Range(0.1f,0.5f)] public float damageBoostIncrement = 0.3f;
     [ShowIf(nameof(showBoostIncrements))]
     [Range(0.1f,0.5f)] public float defenseBoostIncrement = 0.3f;
-    
+
     #endregion
 
     #region Loan

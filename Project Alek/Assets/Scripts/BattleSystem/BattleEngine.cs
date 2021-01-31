@@ -82,7 +82,7 @@ namespace BattleSystem
             canGiveCommand = true;
             roundCount = 0;
 
-            SetupBattle();
+            Timing.RunCoroutine(SetupBattle());
         }
 
         private void OnEnable()
@@ -92,7 +92,7 @@ namespace BattleSystem
             skipTurnEvent.AddListener(this);
         }
 
-        private void SetupBattle()
+        private IEnumerator<float> SetupBattle()
         {
             generator.SetupBattle();
 
@@ -104,7 +104,8 @@ namespace BattleSystem
 
             _membersForThisBattle.ForEach(m => { m.onDeath += RemoveFromBattle; m.onRevival += AddToBattle; });
             _enemiesForThisBattle.ForEach(e => { e.onDeath += RemoveFromBattle; e.onRevival += AddToBattle; });
-            
+
+            yield return Timing.WaitForSeconds(1);
             Timing.RunCoroutine(GetNextTurn());
         }
 

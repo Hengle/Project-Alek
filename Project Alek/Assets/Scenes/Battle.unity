@@ -37056,7 +37056,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-4618
+  m_Name: pb_Mesh-4330
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -43001,7 +43001,7 @@ PrefabInstance:
     - target: {fileID: 4102151833028827563, guid: 48f329768307fa446bb8a28c24387832,
         type: 3}
       propertyPath: m_ChildForceExpandWidth
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4137804217988043493, guid: 48f329768307fa446bb8a28c24387832,
         type: 3}
