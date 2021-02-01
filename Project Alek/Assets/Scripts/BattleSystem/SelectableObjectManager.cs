@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Characters;
 using Characters.Enemies;
 using ScriptableObjectArchitecture;
@@ -15,7 +16,13 @@ namespace BattleSystem
         [ShowInInspector] public static List<Selectable> _memberSelectable = new List<Selectable>();
         [ShowInInspector] public static GameObject _memberFirstSelected;
 
-        private void Start() => characterDeathEvent.AddListener(this);
+        private void Awake()
+        {
+            _memberSelectable = new List<Selectable>();
+            _enemySelectable = new List<Selectable>();
+            characterDeathEvent.AddListener(this);
+        }
+        
         private void OnDisable() => characterDeathEvent.RemoveListener(this);
         
         public static void SetPartySelectables()
