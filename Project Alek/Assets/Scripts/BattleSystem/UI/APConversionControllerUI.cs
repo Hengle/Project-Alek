@@ -18,7 +18,7 @@ namespace BattleSystem.UI
             {
                 if (!EventSystem.current.currentSelectedGameObject) return transform.localPosition;
                 var position = EventSystem.current.currentSelectedGameObject.transform.localPosition;
-                var newPosition = new Vector3(position.x + 250, position.y, position.z);
+                var newPosition = new Vector3(position.x + 325, position.y, position.z);
                 return newPosition;
             }
         }

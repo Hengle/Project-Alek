@@ -15,7 +15,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 0}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -121,7 +122,55 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: onRevival
-      Entry: 6
+      Entry: 7
+      Data: 9|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 10|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BattleSystem.BattleEngine, ProjectAlek
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: AddToBattle
+    - Name: delegateType
+      Entry: 7
+      Data: 11|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 12|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 13|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Characters.UnitBase, ProjectAlek
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
     - Name: onHpValueChanged
       Entry: 6
@@ -150,12 +199,12 @@ MonoBehaviour:
   characterName: Leandra Valentina
   characterPrefab: {fileID: 1526218485019349028, guid: 55418c9ff21905d4c9ac6a87a12001cb,
     type: 3}
-  level: 1
+  level: 2
   health:
     BaseValue: 1470
     maxValue: 9999
   strength:
-    BaseValue: 10
+    BaseValue: 11
     maxValue: 99
   magic:
     BaseValue: 5
@@ -178,15 +227,14 @@ MonoBehaviour:
   description: This is a description for yah girl Leandra. She is boss and won't
     take anyone's crap. Uggghhh extra stuff to increase text count.
   weaponMight: 6
-  magicMight: 1
+  magicMight: 0
   weaponAccuracy: 85
   weaponCriticalChance: 3
   abilities:
   - {fileID: 11400000, guid: 29e5f87674d2cba4b9282fcecc4fe2ca, type: 2}
-  maxAP: 6
-  currentClass: {fileID: 0}
+  currentClass: {fileID: 11400000, guid: 83e5cd2b65fcca14d8a106a0fd644fe6, type: 2}
   positionInParty: 3
-  specialAttackBarVal: 0.05
+  specialAttackBarVal: 1
   weaponInventory: {fileID: 2363339618168879057, guid: 3b3a696505e47b2409e90ac00429c493,
     type: 3}
   armorInventory: {fileID: 2363339618168879057, guid: fe5e8dd8d6dd25641a5f62d19d40ecd8,

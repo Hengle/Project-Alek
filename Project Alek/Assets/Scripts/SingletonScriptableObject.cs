@@ -2,31 +2,21 @@
 
 public abstract class SingletonScriptableObject<T> : ScriptableObject where T : ScriptableObject
 {
-    private static T instance = null;
-
-    public static T Instance
+    public static T Instance { get; private set; }
+    
+    protected static void Init()
     {
-        get
+        var results = Resources.LoadAll<T>("");
+        
+        if (results.Length == 0)
         {
-            if (instance != null) return instance;
-            
-            var results = Resources.FindObjectsOfTypeAll<T>();
-            if (results.Length == 0)
-            {
-                Debug.LogError($"SingletonScriptableObject: results length is 0 of {typeof(T)}");
-                return null;
-            }
-
-            if (results.Length > 1)
-            {
-                Debug.LogError($"SingletonScriptableObject: results length is greater than 1 of {typeof(T)}");
-                return null;
-            }
-
-            instance = results[0];
-            instance.hideFlags = HideFlags.DontUnloadUnusedAsset;
-
-            return instance;
+            Debug.LogError($"SingletonScriptableObject: results length is 0 of {typeof(T)}");
+            Instance = null;
+            return;
         }
+        
+        Debug.Log($"SingletonScriptableObject of type {typeof(T)} has been found!");
+        
+        Instance = results[0];
     }
 }

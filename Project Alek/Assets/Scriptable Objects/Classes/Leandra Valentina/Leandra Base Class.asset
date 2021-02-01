@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 262948204c02471f8f1722ebdf199002, type: 3}
-  m_Name: Alek Base Class
+  m_Name: Leandra Base Class
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -35,15 +35,15 @@ MonoBehaviour:
       Entry: 8
       Data: 
   classTier: 500
-  partyMember: {fileID: 11400000, guid: 373387c9350c0a44fb7b0f7a1b6fa996, type: 2}
+  partyMember: {fileID: 11400000, guid: bce5c1264c07e43488e2ea4155308e40, type: 2}
   animator: {fileID: 0}
-  strengthGrowthRate: 0.55
-  magicGrowthRate: 0.45
-  accuracyGrowthRate: 0.3
-  initiativeGrowthRate: 0.3
-  defenseGrowthRate: 0.45
-  resistanceGrowthRate: 0.35
-  criticalGrowthRate: 0.15
+  strengthGrowthRate: 0.5
+  magicGrowthRate: 0.25
+  accuracyGrowthRate: 0.2
+  initiativeGrowthRate: 0.25
+  defenseGrowthRate: 0.3
+  resistanceGrowthRate: 0.15
+  criticalGrowthRate: 0.05
   healthBonus: 0
   strengthBonus: 0
   magicBonus: 0
@@ -52,4 +52,4 @@ MonoBehaviour:
   defenseBonus: 0
   resistanceBonus: 0
   criticalBonus: 0
-  level: 2
+  level: 1

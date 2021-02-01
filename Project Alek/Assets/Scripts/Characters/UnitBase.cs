@@ -175,7 +175,7 @@ namespace Characters
         
         public AnimationHandler AnimationHandler => Unit.animationHandler;
 
-        [HideInInspector] public int maxAP = 6;
+        public const int MaxAP = 6;
 
         [HideInInspector] public Action<UnitBase> onDeath;
         [HideInInspector] public Action<UnitBase> onRevival;

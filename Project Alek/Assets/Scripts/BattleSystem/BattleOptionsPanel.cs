@@ -71,7 +71,7 @@ namespace BattleSystem
             ChooseTarget._targetOptions = commandTargetOptions;
             ChooseTarget.GetCurrentCommand(commandActionName, commandActionOption);
             character.Unit.actionCost = commandCost;
-            
+
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
             if (!BattleEngine.Instance.choosingOption) BattleEngine.Instance.choosingAbility = false;
             else BattleEngine.Instance.choosingOption = false;

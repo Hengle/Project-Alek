@@ -124,7 +124,8 @@ namespace Overworld
         {
             if (other.transform.CompareTag("Player"))
             {
-                LoadSceneManager.Instance.LoadBattle();
+                //LoadSceneManager.Instance.LoadBattle();
+                SceneLoadManager.Instance.LoadBattle();
             }
         }
     }

@@ -60,7 +60,7 @@ namespace BattleSystem.UI
             member.onApValChanged += OnAPValueChanged;
             member.Unit.onSpecialBarValChanged += OnSpecialBarValueChanged;
             
-            currentAP = member.maxAP;
+            currentAP = UnitBase.MaxAP;
             apBarAnim.SetTrigger(AnimationHandler.maxAP);
         }
 
@@ -98,8 +98,8 @@ namespace BattleSystem.UI
                 }
             }
             
-            if (val == member.maxAP) apBarAnim.SetBool(AnimationHandler.maxAP, true);
-            else if (currentAP == member.maxAP && val != currentAP) apBarAnim.SetBool(AnimationHandler.maxAP, false);
+            if (val == UnitBase.MaxAP) apBarAnim.SetBool(AnimationHandler.maxAP, true);
+            else if (currentAP == UnitBase.MaxAP && val != currentAP) apBarAnim.SetBool(AnimationHandler.maxAP, false);
 
             currentAP = val;
         }

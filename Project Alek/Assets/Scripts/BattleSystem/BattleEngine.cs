@@ -276,7 +276,7 @@ namespace BattleSystem
                 member.currentClass.AdvanceTowardsNextLevel(totalClassXp);
             }
             
-            LoadSceneManager.Instance.LoadOverworld();
+            SceneLoadManager.Instance.LoadOverworld();
         }
 
         private IEnumerator<float> LostBattleSequence()
@@ -284,7 +284,7 @@ namespace BattleSystem
             yield return Timing.WaitForSeconds(0.5f);
             Logger.Log("you lost idiot");
             
-            LoadSceneManager.Instance.LoadOverworld();
+            SceneLoadManager.Instance.LoadOverworld();
         }
         
         #endregion

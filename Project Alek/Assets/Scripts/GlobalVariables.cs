@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Global Variables")]
-public class GlobalVariables : ScriptableObject
+public class GlobalVariables : SingletonScriptableObject<GlobalVariables>
 {
     #region BoostIncrements
     
@@ -99,12 +99,6 @@ public class GlobalVariables : ScriptableObject
     
     #endregion
     
-    public static GlobalVariables Instance { get; private set; }
-
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    private static void Init()
-    {
-        Instance = Resources.Load<GlobalVariables>("Global Variables");
-        if (Instance == null) Debug.LogError("Global Variables could not be found!");
-    }
+    private static void Initialize() => Init();
 }

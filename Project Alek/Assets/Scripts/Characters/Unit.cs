@@ -30,7 +30,7 @@ namespace Characters
 
         [HideInInspector] public int commandActionOption;
         [HideInInspector] public int maxHealthRef;
-        [HideInInspector] public int currentAP;
+        public int currentAP;
         [HideInInspector] public int actionCost;
         [HideInInspector] public int specialAttackAP;
         [HideInInspector] public int currentDamage;
@@ -61,6 +61,7 @@ namespace Characters
         [ReadOnly] public bool parry;
         [ReadOnly] public bool timedAttack;
         [ReadOnly] public bool isCountered;
+        [ReadOnly] public bool isBorrowing;
 
         #endregion
 

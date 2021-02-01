@@ -70,9 +70,9 @@ namespace BattleSystem.Generator
             }
         }
 
-        private void SetupBattlePanel(PartyMember character, int i)
+        private void SetupBattlePanel(PartyMember character)
         {
-            character.battlePanel = database.battlePanels[i];
+            character.battlePanel = Instantiate(database.battlePanelGO, database.battlePanelSpawnPoint, false);
             character.battleOptionsPanel = Instantiate(database.boPanel);
             ((BattleOptionsPanel) character.battleOptionsPanel).character = character;
 
@@ -80,7 +80,6 @@ namespace BattleSystem.Generator
             apConversionBox.GetComponent<APConversionControllerUI>().unit = character.Unit;
             
             var mainMenu = character.battlePanel.transform.Find("Battle Menu").transform.Find("Mask").transform.Find("Main Options");
-            //var mainMenu = character.battlePanel.transform.Find("Battle Menu").transform.Find("Main Options");
 
             mainMenu.Find("Attack Button").gameObject.GetComponent<Button>().onClick.AddListener
                 ( delegate { ((BattleOptionsPanel) character.battleOptionsPanel).GetCommandInformation("UniversalAction,1,0,2"); });
@@ -102,7 +101,6 @@ namespace BattleSystem.Generator
         private static void SetAbilityMenuOptions(PartyMember character)
         {
             var abilityMenu = character.battlePanel.transform.Find("Battle Menu").transform.Find("Mask").transform.Find("Ability Menu").transform;
-            //var abilityMenu = character.battlePanel.transform.Find("Battle Menu").transform.Find("Ability Menu").transform;
             var abilityListIndex = 0;
             
             while (character.abilities.Count > 5) character.abilities.Remove(character.abilities[character.abilities.Count-1]);
@@ -268,7 +266,7 @@ namespace BattleSystem.Generator
             unit.maxHealthRef = (int) unit.parent.health.Value;
             unit.currentHP = (int) unit.parent.health.Value;
      
-            unit.currentAP = character.maxAP;
+            unit.currentAP = UnitBase.MaxAP;
             unit.outline.color = character.Color;
         }
 
@@ -303,7 +301,7 @@ namespace BattleSystem.Generator
         {
             SetupUnit(character, memberGo);
             SetupChooseTargetScript(character);
-            SetupBattlePanel(character, i);
+            SetupBattlePanel(character);
             SetAbilityMenuOptions(character);
             SetupInventoryDisplay(character, i);
             SetupProfileBox(character);

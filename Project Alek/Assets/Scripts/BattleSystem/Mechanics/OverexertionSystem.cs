@@ -11,6 +11,7 @@ namespace BattleSystem.Mechanics
         [ShowInInspector] private bool isRecovered;
         [ShowInInspector] private int currentApExerted;
         [ShowInInspector] private int initialApExerted;
+        
         [SerializeField] private BattleGameEvent battleEvent;
         [SerializeField] private CharacterGameEvent characterTurnEvent;
         [SerializeField] private CharacterGameEvent endOfTurnEvent;
@@ -24,6 +25,8 @@ namespace BattleSystem.Mechanics
             unit.parent.onDeath += OnDeath;
             
             battleEvent.AddListener(this);
+            characterTurnEvent.AddListener(this);
+            endOfTurnEvent.AddListener(this);
         }
 
         private void BorrowAP(int amount)
@@ -31,7 +34,7 @@ namespace BattleSystem.Mechanics
             if (amount > GlobalVariables.Instance.maxLoanAmount) return;
             currentApExerted = amount;
             initialApExerted = amount;
-            unit.status = Status.Overexerted;
+            unit.isBorrowing = true;
         }
 
         private void Recover()
@@ -73,6 +76,8 @@ namespace BattleSystem.Mechanics
             unit.parent.onDeath -= OnDeath;
             
             battleEvent.RemoveListener(this);
+            characterTurnEvent.RemoveListener(this);
+            endOfTurnEvent.RemoveListener(this);
         }
     
         public void OnEventRaised(BattleEvent value)
@@ -83,13 +88,16 @@ namespace BattleSystem.Mechanics
 
         public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
         {
-            if (value2 == endOfTurnEvent && value1 == unit.parent && unit.status == Status.Overexerted)
+            if (value2 == endOfTurnEvent && value1 == unit.parent && unit.isBorrowing)
             {
+                unit.status = Status.Overexerted;
                 unit.parent.onApValChanged?.Invoke(currentApExerted);
             }
+            
             if (value2 != characterTurnEvent) return;
             if (value1 != unit.parent) return;
             if (isRecovered) GiveRecoverBenefits();
+            else if (unit.isBorrowing) unit.isBorrowing = false;
         }
     }
 }

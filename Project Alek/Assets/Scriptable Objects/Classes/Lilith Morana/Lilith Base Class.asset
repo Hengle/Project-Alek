@@ -119,7 +119,7 @@ MonoBehaviour:
   partyMember: {fileID: 11400000, guid: d6f9f6976ec82a845b32a3da08e83dad, type: 2}
   animator: {fileID: 0}
   strengthGrowthRate: 0.4
-  magicGrowthRate: 0.2
+  magicGrowthRate: 0.1
   accuracyGrowthRate: 0.5
   initiativeGrowthRate: 0.6
   defenseGrowthRate: 0.3

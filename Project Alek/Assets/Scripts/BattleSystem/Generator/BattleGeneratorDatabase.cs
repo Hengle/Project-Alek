@@ -11,15 +11,14 @@ namespace BattleSystem.Generator
         public List<GameObject> closeUpCameras = new List<GameObject>();
         public List<GameObject> criticalCameras = new List<GameObject>();
         public List<GameObject> characterPanels = new List<GameObject>();
-        public List<GameObject> battlePanels = new List<GameObject>();
         public List<GameObject> characterSpawnPoints = new List<GameObject>();
         public List<GameObject> enemySpawnPoints = new List<GameObject>();
         public BattleOptionsPanel boPanel;
+        public GameObject battlePanelGO;
+        public Transform battlePanelSpawnPoint;
         public Transform enemyStatusBox;
         public Transform profileBox;
         public Transform shieldTransform;
         public GameObject weaknessIndicator;
-        public Material shadowMaterial;
-        public Material outlineMaterial;
     }
 }

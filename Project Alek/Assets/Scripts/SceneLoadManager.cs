@@ -2,19 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// TODO: Make this into a scriptable object singleton
-public class LoadSceneManager : MonoBehaviour
+[CreateAssetMenu(fileName = "Scene Load Manager")]
+public class SceneLoadManager : SingletonScriptableObject<SceneLoadManager>
 {
     private AsyncOperation operation;
-    
-    private static LoadSceneManager instance;
-    
-    public static LoadSceneManager Instance {
-        get { if (!instance) Debug.LogError("Scene Loader is null");
-            return instance; }
-    }
-
-    private void Awake() => instance = this;
 
     public void LoadBattle()
     {
@@ -31,4 +22,7 @@ public class LoadSceneManager : MonoBehaviour
         Timing.RunCoroutine(SceneTransitionManager.Instance.OverworldTransition(1, true).
             Append(() => operation.allowSceneActivation = true));
     }
+    
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void Initialize() => Init();
 }

@@ -231,7 +231,7 @@ MonoBehaviour:
     type: 3}
   level: 4
   health:
-    BaseValue: 525
+    BaseValue: 1525
     maxValue: 9999
   strength:
     BaseValue: 12

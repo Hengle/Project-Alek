@@ -34,8 +34,6 @@ namespace BattleSystem
             animator = GetComponent<Animator>();
             
             mainMenuFirstSelected = mainMenu.transform.Find("Attack Button").gameObject;
-
-            var count = abilityMenu.transform.childCount;
             abilityMenuFirstSelected = abilityMenu.transform.GetChild(0).gameObject;
 
             EventSystem.current.SetSelectedGameObject(null);
@@ -104,14 +102,15 @@ namespace BattleSystem
         public void OnMMEvent(MMInventoryEvent eventType)
         {
             if (BattleEngine.Instance.usingItem) return;
-            if (isEnabled && isActiveAndEnabled && eventType.InventoryEventType == MMInventoryEventType.InventoryCloses)
+            
+            if (eventType.InventoryEventType == MMInventoryEventType.InventoryCloses && isEnabled && isActiveAndEnabled)
             {
                 animator.SetTrigger(AnimationHandler.Panel);
                 EventSystem.current.sendNavigationEvents = true;
                 return;
             }
 
-            if (isActiveAndEnabled && battleMenu.activeSelf && eventType.InventoryEventType == MMInventoryEventType.InventoryOpens) 
+            if (eventType.InventoryEventType == MMInventoryEventType.InventoryOpens && isActiveAndEnabled && battleMenu.activeSelf) 
             {
                 animator.SetTrigger(AnimationHandler.Panel);
             }
