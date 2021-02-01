@@ -165,7 +165,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21958
+  m_Name: pb_Mesh111134
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -328,7 +328,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21992
+  m_Name: pb_Mesh111166
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -924,7 +924,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21924
+  m_Name: pb_Mesh111098
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1232,6 +1232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 709575464}
   - component: {fileID: 709575465}
+  - component: {fileID: 709575466}
   m_Layer: 0
   m_Name: Spawn Area (3)
   m_TagString: Untagged
@@ -1265,8 +1266,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae8e39bae1f49a5b1f30a01eb840d67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnEvent: {fileID: 11400000, guid: 41038afa3fa986944af1db1dee6d91e8, type: 2}
+  spawnTriggerRange: 30
   spawnRange: 8
   maxSpawns: 2
+  boxCollider: {fileID: 709575466}
+  onCooldown: 0
+--- !u!65 &709575466
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709575463}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 30, y: 5, z: 30}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &723476078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1280,7 +1298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 177638, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11496292, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
       propertyPath: m_audioModuleState
@@ -1415,6 +1433,7 @@ GameObject:
   m_Component:
   - component: {fileID: 774188523}
   - component: {fileID: 774188524}
+  - component: {fileID: 774188525}
   m_Layer: 0
   m_Name: Spawn Area (1)
   m_TagString: Untagged
@@ -1448,8 +1467,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae8e39bae1f49a5b1f30a01eb840d67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnEvent: {fileID: 11400000, guid: 41038afa3fa986944af1db1dee6d91e8, type: 2}
+  spawnTriggerRange: 30
   spawnRange: 8
   maxSpawns: 2
+  boxCollider: {fileID: 774188525}
+  onCooldown: 0
+--- !u!65 &774188525
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774188522}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 30, y: 5, z: 30}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &816164241
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,7 +1846,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22016
+  m_Name: pb_Mesh111192
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3296,7 +3332,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22040
+  m_Name: pb_Mesh111216
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3551,7 +3587,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21874
+  m_Name: pb_Mesh111050
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4132,6 +4168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1768294276}
   - component: {fileID: 1768294277}
+  - component: {fileID: 1768294278}
   m_Layer: 0
   m_Name: Spawn Area (2)
   m_TagString: Untagged
@@ -4165,8 +4202,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae8e39bae1f49a5b1f30a01eb840d67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnEvent: {fileID: 11400000, guid: 41038afa3fa986944af1db1dee6d91e8, type: 2}
+  spawnTriggerRange: 40
   spawnRange: 8
   maxSpawns: 2
+  boxCollider: {fileID: 1768294278}
+  onCooldown: 0
+--- !u!65 &1768294278
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768294275}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 40, y: 5, z: 40}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1791854040
 GameObject:
   m_ObjectHideFlags: 0
@@ -4734,6 +4788,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scene Fader Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3016424467457831852, guid: fb8acd093aae69f458750e9bc02c8c29,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3016424467457831854, guid: fb8acd093aae69f458750e9bc02c8c29,
         type: 3}
       propertyPath: m_Color.a
@@ -4912,6 +4971,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Spawn Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4496157925762912902, guid: 3395b8a970622c6469a30a466204e8c0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496157925762912903, guid: 3395b8a970622c6469a30a466204e8c0,
+        type: 3}
+      propertyPath: spawnEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 41038afa3fa986944af1db1dee6d91e8,
+        type: 2}
     - target: {fileID: 4496157925762912904, guid: 3395b8a970622c6469a30a466204e8c0,
         type: 3}
       propertyPath: m_LocalPosition.x

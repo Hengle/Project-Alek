@@ -41,7 +41,7 @@ namespace Overworld
         private bool WalkPointReached => DistanceToWalkPoint.magnitude < 1f;
         private bool IsFacingAwayFromPlayer =>
             PlayerOnRightSide && spriteRenderer.flipX || PlayerOnLeftSide && !spriteRenderer.flipX;
-
+        
         private bool PlayerInRange {
             get {
                 playerInRange = Physics.CheckSphere(transform.position, range, whatIsPlayer);
@@ -49,7 +49,6 @@ namespace Overworld
                 return playerInRange;
             }
         }
-
         private bool InRangeAndFacingTarget => PlayerInRange && !IsFacingAwayFromPlayer;
 
         private bool DestinationIsOnWalkableGround =>

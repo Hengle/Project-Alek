@@ -9,8 +9,6 @@ namespace Overworld
         
         public abstract bool CanSpawn { get; }
 
-        public virtual Spawnable Spawn(Spawnable spawnable, Vector3 position) { return null; }
-        
         public virtual Spawnable Spawn(Spawnable spawnable, Vector3 position, Transform parent) { return null; }
         
         private static readonly HashSet<Spawner> InstanceList = new HashSet<Spawner>();

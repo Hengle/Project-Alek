@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ScriptableObjectArchitecture;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Overworld
 {
-    public class EnemySpawnManager : MonoBehaviour
+    public class EnemySpawnManager : MonoBehaviour, IGameEventListener<Spawner>
     {
-        [SerializeField] private Transform player;
+        [SerializeField] private SpawnEvent spawnEvent;
         
         [SerializeField] private int maxSpawns;
         
@@ -17,27 +17,20 @@ namespace Overworld
 
         [ShowInInspector] private bool CanSpawnMoreEnemies => currentEnemiesSpawned.Count < maxSpawns;
 
-        private void Awake()
-        {
-            player = GameObject.FindWithTag("Player").transform;
-        }
-
-        private void Update()
+        private void Awake() => spawnEvent.AddListener(this);
+        
+        private void OnDisable() => spawnEvent.RemoveListener(this);
+        
+        public void OnEventRaised(Spawner spawner)
         {
             if (!CanSpawnMoreEnemies) return;
             
-            foreach (var spawner in Spawner.Instances)
-            {
-                if (!spawner.CanSpawn || !CanSpawnMoreEnemies || !(Math.Abs
-                    (spawner.transform.position.x - player.position.x) < 20f)) continue;
+            var spawnable = spawnables[Random.Range(0, spawnables.Count-1)];
+            var position = spawner.GetSpawnPoint();
+            var spawnableGO = spawner.Spawn(spawnable, position, spawner.transform);
                 
-                var spawnable = spawnables[Random.Range(0, spawnables.Count-1)];
-                var position = spawner.GetSpawnPoint();
-                var spawnableGO = spawner.Spawn(spawnable, position, spawner.transform);
-                
-                currentEnemiesSpawned.Add(spawnableGO);
-                spawnableGO.OnDestroyAction += () => currentEnemiesSpawned.Remove(spawnableGO);
-            }
+            currentEnemiesSpawned.Add(spawnableGO);
+            spawnableGO.OnDestroyAction += () => currentEnemiesSpawned.Remove(spawnableGO);
         }
     }
 }

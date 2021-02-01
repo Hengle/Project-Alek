@@ -101,7 +101,8 @@ public class GlobalVariables : ScriptableObject
     
     public static GlobalVariables Instance { get; private set; }
 
-    [RuntimeInitializeOnLoadMethod] private static void Init()
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void Init()
     {
         Instance = Resources.Load<GlobalVariables>("Global Variables");
         if (Instance == null) Debug.LogError("Global Variables could not be found!");

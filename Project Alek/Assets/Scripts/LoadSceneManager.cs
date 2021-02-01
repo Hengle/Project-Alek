@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using MEC;
+﻿using MEC;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
+// TODO: Make this into a scriptable object singleton
 public class LoadSceneManager : MonoBehaviour
 {
     private AsyncOperation operation;
