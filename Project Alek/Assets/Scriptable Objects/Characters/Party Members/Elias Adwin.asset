@@ -154,28 +154,28 @@ MonoBehaviour:
   level: 1
   health:
     BaseValue: 960
-    maxValue: 9999
+    maxValue: 0
   strength:
     BaseValue: 9
-    maxValue: 99
+    maxValue: 0
   magic:
     BaseValue: 6
-    maxValue: 99
+    maxValue: 0
   accuracy:
     BaseValue: 11
-    maxValue: 99
+    maxValue: 0
   initiative:
     BaseValue: 5
-    maxValue: 99
+    maxValue: 0
   defense:
     BaseValue: 7
-    maxValue: 99
+    maxValue: 0
   resistance:
     BaseValue: 5
-    maxValue: 99
+    maxValue: 0
   criticalChance:
     BaseValue: 3
-    maxValue: 99
+    maxValue: 0
   description: This is Elias. He is an artist. That is all
   weaponMight: 8
   magicMight: 4
@@ -183,7 +183,8 @@ MonoBehaviour:
   weaponCriticalChance: 1
   abilities: []
   currentClass: {fileID: 0}
-  positionInParty: 2
+  overworldController: {fileID: 0}
+  positionInParty: 4
   specialAttackBarVal: 0.05
   weaponInventory: {fileID: 417493762244957691, guid: 8dd491fe5bbd13742a4a9ed04d140e08,
     type: 3}
