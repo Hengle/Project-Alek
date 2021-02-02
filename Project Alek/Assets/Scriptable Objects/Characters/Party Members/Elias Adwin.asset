@@ -150,6 +150,7 @@ MonoBehaviour:
   characterName: Elias Adwin
   characterPrefab: {fileID: 1526218485019349028, guid: 26eeaf0931e2c7848aecbf4da262a084,
     type: 3}
+  overworldPrefab: {fileID: 0}
   level: 1
   health:
     BaseValue: 960
@@ -181,8 +182,8 @@ MonoBehaviour:
   weaponAccuracy: 80
   weaponCriticalChance: 1
   abilities: []
-  maxAP: 6
-  positionInParty: 1
+  currentClass: {fileID: 0}
+  positionInParty: 2
   specialAttackBarVal: 0.05
   weaponInventory: {fileID: 417493762244957691, guid: 8dd491fe5bbd13742a4a9ed04d140e08,
     type: 3}

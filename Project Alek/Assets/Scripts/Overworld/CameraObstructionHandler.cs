@@ -7,14 +7,20 @@ namespace Overworld
     {
         private Transform player, obstruction;
         private MeshRenderer ObstructionRenderer => obstruction.gameObject.GetComponent<MeshRenderer>();
-
-        private void Awake()
+        private bool playerSet;
+        
+        public void SetPlayer()
         {
             player = GameObject.FindWithTag("Player").GetComponent<Transform>();
             obstruction = player;
+            playerSet = true;
         }
 
-        private void LateUpdate() => ViewObstructed();
+        private void LateUpdate()
+        {
+            if (!playerSet) return;
+            ViewObstructed();
+        }
 
         private void ViewObstructed()
         {

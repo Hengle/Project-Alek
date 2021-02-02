@@ -265,7 +265,8 @@ namespace BattleSystem
         {
             yield return Timing.WaitForSeconds(0.5f);
             _membersForThisBattle.ForEach(member => member.Unit.anim.SetTrigger(AnimationHandler.VictoryTrigger));
-      
+
+            // TODO: Extract to own class/method
             foreach (var member in _membersForThisBattle)
             {
                 var totalXp = _expGivers.Sum(giver =>

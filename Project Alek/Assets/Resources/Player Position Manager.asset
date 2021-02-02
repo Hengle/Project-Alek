@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c21f2f3b330040bb8faafef6978eebab, type: 3}
-  m_Name: Party Manager
+  m_Script: {fileID: 11500000, guid: d12513b26f0a41059eb340f0b5c34ca6, type: 3}
+  m_Name: Player Position Manager
   m_EditorClassIdentifier: 
-  partyMembers:
-  - {fileID: 11400000, guid: 373387c9350c0a44fb7b0f7a1b6fa996, type: 2}
+  position: {x: 0, y: 0, z: 0}
+  spawnId: 0

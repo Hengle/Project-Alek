@@ -83,6 +83,8 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
         tree.AddAllAssetsAtPath("Status Effects/AI Effect", "Scriptable Objects/Status Effects/AIEffect", typeof(StatusEffect));
         tree.AddAllAssetsAtPath("Elemental Types", "Scriptable Objects/ElementalTypes", typeof(ElementalType));
         tree.AddAllAssetsAtPath("Weapons", "Scriptable Objects/Weapons", typeof(WeaponItem));
+        tree.AddAllAssetsAtPath("", "Resources", typeof(PartyManager));
+        tree.AddAllAssetsAtPath("", "Resources", typeof(EnemyManager));
         tree.AddAllAssetsAtPath("", "Resources", typeof(GlobalVariables)).AddIcon(EditorIcons.SettingsCog);
         
         return tree;

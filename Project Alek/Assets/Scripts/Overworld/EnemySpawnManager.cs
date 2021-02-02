@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace Overworld
 {
+    //TODO: Make this a singleton
     public class EnemySpawnManager : MonoBehaviour, IGameEventListener<Spawner>
     {
         [SerializeField] private SpawnEvent spawnEvent;

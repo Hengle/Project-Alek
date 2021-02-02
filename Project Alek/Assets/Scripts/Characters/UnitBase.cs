@@ -36,6 +36,9 @@ namespace Characters
         
         [HorizontalGroup("Basic/Info/Prefab"), LabelText("Prefab"), LabelWidth(50)] 
         public GameObject characterPrefab;
+
+        [HorizontalGroup("Basic/Info/Prefab"), LabelText("OW Prefab"), LabelWidth(100)]
+        public GameObject overworldPrefab;
         
         [PropertySpace(30)]
         [HideLabel, ShowInInspector, HorizontalGroup("Stat Data", 175), PreviewField(175), ShowIf(nameof(characterPrefab))] 

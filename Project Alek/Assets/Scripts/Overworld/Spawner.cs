@@ -7,7 +7,7 @@ namespace Overworld
     {
         public abstract Vector3 GetSpawnPoint();
         
-        public abstract bool CanSpawn { get; }
+        public virtual bool CanSpawn { get; }
 
         public virtual Spawnable Spawn(Spawnable spawnable, Vector3 position, Transform parent) { return null; }
         
