@@ -9,6 +9,7 @@ using BattleSystem.Mechanics;
 using Characters.ElementalTypes;
 using Characters.PartyMembers;
 using ScriptableObjectArchitecture;
+using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using UnityEngine.InputSystem;
 
@@ -93,7 +94,7 @@ namespace Characters.Animations
             if (!windowOpen) return;
 
             timedAttackCount += 1;
-            Logger.Log("Hit Window! Count: " + timedAttackCount);
+            Logging.Instance.Log("Hit Window! Count: " + timedAttackCount);
         }
 
         private void SendTimedButtonEventResult(bool result)
@@ -213,15 +214,15 @@ namespace Characters.Animations
         [UsedImplicitly] private void PerformSpecialAttack()
         {
             double timedAttackModifier = 1 + timedAttackCount / 10f;
-            Logger.Log($"Timed Attack Modifier: {timedAttackModifier}");
+            Logging.Instance.Log($"Timed Attack Modifier: {timedAttackModifier}");
             
             var apUsedModifier = 1.0f + unit.specialAttackAP * 5f / 100f;
-            Logger.Log($"AP Modifier: {apUsedModifier}");
+            Logging.Instance.Log($"AP Modifier: {apUsedModifier}");
 
             var finalDamageAmt = unit.currentDamage * timedAttackModifier;
             finalDamageAmt *= apUsedModifier;
             
-            Logger.Log($"Final Damage: {(int)finalDamageAmt}");
+            Logging.Instance.Log($"Final Damage: {(int)finalDamageAmt}");
 
             unit.currentTarget.TakeDamageSpecial((int)finalDamageAmt);
 

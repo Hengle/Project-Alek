@@ -11,6 +11,7 @@ using Characters.StatusEffects;
 using DG.Tweening;
 using MEC;
 using ScriptableObjectArchitecture;
+using SingletonScriptableObject;
 
 namespace BattleSystem
 {
@@ -58,7 +59,7 @@ namespace BattleSystem
                     yield break;
                 case AbilityType.NonAttack: BattleEngine.Instance.performingAction = false;
                     yield break;
-                default: Logger.Log("This message should not be displaying...");
+                default: Logging.Instance.Log("This message should not be displaying...");
                     yield break;
             }
         }

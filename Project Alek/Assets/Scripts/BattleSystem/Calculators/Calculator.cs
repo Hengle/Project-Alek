@@ -72,7 +72,7 @@ namespace BattleSystem.Calculators
 
             if (tryGetRes)
             {
-                Logger.Log($"{target.characterName} resists {ability.elementalType.name}!");
+                Logging.Instance.Log($"{target.characterName} resists {ability.elementalType.name}!");
                 var resistanceScalar = 1 - (float) target._elementalResistances.Single
                     (s => s.Key._type == ability.elementalType).Key._scalar / 100;
 
@@ -81,7 +81,7 @@ namespace BattleSystem.Calculators
                     
             else if (tryGetWeakness)
             {
-                Logger.Log($"{target.characterName} is weak to {ability.elementalType.name}!");
+                Logging.Instance.Log($"{target.characterName} is weak to {ability.elementalType.name}!");
                 var weaknessScalar = (float) target._elementalWeaknesses.Single
                     (s => s.Key._type == ability.elementalType).Key._scalar / 100;
 
@@ -89,7 +89,7 @@ namespace BattleSystem.Calculators
             }
             
             totalDamage = (int) ((normalDamage + elementalDamage) * damageDealer.Unit.currentAbility.damageMultiplier) - targetDefense;
-            Logger.Log($"Elemental Damage: {elementalDamage} \t Total Damage: {totalDamage}");
+            Logging.Instance.Log($"Elemental Damage: {elementalDamage} \t Total Damage: {totalDamage}");
             
             SkipElemental:
             totalDamage = CalculateBoostFactor(damageDealer, target, totalDamage);

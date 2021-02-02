@@ -132,7 +132,7 @@ namespace Characters.StatusEffects
                     unit.resistance.AddModifier(modifier); break;
                 
                 case AffectedStat.None: break;
-                default: Logger.Log("Could not find the stat to modify"); break;
+                default: Logging.Instance.Log("Could not find the stat to modify"); break;
             }
         }
 

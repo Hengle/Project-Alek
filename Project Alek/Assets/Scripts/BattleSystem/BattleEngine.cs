@@ -284,7 +284,7 @@ namespace BattleSystem
         private IEnumerator<float> LostBattleSequence()
         {
             yield return Timing.WaitForSeconds(0.5f);
-            Logger.Log("you lost idiot");
+            Logging.Instance.Log("you lost idiot");
             
             SceneLoadManager.Instance.LoadOverworld();
         }
