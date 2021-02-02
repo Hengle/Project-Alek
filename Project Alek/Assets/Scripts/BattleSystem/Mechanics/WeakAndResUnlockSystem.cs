@@ -4,6 +4,7 @@ using Characters;
 using Characters.ElementalTypes;
 using Characters.Enemies;
 using Characters.StatusEffects;
+using SingletonScriptableObject;
 using UnityEngine;
 
 namespace BattleSystem.Mechanics
@@ -34,7 +35,7 @@ namespace BattleSystem.Mechanics
                 found = true;
                 eStruct = type;
                 
-                var enemies = EnemyManager._instance.enemies;
+                var enemies = EnemyManager.Instance.enemies;
                 foreach (var t in enemies.Where(t => t.characterName == enemy.characterName))
                 {
                     t._elementalWeaknesses[type.Key] = true;
@@ -56,7 +57,7 @@ namespace BattleSystem.Mechanics
                 found = true;
                 eStruct = type;
                 
-                var enemies = EnemyManager._instance.enemies;
+                var enemies = EnemyManager.Instance.enemies;
                 foreach (var t in enemies.Where(t => t.characterName == enemy.characterName))
                 {
                     t._elementalResistances[type.Key] = true;
@@ -78,7 +79,7 @@ namespace BattleSystem.Mechanics
                 found = true;
                 eStruct = type;
                 
-                var enemies = EnemyManager._instance.enemies;
+                var enemies = EnemyManager.Instance.enemies;
                 foreach (var t in enemies.Where(t => t.characterName == enemy.characterName))
                 {
                     t._statusEffectWeaknesses[type.Key] = true;
@@ -100,7 +101,7 @@ namespace BattleSystem.Mechanics
                 found = true;
                 eStruct = type;
                 
-                var enemies = EnemyManager._instance.enemies;
+                var enemies = EnemyManager.Instance.enemies;
                 foreach (var t in enemies.Where(t => t.characterName == enemy.characterName))
                 {
                     t._statusEffectResistances[type.Key] = true;
@@ -122,7 +123,7 @@ namespace BattleSystem.Mechanics
                 found = true;
                 eStruct = type;
                 
-                var enemies = EnemyManager._instance.enemies;
+                var enemies = EnemyManager.Instance.enemies;
                 foreach (var t in enemies.Where(t => t.characterName == enemy.characterName))
                 {
                     t._damageTypeWeaknesses[type.Key] = true;

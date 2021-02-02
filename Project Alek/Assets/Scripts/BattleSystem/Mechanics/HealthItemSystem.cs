@@ -1,5 +1,6 @@
 ﻿using Characters;
 using MoreMountains.InventoryEngine;
+using SingletonScriptableObject;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

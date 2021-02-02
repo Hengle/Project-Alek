@@ -1,4 +1,5 @@
 ﻿using System;
+using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;

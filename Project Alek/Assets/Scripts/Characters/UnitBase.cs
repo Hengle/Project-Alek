@@ -11,6 +11,7 @@ using Characters.StatusEffects;
 using DamagePrefab;
 using JetBrains.Annotations;
 using Kryz.CharacterStats;
+using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using UnityEngine.UI;
 

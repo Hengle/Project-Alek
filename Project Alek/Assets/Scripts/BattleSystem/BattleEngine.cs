@@ -13,6 +13,7 @@ using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
 using MEC;
 using ScriptableObjectArchitecture;
+using SingletonScriptableObject;
 
 namespace BattleSystem
 {
@@ -82,6 +83,7 @@ namespace BattleSystem
             canGiveCommand = true;
             roundCount = 0;
 
+            PartyManager.Instance.Order();
             Timing.RunCoroutine(SetupBattle());
         }
 

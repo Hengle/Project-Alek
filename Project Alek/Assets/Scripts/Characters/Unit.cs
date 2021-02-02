@@ -10,6 +10,7 @@ using Characters.Abilities;
 using Characters.Animations;
 using Characters.StatusEffects;
 using ScriptableObjectArchitecture;
+using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 
 namespace Characters

@@ -10,6 +10,7 @@ namespace BattleSystem.UI
     {
         public Unit unit;
         [SerializeField] private CharacterGameEvent conversionEvent;
+        [SerializeField] private CharacterGameEvent chooseTargetEvent;
         [SerializeField] private List<GameObject> arrows;
 
         private Vector3 ArrowPosition
@@ -23,8 +24,12 @@ namespace BattleSystem.UI
             }
         }
 
-        private void OnEnable() => conversionEvent.AddListener(this);
-        
+        private void OnEnable()
+        {
+            conversionEvent.AddListener(this);
+            chooseTargetEvent.AddListener(this);
+        }
+
         private void AdjustConversionLevel()
         {
             for (var i = 0; i < arrows.Count; i++)
@@ -35,15 +40,27 @@ namespace BattleSystem.UI
             }
         }
 
+        private void DeactivateArrows() => arrows.ForEach(a => a.gameObject.SetActive(false));
+
         private void SetArrowPosition() => transform.localPosition = ArrowPosition;
 
-        private void OnDisable() => conversionEvent.RemoveListener(this);
+        private void OnDisable()
+        {
+            conversionEvent.RemoveListener(this);
+            chooseTargetEvent.RemoveListener(this);
+        }
 
         public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
         {
-            if (value1 != unit.parent || value2 != conversionEvent) return;
-            SetArrowPosition();
-            AdjustConversionLevel();
+            if (value1 == unit.parent && value2 == conversionEvent)
+            {
+                SetArrowPosition();
+                AdjustConversionLevel();
+            }
+            else if (value1 == unit.parent && value2 == chooseTargetEvent)
+            {
+                DeactivateArrows();
+            }
         }
     }
 }

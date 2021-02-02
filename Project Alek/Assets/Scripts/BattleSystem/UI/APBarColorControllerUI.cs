@@ -1,4 +1,5 @@
 ﻿using Characters;
+using SingletonScriptableObject;
 using UnityEngine;
 using UnityEngine.UI;
 

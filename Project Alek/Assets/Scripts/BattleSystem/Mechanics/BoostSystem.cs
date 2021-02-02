@@ -1,4 +1,5 @@
 ﻿using Characters;
+using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

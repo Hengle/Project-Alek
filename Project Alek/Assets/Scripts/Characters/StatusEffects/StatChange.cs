@@ -1,5 +1,6 @@
 ﻿using Kryz.CharacterStats;
 using ScriptableObjectArchitecture;
+using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

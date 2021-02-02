@@ -6,6 +6,7 @@ using Characters.PartyMembers;
 using Characters.StatusEffects;
 using JetBrains.Annotations;
 using MoreMountains.InventoryEngine;
+using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;

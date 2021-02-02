@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+﻿using System.Linq;
 using BattleSystem.Mechanics;
 using BattleSystem.UI;
 using Characters;
@@ -9,6 +8,7 @@ using UnityEngine.UI;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
 using MoreMountains.InventoryEngine;
+using SingletonScriptableObject;
 using TMPro;
 using Random = UnityEngine.Random;
 
@@ -24,8 +24,7 @@ namespace BattleSystem.Generator
         private void Awake() => database = GetComponent<BattleGeneratorDatabase>();
         
         #region Setup
-
-        [SuppressMessage("ReSharper", "ConvertIfStatementToSwitchStatement")]
+        
         public void SetupBattle()
         {
             SetOffsetPositions();
@@ -43,21 +42,21 @@ namespace BattleSystem.Generator
 
         private void SetOffsetPositions()
         {
-            if (PartyManager._instance.partyMembers.Count == 1) offset = 2;
-            else if (PartyManager._instance.partyMembers.Count == 4) offset = 0;
+            if (PartyManager.Instance.partyMembers.Count == 1) offset = 2;
+            else if (PartyManager.Instance.partyMembers.Count == 4) offset = 0;
             else offset = 1;
 
-            if (EnemyManager._instance.enemies.Count == 1) enemyOffset = 2;
-            else if (EnemyManager._instance.enemies.Count == 4) enemyOffset = 0;
+            if (EnemyManager.Instance.enemies.Count == 1) enemyOffset = 2;
+            else if (EnemyManager.Instance.enemies.Count == 4) enemyOffset = 0;
             else enemyOffset = 1;
         }
 
         private void SetupParty()
         {
-            for (var i = 0; i < PartyManager._instance.partyMembers.Count; i++)
+            for (var i = 0; i < PartyManager.Instance.partyMembers.Count; i++)
             {
-                var memberGo = SpawnThisMember(PartyManager._instance.partyMembers[i], i);
-                SetupThisMember(PartyManager._instance.partyMembers[i], i, memberGo);
+                var memberGo = SpawnThisMember(PartyManager.Instance.partyMembers[i], i);
+                SetupThisMember(PartyManager.Instance.partyMembers[i], i, memberGo);
             }
         }
 
@@ -332,7 +331,7 @@ namespace BattleSystem.Generator
         private void SpawnAndSetupEnemyTeam()
         {
             var i = 0;
-            foreach (var clone in EnemyManager._instance.enemies.Select(Instantiate))
+            foreach (var clone in EnemyManager.Instance.enemies.Select(Instantiate))
             {
                 //TODO: Make randomizer for enemy stats
                 clone.initiative.BaseValue = (int) Random.Range(clone.initiative.BaseValue - 2, clone.initiative.BaseValue + 2);

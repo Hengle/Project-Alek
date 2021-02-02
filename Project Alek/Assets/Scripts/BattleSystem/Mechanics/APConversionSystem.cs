@@ -1,5 +1,6 @@
 ﻿using Characters;
 using ScriptableObjectArchitecture;
+using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;

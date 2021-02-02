@@ -1,4 +1,5 @@
 ﻿using Kryz.CharacterStats;
+using SingletonScriptableObject;
 using UnityEngine;
 
 namespace Characters.StatusEffects
