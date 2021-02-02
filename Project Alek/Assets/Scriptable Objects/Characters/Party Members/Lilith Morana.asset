@@ -17,7 +17,6 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 366775002164acb45983c6014a20dd29, type: 2}
-    - {fileID: 0}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -144,55 +143,7 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: onRevival
-      Entry: 7
-      Data: 9|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: target
-      Entry: 10
-      Data: 1
-    - Name: declaringType
-      Entry: 7
-      Data: 10|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: BattleSystem.BattleEngine, ProjectAlek
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: methodName
-      Entry: 1
-      Data: AddToBattle
-    - Name: delegateType
-      Entry: 7
-      Data: 11|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: signature
-      Entry: 7
-      Data: 12|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 13|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: Characters.UnitBase, ProjectAlek
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
+      Entry: 6
       Data: 
     - Name: onHpValueChanged
       Entry: 6
@@ -220,6 +171,8 @@ MonoBehaviour:
   id: 0
   characterName: Lilith Morana
   characterPrefab: {fileID: 1526218485019349028, guid: c480ece643ae0c54099692d3bbb9649d,
+    type: 3}
+  overworldPrefab: {fileID: 3316879971329093365, guid: 772144c440799804e8b9ab01558c159d,
     type: 3}
   level: 4
   health:
@@ -258,8 +211,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ee9a142c4223d434e863f4e4e1758255, type: 2}
   - {fileID: 11400000, guid: 6eb5e2c11d395244e94b25794bf8f3dc, type: 2}
   - {fileID: 11400000, guid: 1bd86029ab3f7364f926a2f94cc66e50, type: 2}
-  maxAP: 6
   currentClass: {fileID: 11400000, guid: babdda5b7a9c9c04e93e85002ce0de84, type: 2}
+  overworldController: {fileID: 22100000, guid: 5a1ae59169ea79e4da063cc87f235966,
+    type: 2}
   positionInParty: 4
   specialAttackBarVal: 1
   weaponInventory: {fileID: 9018186885891804427, guid: b53c59ae1a11e064b8d4a3e7c56bbfe6,

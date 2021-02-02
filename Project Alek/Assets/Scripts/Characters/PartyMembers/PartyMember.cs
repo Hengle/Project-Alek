@@ -3,6 +3,7 @@ using Characters.Abilities;
 using UnityEngine;
 using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
+using UnityEditor.Animations;
 
 namespace Characters.PartyMembers
 {
@@ -15,7 +16,10 @@ namespace Characters.PartyMembers
         [VerticalGroup("Basic/Info")]
         public Class currentClass;
 
-        [Range(0,4), VerticalGroup("Basic/Info")]
+        [VerticalGroup("Basic/Info")]
+        public AnimatorOverrideController overworldController;
+
+        [Range(1,4), VerticalGroup("Basic/Info")]
         public int positionInParty;
 
         [Range(0, 1), VerticalGroup("Basic/Info")]

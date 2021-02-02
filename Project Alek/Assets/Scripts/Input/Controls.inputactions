@@ -1200,6 +1200,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ChangeLeader",
+                    "type": "Button",
+                    "id": "8dd60c6e-efdd-4c37-9dda-7b05fe4dad3a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -1235,6 +1243,39 @@
                     "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Change",
+                    "id": "ccfeceff-da97-4446-b7b7-34ad9f3e93e1",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeLeader",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "cbcd0813-b67d-42fd-8d80-cc58566f3347",
+                    "path": "<HID::Google Inc. Stadia Controller>/hat/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeLeader",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "ed1bd897-7c79-4dea-8c5c-0f1e83f35f68",
+                    "path": "<HID::Google Inc. Stadia Controller>/hat/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeLeader",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

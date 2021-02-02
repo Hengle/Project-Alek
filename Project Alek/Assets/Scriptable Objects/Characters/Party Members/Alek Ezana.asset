@@ -150,7 +150,7 @@ MonoBehaviour:
   characterName: Alek Ezana
   characterPrefab: {fileID: 1526218485019349028, guid: 38e223593cf5fd94cb9a317771507f77,
     type: 3}
-  overworldPrefab: {fileID: 3316879971329093365, guid: 64c6bf16a4bcd524aa66c653cbf2b8ae,
+  overworldPrefab: {fileID: 3316879971329093365, guid: 772144c440799804e8b9ab01558c159d,
     type: 3}
   level: 1
   health:
@@ -187,6 +187,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5c5fa03193734104c98ec2f8d6543cfa, type: 2}
   - {fileID: 11400000, guid: 6c09b3176a3b3e54ca0946ee458d3fa6, type: 2}
   currentClass: {fileID: 11400000, guid: be121a9a99d092e4184dc9300dc5106b, type: 2}
+  overworldController: {fileID: 22100000, guid: 303372915b2401e479bccd7997ce110d,
+    type: 2}
   positionInParty: 1
   specialAttackBarVal: 0.45000005
   weaponInventory: {fileID: 5917402227159465644, guid: 1d94ebccb9928a445b4a7e1dbacb9d53,

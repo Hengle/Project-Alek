@@ -14,6 +14,7 @@ namespace Overworld
         
         private void Awake()
         {
+            PartyManager.Instance.Order();
             var member = PartyManager.Instance.partyMembers.Single(m => m.positionInParty == 1);
             GameObject memberGo;
             
@@ -30,9 +31,10 @@ namespace Overworld
                     (s => s.Id == PlayerPositionManager.Instance.SpawnId).transform;
                 
                 memberGo = Instantiate(member.overworldPrefab, spawnPoint.position, member.overworldPrefab.transform.rotation);
-                PlayerPositionManager.Instance.SpawnId = "0";
+                //PlayerPositionManager.Instance.SpawnId = "0";
             }
 
+            memberGo.GetComponent<Animator>().runtimeAnimatorController = member.overworldController;
             playerSpawnEvent.Raise();
             vCam.Follow = memberGo.transform;
         }

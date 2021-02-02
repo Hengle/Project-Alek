@@ -1213,6 +1213,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""ChangeLeader"",
+                    ""type"": ""Button"",
+                    ""id"": ""8dd60c6e-efdd-4c37-9dda-7b05fe4dad3a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -1248,6 +1256,39 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Change"",
+                    ""id"": ""ccfeceff-da97-4446-b7b7-34ad9f3e93e1"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeLeader"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""cbcd0813-b67d-42fd-8d80-cc58566f3347"",
+                    ""path"": ""<HID::Google Inc. Stadia Controller>/hat/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeLeader"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""ed1bd897-7c79-4dea-8c5c-0f1e83f35f68"",
+                    ""path"": ""<HID::Google Inc. Stadia Controller>/hat/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeLeader"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -1282,6 +1323,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Overworld = asset.FindActionMap("Overworld", throwIfNotFound: true);
         m_Overworld_Move = m_Overworld.FindAction("Move", throwIfNotFound: true);
         m_Overworld_Run = m_Overworld.FindAction("Run", throwIfNotFound: true);
+        m_Overworld_ChangeLeader = m_Overworld.FindAction("ChangeLeader", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1552,12 +1594,14 @@ public class @Controls : IInputActionCollection, IDisposable
     private IOverworldActions m_OverworldActionsCallbackInterface;
     private readonly InputAction m_Overworld_Move;
     private readonly InputAction m_Overworld_Run;
+    private readonly InputAction m_Overworld_ChangeLeader;
     public struct OverworldActions
     {
         private @Controls m_Wrapper;
         public OverworldActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Overworld_Move;
         public InputAction @Run => m_Wrapper.m_Overworld_Run;
+        public InputAction @ChangeLeader => m_Wrapper.m_Overworld_ChangeLeader;
         public InputActionMap Get() { return m_Wrapper.m_Overworld; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1573,6 +1617,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Run.started -= m_Wrapper.m_OverworldActionsCallbackInterface.OnRun;
                 @Run.performed -= m_Wrapper.m_OverworldActionsCallbackInterface.OnRun;
                 @Run.canceled -= m_Wrapper.m_OverworldActionsCallbackInterface.OnRun;
+                @ChangeLeader.started -= m_Wrapper.m_OverworldActionsCallbackInterface.OnChangeLeader;
+                @ChangeLeader.performed -= m_Wrapper.m_OverworldActionsCallbackInterface.OnChangeLeader;
+                @ChangeLeader.canceled -= m_Wrapper.m_OverworldActionsCallbackInterface.OnChangeLeader;
             }
             m_Wrapper.m_OverworldActionsCallbackInterface = instance;
             if (instance != null)
@@ -1583,6 +1630,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Run.started += instance.OnRun;
                 @Run.performed += instance.OnRun;
                 @Run.canceled += instance.OnRun;
+                @ChangeLeader.started += instance.OnChangeLeader;
+                @ChangeLeader.performed += instance.OnChangeLeader;
+                @ChangeLeader.canceled += instance.OnChangeLeader;
             }
         }
     }
@@ -1618,5 +1668,6 @@ public class @Controls : IInputActionCollection, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
+        void OnChangeLeader(InputAction.CallbackContext context);
     }
 }
