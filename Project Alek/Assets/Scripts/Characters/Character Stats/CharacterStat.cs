@@ -31,6 +31,8 @@ namespace Kryz.CharacterStats
 
 		[SerializeField] [VerticalGroup("BaseValue/Max")] [LabelWidth(30)] [LabelText("Max")]
 		public float maxValue;
+
+		[HideInInspector] public float amountIncreasedBy;
 		
 		protected readonly List<StatModifier> statModifiers;
 		public readonly ReadOnlyCollection<StatModifier> StatModifiers;

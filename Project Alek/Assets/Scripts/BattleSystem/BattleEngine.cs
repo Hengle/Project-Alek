@@ -4,11 +4,13 @@ using BattleSystem.Calculators;
 using UnityEngine;
 using Characters;
 using BattleSystem.Generator;
+using BattleSystem.UI;
 using Characters.Animations;
 using Characters.CharacterExtensions;
 using Characters.Enemies;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
+using Kryz.CharacterStats;
 using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
 using MEC;
@@ -111,6 +113,9 @@ namespace BattleSystem
             _enemiesForThisBattle.ForEach(e => { e.onDeath += RemoveFromBattle; e.onRevival += AddToBattle; });
 
             setupCompleteEvent.Raise();
+            _membersForThisBattle.ForEach(m => 
+                m.LevelUpEvent += battleResults.GetComponent<BattleResultsUI>().Enqueue);
+            
             yield return Timing.WaitForSeconds(1);
             Timing.RunCoroutine(GetNextTurn());
         }
@@ -272,6 +277,7 @@ namespace BattleSystem
             
             yield return Timing.WaitForSeconds(2f);
             battleResults.SetActive(true);
+            var battleResultsUI = battleResults.GetComponent<BattleResultsUI>();
             
             foreach (var member in _membersForThisBattle)
             {
@@ -288,6 +294,16 @@ namespace BattleSystem
             }
 
             yield return Timing.WaitUntilTrue(() => BattleInput._controls.Battle.Confirm.triggered);
+            
+            Timing.RunCoroutine(battleResultsUI.ShowLevelUps());
+            yield return Timing.WaitForSeconds(0.3f);
+            yield return Timing.WaitUntilFalse(() => battleResultsUI.showingLevelUps);
+            _membersForThisBattle.ForEach(m =>
+            {
+                m.currentClass.statsToIncrease.ForEach(s => s.amountIncreasedBy = 0);
+                m.currentClass.statsToIncrease = new List<CharacterStat>();
+            });
+
             SceneLoadManager.Instance.LoadOverworld();
         }
 

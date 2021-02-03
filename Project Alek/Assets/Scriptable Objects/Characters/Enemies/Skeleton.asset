@@ -229,6 +229,7 @@ MonoBehaviour:
   characterName: Skeleton
   characterPrefab: {fileID: 1109450531332189788, guid: 46c69567f6d4d924ca3cfc4c96675443,
     type: 3}
+  overworldPrefab: {fileID: 0}
   level: 4
   health:
     BaseValue: 1525
@@ -262,6 +263,5 @@ MonoBehaviour:
   abilities:
   - {fileID: 11400000, guid: 8697ec229a0734b4b9c69d6087505ba9, type: 2}
   - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
-  maxAP: 6
   maxShieldCount: 4
   baseExperience: 420

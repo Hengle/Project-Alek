@@ -5,6 +5,7 @@ using BattleSystem;
 using Characters.Abilities;
 using Characters.PartyMembers;
 using JetBrains.Annotations;
+using Kryz.CharacterStats;
 using MEC;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -146,13 +147,15 @@ namespace Characters
 
         public int GetNextExperienceThreshold() => (int) (BaseExperience * Math.Pow(1.1f, level - 1));
 
-        public Action<int> LevelUpEvent { get; set; }
+        public Action<object> LevelUpEvent { get; set; }
 
         public void LevelUp()
         {
             level += 1;
             LevelUpEvent?.Invoke(level);
         }
+        
+        public List<CharacterStat> statsToIncrease = new List<CharacterStat>();
 
         public void IncreaseStats()
         {
@@ -164,6 +167,8 @@ namespace Characters
                 if (CanIncreaseStrength)
                 {
                     partyMember.strength.BaseValue += 1;
+                    partyMember.strength.amountIncreasedBy += 1;
+                    statsToIncrease.Add(partyMember.strength);
                     count++;
                     results.Add($"{partyMember.characterName}'s strength has been increased!\n");
                 }
@@ -171,6 +176,8 @@ namespace Characters
                 if (CanIncreaseMagic)
                 {
                     partyMember.magic.BaseValue += 1;
+                    partyMember.magic.amountIncreasedBy += 1;
+                    statsToIncrease.Add(partyMember.magic);
                     count++;
                     results.Add($"{partyMember.characterName}'s magic has been increased!\n");
                 }
@@ -178,6 +185,8 @@ namespace Characters
                 if (CanIncreaseAccuracy)
                 {
                     partyMember.accuracy.BaseValue += 1;
+                    partyMember.accuracy.amountIncreasedBy += 1;
+                    statsToIncrease.Add(partyMember.accuracy);
                     count++;
                     results.Add($"{partyMember.characterName}'s accuracy has been increased!\n");
                 }
@@ -185,6 +194,8 @@ namespace Characters
                 if (CanIncreaseInitiative)
                 {
                     partyMember.initiative.BaseValue += 1;
+                    partyMember.initiative.amountIncreasedBy += 1;
+                    statsToIncrease.Add(partyMember.initiative);
                     count++;
                     results.Add($"{partyMember.characterName}'s initiative has been increased!\n");
                 }
@@ -192,6 +203,8 @@ namespace Characters
                 if (CanIncreaseDefense)
                 {
                     partyMember.defense.BaseValue += 1;
+                    partyMember.defense.amountIncreasedBy += 1;
+                    statsToIncrease.Add(partyMember.defense);
                     count++;
                     results.Add($"{partyMember.characterName}'s defense has been increased!\n");
                 }
@@ -199,6 +212,8 @@ namespace Characters
                 if (CanIncreaseResistance)
                 {
                     partyMember.resistance.BaseValue += 1;
+                    partyMember.resistance.amountIncreasedBy += 1;
+                    statsToIncrease.Add(partyMember.resistance);
                     count++;
                     results.Add($"{partyMember.characterName}'s resistance has been increased!\n");
                 }
@@ -206,6 +221,8 @@ namespace Characters
                 if (CanIncreaseCritical)
                 {
                     partyMember.criticalChance.BaseValue += 1;
+                    partyMember.criticalChance.amountIncreasedBy += 1;
+                    statsToIncrease.Add(partyMember.criticalChance);
                     count++;
                     results.Add($"{partyMember.characterName}'s crit chance has been increased!\n");
                 }

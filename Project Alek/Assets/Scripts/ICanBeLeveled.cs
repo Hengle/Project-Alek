@@ -10,7 +10,7 @@ public interface ICanBeLeveled
 
         int GetNextExperienceThreshold();
         
-        Action<int> LevelUpEvent { get; set; }
+        Action<object> LevelUpEvent { get; set; }
 
         void LevelUp();
 }

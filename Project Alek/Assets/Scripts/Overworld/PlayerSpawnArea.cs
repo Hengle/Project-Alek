@@ -10,6 +10,7 @@ namespace Overworld
         private string id;
         public string Id => id;
 
-        [Button] private void GenerateId() => id = Random.Range(1, 1000).ToString();
+        [Button] private void GenerateId() =>
+            id = Random.Range(1, 1000).ToString();
     }
 }

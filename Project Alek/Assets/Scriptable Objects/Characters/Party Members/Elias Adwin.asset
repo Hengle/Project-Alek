@@ -154,28 +154,28 @@ MonoBehaviour:
   level: 1
   health:
     BaseValue: 960
-    maxValue: 0
+    maxValue: 9999
   strength:
     BaseValue: 9
-    maxValue: 0
+    maxValue: 99
   magic:
     BaseValue: 6
-    maxValue: 0
+    maxValue: 99
   accuracy:
     BaseValue: 11
-    maxValue: 0
+    maxValue: 99
   initiative:
     BaseValue: 5
-    maxValue: 0
+    maxValue: 99
   defense:
     BaseValue: 7
-    maxValue: 0
+    maxValue: 99
   resistance:
     BaseValue: 5
-    maxValue: 0
+    maxValue: 99
   criticalChance:
     BaseValue: 3
-    maxValue: 0
+    maxValue: 99
   description: This is Elias. He is an artist. That is all
   weaponMight: 8
   magicMight: 4

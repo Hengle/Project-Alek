@@ -19,7 +19,8 @@ namespace SingletonScriptableObject
             partyMembers = partyMembers.OrderBy(i => i.positionInParty).ToList();
             for (var i = 0; i < partyMembers.Count; i++)
             {
-                if (partyMembers[i].positionInParty - 1 != i) partyMembers[i].positionInParty = i + 1;
+                if (partyMembers[i].positionInParty - 1 != i)
+                    partyMembers[i].positionInParty = i + 1;
             }
 
             currentLeader = partyMembers[0];

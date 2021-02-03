@@ -6,7 +6,6 @@ using MEC;
 using UnityEngine;
 using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
-using UnityEditor.Animations;
 
 namespace Characters.PartyMembers
 {
@@ -101,13 +100,13 @@ namespace Characters.PartyMembers
         
         public int GetNextExperienceThreshold() => (int) (BaseExperience * Math.Pow(1.1f, level - 1));
         
-        public Action<int> LevelUpEvent { get; set; }
+        public Action<object> LevelUpEvent { get; set; }
 
         public void LevelUp()
         {
             level += 1;
             currentClass.IncreaseStats();
-            LevelUpEvent?.Invoke(level);
+            LevelUpEvent?.Invoke(this);
         }
     }
 }
