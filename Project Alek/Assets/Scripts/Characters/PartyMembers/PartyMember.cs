@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using BattleSystem;
 using Characters.Abilities;
+using MEC;
 using UnityEngine;
 using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
@@ -68,12 +71,33 @@ namespace Characters.PartyMembers
                 else currentExperience = value;
             }
         }
+        
+        public int BattleExpReceived { get; set; }
+
+        private IEnumerator<float> ExperienceCoroutine(int xp)
+        {
+            var e = 0;
+            while (e != xp)
+            {
+                if (BattleInput._controls.Battle.Confirm.triggered)
+                {
+                    var leftover = xp - e;
+                    currentExperience += leftover;
+                    yield break;
+                }
+                
+                CurrentExperience++;
+                e++;
+                yield return Timing.WaitForSeconds(0.015f);
+            }
+        }
 
         [ShowInInspector, VerticalGroup("Basic/Info")]
         public int ExperienceToNextLevel => GetNextExperienceThreshold();
-        
-        [VerticalGroup("Basic/Info")] [Button("Give EXP",ButtonSizes.Medium, ButtonStyle.Box)]
-        public void AdvanceTowardsNextLevel(int xp) => CurrentExperience += xp;
+
+        [VerticalGroup("Basic/Info")]
+        [Button("Give EXP", ButtonSizes.Medium, ButtonStyle.Box)]
+        public void AdvanceTowardsNextLevel(int xp) => Timing.RunCoroutine(ExperienceCoroutine(xp));
         
         public int GetNextExperienceThreshold() => (int) (BaseExperience * Math.Pow(1.1f, level - 1));
         

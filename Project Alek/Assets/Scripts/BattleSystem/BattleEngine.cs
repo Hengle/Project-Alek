@@ -21,6 +21,9 @@ namespace BattleSystem
     {
         #region FieldsAndProperties
 
+        [SerializeField] private GameObject battleResults;
+        
+        [SerializeField] private GameEvent setupCompleteEvent;
         [SerializeField] private BattleGameEvent battleEvent;
         [SerializeField] private CharacterGameEvent characterTurnEvent;
         [SerializeField] private CharacterGameEvent enemyTurnEvent;
@@ -107,6 +110,7 @@ namespace BattleSystem
             _membersForThisBattle.ForEach(m => { m.onDeath += RemoveFromBattle; m.onRevival += AddToBattle; });
             _enemiesForThisBattle.ForEach(e => { e.onDeath += RemoveFromBattle; e.onRevival += AddToBattle; });
 
+            setupCompleteEvent.Raise();
             yield return Timing.WaitForSeconds(1);
             Timing.RunCoroutine(GetNextTurn());
         }
@@ -265,8 +269,10 @@ namespace BattleSystem
         {
             yield return Timing.WaitForSeconds(0.5f);
             _membersForThisBattle.ForEach(member => member.Unit.anim.SetTrigger(AnimationHandler.VictoryTrigger));
-
-            // TODO: Extract to own class/method
+            
+            yield return Timing.WaitForSeconds(2f);
+            battleResults.SetActive(true);
+            
             foreach (var member in _membersForThisBattle)
             {
                 var totalXp = _expGivers.Sum(giver =>
@@ -274,11 +280,14 @@ namespace BattleSystem
                 
                 var totalClassXp = _expGivers.Sum(giver =>
                     giver.CalculateExperience(member.currentClass.level, member.currentClass));
+
+                member.BattleExpReceived = totalXp;
                 
                 member.AdvanceTowardsNextLevel(totalXp);
                 member.currentClass.AdvanceTowardsNextLevel(totalClassXp);
             }
-            
+
+            yield return Timing.WaitUntilTrue(() => BattleInput._controls.Battle.Confirm.triggered);
             SceneLoadManager.Instance.LoadOverworld();
         }
 

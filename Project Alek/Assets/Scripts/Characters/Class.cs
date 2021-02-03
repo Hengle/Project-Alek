@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BattleSystem;
 using Characters.Abilities;
 using Characters.PartyMembers;
 using JetBrains.Annotations;
+using MEC;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -114,6 +116,24 @@ namespace Characters
                 else currentExperience = value;
             }
         }
+        
+        private IEnumerator<float> ExperienceCoroutine(int xp)
+        {
+            var e = 0;
+            while (e != xp)
+            {
+                if (BattleInput._controls.Battle.Confirm.triggered)
+                {
+                    var leftover = xp - e;
+                    currentExperience += leftover;
+                    yield break;
+                }
+                
+                CurrentExperience++;
+                e++;
+                yield return Timing.WaitForSeconds(0.015f);
+            }
+        }
 
         [ShowInInspector] [HorizontalGroup("Experience")]
         public int BaseExperience => (int) classTier;
@@ -122,7 +142,7 @@ namespace Characters
         public int ExperienceToNextLevel => GetNextExperienceThreshold();
 
         [Button("Give EXP",ButtonSizes.Medium, ButtonStyle.Box)]
-        public void AdvanceTowardsNextLevel(int xp) => CurrentExperience += xp;
+        public void AdvanceTowardsNextLevel(int xp) => Timing.RunCoroutine(ExperienceCoroutine(xp));
 
         public int GetNextExperienceThreshold() => (int) (BaseExperience * Math.Pow(1.1f, level - 1));
 
