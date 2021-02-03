@@ -37,6 +37,7 @@ MonoBehaviour:
   classTier: 500
   partyMember: {fileID: 11400000, guid: bce5c1264c07e43488e2ea4155308e40, type: 2}
   animator: {fileID: 0}
+  healthIncreaseFactor: 1.35
   strengthGrowthRate: 0.5
   magicGrowthRate: 0.25
   accuracyGrowthRate: 0.2
@@ -52,4 +53,5 @@ MonoBehaviour:
   defenseBonus: 0
   resistanceBonus: 0
   criticalBonus: 0
-  level: 1
+  level: 2
+  statsToIncrease: []

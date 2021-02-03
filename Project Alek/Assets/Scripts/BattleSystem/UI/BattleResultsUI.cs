@@ -44,50 +44,53 @@ namespace BattleSystem.UI
             if (!membersThatLeveledUp.Contains((PartyMember) member))
                 membersThatLeveledUp.Enqueue((PartyMember) member);
         }
+        
+        public void DisableUI() => otherCanvases.ForEach(c => c.SetActive(false));
 
         public IEnumerator<float> ShowLevelUps()
         {
             showingLevelUps = true;
-
             resultsPanel.SetActive(false);
-            otherCanvases.ForEach(c => c.SetActive(false));
-            
+
             while (membersThatLeveledUp.Count > 0)
             {
                 var member = membersThatLeveledUp.Dequeue();
-                SpecialAttackCamController._onSpecialAttack?.Invoke(member);
-                
+                SpecialAttackCamController._onLevelUpCloseUp?.Invoke(member);
+
+                var hpText = $"HP: {member.health.BaseValue} (+{member.health.amountIncreasedBy})\n";
+
                 var strText = member.currentClass.statsToIncrease.Contains(member.strength)
-                    ? $"STR: {member.strength.BaseValue} + {member.strength.amountIncreasedBy}\n"
+                    ? $"STR: {member.strength.BaseValue} (+{member.strength.amountIncreasedBy})\n"
                     : $"STR: {member.strength.BaseValue}\n";
                 
                 var magText = member.currentClass.statsToIncrease.Contains(member.magic)
-                    ? $"MAG: {member.magic.BaseValue} + {member.magic.amountIncreasedBy}\n"
+                    ? $"MAG: {member.magic.BaseValue} (+{member.magic.amountIncreasedBy})\n"
                     : $"MAG: {member.magic.BaseValue}\n";
                 
                 var accTest = member.currentClass.statsToIncrease.Contains(member.accuracy)
-                    ? $"ACC: {member.accuracy.BaseValue} + {member.accuracy.amountIncreasedBy}\n"
+                    ? $"ACC: {member.accuracy.BaseValue} (+{member.accuracy.amountIncreasedBy})\n"
                     : $"ACC: {member.accuracy.BaseValue}\n";
                 
                 var initText = member.currentClass.statsToIncrease.Contains(member.initiative)
-                    ? $"INIT: {member.initiative.BaseValue} + {member.initiative.amountIncreasedBy}\n"
+                    ? $"INIT: {member.initiative.BaseValue} (+{member.initiative.amountIncreasedBy})\n"
                     : $"INIT: {member.initiative.BaseValue}\n";
                 
                 var defText = member.currentClass.statsToIncrease.Contains(member.defense)
-                    ? $"DEF: {member.defense.BaseValue} + {member.defense.amountIncreasedBy}\n"
+                    ? $"DEF: {member.defense.BaseValue} (+{member.defense.amountIncreasedBy})\n"
                     : $"DEF: {member.defense.BaseValue}\n";
                 
                 var resText = member.currentClass.statsToIncrease.Contains(member.resistance)
-                    ? $"RES: {member.resistance.BaseValue} + {member.resistance.amountIncreasedBy}\n"
+                    ? $"RES: {member.resistance.BaseValue} (+{member.resistance.amountIncreasedBy})\n"
                     : $"RES: {member.resistance.BaseValue}\n";
                 
                 var critText = member.currentClass.statsToIncrease.Contains(member.criticalChance)
-                    ? $"CRIT: {member.criticalChance.BaseValue} + {member.criticalChance.amountIncreasedBy}\n"
+                    ? $"CRIT: {member.criticalChance.BaseValue} (+{member.criticalChance.amountIncreasedBy})\n"
                     : $"CRIT: {member.criticalChance.BaseValue}\n";
                     
                 levelUpText.text =
-                    $"Name: {member.characterName}\n" +
-                    $"Level: {member.level} + 1\n" +
+                    $"{member.characterName}\n" + "\n" +
+                    $"Level: {member.level} (+1)\n" +
+                    $"{hpText}" +
                     $"{strText}" +
                     $"{magText}" +
                     $"{accTest}" +
@@ -102,7 +105,6 @@ namespace BattleSystem.UI
                 yield return Timing.WaitUntilTrue(() => BattleInput._controls.Battle.Confirm.triggered);
                 
                 levelUpPanel.SetActive(false);
-                
                 SpecialAttackCamController._disableCam?.Invoke(member);
             }
 

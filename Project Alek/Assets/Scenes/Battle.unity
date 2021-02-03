@@ -33901,7 +33901,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-426570
+  m_Name: pb_Mesh-2340
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -38834,6 +38834,11 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4846767514963779244, guid: e218b3bb1f5c35340962e90bc3d64848,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5045361844455941169, guid: e218b3bb1f5c35340962e90bc3d64848,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -38929,6 +38934,31 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8600608956234818053, guid: e218b3bb1f5c35340962e90bc3d64848,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600608956234818053, guid: e218b3bb1f5c35340962e90bc3d64848,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600608956234818053, guid: e218b3bb1f5c35340962e90bc3d64848,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600608956234818053, guid: e218b3bb1f5c35340962e90bc3d64848,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600608956234818053, guid: e218b3bb1f5c35340962e90bc3d64848,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8637956815753914493, guid: e218b3bb1f5c35340962e90bc3d64848,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -38957,7 +38987,7 @@ PrefabInstance:
     - target: {fileID: 9040307933276788367, guid: e218b3bb1f5c35340962e90bc3d64848,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -254
+      value: -81
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e218b3bb1f5c35340962e90bc3d64848, type: 3}

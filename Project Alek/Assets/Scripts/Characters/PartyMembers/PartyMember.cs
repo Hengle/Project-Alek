@@ -43,6 +43,40 @@ namespace Characters.PartyMembers
         
         public CanvasGroup Container => inventoryDisplay.GetComponent<CanvasGroup>();
         public InventoryDisplay InventoryDisplay => inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
+        
+        [TabGroup("Tabs", "Base Stats")]
+        [SerializeField] private float baseLevel;
+        [TabGroup("Tabs", "Base Stats")]
+        [SerializeField] private float baseHealth;
+        [TabGroup("Tabs", "Base Stats")]
+        [SerializeField] private float baseStrength;
+        [TabGroup("Tabs", "Base Stats")]
+        [SerializeField] private float baseMagic;
+        [TabGroup("Tabs", "Base Stats")]
+        [SerializeField] private float baseAccuracy;
+        [TabGroup("Tabs", "Base Stats")]
+        [SerializeField] private float baseInitiative;
+        [TabGroup("Tabs", "Base Stats")]
+        [SerializeField] private float baseDefense;
+        [TabGroup("Tabs", "Base Stats")]
+        [SerializeField] private float baseResistance;
+        [TabGroup("Tabs", "Base Stats")]
+        [SerializeField] private float baseCriticalChance;
+
+        [VerticalGroup("Basic/Info")] [Button("Reset to Base")]
+        private void ResetToBase()
+        {
+            level = (int) baseLevel;
+            currentExperience = 0;
+            health.BaseValue = baseHealth;
+            strength.BaseValue = baseStrength;
+            magic.BaseValue = baseMagic;
+            accuracy.BaseValue = baseAccuracy;
+            initiative.BaseValue = baseInitiative;
+            defense.BaseValue = baseDefense;
+            resistance.BaseValue = baseResistance;
+            criticalChance.BaseValue = baseCriticalChance;
+        }
 
         public override void Heal(float amount) => CurrentHP += (int) amount;
         
@@ -107,6 +141,18 @@ namespace Characters.PartyMembers
             level += 1;
             currentClass.IncreaseStats();
             LevelUpEvent?.Invoke(this);
+        }
+
+        public void ResetLevelUpAmount()
+        {
+            health.amountIncreasedBy = 0;
+            strength.amountIncreasedBy = 0;
+            magic.amountIncreasedBy = 0;
+            accuracy.amountIncreasedBy = 0;
+            initiative.amountIncreasedBy = 0;
+            defense.amountIncreasedBy = 0;
+            resistance.amountIncreasedBy = 0;
+            criticalChance.amountIncreasedBy = 0;
         }
     }
 }

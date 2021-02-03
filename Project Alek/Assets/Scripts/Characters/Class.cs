@@ -25,6 +25,9 @@ namespace Characters
 
         private const int MaxLevel = 10;
 
+        [Range(1,3)] [Tooltip("This number is multiplied by the normal amount of health gained per level up")]
+        public float healthIncreaseFactor;
+
         #region GrowthRates
         
         [Range(0,1)] [TabGroup("Tabs","Growth Rates")]
@@ -163,6 +166,11 @@ namespace Characters
             {
                 var count = 0;
                 var results = new List<string>();
+
+                var baseHealthIncrease = 15 * partyMember.level;
+                var totalHealthIncrease = baseHealthIncrease * healthIncreaseFactor;
+                partyMember.health.BaseValue += (int) totalHealthIncrease;
+                partyMember.health.amountIncreasedBy = (int) totalHealthIncrease;
 
                 if (CanIncreaseStrength)
                 {

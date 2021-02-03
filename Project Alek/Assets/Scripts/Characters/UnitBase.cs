@@ -58,31 +58,24 @@ namespace Characters
         [Space(20)]
         [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty, Title("Stats")]
         public CharacterStat health;
-        
         [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
         public CharacterStat strength;
-        
         [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
         public CharacterStat magic;
-        
         [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
         public CharacterStat accuracy;
-        
         [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty]
         public CharacterStat initiative;
-        
         [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
         public CharacterStat defense;
-        
         [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
         public CharacterStat resistance;
-        
         [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
         public CharacterStat criticalChance;
 
         [PropertySpace(SpaceBefore = 20, SpaceAfter = 20), TextArea(5,15), Title("Description"), HideLabel]
         public string  description;
-        
+
         [InlineProperty(LabelWidth = 115)]
         public struct ElementalResStruct
         {

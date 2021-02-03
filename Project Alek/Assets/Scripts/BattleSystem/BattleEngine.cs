@@ -278,9 +278,12 @@ namespace BattleSystem
             yield return Timing.WaitForSeconds(2f);
             battleResults.SetActive(true);
             var battleResultsUI = battleResults.GetComponent<BattleResultsUI>();
+            battleResultsUI.DisableUI();
             
             foreach (var member in _membersForThisBattle)
             {
+                member.ResetLevelUpAmount();
+                
                 var totalXp = _expGivers.Sum(giver =>
                     giver.CalculateExperience(member.level, member));
                 
@@ -298,11 +301,8 @@ namespace BattleSystem
             Timing.RunCoroutine(battleResultsUI.ShowLevelUps());
             yield return Timing.WaitForSeconds(0.3f);
             yield return Timing.WaitUntilFalse(() => battleResultsUI.showingLevelUps);
-            _membersForThisBattle.ForEach(m =>
-            {
-                m.currentClass.statsToIncrease.ForEach(s => s.amountIncreasedBy = 0);
-                m.currentClass.statsToIncrease = new List<CharacterStat>();
-            });
+            
+            _membersForThisBattle.ForEach(m => m.currentClass.statsToIncrease = new List<CharacterStat>());
 
             SceneLoadManager.Instance.LoadOverworld();
         }

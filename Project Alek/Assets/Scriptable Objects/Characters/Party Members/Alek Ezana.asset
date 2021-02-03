@@ -130,7 +130,7 @@ MonoBehaviour:
       Data: 10|System.Delegate[], mscorlib
     - Name: 
       Entry: 12
-      Data: 9
+      Data: 21
     - Name: 
       Entry: 7
       Data: 11|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
@@ -418,7 +418,7 @@ MonoBehaviour:
       Data: 30|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
     - Name: target
       Entry: 10
-      Data: 1
+      Data: 0
     - Name: declaringType
       Entry: 9
       Data: 12
@@ -431,6 +431,402 @@ MonoBehaviour:
     - Name: signature
       Entry: 7
       Data: 31|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 15
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 32|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 9
+      Data: 12
+    - Name: methodName
+      Entry: 1
+      Data: AddToBattle
+    - Name: delegateType
+      Entry: 9
+      Data: 13
+    - Name: signature
+      Entry: 7
+      Data: 33|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 15
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 34|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 9
+      Data: 12
+    - Name: methodName
+      Entry: 1
+      Data: AddToBattle
+    - Name: delegateType
+      Entry: 9
+      Data: 13
+    - Name: signature
+      Entry: 7
+      Data: 35|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 15
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 36|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 9
+      Data: 12
+    - Name: methodName
+      Entry: 1
+      Data: AddToBattle
+    - Name: delegateType
+      Entry: 9
+      Data: 13
+    - Name: signature
+      Entry: 7
+      Data: 37|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 15
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 38|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 9
+      Data: 12
+    - Name: methodName
+      Entry: 1
+      Data: AddToBattle
+    - Name: delegateType
+      Entry: 9
+      Data: 13
+    - Name: signature
+      Entry: 7
+      Data: 39|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 15
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 40|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 9
+      Data: 12
+    - Name: methodName
+      Entry: 1
+      Data: AddToBattle
+    - Name: delegateType
+      Entry: 9
+      Data: 13
+    - Name: signature
+      Entry: 7
+      Data: 41|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 15
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 42|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 9
+      Data: 12
+    - Name: methodName
+      Entry: 1
+      Data: AddToBattle
+    - Name: delegateType
+      Entry: 9
+      Data: 13
+    - Name: signature
+      Entry: 7
+      Data: 43|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 15
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 44|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 9
+      Data: 12
+    - Name: methodName
+      Entry: 1
+      Data: AddToBattle
+    - Name: delegateType
+      Entry: 9
+      Data: 13
+    - Name: signature
+      Entry: 7
+      Data: 45|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 15
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 46|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 9
+      Data: 12
+    - Name: methodName
+      Entry: 1
+      Data: AddToBattle
+    - Name: delegateType
+      Entry: 9
+      Data: 13
+    - Name: signature
+      Entry: 7
+      Data: 47|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 15
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 48|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 9
+      Data: 12
+    - Name: methodName
+      Entry: 1
+      Data: AddToBattle
+    - Name: delegateType
+      Entry: 9
+      Data: 13
+    - Name: signature
+      Entry: 7
+      Data: 49|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 15
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 50|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 9
+      Data: 12
+    - Name: methodName
+      Entry: 1
+      Data: AddToBattle
+    - Name: delegateType
+      Entry: 9
+      Data: 13
+    - Name: signature
+      Entry: 7
+      Data: 51|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 15
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 52|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 9
+      Data: 12
+    - Name: methodName
+      Entry: 1
+      Data: AddToBattle
+    - Name: delegateType
+      Entry: 9
+      Data: 13
+    - Name: signature
+      Entry: 7
+      Data: 53|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 15
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 54|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 1
+    - Name: declaringType
+      Entry: 9
+      Data: 12
+    - Name: methodName
+      Entry: 1
+      Data: AddToBattle
+    - Name: delegateType
+      Entry: 9
+      Data: 13
+    - Name: signature
+      Entry: 7
+      Data: 55|System.Type[], mscorlib
     - Name: 
       Entry: 12
       Data: 1
@@ -484,37 +880,37 @@ MonoBehaviour:
     type: 3}
   overworldPrefab: {fileID: 3316879971329093365, guid: 772144c440799804e8b9ab01558c159d,
     type: 3}
-  level: 4
+  level: 6
   health:
-    BaseValue: 1260
-    maxValue: 9999
-    amountIncreasedBy: 0
+    BaseValue: 1386
+    maxValue: 99999
+    amountIncreasedBy: 126
   strength:
-    BaseValue: 14
+    BaseValue: 20
+    maxValue: 99
+    amountIncreasedBy: 0
+  magic:
+    BaseValue: 18
     maxValue: 99
     amountIncreasedBy: 1
-  magic:
-    BaseValue: 11
-    maxValue: 99
-    amountIncreasedBy: 2
   accuracy:
-    BaseValue: 19
+    BaseValue: 23
     maxValue: 99
     amountIncreasedBy: 0
   initiative:
-    BaseValue: 7
+    BaseValue: 10
     maxValue: 99
     amountIncreasedBy: 0
   defense:
-    BaseValue: 13
+    BaseValue: 17
     maxValue: 99
-    amountIncreasedBy: 1
+    amountIncreasedBy: 0
   resistance:
-    BaseValue: 8
+    BaseValue: 16
     maxValue: 99
     amountIncreasedBy: 0
   criticalChance:
-    BaseValue: 8
+    BaseValue: 12
     maxValue: 99
     amountIncreasedBy: 0
   description: Bruh it is the one. The ONLY. The ONE and ONLY. The ONE and ONLY GOD
@@ -530,7 +926,7 @@ MonoBehaviour:
   overworldController: {fileID: 22100000, guid: 303372915b2401e479bccd7997ce110d,
     type: 2}
   positionInParty: 1
-  specialAttackBarVal: 0.90000015
+  specialAttackBarVal: 1
   weaponInventory: {fileID: 5917402227159465644, guid: 1d94ebccb9928a445b4a7e1dbacb9d53,
     type: 3}
   armorInventory: {fileID: 5917402227159465644, guid: 73160e3893c2b7843b6db9576b98ff50,
