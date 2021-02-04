@@ -114,7 +114,7 @@ namespace BattleSystem
 
         private static IEnumerator<float> SpecialAttack(UnitBase dealer)
         {
-            SpecialAttackCamController._onSpecialAttack?.Invoke(dealer);
+            SuperCloseupCamController._onSpecialAttack?.Invoke(dealer);
             dealer.Unit.onSpecialAttack?.Invoke();
             dealer.GetDamageValues(true);
             
@@ -142,7 +142,7 @@ namespace BattleSystem
             
             yield return Timing.WaitUntilFalse(() => dealer.AnimationHandler.performingSpecial);
             
-            SpecialAttackCamController._disableCam?.Invoke(dealer);
+            SuperCloseupCamController._disableCam?.Invoke(dealer);
         }
 
         private static IEnumerator<float> ExecuteAttack(UnitBase dealer)

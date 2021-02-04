@@ -203,3 +203,12 @@ MonoBehaviour:
   battleOptionsPanel: {fileID: 0}
   battlePanel: {fileID: 0}
   inventoryDisplay: {fileID: 0}
+  baseLevel: 1
+  baseHealth: 960
+  baseStrength: 9
+  baseMagic: 6
+  baseAccuracy: 11
+  baseInitiative: 5
+  baseDefense: 7
+  baseResistance: 5
+  baseCriticalChance: 2

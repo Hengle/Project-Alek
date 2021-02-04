@@ -43,6 +43,8 @@ namespace Characters.PartyMembers
         
         public CanvasGroup Container => inventoryDisplay.GetComponent<CanvasGroup>();
         public InventoryDisplay InventoryDisplay => inventoryDisplay.GetComponentInChildren<InventoryDisplay>();
+
+        #region BaseStats
         
         [TabGroup("Tabs", "Base Stats")]
         [SerializeField] private float baseLevel;
@@ -77,6 +79,8 @@ namespace Characters.PartyMembers
             resistance.BaseValue = baseResistance;
             criticalChance.BaseValue = baseCriticalChance;
         }
+        
+        #endregion
 
         public override void Heal(float amount) => CurrentHP += (int) amount;
         
@@ -121,7 +125,7 @@ namespace Characters.PartyMembers
                 
                 CurrentExperience++;
                 e++;
-                yield return Timing.WaitForSeconds(0.015f);
+                yield return Timing.WaitForSeconds(0.01f);
             }
         }
 

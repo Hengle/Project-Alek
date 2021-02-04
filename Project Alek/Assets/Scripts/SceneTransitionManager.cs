@@ -24,6 +24,7 @@ public class SceneTransitionManager : MonoBehaviour
 
     private void Start()
     {
+        // TODO: This doesn't need to be executed every scene?
         if (!volume.profile.TryGet(out lensDistortion))
         {
             Debug.LogError("Lens distortion component could not be found!");
@@ -32,8 +33,9 @@ public class SceneTransitionManager : MonoBehaviour
         lensDistortion.intensity.overrideState = true;
 
         if (SceneManager.GetActiveScene().name == "Battle") Timing.RunCoroutine(ResetLens());
-        else if (SceneManager.GetActiveScene().name == "Overworld Demo")
-            Timing.RunCoroutine(OverworldTransition(0.01f, false));
+        else Timing.RunCoroutine(OverworldTransition(0.01f, false));
+        // else if (SceneManager.GetActiveScene().name == "Overworld Demo")
+        //     Timing.RunCoroutine(OverworldTransition(0.01f, false));
     }
 
     public IEnumerator<float> OverworldTransition(float alpha, bool fromZero)

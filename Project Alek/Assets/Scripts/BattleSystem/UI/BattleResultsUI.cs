@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Characters.PartyMembers;
 using MEC;
-using SingletonScriptableObject;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,7 +54,7 @@ namespace BattleSystem.UI
             while (membersThatLeveledUp.Count > 0)
             {
                 var member = membersThatLeveledUp.Dequeue();
-                SpecialAttackCamController._onLevelUpCloseUp?.Invoke(member);
+                SuperCloseupCamController._onLevelUpCloseUp?.Invoke(member);
 
                 var hpText = $"HP: {member.health.BaseValue} (+{member.health.amountIncreasedBy})\n";
 
@@ -105,7 +104,7 @@ namespace BattleSystem.UI
                 yield return Timing.WaitUntilTrue(() => BattleInput._controls.Battle.Confirm.triggered);
                 
                 levelUpPanel.SetActive(false);
-                SpecialAttackCamController._disableCam?.Invoke(member);
+                SuperCloseupCamController._disableCam?.Invoke(member);
             }
 
             showingLevelUps = false;

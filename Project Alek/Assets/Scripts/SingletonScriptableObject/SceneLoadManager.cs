@@ -23,6 +23,8 @@ namespace SingletonScriptableObject
             operation.allowSceneActivation = false;
             Timing.RunCoroutine(SceneTransitionManager.Instance.OverworldTransition(1, true).
                 Append(() => operation.allowSceneActivation = true));
+
+            //SceneManager.LoadScene("Scenes/Overworld Essentials", LoadSceneMode.Additive);
         }
     
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]

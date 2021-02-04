@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7613875682321761262}
-  m_LocalRotation: {x: -0.0031010807, y: 0.008995704, z: 0.000029048422, w: 0.9999548}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 76.31767, y: 97.95454, z: 12.362164}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -164,7 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09584ffd49c06ca49a1c58e9caf1fa00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpawnEvent: {fileID: 11400000, guid: fa1780f141203c84391fbdd1e227ce07, type: 2}
 --- !u!114 &1364590196412110721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +179,8 @@ MonoBehaviour:
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _previouslyRegisteredEvent: {fileID: 0}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: fa1780f141203c84391fbdd1e227ce07,
+    type: 2}
   _event: {fileID: 11400000, guid: fa1780f141203c84391fbdd1e227ce07, type: 2}
   _response:
     m_PersistentCalls:
