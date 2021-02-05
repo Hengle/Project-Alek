@@ -14,15 +14,17 @@ namespace Overworld
         private SpriteRenderer spriteRenderer;
 
         private Vector3 walkPoint;
-        private Vector3 DistanceToWalkPoint => transform.position - walkPoint;
+        private Vector3 DistanceToWalkPoint =>
+            transform.position - walkPoint;
 
-        [SerializeField] private Transform player;
+        private Transform player;
+        
         [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
 
         [SerializeField] private float normalSpeed;
         [SerializeField] private float chaseSpeed;
         [SerializeField] private float walkPointRange;
-        [SerializeField] private float range;
+        [SerializeField] private float aggroRange;
         [SerializeField] private float waitTime;
 
         private float tempWaitTime;
@@ -37,23 +39,30 @@ namespace Overworld
         private bool walkPointSet;
 
         private bool PlayerIsTooFarAway => Math.Abs(transform.position.x - player.position.x) > 30f;
-        private bool PlayerOnRightSide => transform.position.x - player.position.x <= 0;
-        private bool PlayerOnLeftSide => transform.position.x - player.position.x >= 0;
-        private bool WalkPointReached => DistanceToWalkPoint.magnitude < 1f;
-        private bool IsFacingAwayFromPlayer =>
-            PlayerOnRightSide && spriteRenderer.flipX || PlayerOnLeftSide && !spriteRenderer.flipX;
         
-        private bool PlayerInRange {
-            get {
-                playerInRange = Physics.CheckSphere(transform.position, range, whatIsPlayer);
+        private bool PlayerOnRightSide => transform.position.x - player.position.x <= 0;
+        
+        private bool PlayerOnLeftSide => transform.position.x - player.position.x >= 0;
+        
+        private bool WalkPointReached => DistanceToWalkPoint.magnitude < 1f;
+        
+        private bool IsFacingAwayFromPlayer => PlayerOnRightSide &&
+            spriteRenderer.flipX || PlayerOnLeftSide && !spriteRenderer.flipX;
+        
+        private bool PlayerInRange
+        {
+            get 
+            {
+                playerInRange = Physics.CheckSphere(transform.position, aggroRange, whatIsPlayer);
                 if (!playerInRange) canChase = false;
                 return playerInRange;
             }
         }
+        
         private bool InRangeAndFacingTarget => PlayerInRange && !IsFacingAwayFromPlayer;
 
-        private bool DestinationIsOnWalkableGround =>
-            Physics.Raycast(walkPoint, -transform.up, 5f, whatIsGround);
+        private bool DestinationIsOnWalkableGround => Physics.Raycast
+            (walkPoint, -transform.up, 5f, whatIsGround);
 
         private static readonly int IsWalkingHash = Animator.StringToHash("isWalking");
         private static readonly int IsRunningHash = Animator.StringToHash("isRunning");
@@ -65,14 +74,14 @@ namespace Overworld
             enemy = GetComponent<NavMeshAgent>();
             anim = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
-
+            
             player = GameObject.FindWithTag("Player").transform;
             
             anim.SetInteger(AnimState, 0);
-            anim.SetBool(IsWalkingHash, true);
+            tempWaitTime = 3;
         }
 
-        private void OnDrawGizmosSelected() => Gizmos.DrawWireSphere(transform.position, range);
+        private void OnDrawGizmosSelected() => Gizmos.DrawWireSphere(transform.position, aggroRange);
 
         private void Update()
         {
@@ -108,7 +117,7 @@ namespace Overworld
         {
             var randomZ = Random.Range(-walkPointRange, walkPointRange);
             var randomX = Random.Range(-walkPointRange, walkPointRange);
-            var position = transform.position;
+            var position = transform.parent.position;
             
             walkPoint = new Vector3(position.x + randomX, position.y, position.z + randomZ);
             walkPointSet = DestinationIsOnWalkableGround;

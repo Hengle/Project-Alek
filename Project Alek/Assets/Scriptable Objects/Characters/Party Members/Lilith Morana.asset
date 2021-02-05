@@ -178,11 +178,11 @@ MonoBehaviour:
   health:
     BaseValue: 975
     maxValue: 99999
-    amountIncreasedBy: 90
+    amountIncreasedBy: 0
   strength:
     BaseValue: 8
     maxValue: 99
-    amountIncreasedBy: 1
+    amountIncreasedBy: 0
   magic:
     BaseValue: 4
     maxValue: 99
@@ -190,11 +190,11 @@ MonoBehaviour:
   accuracy:
     BaseValue: 12
     maxValue: 99
-    amountIncreasedBy: 1
+    amountIncreasedBy: 0
   initiative:
     BaseValue: 11
     maxValue: 99
-    amountIncreasedBy: 1
+    amountIncreasedBy: 0
   defense:
     BaseValue: 5
     maxValue: 99

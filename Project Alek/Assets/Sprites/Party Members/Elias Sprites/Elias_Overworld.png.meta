@@ -1,0 +1,1352 @@
+fileFormatVersion: 2
+guid: 4c7c55fb26577674aa31c8206a2f20dd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3604214982828269848
+    second: Elias_Idle_Right_0
+  - first:
+      213: 6606696383794483402
+    second: Elias_Idle_Right_1
+  - first:
+      213: -6000925029971594745
+    second: Elias_Idle_Right_2
+  - first:
+      213: 8333033524466565060
+    second: Elias_Idle_Right_3
+  - first:
+      213: -6029303111448404464
+    second: Elias_Idle_Right_4
+  - first:
+      213: 8259002212937652335
+    second: Elias_Idle_Right_5
+  - first:
+      213: 4610904810170626128
+    second: Elias_Idle_Right_6
+  - first:
+      213: -3222969725342340218
+    second: Elias_Idle_Right_7
+  - first:
+      213: 6003064681520000366
+    second: Elias_Idle_Right_8
+  - first:
+      213: 1103198556707372303
+    second: Elias_Idle_Left_0
+  - first:
+      213: 3728986810348319665
+    second: Elias_Idle_Left_1
+  - first:
+      213: -7676779968632143414
+    second: Elias_Idle_Left_2
+  - first:
+      213: -4761596340881369735
+    second: Elias_Idle_Left_3
+  - first:
+      213: -3127774899295111202
+    second: Elias_Idle_Left_4
+  - first:
+      213: 933236894032400055
+    second: Elias_Idle_Left_5
+  - first:
+      213: 1692321983630380053
+    second: Elias_Idle_Left_6
+  - first:
+      213: 5408813307737122979
+    second: Elias_Idle_Left_7
+  - first:
+      213: 1249854049934851639
+    second: Elias_Idle_Left_8
+  - first:
+      213: -7103841350711679116
+    second: Elias_Run_Right_0
+  - first:
+      213: 9152742132763129853
+    second: Elias_Run_Right_1
+  - first:
+      213: -546966431025796670
+    second: Elias_Run_Right_2
+  - first:
+      213: -1802044854728624802
+    second: Elias_Run_Right_3
+  - first:
+      213: -1363971914739891267
+    second: Elias_Run_Right_4
+  - first:
+      213: -5440168883708415640
+    second: Elias_Run_Right_5
+  - first:
+      213: -1340893741676009895
+    second: Elias_Run_Right_6
+  - first:
+      213: 687605281918545467
+    second: Elias_Run_Right_7
+  - first:
+      213: 2526524985690199874
+    second: Elias_Run_Left_0
+  - first:
+      213: 8469580918354665701
+    second: Elias_Run_Left_1
+  - first:
+      213: 2395859058252948539
+    second: Elias_Run_Left_2
+  - first:
+      213: -8059290467108862
+    second: Elias_Run_Left_3
+  - first:
+      213: -6977699327083626862
+    second: Elias_Run_Left_4
+  - first:
+      213: 6493142074189624730
+    second: Elias_Run_Left_5
+  - first:
+      213: 6474488308952773234
+    second: Elias_Run_Left_6
+  - first:
+      213: -6275623090432896228
+    second: Elias_Run_Left_7
+  - first:
+      213: -3218136203776039117
+    second: Elias_Walk_Right_0
+  - first:
+      213: 7176701345972490959
+    second: Elias_Walk_Right_1
+  - first:
+      213: 809889937215129131
+    second: Elias_Walk_Right_2
+  - first:
+      213: -6289764792747505478
+    second: Elias_Walk_Right_3
+  - first:
+      213: 8662475181995986282
+    second: Elias_Walk_Right_4
+  - first:
+      213: -8664197580049155168
+    second: Elias_Walk_Right_5
+  - first:
+      213: -829491065530321111
+    second: Elias_Walk_Right_6
+  - first:
+      213: 2814203332726178467
+    second: Elias_Walk_Right_7
+  - first:
+      213: -6036905974990818890
+    second: Elias_Walk_Left_0
+  - first:
+      213: 7306302939929376746
+    second: Elias_Walk_Left_1
+  - first:
+      213: -5601948673463702961
+    second: Elias_Walk_Left_2
+  - first:
+      213: -1058407208281613816
+    second: Elias_Walk_Left_3
+  - first:
+      213: -657508102863766167
+    second: Elias_Walk_Left_4
+  - first:
+      213: 1608345696887039542
+    second: Elias_Walk_Left_5
+  - first:
+      213: 1084500236885356122
+    second: Elias_Walk_Left_6
+  - first:
+      213: 5881007093077407346
+    second: Elias_Walk_Left_7
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 2
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Elias_Idle_Right_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 329
+        width: 16
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 811ae915e6eb40230800000000000000
+      internalID: 3604214982828269848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Idle_Right_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 329
+        width: 16
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac09de67b53bfab50800000000000000
+      internalID: 6606696383794483402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Idle_Right_2
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 329
+        width: 16
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 702fac0ca7e68bca0800000000000000
+      internalID: -6000925029971594745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Idle_Right_3
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 329
+        width: 16
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cf304717d1e4a370800000000000000
+      internalID: 8333033524466565060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Idle_Right_4
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 329
+        width: 16
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01ed5f6c3cc935ca0800000000000000
+      internalID: -6029303111448404464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Idle_Right_5
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 329
+        width: 16
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f68505d21cedd9270800000000000000
+      internalID: 8259002212937652335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Idle_Right_6
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 329
+        width: 16
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0503c57ce793dff30800000000000000
+      internalID: 4610904810170626128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Idle_Right_7
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 329
+        width: 16
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68ba12f5c16b543d0800000000000000
+      internalID: -3222969725342340218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Idle_Right_8
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 329
+        width: 16
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6d61b1b58b2f4350800000000000000
+      internalID: 6003064681520000366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Idle_Left_0
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 265
+        width: 16
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0d34490e395f4f00800000000000000
+      internalID: 1103198556707372303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Idle_Left_1
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 265
+        width: 16
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b3bdea3fb500c330800000000000000
+      internalID: 3728986810348319665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Idle_Left_2
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 265
+        width: 16
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac1c8d6ba49967590800000000000000
+      internalID: -7676779968632143414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Idle_Left_3
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 265
+        width: 16
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97557f12b596bedb0800000000000000
+      internalID: -4761596340881369735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Idle_Left_4
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 265
+        width: 16
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed7b12efc49e794d0800000000000000
+      internalID: -3127774899295111202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Idle_Left_5
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 265
+        width: 16
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7be0718b20683fc00800000000000000
+      internalID: 933236894032400055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Idle_Left_6
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 265
+        width: 16
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51c8fd7b0e55c7710800000000000000
+      internalID: 1692321983630380053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Idle_Left_7
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 265
+        width: 16
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a8a318db07ff0b40800000000000000
+      internalID: 5408813307737122979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Idle_Left_8
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 265
+        width: 16
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73e337be2af585110800000000000000
+      internalID: 1249854049934851639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Run_Right_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 206
+        width: 31
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4776916ede51a6d90800000000000000
+      internalID: -7103841350711679116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Run_Right_1
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 204
+        width: 32
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df7f818f972150f70800000000000000
+      internalID: 9152742132763129853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Run_Right_2
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 201
+        width: 23
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c9e4aecde8c868f0800000000000000
+      internalID: -546966431025796670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Run_Right_3
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 201
+        width: 16
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e55749490c9ddf6e0800000000000000
+      internalID: -1802044854728624802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Run_Right_4
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 206
+        width: 30
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db3c15a25c2321de0800000000000000
+      internalID: -1363971914739891267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Run_Right_5
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 204
+        width: 28
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8613d683933a084b0800000000000000
+      internalID: -5440168883708415640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Run_Right_6
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 201
+        width: 23
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9566bdd0f30346de0800000000000000
+      internalID: -1340893741676009895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Run_Right_7
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 201
+        width: 16
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3eef6e5c5dda8900800000000000000
+      internalID: 687605281918545467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Run_Left_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 142
+        width: 31
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2479630a615001320800000000000000
+      internalID: 2526524985690199874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Run_Left_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 140
+        width: 32
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e0e4f2b8fef98570800000000000000
+      internalID: 8469580918354665701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Run_Left_2
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 137
+        width: 23
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b34a113ae1dcf3120800000000000000
+      internalID: 2395859058252948539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Run_Left_3
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 137
+        width: 16
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 208f0963e1e53eff0800000000000000
+      internalID: -8059290467108862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Run_Left_4
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 142
+        width: 30
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29eb2b37e6b3a2f90800000000000000
+      internalID: -6977699327083626862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Run_Left_5
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 140
+        width: 28
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a95373870564c1a50800000000000000
+      internalID: 6493142074189624730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Run_Left_6
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 137
+        width: 23
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 272bc8d40d00ad950800000000000000
+      internalID: 6474488308952773234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Run_Left_7
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 137
+        width: 16
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1312868c0288e8a0800000000000000
+      internalID: -6275623090432896228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Walk_Right_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 73
+        width: 23
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 337ea1f4c22e653d0800000000000000
+      internalID: -3218136203776039117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Walk_Right_1
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 73
+        width: 17
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc212c1b9d3c89360800000000000000
+      internalID: 7176701345972490959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Walk_Right_2
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 73
+        width: 16
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b260fde5b9e4d3b00800000000000000
+      internalID: 809889937215129131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Walk_Right_3
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 73
+        width: 20
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab8c68fde3446b8a0800000000000000
+      internalID: -6289764792747505478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Walk_Right_4
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 73
+        width: 25
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6d0282484b473870800000000000000
+      internalID: 8662475181995986282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Walk_Right_5
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 73
+        width: 20
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0abfe51b43692c780800000000000000
+      internalID: -8664197580049155168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Walk_Right_6
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 73
+        width: 16
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92774be454e0d74f0800000000000000
+      internalID: -829491065530321111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Walk_Right_7
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 73
+        width: 13
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a24dd4550f0e0720800000000000000
+      internalID: 2814203332726178467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Walk_Left_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 9
+        width: 23
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b13d3a200a983ca0800000000000000
+      internalID: -6036905974990818890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Walk_Left_1
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 9
+        width: 17
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae7f1eb30d3356560800000000000000
+      internalID: 7306302939929376746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Walk_Left_2
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 9
+        width: 16
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4aa934ac51e142b0800000000000000
+      internalID: -5601948673463702961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Walk_Left_3
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 9
+        width: 20
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80a59a27048cf41f0800000000000000
+      internalID: -1058407208281613816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Walk_Left_4
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 9
+        width: 25
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96d3dd33ddf00e6f0800000000000000
+      internalID: -657508102863766167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Walk_Left_5
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 9
+        width: 20
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 636eaf2d3edf15610800000000000000
+      internalID: 1608345696887039542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Walk_Left_6
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 9
+        width: 16
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5ee062383bec0f00800000000000000
+      internalID: 1084500236885356122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elias_Walk_Left_7
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 9
+        width: 13
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2767e60dac88d9150800000000000000
+      internalID: 5881007093077407346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: a850978eff8b0d94482fc427f06f7010
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

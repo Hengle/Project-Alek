@@ -10,7 +10,9 @@ namespace Kryz.CharacterStats
 	public class CharacterStat
 	{
 		[SerializeField] [HorizontalGroup("BaseValue")]
-		[HideLabel] [LabelWidth(150)] [PropertyRange(1,nameof(maxValue))]
+		[HideLabel] [LabelWidth(150)] 
+		[PropertyRange(1,nameof(maxValue))]
+		//[PropertyRange(1,99999)]
 		public float BaseValue;
 
 		protected bool isDirty = true;
@@ -30,7 +32,7 @@ namespace Kryz.CharacterStats
 		}
 
 		[SerializeField] [VerticalGroup("BaseValue/Max")] [LabelWidth(30)] [LabelText("Max")]
-		public float maxValue;
+		private float maxValue;
 
 		[HideInInspector] public float amountIncreasedBy;
 		

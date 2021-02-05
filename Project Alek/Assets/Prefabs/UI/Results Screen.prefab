@@ -156,8 +156,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Challenges Completed:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3508bc5858ef91f458a089d0807d535b, type: 2}
-  m_sharedMaterial: {fileID: 3553237160679393667, guid: 3508bc5858ef91f458a089d0807d535b,
+  m_fontAsset: {fileID: 11400000, guid: 6d7034d88addbc949961caf2f80ee218, type: 2}
+  m_sharedMaterial: {fileID: -126418380975411606, guid: 6d7034d88addbc949961caf2f80ee218,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -625,8 +625,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Items Obtained :'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3508bc5858ef91f458a089d0807d535b, type: 2}
-  m_sharedMaterial: {fileID: 3553237160679393667, guid: 3508bc5858ef91f458a089d0807d535b,
+  m_fontAsset: {fileID: 11400000, guid: 6d7034d88addbc949961caf2f80ee218, type: 2}
+  m_sharedMaterial: {fileID: -126418380975411606, guid: 6d7034d88addbc949961caf2f80ee218,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -847,8 +847,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'XP Multiplier:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3508bc5858ef91f458a089d0807d535b, type: 2}
-  m_sharedMaterial: {fileID: 3553237160679393667, guid: 3508bc5858ef91f458a089d0807d535b,
+  m_fontAsset: {fileID: 11400000, guid: 6d7034d88addbc949961caf2f80ee218, type: 2}
+  m_sharedMaterial: {fileID: -126418380975411606, guid: 6d7034d88addbc949961caf2f80ee218,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

@@ -43,3 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9703c850eb134e57a434c12ab86da062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSpawnEvent: {fileID: 11400000, guid: fa1780f141203c84391fbdd1e227ce07, type: 2}
+  vCam: {fileID: 0}
+  playerPrefab: {fileID: 3316879971329093365, guid: 772144c440799804e8b9ab01558c159d,
+    type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f722081b3e7717849b9b80bdafe2891c, type: 3}
   m_Name: CameraRotation
   m_EditorClassIdentifier: 
-  _value: {x: 0, y: 90, z: 0, w: 90}
+  _value: {x: 0, y: 0, z: 0, w: 90}
   _readOnly: 0
   _raiseWarning: 1
   _isClamped: 0

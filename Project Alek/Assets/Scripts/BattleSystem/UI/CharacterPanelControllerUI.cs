@@ -43,7 +43,7 @@ namespace BattleSystem.UI
 
             icon.sprite = member.icon;
             nameUGUI.text = member.characterName.ToUpper();
-            healthUGUI.text = $"HP: {member.health.BaseValue}";
+            healthUGUI.text = $"HP {member.health.BaseValue}";
             slider.maxValue = member.health.BaseValue;
             slider.value = member.health.BaseValue;
 
@@ -70,7 +70,7 @@ namespace BattleSystem.UI
         {
             fillRectImage.color = member.Color;
             slider.value = member.Unit.currentHP;
-            healthUGUI.text = $"HP: {member.Unit.currentHP}";
+            healthUGUI.text = $"HP {member.Unit.currentHP}";
         }
 
         private void OnSpecialBarValueChanged(float value)

@@ -177,9 +177,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   normalSpeed: 3.5
-  chaseSpeed: 7
-  walkPointRange: 5
-  range: 15
+  chaseSpeed: 6
+  walkPointRange: 10
+  aggroRange: 10
   waitTime: 3
   playerInRange: 0
   canChase: 0

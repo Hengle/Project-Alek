@@ -123,7 +123,7 @@ namespace BattleSystem.Generator
                     AddListener(delegate { ChooseTarget._isMultiTarget = true; });
                     
                 optionButton.GetComponent<InfoBoxUI>().information = 
-                    $"{character.abilities[abilityListIndex].description} ( {character.abilities[abilityListIndex].actionCost} AP )";
+                    $"{character.abilities[abilityListIndex].description}\n({character.abilities[abilityListIndex].actionCost} AP)";
                 
                 ability.attackState = abilityListIndex+1;
                 character.Unit.animOverride[$"Ability {abilityListIndex+1}"] = ability.animation;

@@ -16,7 +16,6 @@ namespace Overworld
         }
 
         private void OnTriggerEnter(Collider other) => vCamera.m_BoundingVolume = boxCollider;
-
         private void OnTriggerExit(Collider other) => vCamera.m_BoundingVolume = mainSceneCollider;
     }
 }

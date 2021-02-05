@@ -150,16 +150,17 @@ MonoBehaviour:
   characterName: Leandra Valentina
   characterPrefab: {fileID: 1526218485019349028, guid: 55418c9ff21905d4c9ac6a87a12001cb,
     type: 3}
-  overworldPrefab: {fileID: 0}
+  overworldPrefab: {fileID: 3316879971329093365, guid: 772144c440799804e8b9ab01558c159d,
+    type: 3}
   level: 1
   health:
     BaseValue: 1225
     maxValue: 99999
-    amountIncreasedBy: 101
+    amountIncreasedBy: 0
   strength:
     BaseValue: 12
     maxValue: 99
-    amountIncreasedBy: 1
+    amountIncreasedBy: 0
   magic:
     BaseValue: 5
     maxValue: 99
@@ -183,7 +184,7 @@ MonoBehaviour:
   criticalChance:
     BaseValue: 2
     maxValue: 99
-    amountIncreasedBy: 1
+    amountIncreasedBy: 0
   description: This is a description for yah girl Leandra. She is boss and won't
     take anyone's crap. Uggghhh extra stuff to increase text count.
   weaponMight: 6
@@ -195,7 +196,7 @@ MonoBehaviour:
   currentClass: {fileID: 11400000, guid: 83e5cd2b65fcca14d8a106a0fd644fe6, type: 2}
   overworldController: {fileID: 22100000, guid: 1647280e04625e440b25e30c6e57db80,
     type: 2}
-  positionInParty: 2
+  positionInParty: 1
   specialAttackBarVal: 1
   weaponInventory: {fileID: 2363339618168879057, guid: 3b3a696505e47b2409e90ac00429c493,
     type: 3}

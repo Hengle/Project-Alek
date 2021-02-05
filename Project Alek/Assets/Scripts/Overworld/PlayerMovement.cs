@@ -12,8 +12,8 @@ namespace Overworld
         private Vector2 currentMovement;
         
         private int speed;
-        public int walkSpeed = 5;
-        public int runSpeed = 10;
+        [SerializeField] private int walkSpeed = 5;
+        [SerializeField] private int runSpeed = 10;
         
         private static readonly int IsWalkingHash = Animator.StringToHash("isWalking");
         private static readonly int IsRunningHash = Animator.StringToHash("isRunning");
@@ -56,14 +56,12 @@ namespace Overworld
             if (movementPressed && runPressed && !isRunning) { anim.SetBool(IsRunningHash, true); speed = runSpeed; }
             if (!movementPressed || !runPressed && isRunning) { anim.SetBool(IsRunningHash, false); speed = walkSpeed; }
 
-            //var newPosition = new Vector3(currentMovement.x, 0, currentMovement.y);
-
-            var forwardPos = transform.forward * currentMovement.y;
-            var rightPos = transform.right * currentMovement.x;
+            var playerTransform = transform;
+            var forwardPos = playerTransform.forward * currentMovement.y;
+            var rightPos = playerTransform.right * currentMovement.x;
             var finalPos = forwardPos + rightPos;
-            
-            //rb.MovePosition(transform.position + newPosition * (speed * Time.fixedDeltaTime));
-            rb.MovePosition(transform.position + finalPos * (speed * Time.fixedDeltaTime));
+ 
+            rb.MovePosition(playerTransform.position + finalPos * (speed * Time.fixedDeltaTime));
         }
 
         private void OnEnable() => controls.Enable();

@@ -65,7 +65,8 @@ namespace Characters.PartyMembers
         [TabGroup("Tabs", "Base Stats")]
         [SerializeField] private float baseCriticalChance;
 
-        [VerticalGroup("Basic/Info")] [Button("Reset to Base")]
+        [VerticalGroup("Basic/Info")] 
+        [Button("Reset to Base")]
         private void ResetToBase()
         {
             level = (int) baseLevel;
