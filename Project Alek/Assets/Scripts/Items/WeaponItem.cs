@@ -41,7 +41,39 @@ namespace MoreMountains.InventoryEngine
 			partyMember.magicMight = magicMight;
 			partyMember.weaponAccuracy = weaponAccuracy;
 			partyMember.weaponCriticalChance = weaponCriticalChance;
+			
+			//AddMods();
+			AddModsDirect();
 
+			// For some stupid fucking reason this line of code causes the equipped weapon to be set to null when exiting play mode
+			//partyMember.equippedWeapon = this;
+			return true;
+		}
+
+		private void AddModsDirect()
+		{
+			partyMember.strength.BaseValue += strength;
+			partyMember.magic.BaseValue += magic;
+			partyMember.accuracy.BaseValue += accuracy;
+			partyMember.initiative.BaseValue += initiative;
+			partyMember.defense.BaseValue += defense;
+			partyMember.resistance.BaseValue += resistance;
+			partyMember.criticalChance.BaseValue += criticalChance;
+		}
+
+		private void RemoveModsDirect()
+		{
+			partyMember.strength.BaseValue -= strength;
+			partyMember.magic.BaseValue -= magic;
+			partyMember.accuracy.BaseValue -= accuracy;
+			partyMember.initiative.BaseValue -= initiative;
+			partyMember.defense.BaseValue -= defense;
+			partyMember.resistance.BaseValue -= resistance;
+			partyMember.criticalChance.BaseValue -= criticalChance;
+		}
+
+		private void AddMods()
+		{
 			if (strength > 0) partyMember.strength.AddModifier(new StatModifier(strength, StatModType.Flat, this));
 			if (magic > 0) partyMember.magic.AddModifier(new StatModifier(magic, StatModType.Flat, this));
 			if (accuracy > 0) partyMember.accuracy.AddModifier(new StatModifier(accuracy, StatModType.Flat, this));
@@ -49,10 +81,18 @@ namespace MoreMountains.InventoryEngine
 			if (defense > 0) partyMember.defense.AddModifier(new StatModifier(defense, StatModType.Flat, this));
 			if (resistance > 0) partyMember.resistance.AddModifier(new StatModifier(resistance, StatModType.Flat, this));
 			if (criticalChance > 0) partyMember.criticalChance.AddModifier(new StatModifier(criticalChance, StatModType.Flat, this));
-			
-			// For some stupid fucking reason this line of code causes the equipped weapon to be set to null when exiting play mode
-			//partyMember.equippedWeapon = this;
-			return true;
+		}
+
+		private void RemoveMods()
+		{
+			partyMember.health.RemoveAllModifiersFromSource(this);
+			partyMember.strength.RemoveAllModifiersFromSource(this);
+			partyMember.magic.RemoveAllModifiersFromSource(this);
+			partyMember.accuracy.RemoveAllModifiersFromSource(this);
+			partyMember.initiative.RemoveAllModifiersFromSource(this);
+			partyMember.defense.RemoveAllModifiersFromSource(this);
+			partyMember.resistance.RemoveAllModifiersFromSource(this);
+			partyMember.criticalChance.RemoveAllModifiersFromSource(this);
 		}
 		
 		public override bool UnEquip()
@@ -64,14 +104,8 @@ namespace MoreMountains.InventoryEngine
 			partyMember.weaponAccuracy = 0;
 			partyMember.weaponCriticalChance = 0;
 			
-			partyMember.health.RemoveAllModifiersFromSource(this);
-			partyMember.strength.RemoveAllModifiersFromSource(this);
-			partyMember.magic.RemoveAllModifiersFromSource(this);
-			partyMember.accuracy.RemoveAllModifiersFromSource(this);
-			partyMember.initiative.RemoveAllModifiersFromSource(this);
-			partyMember.defense.RemoveAllModifiersFromSource(this);
-			partyMember.resistance.RemoveAllModifiersFromSource(this);
-			partyMember.criticalChance.RemoveAllModifiersFromSource(this);
+			RemoveMods();
+			RemoveModsDirect();
             return true;
         }
 	}

@@ -175,28 +175,36 @@ MonoBehaviour:
   level: 3
   health:
     BaseValue: 1225
-    maxValue: 9999
+    maxValue: 99999
+    amountIncreasedBy: 0
   strength:
     BaseValue: 4
     maxValue: 99
+    amountIncreasedBy: 0
   magic:
     BaseValue: 11
     maxValue: 99
+    amountIncreasedBy: 0
   accuracy:
     BaseValue: 13
     maxValue: 99
+    amountIncreasedBy: 0
   initiative:
     BaseValue: 6
     maxValue: 99
+    amountIncreasedBy: 0
   defense:
     BaseValue: 7
     maxValue: 99
+    amountIncreasedBy: 0
   resistance:
     BaseValue: 14
     maxValue: 99
+    amountIncreasedBy: 0
   criticalChance:
     BaseValue: 4
     maxValue: 99
+    amountIncreasedBy: 0
   description: ewww
   weaponMight: 3
   magicMight: 12
@@ -204,6 +212,6 @@ MonoBehaviour:
   weaponCriticalChance: 2
   abilities:
   - {fileID: 11400000, guid: e558d404ab0ced340bb9314e1e677569, type: 2}
-  maxAP: 6
+  overworldPrefab: {fileID: 0}
   maxShieldCount: 1
   baseExperience: 150

@@ -175,34 +175,42 @@ MonoBehaviour:
   level: 4
   health:
     BaseValue: 1140
-    maxValue: 9999
+    maxValue: 99999
+    amountIncreasedBy: 0
   strength:
     BaseValue: 6
     maxValue: 99
+    amountIncreasedBy: 0
   magic:
     BaseValue: 9
     maxValue: 99
+    amountIncreasedBy: 0
   accuracy:
     BaseValue: 12
     maxValue: 99
+    amountIncreasedBy: 0
   initiative:
     BaseValue: 8
     maxValue: 99
+    amountIncreasedBy: 0
   defense:
     BaseValue: 5
     maxValue: 99
+    amountIncreasedBy: 0
   resistance:
     BaseValue: 14
     maxValue: 99
+    amountIncreasedBy: 0
   criticalChance:
     BaseValue: 3
     maxValue: 99
+    amountIncreasedBy: 0
   description: what a shame...
   weaponMight: 3
   magicMight: 11
   weaponAccuracy: 80
   weaponCriticalChance: 5
   abilities: []
-  maxAP: 6
+  overworldPrefab: {fileID: 0}
   maxShieldCount: 2
   baseExperience: 175

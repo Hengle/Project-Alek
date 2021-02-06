@@ -302,7 +302,11 @@ namespace BattleSystem
             yield return Timing.WaitForSeconds(0.3f);
             yield return Timing.WaitUntilFalse(() => battleResultsUI.showingLevelUps);
             
-            _membersForThisBattle.ForEach(m => m.currentClass.statsToIncrease = new List<CharacterStat>());
+            _membersForThisBattle.ForEach(m =>
+            {
+                m.currentClass.statsToIncrease = new List<CharacterStat>();
+                //m.weaponInventory
+            });
 
             SceneLoadManager.Instance.LoadOverworld();
         }

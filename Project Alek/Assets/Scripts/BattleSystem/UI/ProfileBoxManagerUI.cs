@@ -8,6 +8,7 @@ using Sirenix.Utilities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace BattleSystem.UI
@@ -208,7 +209,7 @@ namespace BattleSystem.UI
             isOpen = false;
         }
 
-        private void OnProfileBoxButton()
+        private void OnProfileBoxButton(InputAction.CallbackContext ctx)
         {
             if (!BattleInput._canOpenBox) return;
             if (!EventSystem.current.currentSelectedGameObject.TryGetComponent(out Unit unit)) return;
@@ -289,8 +290,10 @@ namespace BattleSystem.UI
             unitBase.onStatusEffectReceived -= RevealWeakness;
             unitBase.onStatusEffectReceived -= RevealResistance;
             unitBase.onWeaponDamageTypeReceived -= RevealWeakness;
+            
+            BattleInput._controls.Battle.TopButton.performed -= OnProfileBoxButton;
         }
 
-        private void OnEnable() => BattleInput._controls.Battle.TopButton.performed += ctx => OnProfileBoxButton();
+        private void OnEnable() => BattleInput._controls.Battle.TopButton.performed += OnProfileBoxButton;
     }
 }

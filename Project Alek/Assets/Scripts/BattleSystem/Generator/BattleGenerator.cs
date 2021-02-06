@@ -99,7 +99,8 @@ namespace BattleSystem.Generator
         
         private static void SetAbilityMenuOptions(PartyMember character)
         {
-            var abilityMenu = character.battlePanel.transform.Find("Battle Menu").transform.Find("Mask").transform.Find("Ability Menu").transform;
+            var abilityMenu = character.battlePanel.transform.Find("Battle Menu").
+                transform.Find("Mask").transform.Find("Ability Menu").transform;
             var abilityListIndex = 0;
             
             while (character.abilities.Count > 5) character.abilities.Remove(character.abilities[character.abilities.Count-1]);
@@ -122,8 +123,9 @@ namespace BattleSystem.Generator
                 if (character.abilities[abilityListIndex].isMultiTarget) optionButton.GetComponent<Button>().onClick.
                     AddListener(delegate { ChooseTarget._isMultiTarget = true; });
                     
-                optionButton.GetComponent<InfoBoxUI>().information = 
-                    $"{character.abilities[abilityListIndex].description}\n({character.abilities[abilityListIndex].actionCost} AP)";
+                optionButton.GetComponent<InfoBoxUI>().information =
+                    $"{character.abilities[abilityListIndex].description}\n" +
+                    $"({character.abilities[abilityListIndex].actionCost} AP)";
                 
                 ability.attackState = abilityListIndex+1;
                 character.Unit.animOverride[$"Ability {abilityListIndex+1}"] = ability.animation;
@@ -191,10 +193,12 @@ namespace BattleSystem.Generator
             var details = character.inventoryDisplay.GetComponentInChildren<InventoryDetails>();
             details.TargetInventoryName = $"{inventory.name}";
 
+            
+            //TODO: This is temporary and should be removed once i have an overworld interface for equipping items
             if (character.equippedWeapon == null) Debug.LogError($"{character.characterName} has no weapon!");
             character.equippedWeapon.partyMember = character;
-            weaponInventory.AddItem(character.equippedWeapon, 1);
-            weaponInventory.Content[0].Equip();
+            // weaponInventory.AddItem(character.equippedWeapon, 1);
+            // weaponInventory.Content[0].Equip();
         }
 
         private void SetupProfileBox(UnitBase character)

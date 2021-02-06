@@ -31,8 +31,9 @@ namespace Kryz.CharacterStats
 			}
 		}
 
-		[SerializeField] [VerticalGroup("BaseValue/Max")] [LabelWidth(30)] [LabelText("Max")]
-		private float maxValue;
+		[SerializeField] [VerticalGroup("BaseValue/Max")] 
+		[LabelWidth(30)] [LabelText("Max")]
+		public float maxValue;
 
 		[HideInInspector] public float amountIncreasedBy;
 		
@@ -48,6 +49,12 @@ namespace Kryz.CharacterStats
 		public CharacterStat(float baseValue) : this()
 		{
 			BaseValue = baseValue;
+		}
+		
+		public CharacterStat(float baseValue, float maxVal) : this()
+		{
+			BaseValue = baseValue;
+			maxValue = maxVal;
 		}
 
 		public virtual void AddModifier(StatModifier mod)

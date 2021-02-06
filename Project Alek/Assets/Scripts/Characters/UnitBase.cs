@@ -53,21 +53,21 @@ namespace Characters
         public int level;
         
         [Space(20)]
-        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty, Title("Stats")]
+        [SerializeField] [VerticalGroup("Stat Data/Stats")] [LabelWidth(100)] [InlineProperty] [Title("Stats")]
         public CharacterStat health;
-        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
+        [SerializeField] [VerticalGroup("Stat Data/Stats")] [LabelWidth(100)] [InlineProperty] 
         public CharacterStat strength;
-        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
+        [SerializeField] [VerticalGroup("Stat Data/Stats")] [LabelWidth(100)] [InlineProperty] 
         public CharacterStat magic;
-        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
+        [SerializeField] [VerticalGroup("Stat Data/Stats")] [LabelWidth(100)] [InlineProperty] 
         public CharacterStat accuracy;
-        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty]
+        [SerializeField] [VerticalGroup("Stat Data/Stats")] [LabelWidth(100)] [InlineProperty]
         public CharacterStat initiative;
-        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
+        [SerializeField] [VerticalGroup("Stat Data/Stats")] [LabelWidth(100)] [InlineProperty] 
         public CharacterStat defense;
-        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
+        [SerializeField] [VerticalGroup("Stat Data/Stats")] [LabelWidth(100)] [InlineProperty] 
         public CharacterStat resistance;
-        [SerializeField, VerticalGroup("Stat Data/Stats"), LabelWidth(100), InlineProperty] 
+        [SerializeField] [VerticalGroup("Stat Data/Stats")] [LabelWidth(100)] [InlineProperty]
         public CharacterStat criticalChance;
 
         [PropertySpace(SpaceBefore = 20, SpaceAfter = 20), TextArea(5,15), Title("Description"), HideLabel]
@@ -364,14 +364,14 @@ namespace Characters
         private void RemoveMods()
         {
             if (!Application.isPlaying) return;
-            health = new CharacterStat(health.BaseValue);
-            strength = new CharacterStat(strength.BaseValue);
-            magic = new CharacterStat(magic.BaseValue);
-            accuracy = new CharacterStat(accuracy.BaseValue);
-            initiative = new CharacterStat(initiative.BaseValue);
-            defense = new CharacterStat(defense.BaseValue);
-            resistance = new CharacterStat(resistance.BaseValue);
-            criticalChance = new CharacterStat(criticalChance.BaseValue);
+            health = new CharacterStat(health.BaseValue, health.maxValue);
+            strength = new CharacterStat(strength.BaseValue, strength.maxValue);
+            magic = new CharacterStat(magic.BaseValue, magic.maxValue);
+            accuracy = new CharacterStat(accuracy.BaseValue, accuracy.maxValue);
+            initiative = new CharacterStat(initiative.BaseValue, initiative.maxValue);
+            defense = new CharacterStat(defense.BaseValue, defense.maxValue);
+            resistance = new CharacterStat(resistance.BaseValue, resistance.maxValue);
+            criticalChance = new CharacterStat(criticalChance.BaseValue, criticalChance.maxValue);
         }
 
         private void OnEnable() => RemoveMods();

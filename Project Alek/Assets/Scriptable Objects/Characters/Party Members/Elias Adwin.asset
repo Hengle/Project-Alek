@@ -150,21 +150,21 @@ MonoBehaviour:
   characterName: Elias Adwin
   characterPrefab: {fileID: 1526218485019349028, guid: 26eeaf0931e2c7848aecbf4da262a084,
     type: 3}
-  level: 1
+  level: 4
   health:
-    BaseValue: 960
+    BaseValue: 1141
     maxValue: 99999
-    amountIncreasedBy: 0
+    amountIncreasedBy: 66
   strength:
-    BaseValue: 9
+    BaseValue: 10
     maxValue: 99
-    amountIncreasedBy: 0
+    amountIncreasedBy: 1
   magic:
-    BaseValue: 6
+    BaseValue: 8
     maxValue: 99
     amountIncreasedBy: 0
   accuracy:
-    BaseValue: 11
+    BaseValue: 12
     maxValue: 99
     amountIncreasedBy: 0
   initiative:
@@ -180,9 +180,9 @@ MonoBehaviour:
     maxValue: 99
     amountIncreasedBy: 0
   criticalChance:
-    BaseValue: 3
+    BaseValue: 4
     maxValue: 99
-    amountIncreasedBy: 0
+    amountIncreasedBy: 1
   description: This is Elias. He is an artist. That is all
   weaponMight: 8
   magicMight: 4
@@ -192,8 +192,8 @@ MonoBehaviour:
   currentClass: {fileID: 11400000, guid: 646bd9a752b65b34fbb244c39cad16ce, type: 2}
   overworldController: {fileID: 22100000, guid: 35b3df76d35443843b6ccba2c048dda5,
     type: 2}
-  positionInParty: 4
-  specialAttackBarVal: 0.05
+  positionInParty: 3
+  specialAttackBarVal: 0.25
   weaponInventory: {fileID: 417493762244957691, guid: 8dd491fe5bbd13742a4a9ed04d140e08,
     type: 3}
   armorInventory: {fileID: 417493762244957691, guid: ca6cb5b0feff6be4d82fc29d76668972,

@@ -229,32 +229,39 @@ MonoBehaviour:
   characterName: Skeleton
   characterPrefab: {fileID: 1109450531332189788, guid: 46c69567f6d4d924ca3cfc4c96675443,
     type: 3}
-  overworldPrefab: {fileID: 0}
   level: 4
   health:
     BaseValue: 1525
-    maxValue: 9999
+    maxValue: 99999
+    amountIncreasedBy: 0
   strength:
     BaseValue: 12
     maxValue: 99
+    amountIncreasedBy: 0
   magic:
     BaseValue: 6
     maxValue: 99
+    amountIncreasedBy: 0
   accuracy:
     BaseValue: 10
     maxValue: 99
+    amountIncreasedBy: 0
   initiative:
     BaseValue: 7
     maxValue: 99
+    amountIncreasedBy: 0
   defense:
     BaseValue: 11
     maxValue: 99
+    amountIncreasedBy: 0
   resistance:
     BaseValue: 5
     maxValue: 99
+    amountIncreasedBy: 0
   criticalChance:
     BaseValue: 5
     maxValue: 99
+    amountIncreasedBy: 0
   description: I mean, he's a...
   weaponMight: 13
   magicMight: 3
@@ -263,5 +270,6 @@ MonoBehaviour:
   abilities:
   - {fileID: 11400000, guid: 8697ec229a0734b4b9c69d6087505ba9, type: 2}
   - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
+  overworldPrefab: {fileID: 0}
   maxShieldCount: 4
   baseExperience: 420

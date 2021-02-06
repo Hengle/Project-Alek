@@ -175,28 +175,36 @@ MonoBehaviour:
   level: 2
   health:
     BaseValue: 1320
-    maxValue: 9999
+    maxValue: 99999
+    amountIncreasedBy: 0
   strength:
     BaseValue: 7
     maxValue: 99
+    amountIncreasedBy: 0
   magic:
     BaseValue: 4
     maxValue: 99
+    amountIncreasedBy: 0
   accuracy:
     BaseValue: 15
     maxValue: 99
+    amountIncreasedBy: 0
   initiative:
     BaseValue: 9
     maxValue: 99
+    amountIncreasedBy: 0
   defense:
     BaseValue: 6
     maxValue: 99
+    amountIncreasedBy: 0
   resistance:
     BaseValue: 5
     maxValue: 99
+    amountIncreasedBy: 0
   criticalChance:
     BaseValue: 8
     maxValue: 99
+    amountIncreasedBy: 0
   description: What's a goon to a...
   weaponMight: 8
   magicMight: 3
@@ -204,6 +212,6 @@ MonoBehaviour:
   weaponCriticalChance: 4
   abilities:
   - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}
-  maxAP: 6
+  overworldPrefab: {fileID: 0}
   maxShieldCount: 2
   baseExperience: 100
