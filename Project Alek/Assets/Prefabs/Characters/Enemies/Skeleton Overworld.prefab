@@ -75,13 +75,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4723107735738678597, guid: 1018b0ba13578bf459bd254ae1a2be99,
+  m_Sprite: {fileID: 8488328654572304352, guid: 1018b0ba13578bf459bd254ae1a2be99,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.33, y: 1.91}
+  m_Size: {x: 0.45, y: 0.51}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -117,8 +117,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5027375, y: 0.54686487, z: 0.2}
-  m_Center: {x: 0.05325462, y: -0.0020288825, z: 0}
+  m_Size: {x: 0.48686045, y: 0.5402192, z: 0.2}
+  m_Center: {x: 0.0064723594, y: 0.24397533, z: 0}
 --- !u!54 &6327622126730569014
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -154,7 +154,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 0.3
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &1109450530780551740
@@ -169,7 +169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 679eeca9f8b50284ca6b0548dc46eb97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 512

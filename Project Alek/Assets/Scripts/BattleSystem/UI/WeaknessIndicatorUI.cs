@@ -41,7 +41,7 @@ namespace BattleSystem.UI
         private void InstantiatePrefab()
         {
             var position = gameObject.transform.position;
-            var newPosition = new Vector3(position.x, position.y + 1.75f, position.z);
+            var newPosition = new Vector3(position.x, position.y + 2.5f, position.z);
 
             indicator = Instantiate(database.weaknessIndicator, newPosition,
                 database.weaknessIndicator.transform.rotation);

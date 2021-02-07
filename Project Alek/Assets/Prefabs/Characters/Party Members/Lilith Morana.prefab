@@ -330,6 +330,7 @@ MonoBehaviour:
   parry: 0
   timedAttack: 0
   isCountered: 0
+  isBorrowing: 0
   characterTurnEvent: {fileID: 11400000, guid: 34d2f1cdf289d714a80d463db5b95f01, type: 2}
   characterAttackEvent: {fileID: 11400000, guid: f95948814cbd6ea4c8f313185bb3913e,
     type: 2}

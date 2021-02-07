@@ -40,7 +40,7 @@ namespace BattleSystem.Mechanics
                 if (!unit.isAbility || !unit.currentAbility.isMultiTarget)
                 {
                     var position = unit.currentTarget.Unit.gameObject.transform.position;
-                    var newPosition = new Vector3(position.x + count, position.y, position.z);
+                    var newPosition = new Vector3(position.x + count, position.y + 1, position.z);
                         
                     var item = HealthItemPrefabManager.Instance.ShowItem(id);
                     item.transform.position = newPosition;
@@ -50,7 +50,7 @@ namespace BattleSystem.Mechanics
                     var randomTarget = Random.Range(0, unit.multiHitTargets.Count - 1);
                         
                     var position = unit.multiHitTargets[randomTarget].Unit.gameObject.transform.position;
-                    var newPosition = new Vector3(position.x, position.y, position.z);
+                    var newPosition = new Vector3(position.x, position.y + 1, position.z);
                         
                     var item = HealthItemPrefabManager.Instance.ShowItem(id);
                     item.transform.position = newPosition;

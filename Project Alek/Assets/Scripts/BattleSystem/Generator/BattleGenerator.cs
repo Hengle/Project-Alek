@@ -230,7 +230,7 @@ namespace BattleSystem.Generator
         private void SetupEnemyStatusBox(UnitBase clone, GameObject enemyGo)
         {
             var position = enemyGo.transform.position;
-            var newPosition = new Vector3(position.x, position.y + 1.5f, position.z);
+            var newPosition = new Vector3(position.x, position.y + 2.25f, position.z);
 
             var statusBox = Instantiate(database.enemyStatusBox, newPosition,
                 database.enemyStatusBox.rotation);
@@ -245,7 +245,7 @@ namespace BattleSystem.Generator
         private void SetupEnemyShield(Enemy clone, GameObject enemyGo)
         {
             var position = enemyGo.transform.position;
-            var newPosition = new Vector3(position.x, position.y - 1.5f, position.z);
+            var newPosition = new Vector3(position.x, position.y - 0.5f, position.z);
                 
             var shieldTransform = Instantiate(database.shieldTransform, newPosition,
                 database.shieldTransform.rotation);
@@ -354,7 +354,6 @@ namespace BattleSystem.Generator
                 SetupEnemyShield(clone, enemyGo);
                 
                 enemyGo.GetComponent<BreakSystem>().Init(clone, clone.maxShieldCount);
-
                 enemyGo.GetComponent<WeakAndResUnlockSystem>().Initialize(clone);
 
                 BattleEngine.Instance._enemiesForThisBattle.Add(clone);
