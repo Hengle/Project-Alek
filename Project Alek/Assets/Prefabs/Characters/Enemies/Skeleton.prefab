@@ -82,13 +82,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4723107735738678597, guid: 1018b0ba13578bf459bd254ae1a2be99,
+  m_Sprite: {fileID: 8488328654572304352, guid: 1018b0ba13578bf459bd254ae1a2be99,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.33, y: 1.91}
+  m_Size: {x: 0.45, y: 0.51}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -155,6 +155,7 @@ MonoBehaviour:
   parry: 0
   timedAttack: 0
   isCountered: 0
+  isBorrowing: 0
   characterTurnEvent: {fileID: 11400000, guid: 34d2f1cdf289d714a80d463db5b95f01, type: 2}
   characterAttackEvent: {fileID: 11400000, guid: f95948814cbd6ea4c8f313185bb3913e,
     type: 2}
@@ -203,8 +204,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5027375, y: 0.54686487, z: 0.2}
-  m_Center: {x: 0.05325462, y: -0.0020288825, z: 0}
+  m_Size: {x: 0.5498517, y: 0.5299221, z: 0.2}
+  m_Center: {x: 0.029697508, y: 0.2556414, z: 0}
 --- !u!114 &-5786648652316724151
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -25,16 +25,26 @@ namespace BattleSystem
 
         [SerializeField] private GameObject battleResults;
         
-        [SerializeField] private GameEvent setupCompleteEvent;
-        [SerializeField] private BattleGameEvent battleEvent;
-        [SerializeField] private CharacterGameEvent characterTurnEvent;
-        [SerializeField] private CharacterGameEvent enemyTurnEvent;
-        [SerializeField] private CharacterGameEvent chooseTargetEvent;
-        [SerializeField] private CharacterGameEvent endOfTurnEvent;
-        [SerializeField] private CharacterGameEvent skipTurnEvent;
-        [SerializeField] private CharacterGameEvent characterAttackEvent;
-        [SerializeField] private CharacterGameEvent commandEvent;
-        [SerializeField] private CharacterGameEvent deathEvent;
+        [FoldoutGroup("Events")] [SerializeField] 
+        private GameEvent setupCompleteEvent;
+        [FoldoutGroup("Events")] [SerializeField]
+        private BattleGameEvent battleEvent;
+        [FoldoutGroup("Events")] [SerializeField]
+        private CharacterGameEvent characterTurnEvent;
+        [FoldoutGroup("Events")] [SerializeField]
+        private CharacterGameEvent enemyTurnEvent;
+        [FoldoutGroup("Events")] [SerializeField]
+        private CharacterGameEvent chooseTargetEvent;
+        [FoldoutGroup("Events")] [SerializeField]
+        private CharacterGameEvent endOfTurnEvent;
+        [FoldoutGroup("Events")] [SerializeField]
+        private CharacterGameEvent skipTurnEvent;
+        [FoldoutGroup("Events")] [SerializeField]
+        private CharacterGameEvent characterAttackEvent;
+        [FoldoutGroup("Events")] [SerializeField]
+        private CharacterGameEvent commandEvent;
+        [FoldoutGroup("Events")] [SerializeField]
+        private CharacterGameEvent deathEvent;
 
         private SortingCalculator sortingCalculator;
 
@@ -48,12 +58,17 @@ namespace BattleSystem
         [HideInInspector] public InventoryInputManager inventoryInputManager;
         [HideInInspector] public BattleGenerator generator;
         
-        [ReadOnly] public readonly List<IGiveExperience> _expGivers = new List<IGiveExperience>();
-        [ReadOnly] public readonly List<Enemy> _enemiesForThisBattle = new List<Enemy>();
-        [ReadOnly] public readonly List<PartyMember> _membersForThisBattle = new List<PartyMember>();
+        [ReadOnly] [FoldoutGroup("Lists")] 
+        public readonly List<IGiveExperience> _expGivers = new List<IGiveExperience>();
+        [ReadOnly] [FoldoutGroup("Lists")] 
+        public readonly List<Enemy> _enemiesForThisBattle = new List<Enemy>();
+        [ReadOnly] [FoldoutGroup("Lists")] 
+        public readonly List<PartyMember> _membersForThisBattle = new List<PartyMember>();
 
-        [ReadOnly] public List<UnitBase> membersAndEnemiesThisTurn = new List<UnitBase>();
-        [ReadOnly] public List<UnitBase> membersAndEnemiesNextTurn = new List<UnitBase>();
+        [ReadOnly] [FoldoutGroup("Lists")] 
+        public List<UnitBase> membersAndEnemiesThisTurn = new List<UnitBase>();
+        [ReadOnly] [FoldoutGroup("Lists")] 
+        public List<UnitBase> membersAndEnemiesNextTurn = new List<UnitBase>();
 
         [ReadOnly] public UnitBase activeUnit;
 
