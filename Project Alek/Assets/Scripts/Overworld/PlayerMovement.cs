@@ -1,4 +1,5 @@
 ﻿using System;
+using Characters.Animations;
 using UnityEngine;
 
 namespace Overworld
@@ -18,7 +19,6 @@ namespace Overworld
         private static readonly int IsWalkingHash = Animator.StringToHash("isWalking");
         private static readonly int IsRunningHash = Animator.StringToHash("isRunning");
         private static readonly int HorizontalHash = Animator.StringToHash("Horizontal");
-        private static readonly int AnimState = Animator.StringToHash("AnimState");
 
         private bool movementPressed;
         private bool runPressed;
@@ -38,7 +38,7 @@ namespace Overworld
         {
             anim = GetComponent<Animator>();
             rb = GetComponent<Rigidbody>();
-            anim.SetInteger(AnimState, 0);
+            anim.SetInteger(AnimationHandler.AnimState, 0);
         }
 
         private void FixedUpdate() => HandleMovement();

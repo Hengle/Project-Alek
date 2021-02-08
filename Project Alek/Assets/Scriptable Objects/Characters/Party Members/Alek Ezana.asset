@@ -15,7 +15,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 0}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -121,7 +122,55 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: onRevival
-      Entry: 6
+      Entry: 7
+      Data: 9|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 10|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BattleSystem.BattleEngine, ProjectAlek
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: AddToBattle
+    - Name: delegateType
+      Entry: 7
+      Data: 11|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 12|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 13|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Characters.UnitBase, ProjectAlek
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
     - Name: onHpValueChanged
       Entry: 6
@@ -150,17 +199,17 @@ MonoBehaviour:
   characterName: Alek Ezana
   characterPrefab: {fileID: 1526218485019349028, guid: 38e223593cf5fd94cb9a317771507f77,
     type: 3}
-  level: 4
+  level: 1
   health:
-    BaseValue: 1294
+    BaseValue: 1105
     maxValue: 99999
     amountIncreasedBy: 84
   strength:
-    BaseValue: 13
+    BaseValue: 11
     maxValue: 99
     amountIncreasedBy: 1
   magic:
-    BaseValue: 8
+    BaseValue: 6
     maxValue: 99
     amountIncreasedBy: 0
   accuracy:
@@ -168,11 +217,11 @@ MonoBehaviour:
     maxValue: 99
     amountIncreasedBy: 0
   initiative:
-    BaseValue: 8
+    BaseValue: 7
     maxValue: 99
     amountIncreasedBy: 0
   defense:
-    BaseValue: 11
+    BaseValue: 10
     maxValue: 99
     amountIncreasedBy: 1
   resistance:
@@ -180,7 +229,7 @@ MonoBehaviour:
     maxValue: 99
     amountIncreasedBy: 0
   criticalChance:
-    BaseValue: 5
+    BaseValue: 4
     maxValue: 99
     amountIncreasedBy: 1
   description: Bruh it is the one. The ONLY. The ONE and ONLY. The ONE and ONLY GOD
@@ -195,7 +244,7 @@ MonoBehaviour:
   currentClass: {fileID: 11400000, guid: be121a9a99d092e4184dc9300dc5106b, type: 2}
   overworldController: {fileID: 22100000, guid: 303372915b2401e479bccd7997ce110d,
     type: 2}
-  positionInParty: 2
+  positionInParty: 4
   specialAttackBarVal: 1
   weaponInventory: {fileID: 5917402227159465644, guid: 1d94ebccb9928a445b4a7e1dbacb9d53,
     type: 3}

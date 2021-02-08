@@ -18,6 +18,7 @@ namespace Characters.Animations
         public static readonly int maxDefBoost = Animator.StringToHash("MaxDefenseBoost");
         public static readonly int Panel = Animator.StringToHash("Panel");
         public static readonly int AbilityMenu = Animator.StringToHash("Ability Menu");
+        public static readonly int AnimState = Animator.StringToHash("AnimState");
         
         public bool isAttacking;
         public bool usingItem;

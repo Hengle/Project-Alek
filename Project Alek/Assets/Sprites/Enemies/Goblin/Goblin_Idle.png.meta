@@ -1,21 +1,33 @@
 fileFormatVersion: 2
-guid: 8dee453321432cc47b70ddef8f3a3a68
+guid: c1cdd26cc09ad224884556bc4d8296ae
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7500690451134026123
-    second: Take Hit_0
+      213: 4723107735738678597
+    second: Idle_0
   - first:
-      213: -889859373511162655
-    second: Take Hit_1
+      213: -7385789195546760866
+    second: Idle_1
   - first:
-      213: -3088938797480143695
-    second: Take Hit_2
+      213: 3234629978573100161
+    second: Idle_2
   - first:
-      213: -9206091644520726168
-    second: Take Hit_3
+      213: 6373048116405451881
+    second: Idle_3
+  - first:
+      213: 9130647759989690307
+    second: Goblin_Idle_0
+  - first:
+      213: 1368956883174936208
+    second: Goblin_Idle_1
+  - first:
+      213: 6361711507835937641
+    second: Goblin_Idle_2
+  - first:
+      213: 6260978701604189543
+    second: Goblin_Idle_3
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
@@ -59,7 +71,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -69,6 +81,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -134,85 +147,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Take Hit_0
+      name: Goblin_Idle_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 150
-        height: 150
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 58
+        y: 49
+        width: 33
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b89ec6cf25a9594dbd7ed119f2bae18
-      internalID: -7500690451134026123
+      spriteID: 3cfc66fe2c396be70800000000000000
+      internalID: 9130647759989690307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Take Hit_1
+      name: Goblin_Idle_1
       rect:
         serializedVersion: 2
-        x: 150
-        y: 0
-        width: 150
-        height: 150
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 208
+        y: 49
+        width: 33
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 634911d015986e342a35ffd68259db7a
-      internalID: -889859373511162655
+      spriteID: 09ec77e38038ff210800000000000000
+      internalID: 1368956883174936208
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Take Hit_2
+      name: Goblin_Idle_2
       rect:
         serializedVersion: 2
-        x: 300
-        y: 0
-        width: 150
-        height: 150
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 358
+        y: 49
+        width: 33
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6b0f3ac3be0b2b42a57ff7866a41bf4
-      internalID: -3088938797480143695
+      spriteID: 963631c19e6594850800000000000000
+      internalID: 6361711507835937641
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Take Hit_3
+      name: Goblin_Idle_3
       rect:
         serializedVersion: 2
-        x: 450
-        y: 0
-        width: 150
-        height: 150
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 508
+        y: 49
+        width: 33
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecda2949d307a924da83a9ba21053a7a
-      internalID: -9206091644520726168
+      spriteID: 765776ff4f673e650800000000000000
+      internalID: 6260978701604189543
       vertices: []
       indices: 
       edges: []

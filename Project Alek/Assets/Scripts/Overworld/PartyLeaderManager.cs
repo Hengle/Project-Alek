@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Characters.Animations;
 using Characters.PartyMembers;
 using SingletonScriptableObject;
 using UnityEngine;
@@ -11,7 +12,8 @@ namespace Overworld
     {
         private Animator animator;
         private Controls controls;
-        private static List<PartyMember> Members => PartyManager.Instance.partyMembers;
+        private static List<PartyMember> Members =>
+            PartyManager.Instance.partyMembers;
 
         private void Awake()
         {
@@ -26,49 +28,22 @@ namespace Overworld
             
             var value = ctx.ReadValue<float>();
             var currentLeader = PartyManager.Instance.currentLeader;
-            PartyMember nextLeader;
+            var index = Members.IndexOf(currentLeader);
 
-            if (Math.Abs(value - 1) < 0.001)
-            {
-                var index = Members.IndexOf(currentLeader);
-                if (index+1 < Members.Count)
-                {
-                    nextLeader = Members[index + 1];
-                    currentLeader.positionInParty = nextLeader.positionInParty;
-                    nextLeader.positionInParty = 1;
-                    PartyManager.Instance.currentLeader = nextLeader;
-                    animator.runtimeAnimatorController = PartyManager.Instance.currentLeader.overworldController;
-                }
-                else
-                {
-                    nextLeader = Members[0];
-                    currentLeader.positionInParty = nextLeader.positionInParty;
-                    nextLeader.positionInParty = 1;
-                    PartyManager.Instance.currentLeader = nextLeader;
-                    animator.runtimeAnimatorController = PartyManager.Instance.currentLeader.overworldController;
-                }
-            }
-            else if (Math.Abs(value - (-1)) < 0.001)
-            {
-                var index = Members.IndexOf(currentLeader);
-                if (index-1 >= 0)
-                {
-                    nextLeader = Members[index - 1];
-                    currentLeader.positionInParty = nextLeader.positionInParty;
-                    nextLeader.positionInParty = 1;
-                    PartyManager.Instance.currentLeader = nextLeader;
-                    animator.runtimeAnimatorController = PartyManager.Instance.currentLeader.overworldController;
-                }
-                else
-                {
-                    nextLeader = Members[Members.Count-1];
-                    currentLeader.positionInParty = nextLeader.positionInParty;
-                    nextLeader.positionInParty = 1;
-                    PartyManager.Instance.currentLeader = nextLeader;
-                    PartyManager.Instance.currentLeader = nextLeader;
-                    animator.runtimeAnimatorController = PartyManager.Instance.currentLeader.overworldController;
-                }
-            }
+            var getNextMember = Math.Abs(value - 1) < 0.001;
+            var getPrevMember = Math.Abs(value - -1) < 0.001;
+            
+            var nextLeader = currentLeader;
+
+            if (getNextMember) nextLeader = Members[index + 1 < Members.Count ? index + 1 : 0];
+            else if (getPrevMember) nextLeader = Members[index - 1 >= 0 ? index - 1 : Members.Count - 1];
+
+            currentLeader.positionInParty = nextLeader.positionInParty;
+            nextLeader.positionInParty = 1;
+                
+            PartyManager.Instance.currentLeader = nextLeader;
+            animator.runtimeAnimatorController = PartyManager.Instance.currentLeader.overworldController;
+            animator.SetInteger(AnimationHandler.AnimState, 0);
             
         }
         
