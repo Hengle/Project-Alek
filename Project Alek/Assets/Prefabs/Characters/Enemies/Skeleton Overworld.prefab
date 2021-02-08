@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6327622126730569014}
   - component: {fileID: 2337113488865023912}
   - component: {fileID: 1109450530780551740}
+  - component: {fileID: 1851382218136519938}
   m_Layer: 0
   m_Name: Skeleton Overworld
   m_TagString: Untagged
@@ -184,3 +185,16 @@ MonoBehaviour:
   canChase: 0
   wait: 0
   walkPointSet: 0
+--- !u!114 &1851382218136519938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7390686793474909329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e4eb5dd5f844623a43a822004e35425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cVCamRotation: {fileID: 11400000, guid: cdbfe8c1ad44d41428aad71b7d3d878f, type: 2}

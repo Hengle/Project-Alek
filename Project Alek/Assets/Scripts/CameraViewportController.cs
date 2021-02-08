@@ -25,7 +25,6 @@ public class CameraViewportController : MonoBehaviour
         else // add pillar box
         {
             var scaleWidth = 1.0f / scaleHeight;
-
             var rect = cam.rect;
 
             rect.width = scaleWidth;

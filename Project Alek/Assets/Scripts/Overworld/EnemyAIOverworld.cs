@@ -16,9 +16,11 @@ namespace Overworld
         private Vector3 walkPoint;
         private Vector3 DistanceToWalkPoint =>
             transform.position - walkPoint;
-
+        
         private Transform player;
         
+        private float TargetPosition => transform.InverseTransformPoint(enemy.destination).x;
+
         [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
 
         [SerializeField] private float normalSpeed;
@@ -39,16 +41,12 @@ namespace Overworld
         private bool walkPointSet;
 
         private bool PlayerIsTooFarAway => Math.Abs(transform.position.x - player.position.x) > 30f;
-        
-        private bool PlayerOnRightSide => transform.position.x - player.position.x <= 0;
-        
-        private bool PlayerOnLeftSide => transform.position.x - player.position.x >= 0;
-        
+        private bool PlayerOnRightSide => player.InverseTransformPoint(transform.position).x <= 0;
+        private bool PlayerOnLeftSide => player.InverseTransformPoint(transform.position).x >= 0;
         private bool WalkPointReached => DistanceToWalkPoint.magnitude < 1f;
         
         private bool IsFacingAwayFromPlayer => PlayerOnRightSide &&
             spriteRenderer.flipX || PlayerOnLeftSide && !spriteRenderer.flipX;
-        
         private bool PlayerInRange
         {
             get 
@@ -58,9 +56,7 @@ namespace Overworld
                 return playerInRange;
             }
         }
-        
         private bool InRangeAndFacingTarget => PlayerInRange && !IsFacingAwayFromPlayer;
-
         private bool DestinationIsOnWalkableGround => Physics.Raycast
             (walkPoint, -transform.up, 5f, whatIsGround);
 
@@ -88,7 +84,7 @@ namespace Overworld
             if (PlayerIsTooFarAway) Destroy(gameObject);
             if (InRangeAndFacingTarget) canChase = true;
             
-            anim.SetFloat(HorizontalHash, enemy.velocity.x);
+            anim.SetFloat(HorizontalHash, TargetPosition);
             
             if (!enemy.isOnNavMesh) return;
             if (canChase) ChasePlayer();
@@ -120,6 +116,7 @@ namespace Overworld
             var position = transform.parent.position;
             
             walkPoint = new Vector3(position.x + randomX, position.y, position.z + randomZ);
+            
             walkPointSet = DestinationIsOnWalkableGround;
         }
 
