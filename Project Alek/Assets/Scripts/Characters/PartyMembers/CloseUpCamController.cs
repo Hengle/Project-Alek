@@ -18,7 +18,7 @@ namespace Characters.PartyMembers
             cvTransposer = cvCamera.GetCinemachineComponent<CinemachineTransposer>();
             unit = transform.parent.GetComponentInChildren<Unit>();
             cvCamera.enabled = false;
-            SetDistance();
+            //SetDistance();
             characterTurnEvent.AddListener(this);
         }
 
@@ -42,7 +42,7 @@ namespace Characters.PartyMembers
         {
             if (value2 == characterTurnEvent && value1.Unit == unit)
             {
-                SetDistance();
+                //SetDistance();
                 cvCamera.enabled = true;
             }
         }
