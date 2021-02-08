@@ -19,6 +19,7 @@ namespace BattleSystem.Generator
         public Transform enemyStatusBox;
         public Transform profileBox;
         public Transform shieldTransform;
+        public Canvas worldSpaceCanvas;
         public GameObject weaknessIndicator;
     }
 }

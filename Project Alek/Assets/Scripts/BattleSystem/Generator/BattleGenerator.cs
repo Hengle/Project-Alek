@@ -250,7 +250,8 @@ namespace BattleSystem.Generator
             var shieldTransform = Instantiate(database.shieldTransform, newPosition,
                 database.shieldTransform.rotation);
                 
-            shieldTransform.transform.SetParent(clone.Unit.transform);
+            //shieldTransform.transform.SetParent(clone.Unit.transform);
+            shieldTransform.transform.SetParent(database.worldSpaceCanvas.transform);
 
             var shieldController = shieldTransform.GetComponent<BreakSystemControllerUI>();
             shieldController.enemy = clone;
