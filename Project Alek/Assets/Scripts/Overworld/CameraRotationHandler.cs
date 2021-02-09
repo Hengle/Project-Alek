@@ -11,15 +11,7 @@ namespace Overworld
         [SerializeField] private QuaternionVariable cVCamRotation;
         [SerializeField] private GameEvent newRotationSetEvent;
 
-        private void Start()
-        {
-            transform.rotation = cVCamRotation;
-        }
-
-        private void OnEnable() => newRotationSetEvent.AddListener(this);
-        private void OnDisable() => newRotationSetEvent.RemoveListener(this);
-
-        private void UpdateRotation() => Timing.RunCoroutine(RotateCoroutine());
+        private void Start() => transform.rotation = cVCamRotation;
 
         private IEnumerator<float> RotateCoroutine()
         {
@@ -31,10 +23,10 @@ namespace Overworld
                 yield return Timing.WaitForOneFrame;
             }
         }
-
-        public void OnEventRaised()
-        {
-            UpdateRotation();
-        }
+        
+        public void OnEventRaised() => Timing.RunCoroutine(RotateCoroutine());
+        
+        private void OnEnable() => newRotationSetEvent.AddListener(this);
+        private void OnDisable() => newRotationSetEvent.RemoveListener(this);
     }
 }

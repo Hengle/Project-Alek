@@ -1,5 +1,5 @@
-﻿using System;
-using ScriptableObjectArchitecture;
+﻿using ScriptableObjectArchitecture;
+using SingletonScriptableObject;
 using UnityEngine;
 
 namespace Overworld
@@ -11,8 +11,14 @@ namespace Overworld
         [SerializeField] private QuaternionVariable cVCamRotation;
         [SerializeField] private Quaternion sceneRotation;
 
-        private void Awake() => cVCamRotation.Value = sceneRotation;
-        
+        private void Awake()
+        {
+            cVCamRotation.Value = SceneRotationManager.Instance.CurrentRotation != Quaternion.identity ?
+                SceneRotationManager.Instance.CurrentRotation : sceneRotation;
+
+            SceneRotationManager.Instance.CurrentRotation = Quaternion.identity;
+        }
+
         public void ResetRotation()
         {
             cVCamRotation.Value = sceneRotation;
@@ -26,12 +32,14 @@ namespace Overworld
             newRotationSetEvent.Raise();
         }
 
-        public void OnEventRaised(Quaternion value)
-        {
-            SetSceneRotation(value);
-        }
-
+        public void OnEventRaised(Quaternion value) => SetSceneRotation(value);
+        
         private void OnEnable() => setSceneRotationEvent.AddListener(this);
-        private void OnDisable() => setSceneRotationEvent.RemoveListener(this);
+
+        private void OnDisable()
+        {
+            SceneRotationManager.Instance.CurrentRotation = cVCamRotation.Value;
+            setSceneRotationEvent.RemoveListener(this);
+        }
     }
 }
