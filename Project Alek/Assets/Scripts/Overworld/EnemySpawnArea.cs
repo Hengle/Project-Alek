@@ -27,7 +27,7 @@ namespace Overworld
         public override bool CanSpawn => enemiesSpawned.Count < maxSpawns && !onCooldown;
 
         private void UpdateBoxCollider() => boxCollider.size = new Vector3
-            (spawnTriggerRange, 5, spawnTriggerRange);
+            (spawnTriggerRange, boxCollider.size.y, spawnTriggerRange);
 
         private void OnDrawGizmosSelected() => Gizmos.DrawWireSphere(transform.position, spawnRange);
 

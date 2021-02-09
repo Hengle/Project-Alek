@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2796532534986791529}
   - component: {fileID: 2796532534986791526}
-  - component: {fileID: 2905581014942777954}
   m_Layer: 0
   m_Name: Camera Rotation Setter
   m_TagString: Untagged
@@ -50,35 +49,5 @@ MonoBehaviour:
     type: 2}
   cVCamRotation: {fileID: 11400000, guid: cdbfe8c1ad44d41428aad71b7d3d878f, type: 2}
   sceneRotation: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
---- !u!114 &2905581014942777954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2796532534986791528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _showDebugFields: 0
-  _enableGizmoDebugging: 1
-  _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _previouslyRegisteredEvent: {fileID: 11400000, guid: e48b66b4bf5e78a459abcdf54db1d194,
-    type: 2}
-  _event: {fileID: 11400000, guid: e48b66b4bf5e78a459abcdf54db1d194, type: 2}
-  _response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2796532534986791526}
-        m_MethodName: ResetRotation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  previousRotation: {x: 0, y: 0, z: 0, w: 1}
+  cVCamTransform: {fileID: 0}

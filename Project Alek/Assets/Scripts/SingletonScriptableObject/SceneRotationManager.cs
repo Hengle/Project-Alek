@@ -11,7 +11,7 @@ namespace SingletonScriptableObject
             get => currentRotation;
             set => currentRotation = value;
         }
-            
+  
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Initialize() => Init();
     }

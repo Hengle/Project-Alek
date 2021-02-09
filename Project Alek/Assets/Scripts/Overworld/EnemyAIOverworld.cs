@@ -132,11 +132,9 @@ namespace Overworld
 
         private void OnCollisionEnter(Collision other)
         {
-            if (other.transform.CompareTag("Player"))
-            {
-                PlayerPositionManager.Instance.Position = player.position;
-                SceneLoadManager.Instance.LoadBattle();
-            }
+            if (!other.transform.CompareTag("Player")) return;
+            PlayerPositionManager.Instance.Position = player.position;
+            SceneLoadManager.Instance.LoadBattle();
         }
     }
 }

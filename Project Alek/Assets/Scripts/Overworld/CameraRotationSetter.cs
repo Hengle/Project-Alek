@@ -17,17 +17,11 @@ namespace Overworld
                 SceneRotationManager.Instance.CurrentRotation : sceneRotation;
 
             SceneRotationManager.Instance.CurrentRotation = Quaternion.identity;
-        }
-
-        public void ResetRotation()
-        {
-            cVCamRotation.Value = sceneRotation;
             newRotationSetEvent.Raise();
         }
 
         private void SetSceneRotation(Quaternion rotation)
         {
-            if (cVCamRotation.Value == rotation) { ResetRotation(); return; }
             cVCamRotation.Value = rotation;
             newRotationSetEvent.Raise();
         }
