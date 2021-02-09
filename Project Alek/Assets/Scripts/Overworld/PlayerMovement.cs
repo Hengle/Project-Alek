@@ -29,9 +29,11 @@ namespace Overworld
             controls.Overworld.Move.performed += ctx =>
             {
                 currentMovement = ctx.ReadValue<Vector2>();
-                movementPressed = Math.Abs(currentMovement.x) > 0.01f || Math.Abs(currentMovement.y) > 0.01f;
+                movementPressed = Math.Abs(currentMovement.x) > 0.01f ||
+                                  Math.Abs(currentMovement.y) > 0.01f;
             };
-            controls.Overworld.Run.performed += ctx => runPressed = ctx.ReadValueAsButton();
+            controls.Overworld.Run.performed += ctx =>
+                runPressed = ctx.ReadValueAsButton();
         }
 
         private void Start()

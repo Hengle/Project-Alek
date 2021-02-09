@@ -6,6 +6,7 @@ namespace Overworld
     public class CameraConfiner : MonoBehaviour
     {
         [SerializeField] private BoxCollider boxCollider;
+        [SerializeField] private bool resetOnExit = true;
         private BoxCollider mainSceneCollider;
         private CinemachineConfiner vCamera;
 
@@ -16,6 +17,10 @@ namespace Overworld
         }
 
         private void OnTriggerEnter(Collider other) => vCamera.m_BoundingVolume = boxCollider;
-        private void OnTriggerExit(Collider other) => vCamera.m_BoundingVolume = mainSceneCollider;
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (resetOnExit) vCamera.m_BoundingVolume = mainSceneCollider;
+        }
     }
 }

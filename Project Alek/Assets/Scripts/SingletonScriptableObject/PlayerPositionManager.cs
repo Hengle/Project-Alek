@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using Overworld;
 using Sirenix.OdinInspector;
-using Sirenix.Utilities;
 using UnityEngine;
 
 namespace SingletonScriptableObject
@@ -10,6 +9,7 @@ namespace SingletonScriptableObject
     public class PlayerPositionManager : SingletonScriptableObject<PlayerPositionManager>
     {
         [SerializeField] private Vector3 position;
+        
         [ValueDropdown(nameof(GetAllSpawnPointsInScene))]
         [SerializeField] private string spawnId = "0";
 

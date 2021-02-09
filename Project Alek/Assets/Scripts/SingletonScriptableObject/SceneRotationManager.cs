@@ -25,10 +25,10 @@ namespace SingletonScriptableObject
 
             foreach (var trigger in rotationTriggers)
             {
-                yield return  new ValueDropdownItem(trigger.ExitRotation.eulerAngles.y.
+                yield return new ValueDropdownItem(trigger.ExitRotation.eulerAngles.y.
                     ToString(CultureInfo.InvariantCulture), trigger.ExitRotation);
                 
-                yield return  new ValueDropdownItem(trigger.AreaRotation.eulerAngles.y.
+                yield return new ValueDropdownItem(trigger.AreaRotation.eulerAngles.y.
                     ToString(CultureInfo.InvariantCulture), trigger.AreaRotation);
             }
             
