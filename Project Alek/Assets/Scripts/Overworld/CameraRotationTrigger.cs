@@ -14,6 +14,8 @@ namespace Overworld
 
         private void OnTriggerEnter(Collider other)
         {
+            if (!other.CompareTag("Player")) return;
+            
             var thisTransform = transform;
             var toOther = other.transform.position - thisTransform.position;
             var hasEnteredArea = Vector3.Dot(thisTransform.right, toOther) > 0;

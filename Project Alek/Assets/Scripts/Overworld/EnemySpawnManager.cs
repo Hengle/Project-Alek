@@ -26,7 +26,7 @@ namespace Overworld
         {
             if (!CanSpawnMoreEnemies) return;
             
-            var spawnable = spawnables[Random.Range(0, spawnables.Count-1)];
+            var spawnable = spawnables[Random.Range(0, spawnables.Count)];
             var position = spawner.GetSpawnPoint();
             var spawnableGO = spawner.Spawn(spawnable, position, spawner.transform);
                 

@@ -23,7 +23,7 @@ namespace Overworld
             }
         }
         
-        public void OnEventRaised() => Timing.RunCoroutine(RotateCoroutine());
+        public void OnEventRaised() => Timing.RunCoroutine(RotateCoroutine().CancelWith(gameObject));
         
         private void OnEnable() => newRotationSetEvent.AddListener(this);
         private void OnDisable() => newRotationSetEvent.RemoveListener(this);

@@ -16,10 +16,15 @@ namespace Overworld
             vCamera = GameObject.FindWithTag("VirtualCamera").GetComponent<CinemachineConfiner>();
         }
 
-        private void OnTriggerEnter(Collider other) => vCamera.m_BoundingVolume = boxCollider;
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!other.CompareTag("Player")) return;
+            vCamera.m_BoundingVolume = boxCollider;
+        }
 
         private void OnTriggerExit(Collider other)
         {
+            if (!other.CompareTag("Player")) return;
             if (resetOnExit) vCamera.m_BoundingVolume = mainSceneCollider;
         }
     }
