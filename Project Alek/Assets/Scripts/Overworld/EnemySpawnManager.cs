@@ -6,7 +6,6 @@ using Random = UnityEngine.Random;
 
 namespace Overworld
 {
-    //TODO: Make this a singleton
     public class EnemySpawnManager : MonoBehaviour, IGameEventListener<Spawner>
     {
         [SerializeField] private SpawnEvent spawnEvent;
@@ -16,14 +15,25 @@ namespace Overworld
         [SerializeField] private List<Spawnable> spawnables = new List<Spawnable>();
         [ReadOnly] public List<Spawnable> currentEnemiesSpawned = new List<Spawnable>();
 
-        [ShowInInspector] private bool CanSpawnMoreEnemies => currentEnemiesSpawned.Count < maxSpawns;
+        [ShowInInspector] private bool CanSpawnMoreEnemies =>
+            currentEnemiesSpawned.Count < maxSpawns;
 
-        private void Awake() => spawnEvent.AddListener(this);
-        
+        private bool delaySpawning;
+
+        private void Awake()
+        {
+            delaySpawning = true;
+            Invoke(nameof(StartSpawning), 2);
+            spawnEvent.AddListener(this);
+        }
+
+        private void StartSpawning() => delaySpawning = false;
+
         private void OnDisable() => spawnEvent.RemoveListener(this);
         
         public void OnEventRaised(Spawner spawner)
         {
+            if (delaySpawning) return;
             if (!CanSpawnMoreEnemies) return;
             
             var spawnable = spawnables[Random.Range(0, spawnables.Count)];

@@ -51,10 +51,8 @@ namespace Overworld
         private bool IsFacingAwayFromPlayer => PlayerOnRightSide &&
             spriteRenderer.flipX || PlayerOnLeftSide && !spriteRenderer.flipX;
         
-        private bool PlayerInRange
-        {
-            get 
-            {
+        private bool PlayerInRange {
+            get {
                 playerInRange = Physics.CheckSphere(transform.position, aggroRange, whatIsPlayer);
                 if (!playerInRange) canChase = false;
                 return playerInRange;
