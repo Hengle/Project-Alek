@@ -17,7 +17,7 @@ namespace Overworld
             while (transform.rotation != cVCamRotation)
             {
                 transform.rotation = Quaternion.RotateTowards
-                    (transform.rotation, cVCamRotation, Time.deltaTime * 25);
+                    (transform.rotation, cVCamRotation, Time.deltaTime * 30);
 
                 yield return Timing.WaitForOneFrame;
             }

@@ -9,6 +9,8 @@ namespace Overworld
 {
     public class EnemyAIOverworld : Spawnable
     {
+        #region FieldsAndProperties
+        
         private NavMeshAgent enemy;
         private Animator anim;
         private SpriteRenderer spriteRenderer;
@@ -68,6 +70,8 @@ namespace Overworld
         private static readonly int IsRunningHash = Animator.StringToHash("isRunning");
         private static readonly int HorizontalHash = Animator.StringToHash("Horizontal");
         private static readonly int AnimState = Animator.StringToHash("AnimState");
+        
+        #endregion
         
         private void Awake()
         {
@@ -133,8 +137,9 @@ namespace Overworld
         private void OnCollisionEnter(Collision other)
         {
             if (!other.transform.CompareTag("Player")) return;
-            PlayerPositionManager.Instance.Position = player.position;
             SceneLoadManager.Instance.LoadBattle();
+            Time.timeScale = 0.0f;
+            Time.fixedDeltaTime = 0.02F * Time.timeScale;
         }
     }
 }

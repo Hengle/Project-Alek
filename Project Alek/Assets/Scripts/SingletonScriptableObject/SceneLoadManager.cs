@@ -1,6 +1,6 @@
-﻿using MEC;
+﻿using UnityEngine.SceneManagement;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using MEC;
 
 namespace SingletonScriptableObject
 {

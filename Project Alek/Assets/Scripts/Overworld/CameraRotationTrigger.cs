@@ -9,10 +9,11 @@ namespace Overworld
         [SerializeField] private Quaternion areaRotation;
         [SerializeField] private Quaternion exitRotation;
 
-        private void OnTriggerEnter(Collider other)
-        { 
-            setSceneRotationEvent.Raise(areaRotation);
+        public Quaternion AreaRotation => areaRotation;
+        public Quaternion ExitRotation => exitRotation;
 
+        private void OnTriggerEnter(Collider other)
+        {
             var thisTransform = transform;
             var toOther = other.transform.position - thisTransform.position;
             var hasEnteredArea = Vector3.Dot(thisTransform.right, toOther) > 0;
