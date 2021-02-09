@@ -43,10 +43,12 @@ namespace Overworld
         private bool PlayerIsTooFarAway => Math.Abs(transform.position.x - player.position.x) > 30f;
         private bool PlayerOnRightSide => player.InverseTransformPoint(transform.position).x <= 0;
         private bool PlayerOnLeftSide => player.InverseTransformPoint(transform.position).x >= 0;
-        private bool WalkPointReached => DistanceToWalkPoint.magnitude < 1f;
+        
+        [ShowInInspector] private bool WalkPointReached => DistanceToWalkPoint.magnitude <= 1f;
         
         private bool IsFacingAwayFromPlayer => PlayerOnRightSide &&
             spriteRenderer.flipX || PlayerOnLeftSide && !spriteRenderer.flipX;
+        
         private bool PlayerInRange
         {
             get 
@@ -56,7 +58,9 @@ namespace Overworld
                 return playerInRange;
             }
         }
+        
         private bool InRangeAndFacingTarget => PlayerInRange && !IsFacingAwayFromPlayer;
+        
         private bool DestinationIsOnWalkableGround => Physics.Raycast
             (walkPoint, -transform.up, 5f, whatIsGround);
 
@@ -70,7 +74,6 @@ namespace Overworld
             enemy = GetComponent<NavMeshAgent>();
             anim = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
-            
             player = GameObject.FindWithTag("Player").transform;
             
             anim.SetInteger(AnimState, 0);

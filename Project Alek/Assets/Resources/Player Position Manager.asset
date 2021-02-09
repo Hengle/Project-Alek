@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Player Position Manager
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0, z: 0}
-  spawnId: 458
+  spawnId: 860

@@ -174,3 +174,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cVCamRotation: {fileID: 11400000, guid: cdbfe8c1ad44d41428aad71b7d3d878f, type: 2}
+  newRotationSetEvent: {fileID: 11400000, guid: c0f402fbb0391b643993a5899f0d2d86,
+    type: 2}

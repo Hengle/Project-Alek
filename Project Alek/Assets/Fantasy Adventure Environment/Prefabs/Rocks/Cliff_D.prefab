@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 205000011794726940}
   - component: {fileID: 64000010426964242}
   - component: {fileID: 65000013468884166}
+  - component: {fileID: 229681973825808351}
   m_Layer: 0
   m_Name: Cliff_D
   m_TagString: Untagged
@@ -169,6 +170,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 12.6, y: 6.2, z: 12.09}
   m_Center: {x: -0.31, y: 2.58, z: -0.1}
+--- !u!208 &229681973825808351
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010412798032}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 6, y: 3, z: 6}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.31, y: 2.58, z: -0.1}
+  m_TimeToStationary: 0.5
 --- !u!1 &1000010781809136
 GameObject:
   m_ObjectHideFlags: 0
