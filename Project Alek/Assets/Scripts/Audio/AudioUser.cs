@@ -28,7 +28,7 @@ namespace Audio
 
         private void InstantiateProfileAudioSource()
         {
-            var source = Instantiate(profile.track.source, audioController.transform);
+            var source = Instantiate(profile.source, audioController.transform);
             source.name = profile.source.gameObject.name;
             profile.track.source = source;
         }
