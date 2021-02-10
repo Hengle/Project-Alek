@@ -84,8 +84,31 @@ AnimationClip:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
-    genericBindings: []
-    pptrCurveMapping: []
+    genericBindings:
+    - serializedVersion: 2
+      path: 0
+      attribute: 973584577
+      script: {fileID: 11500000, guid: adc95e01ab5ac944496260dc76404184, type: 3}
+      typeID: 114
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    pptrCurveMapping:
+    - {fileID: -4424136841789468814, guid: 3863917b23e66dd44b72fb3d17e7c79c, type: 3}
+    - {fileID: 6934344163493565426, guid: 3863917b23e66dd44b72fb3d17e7c79c, type: 3}
+    - {fileID: 1918532450269638726, guid: 3863917b23e66dd44b72fb3d17e7c79c, type: 3}
+    - {fileID: -4322335530665874658, guid: 3863917b23e66dd44b72fb3d17e7c79c, type: 3}
+    - {fileID: -8960959957819466453, guid: 3863917b23e66dd44b72fb3d17e7c79c, type: 3}
+    - {fileID: -621421379918864354, guid: 3863917b23e66dd44b72fb3d17e7c79c, type: 3}
+    - {fileID: -6451022485927633561, guid: 3863917b23e66dd44b72fb3d17e7c79c, type: 3}
+    - {fileID: -7533912350241694502, guid: 3863917b23e66dd44b72fb3d17e7c79c, type: 3}
+    - {fileID: 3107639549393152974, guid: 3863917b23e66dd44b72fb3d17e7c79c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -145,6 +168,13 @@ AnimationClip:
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
+    messageOptions: 0
+  - time: 0.33333334
+    functionName: PlayAudio
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 5
     messageOptions: 0
   - time: 0.44444445
     functionName: TargetTakeDamage

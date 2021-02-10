@@ -101,7 +101,7 @@ namespace Characters.Animations
         {
             if (unit.parent.id == CharacterType.Enemy)
             {
-                if (unit.currentAbility.isMultiTarget)
+                if (unit.currentAbility != null && unit.currentAbility.isMultiTarget)
                 {
                     unit.multiHitTargets.ForEach(t => t.Unit.parry = result);
 

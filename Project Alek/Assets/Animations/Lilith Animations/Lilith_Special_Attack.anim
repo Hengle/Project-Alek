@@ -30,7 +30,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 2.3999999
+        time: 3.4285715
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -50,77 +50,77 @@ AnimationClip:
     - time: 0
       value: {fileID: 4850037031467970191, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 0.2
+    - time: 0.2857143
       value: {fileID: -8267299558258500085, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 0.3
+    - time: 0.42857143
       value: {fileID: 874360095780169313, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 0.4
+    - time: 0.5714286
       value: {fileID: 6110371905031621979, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 0.5
+    - time: 0.71428573
       value: {fileID: 4161664255820648959, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 0.6
+    - time: 0.85714287
       value: {fileID: -2148325111256835901, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 0.7
+    - time: 1
       value: {fileID: -6732066836314166531, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 0.8
+    - time: 1.1428572
       value: {fileID: -3790826879951016305, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 0.9
+    - time: 1.2857143
       value: {fileID: -2188973792181963550, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 1
+    - time: 1.4285715
       value: {fileID: -8476071190766316645, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 1.1
+    - time: 1.5714285
       value: {fileID: -2668062698762850367, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 1.2
+    - time: 1.7142857
       value: {fileID: -8338338403041078755, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 1.3
+    - time: 1.8571428
       value: {fileID: -1726195662691350039, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 1.4
+    - time: 2
       value: {fileID: -5582233404962894814, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 1.5
+    - time: 2.142857
       value: {fileID: 8879822983864663747, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 1.6
+    - time: 2.2857144
       value: {fileID: 6535620651198454612, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 1.7
+    - time: 2.4285715
       value: {fileID: 6535620651198454612, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 1.8
+    - time: 2.5714285
       value: {fileID: 6535620651198454612, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 1.9
+    - time: 2.7142856
       value: {fileID: -496714703549542852, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 2
+    - time: 2.857143
       value: {fileID: 3906725399956312242, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 2.1
+    - time: 3
       value: {fileID: 1825591588155416210, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 2.2
+    - time: 3.142857
       value: {fileID: -7314366094306930162, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
-    - time: 2.3
+    - time: 3.2857144
       value: {fileID: 2801265572882544024, guid: 37a1bed311f6554448f2962a0043383a,
         type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 10
+  m_SampleRate: 7
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -170,7 +170,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 2.3999999
+    m_StopTime: 3.4285715
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -199,7 +199,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 2.3999999
+        time: 3.4285715
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -225,70 +225,105 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.2
+  - time: 0.14285715
+    functionName: PlayAudio
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
+  - time: 0.2857143
     functionName: CloseParryWindow
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.3
+  - time: 0.42857143
     functionName: OpenParryWindow
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5
+  - time: 0.5714286
+    functionName: PlayAudio
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 2
+    messageOptions: 0
+  - time: 0.71428573
     functionName: CloseParryWindow
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.7
+  - time: 1
     functionName: OpenParryWindow
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.9
+  - time: 1.1428572
+    functionName: PlayAudio
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 3
+    messageOptions: 0
+  - time: 1.2857143
     functionName: CloseParryWindow
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.2
+  - time: 1.7142857
     functionName: OpenParryWindow
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.4
-    functionName: CloseParryWindow
+  - time: 1.8571428
+    functionName: PlayAudio
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.7
-    functionName: OpenParryWindow
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.9
-    functionName: CloseParryWindow
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
+    intParameter: 4
     messageOptions: 0
   - time: 2
+    functionName: CloseParryWindow
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.4285715
+    functionName: OpenParryWindow
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.5714285
+    functionName: PlayAudio
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 5
+    messageOptions: 0
+  - time: 2.7142856
+    functionName: CloseParryWindow
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.857143
     functionName: PerformSpecialAttack
     data: 
     objectReferenceParameter: {fileID: 0}

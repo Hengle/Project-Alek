@@ -438,6 +438,8 @@ GameObject:
   - component: {fileID: 3809730323946128812}
   - component: {fileID: 3809730323946128810}
   - component: {fileID: 4732565238838773174}
+  - component: {fileID: 2855950261405243951}
+  - component: {fileID: 5840138385090888305}
   m_Layer: 5
   m_Name: Battle Ability Button
   m_TagString: Untagged
@@ -518,7 +520,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3809730322789470826}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5840138385090888305}
+        m_MethodName: PlayAudio
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3809730323946128812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,3 +577,55 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2855950261405243951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3809730323946128815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d94a2962634baf91b1a3d70f9bbd1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5840138385090888305}
+        m_MethodName: PlayAudio
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDeselect:
+    m_PersistentCalls:
+      m_Calls: []
+  onPointerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onPointerExit:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &5840138385090888305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3809730323946128815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0ba7a5c33ec4ce88a9a590065e93faa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useProfile: 1
+  profile: {fileID: 11400000, guid: 0ca124d70e39dbd4d874af440813e91b, type: 2}
+  track:
+    source: {fileID: 0}
+    audio: []

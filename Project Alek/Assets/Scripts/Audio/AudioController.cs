@@ -70,6 +70,9 @@ namespace Audio
 
             public void AddNewTrack(AudioTrack track)
             {
+                if (tracks.Exists(t =>
+                    t.source.name == track.source.name)) return;
+                
                 tracks.Add(track);
                 UpdateAudioTable(track);
             }

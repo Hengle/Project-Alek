@@ -25,7 +25,7 @@ namespace Characters.Enemies
             var rand = Random.Range(0, targets.Count); // Inclusive apparently
             Unit.currentTarget = targets[rand];
 
-            rand = Random.Range(0, abilities.Count);
+            rand = Random.Range(0, abilities.Count + 2);
             Unit.commandActionName = rand < abilities.Count ? "AbilityAction" : "UniversalAction";
             Unit.commandActionOption = rand < abilities.Count ? rand : 1;
             Unit.actionCost = rand < abilities.Count ? abilities[rand].actionCost : 2;

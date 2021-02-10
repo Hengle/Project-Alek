@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6a8ab651644242850a1ed3badbb13f, type: 3}
+  m_Name: Generic Button
+  m_EditorClassIdentifier: 
+  track:
+    source: {fileID: 4169925119728321371, guid: 71b13656c706dd843a6f21badade6db1,
+      type: 3}
+    audio:
+    - type: {fileID: 11400000, guid: a8543c8f9c9b7254a932131ff08fb5e8, type: 2}
+      clip: {fileID: 8300000, guid: 63a4aac097dc06d4ba6c134f5cfbd1e4, type: 3}
+    - type: {fileID: 11400000, guid: c92381815d09a3943b8e572f8ae918c5, type: 2}
+      clip: {fileID: 8300000, guid: 51cc2846ceb680048a19d94445800b9f, type: 3}
