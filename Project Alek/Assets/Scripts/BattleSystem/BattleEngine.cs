@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Audio;
 using BattleSystem.Calculators;
 using UnityEngine;
 using Characters;
@@ -16,6 +17,7 @@ using Sirenix.OdinInspector;
 using MEC;
 using ScriptableObjectArchitecture;
 using SingletonScriptableObject;
+using AudioType = Audio.AudioType;
 
 namespace BattleSystem
 {
@@ -23,6 +25,8 @@ namespace BattleSystem
     {
         #region FieldsAndProperties
 
+        private AudioController audioController;
+        [SerializeField] private AudioType battleTheme;
         [SerializeField] private GameObject battleResults;
         
         [FoldoutGroup("Events")] [SerializeField] 
@@ -96,6 +100,7 @@ namespace BattleSystem
         
         private void Start()
         {
+            audioController = FindObjectOfType<AudioController>();
             inventoryInputManager = FindObjectOfType<InventoryInputManager>();
             generator = GetComponent<BattleGenerator>();
             sortingCalculator = GetComponent<SortingCalculator>();
@@ -103,6 +108,7 @@ namespace BattleSystem
             canGiveCommand = true;
             roundCount = 0;
 
+            //audioController.PlayAudio(battleTheme, true);
             PartyManager.Instance.Order();
             Timing.RunCoroutine(SetupBattle());
         }

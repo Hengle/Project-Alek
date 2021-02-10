@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace SingletonScriptableObject
 {
-    [CreateAssetMenu(fileName = "Party Manager")]
+    [CreateAssetMenu(fileName = "Party Manager", menuName = "Singleton SO/Party Manager")]
     public class PartyManager : SingletonScriptableObject<PartyManager>
     {
         [InlineEditor(InlineEditorModes.FullEditor)]

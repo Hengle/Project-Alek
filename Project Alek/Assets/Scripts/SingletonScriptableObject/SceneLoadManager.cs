@@ -1,10 +1,11 @@
-﻿using UnityEngine.SceneManagement;
+﻿using System;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using MEC;
 
 namespace SingletonScriptableObject
 {
-    [CreateAssetMenu(fileName = "Scene Load Manager")]
+    [CreateAssetMenu(fileName = "Scene Load Manager", menuName = "Singleton SO/Scene Load Manager")]
     public class SceneLoadManager : SingletonScriptableObject<SceneLoadManager>
     {
         private AsyncOperation operation;

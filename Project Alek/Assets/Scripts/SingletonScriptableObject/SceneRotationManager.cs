@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace SingletonScriptableObject
 {
-    [CreateAssetMenu(fileName = "Scene Rotation Manager")]
+    [CreateAssetMenu(fileName = "Scene Rotation Manager", menuName = "Singleton SO/Scene Rotation Manager")]
     public class SceneRotationManager : SingletonScriptableObject<SceneRotationManager>
     {
         [SerializeField] [ValueDropdown(nameof(GetAllRotationOptionsInScene), IsUniqueList = true)]

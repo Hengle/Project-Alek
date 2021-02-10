@@ -2,7 +2,7 @@
 
 namespace SingletonScriptableObject
 {
-    [CreateAssetMenu(fileName = "Logger")]
+    [CreateAssetMenu(fileName = "Logger", menuName = "Singleton SO/Logger")]
     public class Logging : SingletonScriptableObject<Logging>
     {
         [SerializeField] private bool showLogs = true;

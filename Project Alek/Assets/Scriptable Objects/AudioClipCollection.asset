@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f850730862f4dc0bc11bf079145fbd9, type: 3}
-  m_Name: Scene Rotation Manager
+  m_Script: {fileID: 11500000, guid: d289013f46a3b234986332177bde3edf, type: 3}
+  m_Name: AudioClipCollection
   m_EditorClassIdentifier: 
-  currentRotation: {x: 0, y: 0.86602545, z: 0, w: 0.49999997}
+  _list:
+  - {fileID: 0}
