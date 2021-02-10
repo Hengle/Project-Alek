@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using JetBrains.Annotations;
+using UnityEngine;
 
 namespace Audio
 {
@@ -12,5 +13,8 @@ namespace Audio
             audioController = FindObjectOfType<AudioController>();
             audioController.AddNewTrack(track);
         }
+
+        [UsedImplicitly] private void PlayAudio(int index) =>
+            audioController.PlayAudio(track.audio[index].type);
     }
 }

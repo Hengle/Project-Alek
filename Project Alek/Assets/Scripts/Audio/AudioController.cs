@@ -36,18 +36,21 @@ namespace Audio
                 public readonly AudioAction _action;
                 public readonly AudioType _type;
                 public readonly bool _fade;
+                public readonly float _fadeDuration;
                 public readonly float _delay;
 
-                public AudioJob(AudioAction action, AudioType type, bool fade, float delay)
+                public AudioJob(AudioAction action, AudioType type, bool fade, float fadeDuration, float delay)
                 {
                     _action = action;
                     _type = type;
                     _fade = fade;
+                    _fadeDuration = fadeDuration;
                     _delay = delay;
                 }
             }
 
 #region Unity Functions
+
             private void Awake() { if (!instance) Configure(); }
 
             private void OnDisable() => Dispose();
@@ -55,14 +58,15 @@ namespace Audio
 #endregion
 
 #region Public Functions
-            public void PlayAudio(AudioType type, bool fade=false, float delay=0.0F) =>
-                AddJob(new AudioJob(AudioAction.Start, type, fade, delay));
+
+            public void PlayAudio(AudioType type, bool fade=false, float fadeDuration = 1.0f, float delay=0.0F) =>
+                AddJob(new AudioJob(AudioAction.Start, type, fade, fadeDuration, delay));
             
-            public void StopAudio(AudioType type, bool fade=false, float delay=0.0F) =>
-                AddJob(new AudioJob(AudioAction.Stop, type, fade, delay));
+            public void StopAudio(AudioType type, bool fade=false, float fadeDuration = 1.0f, float delay=0.0F) =>
+                AddJob(new AudioJob(AudioAction.Stop, type, fade, fadeDuration, delay));
             
-            public void RestartAudio(AudioType type, bool fade=false, float delay=0.0F) =>
-                AddJob(new AudioJob(AudioAction.Restart, type, fade, delay));
+            public void RestartAudio(AudioType type, bool fade=false, float fadeDuration = 1.0f, float delay=0.0F) =>
+                AddJob(new AudioJob(AudioAction.Restart, type, fade, fadeDuration, delay));
 
             public void AddNewTrack(AudioTrack track)
             {
@@ -81,17 +85,18 @@ namespace Audio
                 GenerateAudioTable();
             }
 
-            private void Dispose() 
+            private void Dispose()
             {
                 // cancel all jobs in progress
-                foreach(DictionaryEntry kvp in mJobTable)
+                foreach (var job in from DictionaryEntry kvp
+                    in mJobTable select (IEnumerator<float>)kvp.Value)
                 {
-                    var job = (IEnumerator<float>)kvp.Value;
-                    Timing.RunCoroutine(job);
+                    StopCoroutine(job);
                 }
             }
 
-            private void AddJob(AudioJob job) {
+            private void AddJob(AudioJob job) 
+            {
                 // cancel any job that might be using this job's audio source
                 RemoveConflictingJobs(job._type);
 
@@ -129,13 +134,15 @@ namespace Audio
                 if (conflictAudio != null) RemoveJob(conflictAudio); 
             }
 
-            private IEnumerator<float> RunAudioJob(AudioJob job) {
+            private IEnumerator<float> RunAudioJob(AudioJob job)
+            {
                 yield return Timing.WaitForSeconds(job._delay);
 
                 var track = GetAudioTrack(job._type); // track existence should be verified by now
                 track.source.clip = GetAudioClipFromAudioTrack(job._type, track);
 
-                switch (job._action) {
+                switch (job._action)
+                {
                     case AudioAction.Start: track.source.Play();
                         break;
                     case AudioAction.Stop: if (!job._fade) track.source.Stop();
@@ -145,18 +152,17 @@ namespace Audio
                         track.source.Play();
                         break;
                 }
-
-                // fade volume
+                
                 if (job._fade)
                 {
                     float initial = job._action == AudioAction.Start || job._action == AudioAction.Restart ? 0 : 1;
                     float target = Math.Abs(initial) < 0.0001f ? 1 : 0;
-                    var _duration = 1.0f;
+                    var duration = job._fadeDuration;
                     var timer = 0.0f;
 
-                    while (timer < _duration)
+                    while (timer < duration)
                     {
-                        track.source.volume = Mathf.Lerp(initial, target, timer / _duration);
+                        track.source.volume = Mathf.Lerp(initial, target, timer / duration);
                         timer += Time.deltaTime;
                         yield return Timing.WaitForOneFrame;
                     }
@@ -168,16 +174,17 @@ namespace Audio
                 Log("Job count: "+mJobTable.Count);
             }
 
-            private void GenerateAudioTable() {
+            private void GenerateAudioTable()
+            {
                 foreach(var track in tracks)
                 {
                     foreach(var obj in track.audio)
                     {
-                        // do not duplicate keys
                         if (mAudioTable.ContainsKey(obj.type))
                         {
                             LogWarning("You are trying to register audio ["+obj.type+"] that has already been registered.");
-                        } else
+                        } 
+                        else
                         {
                             mAudioTable.Add(obj.type, track);
                             Log("Registering audio ["+obj.type+"]");
@@ -193,7 +200,8 @@ namespace Audio
                     if (mAudioTable.ContainsKey(obj.type))
                     {
                         LogWarning("You are trying to register audio ["+obj.type+"] that has already been registered.");
-                    } else
+                    } 
+                    else
                     {
                         mAudioTable.Add(obj.type, track);
                         Log("Registering audio ["+obj.type+"]");
@@ -201,7 +209,8 @@ namespace Audio
                 }
             }
 
-            private AudioTrack GetAudioTrack(AudioType type, string job="") {
+            private AudioTrack GetAudioTrack(AudioType type, string job="")
+            {
                 if (mAudioTable.ContainsKey(type)) return (AudioTrack) mAudioTable[type];
                 LogWarning("You are trying to <color=#fff>"+job+"</color> for ["+type+"] but no track was found supporting this audio type.");
                 return null;
@@ -212,12 +221,14 @@ namespace Audio
                 return (from obj in track.audio where obj.type == type select obj.clip).FirstOrDefault();
             }
 
-            private void Log(string msg) {
+            private void Log(string msg)
+            {
                 if (!debug) return;
                 Debug.Log("[Audio Controller]: "+msg);
             }
             
-            private void LogWarning(string msg) {
+            private void LogWarning(string msg)
+            {
                 if (!debug) return;
                 Debug.LogWarning("[Audio Controller]: "+msg);
             }
