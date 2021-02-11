@@ -34,7 +34,9 @@ namespace SingletonScriptableObject
             
             yield return new ValueDropdownItem("Identity", Quaternion.identity);
         }
-  
+
+        [Button] private void ResetRotation() => CurrentRotation = Quaternion.identity;
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Initialize() => Init();
     }

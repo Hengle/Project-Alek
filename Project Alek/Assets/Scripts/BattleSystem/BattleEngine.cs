@@ -26,7 +26,7 @@ namespace BattleSystem
         #region FieldsAndProperties
 
         private AudioController audioController;
-        [SerializeField] private AudioType battleTheme;
+        [SerializeField] private AudioType[] themes;
         [SerializeField] private GameObject battleResults;
         
         [FoldoutGroup("Events")] [SerializeField] 
@@ -108,7 +108,7 @@ namespace BattleSystem
             canGiveCommand = true;
             roundCount = 0;
 
-            audioController.PlayAudio(battleTheme, true, 2);
+            audioController.PlayAudio(themes[0], true, 2);
             PartyManager.Instance.Order();
             Timing.RunCoroutine(SetupBattle());
         }
@@ -293,7 +293,12 @@ namespace BattleSystem
 
         private IEnumerator<float> WonBattleSequence()
         {
-            yield return Timing.WaitForSeconds(0.5f);
+            audioController.StopAudio(themes[0], true, 2);
+
+            yield return Timing.WaitForSeconds(2);
+            
+            audioController.PlayAudio(themes[1], true, 2);
+            
             _membersForThisBattle.ForEach(member => member.Unit.anim.SetTrigger(AnimationHandler.VictoryTrigger));
             
             yield return Timing.WaitForSeconds(2f);

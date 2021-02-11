@@ -6,7 +6,7 @@ namespace Audio
 {
     public class AudioUser : MonoBehaviour
     {
-        public bool useProfile;
+        [SerializeField] private bool useProfile;
         
         [SerializeField] [ShowIf(nameof(useProfile))]
         public AudioUserProfile profile;

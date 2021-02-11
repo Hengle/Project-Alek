@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using MEC;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Audio
@@ -30,12 +29,6 @@ namespace Audio
             {
                 public AudioSource source;
                 public AudioObject[] audio;
-
-                public AudioTrack(AudioSource audioSource, AudioObject[] audioObjects)
-                {
-                    source = audioSource;
-                    audio = audioObjects;
-                }
             }
 
             private class AudioJob
