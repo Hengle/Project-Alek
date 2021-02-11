@@ -237,7 +237,7 @@ namespace Characters.Animations
             timedAttackCount = 0;
         }
 
-        private void ActivateSpell()
+        [UsedImplicitly] private void ActivateSpell()
         {
             var prefab = ((Spell) unit.currentAbility).effectPrefab;
             var position = unit.currentTarget.Unit.transform.position;

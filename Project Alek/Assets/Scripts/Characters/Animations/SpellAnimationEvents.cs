@@ -31,6 +31,7 @@ namespace Characters.Animations
         [UsedImplicitly] private void SetAttackBoolFalse()
         {
             unit.animationHandler.isAttacking = false;
+            Destroy(gameObject);
         }
     }
 }

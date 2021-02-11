@@ -34,7 +34,7 @@ namespace Characters.PartyMembers
         [TabGroup("Tabs","Inventory")] [SerializeField]
         public WeaponItem equippedWeapon;
 
-        [TabGroup("Tabs", "Abilities")] [InlineEditor]
+        [TabGroup("Tabs", "Spells & Abilities")] [InlineEditor]
         public Ability specialAttack;
 
         [HideInInspector] public ScriptableObject battleOptionsPanel;

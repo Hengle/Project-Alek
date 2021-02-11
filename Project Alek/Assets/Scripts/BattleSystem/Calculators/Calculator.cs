@@ -13,9 +13,19 @@ namespace BattleSystem.Calculators
         {
             if (damageDealer.Unit == target.Unit) return 0;
 
-            var hitChance = CalculateAccuracy(damageDealer, target);
-            if (!hitChance) { target.Unit.attackerHasMissed = true; return -1; }
+            var type = damageDealer.Unit.isAbility ? damageDealer.CurrentAbility.GetType() : null;
+            
+            if (type != typeof(Spell))
+            {
+                var hitChance = CalculateAccuracy(damageDealer, target);
+                if (!hitChance)
+                {
+                    target.Unit.attackerHasMissed = true;
+                    return -1;
+                }
+            }
 
+            if (type == typeof(Spell)) return CalculateSpellDamage(damageDealer, target);
             if (damageDealer.Unit.isAbility) return CalculateAbilityDamage(damageDealer, target);
             
             float dealerDamage = (int) damageDealer.strength.Value * damageDealer.weaponMight;
@@ -42,6 +52,59 @@ namespace BattleSystem.Calculators
             totalDamage = CalculateBoostFactor(damageDealer, target, totalDamage);
             
             return CalculateFinalDamageAmount(target, totalDamage, false);
+        }
+
+        private static int CalculateSpellDamage(UnitBase damageDealer, UnitBase target)
+        {
+            var ability = damageDealer.Unit.currentAbility;
+
+            var normalDamage = (int) damageDealer.magic.Value * damageDealer.magicMight;
+
+            var targetDefense = (int) target.resistance.Value * (target.level / 2);
+            
+            int totalDamage;
+            
+            if (!ability.hasElemental)
+            {
+                totalDamage = (int) (normalDamage * damageDealer.Unit.currentAbility.damageMultiplier) - targetDefense;
+                goto SkipElemental;
+            }
+            
+            var elementalDamage = (int) damageDealer.magic.Value * damageDealer.weaponMight * ability.ElementalScalar;
+
+            var tryGetRes = target._elementalResistances.Any
+                (kvp => kvp.Key._type == ability.elementalType);
+            var tryGetWeakness = target._elementalWeaknesses.Any
+                (kvp => kvp.Key._type == ability.elementalType);
+
+            if (tryGetRes)
+            {
+                Logging.Instance.Log($"{target.characterName} resists {ability.elementalType.name}!");
+                var resistanceScalar = 1 - (float) target._elementalResistances.Single
+                    (s => s.Key._type == ability.elementalType).Key._scalar / 100;
+
+                elementalDamage *= resistanceScalar;
+            }
+                    
+            else if (tryGetWeakness)
+            {
+                Logging.Instance.Log($"{target.characterName} is weak to {ability.elementalType.name}!");
+                var weaknessScalar = (float) target._elementalWeaknesses.Single
+                    (s => s.Key._type == ability.elementalType).Key._scalar / 100;
+
+                elementalDamage *= weaknessScalar;
+            }
+            
+            totalDamage = (int) ((normalDamage + elementalDamage) * damageDealer.Unit.currentAbility.damageMultiplier) - targetDefense;
+            Logging.Instance.Log($"Elemental Damage: {elementalDamage} \t Total Damage: {totalDamage}");
+            
+            SkipElemental:
+            totalDamage = CalculateBoostFactor(damageDealer, target, totalDamage);
+            totalDamage = CalculateConversionFactor(damageDealer, totalDamage);
+            totalDamage = CalculateShieldFactor(damageDealer, target, totalDamage);
+            
+            var critical = CalculateCritChance(damageDealer);
+            return CalculateFinalDamageAmount(target, totalDamage, critical);
         }
 
         private static int CalculateAbilityDamage(UnitBase damageDealer, UnitBase target)
@@ -89,7 +152,7 @@ namespace BattleSystem.Calculators
             }
             
             totalDamage = (int) ((normalDamage + elementalDamage) * damageDealer.Unit.currentAbility.damageMultiplier) - targetDefense;
-            Logging.Instance.Log($"Elemental Damage: {elementalDamage} \t Total Damage: {totalDamage}");
+            //Logging.Instance.Log($"Elemental Damage: {elementalDamage} \t Total Damage: {totalDamage}");
             
             SkipElemental:
             totalDamage = CalculateBoostFactor(damageDealer, target, totalDamage);

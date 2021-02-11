@@ -27,6 +27,14 @@ namespace BattleSystem
                 BattleEngine.Instance.choosingAbility = false;
             }
             
+            // This is triggered when going back to main menu from the spell menu
+            else if (BattleEngine.Instance.choosingSpell)
+            {
+                character.BattlePanelAnim.SetTrigger(AnimationHandler.SpellMenu);
+                BattleEngine.Instance.choosingOption = true;
+                BattleEngine.Instance.choosingSpell = false;
+            }
+            
             // This is triggered when going back while choosing a target from the ability menu
             else if (BattleEngine.Instance.choosingTarget && BattleEngine.Instance.abilityMenuLast) 
             {
@@ -34,6 +42,15 @@ namespace BattleSystem
                 BattleEngine.Instance.choosingTarget = false;
                 BattleEngine.Instance.choosingAbility = true;
                 BattleEngine.Instance.abilityMenuLast = false;
+            }
+            
+            // This is triggered when going back while choosing a target from the spell menu
+            else if (BattleEngine.Instance.choosingTarget && BattleEngine.Instance.spellMenuLast) 
+            {
+                character.BattlePanelAnim.SetTrigger(AnimationHandler.SpellMenu);
+                BattleEngine.Instance.choosingTarget = false;
+                BattleEngine.Instance.choosingSpell = true;
+                BattleEngine.Instance.spellMenuLast = false;
             }
             
             // This is triggered when going back while choosing a target from the main menu (attack button)
@@ -73,7 +90,8 @@ namespace BattleSystem
             character.Unit.actionCost = commandCost;
 
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
-            if (!BattleEngine.Instance.choosingOption) BattleEngine.Instance.choosingAbility = false;
+            if (BattleEngine.Instance.choosingAbility) BattleEngine.Instance.choosingAbility = false;
+            else if (BattleEngine.Instance.choosingSpell) BattleEngine.Instance.choosingSpell = false;
             else BattleEngine.Instance.choosingOption = false;
         }
 
@@ -81,6 +99,13 @@ namespace BattleSystem
         {
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.AbilityMenu);
             BattleEngine.Instance.choosingAbility = true;
+            BattleEngine.Instance.choosingOption = false;
+        }
+
+        public void OnSpellMenuButton()
+        {
+            character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.SpellMenu);
+            BattleEngine.Instance.choosingSpell = true;
             BattleEngine.Instance.choosingOption = false;
         }
 

@@ -102,8 +102,8 @@ namespace BattleSystem
             dealer.GetDamageValues(false);
             
             var originalRotation = dealer.LookAtTarget();
-
-            yield return Timing.WaitUntilDone(ExecuteAttack(dealer));
+            var isSpell = dealer.CurrentAbility.GetType() == typeof(Spell);
+            yield return Timing.WaitUntilDone(ExecuteAttack(dealer, isSpell));
 
             dealer.Unit.transform.rotation = originalRotation;
             

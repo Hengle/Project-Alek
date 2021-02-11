@@ -19,9 +19,11 @@ namespace BattleSystem
         [SerializeField] private GameObject battleMenu;
         [SerializeField] private GameObject mainMenu;
         [SerializeField] private GameObject abilityMenu;
-
+        [SerializeField] private GameObject spellMenu;
+ 
         private GameObject mainMenuFirstSelected;
         private GameObject abilityMenuFirstSelected;
+        private GameObject spellMenuFirstSelected;
 
         private Animator animator;
         
@@ -35,6 +37,7 @@ namespace BattleSystem
             
             mainMenuFirstSelected = mainMenu.transform.Find("Attack Button").gameObject;
             abilityMenuFirstSelected = abilityMenu.transform.GetChild(0).gameObject;
+            spellMenuFirstSelected = spellMenu.transform.GetChild(0).gameObject;
 
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
@@ -73,6 +76,13 @@ namespace BattleSystem
         {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(abilityMenuFirstSelected);
+            BattleInput._controls.Enable();
+        }
+
+        [UsedImplicitly] public void SetSpellMenuFirstSelected()
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(spellMenuFirstSelected);
             BattleInput._controls.Enable();
         }
 

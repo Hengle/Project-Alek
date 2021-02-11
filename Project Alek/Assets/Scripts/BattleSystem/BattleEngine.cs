@@ -85,8 +85,10 @@ namespace BattleSystem
         [ReadOnly] public bool performingAction;
         [ReadOnly] public bool endThisMembersTurn;
         [ReadOnly] public bool choosingAbility;
+        [ReadOnly] public bool choosingSpell;
         [ReadOnly] public bool canGiveCommand = true;
         [ReadOnly] public bool abilityMenuLast = false;
+        [ReadOnly] public bool spellMenuLast;
 
         private bool AllMembersDead => _membersForThisBattle.Count == 0;
         private bool AllEnemiesDead => _enemiesForThisBattle.Count == 0;
@@ -108,7 +110,7 @@ namespace BattleSystem
             canGiveCommand = true;
             roundCount = 0;
 
-            audioController.PlayAudio(themes[0], true, 2);
+            //audioController.PlayAudio(themes[0], true, 2);
             PartyManager.Instance.Order();
             Timing.RunCoroutine(SetupBattle());
         }
@@ -196,6 +198,18 @@ namespace BattleSystem
                 }
                 yield return Timing.WaitForOneFrame;
             }
+            
+            while (choosingSpell) 
+            {
+                BattleInput._canPressBack = true;
+                spellMenuLast = true;
+                if (BattleInput.CancelCondition)
+                {
+                    spellMenuLast = false;
+                    goto main_menu;
+                }
+                yield return Timing.WaitForOneFrame;
+            }
 
             if (endThisMembersTurn) goto end_of_turn;
             
@@ -210,6 +224,7 @@ namespace BattleSystem
             }
             
             abilityMenuLast = false;
+            spellMenuLast = false;
             
             if (usingItem)
             {

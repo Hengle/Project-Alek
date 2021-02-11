@@ -86,6 +86,9 @@ namespace BattleSystem.Generator
             mainMenu.Find("Abilities Button").gameObject.GetComponent<Button>().onClick.AddListener
                 (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnAbilityMenuButton(); });
             
+            mainMenu.Find("Spells Button").gameObject.GetComponent<Button>().onClick.AddListener
+                (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnSpellMenuButton(); });
+            
             mainMenu.Find("Inventory Button").gameObject.GetComponent<Button>().onClick.AddListener
                 (delegate { BattleEngine.Instance.inventoryInputManager.OpenInventory(); });
 
@@ -354,6 +357,7 @@ namespace BattleSystem.Generator
             SetupChooseTargetScript(character);
             SetupBattlePanel(character);
             SetAbilityMenuOptions(character);
+            SetSpellMenuOptions(character);
             SetupInventoryDisplay(character, i);
             SetupProfileBox(character);
             SetupCharacterPanel(character, i);
