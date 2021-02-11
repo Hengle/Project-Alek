@@ -76,6 +76,12 @@ namespace Audio
                 tracks.Add(track);
                 UpdateAudioTable(track);
             }
+
+            public void RemoveTrack(AudioTrack track)
+            {
+                tracks.Remove(track);
+                RemoveFromAudioTable(track);
+            }
             
 #endregion
 
@@ -208,6 +214,22 @@ namespace Audio
                     {
                         mAudioTable.Add(obj.type, track);
                         Log("Registering audio ["+obj.type+"]");
+                    }
+                }
+            }
+
+            private void RemoveFromAudioTable(AudioTrack track)
+            {
+                foreach (var obj in track.audio)
+                {
+                    if (mAudioTable.ContainsKey(obj.type))
+                    {
+                        mAudioTable.Remove(obj.type);
+                        Log("Removing audio ["+obj.type+"]");
+                    } 
+                    else
+                    {
+                        LogWarning("You are trying to remove audio ["+obj.type+"] that does not exist");
                     }
                 }
             }

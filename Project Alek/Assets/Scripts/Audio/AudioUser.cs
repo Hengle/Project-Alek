@@ -6,7 +6,7 @@ namespace Audio
 {
     public class AudioUser : MonoBehaviour
     {
-        [SerializeField] private bool useProfile;
+        [SerializeField] protected bool useProfile;
         
         [SerializeField] [ShowIf(nameof(useProfile))]
         public AudioUserProfile profile;
@@ -14,26 +14,26 @@ namespace Audio
         [SerializeField] [HideIf(nameof(useProfile))]
         public AudioController.AudioTrack track;
         
-        private AudioController audioController;
+        protected AudioController _audioController;
 
         private void Start()
         {
-            audioController = FindObjectOfType<AudioController>();
+            _audioController = FindObjectOfType<AudioController>();
             
             if (useProfile && !GameObject.Find(profile.source.gameObject.name))
                 InstantiateProfileAudioSource();
             
-            audioController.AddNewTrack(useProfile ? profile.track : track);
+            _audioController.AddNewTrack(useProfile ? profile.track : track);
         }
 
         private void InstantiateProfileAudioSource()
         {
-            var source = Instantiate(profile.source, audioController.transform);
+            var source = Instantiate(profile.source, _audioController.transform);
             source.name = profile.source.gameObject.name;
             profile.track.source = source;
         }
         
-        [UsedImplicitly] public void PlayAudio(int index) => audioController.PlayAudio
+        [UsedImplicitly] public void PlayAudio(int index) => _audioController.PlayAudio
             (useProfile ? profile.track.audio[index].type : track.audio[index].type);
     }
 }
