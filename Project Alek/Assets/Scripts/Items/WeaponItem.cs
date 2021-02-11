@@ -44,6 +44,8 @@ namespace MoreMountains.InventoryEngine
 			
 			//AddMods();
 			AddModsDirect();
+			
+			Debug.Log($"{partyMember.characterName} has equipped {name}");
 
 			// For some stupid fucking reason this line of code causes the equipped weapon to be set to null when exiting play mode
 			//partyMember.equippedWeapon = this;

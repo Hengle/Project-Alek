@@ -331,7 +331,6 @@ namespace BattleSystem
             _membersForThisBattle.ForEach(m =>
             {
                 m.currentClass.statsToIncrease = new List<CharacterStat>();
-                //m.weaponInventory
             });
 
             SceneLoadManager.Instance.LoadOverworld();
@@ -342,7 +341,7 @@ namespace BattleSystem
             yield return Timing.WaitForSeconds(0.5f);
             Logging.Instance.Log("you lost idiot");
             
-            SceneLoadManager.Instance.LoadOverworld();
+            //TODO: Show game over menu with options to load save or quit
         }
         
         #endregion

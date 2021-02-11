@@ -63,9 +63,7 @@ namespace BattleSystem
                     yield break;
             }
         }
-        
-        //TODO: SpellAction
-        
+
         #endregion
 
         #region AttackCoroutines
@@ -145,10 +143,11 @@ namespace BattleSystem
             SuperCloseupCamController._disableCam?.Invoke(dealer);
         }
 
-        private static IEnumerator<float> ExecuteAttack(UnitBase dealer)
+        private static IEnumerator<float> ExecuteAttack(UnitBase dealer, bool isSpell = false)
         {
             if (!dealer.Unit.isAbility) dealer.Unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
-            else dealer.Unit.anim.Play($"Ability {dealer.CurrentAbility.attackState}", 0);
+            else dealer.Unit.anim.Play(isSpell ? $"Spell {dealer.CurrentAbility.attackState}" :
+                $"Ability {dealer.CurrentAbility.attackState}", 0);
 
             yield return Timing.WaitForOneFrame;
 

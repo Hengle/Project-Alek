@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 using BattleSystem;
 using BattleSystem.Calculators;
 using BattleSystem.Mechanics;
+using Characters.Abilities;
 using Characters.ElementalTypes;
 using Characters.PartyMembers;
 using ScriptableObjectArchitecture;
@@ -234,6 +235,15 @@ namespace Characters.Animations
             }
             
             timedAttackCount = 0;
+        }
+
+        private void ActivateSpell()
+        {
+            var prefab = ((Spell) unit.currentAbility).effectPrefab;
+            var position = unit.currentTarget.Unit.transform.position;
+            var newPosition = new Vector3(position.x, prefab.transform.position.y, position.z);
+            var effectGo = Instantiate(prefab, newPosition, prefab.transform.rotation);
+            effectGo.GetComponent<SpellAnimationEvents>().Setup(unit, ElementalCondition);
         }
         
         public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)

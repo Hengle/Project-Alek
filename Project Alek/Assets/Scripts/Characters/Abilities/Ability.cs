@@ -13,7 +13,7 @@ namespace Characters.Abilities
     {
         #region FieldsAndProperties
         
-        [ReadOnly, HideLabel, VerticalGroup("Icon/Info"), LabelWidth(120)] 
+        [HideLabel, VerticalGroup("Icon/Info"), LabelWidth(120)] 
         public AbilityType abilityType;
 
         [Title("Main Info"), VerticalGroup("Icon/Info"), LabelWidth(120)]
@@ -39,6 +39,7 @@ namespace Characters.Abilities
         public int attackState = 2;
 
         [VerticalGroup("Icon/Info"), LabelWidth(120), InlineEditor(InlineEditorModes.LargePreview)]
+        [HideIf(nameof(GetType), typeof(Spell))]
         public AnimationClip animation;
 
         [VerticalGroup("Icon/Info"), LabelWidth(120)]
@@ -74,7 +75,7 @@ namespace Characters.Abilities
         
         #endregion
 
-        public string GetParameters(int actionOption)
+        public virtual string GetParameters(int actionOption)
         {
             return $"AbilityAction,{actionOption},{(int) targetOptions},{actionCost}";
         }

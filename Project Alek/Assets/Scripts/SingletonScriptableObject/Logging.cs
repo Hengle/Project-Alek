@@ -11,7 +11,7 @@ namespace SingletonScriptableObject
         { 
             if (showLogs) Debug.Log(message);
         }
-        
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Initialize() => Init();
     }

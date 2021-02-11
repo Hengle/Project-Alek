@@ -6,9 +6,9 @@ namespace SingletonScriptableObject
     {
         public static T Instance { get; private set; }
     
-        protected static void Init()
+        protected static void Init(string path = "")
         {
-            var results = Resources.LoadAll<T>("");
+            var results = Resources.LoadAll<T>(path);
         
             if (results.Length == 0)
             {

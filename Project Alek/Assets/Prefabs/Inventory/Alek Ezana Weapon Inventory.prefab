@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DrawContentInInspector: 1
   Content:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: ec069cf5eefe2b542948c9199f54518c, type: 2}
   InventoryType: 1
   TargetTransform: {fileID: 0}
   Persistent: 1

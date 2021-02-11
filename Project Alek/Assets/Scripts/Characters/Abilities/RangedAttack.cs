@@ -9,6 +9,6 @@ namespace Characters.Abilities
         [Space] [Title("Ranged Ability Specific Fields"), LabelWidth(120)]
         public bool lookAtTarget;
         
-        private void Awake() => abilityType = AbilityType.Ranged;
+        protected virtual void Awake() => abilityType = AbilityType.Ranged;
     }
 }

@@ -118,11 +118,16 @@ namespace Characters
         [Range(1,150), TabGroup("Tabs","Weapon Stats")] public int weaponAccuracy;
         [Range(1,99), TabGroup("Tabs","Weapon Stats")] public int weaponCriticalChance;
 
-        [TabGroup("Tabs","Abilities")] [InlineEditor]
+        [TabGroup("Tabs","Spells & Abilities")] [InlineEditor]
         [ValidateInput(nameof(CheckAbilityCount), "Cannot have more than 5 abilities equipped!")] 
         public List<Ability> abilities = new List<Ability>();
+        
+        [TabGroup("Tabs","Spells & Abilities")] [InlineEditor]
+        [ValidateInput(nameof(CheckSpellCount), "Cannot have more than 5 spells equipped!")] 
+        public List<Spell> spells = new List<Spell>();
 
         private bool CheckAbilityCount => abilities.Count <= 5;
+        private bool CheckSpellCount => spells.Count <= 5;
 
         public Color Color 
         {
@@ -268,7 +273,7 @@ namespace Characters
 
         public virtual void Heal(float amount) {}
 
-        public virtual void TakeDamage(int dmg, ElementalType elementalDmg, WeaponDamageType weaponDamageType)
+        public virtual void TakeDamage(int dmg, ElementalType elementalDmg = null, WeaponDamageType weaponDamageType = null)
         {
             if (dmg != -1)
             {

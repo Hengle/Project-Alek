@@ -165,6 +165,57 @@ namespace BattleSystem.Generator
 
             character.Unit.anim.runtimeAnimatorController = character.Unit.animOverride;
         }
+        
+        private static void SetSpellMenuOptions(PartyMember character)
+        {
+            var spellMenu = character.battlePanel.transform.Find("Battle Menu").
+                transform.Find("Mask").transform.Find("Spell Menu").transform;
+            var spellListIndex = 0;
+            
+            while (character.spells.Count > 5) character.abilities.Remove(character.spells[character.spells.Count-1]);
+
+            for (var buttonIndex = 0; buttonIndex < character.spells.Count; buttonIndex++)
+            {
+                var optionButton = spellMenu.GetChild(buttonIndex).gameObject;
+                optionButton.GetComponentInChildren<TextMeshProUGUI>().text = character.spells[spellListIndex].name;
+                
+                optionButton.transform.Find("Icon").GetComponent<Image>().sprite = character.spells[spellListIndex].icon;
+                optionButton.SetActive(true);
+                
+                var param = character.spells[spellListIndex].GetParameters(spellListIndex);
+                var spell = character.spells[spellListIndex];
+                
+                optionButton.GetComponent<Button>().onClick.
+                    AddListener(delegate { ((BattleOptionsPanel) character.battleOptionsPanel).GetCommandInformation(param);
+                        character.Unit.currentAbility = spell; character.Unit.isAbility = true; });
+
+                if (character.spells[spellListIndex].isMultiTarget) optionButton.GetComponent<Button>().onClick.
+                    AddListener(delegate { ChooseTarget._isMultiTarget = true; });
+                    
+                optionButton.GetComponent<InfoBoxUI>().information =
+                    $"{character.spells[spellListIndex].description}\n" +
+                    $"({character.spells[spellListIndex].actionCost} AP)";
+                
+                spell.attackState = spellListIndex+1;
+                //character.Unit.animOverride[$"Spell {spellListIndex+1}"] = spell.animation;
+
+                spellListIndex++;
+
+                if (buttonIndex != character.spells.Count - 1) continue;
+
+                var firstOption = spellMenu.GetChild(0).gameObject;
+                var firstOpNav = firstOption.GetComponent<Selectable>().navigation;
+                var nav = optionButton.GetComponent<Selectable>().navigation;
+
+                nav.selectOnDown = firstOption.GetComponent<Button>();
+                optionButton.GetComponent<Selectable>().navigation = nav;
+                
+                firstOpNav.selectOnUp = optionButton.GetComponent<Button>();
+                firstOption.GetComponent<Selectable>().navigation = firstOpNav;
+            }
+
+            //character.Unit.anim.runtimeAnimatorController = character.Unit.animOverride;
+        }
 
         private void SetupInventoryDisplay(PartyMember character, int i)
         {
@@ -192,13 +243,9 @@ namespace BattleSystem.Generator
 
             var details = character.inventoryDisplay.GetComponentInChildren<InventoryDetails>();
             details.TargetInventoryName = $"{inventory.name}";
-
             
-            //TODO: This is temporary and should be removed once i have an overworld interface for equipping items
             if (character.equippedWeapon == null) Debug.LogError($"{character.characterName} has no weapon!");
             character.equippedWeapon.partyMember = character;
-            // weaponInventory.AddItem(character.equippedWeapon, 1);
-            // weaponInventory.Content[0].Equip();
         }
 
         private void SetupProfileBox(UnitBase character)

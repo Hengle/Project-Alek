@@ -76,6 +76,7 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
         tree.AddAllAssetsAtPath("Abilities/Ranged Attacks","Scriptable Objects/Abilities/Ranged", typeof(Ability));
         tree.AddAllAssetsAtPath("Abilities/Non-Attacks","Scriptable Objects/Abilities/Non-attacks", typeof(Ability));
         tree.AddAllAssetsAtPath("Abilities/Special Attacks","Scriptable Objects/Abilities/Special Attacks", typeof(Ability));
+        tree.AddAllAssetsAtPath("Spells","Scriptable Objects/Spells", typeof(Spell));
         tree.AddAllAssetsAtPath("Status Effects/Damage Over Time", "Scriptable Objects/Status Effects/DOT", typeof(StatusEffect));
         tree.AddAllAssetsAtPath("Status Effects/Stat Change", "Scriptable Objects/Status Effects/StatChange/Buffs", typeof(StatusEffect));
         tree.AddAllAssetsAtPath("Status Effects/Stat Change", "Scriptable Objects/Status Effects/StatChange/Debuffs", typeof(StatusEffect));
