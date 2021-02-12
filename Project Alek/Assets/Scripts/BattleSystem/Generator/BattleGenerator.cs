@@ -95,6 +95,9 @@ namespace BattleSystem.Generator
 
             mainMenu.Find("End Turn Button").gameObject.GetComponent<Button>().onClick.AddListener
                 (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnEndTurnButton(); });
+            
+            mainMenu.Find("Flee Button").gameObject.GetComponent<Button>().onClick.AddListener
+                (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnFleeButton(); });
 
             character.BattlePanelAnim = character.battlePanel.GetComponent<Animator>();
             

@@ -377,6 +377,17 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""454a7116-6d91-4c80-a6fe-10e4ec4d022f"",
+                    ""path"": ""<HID::Google Inc. Stadia Controller>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""8b3f6100-beeb-4134-a187-f37851a5d3ac"",
                     ""path"": ""*/{Cancel}"",
                     ""interactions"": """",
@@ -401,6 +412,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""01acce91-8087-4871-82e1-7aa96617d86b"",
                     ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff7de9ac-9179-453f-92f2-c87b69bb6325"",
+                    ""path"": ""<HID::Google Inc. Stadia Controller>/button2"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1221,6 +1243,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""OpenPauseMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""6fae81a5-7001-44d3-b896-0c878059a722"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -1388,6 +1418,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""ChangeLeader"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f99f5ef-8e0d-4627-923e-8f65dd937e5b"",
+                    ""path"": ""<HID::Google Inc. Stadia Controller>/button12"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenPauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9c18cda6-444e-4436-8337-056975ada7b1"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenPauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1423,6 +1475,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Overworld_Move = m_Overworld.FindAction("Move", throwIfNotFound: true);
         m_Overworld_Run = m_Overworld.FindAction("Run", throwIfNotFound: true);
         m_Overworld_ChangeLeader = m_Overworld.FindAction("ChangeLeader", throwIfNotFound: true);
+        m_Overworld_OpenPauseMenu = m_Overworld.FindAction("OpenPauseMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1694,6 +1747,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Overworld_Move;
     private readonly InputAction m_Overworld_Run;
     private readonly InputAction m_Overworld_ChangeLeader;
+    private readonly InputAction m_Overworld_OpenPauseMenu;
     public struct OverworldActions
     {
         private @Controls m_Wrapper;
@@ -1701,6 +1755,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Overworld_Move;
         public InputAction @Run => m_Wrapper.m_Overworld_Run;
         public InputAction @ChangeLeader => m_Wrapper.m_Overworld_ChangeLeader;
+        public InputAction @OpenPauseMenu => m_Wrapper.m_Overworld_OpenPauseMenu;
         public InputActionMap Get() { return m_Wrapper.m_Overworld; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1719,6 +1774,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @ChangeLeader.started -= m_Wrapper.m_OverworldActionsCallbackInterface.OnChangeLeader;
                 @ChangeLeader.performed -= m_Wrapper.m_OverworldActionsCallbackInterface.OnChangeLeader;
                 @ChangeLeader.canceled -= m_Wrapper.m_OverworldActionsCallbackInterface.OnChangeLeader;
+                @OpenPauseMenu.started -= m_Wrapper.m_OverworldActionsCallbackInterface.OnOpenPauseMenu;
+                @OpenPauseMenu.performed -= m_Wrapper.m_OverworldActionsCallbackInterface.OnOpenPauseMenu;
+                @OpenPauseMenu.canceled -= m_Wrapper.m_OverworldActionsCallbackInterface.OnOpenPauseMenu;
             }
             m_Wrapper.m_OverworldActionsCallbackInterface = instance;
             if (instance != null)
@@ -1732,6 +1790,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @ChangeLeader.started += instance.OnChangeLeader;
                 @ChangeLeader.performed += instance.OnChangeLeader;
                 @ChangeLeader.canceled += instance.OnChangeLeader;
+                @OpenPauseMenu.started += instance.OnOpenPauseMenu;
+                @OpenPauseMenu.performed += instance.OnOpenPauseMenu;
+                @OpenPauseMenu.canceled += instance.OnOpenPauseMenu;
             }
         }
     }
@@ -1768,5 +1829,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnChangeLeader(InputAction.CallbackContext context);
+        void OnOpenPauseMenu(InputAction.CallbackContext context);
     }
 }

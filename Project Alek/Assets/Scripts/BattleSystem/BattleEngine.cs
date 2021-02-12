@@ -358,6 +358,13 @@ namespace BattleSystem
             
             //TODO: Show game over menu with options to load save or quit
         }
+
+        public IEnumerator<float> FleeBattleSequence()
+        {
+            StopAllCoroutines();
+            yield return Timing.WaitForSeconds(0.5f);
+            SceneLoadManager.Instance.LoadOverworld();
+        }
         
         #endregion
         

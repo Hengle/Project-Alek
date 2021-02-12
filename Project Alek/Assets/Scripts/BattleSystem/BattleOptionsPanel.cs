@@ -1,6 +1,7 @@
 ﻿using Characters;
 using Characters.Animations;
 using Characters.PartyMembers;
+using MEC;
 using UnityEngine;
 
 namespace BattleSystem
@@ -114,6 +115,11 @@ namespace BattleSystem
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
             BattleEngine.Instance.endThisMembersTurn = true;
             BattleEngine.Instance.choosingOption = false;
+        }
+
+        public void OnFleeButton()
+        {
+            Timing.RunCoroutine(BattleEngine.Instance.FleeBattleSequence());
         }
     }
 }

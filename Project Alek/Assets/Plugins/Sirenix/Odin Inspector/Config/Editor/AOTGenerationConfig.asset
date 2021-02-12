@@ -16,7 +16,7 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 0900000014000000
-  lastScan: 637478630830754594
+  lastScan: 637486813565168238
   supportSerializedTypes:
   - TypeName: Characters.Abilities.Ability, ProjectAlek
     IsCustom: 0
@@ -48,12 +48,6 @@ MonoBehaviour:
     IsCustom: 0
     Emit: 1
   - TypeName: Characters.ClassAbility, ProjectAlek
-    IsCustom: 0
-    Emit: 1
-  - TypeName: System.Delegate, mscorlib
-    IsCustom: 0
-    Emit: 1
-  - TypeName: System.Delegate[], mscorlib
     IsCustom: 0
     Emit: 1
   - TypeName: System.Collections.Generic.Dictionary`2[[Characters.UnitBase+ElementalResStruct,
@@ -107,9 +101,6 @@ MonoBehaviour:
       mscorlib
     IsCustom: 0
     Emit: 1
-  - TypeName: System.Object, mscorlib
-    IsCustom: 0
-    Emit: 1
   - TypeName: System.Collections.Generic.ObjectEqualityComparer`1[[Characters.UnitBase+ElementalResStruct,
       ProjectAlek]], mscorlib
     IsCustom: 0
@@ -131,15 +122,6 @@ MonoBehaviour:
     IsCustom: 0
     Emit: 1
   - TypeName: Characters.StatusEffects.StatusEffect, ProjectAlek
-    IsCustom: 0
-    Emit: 1
-  - TypeName: System.String, mscorlib
-    IsCustom: 0
-    Emit: 1
-  - TypeName: System.Type, mscorlib
-    IsCustom: 0
-    Emit: 1
-  - TypeName: System.Type[], mscorlib
     IsCustom: 0
     Emit: 1
   - TypeName: Characters.UnitBase, ProjectAlek

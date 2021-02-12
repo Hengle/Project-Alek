@@ -2,7 +2,20 @@
 
 public class CameraViewportController : MonoBehaviour
 {
-    private void Start () 
+    private static CameraViewportController instance;
+    
+    public static CameraViewportController Instance 
+    {
+        get { if (instance == null)
+                Debug.LogError("CameraViewPortController is null");
+            return instance; }
+    }
+
+    private void Awake() => instance = this;
+    
+    private void Start () => SetAspect();
+    
+    public void SetAspect()
     {
         const float targetAspect = 16.0f / 9.0f;
         
