@@ -32,3 +32,4 @@ MonoBehaviour:
   lookAtTarget: 1
   effectPrefab: {fileID: 8230514638103729950, guid: bb6a2bc50b06f8e4290a4ec16d6e074f,
     type: 3}
+  offset: {x: 0, y: 10, z: 0}

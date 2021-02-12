@@ -21,12 +21,12 @@ MonoBehaviour:
   attackState: 2
   animation: {fileID: 7400000, guid: 10468bef8c71fa54581a422a1686b6db, type: 2}
   isMultiTarget: 0
-  description: Burn baby burn!
-  hasElemental: 1
+  description: Chance of inflicting Burn
+  hasElemental: 0
   elementalType: {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
   elementalScalar: 25
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
-  chanceOfInfliction: 1
+  chanceOfInfliction: 0.8
   lookAtTarget: 1

@@ -32,6 +32,7 @@ namespace BattleSystem.Generator
             SetupParty();
             SpawnAndSetupEnemyTeam();
             SetupPartyMenuController();
+            database.worldSpaceCanvas.gameObject.SetActive(true);
         }
 
         private void SetupMainInventory()
@@ -200,7 +201,6 @@ namespace BattleSystem.Generator
                     $"({character.spells[spellListIndex].actionCost} AP)";
                 
                 spell.attackState = spellListIndex+1;
-                //character.Unit.animOverride[$"Spell {spellListIndex+1}"] = spell.animation;
 
                 spellListIndex++;
 
@@ -216,8 +216,6 @@ namespace BattleSystem.Generator
                 firstOpNav.selectOnUp = optionButton.GetComponent<Button>();
                 firstOption.GetComponent<Selectable>().navigation = firstOpNav;
             }
-
-            //character.Unit.anim.runtimeAnimatorController = character.Unit.animOverride;
         }
 
         private void SetupInventoryDisplay(PartyMember character, int i)
@@ -299,8 +297,7 @@ namespace BattleSystem.Generator
                 
             var shieldTransform = Instantiate(database.shieldTransform, newPosition,
                 database.shieldTransform.rotation);
-                
-            //shieldTransform.transform.SetParent(clone.Unit.transform);
+
             shieldTransform.transform.SetParent(database.worldSpaceCanvas.transform);
 
             var shieldController = shieldTransform.GetComponent<BreakSystemControllerUI>();

@@ -239,9 +239,13 @@ namespace Characters.Animations
 
         [UsedImplicitly] private void ActivateSpell()
         {
-            var prefab = ((Spell) unit.currentAbility).effectPrefab;
+            windowOpen = false;
+            if (!missedWindow && !hitWindow) SendTimedButtonEventResult(false);
+
+            var spell = (Spell) unit.currentAbility;
+            var prefab = spell.effectPrefab;
             var position = unit.currentTarget.Unit.transform.position;
-            var newPosition = new Vector3(position.x, prefab.transform.position.y, position.z);
+            var newPosition = new Vector3(position.x + spell.offset.x, position.y + spell.offset.y, position.z);
             var effectGo = Instantiate(prefab, newPosition, prefab.transform.rotation);
             effectGo.GetComponent<SpellAnimationEvents>().Setup(unit, ElementalCondition);
         }

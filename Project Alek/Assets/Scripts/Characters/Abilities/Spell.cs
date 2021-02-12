@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Characters.Abilities
 {
@@ -7,6 +6,7 @@ namespace Characters.Abilities
     public class Spell : RangedAttack
     {
         public GameObject effectPrefab;
+        public Vector3 offset;
 
         protected override void Awake()
         {

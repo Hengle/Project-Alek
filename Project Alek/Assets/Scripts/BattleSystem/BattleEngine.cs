@@ -110,7 +110,7 @@ namespace BattleSystem
             canGiveCommand = true;
             roundCount = 0;
 
-            //audioController.PlayAudio(themes[0], true, 2);
+            audioController.PlayAudio(themes[0], true, 2);
             PartyManager.Instance.Order();
             Timing.RunCoroutine(SetupBattle());
         }

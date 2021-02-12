@@ -47,11 +47,5 @@ namespace Overworld
 
             playerSpawnEvent.Raise();
         }
-
-        private void OnDisable()
-        {
-            if (playerTransform == null) return;
-            PlayerPositionManager.Instance.Position = playerTransform.position;
-        }
     }
 }

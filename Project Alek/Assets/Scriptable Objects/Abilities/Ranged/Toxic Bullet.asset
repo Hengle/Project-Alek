@@ -21,7 +21,7 @@ MonoBehaviour:
   attackState: 3
   animation: {fileID: 7400000, guid: 10468bef8c71fa54581a422a1686b6db, type: 2}
   isMultiTarget: 0
-  description: A bullet with a high chance of inflicting poison
+  description: A bullet laced with poison.
   hasElemental: 0
   elementalType: {fileID: 0}
   elementalScalar: 0

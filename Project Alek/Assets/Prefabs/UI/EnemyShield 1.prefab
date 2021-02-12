@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
-  shieldPrefab: {fileID: 8374225584348212740}
+  shield: {fileID: 8374225584348212740}
   shieldCount: {fileID: 658047261397999266}
   enemyName: {fileID: 3284945155806526511}
 --- !u!1 &5620248731307297699

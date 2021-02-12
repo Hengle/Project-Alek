@@ -16,8 +16,8 @@ namespace SingletonScriptableObject
             previousScene = SceneManager.GetActiveScene().path;
             operation = SceneManager.LoadSceneAsync("Scenes/Battle");
             operation.allowSceneActivation = false;
-            Timing.RunCoroutine(SceneTransitionManager.Instance.BattleTransition().
-                Append(() => operation.allowSceneActivation = true));
+            Timing.RunCoroutine(SceneTransitionManager.Instance.BattleTransition()
+                .Append(() => operation.allowSceneActivation = true));
         }
 
         public void LoadOverworld()
