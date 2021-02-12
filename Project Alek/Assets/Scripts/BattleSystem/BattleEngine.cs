@@ -136,8 +136,8 @@ namespace BattleSystem
             _enemiesForThisBattle.ForEach(e => { e.onDeath += RemoveFromBattle; e.onRevival += AddToBattle; });
 
             setupCompleteEvent.Raise();
-            _membersForThisBattle.ForEach(m => 
-                m.LevelUpEvent += battleResults.GetComponent<BattleResultsUI>().Enqueue);
+            _membersForThisBattle.ForEach(m => m.LevelUpEvent += 
+                battleResults.GetComponent<BattleResultsUI>().Enqueue);
             
             yield return Timing.WaitForSeconds(1);
             Timing.RunCoroutine(GetNextTurn());
