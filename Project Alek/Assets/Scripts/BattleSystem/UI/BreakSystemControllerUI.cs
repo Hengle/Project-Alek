@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Characters;
+using Characters.Animations;
 using Characters.Enemies;
 using MEC;
 using TMPro;
@@ -14,6 +16,13 @@ namespace BattleSystem.UI
         [SerializeField] private TextMeshPro shieldCount;
         [SerializeField] private TextMeshPro enemyName;
 
+        private Animator shieldAnim;
+
+        private void Awake()
+        {
+            shieldAnim = shield.GetComponent<Animator>();
+        }
+
         public void Initialize()
         {
             shieldCount.text = enemy.maxShieldCount.ToString();
@@ -24,6 +33,11 @@ namespace BattleSystem.UI
             Timing.RunCoroutine(ShowShield());
             
             enemy.onShieldValueChanged += UpdateShieldCountUI;
+            enemy.onShieldValueChanged += PlayShieldDamagedAnimation;
+            enemy.onShieldBroken += PlayShieldBrokenAnimation;
+            enemy.onShieldBroken += HideShieldCount;
+            enemy.onShieldRestored += ShowShieldCount;
+            enemy.onShieldRestored += PlayShieldRestoredAnimation;
             enemy.Unit.onSelect += ShowName;
             enemy.Unit.onDeselect += HideName;
             enemy.onDeath += OnDeath;
@@ -36,7 +50,23 @@ namespace BattleSystem.UI
             shieldCount.gameObject.SetActive(true);
         }
 
+        private void PlayShieldDamagedAnimation(int count)
+        {
+            if (count > 0 && count != enemy.maxShieldCount)
+            {
+                shieldAnim.SetTrigger(AnimationHandler.ShieldDamage);
+            }
+        }
+
+        private void PlayShieldBrokenAnimation() => shieldAnim.SetTrigger(AnimationHandler.ShieldBreak);
+        
+        private void PlayShieldRestoredAnimation() => shieldAnim.SetTrigger(AnimationHandler.ShieldRestore);
+
         private void UpdateShieldCountUI(int count) => shieldCount.text = count.ToString();
+
+        private void ShowShieldCount() => shieldCount.gameObject.SetActive(true);
+
+        private void HideShieldCount() => shieldCount.gameObject.SetActive(false);
         
         private void ShowName() => enemyName.gameObject.SetActive(true);
         
@@ -47,6 +77,11 @@ namespace BattleSystem.UI
         private void OnDisable()
         {
             enemy.onShieldValueChanged -= UpdateShieldCountUI;
+            enemy.onShieldValueChanged -= PlayShieldDamagedAnimation;
+            enemy.onShieldBroken -= PlayShieldBrokenAnimation;
+            enemy.onShieldBroken -= HideShieldCount;
+            enemy.onShieldRestored -= ShowShieldCount;
+            enemy.onShieldRestored -= PlayShieldRestoredAnimation;
             enemy.Unit.onSelect -= ShowName;
             enemy.Unit.onDeselect -= HideName;
             enemy.onDeath -= OnDeath;

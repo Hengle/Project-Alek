@@ -38,14 +38,16 @@ namespace BattleSystem.Mechanics
             unitBase.onStatusEffectRemoved += EvaluateStateOnRemoval;
             
             battleEvent.AddListener(this);
+            enemyTurnEvent.AddListener(this);
         }
 
         private void OnDisable()
         {
             battleEvent.RemoveListener(this);
+            enemyTurnEvent.RemoveListener(this);
         }
 
-        private void Reset()
+        private void RestoreShield()
         {
             currentState = UnitStates.Normal;
             unitBase.Unit.currentState = UnitStates.Normal;
@@ -54,6 +56,7 @@ namespace BattleSystem.Mechanics
             newRoundCondition = false;
             enemyTurnCondition = false;
             
+            unitBase.onShieldRestored?.Invoke();
             unitBase.onShieldValueChanged?.Invoke(currentShieldCount);
         }
         
@@ -62,12 +65,12 @@ namespace BattleSystem.Mechanics
             if (currentState == UnitStates.Susceptible)
             {
                 if (effect as Susceptible == null) return;
-                Reset();
+                RestoreShield();
             }
 
             if (currentState != UnitStates.Checkmate) return;
             if (effect as Checkmate == null) return;
-            Reset();
+            RestoreShield();
         }
         
         private void EvaluateState(StatusEffect effect)
@@ -122,6 +125,7 @@ namespace BattleSystem.Mechanics
 
             if (currentShieldCount > 0) return;
 
+            unitBase.onShieldBroken?.Invoke();
             currentState = UnitStates.Weakened;
             unitBase.Unit.currentState = currentState;
             unitBase.OnNewState(currentState);
@@ -135,7 +139,7 @@ namespace BattleSystem.Mechanics
             }
 
             if (currentState != UnitStates.Weakened) return;
-            if (newRoundCondition && enemyTurnCondition) Reset();
+            if (newRoundCondition && enemyTurnCondition) RestoreShield();
         }
 
         public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
@@ -146,7 +150,7 @@ namespace BattleSystem.Mechanics
             }
             
             if (currentState != UnitStates.Weakened) return;
-            if (newRoundCondition && enemyTurnCondition) Reset();
+            if (newRoundCondition && enemyTurnCondition) RestoreShield();
         }
     }
 }

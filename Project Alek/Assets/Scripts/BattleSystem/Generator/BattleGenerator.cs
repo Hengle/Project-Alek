@@ -296,12 +296,13 @@ namespace BattleSystem.Generator
         private void SetupEnemyShield(Enemy clone, GameObject enemyGo)
         {
             var position = enemyGo.transform.position;
-            var newPosition = new Vector3(position.x, position.y - 0.5f, position.z);
+            var newPosition = new Vector3(position.x, position.y - 0.1f, position.z);
                 
             var shieldTransform = Instantiate(database.shieldTransform, newPosition,
                 database.shieldTransform.rotation);
 
-            shieldTransform.transform.SetParent(database.worldSpaceCanvas.transform);
+            //shieldTransform.transform.SetParent(database.worldSpaceCanvas.transform);
+            shieldTransform.transform.SetParent(enemyGo.transform);
 
             var shieldController = shieldTransform.GetComponent<BreakSystemControllerUI>();
             shieldController.enemy = clone;

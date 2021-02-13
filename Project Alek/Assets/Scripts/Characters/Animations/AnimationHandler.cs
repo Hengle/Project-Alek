@@ -20,6 +20,9 @@ namespace Characters.Animations
         public static readonly int AbilityMenu = Animator.StringToHash("Ability Menu");
         public static readonly int SpellMenu = Animator.StringToHash("Spell Menu");
         public static readonly int AnimState = Animator.StringToHash("AnimState");
+        public static readonly int ShieldDamage = Animator.StringToHash("Shield Damage");
+        public static readonly int ShieldBreak = Animator.StringToHash("Shield Break");
+        public static readonly int ShieldRestore = Animator.StringToHash("Shield Restore");
         
         public bool isAttacking;
         public bool usingItem;

@@ -1,0 +1,1592 @@
+fileFormatVersion: 2
+guid: 9189e3a1f98c67d47b3f8c499770f721
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6086767413236396569
+    second: Shield_Damage_0
+  - first:
+      213: 57190567167304794
+    second: Shield_Damage_1
+  - first:
+      213: 295498511541028956
+    second: Shield_Damage_2
+  - first:
+      213: -8290764619562170807
+    second: Shield_Damage_3
+  - first:
+      213: 7727614239619262947
+    second: Shield_Damage_4
+  - first:
+      213: -9092145738207881607
+    second: Shield_Damage_5
+  - first:
+      213: 2218126410348449995
+    second: Shield_Damage_6
+  - first:
+      213: 5811947825759435745
+    second: Shield_Damage_7
+  - first:
+      213: -8837410713575349322
+    second: Shield_Damage_8
+  - first:
+      213: -8332466083737070269
+    second: Shield_Damage_9
+  - first:
+      213: 8389416845031022321
+    second: Shield_Damage_10
+  - first:
+      213: 3824052985175515151
+    second: Shield_Damage_11
+  - first:
+      213: -7699960393939703898
+    second: Shield_Damage_12
+  - first:
+      213: -3406697781566831428
+    second: Shield_Damage_13
+  - first:
+      213: -1480734684791178535
+    second: Shield_Damage_14
+  - first:
+      213: -3272144250167396512
+    second: Shield_Damage_15
+  - first:
+      213: 4961720463584083722
+    second: Shield_Damage_16
+  - first:
+      213: -8016912131494495757
+    second: Shield_Damage_17
+  - first:
+      213: -614589121645770717
+    second: Shield_Damage_18
+  - first:
+      213: -7360651475733414657
+    second: Shield_Damage_19
+  - first:
+      213: 2996111001432637671
+    second: Shield_Damage_20
+  - first:
+      213: 2800787382192933710
+    second: Shield_Damage_21
+  - first:
+      213: -1454718047660736744
+    second: Shield_Damage_22
+  - first:
+      213: -2626625318294266851
+    second: Shield_Damage_23
+  - first:
+      213: -5734374810595066904
+    second: Shield_Damage_24
+  - first:
+      213: -291636976025928154
+    second: Shield_Damage_25
+  - first:
+      213: -4213570933449532191
+    second: Shield_Damage_26
+  - first:
+      213: 6735981674576455231
+    second: Shield_Damage_27
+  - first:
+      213: 5330789094701938549
+    second: Shield_Damage_28
+  - first:
+      213: 2071305627363037700
+    second: Shield_Damage_29
+  - first:
+      213: -4326637736021249235
+    second: Shield_Damage_30
+  - first:
+      213: 5894857459911795724
+    second: Shield_Damage_31
+  - first:
+      213: 3626539565107284804
+    second: Shield_Damage_32
+  - first:
+      213: -8257617995359338034
+    second: Shield_Damage_33
+  - first:
+      213: -312675591546139521
+    second: Shield_Damage_34
+  - first:
+      213: 4702952429360592648
+    second: Shield_Damage_35
+  - first:
+      213: -1150033369003721485
+    second: Shield_Damage_36
+  - first:
+      213: -7563364257486296061
+    second: Shield_Damage_37
+  - first:
+      213: 8542224591524142655
+    second: Shield_Damage_38
+  - first:
+      213: 9168203247093405031
+    second: Shield_Damage_39
+  - first:
+      213: 7075537447010997429
+    second: Shield_Damage_40
+  - first:
+      213: 7086378627726604806
+    second: Shield_Damage_41
+  - first:
+      213: -1918326365731988558
+    second: Shield_Damage_42
+  - first:
+      213: -5081000932429876984
+    second: Shield_Damage_43
+  - first:
+      213: -7452289365008373424
+    second: Shield_Damage_44
+  - first:
+      213: -6310559256596323192
+    second: Shield_Damage_45
+  - first:
+      213: -6028659603730989085
+    second: Shield_Damage_46
+  - first:
+      213: -3404221032241491834
+    second: Shield_Damage_47
+  - first:
+      213: 5345049328379852892
+    second: Shield_Damage_48
+  - first:
+      213: -1919877366339995811
+    second: Shield_Damage_49
+  - first:
+      213: -3714587716329464290
+    second: Shield_Damage_50
+  - first:
+      213: 2253154536708785868
+    second: Shield_Damage_51
+  - first:
+      213: -1202733060161847217
+    second: Shield_Damage_52
+  - first:
+      213: -8058218359837944364
+    second: Shield_Damage_53
+  - first:
+      213: 5604827921855391525
+    second: Shield_Damage_54
+  - first:
+      213: -5087795382184763434
+    second: Shield_Damage_55
+  - first:
+      213: 2946790870899009253
+    second: Shield_Damage_56
+  - first:
+      213: 1455337311539836387
+    second: Shield_Damage_57
+  - first:
+      213: -8918682556032076887
+    second: Shield_Damage_58
+  - first:
+      213: 7295615683364020846
+    second: Shield_Damage_59
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: 2
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Shield_Damage_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 905
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 912f06896ba887450800000000000000
+      internalID: 6086767413236396569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_1
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 905
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a54a280948e2bc000800000000000000
+      internalID: 57190567167304794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_2
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 907
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c584f04a452d91400800000000000000
+      internalID: 295498511541028956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_3
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 907
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 946ce9e318941fc80800000000000000
+      internalID: -8290764619562170807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_4
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 907
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e9a1c155300e3b60800000000000000
+      internalID: 7727614239619262947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_5
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 907
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97699049f9532d180800000000000000
+      internalID: -9092145738207881607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_6
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 907
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc05bb3d73e58ce10800000000000000
+      internalID: 2218126410348449995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_7
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 905
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ebbe7721cf28a050800000000000000
+      internalID: 5811947825759435745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_8
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 779
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b32c1357c53b5580800000000000000
+      internalID: -8837410713575349322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_9
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 779
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3459cdf7e322d5c80800000000000000
+      internalID: -8332466083737070269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_10
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 777
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fe90c8eb223d6470800000000000000
+      internalID: 8389416845031022321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_11
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 777
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f00a8a7ede3c11530800000000000000
+      internalID: 3824052985175515151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_12
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 777
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a7a5ae51de342590800000000000000
+      internalID: -7699960393939703898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_13
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 779
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb40998ca6af8b0d0800000000000000
+      internalID: -3406697781566831428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_14
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 779
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dafb6246af537be0800000000000000
+      internalID: -1480734684791178535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_15
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 779
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0677fea14220792d0800000000000000
+      internalID: -3272144250167396512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_16
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 649
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0f37ba29729bd440800000000000000
+      internalID: 4961720463584083722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_17
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 651
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f930ce44e43eb090800000000000000
+      internalID: -8016912131494495757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_18
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 651
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3280c79337a8877f0800000000000000
+      internalID: -614589121645770717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_19
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 649
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffc74713b76b9d990800000000000000
+      internalID: -7360651475733414657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_20
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 651
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e0480ce413549920800000000000000
+      internalID: 2996111001432637671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_21
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 650
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4b810fe8456ed620800000000000000
+      internalID: 2800787382192933710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_22
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 650
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81ff4d0a4adcfcbe0800000000000000
+      internalID: -1454718047660736744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_23
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 650
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1cd501803a5c8bd0800000000000000
+      internalID: -2626625318294266851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_24
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 522
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eb7885ed786b60b0800000000000000
+      internalID: -5734374810595066904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_25
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 522
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62efa9827b5e3fbf0800000000000000
+      internalID: -291636976025928154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_26
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 522
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ec54db7f836685c0800000000000000
+      internalID: -4213570933449532191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_27
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 522
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f36abaee4a30b7d50800000000000000
+      internalID: 6735981674576455231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_28
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 522
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5773c3a1074caf940800000000000000
+      internalID: 5330789094701938549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_29
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 522
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 402dd3c6e71cebc10800000000000000
+      internalID: 2071305627363037700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_30
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 522
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2337a017e1b4f3c0800000000000000
+      internalID: -4326637736021249235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_31
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 522
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c04aa93a0adbec150800000000000000
+      internalID: 5894857459911795724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_32
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 394
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44b8e1e258e045230800000000000000
+      internalID: 3626539565107284804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_33
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 394
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec1cbb71f2c076d80800000000000000
+      internalID: -8257617995359338034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_34
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 394
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7c05f3c43729abf0800000000000000
+      internalID: -312675591546139521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_35
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 394
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8073993315e344140800000000000000
+      internalID: 4702952429360592648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_36
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 394
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fcffa87eb24a00f0800000000000000
+      internalID: -1150033369003721485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_37
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 394
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30ca4adb748890790800000000000000
+      internalID: -7563364257486296061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_38
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 394
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3e1761e1041c8670800000000000000
+      internalID: 8542224591524142655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_39
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 394
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 765d59b27400c3f70800000000000000
+      internalID: 9168203247093405031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_40
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 266
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b4901cf1db513260800000000000000
+      internalID: 7075537447010997429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_41
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 266
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60a709111dfd75260800000000000000
+      internalID: 7086378627726604806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_42
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 266
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bb5747855cb065e0800000000000000
+      internalID: -1918326365731988558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_43
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 266
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 801b61f7298ac79b0800000000000000
+      internalID: -5081000932429876984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_44
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 266
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05921437e46249890800000000000000
+      internalID: -7452289365008373424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_45
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 266
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 884e5887ac36c68a0800000000000000
+      internalID: -6310559256596323192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_46
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 266
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3effdd71806e55ca0800000000000000
+      internalID: -6028659603730989085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_47
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 266
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 680155ce107c1c0d0800000000000000
+      internalID: -3404221032241491834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_48
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 138
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c58750d7b0e6d2a40800000000000000
+      internalID: 5345049328379852892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_49
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 138
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d57fdfe05b93b55e0800000000000000
+      internalID: -1919877366339995811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_50
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 138
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1e17291722237cc0800000000000000
+      internalID: -3714587716329464290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_51
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 138
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc646980d10d44f10800000000000000
+      internalID: 2253154536708785868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_52
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 138
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f404f6577a80f4fe0800000000000000
+      internalID: -1202733060161847217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_53
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 138
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d5145398157b2090800000000000000
+      internalID: -8058218359837944364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_54
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 138
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 527a16d9c4958cd40800000000000000
+      internalID: 5604827921855391525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_55
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 138
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6df11036e058469b0800000000000000
+      internalID: -5087795382184763434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_56
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 10
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e6ac4f2faa15e820800000000000000
+      internalID: 2946790870899009253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_57
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 10
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e534baf295623410800000000000000
+      internalID: 1455337311539836387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_58
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 10
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a33c3fe7797a3480800000000000000
+      internalID: -8918682556032076887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_Damage_59
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 10
+        width: 96
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e626ea86fcb3f3560800000000000000
+      internalID: 7295615683364020846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 49c0ddbae81f4b243b4069906770f81b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

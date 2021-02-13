@@ -180,6 +180,8 @@ namespace Characters
         [HideInInspector] public Action<UnitBase> onRevival;
         [HideInInspector] public Action onHpValueChanged;
         [HideInInspector] public Action<int> onShieldValueChanged;
+        [HideInInspector] public Action onShieldBroken;
+        [HideInInspector] public Action onShieldRestored;
         [HideInInspector] public Action<ElementalType> onElementalDamageReceived;
         [HideInInspector] public Action<WeaponDamageType> onWeaponDamageTypeReceived;
         [HideInInspector] public Action<StatusEffect> onStatusEffectReceived;
