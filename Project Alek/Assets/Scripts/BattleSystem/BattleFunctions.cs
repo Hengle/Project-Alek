@@ -167,7 +167,7 @@ namespace BattleSystem
             while (parent.position != targetPosition)
             {
                 parent.position = Vector3.MoveTowards(parent.position, targetPosition, 
-                    TimeManager._moveSpeed * Time.deltaTime);
+                    45 * Time.deltaTime);
                 
                 yield return Timing.WaitForOneFrame;
             }

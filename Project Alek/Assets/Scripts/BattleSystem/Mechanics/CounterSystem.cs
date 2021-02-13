@@ -65,9 +65,9 @@ namespace BattleSystem.Mechanics
                 (Rate.AfterAttacked, 0.25f, false));
         }
 
-        private static void SlowTime() => TimeManager._slowTimeCounter = true;
+        private static void SlowTime() => TimeManager.SlowTime(0.35f);
         
-        private static void RestoreTime() => TimeManager._slowTimeCounter = false;
+        private static void RestoreTime() => TimeManager.ResumeTime();
 
         private void OnDisable()
         {

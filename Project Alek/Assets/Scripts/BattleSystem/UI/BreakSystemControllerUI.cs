@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Characters;
 using Characters.Animations;
 using Characters.Enemies;
@@ -50,6 +49,13 @@ namespace BattleSystem.UI
             shieldCount.gameObject.SetActive(true);
         }
 
+        private static IEnumerator<float> SlowMotionSequence()
+        {
+            TimeManager.SlowTime(0.35f);
+            yield return Timing.WaitForSeconds(0.75f);
+            TimeManager.ResumeTime();
+        }
+
         private void PlayShieldDamagedAnimation(int count)
         {
             if (count > 0 && count != enemy.maxShieldCount)
@@ -58,8 +64,12 @@ namespace BattleSystem.UI
             }
         }
 
-        private void PlayShieldBrokenAnimation() => shieldAnim.SetTrigger(AnimationHandler.ShieldBreak);
-        
+        private void PlayShieldBrokenAnimation()
+        {
+            Timing.RunCoroutine(SlowMotionSequence());
+            shieldAnim.SetTrigger(AnimationHandler.ShieldBreak);
+        }
+
         private void PlayShieldRestoredAnimation() => shieldAnim.SetTrigger(AnimationHandler.ShieldRestore);
 
         private void UpdateShieldCountUI(int count) => shieldCount.text = count.ToString();

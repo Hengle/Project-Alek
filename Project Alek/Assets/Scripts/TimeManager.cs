@@ -1,16 +1,7 @@
 ﻿using UnityEngine;
 
-//TODO: Convert to instance
-public class TimeManager : MonoBehaviour
+public static class TimeManager
 {
-    public static int _moveSpeed = 45;
-    public static bool _slowTimeCounter;
-
-    private void Start()
-    {
-        _moveSpeed = 45;
-    }
-
     public static void PauseTime()
     {
         Time.timeScale = 0.0f;
@@ -23,19 +14,9 @@ public class TimeManager : MonoBehaviour
         Time.fixedDeltaTime = 0.02F * Time.timeScale;
     }
 
-    private void Update()
+    public static void SlowTime(float scale)
     {
-        if (_slowTimeCounter)
-        {
-            Time.timeScale = 0.35f;
-            Time.fixedDeltaTime = 0.02F * Time.timeScale;
-        }
-
-        else
-        {
-            Time.timeScale = 1;
-            Time.fixedDeltaTime = 0.02F * Time.timeScale;
-            _moveSpeed = 45;
-        }
+        Time.timeScale = scale;
+        Time.fixedDeltaTime = 0.02F * Time.timeScale;
     }
 }
