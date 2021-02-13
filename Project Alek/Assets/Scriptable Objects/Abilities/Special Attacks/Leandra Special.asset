@@ -25,6 +25,7 @@ MonoBehaviour:
   hasElemental: 0
   elementalType: {fileID: 0}
   elementalScalar: 0
-  hasStatusEffect: 0
-  statusEffects: []
-  chanceOfInfliction: 0
+  hasStatusEffect: 1
+  statusEffects:
+  - {fileID: 11400000, guid: 36cd878da8e17a84ba8777f48afcd570, type: 2}
+  chanceOfInfliction: 1

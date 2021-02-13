@@ -59,6 +59,16 @@ namespace BattleSystem.Mechanics
             unitBase.onShieldRestored?.Invoke();
             unitBase.onShieldValueChanged?.Invoke(currentShieldCount);
         }
+
+        private void Checkmate()
+        {
+            TimeManager.SlowMotionSequence(0.3f, 0.8f);
+            currentState = UnitStates.Checkmate;
+            unitBase.Unit.currentState = currentState;
+            unitBase.Unit.status = Status.UnableToPerformAction;
+
+            unitBase.OnNewState(currentState);
+        }
         
         private void EvaluateStateOnRemoval(StatusEffect effect)
         {
@@ -86,12 +96,7 @@ namespace BattleSystem.Mechanics
                     unitBase.OnNewState(currentState);
                     return;
                 
-                case UnitStates.Weakened when effect as Checkmate != null:
-                    currentState = UnitStates.Checkmate;
-                    unitBase.Unit.currentState = currentState;
-                    unitBase.Unit.status = Status.UnableToPerformAction;
-
-                    unitBase.OnNewState(currentState);
+                case UnitStates.Weakened when effect as Checkmate != null: Checkmate();
                     return;
                 
                 case UnitStates.Normal: return;

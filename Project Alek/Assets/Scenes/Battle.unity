@@ -25359,6 +25359,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2037101437 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4010592608702430740, guid: 7c1f8b167e541b848b94a94b756300aa,
+    type: 3}
+  m_PrefabInstance: {fileID: 4010592609571622401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2037101438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037101437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b88a9ffcc6cd4600b695ab9a12067ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitWindow: {fileID: 11400000, guid: 3c0309db7ddb13042adc78e691a42c3a, type: 2}
 --- !u!1 &2038057213
 GameObject:
   m_ObjectHideFlags: 0
@@ -34561,6 +34580,17 @@ PrefabInstance:
       propertyPath: debug
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4010592608702430743, guid: 7c1f8b167e541b848b94a94b756300aa,
+        type: 3}
+      propertyPath: tracks.Array.data[1].audio.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: cfc2e9c50a1498844bb325fe80e3511e, type: 3}
+    - target: {fileID: 4010592609878939667, guid: 7c1f8b167e541b848b94a94b756300aa,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 6001172282229111577, guid: bc155dfdccec1be4780029a8bd542de5,
+        type: 2}
     - target: {fileID: 4010592610603588783, guid: 7c1f8b167e541b848b94a94b756300aa,
         type: 3}
       propertyPath: Loop

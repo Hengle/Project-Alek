@@ -49,13 +49,6 @@ namespace BattleSystem.UI
             shieldCount.gameObject.SetActive(true);
         }
 
-        private static IEnumerator<float> SlowMotionSequence()
-        {
-            TimeManager.SlowTime(0.35f);
-            yield return Timing.WaitForSeconds(0.75f);
-            TimeManager.ResumeTime();
-        }
-
         private void PlayShieldDamagedAnimation(int count)
         {
             if (count > 0 && count != enemy.maxShieldCount)
@@ -66,7 +59,7 @@ namespace BattleSystem.UI
 
         private void PlayShieldBrokenAnimation()
         {
-            Timing.RunCoroutine(SlowMotionSequence());
+            TimeManager.SlowMotionSequence(0.35f, 0.75f);
             shieldAnim.SetTrigger(AnimationHandler.ShieldBreak);
         }
 

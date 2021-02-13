@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using Audio;
 using JetBrains.Annotations;
 using Random = UnityEngine.Random;
 using BattleSystem;
@@ -13,6 +14,7 @@ using ScriptableObjectArchitecture;
 using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using UnityEngine.InputSystem;
+using AudioType = Audio.AudioType;
 
 namespace Characters.Animations
 {
@@ -40,13 +42,16 @@ namespace Characters.Animations
                 : null;
 
         private bool CheckmateCondition => 
-            timedAttackCount == 5 &&
+            timedAttackCount >= 3 &&
             unit.currentTarget.CurrentState == UnitStates.Weakened && 
             !unit.currentTarget.StatusEffects.Contains(unit.currentAbility.statusEffects[0]);
+
+        private AudioController audioController;
 
         private void Awake()
         {
             unit = GetComponent<Unit>();
+            audioController = FindObjectOfType<AudioController>();
             characterAttackEvent.AddListener(this);
         }
 
@@ -84,6 +89,7 @@ namespace Characters.Animations
             }
 
             SendTimedButtonEventResult(true);
+            audioController.PlayAudio(CommonAudioTypes.Instance.hitWindow);
             hitWindow = true;
             windowOpen = false;
         }
@@ -95,6 +101,7 @@ namespace Characters.Animations
             if (!windowOpen) return;
 
             timedAttackCount += 1;
+            audioController.PlayAudio(CommonAudioTypes.Instance.hitWindow);
             Logging.Instance.Log("Hit Window! Count: " + timedAttackCount);
         }
 
