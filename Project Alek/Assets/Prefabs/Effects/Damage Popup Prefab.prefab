@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 306215305968030163}
   - component: {fileID: 1462619259524054192}
   - component: {fileID: 5308034106364871902}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Damage Popup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3752874343275595816, guid: 547e71414ecd7f447bddd3c7f84b8641, type: 2}
+  - {fileID: -126418380975411606, guid: 6d7034d88addbc949961caf2f80ee218, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,8 +116,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: DMG
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 547e71414ecd7f447bddd3c7f84b8641, type: 2}
-  m_sharedMaterial: {fileID: -3752874343275595816, guid: 547e71414ecd7f447bddd3c7f84b8641,
+  m_fontAsset: {fileID: 11400000, guid: 6d7034d88addbc949961caf2f80ee218, type: 2}
+  m_sharedMaterial: {fileID: -126418380975411606, guid: 6d7034d88addbc949961caf2f80ee218,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2844542989992557325}
   - component: {fileID: 6675832493345055554}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Damage Popup Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
