@@ -5,7 +5,7 @@ namespace Audio
     {
         private void OnDestroy()
         {
-            _audioController.RemoveTrack(useProfile ? profile.track : track);
+            AudioController.Instance.RemoveTrack(useProfile ? profile.track : track);
         }
     }
 }

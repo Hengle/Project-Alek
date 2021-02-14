@@ -46,12 +46,12 @@ namespace Characters.Animations
             unit.currentTarget.CurrentState == UnitStates.Weakened && 
             !unit.currentTarget.StatusEffects.Contains(unit.currentAbility.statusEffects[0]);
 
-        private AudioController audioController;
+        //private AudioController audioController;
 
         private void Awake()
         {
             unit = GetComponent<Unit>();
-            audioController = FindObjectOfType<AudioController>();
+            //audioController = FindObjectOfType<AudioController>();
             characterAttackEvent.AddListener(this);
         }
 
@@ -89,7 +89,7 @@ namespace Characters.Animations
             }
 
             SendTimedButtonEventResult(true);
-            audioController.PlayAudio(CommonAudioTypes.Instance.hitWindow);
+            AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.hitWindow);
             hitWindow = true;
             windowOpen = false;
         }
@@ -101,7 +101,7 @@ namespace Characters.Animations
             if (!windowOpen) return;
 
             timedAttackCount += 1;
-            audioController.PlayAudio(CommonAudioTypes.Instance.hitWindow);
+            AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.hitWindow);
             Logging.Instance.Log("Hit Window! Count: " + timedAttackCount);
         }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Audio;
 using Characters.PartyMembers;
 using MEC;
 using TMPro;
@@ -99,6 +100,8 @@ namespace BattleSystem.UI
                     $"{critText}";
 
                 levelUpPanel.SetActive(true);
+                
+                AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.levelUp);
                 
                 yield return Timing.WaitForSeconds(0.5f);
                 yield return Timing.WaitUntilTrue(() => BattleInput._controls.Battle.Confirm.triggered);

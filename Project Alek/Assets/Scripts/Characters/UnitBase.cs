@@ -178,7 +178,7 @@ namespace Characters
 
         [HideInInspector] public Action<UnitBase> onDeath;
         [HideInInspector] public Action<UnitBase> onRevival;
-        [HideInInspector] public Action onHpValueChanged;
+        [HideInInspector] public Action<float> onHpValueChanged;
         [HideInInspector] public Action<int> onShieldValueChanged;
         [HideInInspector] public Action onShieldBroken;
         [HideInInspector] public Action onShieldRestored;
@@ -197,7 +197,7 @@ namespace Characters
             {
                 Unit.currentHP = value < 0 ? 0 : value;
                 if (Unit.currentHP > health.BaseValue) Unit.currentHP = (int) health.BaseValue;
-                onHpValueChanged?.Invoke();
+                onHpValueChanged?.Invoke(Unit.currentHP);
                 Unit.outline.color = Color;
             } 
         }

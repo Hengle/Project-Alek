@@ -14,26 +14,22 @@ namespace Audio
         [SerializeField] [HideIf(nameof(useProfile))]
         public AudioController.AudioTrack track;
         
-        protected AudioController _audioController;
-
         private void Start()
         {
-            _audioController = FindObjectOfType<AudioController>();
-            
             if (useProfile && !GameObject.Find(profile.source.gameObject.name))
                 InstantiateProfileAudioSource();
             
-            _audioController.AddNewTrack(useProfile ? profile.track : track);
+            AudioController.Instance.AddNewTrack(useProfile ? profile.track : track);
         }
 
         private void InstantiateProfileAudioSource()
         {
-            var source = Instantiate(profile.source, _audioController.transform);
+            var source = Instantiate(profile.source, AudioController.Instance.transform);
             source.name = profile.source.gameObject.name;
             profile.track.source = source;
         }
         
-        [UsedImplicitly] public void PlayAudio(int index) => _audioController.PlayAudio
+        [UsedImplicitly] public void PlayAudio(int index) => AudioController.Instance.PlayAudio
             (useProfile ? profile.track.audio[index].type : track.audio[index].type);
     }
 }

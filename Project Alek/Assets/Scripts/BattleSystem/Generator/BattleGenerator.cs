@@ -84,11 +84,19 @@ namespace BattleSystem.Generator
             mainMenu.Find("Attack Button").gameObject.GetComponent<Button>().onClick.AddListener
                 ( delegate { ((BattleOptionsPanel) character.battleOptionsPanel).GetCommandInformation("UniversalAction,1,0,2"); });
 
-            mainMenu.Find("Abilities Button").gameObject.GetComponent<Button>().onClick.AddListener
-                (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnAbilityMenuButton(); });
-            
-            mainMenu.Find("Spells Button").gameObject.GetComponent<Button>().onClick.AddListener
-                (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnSpellMenuButton(); });
+            var abilityButton = mainMenu.Find("Abilities Button").gameObject.GetComponent<Button>();
+            if (character.abilities.Count == 0) abilityButton.interactable = false;
+            else abilityButton.onClick.AddListener(delegate
+            {
+                ((BattleOptionsPanel) character.battleOptionsPanel).OnAbilityMenuButton();
+            });
+
+            var spellButton = mainMenu.Find("Spells Button").gameObject.GetComponent<Button>();
+            if (character.spells.Count == 0) spellButton.interactable = false;
+            else spellButton.onClick.AddListener(delegate
+            {
+                ((BattleOptionsPanel) character.battleOptionsPanel).OnSpellMenuButton();
+            });
             
             mainMenu.Find("Inventory Button").gameObject.GetComponent<Button>().onClick.AddListener
                 (delegate { BattleEngine.Instance.inventoryInputManager.OpenInventory(); });
@@ -301,7 +309,6 @@ namespace BattleSystem.Generator
             var shieldTransform = Instantiate(database.shieldTransform, newPosition,
                 database.shieldTransform.rotation);
 
-            //shieldTransform.transform.SetParent(database.worldSpaceCanvas.transform);
             shieldTransform.transform.SetParent(enemyGo.transform);
 
             var shieldController = shieldTransform.GetComponent<BreakSystemControllerUI>();

@@ -23,8 +23,7 @@ namespace BattleSystem
     public class BattleEngine : MonoBehaviorSingleton<BattleEngine>, IGameEventListener<BattleEvent>, IGameEventListener<UnitBase,CharacterGameEvent>
     {
         #region FieldsAndProperties
-
-        private AudioController audioController;
+        
         [SerializeField] private GameObject battleResults;
    
         private SortingCalculator sortingCalculator;
@@ -70,24 +69,20 @@ namespace BattleSystem
    
         private void Start()
         {
-            audioController = FindObjectOfType<AudioController>();
             inventoryInputManager = FindObjectOfType<InventoryInputManager>();
             generator = GetComponent<BattleGenerator>();
             sortingCalculator = GetComponent<SortingCalculator>();
             
-            canGiveCommand = true;
-            roundCount = 0;
-
-            audioController.PlayAudio(CommonAudioTypes.Instance.mainBattleTheme, true, 2);
-            PartyManager.Instance.Order();
-            Timing.RunCoroutine(SetupBattle());
-        }
-
-        private void OnEnable()
-        {
             BattleEvents.Instance.battleEvent.AddListener(this);
             BattleEvents.Instance.endOfTurnEvent.AddListener(this);
             BattleEvents.Instance.skipTurnEvent.AddListener(this);
+            
+            canGiveCommand = true;
+            roundCount = 0;
+
+            AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.mainBattleTheme, true, 2);
+            PartyManager.Instance.Order();
+            Timing.RunCoroutine(SetupBattle());
         }
 
         private IEnumerator<float> SetupBattle()
@@ -276,11 +271,11 @@ namespace BattleSystem
 
         private IEnumerator<float> WonBattleSequence()
         {
-            audioController.StopAudio(CommonAudioTypes.Instance.mainBattleTheme, true, 2);
+            AudioController.Instance.StopAudio(CommonAudioTypes.Instance.mainBattleTheme, true, 2);
 
             yield return Timing.WaitForSeconds(2);
             
-            audioController.PlayAudio(CommonAudioTypes.Instance.victoryThemeBattle, true, 2);
+            AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.victoryThemeBattle, true, 2);
             
             _membersForThisBattle.ForEach(member => member.Unit.anim.SetTrigger(AnimationHandler.VictoryTrigger));
             

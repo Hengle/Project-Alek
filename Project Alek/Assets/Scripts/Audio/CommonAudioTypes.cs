@@ -12,5 +12,7 @@ namespace Audio
         [SerializeField] public AudioType mainBattleTheme;
         [SerializeField] public AudioType victoryThemeBattle;
         [SerializeField] public AudioType hitWindow;
+        [SerializeField] public AudioType levelUp;
+        [SerializeField] public AudioType aPConversion;
     }
 }

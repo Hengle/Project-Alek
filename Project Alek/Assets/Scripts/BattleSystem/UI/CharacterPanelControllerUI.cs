@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BattleSystem.Mechanics;
 using Characters;
 using Characters.Animations;
 using Characters.PartyMembers;
@@ -27,6 +28,7 @@ namespace BattleSystem.UI
         private Animator apBarAnim;
         private Animator dmgBoostAnim;
         private Animator defBoostAnim;
+        private Animator specialBarAnim;
 
         private int dmgBoostLvl;
         private int defBoostLvl;
@@ -39,8 +41,10 @@ namespace BattleSystem.UI
             apBarAnim = transform.Find("AP Bar").GetComponent<Animator>();
             dmgBoostAnim = transform.Find("DmgBoost Bar").GetComponent<Animator>();
             defBoostAnim = transform.Find("DefBoost Bar").GetComponent<Animator>();
+            specialBarAnim = specialAttackBar.GetComponent<Animator>();
             fillRectImage = slider.fillRect.GetComponent<Image>();
 
+            specialBarAnim.enabled = member.specialAttackBarVal >= 1f;
             icon.sprite = member.icon;
             nameUGUI.text = member.characterName.ToUpper();
             healthUGUI.text = $"HP {member.health.BaseValue}";
@@ -66,16 +70,16 @@ namespace BattleSystem.UI
 
         private void Update() => apBarAnim.enabled = member.Unit.status != Status.Overexerted;
         
-        private void OnHpValueChanged() 
+        public void OnHpValueChanged(float hp) 
         {
             fillRectImage.color = member.Color;
-            slider.value = member.Unit.currentHP;
             healthUGUI.text = $"HP {member.Unit.currentHP}";
         }
 
         private void OnSpecialBarValueChanged(float value)
         {
             specialAttackBar.fillAmount = value;
+            specialBarAnim.enabled = member.specialAttackBarVal >= 1f;
         }
 
         private void OnAPValueChanged(int val)

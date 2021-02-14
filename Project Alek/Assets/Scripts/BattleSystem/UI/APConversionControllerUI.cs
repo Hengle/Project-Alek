@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Audio;
 using Characters;
 using ScriptableObjectArchitecture;
 using UnityEngine;
@@ -36,6 +37,7 @@ namespace BattleSystem.UI
             {
                 if (i >= unit.conversionLevel) { arrows[i].SetActive(false); continue; }
                 
+                AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.aPConversion);
                 arrows[i].SetActive(true);
             }
         }
