@@ -7,7 +7,7 @@ using UnityEngine;
 namespace SingletonScriptableObject
 {
     [CreateAssetMenu(fileName = "Scene Rotation Manager", menuName = "Singleton SO/Scene Rotation Manager")]
-    public class SceneRotationManager : SingletonScriptableObject<SceneRotationManager>
+    public class SceneRotationManager : ScriptableObjectSingleton<SceneRotationManager>
     {
         [SerializeField] [ValueDropdown(nameof(GetAllRotationOptionsInScene), IsUniqueList = true)]
         private Quaternion currentRotation = Quaternion.identity;

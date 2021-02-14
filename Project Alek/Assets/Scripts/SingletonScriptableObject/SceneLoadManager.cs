@@ -5,7 +5,7 @@ using MEC;
 namespace SingletonScriptableObject
 {
     [CreateAssetMenu(fileName = "Scene Load Manager", menuName = "Singleton SO/Scene Load Manager")]
-    public class SceneLoadManager : SingletonScriptableObject<SceneLoadManager>
+    public class SceneLoadManager : ScriptableObjectSingleton<SceneLoadManager>
     {
         private AsyncOperation operation;
         private string previousScene;

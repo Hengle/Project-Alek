@@ -6,7 +6,7 @@ using UnityEngine;
 namespace SingletonScriptableObject
 {
     [CreateAssetMenu(fileName = "Player Position Manager", menuName = "Singleton SO/Player Position Manager")]
-    public class PlayerPositionManager : SingletonScriptableObject<PlayerPositionManager>
+    public class PlayerPositionManager : ScriptableObjectSingleton<PlayerPositionManager>
     {
         [SerializeField] [ReadOnly] 
         private Vector3 position;

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace SingletonScriptableObject
 {
     [CreateAssetMenu(fileName = "Global Variables", menuName = "Singleton SO/Global Variables")]
-    public class GlobalVariables : SingletonScriptableObject<GlobalVariables>
+    public class GlobalVariables : ScriptableObjectSingleton<GlobalVariables>
     {
         #region BoostIncrements
 

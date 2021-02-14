@@ -7,10 +7,8 @@ using UnityEngine;
 
 namespace Audio
 {
-    public class AudioController : MonoBehaviour
+    public class AudioController : MonoBehaviorSingleton<AudioController>
     {
-            private static AudioController instance;
-
             public bool debug;
             public List<AudioTrack> tracks = new List<AudioTrack>();
 
@@ -51,7 +49,11 @@ namespace Audio
 
 #region Unity Functions
 
-            private void Awake() { if (!instance) Configure(); }
+            protected override void Awake()
+            {
+                base.Awake();
+                Configure();
+            }
 
             private void OnDisable() => Dispose();
             
@@ -77,7 +79,7 @@ namespace Audio
                 UpdateAudioTable(track);
             }
 
-            public void RemoveTrack(AudioTrack track)
+            public void RemoveTrack(AudioTrack track) 
             {
                 tracks.Remove(track);
                 RemoveFromAudioTable(track);
@@ -88,7 +90,7 @@ namespace Audio
 #region Private Functions
             private void Configure() 
             {
-                instance = this;
+                //instance = this;
                 mAudioTable = new Hashtable();
                 mJobTable = new Hashtable();
                 GenerateAudioTable();

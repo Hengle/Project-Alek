@@ -5,10 +5,8 @@ using UnityEngine;
 
 namespace DamagePrefab
 {
-    public class DamagePrefabManager : MonoBehaviour
+    public class DamagePrefabManager : MonoBehaviorSingleton<DamagePrefabManager>
     {
-        private static DamagePrefabManager instance;
-
         private readonly List<TextMeshPro> damageTextList = new List<TextMeshPro>();
         
         [SerializeField] private int poolCount = 15;
@@ -21,16 +19,8 @@ namespace DamagePrefab
         
         [SerializeField] private Color damageTextColor;
         [SerializeField] private Color criticalTextColor;
-
-        public static DamagePrefabManager Instance {
-            get { if (instance == null) 
-                    Debug.LogError("DamagePrefabManager is null");
-                return instance; }
-        }
-
+        
         public Color DamageTextColor { set => damageTextColor = value; }
-
-        private void Awake() => instance = this;
 
         private void Start() => damagePool = GeneratePrefabs(poolCount);
 

@@ -23639,6 +23639,7 @@ GameObject:
   - component: {fileID: 1849992122}
   - component: {fileID: 1849992126}
   - component: {fileID: 1849992124}
+  - component: {fileID: 1849992119}
   m_Layer: 0
   m_Name: Battle Manager
   m_TagString: Untagged
@@ -23685,21 +23686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eae4cc1ced1eb04b8999e60ee099fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themes:
-  - {fileID: 11400000, guid: 49032dfdb44ff714ab7cebb8c4ad6cf0, type: 2}
-  - {fileID: 11400000, guid: d7967c0922d955448ac987a833096485, type: 2}
   battleResults: {fileID: 4199278597996639977}
-  setupCompleteEvent: {fileID: 11400000, guid: 0b84763a4e476214582e97a39d9e5167, type: 2}
-  battleEvent: {fileID: 11400000, guid: 1444b47f3ceceea4e87c3c1863b49ff9, type: 2}
-  characterTurnEvent: {fileID: 11400000, guid: 34d2f1cdf289d714a80d463db5b95f01, type: 2}
-  enemyTurnEvent: {fileID: 11400000, guid: bfad83ec4bf88c443bab3b513f37354b, type: 2}
-  chooseTargetEvent: {fileID: 11400000, guid: b03bc6fd9438cd544bde07dd68e2b135, type: 2}
-  endOfTurnEvent: {fileID: 11400000, guid: 6523c367b6f8dc4428c1d44411b1357e, type: 2}
-  skipTurnEvent: {fileID: 11400000, guid: 8a5a4a835d278b54f976dfebe6026bbe, type: 2}
-  characterAttackEvent: {fileID: 11400000, guid: f95948814cbd6ea4c8f313185bb3913e,
-    type: 2}
-  commandEvent: {fileID: 11400000, guid: 6dd0845dbb2cf5e45a5ccca30a48f37e, type: 2}
-  deathEvent: {fileID: 11400000, guid: ac19a943372d1994399be98f91ea208e, type: 2}
   inventoryInputManager: {fileID: 0}
   generator: {fileID: 0}
   membersAndEnemiesThisTurn: []
@@ -23716,6 +23703,33 @@ MonoBehaviour:
   canGiveCommand: 0
   abilityMenuLast: 0
   spellMenuLast: 0
+--- !u!114 &1849992119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849992115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7201d3a3d664f74a7caf6bfdd0b79f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setupCompleteEvent: {fileID: 11400000, guid: 0b84763a4e476214582e97a39d9e5167, type: 2}
+  battleEvent: {fileID: 11400000, guid: 1444b47f3ceceea4e87c3c1863b49ff9, type: 2}
+  characterTurnEvent: {fileID: 11400000, guid: 34d2f1cdf289d714a80d463db5b95f01, type: 2}
+  enemyTurnEvent: {fileID: 11400000, guid: bfad83ec4bf88c443bab3b513f37354b, type: 2}
+  chooseTargetEvent: {fileID: 11400000, guid: b03bc6fd9438cd544bde07dd68e2b135, type: 2}
+  endOfTurnEvent: {fileID: 11400000, guid: 6523c367b6f8dc4428c1d44411b1357e, type: 2}
+  skipTurnEvent: {fileID: 11400000, guid: 8a5a4a835d278b54f976dfebe6026bbe, type: 2}
+  characterAttackEvent: {fileID: 11400000, guid: f95948814cbd6ea4c8f313185bb3913e,
+    type: 2}
+  commandEvent: {fileID: 11400000, guid: 6dd0845dbb2cf5e45a5ccca30a48f37e, type: 2}
+  deathEvent: {fileID: 11400000, guid: ac19a943372d1994399be98f91ea208e, type: 2}
+  thisTurnListCreatedEvent: {fileID: 11400000, guid: 0ef0f723c16a0cf4fa06cbbfcb8b38de,
+    type: 2}
+  nextTurnListCreatedEvent: {fileID: 11400000, guid: 6c4246ac83b11714eb04b16380c8ff23,
+    type: 2}
 --- !u!114 &1849992120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23869,10 +23883,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1601e6dee38741eb9d962427bbdf1d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisTurnListCreatedEvent: {fileID: 11400000, guid: 0ef0f723c16a0cf4fa06cbbfcb8b38de,
-    type: 2}
-  nextTurnListCreatedEvent: {fileID: 11400000, guid: 6c4246ac83b11714eb04b16380c8ff23,
-    type: 2}
 --- !u!1 &1858873649
 GameObject:
   m_ObjectHideFlags: 0
@@ -25377,6 +25387,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b88a9ffcc6cd4600b695ab9a12067ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainBattleTheme: {fileID: 11400000, guid: 49032dfdb44ff714ab7cebb8c4ad6cf0, type: 2}
+  victoryThemeBattle: {fileID: 11400000, guid: d7967c0922d955448ac987a833096485, type: 2}
   hitWindow: {fileID: 11400000, guid: 3c0309db7ddb13042adc78e691a42c3a, type: 2}
 --- !u!1 &2038057213
 GameObject:

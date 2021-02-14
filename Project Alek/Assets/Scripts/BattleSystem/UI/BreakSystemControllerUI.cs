@@ -60,6 +60,7 @@ namespace BattleSystem.UI
         private void PlayShieldBrokenAnimation()
         {
             TimeManager.SlowMotionSequence(0.35f, 0.75f);
+            //TODO: Play sound effect
             shieldAnim.SetTrigger(AnimationHandler.ShieldBreak);
         }
 

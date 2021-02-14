@@ -7,17 +7,10 @@ namespace Audio
     /// You do not have to put the reference for the AudioType for each prefab. Make sure these sounds are on
     /// the AudioController prefab for that scene
     /// </summary>
-    public class CommonAudioTypes : MonoBehaviour
+    public class CommonAudioTypes : MonoBehaviorSingleton<CommonAudioTypes>
     {
-        public AudioType hitWindow;
-
-        private static CommonAudioTypes instance;
-
-        public static CommonAudioTypes Instance {
-            get { if (instance == null) Debug.LogError("CommonAudioTypes is null");
-                return instance; }
-        }
-
-        private void Awake() => instance = this;
+        [SerializeField] public AudioType mainBattleTheme;
+        [SerializeField] public AudioType victoryThemeBattle;
+        [SerializeField] public AudioType hitWindow;
     }
 }

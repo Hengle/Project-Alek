@@ -8,10 +8,7 @@ namespace BattleSystem.Calculators
 {
     public class SortingCalculator : MonoBehaviour
     {
-        [SerializeField] private GameEvent thisTurnListCreatedEvent;
-        [SerializeField] private GameEvent nextTurnListCreatedEvent;
-
-        public bool SortByInitiative()
+        public static bool SortByInitiative()
         {
             if (BattleEngine.Instance.membersAndEnemiesNextTurn.Count > 0)
             {
@@ -25,8 +22,8 @@ namespace BattleSystem.Calculators
                 GetNewListNextTurn();
             }
             
-            thisTurnListCreatedEvent.Raise();
-            nextTurnListCreatedEvent.Raise();
+            BattleEvents.Instance.thisTurnListCreatedEvent.Raise();
+            BattleEvents.Instance.nextTurnListCreatedEvent.Raise();
 
             return true;
         }
@@ -85,7 +82,7 @@ namespace BattleSystem.Calculators
             BattleEngine.Instance.membersAndEnemiesThisTurn.Remove(BattleEngine.Instance.activeUnit);
             BattleEngine.Instance.membersAndEnemiesThisTurn.Insert(0, BattleEngine.Instance.activeUnit);
             
-            thisTurnListCreatedEvent.Raise();
+            BattleEvents.Instance.thisTurnListCreatedEvent.Raise();
         }
 
         public void ResortNextTurnOrder()
@@ -96,7 +93,7 @@ namespace BattleSystem.Calculators
             BattleEngine.Instance.membersAndEnemiesNextTurn = BattleEngine.Instance.membersAndEnemiesNextTurn.OrderByDescending
                 (e => e.Unit.finalInitVal).ToList();
             
-            nextTurnListCreatedEvent.Raise();
+            BattleEvents.Instance.nextTurnListCreatedEvent.Raise();
         }
     }
 }

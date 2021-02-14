@@ -1,18 +1,7 @@
 ﻿using UnityEngine;
 
-public class CameraViewportController : MonoBehaviour
+public class CameraViewportController : MonoBehaviorSingleton<CameraViewportController>
 {
-    private static CameraViewportController instance;
-    
-    public static CameraViewportController Instance 
-    {
-        get { if (instance == null)
-                Debug.LogError("CameraViewPortController is null");
-            return instance; }
-    }
-
-    private void Awake() => instance = this;
-    
     private void Start () => SetAspect();
     
     public void SetAspect()

@@ -7,20 +7,11 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SceneTransitionManager : MonoBehaviour
+public class SceneTransitionManager : MonoBehaviorSingleton<SceneTransitionManager>
 {
     [SerializeField] private Image screen;
     [SerializeField] private Volume volume;
     private LensDistortion lensDistortion;
-    
-    private static SceneTransitionManager instance;
-    
-    public static SceneTransitionManager Instance {
-        get { if (!instance) Debug.LogError("SceneTransitionManager is null");
-            return instance; }
-    }
-
-    private void Awake() => instance = this;
 
     private void Start()
     {

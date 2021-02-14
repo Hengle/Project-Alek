@@ -6,7 +6,7 @@ using UnityEngine;
 namespace SingletonScriptableObject
 {
     [CreateAssetMenu(fileName = "Enemy Manager", menuName = "Singleton SO/Enemy Manager")]
-    public class EnemyManager : SingletonScriptableObject<EnemyManager>
+    public class EnemyManager : ScriptableObjectSingleton<EnemyManager>
     {
         [InlineEditor(InlineEditorModes.FullEditor)]
         public List<Enemy> enemies = new List<Enemy>();

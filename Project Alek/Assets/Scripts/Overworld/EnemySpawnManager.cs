@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace Overworld
 {
-    public class EnemySpawnManager : MonoBehaviour, IGameEventListener<Spawner>
+    public class EnemySpawnManager : MonoBehaviorSingleton<EnemySpawnManager>, IGameEventListener<Spawner>
     {
         [SerializeField] private SpawnEvent spawnEvent;
         
@@ -20,8 +20,9 @@ namespace Overworld
 
         private bool delaySpawning;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             delaySpawning = true;
             Invoke(nameof(StartSpawning), 2);
             spawnEvent.AddListener(this);

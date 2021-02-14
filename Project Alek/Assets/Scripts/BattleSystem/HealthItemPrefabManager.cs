@@ -6,10 +6,8 @@ using UnityEngine;
 
 namespace BattleSystem
 {
-    public class HealthItemPrefabManager : MonoBehaviour
+    public class HealthItemPrefabManager : MonoBehaviorSingleton<HealthItemPrefabManager>
     {
-        private static HealthItemPrefabManager instance;
-
         [SerializeField] private int poolCount = 15;
         
         [SerializeField] public List<InventoryItem> healthItems;
@@ -18,15 +16,7 @@ namespace BattleSystem
         private List<GameObject> itemPool = new List<GameObject>();
         
         [SerializeField] private GameObject prefabParent;
-        
-        public static HealthItemPrefabManager Instance {
-            get { if (instance == null) 
-                    Debug.LogError("HealthItemPrefabManager is null");
-                return instance; }
-        }
-        
-        private void Awake() => instance = this;
-        
+      
         private void Start() => itemPool = GeneratePrefabs(poolCount);
         
         private List<GameObject> GeneratePrefabs(int amount)
