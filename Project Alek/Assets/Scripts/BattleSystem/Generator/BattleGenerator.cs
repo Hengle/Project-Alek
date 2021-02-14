@@ -32,7 +32,6 @@ namespace BattleSystem.Generator
             SetupParty();
             SpawnAndSetupEnemyTeam();
             SetupPartyMenuController();
-            database.worldSpaceCanvas.gameObject.SetActive(true);
         }
 
         private void SetupMainInventory()
