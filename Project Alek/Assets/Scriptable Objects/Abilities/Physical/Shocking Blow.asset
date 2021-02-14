@@ -22,8 +22,8 @@ MonoBehaviour:
   animation: {fileID: 7400000, guid: bae56fa0fbda6c54999d3d346ca16b5e, type: 2}
   isMultiTarget: 0
   description: A blow so hard it might put the enemy into shock!
-  hasElemental: 1
-  elementalType: {fileID: 11400000, guid: c39d538e0733abc409ae3ae8b371cbf4, type: 2}
+  hasElemental: 0
+  elementalType: {fileID: 0}
   elementalScalar: 25
   hasStatusEffect: 1
   statusEffects:

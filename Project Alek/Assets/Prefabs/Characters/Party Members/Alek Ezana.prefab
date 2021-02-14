@@ -554,6 +554,12 @@ MonoBehaviour:
     audio:
     - type: {fileID: 11400000, guid: ce89cc521fc94b54cb94c2bee5f8ad33, type: 2}
       clip: {fileID: 8300000, guid: 01759966737db4457afd9147129fb82e, type: 3}
+    - type: {fileID: 11400000, guid: cb90346dee89bb14fb099fc256135a70, type: 2}
+      clip: {fileID: 8300000, guid: 992d389337ac84149b57701080f4eb39, type: 3}
+    - type: {fileID: 11400000, guid: d9c7c496f366b9c448bac762d7274e73, type: 2}
+      clip: {fileID: 8300000, guid: 5e18472d36c2f4d12bcc2ade6d3bd217, type: 3}
+    - type: {fileID: 11400000, guid: 9eb24f510d10a6e4ba4364a8f7b11fa1, type: 2}
+      clip: {fileID: 8300000, guid: ea34978acdee9fb47961141677de26e9, type: 3}
 --- !u!114 &3007100182916258458
 MonoBehaviour:
   m_ObjectHideFlags: 0
