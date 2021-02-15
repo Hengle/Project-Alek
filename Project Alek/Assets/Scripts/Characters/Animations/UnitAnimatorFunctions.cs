@@ -46,12 +46,9 @@ namespace Characters.Animations
             unit.currentTarget.CurrentState == UnitStates.Weakened && 
             !unit.currentTarget.StatusEffects.Contains(unit.currentAbility.statusEffects[0]);
 
-        //private AudioController audioController;
-
         private void Awake()
         {
             unit = GetComponent<Unit>();
-            //audioController = FindObjectOfType<AudioController>();
             characterAttackEvent.AddListener(this);
         }
 

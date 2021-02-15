@@ -137,7 +137,7 @@ namespace Overworld
             if (!other.transform.CompareTag("Player")) return;
             PlayerPositionManager.Instance.Position = player.position;
             SceneLoadManager.Instance.LoadBattle();
-            Time.timeScale = 0.0f;
+            Time.timeScale = 0.01f;
             Time.fixedDeltaTime = 0.02F * Time.timeScale;
         }
     }

@@ -31,6 +31,12 @@ namespace BattleSystem.UI
             chooseTargetEvent.AddListener(this);
         }
 
+        private void OnDisable()
+        {
+            conversionEvent.RemoveListener(this);
+            chooseTargetEvent.RemoveListener(this);
+        }
+
         private void AdjustConversionLevel()
         {
             for (var i = 0; i < arrows.Count; i++)
@@ -45,12 +51,6 @@ namespace BattleSystem.UI
         private void DeactivateArrows() => arrows.ForEach(a => a.gameObject.SetActive(false));
 
         private void SetArrowPosition() => transform.localPosition = ArrowPosition;
-
-        private void OnDisable()
-        {
-            conversionEvent.RemoveListener(this);
-            chooseTargetEvent.RemoveListener(this);
-        }
 
         public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
         {

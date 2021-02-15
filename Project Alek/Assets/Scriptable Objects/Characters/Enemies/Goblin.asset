@@ -151,6 +151,12 @@ MonoBehaviour:
     - Name: onShieldValueChanged
       Entry: 6
       Data: 
+    - Name: onShieldBroken
+      Entry: 6
+      Data: 
+    - Name: onShieldRestored
+      Entry: 6
+      Data: 
     - Name: onElementalDamageReceived
       Entry: 6
       Data: 
@@ -174,7 +180,7 @@ MonoBehaviour:
     type: 3}
   level: 2
   health:
-    BaseValue: 1320
+    BaseValue: 1120
     maxValue: 99999
     amountIncreasedBy: 0
   strength:

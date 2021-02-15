@@ -57,6 +57,7 @@ namespace BattleSystem
 
         private void OnDisable()
         {
+            MMEventManager.RemoveListener(this);
             characterTurnEvent.RemoveListener(this);
             endOfTurnEvent.RemoveListener(this);
         }
@@ -113,16 +114,15 @@ namespace BattleSystem
         {
             if (BattleEngine.Instance.usingItem) return;
             
-            if (eventType.InventoryEventType == MMInventoryEventType.InventoryCloses && isEnabled && isActiveAndEnabled)
+            switch (eventType.InventoryEventType)
             {
-                animator.SetTrigger(AnimationHandler.Panel);
-                EventSystem.current.sendNavigationEvents = true;
-                return;
-            }
-
-            if (eventType.InventoryEventType == MMInventoryEventType.InventoryOpens && isActiveAndEnabled && battleMenu.activeSelf) 
-            {
-                animator.SetTrigger(AnimationHandler.Panel);
+                case MMInventoryEventType.InventoryCloses when isEnabled && isActiveAndEnabled:
+                    animator.SetTrigger(AnimationHandler.Panel);
+                    EventSystem.current.sendNavigationEvents = true;
+                    return;
+                case MMInventoryEventType.InventoryOpens when isActiveAndEnabled && battleMenu.activeSelf:
+                    animator.SetTrigger(AnimationHandler.Panel);
+                    break;
             }
         }
 

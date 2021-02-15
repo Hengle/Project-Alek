@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -13,12 +14,18 @@ public class PauseMenu : MonoBehaviour
     private void Awake()
     {
         controls = new Controls();
-        controls.Overworld.OpenPauseMenu.performed += ctx => OpenPauseMenu();
-        controls.UI.Cancel.performed += ctx => CloseCurrentMenu();
+        controls.Overworld.OpenPauseMenu.performed += OpenPauseMenu;
+        controls.UI.Cancel.performed += CloseCurrentMenu;
         controls.Enable();
     }
 
-    private void OpenPauseMenu()
+    private void OnDisable()
+    {
+        controls.Overworld.OpenPauseMenu.performed -= OpenPauseMenu;
+        controls.UI.Cancel.performed -=CloseCurrentMenu;
+    }
+
+    private void OpenPauseMenu(InputAction.CallbackContext ctx)
     {
         if (menu.activeSelf) return;
         TimeManager.PauseTime();
@@ -26,13 +33,7 @@ public class PauseMenu : MonoBehaviour
         SetMainMenuFirstSelected();
     }
 
-    public void OpenSettingsMenu()
-    {
-        settingsMenu.SetActive(true);
-        SetSettingsMenuFirstSelected();
-    }
-
-    public void CloseCurrentMenu()
+    private void CloseCurrentMenu(InputAction.CallbackContext ctx)
     {
         if (settingsMenu.activeSelf)
         {
@@ -46,11 +47,6 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    public void OnQuitButton()
-    {
-        Application.Quit();
-    }
-
     private void SetMainMenuFirstSelected()
     {
         EventSystem.current.SetSelectedGameObject(null);
@@ -61,5 +57,24 @@ public class PauseMenu : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(settingsMenuFirstSelected);
+    }
+
+    public void ClosePauseMenu()
+    {
+        if (!menu.activeSelf) return;
+        menu.SetActive(false);
+        TimeManager.ResumeTime();
+    }
+
+    public void OpenSettingsMenu()
+    {
+        settingsMenu.SetActive(true);
+        SetSettingsMenuFirstSelected();
+    }
+
+    public void OnQuitButton()
+    {
+        // TODO: Go to main menu scene instead of quitting
+        Application.Quit();
     }
 }

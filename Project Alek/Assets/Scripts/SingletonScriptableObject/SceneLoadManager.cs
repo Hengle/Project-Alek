@@ -7,8 +7,8 @@ namespace SingletonScriptableObject
     [CreateAssetMenu(fileName = "Scene Load Manager", menuName = "Singleton SO/Scene Load Manager")]
     public class SceneLoadManager : ScriptableObjectSingleton<SceneLoadManager>
     {
-        private AsyncOperation operation;
-        private string previousScene;
+        [SerializeField] private AsyncOperation operation;
+        [SerializeField] private string previousScene;
 
         public void LoadBattle()
         {

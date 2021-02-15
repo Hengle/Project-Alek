@@ -69,6 +69,7 @@ namespace BattleSystem
    
         private void Start()
         {
+            TimeManager.ResumeTime();
             inventoryInputManager = FindObjectOfType<InventoryInputManager>();
             generator = GetComponent<BattleGenerator>();
             sortingCalculator = GetComponent<SortingCalculator>();
@@ -300,18 +301,19 @@ namespace BattleSystem
                 member.currentClass.AdvanceTowardsNextLevel(totalClassXp);
             }
 
+            yield return Timing.WaitForSeconds(0.5f);
             yield return Timing.WaitUntilTrue(() => BattleInput._controls.Battle.Confirm.triggered);
             
             Timing.RunCoroutine(battleResultsUI.ShowLevelUps());
             yield return Timing.WaitForSeconds(0.3f);
             yield return Timing.WaitUntilFalse(() => battleResultsUI.showingLevelUps);
             
+            SceneLoadManager.Instance.LoadOverworld();
+            
             _membersForThisBattle.ForEach(m =>
             {
                 m.currentClass.statsToIncrease = new List<CharacterStat>();
             });
-
-            SceneLoadManager.Instance.LoadOverworld();
         }
 
         private IEnumerator<float> LostBattleSequence()

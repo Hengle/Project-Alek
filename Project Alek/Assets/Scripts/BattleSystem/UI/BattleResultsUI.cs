@@ -24,7 +24,7 @@ namespace BattleSystem.UI
         public TextMeshProUGUI expBonusText;
 
         public bool showingLevelUps;
-        
+
         public void Init()
         {
             for (var i = 0; i < BattleEngine.Instance._membersForThisBattle.Count; i++)
