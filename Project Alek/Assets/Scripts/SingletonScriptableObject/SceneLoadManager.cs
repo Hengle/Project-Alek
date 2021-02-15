@@ -10,9 +10,9 @@ namespace SingletonScriptableObject
         [SerializeField] private AsyncOperation operation;
         [SerializeField] private string previousScene;
 
-        public void LoadBattle()
+        public void LoadBattle(bool restart = false)
         {
-            previousScene = SceneManager.GetActiveScene().path;
+            if (!restart) previousScene = SceneManager.GetActiveScene().path;
             operation = SceneManager.LoadSceneAsync("Scenes/Battle");
             operation.allowSceneActivation = false;
             Timing.RunCoroutine(SceneTransitionManager.Instance.BattleTransition()

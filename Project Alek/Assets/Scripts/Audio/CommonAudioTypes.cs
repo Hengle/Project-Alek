@@ -14,5 +14,6 @@ namespace Audio
         [SerializeField] public AudioType hitWindow;
         [SerializeField] public AudioType levelUp;
         [SerializeField] public AudioType aPConversion;
+        [SerializeField] public AudioType gameOver;
     }
 }

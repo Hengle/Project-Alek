@@ -69,10 +69,11 @@ namespace BattleSystem.UI
         }
 
         private void Update() => apBarAnim.enabled = member.Unit.status != Status.Overexerted;
-        
-        public void OnHpValueChanged(float hp) 
+
+        private void OnHpValueChanged(float hp) 
         {
             fillRectImage.color = member.Color;
+            slider.value = hp;
             healthUGUI.text = $"HP {member.Unit.currentHP}";
         }
 

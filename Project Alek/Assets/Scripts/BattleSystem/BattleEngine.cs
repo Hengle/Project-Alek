@@ -25,6 +25,7 @@ namespace BattleSystem
         #region FieldsAndProperties
         
         [SerializeField] private GameObject battleResults;
+        [SerializeField] private GameObject gameOverCanvas;
    
         private SortingCalculator sortingCalculator;
 
@@ -77,7 +78,7 @@ namespace BattleSystem
             BattleEvents.Instance.battleEvent.AddListener(this);
             BattleEvents.Instance.endOfTurnEvent.AddListener(this);
             BattleEvents.Instance.skipTurnEvent.AddListener(this);
-            
+
             canGiveCommand = true;
             roundCount = 0;
 
@@ -318,10 +319,11 @@ namespace BattleSystem
 
         private IEnumerator<float> LostBattleSequence()
         {
-            yield return Timing.WaitForSeconds(0.5f);
+            AudioController.Instance.StopAudio(CommonAudioTypes.Instance.mainBattleTheme, true, 1);
+            yield return Timing.WaitForSeconds(1);
             Logging.Instance.Log("you lost idiot");
             
-            //TODO: Show game over menu with options to load save or quit
+            gameOverCanvas.SetActive(true);
         }
 
         public IEnumerator<float> FleeBattleSequence()

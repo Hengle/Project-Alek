@@ -16,7 +16,7 @@ MonoBehaviour:
   damageType: 0
   targetOptions: 0
   icon: {fileID: 21300000, guid: ceeb46d7d4e44b844beca0c537f88ca1, type: 3}
-  actionCost: 2
+  actionCost: 1
   damageMultiplier: 1
   attackState: 1
   animation: {fileID: 7400000, guid: 6f8ef43341b687f4dbe0efe6ca2bc7e8, type: 2}

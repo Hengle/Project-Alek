@@ -23,7 +23,6 @@ namespace BattleSystem.UI
             }
         }
 
-        //TODO: Have to account for spells, which don't use weapon damage types
         private bool IsWeakToDamageType => unit.parent._damageTypeWeaknesses.Any(type => 
                 type.Key == ((PartyMember) BattleEngine.Instance.activeUnit).equippedWeapon.damageType && type.Value);
 

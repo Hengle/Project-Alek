@@ -32,16 +32,19 @@ namespace BattleSystem.Mechanics
             }
         }
 
+        private static bool ChoosingSpellOrAbility =>
+            BattleEngine.Instance.choosingAbility || BattleEngine.Instance.choosingSpell;
+
         private bool CanDecreaseConversion =>
-            thisUnitTurn && BattleEngine.Instance.choosingAbility && BattleInput._controls.Battle.LeftShoulder.triggered
+            thisUnitTurn && ChoosingSpellOrAbility && BattleInput._controls.Battle.LeftShoulder.triggered
             && unit.conversionLevel > 0;
 
         private bool CanIncreaseConversion =>
-            thisUnitTurn && BattleEngine.Instance.choosingAbility && BattleInput._controls.Battle.RightShoulder.triggered
+            thisUnitTurn && ChoosingSpellOrAbility && BattleInput._controls.Battle.RightShoulder.triggered
             && unit.conversionLevel < MaxConversionAmount;
 
         private bool CancelCondition =>
-            thisUnitTurn && BattleEngine.Instance.choosingAbility && BattleInput._controls.Battle.Move.triggered && unit.conversionLevel > 0;
+            thisUnitTurn && ChoosingSpellOrAbility && BattleInput._controls.Battle.Move.triggered && unit.conversionLevel > 0;
 
         private void Start()
         {
@@ -53,8 +56,19 @@ namespace BattleSystem.Mechanics
             BattleInput._controls.Battle.LeftShoulder.performed += AdjustConversionAmount;
             BattleInput._controls.Battle.RightShoulder.performed += AdjustConversionAmount;
             BattleInput._controls.Battle.Move.performed += AdjustConversionAmount;
+            
             characterTurnEvent.AddListener(this);
             endOfTurnEvent.AddListener(this);
+        }
+
+        private void OnDisable()
+        {
+            BattleInput._controls.Battle.LeftShoulder.performed -= AdjustConversionAmount;
+            BattleInput._controls.Battle.RightShoulder.performed -= AdjustConversionAmount;
+            BattleInput._controls.Battle.Move.performed -= AdjustConversionAmount;
+            
+            characterTurnEvent.RemoveListener(this);
+            endOfTurnEvent.RemoveListener(this);
         }
 
         private void AdjustConversionAmount(InputAction.CallbackContext ctx)
@@ -74,15 +88,6 @@ namespace BattleSystem.Mechanics
             unit.conversionFactor = 1;
             
             conversionEvent.Raise(unit.parent, conversionEvent);
-        }
-
-        private void OnDisable()
-        {
-            BattleInput._controls.Battle.LeftShoulder.performed -= AdjustConversionAmount;
-            BattleInput._controls.Battle.RightShoulder.performed -= AdjustConversionAmount;
-            
-            characterTurnEvent.RemoveListener(this);
-            endOfTurnEvent.RemoveListener(this);
         }
 
         public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
