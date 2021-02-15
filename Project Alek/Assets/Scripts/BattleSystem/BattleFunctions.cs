@@ -57,7 +57,9 @@ namespace BattleSystem
                     yield break;
                 case AbilityType.Ranged: Timing.RunCoroutine(RangedAttack(dealer));
                     yield break;
-                case AbilityType.NonAttack: BattleEngine.Instance.performingAction = false;
+                case AbilityType.NonAttack:
+                    var isSpell = dealer.CurrentAbility.GetType() == typeof(Spell);
+                    Timing.RunCoroutine(NonAttack(dealer, isSpell));
                     yield break;
                 default: Logging.Instance.Log("This message should not be displaying...");
                     yield break;
@@ -66,8 +68,18 @@ namespace BattleSystem
 
         #endregion
 
-        #region AttackCoroutines
-        
+        #region AttackAndAbilityCoroutines
+
+        private static IEnumerator<float> NonAttack(UnitBase dealer, bool isSpell = false)
+        {
+            dealer.Unit.anim.Play(isSpell ? $"Spell {dealer.CurrentAbility.attackState}" :
+                $"Ability {dealer.CurrentAbility.attackState}", 0);
+
+            yield return Timing.WaitForOneFrame;
+            yield return Timing.WaitUntilFalse(() => dealer.AnimationHandler.performingAction);
+            BattleEngine.Instance.performingAction = false;
+        }
+
         private static IEnumerator<float> CloseRangeAttack(UnitBase dealer)
         {
             dealer.GetDamageValues(false);

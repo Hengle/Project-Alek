@@ -25,6 +25,7 @@ namespace Characters.Animations
         public static readonly int ShieldRestore = Animator.StringToHash("Shield Restore");
         
         public bool isAttacking;
+        public bool performingAction;
         public bool usingItem;
         public bool performingSpecial;
     }

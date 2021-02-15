@@ -23,6 +23,17 @@ namespace BattleSystem.UI
             }
         }
 
+        private bool IsWeakToOverrideElement
+        {
+            get
+            {
+                if (!BattleEngine.Instance.activeUnit.Unit.overrideElemental) return false;
+                var ability = BattleEngine.Instance.activeUnit.Unit.overrideAbility;
+                return ability != null && unit.parent._elementalWeaknesses.Any(kvp =>
+                    kvp.Key._type == ability.elementalType && kvp.Value);
+            }
+        }
+
         private bool IsWeakToDamageType => unit.parent._damageTypeWeaknesses.Any(type => 
                 type.Key == ((PartyMember) BattleEngine.Instance.activeUnit).equippedWeapon.damageType && type.Value);
 
@@ -49,7 +60,7 @@ namespace BattleSystem.UI
             indicator.SetActive(false);
         }
 
-        private bool IsWeak() => IsWeakToAbility || IsWeakToDamageType;
+        private bool IsWeak() => IsWeakToAbility || IsWeakToDamageType || IsWeakToOverrideElement;
         
         private void OnMultiSelect() => indicator.SetActive(IsWeak());
         

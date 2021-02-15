@@ -33,6 +33,7 @@ namespace BattleSystem.Calculators
 
             var totalDamage = (int) dealerDamage - targetDefense;
 
+            if (damageDealer.Unit.overrideElemental) totalDamage += CalculateOverrideElementalDamage(damageDealer, target);
             totalDamage = CalculateBoostFactor(damageDealer, target, totalDamage);
             totalDamage = CalculateConversionFactor(damageDealer, totalDamage);
             totalDamage = CalculateShieldFactor(damageDealer, target, totalDamage);
@@ -155,12 +156,46 @@ namespace BattleSystem.Calculators
             //Logging.Instance.Log($"Elemental Damage: {elementalDamage} \t Total Damage: {totalDamage}");
             
             SkipElemental:
+            if (damageDealer.Unit.overrideElemental) totalDamage += CalculateOverrideElementalDamage(damageDealer, target);
             totalDamage = CalculateBoostFactor(damageDealer, target, totalDamage);
             totalDamage = CalculateConversionFactor(damageDealer, totalDamage);
             totalDamage = CalculateShieldFactor(damageDealer, target, totalDamage);
             
             var critical = CalculateCritChance(damageDealer);
             return CalculateFinalDamageAmount(target, totalDamage, critical);
+        }
+
+        private static int CalculateOverrideElementalDamage(UnitBase dealer, UnitBase target)
+        {
+            var ability = dealer.Unit.overrideAbility;
+            
+            var elementalDamage = (int) dealer.magic.Value * dealer.weaponMight * ability.ElementalScalar;
+            
+            var tryGetRes = target._elementalResistances.Any
+                (kvp => kvp.Key._type == ability.elementalType);
+            var tryGetWeakness = target._elementalWeaknesses.Any
+                (kvp => kvp.Key._type == ability.elementalType);
+
+            if (tryGetRes)
+            {
+                Logging.Instance.Log($"{target.characterName} resists {ability.elementalType.name}!");
+                var resistanceScalar = 1 - (float) target._elementalResistances.Single
+                    (s => s.Key._type == ability.elementalType).Key._scalar / 100;
+
+                elementalDamage *= resistanceScalar;
+            }
+                    
+            else if (tryGetWeakness)
+            {
+                Logging.Instance.Log($"{target.characterName} is weak to {ability.elementalType.name}!");
+                var weaknessScalar = (float) target._elementalWeaknesses.Single
+                    (s => s.Key._type == ability.elementalType).Key._scalar / 100;
+
+                elementalDamage *= weaknessScalar;
+            }
+
+            Logging.Instance.Log($"Elemental Damage: {(int)elementalDamage}");
+            return (int) elementalDamage;
         }
         
         private static bool CalculateCritChance(UnitBase damageDealer)

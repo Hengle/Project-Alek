@@ -17,6 +17,7 @@ using Sirenix.OdinInspector;
 using MEC;
 using ScriptableObjectArchitecture;
 using SingletonScriptableObject;
+using UnityEngine.EventSystems;
 
 namespace BattleSystem
 {
@@ -144,6 +145,7 @@ namespace BattleSystem
             var battlePanel = (BattleOptionsPanel) character.battleOptionsPanel;
             
             main_menu:
+            EventSystem.current.sendNavigationEvents = true;
             BattleEvents.Instance.characterTurnEvent.Raise(character, BattleEvents.Instance.characterTurnEvent);
             BattleInput._canPressBack = false;
             usingItem = false;

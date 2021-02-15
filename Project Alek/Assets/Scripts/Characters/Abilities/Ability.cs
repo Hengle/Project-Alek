@@ -8,12 +8,12 @@ namespace Characters.Abilities
 {
     public enum AbilityType { CloseRange, Ranged, NonAttack }
     public enum DamageType { Physical, Magic, Special }
-    public enum TargetOptions { Enemies = 0, PartyMembers = 1, Both = 2 }
+    public enum TargetOptions { Enemies = 0, PartyMembers = 1, Both = 2, Self = 3 }
     public abstract class Ability : ScriptableObject
     {
         #region FieldsAndProperties
         
-        [HideLabel, VerticalGroup("Icon/Info"), LabelWidth(120)] 
+        [VerticalGroup("Icon/Info"), LabelWidth(120)] 
         public AbilityType abilityType;
 
         [Title("Main Info"), VerticalGroup("Icon/Info"), LabelWidth(120)]
@@ -64,7 +64,6 @@ namespace Characters.Abilities
         public float ElementalScalar => (float) elementalScalar / 100;
 
         [Space(15)] [Title("Status Effects"), LabelWidth(120)]
-        [HideIf(nameof(abilityType), AbilityType.NonAttack)]
         public bool hasStatusEffect;
         
         [ShowIf(nameof(hasStatusEffect)), InlineEditor]

@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Characters;
+using Characters.Abilities;
 using Characters.Animations;
 using Characters.PartyMembers;
 using MEC;
@@ -24,8 +25,10 @@ namespace BattleSystem
         private Selectable button;
         [SerializeField] private Selectable selectOnLeft;
         [SerializeField] private Selectable selectOnRight;
+        [SerializeField] private Selectable selectOnUp;
+        [SerializeField] private Selectable selectOnDown;
 
-        private static CharacterType targetOptionsCharacterType;
+        private static TargetOptions targetOptionsCharacterType;
         private static PartyMember character;
         public static InventoryItem _currentlySelectedItem;
 
@@ -39,6 +42,10 @@ namespace BattleSystem
             var navigation = button.navigation;
             selectOnLeft = navigation.selectOnLeft;
             selectOnRight = navigation.selectOnRight;
+
+            selectOnUp = navigation.selectOnUp;
+            selectOnDown = navigation.selectOnDown;
+            
             button.navigation = navigation;
         }
 
@@ -47,19 +54,29 @@ namespace BattleSystem
             var navigation = button.navigation;
             if (navigation.selectOnLeft) selectOnLeft = navigation.selectOnLeft;
             if (navigation.selectOnRight) selectOnRight = navigation.selectOnRight;
+            if (navigation.selectOnUp) selectOnUp = navigation.selectOnUp;
+            if (navigation.selectOnDown) selectOnDown = navigation.selectOnDown;
             
+            //print($"{targetOptionsCharacterType}");
+
             switch (targetOptionsCharacterType)
             {
-                case CharacterType.Enemy: navigation.selectOnLeft = null;
+                case TargetOptions.Enemies: navigation.selectOnLeft = null;
                     button.navigation = navigation;
                     break;
-                case CharacterType.PartyMember: navigation.selectOnRight = null;
+                case TargetOptions.PartyMembers: navigation.selectOnRight = null;
                     button.navigation = navigation;
                     break;
-                case CharacterType.Both:
+                case TargetOptions.Both:
                     navigation.selectOnLeft = selectOnLeft;
                     navigation.selectOnRight = selectOnRight;
                     button.navigation = navigation;
+                    break;
+                case TargetOptions.Self:
+                    navigation.selectOnLeft = null;
+                    navigation.selectOnRight = null;
+                    navigation.selectOnUp = null;
+                    navigation.selectOnDown = null;
                     break;
             }
         }
@@ -69,33 +86,39 @@ namespace BattleSystem
             className = name;
             classOption = option;
 
-            switch (_targetOptions)
-            {
-                case 0: targetOptionsCharacterType = CharacterType.Enemy;
-                    break;
-                case 1: targetOptionsCharacterType = CharacterType.PartyMember;
-                    break;
-                case 2: targetOptionsCharacterType = CharacterType.Both;
-                    break;
-            }
+            targetOptionsCharacterType = (TargetOptions) _targetOptions;
+
+            // switch (_targetOptions)
+            // {
+            //     case 0: targetOptionsCharacterType = TargetOptions.Enemies;
+            //         break;
+            //     case 1: targetOptionsCharacterType = TargetOptions.PartyMembers;
+            //         break;
+            //     case 2: targetOptionsCharacterType = TargetOptions.Both;
+            //         break;
+            //     //case 3: targetOptionsCharacterType = 
+            // }
         }
 
         public static void GetItemCommand()
         {
-            switch (_targetOptions)
-            {
-                case 0: targetOptionsCharacterType = CharacterType.Enemy;
-                    break;
-                case 1: targetOptionsCharacterType = CharacterType.PartyMember;
-                    break;
-                case 2: targetOptionsCharacterType = CharacterType.Both;
-                    break;
-            }
+            targetOptionsCharacterType = (TargetOptions) _targetOptions;
+            
+            // switch (_targetOptions)
+            // {
+            //     case 0: targetOptionsCharacterType = CharacterType.Enemy;
+            //         break;
+            //     case 1: targetOptionsCharacterType = CharacterType.PartyMember;
+            //         break;
+            //     case 2: targetOptionsCharacterType = CharacterType.Both;
+            //         break;
+            // }
         }
 
         // This function is called from an onclick event attached to each character
         private void AddCommand()
         {
+            print("Add Command");
             // TODO: Account for revival items and other types
             if (BattleEngine.Instance.usingItem)
             {
@@ -160,7 +183,7 @@ namespace BattleSystem
 
         private IEnumerator<float> WaitForMultiTargetConfirmation()
         {
-            if (thisUnitBase.id != targetOptionsCharacterType) yield break;
+            if ((int) thisUnitBase.id != (int) targetOptionsCharacterType) yield break;
             
             thisUnitBase.Unit.outline.enabled = true;
             thisUnitBase.Unit.button.interactable = false;

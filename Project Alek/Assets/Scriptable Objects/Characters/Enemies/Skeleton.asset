@@ -18,6 +18,7 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 5b7dd86029ea2ce49beaee4e4d702b94, type: 2}
     - {fileID: 11400000, guid: c39d538e0733abc409ae3ae8b371cbf4, type: 2}
+    - {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
     - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
     - {fileID: 11400000, guid: b43ae3106abe31b409ccb3acb53a0731, type: 2}
     SerializedBytesString: 
@@ -79,7 +80,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 
@@ -89,6 +90,27 @@ MonoBehaviour:
     - Name: _type
       Entry: 10
       Data: 1
+    - Name: _scalar
+      Entry: 3
+      Data: 150
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: $v
+      Entry: 5
+      Data: true
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 7
+      Data: Characters.UnitBase+ElementalWeaknessStruct, ProjectAlek
+    - Name: _type
+      Entry: 10
+      Data: 2
     - Name: _scalar
       Entry: 3
       Data: 150
@@ -145,7 +167,7 @@ MonoBehaviour:
       Data: Characters.UnitBase+StatusEffectStruct, ProjectAlek
     - Name: _effect
       Entry: 10
-      Data: 2
+      Data: 3
     - Name: _modifier
       Entry: 3
       Data: 50
@@ -183,7 +205,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 10
-      Data: 3
+      Data: 4
     - Name: $v
       Entry: 5
       Data: true
@@ -241,7 +263,7 @@ MonoBehaviour:
     maxValue: 99999
     amountIncreasedBy: 0
   strength:
-    BaseValue: 85
+    BaseValue: 12
     maxValue: 99
     amountIncreasedBy: 0
   magic:
@@ -249,7 +271,7 @@ MonoBehaviour:
     maxValue: 99
     amountIncreasedBy: 0
   accuracy:
-    BaseValue: 50
+    BaseValue: 10
     maxValue: 99
     amountIncreasedBy: 0
   initiative:
@@ -269,7 +291,7 @@ MonoBehaviour:
     maxValue: 99
     amountIncreasedBy: 0
   description: I mean, he's a...
-  weaponMight: 83
+  weaponMight: 13
   magicMight: 3
   weaponAccuracy: 70
   weaponCriticalChance: 5

@@ -63,6 +63,9 @@ namespace Characters
         [ReadOnly] public bool timedAttack;
         [ReadOnly] public bool isCountered;
         [ReadOnly] public bool isBorrowing;
+        [ReadOnly] public bool overrideElemental;
+
+        public Ability overrideAbility;
 
         #endregion
 

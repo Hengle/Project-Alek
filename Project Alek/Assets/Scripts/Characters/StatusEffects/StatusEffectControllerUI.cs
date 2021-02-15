@@ -6,6 +6,7 @@ namespace Characters.StatusEffects
     {
         public UnitBase member;
         private CanvasGroup group;
+        [SerializeField] private Transform uniqueEffectContainer;
 
         public void Initialize()
         {
@@ -20,10 +21,11 @@ namespace Characters.StatusEffects
 
         private void AddStatusEffectIcon(StatusEffect effect)
         {
-            var alreadyHasIcon = transform.Find(effect.name);
+            var parent = effect.effectType == EffectType.Unique ? uniqueEffectContainer.transform : transform;
+            var alreadyHasIcon = parent.Find(effect.name);
             
             if (effect.icon != null && alreadyHasIcon == null) {
-                var iconGO = Instantiate(effect.icon, transform, false);
+                var iconGO = Instantiate(effect.icon, parent, false);
                 iconGO.name = effect.name;
                 iconGO.GetComponent<StatusEffectTimer>().SetTimer(effect, member);
             }
@@ -36,7 +38,8 @@ namespace Characters.StatusEffects
 
         private void RemoveStatusEffectIcon(StatusEffect effect)
         {
-            var iconGO = transform.Find(effect.name);
+            var parent = effect.effectType == EffectType.Unique ? uniqueEffectContainer.transform : transform;
+            var iconGO = parent.Find(effect.name);
             if (iconGO != null) iconGO.gameObject.SetActive(false);
         }
 

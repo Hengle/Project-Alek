@@ -25,6 +25,7 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
     private CreateNewRangedAttack createNewRangedAttack;
     private CreateNewNonAttack createNewNonAttack;
     private CreateNewDotEffect createNewDotEffect;
+    private CreateNewInfusionEffect createNewInfusionEffect;
     private CreateNewElementalType createNewElementalType;
     private CreateNewClass createNewClass;
     private CreateNewWeapon createNewWeapon;
@@ -38,6 +39,7 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
         if (createNewRangedAttack != null) DestroyImmediate(createNewRangedAttack._ability);
         if (createNewNonAttack != null) DestroyImmediate(createNewNonAttack._ability);
         if (createNewDotEffect != null) DestroyImmediate(createNewDotEffect._statusEffect);
+        if (createNewInfusionEffect != null) DestroyImmediate(createNewInfusionEffect._statusEffect);
         if (createNewElementalType != null) DestroyImmediate(createNewElementalType._elementalType);
         if (createNewClass != null) DestroyImmediate(createNewClass._class);
         if (createNewWeapon != null) DestroyImmediate(createNewWeapon._weaponItem);
@@ -50,6 +52,7 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
         createNewRangedAttack = new CreateNewRangedAttack();
         createNewNonAttack = new CreateNewNonAttack();
         createNewDotEffect = new CreateNewDotEffect();
+        createNewInfusionEffect = new CreateNewInfusionEffect();
         createNewElementalType = new CreateNewElementalType();
         createNewClass = new CreateNewClass();
         createNewWeapon = new CreateNewWeapon();
@@ -61,6 +64,7 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
             {"Create New/Ability/Ranged Attack", createNewRangedAttack},
             {"Create New/Ability/Non-Attack", createNewNonAttack},
             {"Create New/Status Effect/Damage Over Time", createNewDotEffect},
+            {"Create New/Status Effect/Unique", createNewInfusionEffect},
             {"Create New/Elemental Type", createNewElementalType},
             {"Create New/Class", createNewClass},
             {"Create New/Weapon", createNewWeapon}
@@ -82,6 +86,7 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
         tree.AddAllAssetsAtPath("Status Effects/Stat Change", "Scriptable Objects/Status Effects/StatChange/Debuffs", typeof(StatusEffect));
         tree.AddAllAssetsAtPath("Status Effects/Inhibiting", "Scriptable Objects/Status Effects/InhibitingEffect", typeof(StatusEffect));
         tree.AddAllAssetsAtPath("Status Effects/AI Effect", "Scriptable Objects/Status Effects/AIEffect", typeof(StatusEffect));
+        tree.AddAllAssetsAtPath("Status Effects/Unique Effect", "Scriptable Objects/Status Effects/Unique", typeof(StatusEffect));
         tree.AddAllAssetsAtPath("Elemental Types", "Scriptable Objects/ElementalTypes", typeof(ElementalType));
         tree.AddAllAssetsAtPath("Weapons", "Scriptable Objects/Weapons", typeof(WeaponItem));
         tree.AddAllAssetsAtPath("", "Resources", typeof(PartyManager));
@@ -229,6 +234,29 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
             AssetDatabase.SaveAssets();
             
             _statusEffect = CreateInstance<StatChange>();
+        }
+    }
+    
+    public class CreateNewInfusionEffect
+    {
+        [UsedImplicitly] public string _name;
+
+        public CreateNewInfusionEffect()
+        {
+            _statusEffect = CreateInstance<Infusion>();
+            _statusEffect.name = _name;
+        }
+
+        [InlineEditor(ObjectFieldMode = InlineEditorObjectFieldModes.Hidden)]
+        public Infusion _statusEffect;
+
+        [Button("Add New Infusion Effect")]
+        private void CreateNewData()
+        {
+            AssetDatabase.CreateAsset(_statusEffect, $"Assets/Scriptable Objects/StatusEffects/Unique/" + _name + ".asset");
+            AssetDatabase.SaveAssets();
+            
+            _statusEffect = CreateInstance<Infusion>();
         }
     }
 

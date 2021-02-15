@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 6354075532016656245}
   - component: {fileID: 2990879209048987332}
   - component: {fileID: 6672827375932905360}
+  - component: {fileID: 564931591752709219}
   m_Layer: 0
   m_Name: Leandra Valentina
   m_TagString: Untagged
@@ -317,6 +318,8 @@ MonoBehaviour:
   timedAttack: 0
   isCountered: 0
   isBorrowing: 0
+  overrideElemental: 0
+  overrideAbility: {fileID: 0}
   characterTurnEvent: {fileID: 11400000, guid: 34d2f1cdf289d714a80d463db5b95f01, type: 2}
   characterAttackEvent: {fileID: 11400000, guid: f95948814cbd6ea4c8f313185bb3913e,
     type: 2}
@@ -419,6 +422,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ba7a5c33ec4ce88a9a590065e93faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useProfile: 0
+  profile: {fileID: 0}
   track:
     source: {fileID: 5225659423457413298}
     audio:
@@ -438,6 +443,18 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: 31149f1964090e245894cfa4ce97f4fa, type: 3}
     - type: {fileID: 11400000, guid: a1b73283631531b41b49445b9694209d, type: 2}
       clip: {fileID: 8300000, guid: 1d3b00d74662f7542ac094dbc912a219, type: 3}
+--- !u!114 &564931591752709219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526218485019349028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be79cc7e593344fc9636220a3e2f60f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5068874286471354346
 GameObject:
   m_ObjectHideFlags: 0

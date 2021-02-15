@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 namespace Characters.StatusEffects
 {
-    public enum EffectType { DamageOverTime, Inhibiting, AI, StatChange }
-    public enum Rate { EveryTurn, BeforeEveryAction, AfterEveryAction, AfterAttacked, Once }
+    [EnumPaging] public enum EffectType { DamageOverTime, Inhibiting, AI, StatChange, Unique }
+    [EnumPaging] public enum Rate { EveryTurn, BeforeEveryAction, AfterEveryAction, AfterAttacked, Once }
     [EnumPaging] [LabelWidth(90)] public enum InflictionChanceModifier { Normal = 25, Moderate = 50, Significant = 75, Major = 100 }
     public abstract class StatusEffect : ScriptableObject
     {
         #region FieldsAndProperties
         
-        [Space, ReadOnly, VerticalGroup("Icon/Info")]
+        [Space, VerticalGroup("Icon/Info")]
         public EffectType effectType;
         
         [VerticalGroup("Icon/Info")]
@@ -26,11 +26,15 @@ namespace Characters.StatusEffects
             set => icon.GetComponent<Image>().sprite = value;
         }
 
-        [HideIf(nameof(effectType), EffectType.StatChange)] [HideIf(nameof(name), "Susceptible")]
+        [HideIf(nameof(effectType), EffectType.StatChange)] 
+        [HideIf(nameof(effectType), EffectType.Unique)]
+        [HideIf(nameof(name), "Susceptible")]
         [Space, Tooltip("How often the effect is inflicted"), VerticalGroup("Icon/Info"), EnumPaging]
         public List<Rate> rateOfInfliction = new List<Rate>();
         
-        [HideIf(nameof(effectType), EffectType.StatChange)] [HideIf(nameof(name), "Susceptible")] 
+        [HideIf(nameof(effectType), EffectType.StatChange)]
+        [HideIf(nameof(effectType), EffectType.Unique)]
+        [HideIf(nameof(name), "Susceptible")] 
         [Space, VerticalGroup("Icon/Info"), ColorPalette, HideLabel] 
         public Color color;
         

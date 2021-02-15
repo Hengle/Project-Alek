@@ -103,6 +103,10 @@ namespace BattleSystem
                     EventSystem.current.SetSelectedGameObject(null);
                     EventSystem.current.SetSelectedGameObject(SelectableObjectManager._memberFirstSelected);
                     break;
+                case 3: // Self
+                    EventSystem.current.SetSelectedGameObject(null);
+                    EventSystem.current.SetSelectedGameObject(BattleEngine.Instance.activeUnit.Unit.gameObject);
+                    break;
             }
             
             BattleInput._controls.Enable();

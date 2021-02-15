@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 1
   damageType: 0
-  targetOptions: 0
+  targetOptions: 3
   icon: {fileID: 21300000, guid: d8238ba7efd8b6e488dc9a5c2a387218, type: 3}
   actionCost: 1
   damageMultiplier: 0.9
-  attackState: 2
+  attackState: 3
   animation: {fileID: 7400000, guid: 10468bef8c71fa54581a422a1686b6db, type: 2}
   isMultiTarget: 0
   description: Drain all of the enemie's strength

@@ -185,6 +185,7 @@ namespace Characters.Animations
         [UsedImplicitly] private void TargetTakeDamage()
         {
             windowOpen = false;
+            
 
             if (!missedWindow && !hitWindow) SendTimedButtonEventResult(false);
 
@@ -192,12 +193,14 @@ namespace Characters.Animations
             {
                 if (unit.currentTarget == null) return;
                 if (unit.currentTarget.Unit.isCountered) RecalculateDamage();
-                unit.currentTarget.TakeDamage(unit.currentDamage, ElementalCondition, WeaponDamageTypeCondition);
+                unit.currentTarget.TakeDamage(unit.currentDamage, unit.overrideElemental ?
+                    unit.overrideAbility.elementalType : ElementalCondition, WeaponDamageTypeCondition);
                 return;
             }
             
             unit.multiHitTargets.ForEach(t => t.TakeDamage
-                (unit.damageValueList[unit.multiHitTargets.IndexOf(t)], ElementalCondition, WeaponDamageTypeCondition));
+                (unit.damageValueList[unit.multiHitTargets.IndexOf(t)],unit.overrideElemental ?
+                unit.overrideAbility.elementalType : ElementalCondition, WeaponDamageTypeCondition));
         }
 
         [UsedImplicitly] private void RecalculateDamage() 
