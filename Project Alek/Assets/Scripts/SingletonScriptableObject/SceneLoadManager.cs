@@ -26,6 +26,14 @@ namespace SingletonScriptableObject
             Timing.RunCoroutine(SceneTransitionManager.Instance.OverworldTransition(1, true).
                 Append(() => operation.allowSceneActivation = true));
         }
+
+        public void LoadScene(string scene)
+        {
+            Timing.RunCoroutine(SceneTransitionManager.Instance.OverworldTransition(1, true).Append(() =>
+            {
+                operation = SceneManager.LoadSceneAsync(scene);
+            }));
+        }
     
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Initialize() => Init();

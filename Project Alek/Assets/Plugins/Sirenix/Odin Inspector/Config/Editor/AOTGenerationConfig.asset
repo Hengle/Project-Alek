@@ -16,7 +16,7 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 0900000014000000
-  lastScan: 637486813565168238
+  lastScan: 637489399000715750
   supportSerializedTypes:
   - TypeName: Characters.Abilities.Ability, ProjectAlek
     IsCustom: 0
@@ -26,6 +26,9 @@ MonoBehaviour:
     Emit: 1
   - TypeName: System.Action`1[[Characters.ElementalTypes.ElementalType, ProjectAlek]],
       mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Action`1[[System.Single, mscorlib]], mscorlib
     IsCustom: 0
     Emit: 1
   - TypeName: System.Action`1[[System.Int32, mscorlib]], mscorlib
@@ -73,6 +76,9 @@ MonoBehaviour:
     IsCustom: 0
     Emit: 1
   - TypeName: Characters.ElementalTypes.ElementalWeaknessScalar, ProjectAlek
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Single, mscorlib
     IsCustom: 0
     Emit: 1
   - TypeName: System.Collections.Generic.IEqualityComparer`1[[Characters.UnitBase+ElementalResStruct,

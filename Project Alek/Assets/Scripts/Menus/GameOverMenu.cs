@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace BattleSystem.UI
+namespace Menus
 {
     public class GameOverMenu : MonoBehaviour
     {
@@ -57,7 +57,11 @@ namespace BattleSystem.UI
         }
 
         public void OnRetryButton() => SceneLoadManager.Instance.LoadBattle(true);
-        
-        public void OnQuitButton() {}
+
+        public void OnQuitButton()
+        {
+            SceneLoadManager.Instance.LoadScene("Start");
+            gameObject.SetActive(false);
+        }
     }
 }

@@ -15,10 +15,10 @@ public class SceneTransitionManager : MonoBehaviorSingleton<SceneTransitionManag
 
     private void Start()
     {
-        if (!volume.profile.TryGet(out lensDistortion)) 
-            Debug.LogError("Lens distortion component could not be found!");
+        if (volume && !volume.profile.TryGet(out lensDistortion)) 
+            Debug.LogWarning("Lens distortion component could not be found!");
         
-        lensDistortion.intensity.overrideState = true;
+        if (lensDistortion) lensDistortion.intensity.overrideState = true;
 
         Timing.RunCoroutine(SceneManager.GetActiveScene().name == "Battle"
             ? ResetLens()
