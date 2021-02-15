@@ -2350,7 +2350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   member: {fileID: 0}
-  uniqueEffectContainer: {fileID: 0}
+  uniqueEffectContainer: {fileID: 9046254501556949607}
 --- !u!114 &3188609725421898188
 MonoBehaviour:
   m_ObjectHideFlags: 0

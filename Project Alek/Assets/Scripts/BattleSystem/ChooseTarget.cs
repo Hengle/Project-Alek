@@ -56,8 +56,6 @@ namespace BattleSystem
             if (navigation.selectOnRight) selectOnRight = navigation.selectOnRight;
             if (navigation.selectOnUp) selectOnUp = navigation.selectOnUp;
             if (navigation.selectOnDown) selectOnDown = navigation.selectOnDown;
-            
-            //print($"{targetOptionsCharacterType}");
 
             switch (targetOptionsCharacterType)
             {
@@ -87,38 +85,16 @@ namespace BattleSystem
             classOption = option;
 
             targetOptionsCharacterType = (TargetOptions) _targetOptions;
-
-            // switch (_targetOptions)
-            // {
-            //     case 0: targetOptionsCharacterType = TargetOptions.Enemies;
-            //         break;
-            //     case 1: targetOptionsCharacterType = TargetOptions.PartyMembers;
-            //         break;
-            //     case 2: targetOptionsCharacterType = TargetOptions.Both;
-            //         break;
-            //     //case 3: targetOptionsCharacterType = 
-            // }
         }
 
         public static void GetItemCommand()
         {
             targetOptionsCharacterType = (TargetOptions) _targetOptions;
-            
-            // switch (_targetOptions)
-            // {
-            //     case 0: targetOptionsCharacterType = CharacterType.Enemy;
-            //         break;
-            //     case 1: targetOptionsCharacterType = CharacterType.PartyMember;
-            //         break;
-            //     case 2: targetOptionsCharacterType = CharacterType.Both;
-            //         break;
-            // }
         }
 
         // This function is called from an onclick event attached to each character
         private void AddCommand()
         {
-            print("Add Command");
             // TODO: Account for revival items and other types
             if (BattleEngine.Instance.usingItem)
             {

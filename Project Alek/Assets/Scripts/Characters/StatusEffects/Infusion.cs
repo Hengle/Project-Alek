@@ -10,6 +10,7 @@ namespace Characters.StatusEffects
         public override void OnAdded(UnitBase target)
         {
             base.OnAdded(target);
+            target.Unit.overrideElemental = true;
             //TODO: Instantiate effect
         }
 

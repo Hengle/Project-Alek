@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7329581370277496075}
   - component: {fileID: 2331830765112969778}
   m_Layer: 5
-  m_Name: Fire Infusion Icon
+  m_Name: Water Infusion Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.55655974, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.16782928, b: 1, a: 1}
   m_RaycastTarget: 0
   m_Maskable: 0
   m_OnCullStateChanged:

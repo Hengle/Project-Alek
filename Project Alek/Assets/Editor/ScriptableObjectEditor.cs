@@ -64,7 +64,7 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
             {"Create New/Ability/Ranged Attack", createNewRangedAttack},
             {"Create New/Ability/Non-Attack", createNewNonAttack},
             {"Create New/Status Effect/Damage Over Time", createNewDotEffect},
-            {"Create New/Status Effect/Unique", createNewInfusionEffect},
+            {"Create New/Status Effect/Infusion", createNewInfusionEffect},
             {"Create New/Elemental Type", createNewElementalType},
             {"Create New/Class", createNewClass},
             {"Create New/Weapon", createNewWeapon}
@@ -205,7 +205,7 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
         [Button("Add New DOT Effect")]
         private void CreateNewData()
         {
-            AssetDatabase.CreateAsset(_statusEffect, "Assets/Scriptable Objects/StatusEffects/DOT/" + _name + ".asset");
+            AssetDatabase.CreateAsset(_statusEffect, "Assets/Scriptable Objects/Status Effects/DOT/" + _name + ".asset");
             AssetDatabase.SaveAssets();
             
             _statusEffect = CreateInstance<DamageOverTime>();
@@ -230,7 +230,7 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
         [Button("Add New Stat Change Effect")]
         private void CreateNewData()
         {
-            AssetDatabase.CreateAsset(_statusEffect, $"Assets/Scriptable Objects/StatusEffects/StatChange/{_buffOrDebuff}/" + _name + ".asset");
+            AssetDatabase.CreateAsset(_statusEffect, $"Assets/Scriptable Objects/Status Effects/StatChange/{_buffOrDebuff}/" + _name + ".asset");
             AssetDatabase.SaveAssets();
             
             _statusEffect = CreateInstance<StatChange>();
@@ -253,7 +253,7 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
         [Button("Add New Infusion Effect")]
         private void CreateNewData()
         {
-            AssetDatabase.CreateAsset(_statusEffect, $"Assets/Scriptable Objects/StatusEffects/Unique/" + _name + ".asset");
+            AssetDatabase.CreateAsset(_statusEffect, "Assets/Scriptable Objects/Status Effects/Unique/" + _name + ".asset");
             AssetDatabase.SaveAssets();
             
             _statusEffect = CreateInstance<Infusion>();
