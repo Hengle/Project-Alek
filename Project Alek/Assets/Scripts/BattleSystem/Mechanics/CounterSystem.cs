@@ -33,7 +33,7 @@ namespace BattleSystem.Mechanics
         private void SetupCounterAttack(bool hitWindow)
         {
             if (!hitWindow) return;
-            if (unit.currentHP == 0) return;
+            if (unit.currentHP == 0 || unit.status == Status.Dead) return;
 
             characterAttackEvent.Raise(unit.parent, characterAttackEvent);
             unit.currentTarget = BattleEngine.Instance.activeUnit;

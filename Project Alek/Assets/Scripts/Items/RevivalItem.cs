@@ -1,4 +1,5 @@
 ﻿using System;
+using Audio;
 using Characters;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -18,6 +19,7 @@ namespace MoreMountains.InventoryEngine
             base.Use();
             var target = EventSystem.current.currentSelectedGameObject.GetComponent<Unit>().parent;
             target.Revive(revivalHealthPercentage, revivalAPAmount);
+            AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.revive);
             return true;
         }
     }

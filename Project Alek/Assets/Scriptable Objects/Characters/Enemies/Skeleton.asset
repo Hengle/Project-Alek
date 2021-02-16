@@ -18,7 +18,7 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 5b7dd86029ea2ce49beaee4e4d702b94, type: 2}
     - {fileID: 11400000, guid: c39d538e0733abc409ae3ae8b371cbf4, type: 2}
-    - {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
+    - {fileID: 11400000, guid: eb1b5a0f67771a842832b379372ae131, type: 2}
     - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
     - {fileID: 11400000, guid: b43ae3106abe31b409ccb3acb53a0731, type: 2}
     SerializedBytesString: 
@@ -263,7 +263,7 @@ MonoBehaviour:
     maxValue: 99999
     amountIncreasedBy: 0
   strength:
-    BaseValue: 12
+    BaseValue: 82
     maxValue: 99
     amountIncreasedBy: 0
   magic:
@@ -271,7 +271,7 @@ MonoBehaviour:
     maxValue: 99
     amountIncreasedBy: 0
   accuracy:
-    BaseValue: 10
+    BaseValue: 80
     maxValue: 99
     amountIncreasedBy: 0
   initiative:
@@ -291,7 +291,7 @@ MonoBehaviour:
     maxValue: 99
     amountIncreasedBy: 0
   description: I mean, he's a...
-  weaponMight: 13
+  weaponMight: 43
   magicMight: 3
   weaponAccuracy: 70
   weaponCriticalChance: 5

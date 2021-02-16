@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 2990879209048987332}
   - component: {fileID: 6672827375932905360}
   - component: {fileID: 564931591752709219}
+  - component: {fileID: 8001343472699133147}
   m_Layer: 0
   m_Name: Leandra Valentina
   m_TagString: Untagged
@@ -132,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAttacking: 0
+  performingAction: 0
   usingItem: 0
   performingSpecial: 0
 --- !u!114 &113878214394390572
@@ -151,6 +153,8 @@ MonoBehaviour:
   thisUnitBase: {fileID: 0}
   selectOnLeft: {fileID: 0}
   selectOnRight: {fileID: 0}
+  selectOnUp: {fileID: 0}
+  selectOnDown: {fileID: 0}
 --- !u!65 &4244821272085735028
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -443,6 +447,8 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: 31149f1964090e245894cfa4ce97f4fa, type: 3}
     - type: {fileID: 11400000, guid: a1b73283631531b41b49445b9694209d, type: 2}
       clip: {fileID: 8300000, guid: 1d3b00d74662f7542ac094dbc912a219, type: 3}
+    - type: {fileID: 11400000, guid: 4af6d1d09d003014ab1cc966f3d43a0e, type: 2}
+      clip: {fileID: 8300000, guid: 4873e5ce4a643e54daece7c3240a4329, type: 3}
 --- !u!114 &564931591752709219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,6 +461,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be79cc7e593344fc9636220a3e2f60f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8001343472699133147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526218485019349028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaderTypes: 0
+  normalStrenght: 5
+  normalSmoothing: 1
+  computingNormal: 0
 --- !u!1 &5068874286471354346
 GameObject:
   m_ObjectHideFlags: 0

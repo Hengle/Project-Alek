@@ -9,15 +9,9 @@ namespace Characters.PartyMembers
     {
         private Unit unit;
 
-        private void Awake()
-        {
-            unit = GetComponent<Unit>();
-        }
-
-        [UsedImplicitly] public void SetOverrideAbility()
-        {
-            unit.overrideAbility = unit.currentAbility;
-        }
+        private void Awake() => unit = GetComponent<Unit>();
+        
+        [UsedImplicitly] public void SetOverrideAbility() => unit.overrideAbility = unit.currentAbility;
 
         [UsedImplicitly] public void SetStatusEffect()
         {

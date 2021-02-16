@@ -17,7 +17,7 @@ namespace Characters
 {
     // TODO: Use these with status effects (like inhibiting)
     public enum Status { Normal, Dead, UnableToPerformAction, Overexerted }
-    public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler, IGameEventListener<UnitBase,CharacterGameEvent>
+    public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler, IGameEventListener<BattleEvent>, IGameEventListener<UnitBase,CharacterGameEvent>
     {
         #region HideInInspector
 
@@ -55,7 +55,8 @@ namespace Characters
         [ReadOnly] public List<StatusEffect> statusEffects = new List<StatusEffect>();
         [ReadOnly] public List<UnitBase> multiHitTargets = new List<UnitBase>();
         [ReadOnly] public List<int> damageValueList = new List<int>();
-        
+
+        [ReadOnly] public bool hasPerformedTurn;
         [ReadOnly] public bool targetHasCrit;
         [ReadOnly] public bool isAbility;
         [ReadOnly] public bool attackerHasMissed;
@@ -71,10 +72,10 @@ namespace Characters
 
         #region OtherFieldsAndProperies
 
-        [SerializeField] private CharacterGameEvent characterTurnEvent;
-        [SerializeField] private CharacterGameEvent characterAttackEvent;
-        [SerializeField] private CharacterGameEvent chooseTargetEvent;
-        
+        // [SerializeField] private CharacterGameEvent characterTurnEvent;
+        // [SerializeField] private CharacterGameEvent characterAttackEvent;
+        // [SerializeField] private CharacterGameEvent chooseTargetEvent;
+
         public Action onSpecialAttack;
         public Action<float> onSpecialBarValChanged;
         public Action<bool> onTimedAttack;
@@ -113,16 +114,23 @@ namespace Characters
             anim.SetInteger("AnimState", 1);
             outline.enabled = false;
             status = Status.Normal;
-            characterTurnEvent.AddListener(this);
-            characterAttackEvent.AddListener(this);
-            chooseTargetEvent.AddListener(this);
+            
+            BattleEvents.Instance.characterTurnEvent.AddListener(this);
+            BattleEvents.Instance.characterAttackEvent.AddListener(this);
+            BattleEvents.Instance.chooseTargetEvent.AddListener(this);
+            BattleEvents.Instance.battleEvent.AddListener(this);
+            BattleEvents.Instance.endOfTurnEvent.AddListener(this);
+            BattleEvents.Instance.skipTurnEvent.AddListener(this);
         }
 
         private void OnDisable()
         {
-            characterTurnEvent.RemoveListener(this);
-            characterAttackEvent.RemoveListener(this);
-            chooseTargetEvent.RemoveListener(this);
+            BattleEvents.Instance.characterTurnEvent.RemoveListener(this);
+            BattleEvents.Instance.characterAttackEvent.RemoveListener(this);
+            BattleEvents.Instance.chooseTargetEvent.RemoveListener(this);
+            BattleEvents.Instance.battleEvent.RemoveListener(this);
+            BattleEvents.Instance.endOfTurnEvent.RemoveListener(this);
+            BattleEvents.Instance.skipTurnEvent.RemoveListener(this);
         }
 
         public void OnSelect(BaseEventData eventData)
@@ -155,7 +163,7 @@ namespace Characters
 
         public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
         {
-            if (value2 == characterTurnEvent)
+            if (value2 == BattleEvents.Instance.characterTurnEvent)
             {
                 outline.enabled = false;
                 button.enabled = false;
@@ -163,8 +171,21 @@ namespace Characters
                 currentAbility = null;
                 if (value1 == parent) ResetTargets();
             }
-            else if (value2 == chooseTargetEvent) button.enabled = true;
-            else if (value2 == characterAttackEvent) outline.enabled = false;
+            else if (value2 == BattleEvents.Instance.chooseTargetEvent) button.enabled = true;
+            else if (value2 == BattleEvents.Instance.characterAttackEvent) outline.enabled = false;
+            else if (value1 == parent && value2 == BattleEvents.Instance.endOfTurnEvent ||
+                     value2 == BattleEvents.Instance.skipTurnEvent)
+            {
+                hasPerformedTurn = true;
+            }
+        }
+        
+        public void OnEventRaised(BattleEvent value)
+        {
+            if (value == BattleEvent.NewRound)
+            {
+                hasPerformedTurn = false;
+            }
         }
     }
 }

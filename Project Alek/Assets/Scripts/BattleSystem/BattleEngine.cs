@@ -65,6 +65,9 @@ namespace BattleSystem
         private bool AllEnemiesDead => _enemiesForThisBattle.Count == 0;
         private bool PartyOrEnemyTeamIsDead => AllMembersDead || AllEnemiesDead;
 
+        private bool NewRoundCondition =>
+            membersAndEnemiesThisTurn.Count == 0 || membersAndEnemiesThisTurn.TrueForAll(u => u.IsDead);
+
         #endregion
 
         #region SettingUpBattle
@@ -99,7 +102,7 @@ namespace BattleSystem
             _enemiesForThisBattle.ForEach(e => e.Unit.GetComponent<ChooseTarget>().Setup());
 
             _membersForThisBattle.ForEach(m => { m.onDeath += RemoveFromBattle; m.onRevival += AddToBattle; });
-            _enemiesForThisBattle.ForEach(e => { e.onDeath += RemoveFromBattle; e.onRevival += AddToBattle; });
+            _enemiesForThisBattle.ForEach(e => e.onDeath += RemoveFromBattle);
 
             BattleEvents.Instance.setupCompleteEvent.Raise();
             _membersForThisBattle.ForEach(m => m.LevelUpEvent += 
@@ -119,9 +122,14 @@ namespace BattleSystem
 
             yield return Timing.WaitForSeconds(0.25f);
             
-            if (membersAndEnemiesThisTurn.Count == 0) { BattleEvents.Instance.battleEvent.Raise(BattleEvent.NewRound);
+            if (NewRoundCondition) { BattleEvents.Instance.battleEvent.Raise(BattleEvent.NewRound);
                 yield return Timing.WaitUntilTrue(SortingCalculator.SortByInitiative); }
 
+            while (membersAndEnemiesThisTurn.Count > 0 && membersAndEnemiesThisTurn[0].IsDead)
+            {
+                membersAndEnemiesThisTurn.Remove(membersAndEnemiesThisTurn[0]);
+            }
+            
             var character = membersAndEnemiesThisTurn[0];
             
             yield return Timing.WaitUntilDone(character.InflictStatus
@@ -140,6 +148,7 @@ namespace BattleSystem
             inventoryInputManager.TargetInventoryContainer = character.Container;
             inventoryInputManager.TargetInventoryDisplay = character.InventoryDisplay;
             character.inventoryDisplay.SetActive(true);
+            character.InventoryDisplay.RedrawInventoryDisplay();
             
             character.ReplenishAP();
             var battlePanel = (BattleOptionsPanel) character.battleOptionsPanel;
@@ -353,7 +362,7 @@ namespace BattleSystem
             
             sortingCalculator.ResortThisTurnOrder();
             sortingCalculator.ResortNextTurnOrder();
-
+            
             unit.onDeath -= RemoveFromBattle;
         }
         
@@ -364,12 +373,12 @@ namespace BattleSystem
             if (unit.id == CharacterType.Enemy) _enemiesForThisBattle.Add((Enemy) unit);
             else _membersForThisBattle.Add((PartyMember) unit);
             
-            membersAndEnemiesThisTurn.Add(unit);
+            if (!unit.Unit.hasPerformedTurn) membersAndEnemiesThisTurn.Add(unit);
             membersAndEnemiesNextTurn.Add(unit);
             
             sortingCalculator.ResortThisTurnOrder();
             sortingCalculator.ResortNextTurnOrder();
-            
+
             unit.onDeath += RemoveFromBattle;
         }
         
@@ -378,6 +387,8 @@ namespace BattleSystem
             _membersForThisBattle.ForEach(m => m.onDeath -= RemoveFromBattle);
             _enemiesForThisBattle.ForEach(e => e.onDeath -= RemoveFromBattle);
             
+            PartyManager.Instance.partyMembers.ForEach(m => m.onRevival -= AddToBattle);
+
             BattleEvents.Instance.battleEvent.RemoveListener(this);
             BattleEvents.Instance.endOfTurnEvent.RemoveListener(this);
             BattleEvents.Instance.skipTurnEvent.RemoveListener(this);

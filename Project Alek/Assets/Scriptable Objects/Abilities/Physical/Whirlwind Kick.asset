@@ -18,13 +18,14 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 889096820535b0f48acdff308771b1b5, type: 3}
   actionCost: 1
   damageMultiplier: 1
-  attackState: 2
+  attackState: 1
   animation: {fileID: 7400000, guid: 4731647c40326794886dee3a654d1f8b, type: 2}
   isMultiTarget: 0
-  description: Whoosh!
-  hasElemental: 1
-  elementalType: {fileID: 11400000, guid: 5b7dd86029ea2ce49beaee4e4d702b94, type: 2}
+  description: A sweeping kick that can knock foes off balance and lower their initiative.
+  hasElemental: 0
+  elementalType: {fileID: 0}
   elementalScalar: 50
-  hasStatusEffect: 0
-  statusEffects: []
+  hasStatusEffect: 1
+  statusEffects:
+  - {fileID: 11400000, guid: 15aa57cf79d164d4aad39e9f860328f7, type: 2}
   chanceOfInfliction: 0

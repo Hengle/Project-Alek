@@ -32,5 +32,7 @@ namespace BattleSystem
         public GameEvent nextTurnListCreatedEvent;
         [FoldoutGroup("Events")] [SerializeField]
         public GameEvent retryBattleEvent;
+        [FoldoutGroup("Events")] [SerializeField]
+        public GameEvent resortNextTurnEvent;
     }
 }

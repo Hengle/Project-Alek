@@ -15,5 +15,7 @@ namespace Audio
         [SerializeField] public AudioType levelUp;
         [SerializeField] public AudioType aPConversion;
         [SerializeField] public AudioType gameOver;
+        [SerializeField] public AudioType heal;
+        [SerializeField] public AudioType revive;
     }
 }

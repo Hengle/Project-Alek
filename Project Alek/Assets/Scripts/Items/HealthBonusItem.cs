@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
-using MoreMountains.Tools;
 using System;
-using BattleSystem;
+using Audio;
 using Characters;
 using UnityEngine.EventSystems;
 
@@ -21,8 +19,9 @@ namespace MoreMountains.InventoryEngine
 		public override bool Use()
 		{
 			base.Use();
-			UnitBase target = EventSystem.current.currentSelectedGameObject.GetComponent<Unit>().parent;
+			var target = EventSystem.current.currentSelectedGameObject.GetComponent<Unit>().parent;
 			target.Heal(HealthBonus);
+			AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.heal);
 			return true;
 		}
 	}
