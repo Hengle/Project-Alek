@@ -34,5 +34,7 @@ namespace BattleSystem
         public GameEvent retryBattleEvent;
         [FoldoutGroup("Events")] [SerializeField]
         public GameEvent resortNextTurnEvent;
+        [FoldoutGroup("Events")] [SerializeField]
+        public GameObjectGameEvent overrideButtonEvent;
     }
 }

@@ -64,7 +64,7 @@ namespace BattleSystem
         }
 
         // Parameters are separated by comma in order of: Action Name, Action Option, Target Options, and Action Cost
-        public void GetCommandInformation(string parameters)
+        public void GetCommandInformation(string parameters, bool skipChooseTarget = false)
         {
             var splitParams = parameters.Split(',');
             
@@ -86,8 +86,13 @@ namespace BattleSystem
                 else return;
             }
 
-            ChooseTarget._targetOptions = commandTargetOptions;
-            ChooseTarget.GetCurrentCommand(commandActionName, commandActionOption);
+            if (skipChooseTarget) BattleEngine.Instance.skipChooseTarget = true;
+            else
+            {
+                ChooseTarget._targetOptions = commandTargetOptions;
+                ChooseTarget.GetCurrentCommand(commandActionName, commandActionOption);
+            }
+
             character.Unit.actionCost = commandCost;
 
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);

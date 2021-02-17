@@ -263,7 +263,7 @@ MonoBehaviour:
     maxValue: 99999
     amountIncreasedBy: 0
   strength:
-    BaseValue: 82
+    BaseValue: 12
     maxValue: 99
     amountIncreasedBy: 0
   magic:
@@ -271,7 +271,7 @@ MonoBehaviour:
     maxValue: 99
     amountIncreasedBy: 0
   accuracy:
-    BaseValue: 80
+    BaseValue: 10
     maxValue: 99
     amountIncreasedBy: 0
   initiative:
@@ -291,7 +291,7 @@ MonoBehaviour:
     maxValue: 99
     amountIncreasedBy: 0
   description: I mean, he's a...
-  weaponMight: 43
+  weaponMight: 13
   magicMight: 3
   weaponAccuracy: 70
   weaponCriticalChance: 5

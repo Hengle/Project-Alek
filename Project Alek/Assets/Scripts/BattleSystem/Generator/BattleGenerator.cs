@@ -129,14 +129,24 @@ namespace BattleSystem.Generator
                 
                 var param = character.abilities[abilityListIndex].GetParameters(abilityListIndex);
                 var ability = character.abilities[abilityListIndex];
-                
-                optionButton.GetComponent<Button>().onClick.
-                    AddListener(delegate { ((BattleOptionsPanel) character.battleOptionsPanel).GetCommandInformation(param);
-                        character.Unit.currentAbility = ability; character.Unit.isAbility = true; });
 
-                if (character.abilities[abilityListIndex].isMultiTarget) optionButton.GetComponent<Button>().onClick.
-                    AddListener(delegate { ChooseTarget._isMultiTarget = true; });
-                    
+                if (!character.abilities[abilityListIndex].hasOverride)
+                {
+                    optionButton.GetComponent<Button>().onClick.AddListener(delegate
+                    {
+                        ((BattleOptionsPanel) character.battleOptionsPanel).GetCommandInformation(param);
+                        character.Unit.currentAbility = ability;
+                        character.Unit.isAbility = true;
+                    });
+
+                    if (character.abilities[abilityListIndex].isMultiTarget)
+                        optionButton.GetComponent<Button>().onClick.AddListener(delegate
+                        {
+                            ChooseTarget._isMultiTarget = true;
+                        });
+                }
+                else BattleEvents.Instance.overrideButtonEvent.Raise(optionButton);
+
                 optionButton.GetComponent<InfoBoxUI>().information =
                     $"{character.abilities[abilityListIndex].description}\n" +
                     $"({character.abilities[abilityListIndex].actionCost} AP)";

@@ -15,8 +15,7 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 0}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -122,60 +121,18 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: onRevival
-      Entry: 7
-      Data: 9|System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: target
-      Entry: 10
-      Data: 0
-    - Name: declaringType
-      Entry: 7
-      Data: 10|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: BattleSystem.BattleEngine, ProjectAlek
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: methodName
-      Entry: 1
-      Data: AddToBattle
-    - Name: delegateType
-      Entry: 7
-      Data: 11|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: System.Action`1[[Characters.UnitBase, ProjectAlek]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: signature
-      Entry: 7
-      Data: 12|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 13|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: Characters.UnitBase, ProjectAlek
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
+      Entry: 6
       Data: 
     - Name: onHpValueChanged
       Entry: 6
       Data: 
     - Name: onShieldValueChanged
+      Entry: 6
+      Data: 
+    - Name: onShieldBroken
+      Entry: 6
+      Data: 
+    - Name: onShieldRestored
       Entry: 6
       Data: 
     - Name: onElementalDamageReceived
@@ -237,12 +194,14 @@ MonoBehaviour:
   magicMight: 4
   weaponAccuracy: 80
   weaponCriticalChance: 1
-  abilities: []
+  abilities:
+  - {fileID: 11400000, guid: d1d37660e942eb64897683f026131746, type: 2}
+  spells: []
   currentClass: {fileID: 11400000, guid: 646bd9a752b65b34fbb244c39cad16ce, type: 2}
   overworldController: {fileID: 22100000, guid: 35b3df76d35443843b6ccba2c048dda5,
     type: 2}
-  positionInParty: 2
-  specialAttackBarVal: 0.50000006
+  positionInParty: 3
+  specialAttackBarVal: 0.5500001
   weaponInventory: {fileID: 417493762244957691, guid: 8dd491fe5bbd13742a4a9ed04d140e08,
     type: 3}
   armorInventory: {fileID: 417493762244957691, guid: ca6cb5b0feff6be4d82fc29d76668972,

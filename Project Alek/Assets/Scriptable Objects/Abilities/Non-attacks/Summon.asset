@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f4c02d75c04da0803f9381a6c4f3a3, type: 3}
+  m_Name: Summon
+  m_EditorClassIdentifier: 
+  abilityType: 2
+  damageType: 0
+  targetOptions: 3
+  icon: {fileID: 21300000, guid: 59854c11f998c474a9916c062dd20902, type: 3}
+  actionCost: 1
+  damageMultiplier: 1
+  attackState: 2
+  animation: {fileID: 7400000, guid: 8b05edff0c475bf4499d43eba1c7c657, type: 2}
+  hasOverride: 1
+  isMultiTarget: 0
+  description: Summon enemies to be used as your thrall. Once an enemy is summoned,
+    this ability turns into Command, which allows you to use that enemy's abilities.
+  hasElemental: 0
+  elementalType: {fileID: 0}
+  elementalScalar: 0
+  hasStatusEffect: 0
+  statusEffects: []
+  chanceOfInfliction: 0

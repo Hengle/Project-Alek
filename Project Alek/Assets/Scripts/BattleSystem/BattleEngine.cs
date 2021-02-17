@@ -52,6 +52,7 @@ namespace BattleSystem
 
         [ReadOnly] public bool choosingOption;
         [ReadOnly] public bool choosingTarget;
+        [ReadOnly] public bool skipChooseTarget;
         [ReadOnly] public bool usingItem;
         [ReadOnly] public bool performingAction;
         [ReadOnly] public bool endThisMembersTurn;
@@ -190,7 +191,8 @@ namespace BattleSystem
             if (endThisMembersTurn) goto end_of_turn;
             
             yield return Timing.WaitForOneFrame;
-            BattleEvents.Instance.chooseTargetEvent.Raise(character, BattleEvents.Instance.chooseTargetEvent);
+            if (skipChooseTarget) skipChooseTarget = false;
+            else BattleEvents.Instance.chooseTargetEvent.Raise(character, BattleEvents.Instance.chooseTargetEvent);
 
             while (choosingTarget)
             {

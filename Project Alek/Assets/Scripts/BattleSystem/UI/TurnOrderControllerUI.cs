@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Characters;
-using ScriptableObjectArchitecture;
 using UnityEngine;
 using UnityEngine.UI;
 

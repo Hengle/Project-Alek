@@ -43,6 +43,9 @@ namespace Characters.Abilities
         public AnimationClip animation;
 
         [VerticalGroup("Icon/Info"), LabelWidth(120)]
+        public bool hasOverride;
+
+        [VerticalGroup("Icon/Info"), LabelWidth(120)]
         [HideIf(nameof(damageType), DamageType.Special)]
         public bool isMultiTarget;
 
