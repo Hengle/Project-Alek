@@ -14,7 +14,6 @@ using ScriptableObjectArchitecture;
 using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using UnityEngine.InputSystem;
-using AudioType = Audio.AudioType;
 
 namespace Characters.Animations
 {
@@ -30,6 +29,7 @@ namespace Characters.Animations
         [ShowInInspector] private bool windowOpen;
         [ShowInInspector] private bool missedWindow;
         [ShowInInspector] private bool hitWindow;
+        [ShowInInspector] private bool isOverride;
 
         private int timedAttackCount;
 
@@ -46,16 +46,28 @@ namespace Characters.Animations
             unit.currentTarget.CurrentState == UnitStates.Weakened && 
             !unit.currentTarget.StatusEffects.Contains(unit.currentAbility.statusEffects[0]);
 
+        private Material originalMaterial;
+        private SpriteRenderer spriteRenderer;
+
+        public void OverrideUnit(Unit newUnit, Material material)
+        {
+            unit = newUnit;
+            originalMaterial = material;
+            isOverride = true;
+        }
+        
         private void Awake()
         {
             unit = GetComponent<Unit>();
-            characterAttackEvent.AddListener(this);
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            originalMaterial = spriteRenderer.material;
         }
 
         private void OnEnable()
         {
             BattleInput._controls.Battle.Confirm.performed += OnTimedButtonPress;
             BattleInput._controls.Battle.Confirm.performed += OnTimedButtonPressSpecialAttack;
+            characterAttackEvent.AddListener(this);
         }
 
         private void OnDisable()
@@ -65,30 +77,33 @@ namespace Characters.Animations
             characterAttackEvent.RemoveListener(this);
         }
 
-        private void Update()
-        {
-            if (windowOpen || unit.animationHandler.isAttacking) return;
-            missedWindow = false;
-            hitWindow = false;
-        }
+        // private void Update()
+        // {
+        //     if (windowOpen || isOverride ? unit.currentSummon.summonHandler.isAttacking :
+        //         unit.animationHandler.isAttacking) return;
+        //     missedWindow = false;
+        //     hitWindow = false;
+        // }
 
         private void OnTimedButtonPress(InputAction.CallbackContext ctx)
         {
             if (!thisCharacterTurn) return;
             if (unit.animationHandler.performingSpecial) return;
             if (missedWindow || hitWindow) return;
-            if (!windowOpen && !unit.animationHandler.isAttacking) return;
-            if (!windowOpen && unit.animationHandler.isAttacking) {
+            
+            var handler = isOverride ? unit.currentSummon.summonHandler : unit.animationHandler;
+            if (!windowOpen && !handler.isAttacking) return;
+            if (!windowOpen && handler.isAttacking) {
                 missedWindow = true;
                 SendTimedButtonEventResult(false);
                 windowOpen = false;
                 return;
             }
-
+            
             SendTimedButtonEventResult(true);
-            AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.hitWindow);
             hitWindow = true;
             windowOpen = false;
+            AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.hitWindow);
         }
 
         private void OnTimedButtonPressSpecialAttack(InputAction.CallbackContext ctx)
@@ -135,11 +150,16 @@ namespace Characters.Animations
         }
         
         // TODO: Separate window into a normal window and a perfect parry window (only for timed defense)
-        [UsedImplicitly] private void OpenParryWindow() => windowOpen = true;
+        [UsedImplicitly] private void OpenParryWindow()
+        {
+            windowOpen = true;
+            spriteRenderer.material = GlobalVariables.Instance.flashMaterial;
+        }
 
         [UsedImplicitly] private void CloseParryWindow()
         {
             windowOpen = false;
+            spriteRenderer.material = originalMaterial;
             unit.currentTarget.Unit.anim.SetTrigger(AnimationHandler.HurtTrigger);
         }
 
@@ -185,9 +205,12 @@ namespace Characters.Animations
         [UsedImplicitly] private void TargetTakeDamage()
         {
             windowOpen = false;
+            spriteRenderer.material = originalMaterial;
             
-
-            if (!missedWindow && !hitWindow) SendTimedButtonEventResult(false);
+            if (!missedWindow && !hitWindow)
+            {
+                SendTimedButtonEventResult(false);
+            }
 
             if (!unit.isAbility || !unit.currentAbility.isMultiTarget)
             {
@@ -261,6 +284,14 @@ namespace Characters.Animations
         {
             if (value2 != characterAttackEvent) return;
             if (value1.Unit != unit) { thisCharacterTurn = false; return; }
+            if (value1.Unit.hasSummon && !isOverride)
+            {
+                thisCharacterTurn = false;
+                return;
+            }
+            
+            missedWindow = false;
+            hitWindow = false;
 
             thisCharacterTurn = true;
             unitBase = value1;

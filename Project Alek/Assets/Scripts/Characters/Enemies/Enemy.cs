@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Characters.Animations;
 using Characters.PartyMembers;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -15,6 +16,15 @@ namespace Characters.Enemies
 
         [SerializeField, VerticalGroup("Basic/Info"), LabelWidth(120), Range(1,10)]
         public int maxShieldCount = 1;
+        [VerticalGroup("Basic/Info")]
+        public bool isSummon;
+        [HideInInspector] public PartyMember master;
+        [HideInInspector] public Transform summonParent;
+        [HideInInspector] public GameObject summonGO;
+        [HideInInspector] public Animator summonAnim;
+        [HideInInspector] public AnimationHandler summonHandler;
+        [HideInInspector] public AnimatorOverrideController animOverride;
+        public float MasterDamageModifier => 1 + master.magic.Value / 100;
 
         private void Awake() => id = CharacterType.Enemy;
 

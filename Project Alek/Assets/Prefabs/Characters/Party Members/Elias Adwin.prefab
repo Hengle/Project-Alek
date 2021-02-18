@@ -43,7 +43,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2634036677806610912}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -321,6 +322,8 @@ MonoBehaviour:
   isCountered: 0
   isBorrowing: 0
   overrideElemental: 0
+  hasSummon: 0
+  currentSummon: {fileID: 0}
   overrideAbility: {fileID: 0}
   parent: {fileID: 0}
 --- !u!114 &9146564575788554301
@@ -423,9 +426,10 @@ MonoBehaviour:
   elias: {fileID: 11400000, guid: 16c0a33b5b556224684facafa2139eee, type: 2}
   summonAbility: {fileID: 11400000, guid: d1d37660e942eb64897683f026131746, type: 2}
   database: {fileID: 11400000, guid: 7a89a93bbc892b74ab7df16acc2a9813, type: 2}
-  summonMaterial: {fileID: 0}
+  summonMaterial: {fileID: 2100000, guid: 219f9c0c5e907a640923adb2a4c9dd8c, type: 2}
   summonsMenuGO: {fileID: 3031599238926233460, guid: 42e256615d85ece4aa28db0123d22d34,
     type: 3}
+  summonSpawnPoint: {fileID: 2634036677806610912}
   currentSummon: {fileID: 0}
   currentSummonGO: {fileID: 0}
   activeMenu: {fileID: 0}
@@ -434,3 +438,39 @@ MonoBehaviour:
   summonState: 0
   summonIndex: 0
   availableSummons: []
+  summonMenuCanvas: {fileID: 0}
+  summonsMenu: {fileID: 0}
+  summonOptionButtons: []
+  commandMenus: []
+  summonsMenuFirstSelected: {fileID: 0}
+  summonButtonGO: {fileID: 0}
+--- !u!1 &8031815907770983063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2634036677806610912}
+  m_Layer: 0
+  m_Name: Summon Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2634036677806610912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8031815907770983063}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.15, y: 0.05, z: 0.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2945183222853160254}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

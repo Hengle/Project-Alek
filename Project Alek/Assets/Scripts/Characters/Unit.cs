@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Characters.Abilities;
 using Characters.Animations;
+using Characters.Enemies;
 using Characters.StatusEffects;
 using ScriptableObjectArchitecture;
 using SingletonScriptableObject;
@@ -65,16 +66,14 @@ namespace Characters
         [ReadOnly] public bool isCountered;
         [ReadOnly] public bool isBorrowing;
         [ReadOnly] public bool overrideElemental;
+        [ReadOnly] public bool hasSummon;
 
+        public Enemy currentSummon;
         public Ability overrideAbility;
 
         #endregion
 
         #region OtherFieldsAndProperies
-
-        // [SerializeField] private CharacterGameEvent characterTurnEvent;
-        // [SerializeField] private CharacterGameEvent characterAttackEvent;
-        // [SerializeField] private CharacterGameEvent chooseTargetEvent;
 
         public Action onSpecialAttack;
         public Action<float> onSpecialBarValChanged;

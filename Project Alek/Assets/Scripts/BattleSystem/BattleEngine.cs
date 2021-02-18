@@ -209,7 +209,7 @@ namespace BattleSystem
                 character.CurrentAP -= 2;
                 yield return Timing.WaitForOneFrame;
                 
-                while (character.Unit.animationHandler.usingItem) 
+                while (character.Unit.animationHandler.usingItem)
                     yield return Timing.WaitForOneFrame;
                 
                 yield return Timing.WaitForSeconds(0.5f);
@@ -222,8 +222,12 @@ namespace BattleSystem
                 (Rate.BeforeEveryAction, 0.5f, true));
 
             if (!canGiveCommand) canGiveCommand = true;
-            else { BattleEvents.Instance.characterAttackEvent.Raise(character, BattleEvents.Instance.characterAttackEvent);
-                BattleEvents.Instance.commandEvent.Raise(character, BattleEvents.Instance.commandEvent); }
+            else
+            {
+                var attacker = character.Unit.hasSummon ? (UnitBase) character.Unit.currentSummon : character;
+                BattleEvents.Instance.characterAttackEvent.Raise(attacker, BattleEvents.Instance.characterAttackEvent);
+                BattleEvents.Instance.commandEvent.Raise(attacker, BattleEvents.Instance.commandEvent); 
+            }
 
             yield return Timing.WaitUntilFalse(() => performingAction);
 

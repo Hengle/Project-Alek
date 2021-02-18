@@ -411,7 +411,6 @@ namespace BattleSystem.Generator
 
                 var enemyGo = SpawnThisEnemy(clone, i);
                 SetupUnit(clone, enemyGo);
-                
                 SetupEnemyAbilities(clone);
                 
                 clone.Selectable = clone.Unit.gameObject.GetComponent<Selectable>();

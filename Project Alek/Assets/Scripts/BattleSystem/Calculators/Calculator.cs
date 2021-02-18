@@ -227,13 +227,13 @@ namespace BattleSystem.Calculators
 
         private static int CalculateShieldFactor(UnitBase damageDealer, UnitBase target, int totalDamage)
         {
-            if (damageDealer.id == CharacterType.Enemy) return totalDamage;
+            if (damageDealer.id == CharacterType.Enemy && !damageDealer.Unit.hasSummon) return totalDamage;
             return (int) (totalDamage * target.Unit.ShieldFactor);
         }
 
         private static int CalculateBoostFactor(UnitBase damageDealer, UnitBase target, int totalDamage)
         {
-            if (damageDealer.id == CharacterType.PartyMember)
+            if (damageDealer.id == CharacterType.PartyMember || damageDealer.Unit.hasSummon)
             {
                 var damageVal = damageDealer.Unit.gameObject.GetComponent<BoostSystem>().FinalDamageBoostVal;
                 return (int)(totalDamage * damageVal);

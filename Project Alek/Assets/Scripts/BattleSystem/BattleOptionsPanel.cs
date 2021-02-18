@@ -86,7 +86,12 @@ namespace BattleSystem
                 else return;
             }
 
-            if (skipChooseTarget) BattleEngine.Instance.skipChooseTarget = true;
+            if (skipChooseTarget)
+            {
+                character.Unit.commandActionName = commandActionName;
+                character.Unit.commandActionOption = commandActionOption;
+                BattleEngine.Instance.skipChooseTarget = true;
+            }
             else
             {
                 ChooseTarget._targetOptions = commandTargetOptions;

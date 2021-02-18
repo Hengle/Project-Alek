@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -84,12 +85,14 @@ namespace BattleSystem
         {
             dealer.GetDamageValues(false);
             
-            var parent = dealer.Unit.transform.parent.transform;
+            var parent = dealer.Unit.hasSummon ? dealer.Unit.currentSummon.summonParent :
+                dealer.Unit.transform.parent.transform;
+            
             var originPosition = parent.position;
             
             var position = dealer.CurrentTarget.Unit.transform.position;
 
-            var targetPosition = dealer.id == CharacterType.PartyMember? 
+            var targetPosition = dealer.id == CharacterType.PartyMember || dealer.Unit.hasSummon? 
                 new Vector3(position.x, originPosition.y, position.z - 2) :
                 new Vector3(position.x, position.y, position.z + 2);
 
@@ -157,13 +160,15 @@ namespace BattleSystem
 
         private static IEnumerator<float> ExecuteAttack(UnitBase dealer, bool isSpell = false)
         {
-            if (!dealer.Unit.isAbility) dealer.Unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
-            else dealer.Unit.anim.Play(isSpell ? $"Spell {dealer.CurrentAbility.attackState}" :
+            var anim = dealer.Unit.hasSummon ? dealer.Unit.currentSummon.summonAnim : dealer.Unit.anim;
+            if (!dealer.Unit.isAbility) anim.SetTrigger(AnimationHandler.AttackTrigger);
+            else anim.Play(isSpell ? $"Spell {dealer.CurrentAbility.attackState}" :
                 $"Ability {dealer.CurrentAbility.attackState}", 0);
 
             yield return Timing.WaitForOneFrame;
 
-            yield return Timing.WaitUntilFalse(() => dealer.AnimationHandler.isAttacking);
+            yield return Timing.WaitUntilFalse(() => dealer.Unit.hasSummon ? 
+                dealer.Unit.currentSummon.summonHandler.isAttacking :dealer.AnimationHandler.isAttacking);
             yield return Timing.WaitUntilFalse(() => dealer.Unit.isCountered);
             
             if (!dealer.IsDead) yield return Timing.WaitUntilDone(dealer.InflictOnTargets
@@ -181,6 +186,8 @@ namespace BattleSystem
                 parent.position = Vector3.MoveTowards(parent.position, targetPosition, 
                     45 * Time.deltaTime);
                 
+                //Debug.Log($"Parent: {parent.position.x} \t Target: {targetPosition.x}");
+                if (targetPosition.x - parent.position.x <= 0.2f && Math.Abs(targetPosition.z - parent.position.z) < 0.001f) break;
                 yield return Timing.WaitForOneFrame;
             }
         }

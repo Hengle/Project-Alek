@@ -12,6 +12,7 @@ namespace BattleSystem.Mechanics
     public class WeakAndResUnlockSystem : MonoBehaviour
     {
         private UnitBase enemy;
+        private bool initialized;
 
         public void Initialize(UnitBase unitBase)
         {
@@ -22,6 +23,7 @@ namespace BattleSystem.Mechanics
             enemy.onStatusEffectReceived += RevealWeakness;
             enemy.onStatusEffectReceived += RevealResistance;
             enemy.onWeaponDamageTypeReceived += RevealWeakness;
+            initialized = true;
         }
 
         private void RevealWeakness(ElementalType elementalType)
@@ -136,6 +138,7 @@ namespace BattleSystem.Mechanics
 
         private void OnDisable()
         {
+            if (!initialized) return;
             enemy.onElementalDamageReceived -= RevealWeakness;
             enemy.onElementalDamageReceived -= RevealResistance;
             enemy.onStatusEffectReceived -= RevealWeakness;

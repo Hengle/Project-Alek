@@ -33,3 +33,4 @@ MonoBehaviour:
   originalAPColor: {r: 0, g: 0.85098046, b: 0.9960785, a: 1}
   overexertedAPColor: {r: 0.5754717, g: 0, b: 0, a: 1}
   mysteryIcon: {fileID: 21300014, guid: a1fbd1aaf76d0b94e88551b7c406ee2c, type: 3}
+  flashMaterial: {fileID: 2100000, guid: 6607f8e5cdfa7f04bb33a61d3ea7458e, type: 2}

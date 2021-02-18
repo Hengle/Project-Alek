@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BattleSystem;
+using BattleSystem.Mechanics;
+using BattleSystem.UI;
 using Characters.Abilities;
+using Characters.Animations;
 using Characters.Enemies;
 using JetBrains.Annotations;
 using MEC;
@@ -22,6 +25,7 @@ namespace Characters.PartyMembers
         [SerializeField] private SummonsDatabase database;
         [SerializeField] private Material summonMaterial;
         [SerializeField] private GameObject summonsMenuGO;
+        [SerializeField] private Transform summonSpawnPoint;
 
         [SerializeField] [ReadOnly] private Enemy currentSummon;
         [SerializeField] [ReadOnly] private GameObject currentSummonGO;
@@ -59,7 +63,6 @@ namespace Characters.PartyMembers
 
         private void FindDependencies(Transform summonMenuGO)
         {
-            //summonsCanvas = GameObject.Find("Summons Canvas").transform;
             summonsMenu = summonMenuGO.Find("Summon Options Menu").gameObject;
             var commandMenuTransform = summonMenuGO.Find("Command Menus");
             
@@ -81,23 +84,29 @@ namespace Characters.PartyMembers
             }
 
             summonsMenuFirstSelected = summonOptionButtons[0];
-            //summonMenuGO.SetParent(elias.battlePanel.transform);
             summonMenuCanvas.SetActive(false);
         }
 
         private bool InstantiateGO()
         {
-            // var position = summonButton.localPosition;
-            // var newPosition = new Vector3(position.x, position.y, position.z + 3);
             summonMenuCanvas = Instantiate(summonsMenuGO, elias.battlePanel.transform);
-            //summonMenuCanvas.transform.localPosition = newPosition;
             FindDependencies(summonMenuCanvas.transform);
             return true;
         }
 
         private IEnumerator<float> SetSummonOptions(GameObject summonButton)
         {
-            availableSummons = database.GetEquippedSummons().ToArray();
+            var summons = database.GetEquippedSummons().ToArray();
+            availableSummons = new Enemy[summons.Length];
+            for (var i = 0; i < summons.Length; i++)
+            {
+                var s = Instantiate(summons[i]);
+                var enemyGo = Instantiate(s.characterPrefab, summonSpawnPoint);
+                
+                SetupSummon(s, enemyGo, i);
+                enemyGo.SetActive(false);
+            }
+            
             summonButtonGO = summonButton;
             summonButtonGO.GetComponent<Button>().onClick.AddListener(OpenSubMenu);
             
@@ -114,7 +123,9 @@ namespace Characters.PartyMembers
                 button.GetComponentInChildren<TextMeshProUGUI>().text = summon.characterName;
                 button.GetComponent<Button>().onClick.AddListener(delegate
                 {
-                    ((BattleOptionsPanel) elias.battleOptionsPanel).GetCommandInformation(param);
+                    ((BattleOptionsPanel) elias.battleOptionsPanel).GetCommandInformation(param, true);
+                    summonButtonGO.GetComponentInChildren<TextMeshProUGUI>().text = "Command";
+                    CloseSubMenu();
                     elias.Unit.currentAbility = summonAbility;
                     currentSummon = summon;
                     summonIndex = index;
@@ -126,7 +137,37 @@ namespace Characters.PartyMembers
             }
         }
 
-        private void SetCommandOptions(UnitBase summon, int index)
+        private void SetupSummon(Enemy enemy, GameObject enemyGo, int i)
+        {
+            enemyGo.GetComponent<SpriteRenderer>().material = summonMaterial;
+            enemyGo.GetComponent<UnitAnimatorFunctions>().OverrideUnit(elias.Unit, summonMaterial);
+            enemyGo.transform.rotation = summonSpawnPoint.rotation;
+            enemyGo.name = enemy.name;
+
+            enemy.id = CharacterType.PartyMember;
+            enemy.Unit = elias.Unit;
+            enemy.Unit.parent = elias;
+            enemy.isSummon = true;
+            enemy.master = elias;
+            enemy.summonParent = summonSpawnPoint;
+            enemy.summonHandler = enemyGo.GetComponent<AnimationHandler>();
+            enemy.summonGO = enemyGo;
+            availableSummons[i] = enemy;
+            RemoveUnnecessaryComponents(enemyGo);
+        }
+
+        private static void RemoveUnnecessaryComponents(GameObject enemyGO)
+        {
+            Destroy(enemyGO.GetComponent<Unit>());
+            Destroy(enemyGO.GetComponent<ChooseTarget>());
+            Destroy(enemyGO.GetComponent<SpriteOutline>());
+            Destroy(enemyGO.GetComponent<Button>());
+            Destroy(enemyGO.GetComponent<WeaknessIndicatorUI>());
+            Destroy(enemyGO.GetComponent<WeakAndResUnlockSystem>());
+            Destroy(enemyGO.GetComponent<BreakSystem>());
+        }
+
+        private void SetCommandOptions(Enemy summon, int index)
         {
             var menu = commandMenus[index];
             var children = new GameObject[4];
@@ -137,11 +178,17 @@ namespace Characters.PartyMembers
                 children[j] = child.gameObject;
                 j++;
             }
-            
+
+            summon.summonAnim = summon.summonGO.GetComponent<Animator>();
+            summon.animOverride = (AnimatorOverrideController) summon.summonAnim.runtimeAnimatorController;
+
             for (var i = 0; i < summon.abilities.Count; i++)
             {
                 children[i].GetComponentInChildren<TextMeshProUGUI>().text = summon.abilities[i].name;
                 children[i].transform.Find("Icon").GetComponent<Image>().sprite = summon.abilities[i].icon;
+                children[i].GetComponent<InfoBoxUI>().information =
+                    $"{summon.abilities[i].description}\n" +
+                    $"({summon.abilities[i].actionCost} AP)";
                 children[i].SetActive(true);
                 
                 var param = summon.abilities[i].GetParameters(i);
@@ -150,6 +197,7 @@ namespace Characters.PartyMembers
                 children[i].GetComponent<Button>().onClick.AddListener(delegate
                 {
                     ((BattleOptionsPanel) elias.battleOptionsPanel).GetCommandInformation(param);
+                    CloseSubMenu();
                     BattleInput._controls.Enable();
                     elias.Unit.currentAbility = ability;
                     elias.Unit.isAbility = true;
@@ -160,11 +208,20 @@ namespace Characters.PartyMembers
                     {
                         ChooseTarget._isMultiTarget = true;
                     });
+                
+                ability.attackState = i+1;
+                summon.animOverride[$"Ability {i+1}"] = ability.animation;
             }
+            
+            summon.summonAnim.runtimeAnimatorController = summon.animOverride;
 
             children[summon.abilities.Count].GetComponentInChildren<TextMeshProUGUI>().text = "Dismiss";
             children[summon.abilities.Count].SetActive(true);
-            children[summon.abilities.Count].GetComponent<Button>().onClick.AddListener(Dismiss);
+            children[summon.abilities.Count].GetComponent<Button>().onClick.AddListener(delegate
+            {
+                summonButtonGO.GetComponentInChildren<TextMeshProUGUI>().text = "Summon";
+                Dismiss();
+            });
         }
 
         private void OpenSubMenu()
@@ -197,7 +254,7 @@ namespace Characters.PartyMembers
         private void CloseSubMenu()
         {
             if (BattleEngine.Instance.activeUnit != elias) return;
-            if (!activeMenu.activeSelf) return;
+            if (!activeMenu || !activeMenu.activeSelf) return;
             
             activeMenu.SetActive(false);
             summonMenuCanvas.SetActive(false);
@@ -210,14 +267,19 @@ namespace Characters.PartyMembers
         {
             // TODO: Play command animation
             // TODO: Show cool effect
+            currentSummonGO.SetActive(false);
             
+            elias.Unit.hasSummon = false;
             summonState = SummonState.Summon;
         }
 
         [UsedImplicitly] public void Summon()
         {
-            // TODO: Use object pooling to instantiate once
-            
+            currentSummonGO = currentSummon.summonGO;
+            currentSummonGO.SetActive(true);
+
+            elias.Unit.hasSummon = true;
+            elias.Unit.currentSummon = currentSummon;
             summonState = SummonState.Command;
             commandMenuFirstSelected = commandMenus[summonIndex].transform.GetChild(0).gameObject;
         }

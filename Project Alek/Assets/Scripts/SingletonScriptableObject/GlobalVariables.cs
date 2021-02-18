@@ -89,6 +89,7 @@ namespace SingletonScriptableObject
         #region Objects
         
         [TabGroup("Tabs", "Other")] public Sprite mysteryIcon;
+        [TabGroup("Tabs", "Other")] public Material flashMaterial;
     
         #endregion
     
