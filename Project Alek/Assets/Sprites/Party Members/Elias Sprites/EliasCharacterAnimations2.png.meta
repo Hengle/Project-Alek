@@ -621,7 +621,7 @@ TextureImporter:
       name: Elias_Command_0
       rect:
         serializedVersion: 2
-        x: 19
+        x: 14
         y: 137
         width: 36
         height: 42
@@ -642,7 +642,7 @@ TextureImporter:
       name: Elias_Command_1
       rect:
         serializedVersion: 2
-        x: 83
+        x: 78
         y: 137
         width: 36
         height: 42
@@ -663,9 +663,9 @@ TextureImporter:
       name: Elias_Command_2
       rect:
         serializedVersion: 2
-        x: 147
+        x: 142
         y: 137
-        width: 36
+        width: 39
         height: 43
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -684,9 +684,9 @@ TextureImporter:
       name: Elias_Command_3
       rect:
         serializedVersion: 2
-        x: 211
+        x: 206
         y: 137
-        width: 36
+        width: 41
         height: 43
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -705,9 +705,9 @@ TextureImporter:
       name: Elias_Command_4
       rect:
         serializedVersion: 2
-        x: 275
+        x: 270
         y: 137
-        width: 36
+        width: 41
         height: 43
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -726,9 +726,9 @@ TextureImporter:
       name: Elias_Command_5
       rect:
         serializedVersion: 2
-        x: 339
+        x: 334
         y: 137
-        width: 36
+        width: 41
         height: 43
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -747,9 +747,9 @@ TextureImporter:
       name: Elias_Command_6
       rect:
         serializedVersion: 2
-        x: 403
+        x: 398
         y: 137
-        width: 36
+        width: 40
         height: 43
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -768,7 +768,7 @@ TextureImporter:
       name: Elias_Command_7
       rect:
         serializedVersion: 2
-        x: 467
+        x: 462
         y: 137
         width: 36
         height: 42

@@ -95,7 +95,7 @@ Material:
     - _GhostTransparency: 0
     - _GlitchAmount: 3
     - _GlitchSize: 1
-    - _Glow: 40
+    - _Glow: 30
     - _GlowTexUsed: 0
     - _GradBlend: 1
     - _GradBoostX: 1.2
@@ -201,6 +201,6 @@ Material:
     - _HitEffectColor: {r: 1, g: 1, b: 1, a: 1}
     - _HologramStripeColor: {r: 0, g: 1, b: 1, a: 1}
     - _InnerOutlineColor: {r: 1, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 0, g: 0.05740881, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0.1724081, b: 1, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _ShineColor: {r: 1, g: 1, b: 1, a: 1}

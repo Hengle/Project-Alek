@@ -3,6 +3,7 @@ using BattleSystem.Mechanics;
 using Characters;
 using Characters.Abilities;
 using SingletonScriptableObject;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace BattleSystem.Calculators

@@ -9,9 +9,9 @@ namespace SingletonScriptableObject
         #region BoostIncrements
 
         [TabGroup("Tabs/Battle System","Boost System")]
-        [Range(0.1f,0.5f)] public float damageBoostIncrement = 0.3f;
+        [Range(0.01f,0.05f)] public float damageBoostIncrement = 0.03f;
         [TabGroup("Tabs/Battle System","Boost System")]
-        [Range(0.1f,0.5f)] public float defenseBoostIncrement = 0.3f;
+        [Range(0.01f,0.05f)] public float defenseBoostIncrement = 0.03f;
 
         #endregion
 

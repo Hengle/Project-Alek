@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b99e9268da4a9390a078ed0424328b, type: 3}
   m_Name: Global Variables
   m_EditorClassIdentifier: 
-  damageBoostIncrement: 0.3
-  defenseBoostIncrement: 0.3
+  damageBoostIncrement: 0.03
+  defenseBoostIncrement: 0.03
   maxLoanAmount: 4
   criticalDamageFactor: 1.35
   healthItemChance: 0.6
