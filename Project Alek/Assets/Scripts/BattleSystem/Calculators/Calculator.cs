@@ -160,6 +160,7 @@ namespace BattleSystem.Calculators
             totalDamage = CalculateBoostFactor(damageDealer, target, totalDamage);
             totalDamage = CalculateConversionFactor(damageDealer, totalDamage);
             totalDamage = CalculateShieldFactor(damageDealer, target, totalDamage);
+            if (damageDealer.Unit.hasSummon) totalDamage = CalculateSummonBonus(damageDealer, totalDamage);
             
             var critical = CalculateCritChance(damageDealer);
             return CalculateFinalDamageAmount(target, totalDamage, critical);
@@ -204,6 +205,12 @@ namespace BattleSystem.Calculators
             var randomValue = Random.value;
 
             return randomValue <= critChance;
+        }
+
+        private static int CalculateSummonBonus(UnitBase damageDealer, float totalDamage)
+        {
+            totalDamage *= damageDealer.Unit.currentSummon.MasterDamageModifier;
+            return (int) totalDamage;
         }
 
         private static int CalculateFinalDamageAmount(UnitBase target, int totalDamage, bool isCritical)

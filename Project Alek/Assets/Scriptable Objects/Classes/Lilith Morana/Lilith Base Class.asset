@@ -119,13 +119,13 @@ MonoBehaviour:
   partyMember: {fileID: 11400000, guid: d6f9f6976ec82a845b32a3da08e83dad, type: 2}
   animator: {fileID: 0}
   healthIncreaseFactor: 1.2
-  strengthGrowthRate: 0.4
+  strengthGrowthRate: 0.35
   magicGrowthRate: 0.1
   accuracyGrowthRate: 0.5
   initiativeGrowthRate: 0.6
   defenseGrowthRate: 0.3
   resistanceGrowthRate: 0.2
-  criticalGrowthRate: 0.1
+  criticalGrowthRate: 0.15
   healthBonus: 0
   strengthBonus: 0
   magicBonus: 0

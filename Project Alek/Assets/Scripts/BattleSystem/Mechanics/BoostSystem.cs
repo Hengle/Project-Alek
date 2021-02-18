@@ -73,7 +73,6 @@ namespace BattleSystem.Mechanics
 
         private void EvaluateDamageBoostLevel(bool condition)
         {
-            Debug.Log($"Result: {condition}");
             if (condition)
             {
                 if (unit.HasMissedAllTargets) return;

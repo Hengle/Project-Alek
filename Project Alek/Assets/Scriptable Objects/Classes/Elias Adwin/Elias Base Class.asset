@@ -39,12 +39,12 @@ MonoBehaviour:
   animator: {fileID: 0}
   healthIncreaseFactor: 1.1
   strengthGrowthRate: 0.25
-  magicGrowthRate: 0.35
+  magicGrowthRate: 0.45
   accuracyGrowthRate: 0.4
   initiativeGrowthRate: 0.2
   defenseGrowthRate: 0.25
   resistanceGrowthRate: 0.45
-  criticalGrowthRate: 0.1
+  criticalGrowthRate: 0.05
   healthBonus: 0
   strengthBonus: 0
   magicBonus: 0

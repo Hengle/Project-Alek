@@ -18,12 +18,12 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 59854c11f998c474a9916c062dd20902, type: 3}
   actionCost: 1
   damageMultiplier: 1
-  attackState: 2
+  attackState: 1
   animation: {fileID: 7400000, guid: 8b05edff0c475bf4499d43eba1c7c657, type: 2}
   hasOverride: 1
   isMultiTarget: 0
-  description: Summon enemies to be used as your thrall. Once an enemy is summoned,
-    this ability turns into Command, which allows you to use that enemy's abilities.
+  description: Summon enemies to be used as your thrall. Once summoned, command them
+    at your will
   hasElemental: 0
   elementalType: {fileID: 0}
   elementalScalar: 0

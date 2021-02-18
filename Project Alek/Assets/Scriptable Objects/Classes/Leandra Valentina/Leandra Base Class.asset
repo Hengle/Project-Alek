@@ -41,10 +41,10 @@ MonoBehaviour:
   strengthGrowthRate: 0.5
   magicGrowthRate: 0.25
   accuracyGrowthRate: 0.2
-  initiativeGrowthRate: 0.25
-  defenseGrowthRate: 0.3
-  resistanceGrowthRate: 0.15
-  criticalGrowthRate: 0.05
+  initiativeGrowthRate: 0.3
+  defenseGrowthRate: 0.35
+  resistanceGrowthRate: 0.2
+  criticalGrowthRate: 0.1
   healthBonus: 0
   strengthBonus: 0
   magicBonus: 0

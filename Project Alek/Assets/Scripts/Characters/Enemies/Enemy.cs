@@ -24,7 +24,7 @@ namespace Characters.Enemies
         [HideInInspector] public Animator summonAnim;
         [HideInInspector] public AnimationHandler summonHandler;
         [HideInInspector] public AnimatorOverrideController animOverride;
-        public float MasterDamageModifier => 1 + master.magic.Value / 100;
+        public float MasterDamageModifier => 1.10f + master.magic.Value / 100;
 
         private void Awake() => id = CharacterType.Enemy;
 

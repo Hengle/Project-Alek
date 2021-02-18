@@ -278,6 +278,7 @@ MonoBehaviour:
   statusEffects: []
   multiHitTargets: []
   damageValueList: 
+  hasPerformedTurn: 0
   targetHasCrit: 0
   isAbility: 0
   attackerHasMissed: 0
@@ -286,11 +287,9 @@ MonoBehaviour:
   isCountered: 0
   isBorrowing: 0
   overrideElemental: 0
+  hasSummon: 0
+  currentSummon: {fileID: 0}
   overrideAbility: {fileID: 0}
-  characterTurnEvent: {fileID: 11400000, guid: 34d2f1cdf289d714a80d463db5b95f01, type: 2}
-  characterAttackEvent: {fileID: 11400000, guid: f95948814cbd6ea4c8f313185bb3913e,
-    type: 2}
-  chooseTargetEvent: {fileID: 11400000, guid: b03bc6fd9438cd544bde07dd68e2b135, type: 2}
   parent: {fileID: 0}
 --- !u!114 &8809269014472016896
 MonoBehaviour:
@@ -338,7 +337,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5498517, y: 0.5299221, z: 0.2}
+  m_Size: {x: 0.5498517, y: 0.5299221, z: 0.1428395}
   m_Center: {x: 0.029697508, y: 0.2556414, z: 0}
 --- !u!114 &-5786648652316724151
 MonoBehaviour:
