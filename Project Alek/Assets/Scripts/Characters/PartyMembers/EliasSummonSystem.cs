@@ -8,13 +8,13 @@ using Characters.Animations;
 using Characters.Enemies;
 using DG.Tweening;
 using JetBrains.Annotations;
-using MEC;
 using ScriptableObjectArchitecture;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using MEC;
 
 namespace Characters.PartyMembers
 {

@@ -16,5 +16,4 @@ MonoBehaviour:
   icon: {fileID: 6377904230404883206, guid: 87f1b587f30f5e945a431c8f550e717f, type: 3}
   rateOfInfliction: 
   color: {r: 0, g: 0, b: 0, a: 0}
-  turnDuration: 1
-  auraEffect: {fileID: 0}
+  turnDuration: 2

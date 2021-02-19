@@ -53,5 +53,5 @@ MonoBehaviour:
   defenseBonus: 0
   resistanceBonus: 0
   criticalBonus: 0
-  level: 2
+  level: 1
   statsToIncrease: []

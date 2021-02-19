@@ -226,7 +226,7 @@ MonoBehaviour:
   currentClass: {fileID: 11400000, guid: babdda5b7a9c9c04e93e85002ce0de84, type: 2}
   overworldController: {fileID: 22100000, guid: 5a1ae59169ea79e4da063cc87f235966,
     type: 2}
-  positionInParty: 2
+  positionInParty: 4
   specialAttackBarVal: 1
   weaponInventory: {fileID: 9018186885891804427, guid: b53c59ae1a11e064b8d4a3e7c56bbfe6,
     type: 3}

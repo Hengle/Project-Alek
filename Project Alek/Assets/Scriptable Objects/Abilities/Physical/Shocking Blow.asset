@@ -16,10 +16,13 @@ MonoBehaviour:
   damageType: 0
   targetOptions: 0
   icon: {fileID: 21300000, guid: 972e54969f5e6d64faa94717586e2184, type: 3}
-  actionCost: 1
+  actionCost: 2
   damageMultiplier: 1.5
   attackState: 1
   animation: {fileID: 7400000, guid: bae56fa0fbda6c54999d3d346ca16b5e, type: 2}
+  hasOverride: 0
+  endTurnOnUse: 0
+  dontTransitionToIdle: 0
   isMultiTarget: 0
   description: A blow so hard it might put the enemy into shock!
   hasElemental: 0

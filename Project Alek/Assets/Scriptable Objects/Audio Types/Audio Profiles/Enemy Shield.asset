@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6a8ab651644242850a1ed3badbb13f, type: 3}
   m_Name: Enemy Shield
   m_EditorClassIdentifier: 
-  source: {fileID: 0}
+  source: {fileID: 313496486792312235, guid: 224b1e5832a0f59479b73cd0c1137157, type: 3}
   track:
     source: {fileID: 0}
-    audio: []
+    audio:
+    - type: {fileID: 11400000, guid: f76c12694f555f746b0e9f7abad54fc2, type: 2}
+      clip: {fileID: 8300000, guid: e890a7736970d5940b490ec7f91d3580, type: 3}

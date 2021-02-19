@@ -100,7 +100,7 @@ namespace BattleSystem
 
             var targetPosition = dealer.id == CharacterType.PartyMember || dealer.Unit.hasSummon? 
                 new Vector3(position.x, originPosition.y, position.z - 2) :
-                new Vector3(position.x, position.y, position.z + 2);
+                new Vector3(position.x, originPosition.y, position.z + 2);
 
             yield return Timing.WaitUntilDone(MoveToPosition(parent, targetPosition));
             yield return Timing.WaitUntilDone(ExecuteAttack(dealer));
@@ -144,7 +144,7 @@ namespace BattleSystem
 
             var targetPosition = dealer.id == CharacterType.PartyMember? 
                 new Vector3(position.x, originPosition.y, position.z - 2) :
-                new Vector3(position.x, position.y, position.z + 2);
+                new Vector3(position.x, originPosition.y, position.z + 2);
 
             yield return Timing.WaitUntilDone(MoveToPosition(parent, targetPosition));
             yield return Timing.WaitUntilDone(ExecuteSpecialAttack(dealer));
@@ -190,7 +190,7 @@ namespace BattleSystem
             while (parent.position != targetPosition)
             {
                 parent.position = Vector3.MoveTowards(parent.position, targetPosition, 
-                    40 * Time.deltaTime);
+                    40f * Time.deltaTime);
 
                 if (targetPosition.x - parent.position.x <= 0.2f && Math.Abs(targetPosition.z - parent.position.z) < 0.001f
                 && Math.Abs(targetPosition.y - parent.position.y) < 0.001f) break;

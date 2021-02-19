@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Characters.Enemies;
-using Events;
 using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Events;
 
 namespace Characters.PartyMembers
 {

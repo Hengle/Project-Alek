@@ -274,10 +274,12 @@ namespace BattleSystem
                     (Rate.AfterEveryAction, 0.5f, true));
 
                 if (PartyOrEnemyTeamIsDead) break;
+                if (endThisMembersTurn) break;
                 
                 yield return Timing.WaitForSeconds(0.25f);
             }
-            
+
+            endThisMembersTurn = false;
             BattleEvents.Instance.endOfTurnEvent.Raise(enemy, BattleEvents.Instance.endOfTurnEvent);
         }
         
