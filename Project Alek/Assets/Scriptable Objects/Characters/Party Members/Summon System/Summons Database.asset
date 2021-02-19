@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug: 1
   summonEvents: {fileID: 11400000, guid: 7b705bb25c3ee1b4284064f1b58360f7, type: 2}
-  summons:
+  registeredSummons:
   - {fileID: 11400000, guid: cedfc901c08aaf64db9d5d3d449ec512, type: 2}
   - {fileID: 11400000, guid: 1df9f50e46e40b9468aa47faa3e8d642, type: 2}
+  - {fileID: 11400000, guid: d21b0091d32140842b56761a4ba8483a, type: 2}
   equippedSummons:
   - {fileID: 11400000, guid: cedfc901c08aaf64db9d5d3d449ec512, type: 2}
   - {fileID: 11400000, guid: 1df9f50e46e40b9468aa47faa3e8d642, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: d21b0091d32140842b56761a4ba8483a, type: 2}

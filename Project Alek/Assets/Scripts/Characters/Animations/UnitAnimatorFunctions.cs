@@ -79,14 +79,6 @@ namespace Characters.Animations
             characterAttackEvent.RemoveListener(this);
         }
 
-        // private void Update()
-        // {
-        //     if (windowOpen || isOverride ? unit.currentSummon.summonHandler.isAttacking :
-        //         unit.animationHandler.isAttacking) return;
-        //     missedWindow = false;
-        //     hitWindow = false;
-        // }
-
         private void OnTimedButtonPress(InputAction.CallbackContext ctx)
         {
             if (!thisCharacterTurn) return;
@@ -116,7 +108,6 @@ namespace Characters.Animations
 
             timedAttackCount += 1;
             AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.hitWindow);
-            Logging.Instance.Log("Hit Window! Count: " + timedAttackCount);
         }
 
         private void SendTimedButtonEventResult(bool result)
@@ -272,6 +263,7 @@ namespace Characters.Animations
         [UsedImplicitly] private void ActivateSpell()
         {
             windowOpen = false;
+            spriteRenderer.material = originalMaterial;
             if (!missedWindow && !hitWindow) SendTimedButtonEventResult(false);
 
             var spell = (Spell) unit.currentAbility;

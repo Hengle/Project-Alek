@@ -20,6 +20,9 @@ MonoBehaviour:
   damageMultiplier: 1.5
   attackState: 2
   animation: {fileID: 0}
+  hasOverride: 0
+  endTurnOnUse: 0
+  dontTransitionToIdle: 0
   isMultiTarget: 0
   description: Ignite you enemies!
   hasElemental: 1
@@ -32,4 +35,4 @@ MonoBehaviour:
   lookAtTarget: 1
   effectPrefab: {fileID: 8230514638103729950, guid: 8b3fab9956bc19b4fa39c2bf9ce8d892,
     type: 3}
-  offset: {x: 0, y: 2, z: 0}
+  offset: {x: 0, y: 2.5, z: 0}

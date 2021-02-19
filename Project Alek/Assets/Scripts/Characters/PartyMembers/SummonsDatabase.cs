@@ -15,7 +15,7 @@ namespace Characters.PartyMembers
     {
         [SerializeField] private bool debug;
         [SerializeField] private SummonEvents summonEvents;
-        [SerializeField] [ReadOnly] private List<Enemy> summons = new List<Enemy>();
+        [SerializeField] [ReadOnly] private List<Enemy> registeredSummons = new List<Enemy>();
         [SerializeField] [ReadOnly] private Enemy[] equippedSummons = new Enemy[3];
 
         [Button] public bool RegisterSummon(Enemy enemy, bool tryToEquip = false)
@@ -41,16 +41,13 @@ namespace Characters.PartyMembers
                 summon = summonMatch;
             }
 
-            summons.Add(summon);
+            registeredSummons.Add(summon);
             summonEvents.Raise(SummonEvent.RegisteredSummon);
             PrintMessage($"Successfully registered {enemy.characterName} as a summon");
             
             if (tryToEquip) EquipSummon(summon);
             return true;
         }
-
-        public IEnumerable<Enemy> GetEquippedSummons() => equippedSummons.Where
-            (s => summons.Contains(s));
 
         [Button] public bool EquipSummon(Enemy enemy)
         {
@@ -92,13 +89,13 @@ namespace Characters.PartyMembers
 
         [Button] private bool UnregisterSummon(Enemy enemy)
         {
-            if (!summons.Exists(e => e.characterName == enemy.characterName))
+            if (!DatabaseContains(enemy))
             {
                 PrintWarning($"{enemy.characterName} is not registered as a summon!");
                 return false;
             }
 
-            summons.Remove(enemy);
+            registeredSummons.Remove(enemy);
             if (EquippedSummonsContains(enemy)) UnEquipSummon(enemy);
             PrintMessage($"Successfully Unregistered {enemy.characterName} as a summon");
             return true;
@@ -106,18 +103,20 @@ namespace Characters.PartyMembers
 
         [Button] private void EmptySummonDatabase()
         {
-            summons.Clear();
+            registeredSummons.Clear();
             EmptyEquippedSummons();
         }
 
-        private bool DatabaseContains(Enemy enemy) => summons.Exists
+        [Button] private void EmptyEquippedSummons() => equippedSummons = new Enemy[3];
+
+        public IEnumerable<Enemy> GetEquippedSummons() => equippedSummons.Where(DatabaseContains);
+
+        private bool DatabaseContains(Enemy enemy) => registeredSummons.Exists
             (e => e.characterName == enemy.characterName);
-        
+
         private bool EquippedSummonsContains(Enemy enemy) => Array.Exists
             (equippedSummons, e => e != null && e.characterName == enemy.characterName);
 
-        [Button] private void EmptyEquippedSummons() => equippedSummons = new Enemy[3];
-        
         private void PrintMessage(string message) { if (debug) Debug.Log(message); }
 
         private void PrintWarning(string message) { if (debug) Debug.LogWarning(message); }
