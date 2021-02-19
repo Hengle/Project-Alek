@@ -47,6 +47,7 @@ namespace Characters.Animations
             !unit.currentTarget.StatusEffects.Contains(unit.currentAbility.statusEffects[0]);
 
         private Material originalMaterial;
+        private Material flashMaterial;
         private SpriteRenderer spriteRenderer;
 
         public void OverrideUnit(Unit newUnit, Material material)
@@ -61,6 +62,7 @@ namespace Characters.Animations
             unit = GetComponent<Unit>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             originalMaterial = spriteRenderer.material;
+            flashMaterial = GlobalVariables.Instance.flashMaterial;
         }
 
         private void OnEnable()
@@ -153,7 +155,7 @@ namespace Characters.Animations
         [UsedImplicitly] private void OpenParryWindow()
         {
             windowOpen = true;
-            spriteRenderer.material = GlobalVariables.Instance.flashMaterial;
+            spriteRenderer.material = flashMaterial;
         }
 
         [UsedImplicitly] private void CloseParryWindow()

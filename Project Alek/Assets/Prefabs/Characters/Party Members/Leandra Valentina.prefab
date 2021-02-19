@@ -291,7 +291,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a35d465435e2d2478d6cc7424f3de5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAbility: {fileID: 0}
   anim: {fileID: 0}
   animOverride: {fileID: 0}
   animationHandler: {fileID: 0}
@@ -304,6 +303,7 @@ MonoBehaviour:
   specialAttackAP: 0
   currentDamage: 0
   commandActionName: 
+  currentAbility: {fileID: 0}
   currentTarget: {fileID: 0}
   status: 0
   currentState: 0
@@ -460,6 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be79cc7e593344fc9636220a3e2f60f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  auraMaterial: {fileID: 2100000, guid: 79574932bff354f42a6cd1509b79ee56, type: 2}
 --- !u!114 &8001343472699133147
 MonoBehaviour:
   m_ObjectHideFlags: 0

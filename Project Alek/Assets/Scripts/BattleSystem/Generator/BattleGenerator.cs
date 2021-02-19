@@ -157,6 +157,21 @@ namespace BattleSystem.Generator
                 abilityListIndex++;
 
                 if (buttonIndex != character.abilities.Count - 1) continue;
+
+                var firstOption = abilityMenu.GetChild(0).gameObject;
+                var firstOpNav = firstOption.GetComponent<Selectable>().navigation;
+                if (!character.specialAttack)
+                {
+                    
+                    var nav = optionButton.GetComponent<Selectable>().navigation;
+
+                    nav.selectOnDown = firstOption.GetComponent<Button>();
+                    optionButton.GetComponent<Selectable>().navigation = nav;
+                
+                    firstOpNav.selectOnUp = optionButton.GetComponent<Button>();
+                    firstOption.GetComponent<Selectable>().navigation = firstOpNav;
+                    return;
+                }
                 
                 var specialAttackIndex = character.abilities.Count;
                 var specialAttackButton = abilityMenu.GetChild(specialAttackIndex).gameObject;
@@ -175,13 +190,11 @@ namespace BattleSystem.Generator
                 specialAttackButton.GetComponent<InfoBoxUI>().information = $"{character.specialAttack.description}";
 
                 if (character.abilities.Count == 5) return;
-                
-                var firstOption = abilityMenu.GetChild(0).gameObject;
-                var firstOpNav = firstOption.GetComponent<Selectable>().navigation;
-                var nav = specialAttackButton.GetComponent<Selectable>().navigation;
+  
+                var specialButtonNav = specialAttackButton.GetComponent<Selectable>().navigation;
 
-                nav.selectOnDown = firstOption.GetComponent<Button>();
-                specialAttackButton.GetComponent<Selectable>().navigation = nav;
+                specialButtonNav.selectOnDown = firstOption.GetComponent<Button>();
+                specialAttackButton.GetComponent<Selectable>().navigation = specialButtonNav;
                 
                 firstOpNav.selectOnUp = specialAttackButton.GetComponent<Button>();
                 firstOption.GetComponent<Selectable>().navigation = firstOpNav;

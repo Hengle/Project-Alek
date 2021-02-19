@@ -62,7 +62,7 @@ namespace BattleSystem.UI
             member.Unit.onDmgValueChanged += OnDmgBoostValueChanged;
             member.Unit.onDefValueChanged += OnDefBoostValueChanged;
             member.onApValChanged += OnAPValueChanged;
-            member.Unit.onSpecialBarValChanged += OnSpecialBarValueChanged;
+            if (member.specialAttack) member.Unit.onSpecialBarValChanged += OnSpecialBarValueChanged;
             
             currentAP = UnitBase.MaxAP;
             apBarAnim.SetTrigger(AnimationHandler.maxAP);
@@ -147,7 +147,7 @@ namespace BattleSystem.UI
             member.Unit.onDmgValueChanged -= OnDmgBoostValueChanged;
             member.Unit.onDefValueChanged -= OnDefBoostValueChanged;
             member.onApValChanged -= OnAPValueChanged;
-            member.Unit.onSpecialBarValChanged -= OnSpecialBarValueChanged;
+            if (member.specialAttack) member.Unit.onSpecialBarValChanged -= OnSpecialBarValueChanged;
         }
     }
 }

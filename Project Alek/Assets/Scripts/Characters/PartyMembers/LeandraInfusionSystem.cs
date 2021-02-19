@@ -8,9 +8,17 @@ namespace Characters.PartyMembers
     public class LeandraInfusionSystem : MonoBehaviour
     {
         private Unit unit;
+        private Material originalMaterial;
+        [SerializeField] private Material auraMaterial;
+        private SpriteRenderer spriteRenderer;
 
-        private void Awake() => unit = GetComponent<Unit>();
-        
+        private void Awake()
+        {
+            unit = GetComponent<Unit>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            originalMaterial = spriteRenderer.material;
+        }
+
         [UsedImplicitly] public void SetOverrideAbility() => unit.overrideAbility = unit.currentAbility;
 
         [UsedImplicitly] public void SetStatusEffect()
@@ -32,6 +40,16 @@ namespace Characters.PartyMembers
 
             effect.OnAdded(unit.parent);
             unit.statusEffects.Add(effect);
+        }
+
+        [UsedImplicitly] public void SetAuraMaterial()
+        {
+            spriteRenderer.material = auraMaterial;
+        }
+
+        [UsedImplicitly] public void SetMaterialBackToOriginal()
+        {
+            spriteRenderer.material = originalMaterial;
         }
     }
 }
