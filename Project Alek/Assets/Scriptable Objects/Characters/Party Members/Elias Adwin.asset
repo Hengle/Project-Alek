@@ -174,7 +174,7 @@ MonoBehaviour:
     maxValue: 99
     amountIncreasedBy: 0
   initiative:
-    BaseValue: 5
+    BaseValue: 95
     maxValue: 99
     amountIncreasedBy: 0
   defense:
@@ -195,6 +195,7 @@ MonoBehaviour:
   weaponAccuracy: 80
   weaponCriticalChance: 1
   abilities:
+  - {fileID: 11400000, guid: 6d680d0096729824ea1ebdd26383a5cd, type: 2}
   - {fileID: 11400000, guid: d1d37660e942eb64897683f026131746, type: 2}
   spells: []
   currentClass: {fileID: 11400000, guid: 646bd9a752b65b34fbb244c39cad16ce, type: 2}

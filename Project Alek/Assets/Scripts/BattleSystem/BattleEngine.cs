@@ -56,6 +56,7 @@ namespace BattleSystem
         [ReadOnly] public bool usingItem;
         [ReadOnly] public bool performingAction;
         [ReadOnly] public bool endThisMembersTurn;
+        [ReadOnly] public bool endTurnAfterCommand;
         [ReadOnly] public bool choosingAbility;
         [ReadOnly] public bool choosingSpell;
         [ReadOnly] public bool canGiveCommand = true;
@@ -203,7 +204,7 @@ namespace BattleSystem
             
             abilityMenuLast = false;
             spellMenuLast = false;
-            
+     
             if (usingItem)
             {
                 character.CurrentAP -= 2;
@@ -231,6 +232,7 @@ namespace BattleSystem
 
             yield return Timing.WaitUntilFalse(() => performingAction);
 
+            if (endTurnAfterCommand) goto end_of_turn;
             yield return Timing.WaitUntilDone(character.InflictStatus
                 (Rate.AfterEveryAction, 0.5f, true));
 
@@ -240,6 +242,7 @@ namespace BattleSystem
             
             end_of_turn:
             endThisMembersTurn = false;
+            endTurnAfterCommand = false;
             BattleEvents.Instance.endOfTurnEvent.Raise(character, BattleEvents.Instance.endOfTurnEvent);
             character.inventoryDisplay.SetActive(false); // TODO: Make this a part of the EndOfTurn event
         }

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Characters.Enemies;
 using Events;
+using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -13,74 +15,113 @@ namespace Characters.PartyMembers
     {
         [SerializeField] private bool debug;
         [SerializeField] private SummonEvents summonEvents;
-        [SerializeField] private List<Enemy> summons = new List<Enemy>();
+        [SerializeField] [ReadOnly] private List<Enemy> summons = new List<Enemy>();
         [SerializeField] [ReadOnly] private Enemy[] equippedSummons = new Enemy[3];
 
-        [Button] public void RegisterSummon(Enemy enemy, bool tryToEquip = false)
+        [Button] public bool RegisterSummon(Enemy enemy, bool tryToEquip = false)
         {
-            if (summons.Contains(enemy))
+            if (DatabaseContains(enemy))
             {
-                PrintWarning("This summon is already registered!");
-                return;
+                PrintWarning($"{enemy.characterName} is already registered as a summon!");
+                return false;
             }
-            summons.Add(enemy);
+
+            var summon = enemy;
+            if (Application.isPlaying)
+            {
+                var summonMatch = EnemyManager.Instance.enemies.FirstOrDefault
+                    (e => e.characterName == enemy.characterName);
+
+                if (summonMatch == null)
+                {
+                    PrintError("The matching enemy could not be found!");
+                    return false;
+                }
+
+                summon = summonMatch;
+            }
+
+            summons.Add(summon);
             summonEvents.Raise(SummonEvent.RegisteredSummon);
-            if (tryToEquip) EquipSummon(enemy);
+            PrintMessage($"Successfully registered {enemy.characterName} as a summon");
+            
+            if (tryToEquip) EquipSummon(summon);
+            return true;
         }
 
-        [Button] public void EquipSummon(Enemy enemy)
+        public IEnumerable<Enemy> GetEquippedSummons() => equippedSummons.Where
+            (s => summons.Contains(s));
+
+        [Button] public bool EquipSummon(Enemy enemy)
         {
-            if (equippedSummons.Contains(enemy) || !summons.Contains(enemy))
+            if (!DatabaseContains(enemy) || EquippedSummonsContains(enemy))
             {
-                PrintWarning("This summon is either already equipped or you do not have this summon registered");
-                return;
+                PrintWarning($"{enemy.characterName} is either already equipped or you do not have this summon registered");
+                return false;
             }
-            
-            var hasAdded = false;
+     
             for (var i = 0; i < 3; i++)
             {
                 if (equippedSummons[i] != null) continue;
                 equippedSummons[i] = enemy;
+                
                 summonEvents.Raise(SummonEvent.EquippedSummon);
-                hasAdded = true;
-                break;
+                PrintMessage($"Successfully equipped {enemy.characterName}");
+                return true;
             }
             
-            if (!hasAdded) PrintError("Unable to add enemy! Size may have reached maximum (3)");
+            PrintError($"Unable to add {enemy.characterName}! Size may have reached maximum (3)");
+            return false;
         }
 
-        [Button] public void UnEquipSummon(Enemy enemy)
+        [Button] public bool UnEquipSummon(Enemy enemy)
         {
-            if (!equippedSummons.Contains(enemy))
+            if (!EquippedSummonsContains(enemy))
             {
                 PrintWarning("This summon is not equipped");
-                return;
+                return false;
             }
 
             var newArray = equippedSummons.Where(s => s != enemy).ToArray();
             equippedSummons = new[] { newArray[0], newArray[1], null };
             
             summonEvents.Raise(SummonEvent.UneQuippedSummon);
+            PrintMessage($"Successfully unequipped {enemy.characterName}");
+            return true;
         }
 
-        public IEnumerable<Enemy> GetEquippedSummons()
+        [Button] private bool UnregisterSummon(Enemy enemy)
         {
-            return equippedSummons.Where(s => summons.Contains(s));
+            if (!summons.Exists(e => e.characterName == enemy.characterName))
+            {
+                PrintWarning($"{enemy.characterName} is not registered as a summon!");
+                return false;
+            }
+
+            summons.Remove(enemy);
+            if (EquippedSummonsContains(enemy)) UnEquipSummon(enemy);
+            PrintMessage($"Successfully Unregistered {enemy.characterName} as a summon");
+            return true;
         }
 
-        [Button] private void ResetEquippedSummons()
+        [Button] private void EmptySummonDatabase()
         {
-            equippedSummons = new Enemy[3];
+            summons.Clear();
+            EmptyEquippedSummons();
         }
 
-        private void PrintWarning(string message)
-        {
-            if (debug) Debug.LogWarning(message);
-        }
+        private bool DatabaseContains(Enemy enemy) => summons.Exists
+            (e => e.characterName == enemy.characterName);
         
-        private void PrintError(string message)
-        {
-            if (debug) Debug.LogError(message);
-        }
+        private bool EquippedSummonsContains(Enemy enemy) => Array.Exists
+            (equippedSummons, e => e != null && e.characterName == enemy.characterName);
+
+        [Button] private void EmptyEquippedSummons() => equippedSummons = new Enemy[3];
+        
+        private void PrintMessage(string message) { if (debug) Debug.Log(message); }
+
+        private void PrintWarning(string message) { if (debug) Debug.LogWarning(message); }
+        
+        private void PrintError(string message) { if (debug) Debug.LogError(message); }
     }
 }

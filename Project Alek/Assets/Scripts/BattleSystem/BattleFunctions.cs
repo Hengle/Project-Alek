@@ -51,6 +51,10 @@ namespace BattleSystem
                 dealer.GetAndSetAbility(dealer.Unit.commandActionOption);
             
             dealer.Unit.isAbility = true;
+            if (dealer.CurrentAbility.dontTransitionToIdle)
+            {
+                dealer.Unit.anim.SetBool(AnimationHandler.DontTranToIdle, true);
+            }
             
             switch (dealer.CurrentAbility.abilityType)
             {
@@ -78,6 +82,8 @@ namespace BattleSystem
 
             yield return Timing.WaitForOneFrame;
             yield return Timing.WaitUntilFalse(() => dealer.AnimationHandler.performingAction);
+            yield return Timing.WaitForSeconds(0.5f);
+            
             BattleEngine.Instance.performingAction = false;
         }
 
@@ -187,7 +193,8 @@ namespace BattleSystem
                     45 * Time.deltaTime);
                 
                 //Debug.Log($"Parent: {parent.position.x} \t Target: {targetPosition.x}");
-                if (targetPosition.x - parent.position.x <= 0.2f && Math.Abs(targetPosition.z - parent.position.z) < 0.001f) break;
+                if (targetPosition.x - parent.position.x <= 0.2f && Math.Abs(targetPosition.z - parent.position.z) < 0.001f
+                && Math.Abs(targetPosition.y - parent.position.y) < 0.001f) break;
                 yield return Timing.WaitForOneFrame;
             }
         }

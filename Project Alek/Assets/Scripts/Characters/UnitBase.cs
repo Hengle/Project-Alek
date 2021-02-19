@@ -190,10 +190,10 @@ namespace Characters
 
         public bool IsDead => Unit.status == Status.Dead;
 
-        protected int CurrentHP 
+        public int CurrentHP 
         {
             get => Unit.currentHP;
-            set 
+            protected set 
             {
                 Unit.currentHP = value < 0 ? 0 : value;
                 if (Unit.currentHP > health.BaseValue) Unit.currentHP = (int) health.BaseValue;

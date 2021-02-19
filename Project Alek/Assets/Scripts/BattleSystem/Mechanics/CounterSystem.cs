@@ -35,10 +35,10 @@ namespace BattleSystem.Mechanics
             if (!hitWindow) return;
             if (unit.currentHP == 0 || unit.status == Status.Dead) return;
 
-            characterAttackEvent.Raise(unit.parent, characterAttackEvent);
             unit.currentTarget = BattleEngine.Instance.activeUnit;
             unit.currentTarget.Unit.isCountered = true;
             isCountering = true;
+            characterAttackEvent.Raise(unit.parent, characterAttackEvent);
 
             SlowTime();
             Timing.RunCoroutine(CounterAttack());
@@ -57,6 +57,7 @@ namespace BattleSystem.Mechanics
     
         private IEnumerator<float> ExecuteAttack()
         {
+            if (unit.anim.GetBool(AnimationHandler.DontTranToIdle)) yield break;
             unit.anim.SetTrigger(AnimationHandler.AttackTrigger);
 
             yield return Timing.WaitForOneFrame;

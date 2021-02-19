@@ -214,11 +214,18 @@ MonoBehaviour:
   description: What's a goon to a...
   weaponMight: 8
   magicMight: 3
-  weaponAccuracy: 90
+  weaponAccuracy: 80
   weaponCriticalChance: 4
   abilities:
   - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}
   spells: []
   overworldPrefab: {fileID: 0}
   maxShieldCount: 2
+  isSummon: 0
+  master: {fileID: 0}
+  summonParent: {fileID: 0}
+  summonGO: {fileID: 0}
+  summonAnim: {fileID: 0}
+  summonHandler: {fileID: 0}
+  animOverride: {fileID: 0}
   baseExperience: 100

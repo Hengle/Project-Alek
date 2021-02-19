@@ -11,6 +11,7 @@ TagManager:
   - MainSceneCamCollider
   - Wall
   - GlobalVolume
+  - Notification Handler
   layers:
   - Default
   - TransparentFX

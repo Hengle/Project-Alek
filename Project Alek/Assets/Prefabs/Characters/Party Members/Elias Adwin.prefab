@@ -425,6 +425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elias: {fileID: 11400000, guid: 16c0a33b5b556224684facafa2139eee, type: 2}
   summonAbility: {fileID: 11400000, guid: d1d37660e942eb64897683f026131746, type: 2}
+  analyzeAbility: {fileID: 11400000, guid: 6d680d0096729824ea1ebdd26383a5cd, type: 2}
   database: {fileID: 11400000, guid: 7a89a93bbc892b74ab7df16acc2a9813, type: 2}
   summonMaterial: {fileID: 2100000, guid: 219f9c0c5e907a640923adb2a4c9dd8c, type: 2}
   summonsMenuGO: {fileID: 3031599238926233460, guid: 42e256615d85ece4aa28db0123d22d34,
@@ -432,6 +433,7 @@ MonoBehaviour:
   chargeEffect: {fileID: 4188027446156392107}
   summonSpawnPoint: {fileID: 2634036677806610912}
   commandAnimation: {fileID: 7400000, guid: e0f4d9ca4432127498646093b6168738, type: 2}
+  enemyToRegister: {fileID: 0}
   currentSummon: {fileID: 0}
   currentSummonGO: {fileID: 0}
   activeMenu: {fileID: 0}
@@ -440,6 +442,8 @@ MonoBehaviour:
   summonState: 0
   summonIndex: 0
   availableSummons: []
+  isAnalyzing: 0
+  hpValueAtStartOfAnalyze: 0
 --- !u!1 &8031815907770983063
 GameObject:
   m_ObjectHideFlags: 0

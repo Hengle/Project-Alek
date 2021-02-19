@@ -46,6 +46,12 @@ namespace Characters.Abilities
         public bool hasOverride;
 
         [VerticalGroup("Icon/Info"), LabelWidth(120)]
+        public bool endTurnOnUse;
+
+        [VerticalGroup("Icon/Info"), LabelWidth(120)]
+        public bool dontTransitionToIdle;
+
+        [VerticalGroup("Icon/Info"), LabelWidth(120)]
         [HideIf(nameof(damageType), DamageType.Special)]
         public bool isMultiTarget;
 

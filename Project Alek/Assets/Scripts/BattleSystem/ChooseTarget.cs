@@ -124,6 +124,9 @@ namespace BattleSystem
             character.Unit.currentTarget = thisUnitBase;
             character.Unit.commandActionName = className;
             character.Unit.commandActionOption = classOption;
+
+            if (character.CurrentAbility && character.CurrentAbility.endTurnOnUse)
+                BattleEngine.Instance.endTurnAfterCommand = true;
             BattleEngine.Instance.choosingTarget = false;
             EventSystem.current.SetSelectedGameObject(null);
         }

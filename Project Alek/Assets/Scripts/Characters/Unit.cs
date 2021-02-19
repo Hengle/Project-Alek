@@ -22,10 +22,9 @@ namespace Characters
     {
         #region HideInInspector
 
-        [HideInInspector] public Ability currentAbility;
         [HideInInspector] public Animator anim;
         public AnimatorOverrideController animOverride;
-        
+
         [HideInInspector] public AnimationHandler animationHandler;
         [HideInInspector] public SpriteOutline outline;
         [HideInInspector] public Button button;
@@ -41,7 +40,8 @@ namespace Characters
         #endregion
 
         #region ReadOnly
-        
+
+        [ReadOnly] public Ability currentAbility;
         [ReadOnly] public UnitBase currentTarget;
         [ReadOnly] public Status status = Status.Normal;
         [ReadOnly] public UnitStates currentState;

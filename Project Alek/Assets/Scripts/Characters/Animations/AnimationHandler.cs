@@ -23,6 +23,7 @@ namespace Characters.Animations
         public static readonly int ShieldDamage = Animator.StringToHash("Shield Damage");
         public static readonly int ShieldBreak = Animator.StringToHash("Shield Break");
         public static readonly int ShieldRestore = Animator.StringToHash("Shield Restore");
+        public static readonly int DontTranToIdle = Animator.StringToHash("dontTransitionToIdle");
         
         public bool isAttacking;
         public bool performingAction;

@@ -11,7 +11,6 @@ using JetBrains.Annotations;
 using MEC;
 using ScriptableObjectArchitecture;
 using Sirenix.OdinInspector;
-using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -24,6 +23,7 @@ namespace Characters.PartyMembers
     {
         [SerializeField] private PartyMember elias;
         [SerializeField] private Ability summonAbility;
+        [SerializeField] private Ability analyzeAbility;
         [SerializeField] private SummonsDatabase database;
         [SerializeField] private Material summonMaterial;
         [SerializeField] private GameObject summonsMenuGO;
@@ -31,6 +31,7 @@ namespace Characters.PartyMembers
         [SerializeField] private Transform summonSpawnPoint;
         [SerializeField] private AnimationClip commandAnimation;
 
+        [SerializeField] [ReadOnly] private Enemy enemyToRegister;
         [SerializeField] [ReadOnly] private Enemy currentSummon;
         [SerializeField] [ReadOnly] private GameObject currentSummonGO;
         [SerializeField] [ReadOnly] private GameObject activeMenu;
@@ -40,6 +41,7 @@ namespace Characters.PartyMembers
         [SerializeField] [ReadOnly] private int summonIndex;
         [SerializeField] [ReadOnly] private Enemy[] availableSummons;
 
+        private InfoBoxUI notificationHandler;
         private Transform runTimeSpawnPoint;
         private GameObject summonMenuCanvas;
         private GameObject summonsMenu;
@@ -49,10 +51,15 @@ namespace Characters.PartyMembers
         private GameObject summonButtonGO;
         private Controls controls;
 
+        [SerializeField] [ReadOnly] private bool isAnalyzing;
+        [SerializeField] [ReadOnly] private float hpValueAtStartOfAnalyze;
+
         private void Awake()
         {
             if (!elias.abilities.Contains(summonAbility)) return;
 
+            notificationHandler = GameObject.FindWithTag("Notification Handler").GetComponent<InfoBoxUI>();
+            
             DOTween.Init();
             
             controls = new Controls();
@@ -63,12 +70,19 @@ namespace Characters.PartyMembers
             
             BattleEvents.Instance.overrideButtonEvent.AddListener(this);
             BattleEvents.Instance.characterAttackEvent.AddListener(this);
+            BattleEvents.Instance.endOfTurnEvent.AddListener(this);
+            BattleEvents.Instance.characterTurnEvent.AddListener(this);
         }
 
         private void OnDisable()
         {
             if (!elias.abilities.Contains(summonAbility)) return;
             BattleEvents.Instance.overrideButtonEvent.RemoveListener(this);
+            BattleEvents.Instance.characterAttackEvent.RemoveListener(this);
+            BattleEvents.Instance.endOfTurnEvent.RemoveListener(this);
+            BattleEvents.Instance.characterTurnEvent.RemoveListener(this);
+            
+            if (isAnalyzing) elias.onHpValueChanged -= StopAnalyzeIfDamaged;
         }
 
         private void InstantiateRuntimeSpawnPoint()
@@ -123,8 +137,7 @@ namespace Characters.PartyMembers
                 var s = Instantiate(summons[i]);
                 var enemyGo = Instantiate(s.characterPrefab, runTimeSpawnPoint);
                 enemyGo.transform.localScale = new Vector3(5,5,1);
-                //enemyGo.transform.SetParent(runTimeSpawnPoint);
-                
+
                 SetupSummon(s, enemyGo, i);
                 enemyGo.SetActive(false);
             }
@@ -146,7 +159,7 @@ namespace Characters.PartyMembers
                 button.GetComponent<Button>().onClick.AddListener(delegate
                 {
                     ((BattleOptionsPanel) elias.battleOptionsPanel).GetCommandInformation(param, true);
-                    summonButtonGO.GetComponentInChildren<TextMeshProUGUI>().text = "Command";
+                    summonButtonGO.GetComponentInChildren<TextMeshProUGUI>().text = SummonState.Command.ToString();
                     CloseSubMenu();
                     elias.Unit.currentAbility = summonAbility;
                     currentSummon = summon;
@@ -244,7 +257,7 @@ namespace Characters.PartyMembers
             children[summon.abilities.Count].SetActive(true);
             children[summon.abilities.Count].GetComponent<Button>().onClick.AddListener(delegate
             {
-                summonButtonGO.GetComponentInChildren<TextMeshProUGUI>().text = "Summon";
+                summonButtonGO.GetComponentInChildren<TextMeshProUGUI>().text = SummonState.Summon.ToString();
                 Timing.RunCoroutine(Dismiss());
             });
         }
@@ -321,6 +334,37 @@ namespace Characters.PartyMembers
             elias.Unit.anim.runtimeAnimatorController = elias.Unit.animOverride;
         }
 
+        private void BeginAnalyze(Enemy enemy)
+        {
+            isAnalyzing = true;
+            enemyToRegister = enemy;
+        }
+
+        private void EndAnalyze()
+        {
+            if (!isAnalyzing) return;
+            if (database.RegisterSummon(enemyToRegister, true))
+            {
+                notificationHandler.ShowNotification($"Successfully registered {enemyToRegister}");
+            }
+            elias.Unit.anim.SetBool(AnimationHandler.DontTranToIdle, false);
+        }
+
+        private void StopAnalyzeIfDamaged(float hp)
+        {
+            if (!(hp < hpValueAtStartOfAnalyze)) return;
+            isAnalyzing = false;
+            elias.Unit.anim.SetBool(AnimationHandler.DontTranToIdle, false);
+            elias.onHpValueChanged -= StopAnalyzeIfDamaged;
+            notificationHandler.ShowNotification("Analysis failed");
+        }
+
+        private void SetListenerForHpLowered()
+        {
+            hpValueAtStartOfAnalyze = elias.CurrentHP;
+            elias.onHpValueChanged += StopAnalyzeIfDamaged;
+        }
+
         [UsedImplicitly] public void Summon()
         {
             currentSummonGO = currentSummon.summonGO;
@@ -351,8 +395,27 @@ namespace Characters.PartyMembers
 
         public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
         {
-            if (value1 != currentSummon || !((Enemy) value1).isSummon) return;
-            elias.Unit.anim.Play($"Ability {summonAbility.attackState}", 0);
+            if (value1 == currentSummon && ((Enemy) value1).isSummon)
+            {
+                elias.Unit.anim.Play($"Ability {summonAbility.attackState}", 0);
+            }
+
+            if (value1 == elias && value2 == BattleEvents.Instance.characterAttackEvent &&
+                elias.CurrentAbility == analyzeAbility && !elias.CurrentTarget.Unit.isCountered)
+            {
+                notificationHandler.ShowNotification($"Beginning analysis of {value1.characterName}");
+                BeginAnalyze((Enemy)elias.CurrentTarget);
+            }
+
+            if (value1 == elias && value2 == BattleEvents.Instance.endOfTurnEvent && isAnalyzing)
+            {
+                SetListenerForHpLowered();
+            }
+
+            if (value1 == elias && value2 == BattleEvents.Instance.characterTurnEvent && isAnalyzing)
+            {
+                EndAnalyze();
+            }
         }
     }
 }
