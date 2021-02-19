@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using MEC;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using MEC;
 
 public class SceneTransitionManager : MonoBehaviorSingleton<SceneTransitionManager>
 {
@@ -43,7 +43,7 @@ public class SceneTransitionManager : MonoBehaviorSingleton<SceneTransitionManag
     {
         while (Math.Abs(lensDistortion.intensity.value - lensDistortion.intensity.min) > 0.01f)
         {
-            lensDistortion.intensity.value -= 0.01f;
+            lensDistortion.intensity.value -= 0.02f;
             yield return Timing.WaitForOneFrame;
         }
     }
