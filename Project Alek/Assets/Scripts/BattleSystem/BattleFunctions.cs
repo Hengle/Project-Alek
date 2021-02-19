@@ -190,7 +190,7 @@ namespace BattleSystem
             while (parent.position != targetPosition)
             {
                 parent.position = Vector3.MoveTowards(parent.position, targetPosition, 
-                    35 * Time.deltaTime);
+                    40 * Time.deltaTime);
 
                 if (targetPosition.x - parent.position.x <= 0.2f && Math.Abs(targetPosition.z - parent.position.z) < 0.001f
                 && Math.Abs(targetPosition.y - parent.position.y) < 0.001f) break;

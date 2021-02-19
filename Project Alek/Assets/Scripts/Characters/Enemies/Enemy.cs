@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Characters.Animations;
 using Characters.PartyMembers;
+using MEC;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -48,6 +49,18 @@ namespace Characters.Enemies
         {
             CurrentHP += (int) amount;
             CurrentAP -= 1;
+        }
+
+        protected override void Die()
+        {
+            base.Die();
+            Timing.RunCoroutine(DestroyGameObject(1f));
+        }
+
+        private IEnumerator<float> DestroyGameObject(float delay)
+        {
+            yield return Timing.WaitForSeconds(delay);
+            Destroy(Unit.gameObject);
         }
 
         [VerticalGroup("Basic/Info")]

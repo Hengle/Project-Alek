@@ -18,6 +18,7 @@ namespace Audio
         {
             if (useProfile && !GameObject.Find(profile.source.gameObject.name))
                 InstantiateProfileAudioSource();
+            else if (!useProfile) track.source.transform.SetParent(AudioController.Instance.transform);
             
             AudioController.Instance.AddNewTrack(useProfile ? profile.track : track);
         }
@@ -28,7 +29,13 @@ namespace Audio
             source.name = profile.source.gameObject.name;
             profile.track.source = source;
         }
-        
+
+        private void OnDestroy()
+        {
+            if (useProfile) return;
+            AudioController.Instance.RemoveTrack(track);
+        }
+
         [UsedImplicitly] public void PlayAudio(int index) => AudioController.Instance.PlayAudio
             (useProfile ? profile.track.audio[index].type : track.audio[index].type);
     }

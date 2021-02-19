@@ -74,7 +74,7 @@ namespace Audio
             {
                 if (tracks.Exists(t =>
                     t.source.name == track.source.name)) return;
-                
+
                 tracks.Add(track);
                 UpdateAudioTable(track);
             }
@@ -90,7 +90,6 @@ namespace Audio
 #region Private Functions
             private void Configure() 
             {
-                //instance = this;
                 mAudioTable = new Hashtable();
                 mJobTable = new Hashtable();
                 GenerateAudioTable();
