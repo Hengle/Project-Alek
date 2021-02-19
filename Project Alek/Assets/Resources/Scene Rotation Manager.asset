@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f850730862f4dc0bc11bf079145fbd9, type: 3}
   m_Name: Scene Rotation Manager
   m_EditorClassIdentifier: 
-  currentRotation: {x: 0, y: -0.00000008742278, z: 0, w: -1}
+  currentRotation: {x: 0, y: 0, z: 0, w: 1}

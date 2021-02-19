@@ -5,6 +5,7 @@ using SingletonScriptableObject;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using AudioType = Audio.AudioType;
 using Object = UnityEngine.Object;
 
@@ -62,7 +63,8 @@ namespace Menus
         {
             AudioController.Instance.StopAudio(theme, true, 2);
             yield return Timing.WaitForSeconds(1);
-            SceneLoadManager.Instance.LoadScene(scene.name);
+            //SceneLoadManager.Instance.LoadScene(scene.name);
+            SceneLoadManager.Instance.LoadScene("FAE_Demo1");
         }
 
         public void OnStartButton()
