@@ -1,5 +1,6 @@
 ﻿using System;
 using Characters.Animations;
+using SingletonScriptableObject;
 using UnityEngine;
 
 namespace Overworld
@@ -67,6 +68,11 @@ namespace Overworld
         }
 
         private void OnEnable() => controls.Enable();
-        private void OnDisable() => controls.Disable();
+
+        private void OnDisable()
+        {
+            PlayerPositionManager.Instance.Position = transform.position;
+            controls.Disable();
+        }
     }
 }

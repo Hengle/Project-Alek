@@ -310,8 +310,8 @@ namespace Characters
             var position = Unit.gameObject.transform.position;
             var newPosition = new Vector3(position.x, position.y + 3, position.z);
             
-            var damage = DamagePrefabManager.Instance.ShowDamage(dmg, Unit.targetHasCrit);
-            damage.transform.position = newPosition;
+            DamagePrefabManager.Instance.ShowDamage(dmg, Unit.targetHasCrit, newPosition);
+            //damage.transform.position = newPosition;
 
             if (Unit.targetHasCrit) Unit.targetHasCrit = false;
             
@@ -327,8 +327,8 @@ namespace Characters
             var position = Unit.gameObject.transform.position;
             var newPosition = new Vector3(position.x, position.y + 3, position.z);
             
-            var damage = DamagePrefabManager.Instance.ShowDamage(dmg, false);
-            damage.transform.position = newPosition;
+            DamagePrefabManager.Instance.ShowDamage(dmg, false, newPosition);
+            //damage.transform.position = newPosition;
             
             if (Unit.currentHP > 0) Unit.anim.SetTrigger(AnimationHandler.HurtTrigger);
             else Die();

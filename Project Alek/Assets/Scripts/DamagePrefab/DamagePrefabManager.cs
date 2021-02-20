@@ -39,7 +39,7 @@ namespace DamagePrefab
             return damagePool;
         }
 
-        public GameObject ShowDamage(int dmg, bool isCrit)
+        public GameObject ShowDamage(int dmg, bool isCrit, Vector3 position)
         {
             for (var i = 0; i < damagePool.Count; i++)
             {
@@ -48,6 +48,7 @@ namespace DamagePrefab
                 damageTextList[i].color = isCrit ? criticalTextColor : damageTextColor;
                 damageTextList[i].text = dmg != -1 ? dmg.ToString() : "MISS";
                 damageTextColor = Color.white;
+                damagePool[i].transform.position = position;
                 damagePool[i].SetActive(true);
                     
                 return damagePool[i];
@@ -56,6 +57,7 @@ namespace DamagePrefab
             damageTextList[0].color = isCrit ? criticalTextColor : damageTextColor;
             damageTextList[0].text = dmg.ToString();
             damageTextColor = Color.white;
+            damagePool[0].transform.position = position;
             damagePool[0].SetActive(true);
             
             return damagePool[0];

@@ -132,6 +132,11 @@ namespace Characters
             BattleEvents.Instance.skipTurnEvent.RemoveListener(this);
         }
 
+        private void OnDestroy()
+        {
+            EmptyAnimations();
+        }
+
         public void OnSelect(BaseEventData eventData)
         {
             outline.enabled = true;
@@ -153,12 +158,24 @@ namespace Characters
             damageValueList.Clear();
         }
 
+        private void EmptyAnimations()
+        {
+            if (!parent || parent.id != CharacterType.PartyMember) return;
+            for (var i = 0; i < parent.abilities.Count; i++)
+            {
+                animOverride[$"Ability {i + 1}"] = null;
+            }
+            
+            anim.runtimeAnimatorController = animOverride;
+        }
+
         [SuppressMessage("ReSharper", "Unity.InefficientPropertyAccess")]
         public void DestroyGO()
         {
             gameObject.SetActive(false);
             Destroy(gameObject, 3);
         }
+        
 
         public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
         {

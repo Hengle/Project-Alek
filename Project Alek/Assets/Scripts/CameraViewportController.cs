@@ -1,9 +1,15 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class CameraViewportController : MonoBehaviorSingleton<CameraViewportController>
+public class  CameraViewportController : MonoBehaviorSingleton<CameraViewportController>
 {
     private void Start () => SetAspect();
-    
+
+    private void OnRectTransformDimensionsChange()
+    {
+        Debug.Log("Rect Transform Changed");
+    }
+
     public void SetAspect()
     {
         const float targetAspect = 16.0f / 9.0f;

@@ -184,7 +184,7 @@ MonoBehaviour:
     maxValue: 99999
     amountIncreasedBy: 0
   strength:
-    BaseValue: 8
+    BaseValue: 18
     maxValue: 99
     amountIncreasedBy: 0
   magic:

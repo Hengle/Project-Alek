@@ -118,6 +118,7 @@ namespace BattleSystem.Mechanics
             if (currentState == UnitStates.Checkmate) return;
             
             var tryGetType = unitBase._damageTypeWeaknesses.ContainsKey(damageType);
+            
             if (tryGetType) EvaluateShield();
         }
         

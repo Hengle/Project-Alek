@@ -162,7 +162,7 @@ MonoBehaviour:
     maxValue: 99999
     amountIncreasedBy: 84
   strength:
-    BaseValue: 11
+    BaseValue: 21
     maxValue: 99
     amountIncreasedBy: 1
   magic:
@@ -204,7 +204,7 @@ MonoBehaviour:
   currentClass: {fileID: 11400000, guid: be121a9a99d092e4184dc9300dc5106b, type: 2}
   overworldController: {fileID: 22100000, guid: 303372915b2401e479bccd7997ce110d,
     type: 2}
-  positionInParty: 3
+  positionInParty: 1
   specialAttackBarVal: 1
   weaponInventory: {fileID: 5917402227159465644, guid: 1d94ebccb9928a445b4a7e1dbacb9d53,
     type: 3}

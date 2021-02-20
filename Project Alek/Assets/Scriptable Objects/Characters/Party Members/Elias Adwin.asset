@@ -166,7 +166,7 @@ MonoBehaviour:
     maxValue: 99
     amountIncreasedBy: 0
   magic:
-    BaseValue: 10
+    BaseValue: 20
     maxValue: 99
     amountIncreasedBy: 0
   accuracy:
@@ -201,7 +201,7 @@ MonoBehaviour:
   currentClass: {fileID: 11400000, guid: 646bd9a752b65b34fbb244c39cad16ce, type: 2}
   overworldController: {fileID: 22100000, guid: 35b3df76d35443843b6ccba2c048dda5,
     type: 2}
-  positionInParty: 2
+  positionInParty: 3
   specialAttackBarVal: 1
   weaponInventory: {fileID: 417493762244957691, guid: 8dd491fe5bbd13742a4a9ed04d140e08,
     type: 3}
