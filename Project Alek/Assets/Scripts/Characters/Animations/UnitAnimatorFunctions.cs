@@ -165,7 +165,7 @@ namespace Characters.Animations
                 if (unit.currentTarget.Unit.attackerHasMissed || unit.currentTarget.IsDead) return;
                 
                 foreach (var effect in from effect in unit.currentAbility.statusEffects
-                    where !(from statusEffect in unit.currentTarget.Unit.statusEffects
+                    where !(from statusEffect in unit.currentTarget.StatusEffects
                     where statusEffect.name == effect.name select statusEffect).Any()
                     
                     let randomValue = Random.value
@@ -174,14 +174,14 @@ namespace Characters.Animations
                     where !(randomValue > unit.currentAbility.chanceOfInfliction * modifier) select effect)
                 {
                     effect.OnAdded(unit.currentTarget);
-                    unit.currentTarget.Unit.statusEffects.Add(effect);
+                    unit.currentTarget.StatusEffects.Add(effect);
                 }
             }
             
             foreach (var target in unit.multiHitTargets.Where(target => !target.Unit.attackerHasMissed && !target.IsDead))
             {
                 foreach (var effect in from effect in unit.currentAbility.statusEffects
-                    where !(from statusEffect in target.Unit.statusEffects
+                    where !(from statusEffect in target.StatusEffects
                     where statusEffect.name == effect.name select statusEffect).Any() 
                     
                     let randomValue = Random.value
@@ -190,7 +190,7 @@ namespace Characters.Animations
                     where !(randomValue > unit.currentAbility.chanceOfInfliction * modifier) select effect)
                 {
                     effect.OnAdded(target);
-                    target.Unit.statusEffects.Add(effect);
+                    target.StatusEffects.Add(effect);
                 }
             }
         }

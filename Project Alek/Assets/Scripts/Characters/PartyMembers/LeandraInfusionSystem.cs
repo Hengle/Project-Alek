@@ -7,39 +7,34 @@ namespace Characters.PartyMembers
 {
     public class LeandraInfusionSystem : MonoBehaviour
     {
-        private Unit unit;
-        private Material originalMaterial;
+        [SerializeField] private PartyMember leandra;
         [SerializeField] private Material auraMaterial;
+
+        private Material originalMaterial;
         private SpriteRenderer spriteRenderer;
 
         private void Awake()
         {
-            unit = GetComponent<Unit>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             originalMaterial = spriteRenderer.material;
         }
 
-        [UsedImplicitly] public void SetOverrideAbility() => unit.overrideAbility = unit.currentAbility;
+        [UsedImplicitly] public void SetOverrideAbility() => leandra.OverrideAbility = leandra.CurrentAbility;
 
         [UsedImplicitly] public void SetStatusEffect()
         {
-            var effect = unit.currentAbility.statusEffects[0];
+            var effect = leandra.CurrentAbility.statusEffects[0];
             var effectsToRemove = new List<StatusEffect>();
             
-            for (var i = unit.statusEffects.Count - 1; i >= 0; i--)
+            for (var i = leandra.StatusEffects.Count - 1; i >= 0; i--)
             {
-                if (unit.statusEffects[i].GetType() != typeof(Infusion)) continue;
-                effectsToRemove.Add(unit.statusEffects[i]);
+                if (leandra.StatusEffects[i].GetType() != typeof(Infusion)) continue;
+                effectsToRemove.Add(leandra.StatusEffects[i]);
             }
 
-            effectsToRemove.ForEach(e =>
-            {
-                unit.statusEffects.Remove(e);
-                e.OnRemoval(unit.parent);
-            });
-
-            effect.OnAdded(unit.parent);
-            unit.statusEffects.Add(effect);
+            leandra.CureAilments(effectsToRemove);
+            leandra.StatusEffects.Add(effect);
+            effect.OnAdded(leandra);
         }
 
         [UsedImplicitly] public void SetAuraMaterial()

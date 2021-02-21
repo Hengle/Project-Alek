@@ -15,5 +15,6 @@ MonoBehaviour:
   effectType: 4
   icon: {fileID: 6377904230404883206, guid: 87695caaf88428e4baaef8f1ea97006a, type: 3}
   rateOfInfliction: 
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 0.663, g: 0.188, b: 0.114, a: 1}
   turnDuration: 2
+  shortStatName: Fire

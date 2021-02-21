@@ -15,9 +15,9 @@ MonoBehaviour:
   effectType: 3
   icon: {fileID: 6377904230404883206, guid: f21525a6d7e492344b2516f3a7bbd9a2, type: 3}
   rateOfInfliction: 
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 0, g: 0.357, b: 0.604, a: 1}
   turnDuration: 3
-  shortStatName: ACC
+  shortStatName: acc up
   buffs: 1
   buffedStat: 4
   buffMultiplier: 2

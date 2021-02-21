@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using DamagePrefab;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,14 +33,14 @@ namespace Characters.StatusEffects
         [Space, Tooltip("How often the effect is inflicted"), VerticalGroup("Icon/Info"), EnumPaging]
         public List<Rate> rateOfInfliction = new List<Rate>();
         
-        [HideIf(nameof(effectType), EffectType.StatChange)]
-        [HideIf(nameof(effectType), EffectType.Unique)]
-        [HideIf(nameof(name), "Susceptible")] 
         [Space, VerticalGroup("Icon/Info"), ColorPalette, HideLabel] 
         public Color color;
         
         [Space, VerticalGroup("Icon/Info"), Range(1,5), LabelWidth(120)] 
         public int turnDuration;
+        
+        [Space, VerticalGroup("Icon/Info"), LabelWidth(120)]
+        public string shortStatName = "";
         
         #endregion
         
@@ -48,11 +49,21 @@ namespace Characters.StatusEffects
         public virtual void OnAdded(UnitBase target)
         {
             target.onStatusEffectReceived?.Invoke(this);
+            
+            var position = target.Unit.gameObject.transform.position;
+            var newPosition = new Vector3(position.x, position.y + 3, position.z);
+            DamagePrefabManager.Instance.DamageTextColor = color;
+            DamagePrefabManager.Instance.ShowText(shortStatName != "" ? $"+ {shortStatName}" : $"+ {name.ToUpper()}", newPosition, 12f);
         }
 
         public virtual void OnRemoval(UnitBase unitBase)
         {
             unitBase.onStatusEffectRemoved?.Invoke(this);
+            
+            var position = unitBase.Unit.gameObject.transform.position;
+            var newPosition = new Vector3(position.x, position.y + 3, position.z);
+            DamagePrefabManager.Instance.DamageTextColor = color;
+            DamagePrefabManager.Instance.ShowText(shortStatName != "" ? $"- {shortStatName}" : $"- {name.ToUpper()}", newPosition, 12f);
         }
         
         public float StatusEffectModifier(UnitBase target)

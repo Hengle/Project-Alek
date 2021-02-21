@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BattleSystem;
 using BattleSystem.Calculators;
 using BattleSystem.Mechanics;
@@ -171,6 +172,12 @@ namespace Characters
             get => Unit. currentAbility;
             set => Unit.currentAbility = value;
         }
+
+        public Ability OverrideAbility
+        {
+            get => Unit.overrideAbility;
+            set => Unit.overrideAbility = value;
+        }
         
         public AnimationHandler AnimationHandler => Unit.animationHandler;
 
@@ -275,6 +282,22 @@ namespace Characters
 
         public virtual void Heal(float amount) {}
 
+        public virtual void CureAilments(IEnumerable<StatusEffect> effects)
+        {
+            foreach (var effect in effects.Where(effect => Unit.statusEffects.Contains(effect)))
+            {
+                StatusEffects.Remove(effect);
+                effect.OnRemoval(this);
+            }
+        }
+
+        public virtual void CureAilment(StatusEffect effect)
+        {
+            if (!StatusEffects.Contains(effect)) return;
+            StatusEffects.Remove(effect);
+            effect.OnRemoval(this);
+        }
+
         public virtual void TakeDamage(int dmg, ElementalType elementalDmg = null, WeaponDamageType weaponDamageType = null)
         {
             if (dmg != -1)
@@ -307,11 +330,11 @@ namespace Characters
                 }
             }
 
+            //TODO: Change to local position
             var position = Unit.gameObject.transform.position;
             var newPosition = new Vector3(position.x, position.y + 3, position.z);
             
             DamagePrefabManager.Instance.ShowDamage(dmg, Unit.targetHasCrit, newPosition);
-            //damage.transform.position = newPosition;
 
             if (Unit.targetHasCrit) Unit.targetHasCrit = false;
             

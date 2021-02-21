@@ -41,10 +41,7 @@ namespace Characters.StatusEffects
         private void RemoveTimerAndEffect(UnitBase target)
         {
             if (target != targetUnit) return;
-            if (!target.Unit.statusEffects.Contains(statusEffect)) return;
-
-            target.Unit.statusEffects.Remove(statusEffect);
-            statusEffect.OnRemoval(target);
+            target.CureAilment(statusEffect);
         }
 
         private void OnDisable()

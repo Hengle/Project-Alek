@@ -7,19 +7,19 @@ namespace Characters.StatusEffects
     {
         private void Awake() => effectType = EffectType.AI;
         
-        public override void InflictStatus(UnitBase unit)
-        {
-            
-        }
-
-        public override void OnAdded(UnitBase target)
-        {
-            
-        }
-
-        public override void OnRemoval(UnitBase unit)
-        {
-            
-        }
+        // public override void InflictStatus(UnitBase unit)
+        // {
+        //     
+        // }
+        //
+        // public override void OnAdded(UnitBase target)
+        // {
+        //     
+        // }
+        //
+        // public override void OnRemoval(UnitBase unit)
+        // {
+        //     
+        // }
     }
 }

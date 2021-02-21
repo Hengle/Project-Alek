@@ -15,7 +15,7 @@ MonoBehaviour:
   effectType: 3
   icon: {fileID: 6377904230404883206, guid: dc13acd1ae40ced45b13d9f3ff23730e, type: 3}
   rateOfInfliction: 
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 0.753, g: 0.714, b: 0.667, a: 1}
   turnDuration: 1
   shortStatName: 
   buffs: 0

@@ -15,5 +15,6 @@ MonoBehaviour:
   effectType: 4
   icon: {fileID: 6377904230404883206, guid: 87f1b587f30f5e945a431c8f550e717f, type: 3}
   rateOfInfliction: 
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 0.216, g: 0.894, b: 0.961, a: 1}
   turnDuration: 2
+  shortStatName: Ice

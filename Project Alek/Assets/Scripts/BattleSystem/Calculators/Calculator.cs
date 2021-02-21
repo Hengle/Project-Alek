@@ -169,7 +169,7 @@ namespace BattleSystem.Calculators
 
         private static int CalculateOverrideElementalDamage(UnitBase dealer, UnitBase target)
         {
-            var ability = dealer.Unit.overrideAbility;
+            var ability = dealer.OverrideAbility;
             
             var elementalDamage = (int) dealer.magic.Value * dealer.weaponMight * ability.ElementalScalar;
             

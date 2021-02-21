@@ -59,15 +59,23 @@ namespace BattleSystem
 
             switch (targetOptionsCharacterType)
             {
-                case TargetOptions.Enemies: navigation.selectOnLeft = null;
+                case TargetOptions.Enemies:
+                    navigation.selectOnLeft = null;
+                    navigation.selectOnUp = selectOnUp;
+                    navigation.selectOnDown = selectOnDown;
                     button.navigation = navigation;
                     break;
-                case TargetOptions.PartyMembers: navigation.selectOnRight = null;
+                case TargetOptions.PartyMembers:
+                    navigation.selectOnRight = null;
+                    navigation.selectOnUp = selectOnUp;
+                    navigation.selectOnDown = selectOnDown;
                     button.navigation = navigation;
                     break;
                 case TargetOptions.Both:
                     navigation.selectOnLeft = selectOnLeft;
                     navigation.selectOnRight = selectOnRight;
+                    navigation.selectOnUp = selectOnUp;
+                    navigation.selectOnDown = selectOnDown;
                     button.navigation = navigation;
                     break;
                 case TargetOptions.Self:
@@ -75,6 +83,7 @@ namespace BattleSystem
                     navigation.selectOnRight = null;
                     navigation.selectOnUp = null;
                     navigation.selectOnDown = null;
+                    button.navigation = navigation;
                     break;
             }
         }
@@ -98,6 +107,7 @@ namespace BattleSystem
             // TODO: Account for revival items and other types
             if (BattleEngine.Instance.usingItem)
             {
+                character.Unit.currentTarget = thisUnitBase;
                 if (thisUnitBase.Unit.status == Status.Dead && _currentlySelectedItem as RevivalItem)
                 {
                     goto try_use_item;

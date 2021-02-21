@@ -1,8 +1,7 @@
 ﻿using System;
 using Audio;
-using Characters;
+using BattleSystem;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace MoreMountains.InventoryEngine
 {
@@ -17,7 +16,7 @@ namespace MoreMountains.InventoryEngine
         public override bool Use()
         {
             base.Use();
-            var target = EventSystem.current.currentSelectedGameObject.GetComponent<Unit>().parent;
+            var target = BattleEngine.Instance.activeUnit.CurrentTarget;
             target.Revive(revivalHealthPercentage, revivalAPAmount);
             AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.revive);
             return true;

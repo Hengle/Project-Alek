@@ -15,9 +15,9 @@ MonoBehaviour:
   effectType: 3
   icon: {fileID: 6377904230404883206, guid: 7e1691a22ff6c8d49835c8ada80daef6, type: 3}
   rateOfInfliction: 
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 0, g: 0.357, b: 0.604, a: 1}
   turnDuration: 3
-  shortStatName: RES
+  shortStatName: res up
   buffs: 1
   buffedStat: 8
   buffMultiplier: 1

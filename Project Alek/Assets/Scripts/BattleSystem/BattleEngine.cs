@@ -301,7 +301,8 @@ namespace BattleSystem
 
             yield return Timing.WaitForSeconds(2);
             
-            AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.victoryThemeBattle, true, 2);
+            AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.victory);
+            AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.victoryThemeBattle, true);
             
             _membersForThisBattle.ForEach(member => member.Unit.anim.SetTrigger(AnimationHandler.VictoryTrigger));
             

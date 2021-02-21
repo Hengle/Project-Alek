@@ -12,7 +12,7 @@ namespace Characters.CharacterExtensions
         {
             if (unitBase.IsDead) yield break;
             
-            foreach (var statusEffect in from statusEffect in unitBase.Unit.statusEffects
+            foreach (var statusEffect in from statusEffect in unitBase.StatusEffects
                 where statusEffect.rateOfInfliction.Contains(rate) select statusEffect)
             {
                 if (!delayAfterInfliction) yield return Timing.WaitForSeconds(delay);
@@ -31,7 +31,7 @@ namespace Characters.CharacterExtensions
                 foreach (var target in attacker.Unit.multiHitTargets.
                     Where(target => !target.Unit.attackerHasMissed && !target.IsDead))
                 {
-                    foreach (var statusEffect in from statusEffect in target.Unit.statusEffects
+                    foreach (var statusEffect in from statusEffect in target.StatusEffects
                         where statusEffect.rateOfInfliction.Contains(rate) select statusEffect)
                     {
                         if (attacker.IsDead) break;
@@ -48,7 +48,7 @@ namespace Characters.CharacterExtensions
 
             if (attacker.Unit.currentTarget.Unit.attackerHasMissed || attacker.Unit.currentTarget.IsDead) yield break;
             
-            foreach (var statusEffect in from statusEffect in attacker.Unit.currentTarget.Unit.statusEffects
+            foreach (var statusEffect in from statusEffect in attacker.Unit.currentTarget.StatusEffects
                 where statusEffect.rateOfInfliction.Contains(rate) select statusEffect)
             {
                 if (attacker.Unit.currentTarget.IsDead) break;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BattleSystem;
 using Characters.Abilities;
+using Characters.StatusEffects;
 using MEC;
 using UnityEngine;
 using MoreMountains.InventoryEngine;
@@ -84,7 +85,7 @@ namespace Characters.PartyMembers
         #endregion
 
         public override void Heal(float amount) => CurrentHP += (int) amount;
-        
+
         private int currentExperience;
         
         [ShowInInspector, ProgressBar(0, nameof(ExperienceToNextLevel)), VerticalGroup("Basic/Info"), LabelWidth(120)]

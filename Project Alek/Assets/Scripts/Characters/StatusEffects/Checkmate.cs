@@ -11,7 +11,6 @@ namespace Characters.StatusEffects
         
         public override void OnAdded(UnitBase target)
         {
-            Logging.Instance.Log($"{target.characterName} is in {name}!");
             target.onStatusEffectReceived?.Invoke(this);
             
             AddModifiers(target);
@@ -20,9 +19,7 @@ namespace Characters.StatusEffects
         
         public override void OnRemoval(UnitBase unitBase)
         {
-            Logging.Instance.Log($"{unitBase.characterName} is no longer in {name}.");
             unitBase.onStatusEffectRemoved?.Invoke(this);
-
             unitBase.Unit.status = Status.Normal;
             
             RemoveModifiers(unitBase);

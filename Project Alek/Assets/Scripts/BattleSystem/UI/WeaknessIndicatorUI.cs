@@ -28,7 +28,7 @@ namespace BattleSystem.UI
             get
             {
                 if (!BattleEngine.Instance.activeUnit.Unit.overrideElemental) return false;
-                var ability = BattleEngine.Instance.activeUnit.Unit.overrideAbility;
+                var ability = BattleEngine.Instance.activeUnit.OverrideAbility;
                 return ability != null && unit.parent._elementalWeaknesses.Any(kvp =>
                     kvp.Key._type == ability.elementalType && kvp.Value);
             }

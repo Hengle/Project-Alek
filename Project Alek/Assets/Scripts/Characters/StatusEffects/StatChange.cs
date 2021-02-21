@@ -13,29 +13,27 @@ namespace Characters.StatusEffects
     {
         #region FieldsAndProperties
 
-        public string shortStatName;
-        
         [Space] [SerializeField] [Title("Buffs"), VerticalGroup("Icon/Info"), LabelWidth(120)]
-        [HideIf(nameof(name), "Checkmate")]
+        //[HideIf(nameof(name), "Checkmate")]
         public bool buffs;
         
-        [ShowIf(nameof(buffs))] [HideIf(nameof(name), "Checkmate")]
+        [ShowIf(nameof(buffs))] //[HideIf(nameof(name), "Checkmate")]
         [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
         public AffectedStat buffedStat;
         
-        [ShowIf(nameof(buffs))] [HideIf(nameof(name), "Checkmate")]
+        [ShowIf(nameof(buffs))] //[HideIf(nameof(name), "Checkmate")]
         [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
         public Multiplier buffMultiplier;
         
-        [Space] [HideIf(nameof(name), "Checkmate")]
+        [Space] //[HideIf(nameof(name), "Checkmate")]
         [SerializeField] [Title("Debuffs"), VerticalGroup("Icon/Info"), LabelWidth(120)]
         public bool debuffs;
         
-        [ShowIf(nameof(debuffs))] [HideIf(nameof(name), "Checkmate")]
+        [ShowIf(nameof(debuffs))] //[HideIf(nameof(name), "Checkmate")]
         [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
         public AffectedStat debuffedStat;
         
-        [ShowIf(nameof(debuffs))] [HideIf(nameof(name), "Checkmate")]
+        [ShowIf(nameof(debuffs))] //[HideIf(nameof(name), "Checkmate")]
         [VerticalGroup("Icon/Info"), LabelWidth(120)] [EnumPaging]
         public Multiplier debuffMultiplier;
         
