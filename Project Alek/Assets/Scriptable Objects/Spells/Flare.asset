@@ -24,7 +24,7 @@ MonoBehaviour:
   endTurnOnUse: 0
   dontTransitionToIdle: 0
   isMultiTarget: 0
-  description: Ignite you enemies!
+  description: INTRODUCE YOUR ENEMIES TO THE FLAMES OF HELL!
   hasElemental: 1
   elementalType: {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
   elementalScalar: 50

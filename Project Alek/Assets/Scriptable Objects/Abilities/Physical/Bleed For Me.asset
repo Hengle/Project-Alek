@@ -21,13 +21,14 @@ MonoBehaviour:
   attackState: 2
   animation: {fileID: 7400000, guid: d7a773f0ccbb9b148a099bf86e9b70b7, type: 2}
   hasOverride: 0
+  endTurnOnUse: 0
+  dontTransitionToIdle: 0
   isMultiTarget: 0
-  description: Big Brain plays
+  description: A nasty attack that has a high chance of causing bleed.
   hasElemental: 0
   elementalType: {fileID: 11400000, guid: 5b7dd86029ea2ce49beaee4e4d702b94, type: 2}
   elementalScalar: 0
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
-  - {fileID: 11400000, guid: 5b3cb6ed67b2c1d4ba981e75701621ec, type: 2}
-  chanceOfInfliction: 1
+  chanceOfInfliction: 0.8

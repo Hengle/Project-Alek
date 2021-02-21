@@ -100,10 +100,12 @@ public class ScriptableObjectEditor : OdinMenuEditorWindow
     
     public class CreateNewEnemy
     {
+        [UsedImplicitly] public string _name;
+        
         public CreateNewEnemy()
         {
             _enemy = CreateInstance<Enemy>();
-            _enemy.name = "New Enemy";
+            _enemy.name = _name;
         }
         
         [InlineEditor(ObjectFieldMode = InlineEditorObjectFieldModes.Hidden)]

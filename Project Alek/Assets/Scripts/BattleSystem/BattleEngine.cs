@@ -11,12 +11,14 @@ using Characters.CharacterExtensions;
 using Characters.Enemies;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
+using DG.Tweening;
 using Kryz.CharacterStats;
 using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
 using MEC;
 using ScriptableObjectArchitecture;
 using SingletonScriptableObject;
+using Sirenix.Utilities;
 using UnityEngine.EventSystems;
 
 namespace BattleSystem
@@ -323,8 +325,9 @@ namespace BattleSystem
                 member.AdvanceTowardsNextLevel(totalXp);
                 member.currentClass.AdvanceTowardsNextLevel(totalClassXp);
             }
-
-            yield return Timing.WaitForSeconds(0.5f);
+            
+            yield return Timing.WaitUntilTrue(() => BattleInput._controls.Battle.Confirm.triggered);
+            yield return Timing.WaitForSeconds(0.75f);
             yield return Timing.WaitUntilTrue(() => BattleInput._controls.Battle.Confirm.triggered);
             
             Timing.RunCoroutine(battleResultsUI.ShowLevelUps());
@@ -351,7 +354,25 @@ namespace BattleSystem
         public IEnumerator<float> FleeBattleSequence()
         {
             StopAllCoroutines();
+            BattleEvents.Instance.fleeBattleEvent.Raise();
+
             yield return Timing.WaitForSeconds(0.5f);
+            
+            foreach (var member in _membersForThisBattle.Where(member => !member.IsDead))
+            {
+                var position = member.Unit.transform.position;
+                var newPosition = new Vector3(position.x, position.y, position.z - 15);
+                
+                member.Unit.EmptyAnimations();
+                
+                member.Unit.anim.SetInteger(AnimationHandler.AnimState, 0);
+                member.Unit.anim.SetFloat(AnimationHandler.HorizontalHash, -1);
+                member.Unit.anim.SetBool(AnimationHandler.IsWalkingHash, true);
+                member.Unit.anim.SetBool(AnimationHandler.IsRunningHash, true);
+
+                member.Unit.transform.DOMove(newPosition, 2);
+            }
+            yield return Timing.WaitForSeconds(1.5f);
             SceneLoadManager.Instance.LoadOverworld();
         }
         

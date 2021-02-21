@@ -20,8 +20,11 @@ MonoBehaviour:
   damageMultiplier: 1.5
   attackState: 2
   animation: {fileID: 0}
+  hasOverride: 0
+  endTurnOnUse: 0
+  dontTransitionToIdle: 0
   isMultiTarget: 0
-  description: Elias special ability
+  description: A special combo attack that can put a weakened enemy in checkmate!
   hasElemental: 0
   elementalType: {fileID: 0}
   elementalScalar: 0

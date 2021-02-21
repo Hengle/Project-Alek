@@ -25,6 +25,10 @@ namespace Characters.Animations
         public static readonly int ShieldRestore = Animator.StringToHash("Shield Restore");
         public static readonly int DontTranToIdle = Animator.StringToHash("dontTransitionToIdle");
         
+        public static readonly int IsWalkingHash = Animator.StringToHash("isWalking");
+        public static readonly int IsRunningHash = Animator.StringToHash("isRunning");
+        public static readonly int HorizontalHash = Animator.StringToHash("Horizontal");
+        
         public bool isAttacking;
         public bool performingAction;
         public bool usingItem;

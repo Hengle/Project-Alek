@@ -16,7 +16,7 @@ MonoBehaviour:
   damageType: 0
   targetOptions: 0
   icon: {fileID: 21300000, guid: dd2101390b04cbb44b7eacb0d361a795, type: 3}
-  actionCost: 2
+  actionCost: 1
   damageMultiplier: 1.1
   attackState: 4
   animation: {fileID: 7400000, guid: 10468bef8c71fa54581a422a1686b6db, type: 2}
@@ -24,7 +24,7 @@ MonoBehaviour:
   endTurnOnUse: 0
   dontTransitionToIdle: 0
   isMultiTarget: 0
-  description: Chance of inflicting Burn
+  description: A dangerous bullet with a high chance of causing burn.
   hasElemental: 0
   elementalType: {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
   elementalScalar: 25

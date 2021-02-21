@@ -19,8 +19,8 @@ MonoBehaviour:
   Equippable: 1
   Quantity: 1
   ItemName: Staff
-  ShortDescription: its a staff
-  Description: it is a staff....................................
+  ShortDescription: Its a staff
+  Description: It is a staff....................................
   CanMoveObject: 1
   CanSwapObject: 1
   Icon: {fileID: 21300000, guid: 271c6d2218562564587d4cabc531011c, type: 3}
@@ -36,7 +36,6 @@ MonoBehaviour:
   MovedSound: {fileID: 0}
   DroppedSound: {fileID: 0}
   UseDefaultSoundsIfNull: 1
-  WeaponSprite: {fileID: 0}
   damageType: {fileID: 11400000, guid: d8299019d46894a479b7579d8ae96e6a, type: 2}
   weaponMight: 8
   magicMight: 4

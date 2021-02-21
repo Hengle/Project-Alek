@@ -1,19 +1,31 @@
 fileFormatVersion: 2
-guid: dcdda75e148449b4283619583230b32e
+guid: 895ce69a98d58464aaaf85c1f9ee9497
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7500690451134026123
-    second: Take Hit_0
+      213: 6991849013916550155
+    second: Death_0
   - first:
-      213: -889859373511162655
-    second: Take Hit_1
+      213: -276728812324164698
+    second: Death_1
   - first:
-      213: -3088938797480143695
-    second: Take Hit_2
+      213: 3156895337291164288
+    second: Death_2
   - first:
-      213: -9206091644520726168
-    second: Take Hit_3
+      213: 1400002288684528572
+    second: Death_3
+  - first:
+      213: 7232993529854057886
+    second: Mushroom_Death_0
+  - first:
+      213: 8019925308995498210
+    second: Mushroom_Death_1
+  - first:
+      213: 506149642374253762
+    second: Mushroom_Death_2
+  - first:
+      213: 6318636849198572645
+    second: Mushroom_Death_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -59,7 +71,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -78,7 +90,7 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
-    crunchedCompression: 0
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -90,7 +102,7 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
-    crunchedCompression: 0
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -102,7 +114,7 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
-    crunchedCompression: 0
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -126,7 +138,7 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
-    crunchedCompression: 0
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -135,85 +147,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Take Hit_0
+      name: Mushroom_Death_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 150
-        height: 150
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 64
+        y: 49
+        width: 23
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ccdf1a02c76bd541a31beb080b0d6bf
-      internalID: -7500690451134026123
+      spriteID: e9d56a91b41c06460800000000000000
+      internalID: 7232993529854057886
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Take Hit_1
+      name: Mushroom_Death_1
       rect:
         serializedVersion: 2
-        x: 150
-        y: 0
-        width: 150
-        height: 150
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 215
+        y: 49
+        width: 26
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4082775c0bd9c047af35eced58b6f16
-      internalID: -889859373511162655
+      spriteID: 2e077dfb39f7c4f60800000000000000
+      internalID: 8019925308995498210
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Take Hit_2
+      name: Mushroom_Death_2
       rect:
         serializedVersion: 2
-        x: 300
-        y: 0
-        width: 150
-        height: 150
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 369
+        y: 49
+        width: 23
+        height: 26
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16af2ca3d58ca9a42a7a7875a70e81e3
-      internalID: -3088938797480143695
+      spriteID: 2cc88e40b64360700800000000000000
+      internalID: 506149642374253762
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Take Hit_3
+      name: Mushroom_Death_3
       rect:
         serializedVersion: 2
-        x: 450
-        y: 0
-        width: 150
-        height: 150
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 519
+        y: 49
+        width: 23
+        height: 27
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 161d18d90c5aaf845b133374d2c247c2
-      internalID: -9206091644520726168
+      spriteID: 564ac2d9cbe40b750800000000000000
+      internalID: 6318636849198572645
       vertices: []
       indices: 
       edges: []

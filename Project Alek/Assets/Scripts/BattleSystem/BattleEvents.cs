@@ -36,5 +36,7 @@ namespace BattleSystem
         public GameEvent resortNextTurnEvent;
         [FoldoutGroup("Events")] [SerializeField]
         public GameObjectGameEvent overrideButtonEvent;
+        [FoldoutGroup("Events")] [SerializeField]
+        public GameEvent fleeBattleEvent;
     }
 }

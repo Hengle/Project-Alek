@@ -156,17 +156,17 @@ MonoBehaviour:
   characterName: Alek Ezana
   characterPrefab: {fileID: 1526218485019349028, guid: 38e223593cf5fd94cb9a317771507f77,
     type: 3}
-  level: 1
+  level: 5
   health:
-    BaseValue: 1105
+    BaseValue: 1399
     maxValue: 99999
-    amountIncreasedBy: 84
+    amountIncreasedBy: 105
   strength:
-    BaseValue: 21
+    BaseValue: 22
     maxValue: 99
-    amountIncreasedBy: 1
+    amountIncreasedBy: 0
   magic:
-    BaseValue: 7
+    BaseValue: 9
     maxValue: 99
     amountIncreasedBy: 0
   accuracy:
@@ -174,11 +174,11 @@ MonoBehaviour:
     maxValue: 99
     amountIncreasedBy: 0
   initiative:
-    BaseValue: 7
+    BaseValue: 9
     maxValue: 99
-    amountIncreasedBy: 0
+    amountIncreasedBy: 1
   defense:
-    BaseValue: 8
+    BaseValue: 11
     maxValue: 99
     amountIncreasedBy: 1
   resistance:
@@ -188,9 +188,9 @@ MonoBehaviour:
   criticalChance:
     BaseValue: 3
     maxValue: 99
-    amountIncreasedBy: 1
-  description: Bruh it is the one. The ONLY. The ONE and ONLY. The ONE and ONLY GOD
-    among MEN. It is.... ya boi.... tha GAWD.... Alek.
+    amountIncreasedBy: 0
+  description: Alek is just a small town boy living in a lonely world. He didn't
+    take the midnight train because he overslept. How unfortunate.
   weaponMight: 12
   magicMight: 5
   weaponAccuracy: 80
@@ -204,7 +204,7 @@ MonoBehaviour:
   currentClass: {fileID: 11400000, guid: be121a9a99d092e4184dc9300dc5106b, type: 2}
   overworldController: {fileID: 22100000, guid: 303372915b2401e479bccd7997ce110d,
     type: 2}
-  positionInParty: 1
+  positionInParty: 2
   specialAttackBarVal: 1
   weaponInventory: {fileID: 5917402227159465644, guid: 1d94ebccb9928a445b4a7e1dbacb9d53,
     type: 3}

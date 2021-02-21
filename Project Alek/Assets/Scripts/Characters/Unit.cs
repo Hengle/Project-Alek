@@ -158,7 +158,7 @@ namespace Characters
             damageValueList.Clear();
         }
 
-        private void EmptyAnimations()
+        public void EmptyAnimations()
         {
             if (!parent || parent.id != CharacterType.PartyMember) return;
             for (var i = 0; i < parent.abilities.Count; i++)

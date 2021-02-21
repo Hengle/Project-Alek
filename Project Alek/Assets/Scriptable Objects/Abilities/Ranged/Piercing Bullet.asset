@@ -16,7 +16,7 @@ MonoBehaviour:
   damageType: 0
   targetOptions: 0
   icon: {fileID: 21300000, guid: cef78516ce2023a4b9a7503ff3411acc, type: 3}
-  actionCost: 2
+  actionCost: 1
   damageMultiplier: 1.25
   attackState: 1
   animation: {fileID: 7400000, guid: 10468bef8c71fa54581a422a1686b6db, type: 2}
@@ -24,12 +24,13 @@ MonoBehaviour:
   endTurnOnUse: 0
   dontTransitionToIdle: 0
   isMultiTarget: 0
-  description: THE RANGE THO
+  description: A very sturdy bullet that can pierce the sturdiest of foes. Can cause
+    bleed.
   hasElemental: 0
   elementalType: {fileID: 0}
   elementalScalar: 75
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
-  chanceOfInfliction: 1
+  chanceOfInfliction: 0.6
   lookAtTarget: 1

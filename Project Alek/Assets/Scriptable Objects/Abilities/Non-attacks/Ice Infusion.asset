@@ -18,13 +18,16 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 49cc75da86b2bb949b1235ad2a384f9b, type: 3}
   actionCost: 1
   damageMultiplier: 1
-  attackState: 2
+  attackState: 3
   animation: {fileID: 7400000, guid: f58bb63bee52044479f4b53dd756eede, type: 2}
+  hasOverride: 0
+  endTurnOnUse: 0
+  dontTransitionToIdle: 0
   isMultiTarget: 0
-  description: Infuse aura with ice element
+  description: Infuse aura with ice element. Each attack will also deal ice damage.
   hasElemental: 1
   elementalType: {fileID: 11400000, guid: eb1b5a0f67771a842832b379372ae131, type: 2}
-  elementalScalar: 25
+  elementalScalar: 50
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: f3cd484aa61078547921bed683be31f4, type: 2}

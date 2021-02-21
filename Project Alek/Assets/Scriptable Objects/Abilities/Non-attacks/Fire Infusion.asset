@@ -20,11 +20,14 @@ MonoBehaviour:
   damageMultiplier: 1
   attackState: 2
   animation: {fileID: 7400000, guid: f58bb63bee52044479f4b53dd756eede, type: 2}
+  hasOverride: 0
+  endTurnOnUse: 0
+  dontTransitionToIdle: 0
   isMultiTarget: 0
-  description: Infuse aura with fire element
+  description: Infuse aura with fire element. Each attack will also deal fire damage.
   hasElemental: 1
   elementalType: {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
-  elementalScalar: 25
+  elementalScalar: 50
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: 9074078321c93a345993c6bd0caba18a, type: 2}

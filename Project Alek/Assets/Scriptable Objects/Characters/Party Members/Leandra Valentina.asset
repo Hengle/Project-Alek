@@ -156,21 +156,21 @@ MonoBehaviour:
   characterName: Leandra Valentina
   characterPrefab: {fileID: 1526218485019349028, guid: 55418c9ff21905d4c9ac6a87a12001cb,
     type: 3}
-  level: 1
+  level: 5
   health:
-    BaseValue: 1225
+    BaseValue: 1507
     maxValue: 99999
-    amountIncreasedBy: 0
+    amountIncreasedBy: 101
   strength:
-    BaseValue: 22
+    BaseValue: 25
     maxValue: 99
-    amountIncreasedBy: 0
+    amountIncreasedBy: 1
   magic:
     BaseValue: 5
     maxValue: 99
     amountIncreasedBy: 0
   accuracy:
-    BaseValue: 10
+    BaseValue: 11
     maxValue: 99
     amountIncreasedBy: 0
   initiative:
@@ -178,19 +178,18 @@ MonoBehaviour:
     maxValue: 99
     amountIncreasedBy: 0
   defense:
-    BaseValue: 10
+    BaseValue: 12
     maxValue: 99
     amountIncreasedBy: 0
   resistance:
-    BaseValue: 3
+    BaseValue: 5
     maxValue: 99
-    amountIncreasedBy: 0
+    amountIncreasedBy: 1
   criticalChance:
     BaseValue: 4
     maxValue: 99
     amountIncreasedBy: 0
-  description: This is a description for yah girl Leandra. She is boss and won't
-    take anyone's crap. Uggghhh extra stuff to increase text count.
+  description: Leandra is a strong warrior trained in the martial and elemental arts.
   weaponMight: 6
   magicMight: 1
   weaponAccuracy: 85
@@ -203,7 +202,7 @@ MonoBehaviour:
   currentClass: {fileID: 11400000, guid: 83e5cd2b65fcca14d8a106a0fd644fe6, type: 2}
   overworldController: {fileID: 22100000, guid: 1647280e04625e440b25e30c6e57db80,
     type: 2}
-  positionInParty: 2
+  positionInParty: 3
   specialAttackBarVal: 1
   weaponInventory: {fileID: 2363339618168879057, guid: 3b3a696505e47b2409e90ac00429c493,
     type: 3}

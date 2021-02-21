@@ -10,26 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4fe0785f3733400495ac195eb98ba710, type: 3}
-  m_Name: The Juice
+  m_Name: Flurry Rush
   m_EditorClassIdentifier: 
   abilityType: 0
-  damageType: 0
+  damageType: 2
   targetOptions: 0
-  icon: {fileID: 21300000, guid: 98b65887d04a856459b2a00d4d736514, type: 3}
-  actionCost: 2
-  damageMultiplier: 1.25
-  attackState: 1
-  animation: {fileID: 7400000, guid: 3de788add6cbf3a43b987122257ccdbb, type: 2}
+  icon: {fileID: 21300000, guid: 472de894e31aadf48a85e231eb4a9986, type: 3}
+  actionCost: 1
+  damageMultiplier: 1.5
+  attackState: 2
+  animation: {fileID: 0}
   hasOverride: 0
   endTurnOnUse: 0
   dontTransitionToIdle: 0
   isMultiTarget: 0
-  description: You got the juice??
-  hasElemental: 1
-  elementalType: {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
-  elementalScalar: 25
+  description: A special combo attack that can put a weakened enemy in checkmate!
+  hasElemental: 0
+  elementalType: {fileID: 0}
+  elementalScalar: 0
   hasStatusEffect: 1
   statusEffects:
-  - {fileID: 11400000, guid: 31c9e693902cb7548a35ac7dd5c938f5, type: 2}
-  - {fileID: 11400000, guid: 44dd6fe786b69c042827684d206f2972, type: 2}
+  - {fileID: 11400000, guid: 36cd878da8e17a84ba8777f48afcd570, type: 2}
   chanceOfInfliction: 1

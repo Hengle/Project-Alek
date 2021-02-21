@@ -1,0 +1,268 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d95f71b0ecb984994fbe8ed6ae5941, type: 3}
+  m_Name: Mushroom
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 366775002164acb45983c6014a20dd29, type: 2}
+    - {fileID: 11400000, guid: 066aad808609ad8438ac9e0ab5487513, type: 2}
+    - {fileID: 11400000, guid: 4320bf8c008e3714ca91e4ead67d7224, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _elementalResistances
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[Characters.UnitBase+ElementalResStruct,
+        ProjectAlek],[System.Boolean, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.UnitBase+ElementalResStruct,
+        ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 7
+      Data: Characters.UnitBase+ElementalResStruct, ProjectAlek
+    - Name: _type
+      Entry: 10
+      Data: 0
+    - Name: _scalar
+      Entry: 3
+      Data: 50
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: $v
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _elementalWeaknesses
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[Characters.UnitBase+ElementalWeaknessStruct,
+        ProjectAlek],[System.Boolean, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 3|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.UnitBase+ElementalWeaknessStruct,
+        ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 7
+      Data: Characters.UnitBase+ElementalWeaknessStruct, ProjectAlek
+    - Name: _type
+      Entry: 10
+      Data: 1
+    - Name: _scalar
+      Entry: 3
+      Data: 175
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: $v
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _statusEffectResistances
+      Entry: 7
+      Data: 4|System.Collections.Generic.Dictionary`2[[Characters.UnitBase+StatusEffectStruct,
+        ProjectAlek],[System.Boolean, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 5|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.UnitBase+StatusEffectStruct,
+        ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _statusEffectWeaknesses
+      Entry: 7
+      Data: 6|System.Collections.Generic.Dictionary`2[[Characters.UnitBase+StatusEffectStruct,
+        ProjectAlek],[System.Boolean, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 5
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _damageTypeWeaknesses
+      Entry: 7
+      Data: 7|System.Collections.Generic.Dictionary`2[[Characters.WeaponDamageType,
+        ProjectAlek],[System.Boolean, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 8|System.Collections.Generic.ObjectEqualityComparer`1[[Characters.WeaponDamageType,
+        ProjectAlek]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 2
+    - Name: $v
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: onDeath
+      Entry: 6
+      Data: 
+    - Name: onRevival
+      Entry: 6
+      Data: 
+    - Name: onHpValueChanged
+      Entry: 6
+      Data: 
+    - Name: onShieldValueChanged
+      Entry: 6
+      Data: 
+    - Name: onShieldBroken
+      Entry: 6
+      Data: 
+    - Name: onShieldRestored
+      Entry: 6
+      Data: 
+    - Name: onElementalDamageReceived
+      Entry: 6
+      Data: 
+    - Name: onWeaponDamageTypeReceived
+      Entry: 6
+      Data: 
+    - Name: onStatusEffectReceived
+      Entry: 6
+      Data: 
+    - Name: onStatusEffectRemoved
+      Entry: 6
+      Data: 
+    - Name: onApValChanged
+      Entry: 6
+      Data: 
+  icon: {fileID: 21300000, guid: 62195658b26075749841f2c953bf1fed, type: 3}
+  scale: {x: 50, y: 50, z: 1}
+  id: 1
+  characterName: Mushroom
+  characterPrefab: {fileID: 1109450531332189788, guid: 70e627c573adedc4aa16683264f9ebbf,
+    type: 3}
+  level: 3
+  health:
+    BaseValue: 1350
+    maxValue: 99999
+    amountIncreasedBy: 0
+  strength:
+    BaseValue: 10
+    maxValue: 99
+    amountIncreasedBy: 0
+  magic:
+    BaseValue: 3
+    maxValue: 99
+    amountIncreasedBy: 0
+  accuracy:
+    BaseValue: 11
+    maxValue: 99
+    amountIncreasedBy: 0
+  initiative:
+    BaseValue: 7
+    maxValue: 99
+    amountIncreasedBy: 0
+  defense:
+    BaseValue: 8
+    maxValue: 99
+    amountIncreasedBy: 0
+  resistance:
+    BaseValue: 2
+    maxValue: 99
+    amountIncreasedBy: 0
+  criticalChance:
+    BaseValue: 3
+    maxValue: 99
+    amountIncreasedBy: 0
+  description: A disgusting mushroom. It actually wears glasses and has a beard,
+    if you can believe it!
+  weaponMight: 8
+  magicMight: 2
+  weaponAccuracy: 80
+  weaponCriticalChance: 3
+  abilities:
+  - {fileID: 11400000, guid: 3f63c84dc35e40741b758568ce3b22b9, type: 2}
+  spells: []
+  overworldPrefab: {fileID: 7390686793474909329, guid: 126b943edb003264684dc837db32434c,
+    type: 3}
+  maxShieldCount: 3
+  isSummon: 0
+  master: {fileID: 0}
+  summonParent: {fileID: 0}
+  summonGO: {fileID: 0}
+  summonAnim: {fileID: 0}
+  summonHandler: {fileID: 0}
+  animOverride: {fileID: 0}
+  baseExperience: 250

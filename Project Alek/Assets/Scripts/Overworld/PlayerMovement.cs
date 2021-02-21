@@ -17,9 +17,9 @@ namespace Overworld
         [SerializeField] private int walkSpeed = 5;
         [SerializeField] private int runSpeed = 10;
         
-        private static readonly int IsWalkingHash = Animator.StringToHash("isWalking");
-        private static readonly int IsRunningHash = Animator.StringToHash("isRunning");
-        private static readonly int HorizontalHash = Animator.StringToHash("Horizontal");
+        // private static readonly int IsWalkingHash = Animator.StringToHash("isWalking");
+        // private static readonly int IsRunningHash = Animator.StringToHash("isRunning");
+        // private static readonly int HorizontalHash = Animator.StringToHash("Horizontal");
 
         private bool movementPressed;
         private bool runPressed;
@@ -48,16 +48,16 @@ namespace Overworld
 
         private void HandleMovement()
         {
-            var isRunning = anim.GetBool(IsRunningHash);
-            var isWalking = anim.GetBool(IsWalkingHash);
+            var isRunning = anim.GetBool(AnimationHandler.IsRunningHash);
+            var isWalking = anim.GetBool(AnimationHandler.IsWalkingHash);
 
-            anim.SetFloat(HorizontalHash, currentMovement.x);
+            anim.SetFloat(AnimationHandler.HorizontalHash, currentMovement.x);
             
-            if (movementPressed && !isWalking) { anim.SetBool(IsWalkingHash, true); speed = walkSpeed; }
-            if (!movementPressed && isWalking) { anim.SetBool(IsWalkingHash, false); speed = walkSpeed; }
+            if (movementPressed && !isWalking) { anim.SetBool(AnimationHandler.IsWalkingHash, true); speed = walkSpeed; }
+            if (!movementPressed && isWalking) { anim.SetBool(AnimationHandler.IsWalkingHash, false); speed = walkSpeed; }
             
-            if (movementPressed && runPressed && !isRunning) { anim.SetBool(IsRunningHash, true); speed = runSpeed; }
-            if (!movementPressed || !runPressed && isRunning) { anim.SetBool(IsRunningHash, false); speed = walkSpeed; }
+            if (movementPressed && runPressed && !isRunning) { anim.SetBool(AnimationHandler.IsRunningHash, true); speed = runSpeed; }
+            if (!movementPressed || !runPressed && isRunning) { anim.SetBool(AnimationHandler.IsRunningHash, false); speed = walkSpeed; }
 
             var playerTransform = transform;
             var forwardPos = playerTransform.forward * currentMovement.y;

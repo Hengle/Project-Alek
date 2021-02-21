@@ -120,7 +120,7 @@ namespace Characters.PartyMembers
                 if (BattleInput._controls.Battle.Confirm.triggered)
                 {
                     var leftover = xp - e;
-                    currentExperience += leftover;
+                    CurrentExperience += leftover;
                     yield break;
                 }
                 

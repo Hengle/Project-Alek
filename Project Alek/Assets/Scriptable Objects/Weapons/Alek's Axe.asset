@@ -19,8 +19,9 @@ MonoBehaviour:
   Equippable: 1
   Quantity: 1
   ItemName: Alek's Axe
-  ShortDescription: An axe given to Alek by his father
-  Description: A myserious Axe gieven to Alek by his father.
+  ShortDescription: A mysterious axe given to Alek by his father.
+  Description: Alek received this axe from his father when he was 8 years old. Ever
+    since his father disappeared, he has held onto this axe as a keepsake.
   CanMoveObject: 1
   CanSwapObject: 1
   Icon: {fileID: 21300016, guid: a1fbd1aaf76d0b94e88551b7c406ee2c, type: 3}
@@ -36,7 +37,6 @@ MonoBehaviour:
   MovedSound: {fileID: 0}
   DroppedSound: {fileID: 0}
   UseDefaultSoundsIfNull: 1
-  WeaponSprite: {fileID: 0}
   damageType: {fileID: 11400000, guid: 4320bf8c008e3714ca91e4ead67d7224, type: 2}
   weaponMight: 12
   magicMight: 5

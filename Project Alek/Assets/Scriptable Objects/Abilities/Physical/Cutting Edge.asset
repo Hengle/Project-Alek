@@ -17,18 +17,18 @@ MonoBehaviour:
   targetOptions: 0
   icon: {fileID: 21300000, guid: ceeb46d7d4e44b844beca0c537f88ca1, type: 3}
   actionCost: 2
-  damageMultiplier: 1
+  damageMultiplier: 1.5
   attackState: 1
   animation: {fileID: 7400000, guid: 6f8ef43341b687f4dbe0efe6ca2bc7e8, type: 2}
   hasOverride: 0
+  endTurnOnUse: 0
+  dontTransitionToIdle: 0
   isMultiTarget: 0
-  description: It cuts them.. at an edge
+  description: It cuts them.. at an edge. Low chance of inflicting bleed.
   hasElemental: 0
   elementalType: {fileID: 0}
   elementalScalar: 0
   hasStatusEffect: 1
   statusEffects:
   - {fileID: 11400000, guid: e410ca22500519a40ac2de06f6718146, type: 2}
-  - {fileID: 11400000, guid: 5e7ce7090343b4f41ab9a9dc134de7f5, type: 2}
-  - {fileID: 11400000, guid: 41f94f5d5bda6254cace55c3cc498377, type: 2}
-  chanceOfInfliction: 0.75
+  chanceOfInfliction: 0.25

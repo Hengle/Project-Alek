@@ -290,7 +290,7 @@ MonoBehaviour:
     BaseValue: 5
     maxValue: 99
     amountIncreasedBy: 0
-  description: I mean, he's a...
+  description: A skeleton. Why is it alive? Beats me. Does it matter? Not at all.
   weaponMight: 13
   magicMight: 3
   weaponAccuracy: 70
@@ -301,4 +301,11 @@ MonoBehaviour:
   spells: []
   overworldPrefab: {fileID: 0}
   maxShieldCount: 4
-  baseExperience: 420
+  isSummon: 0
+  master: {fileID: 0}
+  summonParent: {fileID: 0}
+  summonGO: {fileID: 0}
+  summonAnim: {fileID: 0}
+  summonHandler: {fileID: 0}
+  animOverride: {fileID: 0}
+  baseExperience: 325

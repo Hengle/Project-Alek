@@ -19,8 +19,9 @@ MonoBehaviour:
   Equippable: 1
   Quantity: 1
   ItemName: Fisticuffs
-  ShortDescription: Leandras badass fisticuffs
-  Description: Don't feel like putting a long description
+  ShortDescription: Leandra's badass FISTS
+  Description: Leandra is highly trained in the art of kicking ass. She doesn't even
+    bother to take names. No one will remember them anyway....
   CanMoveObject: 1
   CanSwapObject: 1
   Icon: {fileID: 21300000, guid: 2978e214a62beee449d7882b1a12a347, type: 3}
@@ -36,7 +37,6 @@ MonoBehaviour:
   MovedSound: {fileID: 0}
   DroppedSound: {fileID: 0}
   UseDefaultSoundsIfNull: 1
-  WeaponSprite: {fileID: 0}
   damageType: {fileID: 11400000, guid: d8299019d46894a479b7579d8ae96e6a, type: 2}
   weaponMight: 6
   magicMight: 0

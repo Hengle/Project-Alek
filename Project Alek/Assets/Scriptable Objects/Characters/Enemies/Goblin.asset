@@ -228,4 +228,4 @@ MonoBehaviour:
   summonAnim: {fileID: 0}
   summonHandler: {fileID: 0}
   animOverride: {fileID: 0}
-  baseExperience: 100
+  baseExperience: 200
