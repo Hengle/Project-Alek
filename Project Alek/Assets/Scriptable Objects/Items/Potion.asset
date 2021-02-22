@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48417c356aa393b48a91d187acc3198e, type: 3}
   m_Name: Potion
   m_EditorClassIdentifier: 
-  ItemID: Apple
+  ItemID: Potion
   TargetInventoryName: Main Inventory
-  targetOptions: 1
+  targetOptions: 0
   Usable: 1
   Equippable: 0
   Quantity: 0

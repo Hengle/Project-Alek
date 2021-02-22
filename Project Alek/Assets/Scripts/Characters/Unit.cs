@@ -28,6 +28,7 @@ namespace Characters
         [HideInInspector] public AnimationHandler animationHandler;
         [HideInInspector] public SpriteOutline outline;
         [HideInInspector] public Button button;
+        [HideInInspector] public Image turnOrderIcon;
 
         [HideInInspector] public int commandActionOption;
         [HideInInspector] public int maxHealthRef;
@@ -99,7 +100,7 @@ namespace Characters
         }
 
         public UnitBase parent;
-        
+
         #endregion
 
         private void Awake()
@@ -139,17 +140,29 @@ namespace Characters
 
         public void OnSelect(BaseEventData eventData)
         {
-            outline.enabled = true;
+            OnSelectActions();
             onSelect?.Invoke();
         }
 
         public void OnDeselect(BaseEventData eventData)
         {
-            outline.enabled = false;
+            OnDeselectActions();
             onDeselect?.Invoke();
         }
 
         public static bool CanBorrow(int amount) => amount <= GlobalVariables.Instance.maxLoanAmount;
+
+        public void OnSelectActions()
+        {
+            outline.enabled = true;
+            turnOrderIcon.color = Color.red;
+        }
+
+        public void OnDeselectActions()
+        {
+            outline.enabled = false;
+            turnOrderIcon.color = Color.white;
+        }
 
         private void ResetTargets()
         {
@@ -182,6 +195,7 @@ namespace Characters
             if (value2 == BattleEvents.Instance.characterTurnEvent)
             {
                 outline.enabled = false;
+                turnOrderIcon.color = Color.white;
                 button.enabled = false;
                 isAbility = false;
                 currentAbility = null;

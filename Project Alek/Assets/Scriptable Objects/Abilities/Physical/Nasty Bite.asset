@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 0
   damageType: 0
-  targetOptions: 0
+  targetOptions: 1
   icon: {fileID: 21300000, guid: 1ab28e3e1154af9479c46dd1d30ce10e, type: 3}
   actionCost: 2
   damageMultiplier: 1.35

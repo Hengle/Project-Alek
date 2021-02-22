@@ -4,15 +4,11 @@ namespace DamagePrefab
 {
     public class DamagePrefab : MonoBehaviour
     {
-        private void OnEnable()
-        {
-            DamagePrefabManager.Instance.activeObjects.Enqueue(gameObject);
-            Invoke(nameof(Hide), 2);
-        }
-
+        private void OnEnable() => Invoke(nameof(Hide), 2);
+        
         private void Hide()
         {
-            DamagePrefabManager.Instance.activeObjects.Dequeue();
+            DamagePrefabManager.Instance.Dequeue(gameObject);
             gameObject.SetActive(false);
         }
     }

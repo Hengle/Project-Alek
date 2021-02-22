@@ -14,12 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 2
   damageType: 0
-  targetOptions: 1
+  targetOptions: 2
   icon: {fileID: 21300000, guid: 5020a01ad4c184d4b809c1a88307b482, type: 3}
   actionCost: 1
   damageMultiplier: 1
   attackState: 2
   animation: {fileID: 0}
+  hasOverride: 0
+  endTurnOnUse: 0
+  dontTransitionToIdle: 0
   isMultiTarget: 0
   description: Insert description for this ability
   hasElemental: 0

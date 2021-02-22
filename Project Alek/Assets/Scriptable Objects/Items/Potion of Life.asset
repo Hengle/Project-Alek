@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemID: Potion of Life
   TargetInventoryName: Main Inventory
-  targetOptions: 1
+  targetOptions: 0
   Usable: 1
   Equippable: 0
   Quantity: 1

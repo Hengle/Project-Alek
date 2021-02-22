@@ -21,6 +21,7 @@ namespace BattleSystem.UI
                 if (i >= count) { thisTurnList[i].SetActive(false); continue; }
 
                 thisTurnIcons[i].sprite = BattleEngine.Instance.membersAndEnemiesThisTurn[i].icon;
+                BattleEngine.Instance.membersAndEnemiesThisTurn[i].Unit.turnOrderIcon = thisTurnIcons[i];
                 thisTurnList[i].SetActive(true);
             }
         }

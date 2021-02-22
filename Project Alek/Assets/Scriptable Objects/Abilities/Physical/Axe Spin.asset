@@ -14,12 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 0
   damageType: 0
-  targetOptions: 0
+  targetOptions: 1
   icon: {fileID: 21300000, guid: df306da214fdd3d4f8a67768c21a380e, type: 3}
   actionCost: 2
   damageMultiplier: 0.7
   attackState: 2
   animation: {fileID: 7400000, guid: 96958b3234baf644bad6ce69e5379a35, type: 2}
+  hasOverride: 0
+  endTurnOnUse: 0
+  dontTransitionToIdle: 0
   isMultiTarget: 0
   description: Attack twice at 70% strength
   hasElemental: 0

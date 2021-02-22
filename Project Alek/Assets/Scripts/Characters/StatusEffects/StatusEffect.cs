@@ -51,9 +51,10 @@ namespace Characters.StatusEffects
             target.onStatusEffectReceived?.Invoke(this);
             
             var position = target.Unit.gameObject.transform.position;
-            var newPosition = new Vector3(position.x, position.y + 3, position.z);
+            var newPosition = new Vector3(position.x, position.y + 2, position.z);
             DamagePrefabManager.Instance.DamageTextColor = color;
-            DamagePrefabManager.Instance.ShowText(shortStatName != "" ? $"+ {shortStatName}" : $"+ {name.ToUpper()}", newPosition, 12f);
+            DamagePrefabManager.Instance.ShowText(shortStatName != "" ?
+                $"+ {shortStatName}" : $"+ {name.ToUpper()}", newPosition, target.Unit.transform, 8f);
         }
 
         public virtual void OnRemoval(UnitBase unitBase)
@@ -61,9 +62,10 @@ namespace Characters.StatusEffects
             unitBase.onStatusEffectRemoved?.Invoke(this);
             
             var position = unitBase.Unit.gameObject.transform.position;
-            var newPosition = new Vector3(position.x, position.y + 3, position.z);
+            var newPosition = new Vector3(position.x, position.y + 2, position.z);
             DamagePrefabManager.Instance.DamageTextColor = color;
-            DamagePrefabManager.Instance.ShowText(shortStatName != "" ? $"- {shortStatName}" : $"- {name.ToUpper()}", newPosition, 12f);
+            DamagePrefabManager.Instance.ShowText(shortStatName != "" ?
+                $"- {shortStatName}" : $"- {name.ToUpper()}", newPosition, unitBase.Unit.transform, 8f);
         }
         
         public float StatusEffectModifier(UnitBase target)

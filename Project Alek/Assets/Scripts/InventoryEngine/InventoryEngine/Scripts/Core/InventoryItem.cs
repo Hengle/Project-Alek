@@ -20,7 +20,7 @@ namespace MoreMountains.InventoryEngine
 		/// the inventory name into which this item will be stored
 		public string TargetInventoryName = "MainInventory";
 
-		[MMInformation("0 = Enemy, 1 = Party Members, 2 = Both",MMInformationAttribute.InformationType.Info,false)]
+		[MMInformation("0 = Party Member, 1 = Enemy, 2 = Both",MMInformationAttribute.InformationType.Info,false)]
 		[Range(0,2)] public int targetOptions;
 
 		[Header("Methods")]

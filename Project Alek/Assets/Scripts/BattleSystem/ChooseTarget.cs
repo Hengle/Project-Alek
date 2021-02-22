@@ -101,10 +101,8 @@ namespace BattleSystem
             targetOptionsCharacterType = (TargetOptions) _targetOptions;
         }
 
-        // This function is called from an onclick event attached to each character
         private void AddCommand()
         {
-            // TODO: Account for revival items and other types
             if (BattleEngine.Instance.usingItem)
             {
                 character.Unit.currentTarget = thisUnitBase;
@@ -147,16 +145,18 @@ namespace BattleSystem
 
             switch (_targetOptions)
             {
-                case 0: foreach (var enemy in BattleEngine.Instance._enemiesForThisBattle)
+                case 1: foreach (var enemy in BattleEngine.Instance._enemiesForThisBattle)
                     {
                         character.Unit.multiHitTargets.Add(enemy);
+                        enemy.Unit.OnDeselectActions();
                         enemy.Unit.onDeselect?.Invoke();
                     }
                     break;
                 
-                case 1: foreach (var member in BattleEngine.Instance._membersForThisBattle)
+                case 0: foreach (var member in BattleEngine.Instance._membersForThisBattle)
                     {
                         character.Unit.multiHitTargets.Add(member);
+                        member.Unit.OnDeselectActions();
                         member.Unit.onDeselect?.Invoke();
                     }
                     break;
@@ -173,9 +173,9 @@ namespace BattleSystem
         private IEnumerator<float> WaitForMultiTargetConfirmation()
         {
             if ((int) thisUnitBase.id != (int) targetOptionsCharacterType) yield break;
-            
-            thisUnitBase.Unit.outline.enabled = true;
+
             thisUnitBase.Unit.button.interactable = false;
+            thisUnitBase.Unit.OnSelectActions();
             thisUnitBase.Unit.onSelect?.Invoke();
 
             BattleInput._inputModule.enabled = false;
@@ -196,8 +196,8 @@ namespace BattleSystem
             BattleInput._canOpenBox = true;
 
             thisUnitBase.Unit.button.interactable = true;
-            thisUnitBase.Unit.outline.enabled = false;
             _isMultiTarget = false;
+            thisUnitBase.Unit.OnDeselectActions();
             thisUnitBase.Unit.onDeselect?.Invoke();
         }
 

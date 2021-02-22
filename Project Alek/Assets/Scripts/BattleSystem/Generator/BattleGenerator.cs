@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using BattleSystem.Mechanics;
 using BattleSystem.UI;
 using Characters;
@@ -7,6 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Characters.PartyMembers;
 using Characters.StatusEffects;
+using DamagePrefab;
 using MoreMountains.InventoryEngine;
 using SingletonScriptableObject;
 using TMPro;
@@ -32,6 +34,18 @@ namespace BattleSystem.Generator
             SetupParty();
             SpawnAndSetupEnemyTeam();
             SetupPartyMenuController();
+            RegisterDamagePrefabPairs();
+        }
+
+        private static void RegisterDamagePrefabPairs()
+        {
+            var members = BattleEngine.Instance._membersForThisBattle;
+            var  enemies = BattleEngine.Instance._enemiesForThisBattle;
+            var combined = new List<Transform>();
+            
+            members.ForEach(m => combined.Add(m.Unit.transform));
+            enemies.ForEach(e => combined.Add(e.Unit.transform));
+            DamagePrefabManager.Instance.RegisterTransforms(combined);
         }
 
         private void SetupMainInventory()
@@ -81,7 +95,7 @@ namespace BattleSystem.Generator
             var mainMenu = character.battlePanel.transform.Find("Battle Menu").transform.Find("Mask").transform.Find("Main Options");
 
             mainMenu.Find("Attack Button").gameObject.GetComponent<Button>().onClick.AddListener
-                ( delegate { ((BattleOptionsPanel) character.battleOptionsPanel).GetCommandInformation("UniversalAction,1,0,2"); });
+                ( delegate { ((BattleOptionsPanel) character.battleOptionsPanel).GetCommandInformation("UniversalAction,1,1,2"); });
 
             var abilityButton = mainMenu.Find("Abilities Button").gameObject.GetComponent<Button>();
             if (character.abilities.Count == 0) abilityButton.interactable = false;

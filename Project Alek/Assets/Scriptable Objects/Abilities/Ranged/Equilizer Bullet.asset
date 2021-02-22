@@ -14,12 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 1
   damageType: 0
-  targetOptions: 0
+  targetOptions: 1
   icon: {fileID: 21300000, guid: 20fa0968317cae7419eb9bed5192967f, type: 3}
   actionCost: 2
   damageMultiplier: 1.05
   attackState: 2
   animation: {fileID: 7400000, guid: 10468bef8c71fa54581a422a1686b6db, type: 2}
+  hasOverride: 0
+  endTurnOnUse: 0
+  dontTransitionToIdle: 0
   isMultiTarget: 0
   description: Moderately lowers STR and slightly lowers CRIT
   hasElemental: 0

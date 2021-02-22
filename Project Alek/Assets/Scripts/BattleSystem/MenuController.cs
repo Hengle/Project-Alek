@@ -91,11 +91,11 @@ namespace BattleSystem
         {
             switch (ChooseTarget._targetOptions)
             {
-                case 0: // Enemy
+                case 1: // Enemy
                     EventSystem.current.SetSelectedGameObject(null);
                     EventSystem.current.SetSelectedGameObject(SelectableObjectManager._enemySelectable[0].gameObject);
                     break;
-                case 1: // Party Member
+                case 0: // Party Member
                     EventSystem.current.SetSelectedGameObject(null);
                     EventSystem.current.SetSelectedGameObject(SelectableObjectManager._memberFirstSelected);
                     break;

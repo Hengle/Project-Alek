@@ -141,7 +141,7 @@ namespace BattleSystem
                 
             if (PartyOrEnemyTeamIsDead) EndOfBattle();
             else if (!character.GetStatus()) BattleEvents.Instance.skipTurnEvent.Raise(character, BattleEvents.Instance.skipTurnEvent);
-            else Timing.RunCoroutine(character.id == CharacterType.PartyMember
+            else Timing.RunCoroutine((CharacterType)character.id == CharacterType.PartyMember
                 ? ThisPlayerTurn((PartyMember) character)
                 : ThisEnemyTurn((Enemy) character));
         }

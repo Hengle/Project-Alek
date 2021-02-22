@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using MEC;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -23,9 +25,10 @@ namespace DamagePrefab
 
         [SerializeField] private float normalFontSize;
         
-        public Color DamageTextColor { set => damageTextColor = value; }
+        [SerializeField] private List<KeyValuePair<Transform, Queue<GameObject>>> battleUnits =
+            new List<KeyValuePair<Transform, Queue<GameObject>>>();
         
-        public Queue<GameObject> activeObjects = new Queue<GameObject>();
+        public Color DamageTextColor { set => damageTextColor = value; }
 
         private void Start() => damagePool = GeneratePrefabs(poolCount);
 
@@ -45,9 +48,24 @@ namespace DamagePrefab
             return damagePool;
         }
 
-        public GameObject ShowDamage(int dmg, bool isCrit, Vector3 position)
+        private KeyValuePair<Transform, Queue<GameObject>> GetKeyValuePair(Transform battleUnit = null, GameObject prefab = null)
         {
-            var stackOffset = activeObjects.Count + 0.5f;
+            return prefab ? battleUnits.SingleOrDefault(u => u.Value.Contains(prefab)) :
+                battleUnits.SingleOrDefault(u => u.Key == battleUnit);
+        }
+
+        public void RegisterTransforms(List<Transform> transforms)
+        {
+            foreach (var obj in transforms)
+            {
+                battleUnits.Add(new KeyValuePair<Transform, Queue<GameObject>>(obj, new Queue<GameObject>()));
+            }
+        }
+
+        public GameObject ShowDamage(int dmg, bool isCrit, Vector3 position, Transform battleUnit)
+        {
+            var count = GetKeyValuePair(battleUnit).Value.Count;
+            var stackOffset = count > 0 ? count * 0.5f : 0;
             
             for (var i = 0; i < damagePool.Count; i++)
             {
@@ -58,6 +76,8 @@ namespace DamagePrefab
                 damageTextList[i].fontSize = normalFontSize;
                 damageTextColor = Color.white;
                 damagePool[i].transform.position = new Vector3(position.x, position.y + stackOffset, position.z);
+                
+                Enqueue(damagePool[i], battleUnit);
                 damagePool[i].SetActive(true);
                     
                 return damagePool[i];
@@ -67,14 +87,17 @@ namespace DamagePrefab
             damageTextList[0].text = dmg.ToString();
             damageTextColor = Color.white;
             damagePool[0].transform.position = new Vector3(position.x, position.y + stackOffset, position.z);
+            
+            Enqueue(damagePool[0], battleUnit);
             damagePool[0].SetActive(true);
             
             return damagePool[0];
         }
 
-        public GameObject ShowText(string message, Vector3 position, float fontSize = 0f)
+        public GameObject ShowText(string message, Vector3 position, Transform battleUnit, float fontSize = 0f)
         {
-            var stackOffset = activeObjects.Count + 0.5f;
+            var count = GetKeyValuePair(battleUnit).Value.Count;
+            var stackOffset = count > 0 ? count * 0.5f : 0;
             
             for (var i = 0; i < damagePool.Count; i++)
             {
@@ -85,6 +108,8 @@ namespace DamagePrefab
                 damageTextList[i].fontSize = Math.Abs(fontSize) > 0.1f ? fontSize : normalFontSize;
                 damageTextColor = Color.white;
                 damagePool[i].transform.position = new Vector3(position.x, position.y + stackOffset, position.z);
+                
+                Enqueue(damagePool[i], battleUnit);
                 damagePool[i].SetActive(true);
                     
                 return damagePool[i];
@@ -94,9 +119,23 @@ namespace DamagePrefab
             damageTextList[0].text = message;
             damageTextColor = Color.white;
             damagePool[0].transform.position = new Vector3(position.x, position.y + stackOffset, position.z);
+            
+            Enqueue(damagePool[0], battleUnit);
             damagePool[0].SetActive(true);
             
             return damagePool[0];
+        }
+
+        private void Enqueue(GameObject prefab, Transform battleUnit)
+        {
+            var pair = GetKeyValuePair(battleUnit);
+            if (pair.Key) pair.Value.Enqueue(prefab);
+        }
+
+        public void Dequeue(GameObject prefab)
+        {
+            var pair = GetKeyValuePair(prefab: prefab);
+            if (pair.Key) pair.Value.Dequeue();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Characters.Abilities
 {
     public enum AbilityType { CloseRange, Ranged, NonAttack }
     public enum DamageType { Physical, Magic, Special }
-    public enum TargetOptions { Enemies = 0, PartyMembers = 1, Both = 2, Self = 3 }
+    public enum TargetOptions { PartyMembers = 0, Enemies = 1,  Both = 2, Self = 3 }
     public abstract class Ability : ScriptableObject
     {
         #region FieldsAndProperties

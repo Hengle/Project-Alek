@@ -18,7 +18,7 @@ using UnityEngine.UI;
 
 namespace Characters
 {
-    public enum CharacterType { PartyMember, Enemy, Both }
+    public enum CharacterType { PartyMember = 0, Enemy = 1, Both = 2 }
     public abstract class UnitBase : SerializedScriptableObject
     {
         #region FieldsAndProperties
@@ -29,7 +29,7 @@ namespace Characters
         [VerticalGroup("Basic/Info"), LabelWidth(120)] 
         public Vector3 scale = Vector3.one;
 
-        [VerticalGroup("Basic/Info"), HideInInspector, LabelWidth(120)] 
+        [VerticalGroup("Basic/Info"), LabelWidth(120)] 
         public CharacterType id;
 
         [HorizontalGroup("Basic/Info/Prefab"), LabelText("Name"), LabelWidth(50)] 
@@ -331,10 +331,11 @@ namespace Characters
             }
 
             //TODO: Change to local position
-            var position = Unit.gameObject.transform.position;
-            var newPosition = new Vector3(position.x, position.y + 3, position.z);
+            var transform = Unit.transform;
+            var position = transform.position;
+            var newPosition = new Vector3(position.x, position.y + 2, position.z);
             
-            DamagePrefabManager.Instance.ShowDamage(dmg, Unit.targetHasCrit, newPosition);
+            DamagePrefabManager.Instance.ShowDamage(dmg, Unit.targetHasCrit, newPosition, transform);
 
             if (Unit.targetHasCrit) Unit.targetHasCrit = false;
             
@@ -346,13 +347,13 @@ namespace Characters
         public void TakeDamageSpecial(int dmg)
         {
             CurrentHP -= dmg;
-            
-            var position = Unit.gameObject.transform.position;
+
+            var transform = Unit.transform;
+            var position = transform.position;
             var newPosition = new Vector3(position.x, position.y + 3, position.z);
             
-            DamagePrefabManager.Instance.ShowDamage(dmg, false, newPosition);
-            //damage.transform.position = newPosition;
-            
+            DamagePrefabManager.Instance.ShowDamage(dmg, false, newPosition, transform);
+
             if (Unit.currentHP > 0) Unit.anim.SetTrigger(AnimationHandler.HurtTrigger);
             else Die();
         }
