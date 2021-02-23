@@ -20,7 +20,7 @@ namespace Audio
                 InstantiateProfileAudioSource();
             else if (!useProfile) track.source.transform.SetParent(AudioController.Instance.transform);
             
-            AudioController.Instance.AddNewTrack(useProfile ? profile.track : track);
+            AudioController.AddNewTrack(useProfile ? profile.track : track);
         }
 
         private void InstantiateProfileAudioSource()
@@ -33,10 +33,10 @@ namespace Audio
         private void OnDestroy()
         {
             if (useProfile) return;
-            AudioController.Instance.RemoveTrack(track);
+            AudioController.RemoveTrack(track);
         }
 
-        [UsedImplicitly] public void PlayAudio(int index) => AudioController.Instance.PlayAudio
+        [UsedImplicitly] public void PlayAudio(int index) => AudioController.PlayAudio
             (useProfile ? profile.track.audio[index].type : track.audio[index].type);
     }
 }

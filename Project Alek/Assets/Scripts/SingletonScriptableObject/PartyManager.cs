@@ -10,20 +10,28 @@ namespace SingletonScriptableObject
     public class PartyManager : ScriptableObjectSingleton<PartyManager>
     {
         [InlineEditor(InlineEditorModes.FullEditor)]
-        public List<PartyMember> partyMembers = new List<PartyMember>();
+        [SerializeField] private List<PartyMember> partyMembers = new List<PartyMember>();
 
-        public PartyMember currentLeader;
+        public static List<PartyMember> Members => Instance.partyMembers;
 
-        public void Order()
+        [SerializeField] private PartyMember currentLeader;
+
+        public static PartyMember CurrentLeader
         {
-            partyMembers = partyMembers.OrderBy(i => i.positionInParty).ToList();
-            for (var i = 0; i < partyMembers.Count; i++)
+            get => Instance.currentLeader;
+            set => Instance.currentLeader = value;
+        }
+
+        public static void Order()
+        {
+            Instance.partyMembers = Instance.partyMembers.OrderBy(i => i.positionInParty).ToList();
+            for (var i = 0; i < Instance.partyMembers.Count; i++)
             {
-                if (partyMembers[i].positionInParty - 1 != i)
-                    partyMembers[i].positionInParty = i + 1;
+                if (Instance.partyMembers[i].positionInParty - 1 != i)
+                    Instance.partyMembers[i].positionInParty = i + 1;
             }
 
-            currentLeader = partyMembers[0];
+            Instance.currentLeader = Instance.partyMembers[0];
         }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]

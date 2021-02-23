@@ -176,7 +176,7 @@ MonoBehaviour:
       Data: 
     - Name: $v
       Entry: 5
-      Data: false
+      Data: true
     - Name: 
       Entry: 8
       Data: 
@@ -259,7 +259,7 @@ MonoBehaviour:
     type: 3}
   level: 4
   health:
-    BaseValue: 1425
+    BaseValue: 2425
     maxValue: 99999
     amountIncreasedBy: 0
   strength:
@@ -299,7 +299,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8697ec229a0734b4b9c69d6087505ba9, type: 2}
   - {fileID: 11400000, guid: 69669d1f08896e4488591447527a26dd, type: 2}
   spells: []
-  overworldPrefab: {fileID: 0}
+  overworldPrefab: {fileID: 7390686793474909329, guid: 17217e552e0973945a8c36f2cfb2d5be,
+    type: 3}
   maxShieldCount: 4
   isSummon: 0
   master: {fileID: 0}

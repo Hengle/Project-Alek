@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Audio;
 using BattleSystem;
 using Characters.StatusEffects;
+using SingletonScriptableObject;
 using UnityEngine;
 
 namespace MoreMountains.InventoryEngine
@@ -18,7 +19,8 @@ namespace MoreMountains.InventoryEngine
             base.Use();
             var target = BattleEngine.Instance.activeUnit.CurrentTarget;
             target.CureAilments(ailmentsToCure);
-            AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.heal);
+            AudioController.PlayAudio(CommonAudioTypes.Heal);
+            MainInventory.RemoveItem(this);
             return true;
         }
     }

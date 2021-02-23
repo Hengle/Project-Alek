@@ -43,7 +43,7 @@ namespace BattleSystem.UI
             {
                 if (i >= unit.conversionLevel) { arrows[i].SetActive(false); continue; }
                 
-                AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.aPConversion);
+                AudioController.PlayAudio(CommonAudioTypes.APConversion);
                 arrows[i].SetActive(true);
             }
         }

@@ -156,21 +156,21 @@ MonoBehaviour:
   characterName: Elias Adwin
   characterPrefab: {fileID: 1526218485019349028, guid: 26eeaf0931e2c7848aecbf4da262a084,
     type: 3}
-  level: 5
+  level: 1
   health:
-    BaseValue: 1190
+    BaseValue: 960
     maxValue: 99999
-    amountIncreasedBy: 82
+    amountIncreasedBy: 99
   strength:
-    BaseValue: 9
+    BaseValue: 8
     maxValue: 99
     amountIncreasedBy: 0
   magic:
-    BaseValue: 23
+    BaseValue: 10
     maxValue: 99
-    amountIncreasedBy: 1
+    amountIncreasedBy: 0
   accuracy:
-    BaseValue: 12
+    BaseValue: 11
     maxValue: 99
     amountIncreasedBy: 1
   initiative:
@@ -182,9 +182,9 @@ MonoBehaviour:
     maxValue: 99
     amountIncreasedBy: 0
   resistance:
-    BaseValue: 10
+    BaseValue: 7
     maxValue: 99
-    amountIncreasedBy: 1
+    amountIncreasedBy: 0
   criticalChance:
     BaseValue: 2
     maxValue: 99

@@ -29,7 +29,7 @@ namespace Characters.PartyMembers
             var summon = enemy;
             if (Application.isPlaying)
             {
-                var summonMatch = EnemyManager.Instance.enemies.FirstOrDefault
+                var summonMatch = EnemyManager.Enemies.FirstOrDefault
                     (e => e.characterName == enemy.characterName);
 
                 if (summonMatch == null)

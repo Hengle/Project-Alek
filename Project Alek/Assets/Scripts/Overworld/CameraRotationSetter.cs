@@ -13,10 +13,10 @@ namespace Overworld
 
         private void Awake()
         {
-            cVCamRotation.Value = SceneRotationManager.Instance.CurrentRotation != Quaternion.identity ?
-                SceneRotationManager.Instance.CurrentRotation : sceneRotation;
+            cVCamRotation.Value = SceneRotationManager.CurrentRotation != Quaternion.identity ?
+                SceneRotationManager.CurrentRotation : sceneRotation;
 
-            SceneRotationManager.Instance.CurrentRotation = Quaternion.identity;
+            SceneRotationManager.CurrentRotation = Quaternion.identity;
             newRotationSetEvent.Raise();
         }
 
@@ -32,7 +32,7 @@ namespace Overworld
 
         private void OnDisable()
         {
-            SceneRotationManager.Instance.CurrentRotation = cVCamRotation.Value;
+            SceneRotationManager.CurrentRotation = cVCamRotation.Value;
             setSceneRotationEvent.RemoveListener(this);
         }
     }

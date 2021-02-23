@@ -54,7 +54,7 @@ namespace Characters.Enemies
         protected override void Die()
         {
             base.Die();
-            Timing.RunCoroutine(DestroyGameObject(1f));
+            Timing.RunCoroutine(DestroyGameObject(3f));
         }
 
         private IEnumerator<float> DestroyGameObject(float delay)

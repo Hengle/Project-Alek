@@ -17,7 +17,7 @@ namespace MoreMountains.InventoryEngine
 			base.Use();
 			var target = BattleEngine.Instance.activeUnit.CurrentTarget;
 			target.Heal(HealthBonus);
-			AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.heal);
+			AudioController.PlayAudio(CommonAudioTypes.Heal);
 			return true;
 		}
 	}

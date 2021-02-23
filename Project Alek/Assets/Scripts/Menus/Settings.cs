@@ -15,6 +15,7 @@ namespace Menus
         [SerializeField] private AudioMixer audioMixer;
         [SerializeField] private Slider slider;
         [SerializeField] private Toggle fullscreenToggle;
+        [SerializeField] private Image toggleGraphicBackground;
         private Resolution[] resolutions;
 
         private void Start()
@@ -81,6 +82,7 @@ namespace Menus
         public void SetFullscreen(bool isFullscreen)
         {
             Screen.fullScreen = isFullscreen;
+            toggleGraphicBackground.enabled = !isFullscreen;
         }
     }
 }

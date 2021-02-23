@@ -135,8 +135,11 @@ namespace Overworld
         private void OnCollisionEnter(Collision other)
         {
             if (!other.transform.CompareTag("Player")) return;
-            PlayerPositionManager.Instance.Position = player.position;
-            SceneLoadManager.Instance.LoadBattle();
+            
+            EnemySpawnManager.Instance.SetRandomEnemiesForBattle(this);
+            PlayerPositionManager.Position = player.position;
+            SceneLoadManager.LoadBattle();
+            
             Time.timeScale = 0.01f;
             Time.fixedDeltaTime = 0.02F * Time.timeScale;
         }

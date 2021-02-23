@@ -12,8 +12,7 @@ namespace Overworld
     {
         private Animator animator;
         private Controls controls;
-        private static List<PartyMember> Members =>
-            PartyManager.Instance.partyMembers;
+        private static List<PartyMember> Members => PartyManager.Members;
 
         private void Awake()
         {
@@ -27,7 +26,7 @@ namespace Overworld
             if (Members.Count == 1) return;
             
             var value = ctx.ReadValue<float>();
-            var currentLeader = PartyManager.Instance.currentLeader;
+            var currentLeader = PartyManager.CurrentLeader;
             var index = Members.IndexOf(currentLeader);
 
             var getNextMember = Math.Abs(value - 1) < 0.001;
@@ -41,8 +40,8 @@ namespace Overworld
             currentLeader.positionInParty = nextLeader.positionInParty;
             nextLeader.positionInParty = 1;
                 
-            PartyManager.Instance.currentLeader = nextLeader;
-            animator.runtimeAnimatorController = PartyManager.Instance.currentLeader.overworldController;
+            PartyManager.CurrentLeader = nextLeader;
+            animator.runtimeAnimatorController = PartyManager.CurrentLeader.overworldController;
             animator.SetInteger(AnimationHandler.AnimState, 0);
             
         }

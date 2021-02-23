@@ -59,7 +59,7 @@ namespace BattleSystem.UI
 
         private void PlayShieldBrokenAnimation()
         {
-            TimeManager.SlowMotionSequence(0.35f, 0.75f);
+            TimeManager.SlowMotionSequence(0.35f, 0.5f);
             shieldAnim.SetTrigger(AnimationHandler.ShieldBreak);
         }
 

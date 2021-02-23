@@ -330,12 +330,7 @@ namespace Characters
                 }
             }
 
-            //TODO: Change to local position
-            var transform = Unit.transform;
-            var position = transform.position;
-            var newPosition = new Vector3(position.x, position.y + 2, position.z);
-            
-            DamagePrefabManager.Instance.ShowDamage(dmg, Unit.targetHasCrit, newPosition, transform);
+            DamagePrefabManager.Instance.ShowDamage(dmg, Unit.targetHasCrit, Unit.transform);
 
             if (Unit.targetHasCrit) Unit.targetHasCrit = false;
             
@@ -348,11 +343,7 @@ namespace Characters
         {
             CurrentHP -= dmg;
 
-            var transform = Unit.transform;
-            var position = transform.position;
-            var newPosition = new Vector3(position.x, position.y + 3, position.z);
-            
-            DamagePrefabManager.Instance.ShowDamage(dmg, false, newPosition, transform);
+            DamagePrefabManager.Instance.ShowDamage(dmg, false, Unit.transform);
 
             if (Unit.currentHP > 0) Unit.anim.SetTrigger(AnimationHandler.HurtTrigger);
             else Die();

@@ -178,13 +178,13 @@ MonoBehaviour:
   characterName: Lilith Morana
   characterPrefab: {fileID: 1526218485019349028, guid: c480ece643ae0c54099692d3bbb9649d,
     type: 3}
-  level: 2
+  level: 1
   health:
-    BaseValue: 1011
+    BaseValue: 975
     maxValue: 99999
-    amountIncreasedBy: 36
+    amountIncreasedBy: 90
   strength:
-    BaseValue: 18
+    BaseValue: 8
     maxValue: 99
     amountIncreasedBy: 0
   magic:
@@ -194,9 +194,9 @@ MonoBehaviour:
   accuracy:
     BaseValue: 12
     maxValue: 99
-    amountIncreasedBy: 0
+    amountIncreasedBy: 1
   initiative:
-    BaseValue: 12
+    BaseValue: 11
     maxValue: 99
     amountIncreasedBy: 1
   defense:
@@ -206,7 +206,7 @@ MonoBehaviour:
   resistance:
     BaseValue: 3
     maxValue: 99
-    amountIncreasedBy: 0
+    amountIncreasedBy: 2
   criticalChance:
     BaseValue: 5
     maxValue: 99
@@ -227,7 +227,7 @@ MonoBehaviour:
   currentClass: {fileID: 11400000, guid: babdda5b7a9c9c04e93e85002ce0de84, type: 2}
   overworldController: {fileID: 22100000, guid: 5a1ae59169ea79e4da063cc87f235966,
     type: 2}
-  positionInParty: 4
+  positionInParty: 1
   specialAttackBarVal: 1
   weaponInventory: {fileID: 9018186885891804427, guid: b53c59ae1a11e064b8d4a3e7c56bbfe6,
     type: 3}

@@ -176,7 +176,7 @@ namespace Characters.PartyMembers
         {
             var spriteRenderer = enemyGo.GetComponent<SpriteRenderer>();
             spriteRenderer.material = summonMaterial;
-            spriteRenderer.sortingOrder = -1;
+            //spriteRenderer.sortingOrder = -1;
             
             enemyGo.GetComponent<UnitAnimatorFunctions>().OverrideUnit(elias.Unit, summonMaterial);
             enemyGo.transform.rotation = summonSpawnPoint.rotation;

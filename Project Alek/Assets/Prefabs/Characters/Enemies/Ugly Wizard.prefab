@@ -129,6 +129,7 @@ MonoBehaviour:
   animationHandler: {fileID: 0}
   outline: {fileID: 0}
   button: {fileID: 0}
+  turnOrderIcon: {fileID: 0}
   commandActionOption: 0
   maxHealthRef: 20000
   currentAP: 6
@@ -143,6 +144,8 @@ MonoBehaviour:
   currentHP: 20000
   conversionLevel: 0
   conversionFactor: 1
+  accuracyBoost: 0
+  inflictionChanceBoost: 0
   finalInitVal: 0
   initModifier: 0
   statusEffects: []

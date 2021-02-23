@@ -18,7 +18,6 @@ using Sirenix.OdinInspector;
 using MEC;
 using ScriptableObjectArchitecture;
 using SingletonScriptableObject;
-using Sirenix.Utilities;
 using UnityEngine.EventSystems;
 
 namespace BattleSystem
@@ -90,8 +89,8 @@ namespace BattleSystem
             canGiveCommand = true;
             roundCount = 0;
 
-            AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.mainBattleTheme, true, 2);
-            PartyManager.Instance.Order();
+            AudioController.PlayAudio(CommonAudioTypes.MainBattleTheme, true, 2);
+            PartyManager.Order();
             Timing.RunCoroutine(SetupBattle());
         }
 
@@ -297,12 +296,12 @@ namespace BattleSystem
 
         private IEnumerator<float> WonBattleSequence()
         {
-            AudioController.Instance.StopAudio(CommonAudioTypes.Instance.mainBattleTheme, true, 2);
+            AudioController.StopAudio(CommonAudioTypes.MainBattleTheme, true, 2);
 
             yield return Timing.WaitForSeconds(2);
             
-            AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.victory);
-            AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.victoryThemeBattle, true);
+            AudioController.PlayAudio(CommonAudioTypes.Victory);
+            AudioController.PlayAudio(CommonAudioTypes.VictoryThemeBattle, true);
             
             _membersForThisBattle.ForEach(member => member.Unit.anim.SetTrigger(AnimationHandler.VictoryTrigger));
             
@@ -335,7 +334,7 @@ namespace BattleSystem
             yield return Timing.WaitForSeconds(0.3f);
             yield return Timing.WaitUntilFalse(() => battleResultsUI.showingLevelUps);
             
-            SceneLoadManager.Instance.LoadOverworld();
+            SceneLoadManager.LoadOverworld();
             
             _membersForThisBattle.ForEach(m =>
             {
@@ -345,10 +344,9 @@ namespace BattleSystem
 
         private IEnumerator<float> LostBattleSequence()
         {
-            AudioController.Instance.StopAudio(CommonAudioTypes.Instance.mainBattleTheme, true, 1);
+            AudioController.StopAudio(CommonAudioTypes.MainBattleTheme, true, 1);
             yield return Timing.WaitForSeconds(1);
-            Logging.Instance.Log("you lost idiot");
-            
+
             gameOverCanvas.SetActive(true);
         }
 
@@ -374,7 +372,7 @@ namespace BattleSystem
                 member.Unit.transform.DOMove(newPosition, 2);
             }
             yield return Timing.WaitForSeconds(1.5f);
-            SceneLoadManager.Instance.LoadOverworld();
+            SceneLoadManager.LoadOverworld();
         }
         
         #endregion
@@ -420,7 +418,7 @@ namespace BattleSystem
             _membersForThisBattle.ForEach(m => m.onDeath -= RemoveFromBattle);
             _enemiesForThisBattle.ForEach(e => e.onDeath -= RemoveFromBattle);
             
-            PartyManager.Instance.partyMembers.ForEach(m => m.onRevival -= AddToBattle);
+            PartyManager.Members.ForEach(m => m.onRevival -= AddToBattle);
 
             BattleEvents.Instance.battleEvent.RemoveListener(this);
             BattleEvents.Instance.endOfTurnEvent.RemoveListener(this);

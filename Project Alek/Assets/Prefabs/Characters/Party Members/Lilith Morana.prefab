@@ -289,12 +289,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a35d465435e2d2478d6cc7424f3de5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAbility: {fileID: 0}
   anim: {fileID: 0}
   animOverride: {fileID: 0}
   animationHandler: {fileID: 0}
   outline: {fileID: 0}
   button: {fileID: 0}
+  turnOrderIcon: {fileID: 0}
   commandActionOption: 0
   maxHealthRef: 1750
   currentAP: 0
@@ -302,12 +302,15 @@ MonoBehaviour:
   specialAttackAP: 0
   currentDamage: 0
   commandActionName: 
+  currentAbility: {fileID: 0}
   currentTarget: {fileID: 0}
   status: 0
   currentState: 0
   currentHP: 0
   conversionLevel: 0
   conversionFactor: 1
+  accuracyBoost: 0
+  inflictionChanceBoost: 0
   finalInitVal: 0
   initModifier: 0
   statusEffects: []

@@ -129,6 +129,7 @@ namespace BattleSystem
 
         public void OnFleeButton()
         {
+            character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
             Timing.RunCoroutine(BattleEngine.Instance.FleeBattleSequence());
         }
     }

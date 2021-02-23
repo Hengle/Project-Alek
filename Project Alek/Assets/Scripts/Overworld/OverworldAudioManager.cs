@@ -10,7 +10,7 @@ namespace Overworld
 
         private void Start()
         {
-            AudioController.Instance.PlayAudio(themes[1]);
+            AudioController.PlayAudio(themes[1]);
         }
     }
 }

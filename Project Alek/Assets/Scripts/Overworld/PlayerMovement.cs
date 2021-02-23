@@ -16,11 +16,7 @@ namespace Overworld
         private int speed;
         [SerializeField] private int walkSpeed = 5;
         [SerializeField] private int runSpeed = 10;
-        
-        // private static readonly int IsWalkingHash = Animator.StringToHash("isWalking");
-        // private static readonly int IsRunningHash = Animator.StringToHash("isRunning");
-        // private static readonly int HorizontalHash = Animator.StringToHash("Horizontal");
-
+  
         private bool movementPressed;
         private bool runPressed;
 
@@ -71,7 +67,7 @@ namespace Overworld
 
         private void OnDisable()
         {
-            PlayerPositionManager.Instance.Position = transform.position;
+            PlayerPositionManager.Position = transform.position;
             controls.Disable();
         }
     }

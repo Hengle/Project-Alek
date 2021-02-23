@@ -37,7 +37,7 @@ namespace BattleSystem.Mechanics
                 found = true;
                 eStruct = type;
                 
-                var enemies = EnemyManager.Instance.enemies;
+                var enemies = EnemyManager.Enemies;
                 foreach (var t in enemies.Where(t => t.characterName == enemy.characterName))
                 {
                     t._elementalWeaknesses[type.Key] = true;
@@ -59,7 +59,7 @@ namespace BattleSystem.Mechanics
                 found = true;
                 eStruct = type;
                 
-                var enemies = EnemyManager.Instance.enemies;
+                var enemies = EnemyManager.Enemies;
                 foreach (var t in enemies.Where(t => t.characterName == enemy.characterName))
                 {
                     t._elementalResistances[type.Key] = true;
@@ -81,7 +81,7 @@ namespace BattleSystem.Mechanics
                 found = true;
                 eStruct = type;
                 
-                var enemies = EnemyManager.Instance.enemies;
+                var enemies = EnemyManager.Enemies;
                 foreach (var t in enemies.Where(t => t.characterName == enemy.characterName))
                 {
                     t._statusEffectWeaknesses[type.Key] = true;
@@ -103,7 +103,7 @@ namespace BattleSystem.Mechanics
                 found = true;
                 eStruct = type;
                 
-                var enemies = EnemyManager.Instance.enemies;
+                var enemies = EnemyManager.Enemies;
                 foreach (var t in enemies.Where(t => t.characterName == enemy.characterName))
                 {
                     t._statusEffectResistances[type.Key] = true;
@@ -125,7 +125,7 @@ namespace BattleSystem.Mechanics
                 found = true;
                 eStruct = type;
                 
-                var enemies = EnemyManager.Instance.enemies;
+                var enemies = EnemyManager.Enemies;
                 foreach (var t in enemies.Where(t => t.characterName == enemy.characterName))
                 {
                     t._damageTypeWeaknesses[type.Key] = true;

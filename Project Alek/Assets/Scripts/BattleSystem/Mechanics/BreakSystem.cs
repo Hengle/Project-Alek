@@ -62,7 +62,7 @@ namespace BattleSystem.Mechanics
 
         private void Checkmate()
         {
-            TimeManager.SlowMotionSequence(0.3f, 0.8f);
+            TimeManager.SlowMotionSequence(0.3f, 0.65f);
             currentState = UnitStates.Checkmate;
             unitBase.Unit.currentState = currentState;
             unitBase.Unit.status = Status.UnableToPerformAction;

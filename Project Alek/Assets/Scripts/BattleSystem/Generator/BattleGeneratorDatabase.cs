@@ -6,7 +6,6 @@ namespace BattleSystem.Generator
 {
     public class BattleGeneratorDatabase : MonoBehaviour
     {
-        public List<InventoryItem> inventoryItems = new List<InventoryItem>();
         public List<GameObject> inventoryCanvases = new List<GameObject>();
         public List<GameObject> closeUpCameras = new List<GameObject>();
         public List<GameObject> criticalCameras = new List<GameObject>();

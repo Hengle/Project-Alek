@@ -7,9 +7,9 @@ namespace SingletonScriptableObject
     {
         [SerializeField] private bool showLogs = true;
         
-        public void Log(string message)
+        public static void Log(string message)
         { 
-            if (showLogs) Debug.Log(message);
+            if (Instance.showLogs) Debug.Log(message);
         }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]

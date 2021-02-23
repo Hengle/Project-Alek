@@ -89,7 +89,7 @@ namespace BattleSystem.UI
                     
                 levelUpText.text =
                     $"{member.characterName}\n" + "\n" +
-                    $"Level: {member.level} (+1)\n" +
+                    $"Level: {member.level}\n" +
                     $"{hpText}" +
                     $"{strText}" +
                     $"{magText}" +
@@ -101,7 +101,7 @@ namespace BattleSystem.UI
 
                 levelUpPanel.SetActive(true);
                 
-                AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.levelUp);
+                AudioController.PlayAudio(CommonAudioTypes.LevelUp);
                 
                 yield return Timing.WaitForSeconds(0.5f);
                 yield return Timing.WaitUntilTrue(() => BattleInput._controls.Battle.Confirm.triggered);

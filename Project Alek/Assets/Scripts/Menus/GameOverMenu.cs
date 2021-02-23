@@ -25,7 +25,7 @@ namespace Menus
             statPanelCanvas.SetActive(false);
             turnOrderCanvas.SetActive(false);
             
-            AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.gameOver);
+            AudioController.PlayAudio(CommonAudioTypes.GameOver);
             Timing.RunCoroutine(FadeToBlack().Append
                 (ShowTextAndButtons().Append(SetFirstSelected)));
         }
@@ -56,11 +56,11 @@ namespace Menus
             quitButton.gameObject.SetActive(true);
         }
 
-        public void OnRetryButton() => SceneLoadManager.Instance.LoadBattle(true);
+        public void OnRetryButton() => SceneLoadManager.LoadBattle(true);
 
         public void OnQuitButton()
         {
-            SceneLoadManager.Instance.LoadScene("Start");
+            SceneLoadManager.LoadScene("Start");
             gameObject.SetActive(false);
         }
     }

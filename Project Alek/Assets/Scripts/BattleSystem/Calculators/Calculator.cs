@@ -3,7 +3,6 @@ using BattleSystem.Mechanics;
 using Characters;
 using Characters.Abilities;
 using SingletonScriptableObject;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace BattleSystem.Calculators
@@ -81,7 +80,7 @@ namespace BattleSystem.Calculators
 
             if (tryGetRes)
             {
-                Logging.Instance.Log($"{target.characterName} resists {ability.elementalType.name}!");
+                Logging.Log($"{target.characterName} resists {ability.elementalType.name}!");
                 var resistanceScalar = 1 - (float) target._elementalResistances.Single
                     (s => s.Key._type == ability.elementalType).Key._scalar / 100;
 
@@ -90,7 +89,7 @@ namespace BattleSystem.Calculators
                     
             else if (tryGetWeakness)
             {
-                Logging.Instance.Log($"{target.characterName} is weak to {ability.elementalType.name}!");
+                Logging.Log($"{target.characterName} is weak to {ability.elementalType.name}!");
                 var weaknessScalar = (float) target._elementalWeaknesses.Single
                     (s => s.Key._type == ability.elementalType).Key._scalar / 100;
 
@@ -98,7 +97,7 @@ namespace BattleSystem.Calculators
             }
             
             totalDamage = (int) ((normalDamage + elementalDamage) * damageDealer.Unit.currentAbility.damageMultiplier) - targetDefense;
-            Logging.Instance.Log($"Elemental Damage: {elementalDamage} \t Total Damage: {totalDamage}");
+            Logging.Log($"Elemental Damage: {elementalDamage} \t Total Damage: {totalDamage}");
             
             SkipElemental:
             totalDamage = CalculateBoostFactor(damageDealer, target, totalDamage);
@@ -137,7 +136,7 @@ namespace BattleSystem.Calculators
 
             if (tryGetRes)
             {
-                Logging.Instance.Log($"{target.characterName} resists {ability.elementalType.name}!");
+                Logging.Log($"{target.characterName} resists {ability.elementalType.name}!");
                 var resistanceScalar = 1 - (float) target._elementalResistances.Single
                     (s => s.Key._type == ability.elementalType).Key._scalar / 100;
 
@@ -146,7 +145,7 @@ namespace BattleSystem.Calculators
                     
             else if (tryGetWeakness)
             {
-                Logging.Instance.Log($"{target.characterName} is weak to {ability.elementalType.name}!");
+                Logging.Log($"{target.characterName} is weak to {ability.elementalType.name}!");
                 var weaknessScalar = (float) target._elementalWeaknesses.Single
                     (s => s.Key._type == ability.elementalType).Key._scalar / 100;
 
@@ -180,7 +179,7 @@ namespace BattleSystem.Calculators
 
             if (tryGetRes)
             {
-                Logging.Instance.Log($"{target.characterName} resists {ability.elementalType.name}!");
+                Logging.Log($"{target.characterName} resists {ability.elementalType.name}!");
                 var resistanceScalar = 1 - (float) target._elementalResistances.Single
                     (s => s.Key._type == ability.elementalType).Key._scalar / 100;
 
@@ -189,14 +188,14 @@ namespace BattleSystem.Calculators
                     
             else if (tryGetWeakness)
             {
-                Logging.Instance.Log($"{target.characterName} is weak to {ability.elementalType.name}!");
+                Logging.Log($"{target.characterName} is weak to {ability.elementalType.name}!");
                 var weaknessScalar = (float) target._elementalWeaknesses.Single
                     (s => s.Key._type == ability.elementalType).Key._scalar / 100;
 
                 elementalDamage *= weaknessScalar;
             }
 
-            Logging.Instance.Log($"Elemental Damage: {(int)elementalDamage}");
+            Logging.Log($"Elemental Damage: {(int)elementalDamage}");
             return (int) elementalDamage;
         }
         
@@ -227,7 +226,7 @@ namespace BattleSystem.Calculators
         private static bool CalculateAccuracy(UnitBase damageDealer, UnitBase target)
         {
             target.Unit.attackerHasMissed = false;
-            var hitChance = (damageDealer.accuracy.Value + damageDealer.weaponAccuracy - target.initiative.Value) / 100;
+            var hitChance = (damageDealer.accuracy.Value + damageDealer.weaponAccuracy + damageDealer.Unit.accuracyBoost - target.initiative.Value) / 100;
             var randomValue = Random.value;
             
             return randomValue <= hitChance;

@@ -10,28 +10,28 @@ namespace SingletonScriptableObject
         [SerializeField] private AsyncOperation operation;
         [SerializeField] private string previousScene;
 
-        public void LoadBattle(bool restart = false)
+        public static void LoadBattle(bool restart = false)
         {
-            if (!restart) previousScene = SceneManager.GetActiveScene().path;
-            operation = SceneManager.LoadSceneAsync("Scenes/Battle");
-            operation.allowSceneActivation = false;
+            if (!restart) Instance.previousScene = SceneManager.GetActiveScene().path;
+            Instance.operation = SceneManager.LoadSceneAsync("Scenes/Battle");
+            Instance.operation.allowSceneActivation = false;
             Timing.RunCoroutine(SceneTransitionManager.Instance.BattleTransition()
-                .Append(() => operation.allowSceneActivation = true));
+                .Append(() => Instance.operation.allowSceneActivation = true));
         }
 
-        public void LoadOverworld()
+        public static void LoadOverworld()
         {
-            operation = SceneManager.LoadSceneAsync(previousScene);
-            operation.allowSceneActivation = false;
+            Instance.operation = SceneManager.LoadSceneAsync(Instance.previousScene);
+            Instance.operation.allowSceneActivation = false;
             Timing.RunCoroutine(SceneTransitionManager.Instance.OverworldTransition(1, true).
-                Append(() => operation.allowSceneActivation = true));
+                Append(() => Instance.operation.allowSceneActivation = true));
         }
 
-        public void LoadScene(string scene)
+        public static void LoadScene(string scene)
         {
             Timing.RunCoroutine(SceneTransitionManager.Instance.OverworldTransition(1, true).Append(() =>
             {
-                operation = SceneManager.LoadSceneAsync(scene);
+                Instance.operation = SceneManager.LoadSceneAsync(scene);
             }));
         }
     

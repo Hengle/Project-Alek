@@ -11,6 +11,7 @@ using Characters.StatusEffects;
 using DamagePrefab;
 using MoreMountains.InventoryEngine;
 using SingletonScriptableObject;
+using Sirenix.Utilities;
 using TMPro;
 using Random = UnityEngine.Random;
 
@@ -48,29 +49,30 @@ namespace BattleSystem.Generator
             DamagePrefabManager.Instance.RegisterTransforms(combined);
         }
 
-        private void SetupMainInventory()
+        private static void SetupMainInventory()
         {
             var inventory = GameObject.Find("Main Inventory").GetComponent<Inventory>();
-            database.inventoryItems.ForEach(i => inventory.AddItem(i, 1));
+            var items = MainInventory.GetInventoryItems();
+            items.ForEach(i => inventory.AddItem(i, 1));
         }
 
         private void SetOffsetPositions()
         {
-            if (PartyManager.Instance.partyMembers.Count == 1) offset = 2;
-            else if (PartyManager.Instance.partyMembers.Count == 4) offset = 0;
+            if (PartyManager.Members.Count == 1) offset = 2;
+            else if (PartyManager.Members.Count == 4) offset = 0;
             else offset = 1;
 
-            if (EnemyManager.Instance.enemies.Count == 1) enemyOffset = 2;
-            else if (EnemyManager.Instance.enemies.Count == 4) enemyOffset = 0;
+            if (EnemyManager.Enemies.Count == 1) enemyOffset = 2;
+            else if (EnemyManager.Enemies.Count == 4) enemyOffset = 0;
             else enemyOffset = 1;
         }
 
         private void SetupParty()
         {
-            for (var i = 0; i < PartyManager.Instance.partyMembers.Count; i++)
+            for (var i = 0; i < PartyManager.Members.Count; i++)
             {
-                var memberGo = SpawnThisMember(PartyManager.Instance.partyMembers[i], i);
-                SetupThisMember(PartyManager.Instance.partyMembers[i], i, memberGo);
+                var memberGo = SpawnThisMember(PartyManager.Members[i], i);
+                SetupThisMember(PartyManager.Members[i], i, memberGo);
             }
         }
 
@@ -197,7 +199,7 @@ namespace BattleSystem.Generator
 
                 specialAttackButton.GetComponent<Button>().onClick.AddListener
                     ( delegate { ((BattleOptionsPanel) character.battleOptionsPanel).
-                    GetCommandInformation($"UniversalAction,2,0,{character.CurrentAP}");
+                    GetCommandInformation($"UniversalAction,2,1,{character.CurrentAP}");
                     character.Unit.specialAttackAP = character.Unit.currentAP;
                     character.Unit.currentAbility = character.specialAttack; });
                 
@@ -431,7 +433,7 @@ namespace BattleSystem.Generator
         private void SpawnAndSetupEnemyTeam()
         {
             var i = 0;
-            foreach (var clone in EnemyManager.Instance.enemies.Select(Instantiate))
+            foreach (var clone in EnemyManager.Enemies.Select(Instantiate))
             {
                 //TODO: Make randomizer for enemy stats
                 clone.initiative.BaseValue = (int) Random.Range(clone.initiative.BaseValue - 2, clone.initiative.BaseValue + 2);

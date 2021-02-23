@@ -50,6 +50,8 @@ namespace Characters
         [ReadOnly] public int currentHP;
         [ReadOnly] public int conversionLevel;
         [ReadOnly] public float conversionFactor = 1;
+        [ReadOnly] public float accuracyBoost;
+        [ReadOnly] public float inflictionChanceBoost;
 
         [ReadOnly] public int finalInitVal;
         [ReadOnly] public float initModifier;
@@ -181,15 +183,7 @@ namespace Characters
             
             anim.runtimeAnimatorController = animOverride;
         }
-
-        [SuppressMessage("ReSharper", "Unity.InefficientPropertyAccess")]
-        public void DestroyGO()
-        {
-            gameObject.SetActive(false);
-            Destroy(gameObject, 3);
-        }
         
-
         public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
         {
             if (value2 == BattleEvents.Instance.characterTurnEvent)

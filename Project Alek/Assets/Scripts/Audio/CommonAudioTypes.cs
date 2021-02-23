@@ -9,14 +9,34 @@ namespace Audio
     /// </summary>
     public class CommonAudioTypes : MonoBehaviorSingleton<CommonAudioTypes>
     {
-        [SerializeField] public AudioType mainBattleTheme;
-        [SerializeField] public AudioType victoryThemeBattle;
-        [SerializeField] public AudioType hitWindow;
-        [SerializeField] public AudioType levelUp;
-        [SerializeField] public AudioType aPConversion;
-        [SerializeField] public AudioType gameOver;
-        [SerializeField] public AudioType victory;
-        [SerializeField] public AudioType heal;
-        [SerializeField] public AudioType revive;
+        [SerializeField] private AudioType mainBattleTheme;
+        public static AudioType MainBattleTheme => Instance.mainBattleTheme;
+        
+        [SerializeField] private AudioType victoryThemeBattle;
+        public static AudioType VictoryThemeBattle => Instance.victoryThemeBattle;
+        
+        [SerializeField] private AudioType hitWindow;
+        public static AudioType HitWindow => Instance.hitWindow;
+        
+        [SerializeField] private AudioType levelUp;
+        public static AudioType LevelUp => Instance.levelUp;
+        
+        [SerializeField] private AudioType aPConversion;
+        public static AudioType APConversion => Instance.aPConversion;
+        
+        [SerializeField] private AudioType gameOver;
+        public static AudioType GameOver => Instance.gameOver;
+        
+        [SerializeField] private AudioType victory;
+        public static AudioType Victory => Instance.victory;
+        
+        [SerializeField] private AudioType heal;
+        public static AudioType Heal => Instance.heal;
+        
+        [SerializeField] private AudioType revive;
+        public static AudioType Revive => Instance.revive;
+        
+        [SerializeField] private AudioType chestOpen;
+        public static AudioType ChestOpen => Instance.chestOpen;
     }
 }

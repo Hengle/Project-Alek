@@ -41,13 +41,17 @@ namespace SingletonScriptableObject
         #region ConversionValues
         
         [TabGroup("Tabs/Battle System","AP Conversion System")]
-        [Range(1,3)] public float conversionFactorLvl1 = 1.2f;
+        [Range(1,5)] public float conversionFactorLvl1 = 1.2f;
         [TabGroup("Tabs/Battle System","AP Conversion System")]
-        [Range(1,3)] public float conversionFactorLvl2 = 1.4f;
+        [Range(1,5)] public float conversionFactorLvl2 = 1.4f;
         [TabGroup("Tabs/Battle System","AP Conversion System")]
-        [Range(1,3)] public float conversionFactorLvl3 = 1.8f;
+        [Range(1,5)] public float conversionFactorLvl3 = 1.8f;
         [TabGroup("Tabs/Battle System","AP Conversion System")]
-        [Range(1,3)] public float conversionFactorLvl4 = 2.25f;
+        [Range(1,5)] public float conversionFactorLvl4 = 2.25f;
+        [TabGroup("Tabs/Battle System", "AP Conversion System")]
+        public float accuracyBoostIncrement = 5f;
+        [TabGroup("Tabs/Battle System", "AP Conversion System")]
+        public float inflictionChanceIncrement = 0.05f;
     
         #endregion
 

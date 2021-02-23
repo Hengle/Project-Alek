@@ -11,7 +11,7 @@ namespace Characters.StatusEffects
         
         public override void OnAdded(UnitBase target)
         {
-            target.onStatusEffectReceived?.Invoke(this);
+            base.OnAdded(target);
             
             AddModifiers(target);
             statChangeEvent.Raise(target, statChangeEvent);
@@ -19,9 +19,9 @@ namespace Characters.StatusEffects
         
         public override void OnRemoval(UnitBase unitBase)
         {
-            unitBase.onStatusEffectRemoved?.Invoke(this);
-            unitBase.Unit.status = Status.Normal;
+            base.OnRemoval(unitBase);
             
+            unitBase.Unit.status = Status.Normal;
             RemoveModifiers(unitBase);
             statChangeEvent.Raise(unitBase, statChangeEvent);
         }

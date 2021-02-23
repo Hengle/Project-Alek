@@ -9,8 +9,13 @@ namespace SingletonScriptableObject
     public class EnemyManager : ScriptableObjectSingleton<EnemyManager>
     {
         [InlineEditor(InlineEditorModes.FullEditor)]
-        public List<Enemy> enemies = new List<Enemy>();
-        
+        [SerializeField] private List<Enemy> enemies = new List<Enemy>();
+
+        public static List<Enemy> Enemies => Instance.enemies;
+
+        public static void SetBattleEnemies(IEnumerable<Enemy> battleEnemies) => 
+            Instance.enemies = new List<Enemy>(battleEnemies);
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Initialize() => Init();
     }

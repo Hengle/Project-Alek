@@ -14,16 +14,16 @@ namespace Overworld
 
         private void Awake()
         {
-            PartyManager.Instance.Order();
-            var member = PartyManager.Instance.partyMembers.Single(m => m.positionInParty == 1);
+            PartyManager.Order();
+            var member = PartyManager.Members.Single(m => m.positionInParty == 1);
             
             GameObject memberGo;
             
-            if (PlayerPositionManager.Instance.Position != Vector3.zero)
+            if (PlayerPositionManager.Position != Vector3.zero)
             {
-                memberGo = Instantiate(playerPrefab, PlayerPositionManager.Instance.Position, playerPrefab.transform.rotation);
+                memberGo = Instantiate(playerPrefab, PlayerPositionManager.Position, playerPrefab.transform.rotation);
                 memberGo.GetComponent<Animator>().runtimeAnimatorController = member.overworldController;
-                PlayerPositionManager.Instance.Position = Vector3.zero;
+                PlayerPositionManager.Position = Vector3.zero;
                 vCam.Follow = memberGo.transform;
             }
             
@@ -31,7 +31,7 @@ namespace Overworld
             {
                 var playerSpawners = FindObjectsOfType<PlayerSpawnArea>();
                 var spawnPoint = playerSpawners.SingleOrDefault(s =>
-                    s.Id == PlayerPositionManager.Instance.SpawnId)?.transform;
+                    s.Id == PlayerPositionManager.SpawnId)?.transform;
 
                 if (spawnPoint != null)
                 {

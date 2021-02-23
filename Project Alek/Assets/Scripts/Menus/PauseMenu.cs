@@ -78,7 +78,7 @@ namespace Menus
         public void OnQuitButton()
         {
             TimeManager.ResumeTime();
-            SceneLoadManager.Instance.LoadScene("Start");
+            SceneLoadManager.LoadScene("Start");
             gameObject.SetActive(false);
         }
     }

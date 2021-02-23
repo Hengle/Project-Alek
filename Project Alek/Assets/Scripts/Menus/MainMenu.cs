@@ -32,7 +32,7 @@ namespace Menus
 
         private void Start()
         {
-            AudioController.Instance.PlayAudio(theme);
+            AudioController.PlayAudio(theme);
         }
 
         private void OnDisable()
@@ -61,10 +61,10 @@ namespace Menus
 
         private IEnumerator<float> StartGameCoroutine()
         {
-            AudioController.Instance.StopAudio(theme, true, 2);
+            AudioController.StopAudio(theme, true, 2);
             yield return Timing.WaitForSeconds(1);
             //SceneLoadManager.Instance.LoadScene(scene.name);
-            SceneLoadManager.Instance.LoadScene("FAE_Demo1");
+            SceneLoadManager.LoadScene("FAE_Demo1");
         }
 
         public void OnStartButton()

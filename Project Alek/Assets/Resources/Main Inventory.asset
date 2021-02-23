@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7274aefdc14a87b8be5f9d3488264e, type: 3}
+  m_Name: Main Inventory
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  inventoryItems:
+  - {fileID: 11400000, guid: 40876a02f1980694e94d7190565ee90c, type: 2}
+  - {fileID: 11400000, guid: 40876a02f1980694e94d7190565ee90c, type: 2}
+  - {fileID: 11400000, guid: 40876a02f1980694e94d7190565ee90c, type: 2}
+  - {fileID: 11400000, guid: b21d33ba79d8ae84790c7408832ae205, type: 2}
+  - {fileID: 11400000, guid: b21d33ba79d8ae84790c7408832ae205, type: 2}
+  - {fileID: 11400000, guid: 6896823ab72a60d4fae07aca52a10275, type: 2}
+  - {fileID: 11400000, guid: 6896823ab72a60d4fae07aca52a10275, type: 2}
+  - {fileID: 11400000, guid: 6896823ab72a60d4fae07aca52a10275, type: 2}
+  - {fileID: 11400000, guid: 6896823ab72a60d4fae07aca52a10275, type: 2}
+  - {fileID: 11400000, guid: 6896823ab72a60d4fae07aca52a10275, type: 2}
+  - {fileID: 11400000, guid: 6896823ab72a60d4fae07aca52a10275, type: 2}
+  - {fileID: 11400000, guid: 6896823ab72a60d4fae07aca52a10275, type: 2}

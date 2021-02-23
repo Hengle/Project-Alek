@@ -77,7 +77,7 @@ namespace BattleSystem.Mechanics
             {
                 if (unit.HasMissedAllTargets) return;
                 if (damageBoostLvl < DamageBoostLvl.Level5) damageBoostLvl += 1;
-                else unit.parent.CurrentAP += 1;
+                else if (!unit.isBorrowing) unit.parent.CurrentAP += 1;
             }
             else damageBoostLvl = DamageBoostLvl.Level0;
             

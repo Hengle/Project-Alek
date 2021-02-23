@@ -167,11 +167,6 @@ namespace Characters
                 var count = 0;
                 var results = new List<string>();
 
-                var baseHealthIncrease = 15 * partyMember.level;
-                var totalHealthIncrease = baseHealthIncrease * healthIncreaseFactor;
-                partyMember.health.BaseValue += (int) totalHealthIncrease;
-                partyMember.health.amountIncreasedBy = (int) totalHealthIncrease;
-
                 if (CanIncreaseStrength)
                 {
                     partyMember.strength.BaseValue += 1;
@@ -236,6 +231,12 @@ namespace Characters
                 }
 
                 if (count == 0) continue;
+                
+                var baseHealthIncrease = 15 * partyMember.level;
+                var totalHealthIncrease = baseHealthIncrease * healthIncreaseFactor;
+                partyMember.health.BaseValue += (int) totalHealthIncrease;
+                partyMember.health.amountIncreasedBy += (int) totalHealthIncrease;
+                
                 results.ForEach(Debug.Log);
                 break;
             }

@@ -18,7 +18,7 @@ namespace MoreMountains.InventoryEngine
             base.Use();
             var target = BattleEngine.Instance.activeUnit.CurrentTarget;
             target.Revive(revivalHealthPercentage, revivalAPAmount);
-            AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.revive);
+            AudioController.PlayAudio(CommonAudioTypes.Revive);
             return true;
         }
     }

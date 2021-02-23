@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MEC;
+using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -25,7 +25,7 @@ namespace DamagePrefab
 
         [SerializeField] private float normalFontSize;
         
-        [SerializeField] private List<KeyValuePair<Transform, Queue<GameObject>>> battleUnits =
+        [ShowInInspector] private List<KeyValuePair<Transform, Queue<GameObject>>> battleUnits =
             new List<KeyValuePair<Transform, Queue<GameObject>>>();
         
         public Color DamageTextColor { set => damageTextColor = value; }
@@ -62,10 +62,12 @@ namespace DamagePrefab
             }
         }
 
-        public GameObject ShowDamage(int dmg, bool isCrit, Vector3 position, Transform battleUnit)
+        public GameObject ShowDamage(int dmg, bool isCrit, Transform battleUnit)
         {
             var count = GetKeyValuePair(battleUnit).Value.Count;
-            var stackOffset = count > 0 ? count * 0.5f : 0;
+            var stackOffset = count > 0 ? count * 0.5f : 0f;
+            var newPosition = battleUnit.transform.position;
+            var finalPosition = new Vector3(newPosition.x, newPosition.y + 3, newPosition.z);
             
             for (var i = 0; i < damagePool.Count; i++)
             {
@@ -75,18 +77,18 @@ namespace DamagePrefab
                 damageTextList[i].text = dmg != -1 ? dmg.ToString() : "MISS";
                 damageTextList[i].fontSize = normalFontSize;
                 damageTextColor = Color.white;
-                damagePool[i].transform.position = new Vector3(position.x, position.y + stackOffset, position.z);
+                damagePool[i].transform.position = new Vector3(finalPosition.x, finalPosition.y + stackOffset, finalPosition.z);
                 
                 Enqueue(damagePool[i], battleUnit);
                 damagePool[i].SetActive(true);
                     
                 return damagePool[i];
             }
-            
+
             damageTextList[0].color = isCrit ? criticalTextColor : damageTextColor;
             damageTextList[0].text = dmg.ToString();
             damageTextColor = Color.white;
-            damagePool[0].transform.position = new Vector3(position.x, position.y + stackOffset, position.z);
+            damagePool[0].transform.position = new Vector3(finalPosition.x, finalPosition.y + stackOffset, finalPosition.z);
             
             Enqueue(damagePool[0], battleUnit);
             damagePool[0].SetActive(true);
@@ -94,10 +96,12 @@ namespace DamagePrefab
             return damagePool[0];
         }
 
-        public GameObject ShowText(string message, Vector3 position, Transform battleUnit, float fontSize = 0f)
+        public GameObject ShowText(string message, Transform battleUnit, float fontSize = 0f)
         {
             var count = GetKeyValuePair(battleUnit).Value.Count;
-            var stackOffset = count > 0 ? count * 0.5f : 0;
+            var stackOffset = count > 0 ? count * 0.5f : 0f;
+            var newPosition = battleUnit.transform.position;
+            var finalPosition = new Vector3(newPosition.x, newPosition.y + 3, newPosition.z);
             
             for (var i = 0; i < damagePool.Count; i++)
             {
@@ -107,18 +111,18 @@ namespace DamagePrefab
                 damageTextList[i].text = message;
                 damageTextList[i].fontSize = Math.Abs(fontSize) > 0.1f ? fontSize : normalFontSize;
                 damageTextColor = Color.white;
-                damagePool[i].transform.position = new Vector3(position.x, position.y + stackOffset, position.z);
+                damagePool[i].transform.position = new Vector3(finalPosition.x, finalPosition.y + stackOffset, finalPosition.z);
                 
                 Enqueue(damagePool[i], battleUnit);
                 damagePool[i].SetActive(true);
                     
                 return damagePool[i];
             }
-            
+
             damageTextList[0].color = damageTextColor;
             damageTextList[0].text = message;
             damageTextColor = Color.white;
-            damagePool[0].transform.position = new Vector3(position.x, position.y + stackOffset, position.z);
+            damagePool[0].transform.position = new Vector3(finalPosition.x, finalPosition.y + stackOffset, finalPosition.z);
             
             Enqueue(damagePool[0], battleUnit);
             damagePool[0].SetActive(true);

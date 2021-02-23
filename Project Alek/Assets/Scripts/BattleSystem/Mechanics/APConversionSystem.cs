@@ -32,6 +32,10 @@ namespace BattleSystem.Mechanics
             }
         }
 
+        private float AccuracyBoost => unit.conversionLevel * GlobalVariables.Instance.accuracyBoostIncrement;
+
+        private float InflictionChanceBoost => unit.conversionLevel * GlobalVariables.Instance.inflictionChanceIncrement;
+
         private static bool ChoosingSpellOrAbility =>
             BattleEngine.Instance.choosingAbility || BattleEngine.Instance.choosingSpell;
 
@@ -79,6 +83,9 @@ namespace BattleSystem.Mechanics
             else return;
             
             unit.conversionFactor = ConversionFactor;
+            unit.accuracyBoost = AccuracyBoost;
+            unit.inflictionChanceBoost = InflictionChanceBoost;
+  
             conversionEvent.Raise(unit.parent, conversionEvent);
         }
 
@@ -86,6 +93,8 @@ namespace BattleSystem.Mechanics
         {
             unit.conversionLevel = 0;
             unit.conversionFactor = 1;
+            unit.accuracyBoost = 0;
+            unit.inflictionChanceBoost = 0;
             
             conversionEvent.Raise(unit.parent, conversionEvent);
         }

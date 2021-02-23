@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4010592608702430742}
   - component: {fileID: 4010592608702430743}
+  - component: {fileID: 6002262411595864744}
   m_Layer: 0
   m_Name: Audio Controller
   m_TagString: Untagged
@@ -57,6 +58,28 @@ MonoBehaviour:
     audio:
     - type: {fileID: 11400000, guid: 3c0309db7ddb13042adc78e691a42c3a, type: 2}
       clip: {fileID: 8300000, guid: 8071f911178d66744a61c06230cfc8b0, type: 3}
+--- !u!114 &6002262411595864744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4010592608702430740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b88a9ffcc6cd4600b695ab9a12067ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainBattleTheme: {fileID: 11400000, guid: 49032dfdb44ff714ab7cebb8c4ad6cf0, type: 2}
+  victoryThemeBattle: {fileID: 11400000, guid: d7967c0922d955448ac987a833096485, type: 2}
+  hitWindow: {fileID: 11400000, guid: 3c0309db7ddb13042adc78e691a42c3a, type: 2}
+  levelUp: {fileID: 11400000, guid: 0cc09f556d1c1214288162f26085d305, type: 2}
+  aPConversion: {fileID: 11400000, guid: 49282c4b5aeff1f4fbae9a55cb81f1bd, type: 2}
+  gameOver: {fileID: 11400000, guid: 2c66f3beaf388bd4ea2b2320a77c0b75, type: 2}
+  victory: {fileID: 11400000, guid: cd1384b21a67e4848a279f828b2df638, type: 2}
+  heal: {fileID: 11400000, guid: 4efbf23bb4ff9e74a8467c19203848ff, type: 2}
+  revive: {fileID: 11400000, guid: 5223bbe3192db1c47ab4f7569929b162, type: 2}
+  chestOpen: {fileID: 11400000, guid: 3bcaac7ff42579742ac284f4264fd4a2, type: 2}
 --- !u!1 &4010592609878939665
 GameObject:
   m_ObjectHideFlags: 0

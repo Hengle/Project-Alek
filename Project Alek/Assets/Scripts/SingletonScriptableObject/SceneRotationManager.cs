@@ -12,10 +12,10 @@ namespace SingletonScriptableObject
         [SerializeField] [ValueDropdown(nameof(GetAllRotationOptionsInScene), IsUniqueList = true)]
         private Quaternion currentRotation = Quaternion.identity;
         
-        public Quaternion CurrentRotation
+        public static Quaternion CurrentRotation
         {
-            get => currentRotation;
-            set => currentRotation = value;
+            get => Instance.currentRotation;
+            set => Instance.currentRotation = value;
         }
 
         private IEnumerable GetAllRotationOptionsInScene()

@@ -49,23 +49,19 @@ namespace Characters.StatusEffects
         public virtual void OnAdded(UnitBase target)
         {
             target.onStatusEffectReceived?.Invoke(this);
-            
-            var position = target.Unit.gameObject.transform.position;
-            var newPosition = new Vector3(position.x, position.y + 2, position.z);
+
             DamagePrefabManager.Instance.DamageTextColor = color;
             DamagePrefabManager.Instance.ShowText(shortStatName != "" ?
-                $"+ {shortStatName}" : $"+ {name.ToUpper()}", newPosition, target.Unit.transform, 8f);
+                $"+ {shortStatName}" : $"+ {name.ToUpper()}", target.Unit.transform, 8f);
         }
 
         public virtual void OnRemoval(UnitBase unitBase)
         {
             unitBase.onStatusEffectRemoved?.Invoke(this);
-            
-            var position = unitBase.Unit.gameObject.transform.position;
-            var newPosition = new Vector3(position.x, position.y + 2, position.z);
+    
             DamagePrefabManager.Instance.DamageTextColor = color;
             DamagePrefabManager.Instance.ShowText(shortStatName != "" ?
-                $"- {shortStatName}" : $"- {name.ToUpper()}", newPosition, unitBase.Unit.transform, 8f);
+                $"- {shortStatName}" : $"- {name.ToUpper()}", unitBase.Unit.transform, 8f);
         }
         
         public float StatusEffectModifier(UnitBase target)

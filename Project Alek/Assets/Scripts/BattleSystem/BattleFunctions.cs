@@ -66,7 +66,7 @@ namespace BattleSystem
                     var isSpell = dealer.CurrentAbility.GetType() == typeof(Spell);
                     Timing.RunCoroutine(NonAttack(dealer, isSpell));
                     yield break;
-                default: Logging.Instance.Log("This message should not be displaying...");
+                default: Logging.Log("This message should not be displaying...");
                     yield break;
             }
         }
@@ -107,8 +107,8 @@ namespace BattleSystem
             
             if (dealer.IsDead)
             {
-                dealer.Unit.DestroyGO();
                 BattleEngine.Instance.performingAction = false;
+                yield return Timing.WaitForSeconds(3f);
                 SetBackToOriginPosition(parent, originPosition);
                 yield break;
             }

@@ -97,7 +97,7 @@ namespace Characters.Animations
             SendTimedButtonEventResult(true);
             hitWindow = true;
             windowOpen = false;
-            AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.hitWindow);
+            AudioController.PlayAudio(CommonAudioTypes.HitWindow);
         }
 
         private void OnTimedButtonPressSpecialAttack(InputAction.CallbackContext ctx)
@@ -107,7 +107,7 @@ namespace Characters.Animations
             if (!windowOpen) return;
 
             timedAttackCount += 1;
-            AudioController.Instance.PlayAudio(CommonAudioTypes.Instance.hitWindow);
+            AudioController.PlayAudio(CommonAudioTypes.HitWindow);
         }
 
         private void SendTimedButtonEventResult(bool result)
@@ -170,8 +170,9 @@ namespace Characters.Animations
                     
                     let randomValue = Random.value
                     let modifier = effect.StatusEffectModifier(unit.currentTarget)
+                    let chance = unit.currentAbility.chanceOfInfliction * modifier + unit.inflictionChanceBoost
 
-                    where !(randomValue > unit.currentAbility.chanceOfInfliction * modifier) select effect)
+                    where !(randomValue > chance) select effect)
                 {
                     effect.OnAdded(unit.currentTarget);
                     unit.currentTarget.StatusEffects.Add(effect);
@@ -186,8 +187,9 @@ namespace Characters.Animations
                     
                     let randomValue = Random.value
                     let modifier = effect.StatusEffectModifier(target)
+                    let chance = unit.currentAbility.chanceOfInfliction * modifier + unit.inflictionChanceBoost
                     
-                    where !(randomValue > unit.currentAbility.chanceOfInfliction * modifier) select effect)
+                    where !(randomValue > chance) select effect)
                 {
                     effect.OnAdded(target);
                     target.StatusEffects.Add(effect);
@@ -238,15 +240,15 @@ namespace Characters.Animations
         [UsedImplicitly] private void PerformSpecialAttack()
         {
             double timedAttackModifier = 1 + timedAttackCount / 10f;
-            Logging.Instance.Log($"Timed Attack Modifier: {timedAttackModifier}");
+            Logging.Log($"Timed Attack Modifier: {timedAttackModifier}");
             
             var apUsedModifier = 1.0f + unit.specialAttackAP * 5f / 100f;
-            Logging.Instance.Log($"AP Modifier: {apUsedModifier}");
+            Logging.Log($"AP Modifier: {apUsedModifier}");
 
             var finalDamageAmt = unit.currentDamage * timedAttackModifier;
             finalDamageAmt *= apUsedModifier;
             
-            Logging.Instance.Log($"Final Damage: {(int)finalDamageAmt}");
+            Logging.Log($"Final Damage: {(int)finalDamageAmt}");
 
             unit.currentTarget.TakeDamageSpecial((int)finalDamageAmt);
 

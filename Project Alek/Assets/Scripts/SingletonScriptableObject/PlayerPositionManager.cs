@@ -8,25 +8,23 @@ namespace SingletonScriptableObject
     [CreateAssetMenu(fileName = "Player Position Manager", menuName = "Singleton SO/Player Position Manager")]
     public class PlayerPositionManager : ScriptableObjectSingleton<PlayerPositionManager>
     {
-        [SerializeField] [ReadOnly] 
-        private Vector3 position;
+        [SerializeField] [ReadOnly] private Vector3 position;
 
-        [Button] private void ResetPosition() => 
-            position = Vector3.zero;
+        [Button] private void ResetPosition() => position = Vector3.zero;
         
         [ValueDropdown(nameof(GetAllSpawnPointsInScene))]
         [SerializeField] private string spawnId = "0";
 
-        public Vector3 Position
+        public static Vector3 Position
         {
-            get => position;
-            set => position = value;
+            get => Instance.position;
+            set => Instance.position = value;
         }
         
-        public string SpawnId
+        public static string SpawnId
         {
-            get => spawnId;
-            set => spawnId = value;
+            get => Instance.spawnId;
+            set => Instance.spawnId = value;
         }
 
         private IEnumerable GetAllSpawnPointsInScene()

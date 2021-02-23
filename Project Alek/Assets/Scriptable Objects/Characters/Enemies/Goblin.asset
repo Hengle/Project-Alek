@@ -219,7 +219,8 @@ MonoBehaviour:
   abilities:
   - {fileID: 11400000, guid: 07eff9853e50ef845a7563977766b7ba, type: 2}
   spells: []
-  overworldPrefab: {fileID: 0}
+  overworldPrefab: {fileID: 7390686793474909329, guid: 19957feb3c4229642b69485923460e43,
+    type: 3}
   maxShieldCount: 2
   isSummon: 0
   master: {fileID: 0}

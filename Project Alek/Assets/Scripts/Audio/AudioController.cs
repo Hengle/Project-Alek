@@ -61,28 +61,28 @@ namespace Audio
 
 #region Public Functions
 
-            public void PlayAudio(AudioType type, bool fade=false, float fadeDuration = 1.0f, float delay=0.0F) =>
-                AddJob(new AudioJob(AudioAction.Start, type, fade, fadeDuration, delay));
+            public static void PlayAudio(AudioType type, bool fade=false, float fadeDuration = 1.0f, float delay=0.0F) =>
+                Instance.AddJob(new AudioJob(AudioAction.Start, type, fade, fadeDuration, delay));
             
-            public void StopAudio(AudioType type, bool fade=false, float fadeDuration = 1.0f, float delay=0.0F) =>
-                AddJob(new AudioJob(AudioAction.Stop, type, fade, fadeDuration, delay));
+            public static void StopAudio(AudioType type, bool fade=false, float fadeDuration = 1.0f, float delay=0.0F) =>
+                Instance.AddJob(new AudioJob(AudioAction.Stop, type, fade, fadeDuration, delay));
             
-            public void RestartAudio(AudioType type, bool fade=false, float fadeDuration = 1.0f, float delay=0.0F) =>
-                AddJob(new AudioJob(AudioAction.Restart, type, fade, fadeDuration, delay));
+            public static void RestartAudio(AudioType type, bool fade=false, float fadeDuration = 1.0f, float delay=0.0F) =>
+                Instance.AddJob(new AudioJob(AudioAction.Restart, type, fade, fadeDuration, delay));
 
-            public void AddNewTrack(AudioTrack track)
+            public static void AddNewTrack(AudioTrack track)
             {
-                if (tracks.Exists(t =>
+                if (Instance.tracks.Exists(t =>
                     t.source.name == track.source.name)) return;
 
-                tracks.Add(track);
-                UpdateAudioTable(track);
+                Instance.tracks.Add(track);
+                Instance.UpdateAudioTable(track);
             }
 
-            public void RemoveTrack(AudioTrack track) 
+            public static void RemoveTrack(AudioTrack track) 
             {
-                tracks.Remove(track);
-                RemoveFromAudioTable(track);
+                Instance.tracks.Remove(track);
+                Instance.RemoveFromAudioTable(track);
             }
             
 #endregion

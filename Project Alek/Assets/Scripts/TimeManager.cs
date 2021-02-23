@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using MEC;
 
 public static class TimeManager
 {
+    public static bool AtFullSpeed => Math.Abs(Time.timeScale - 1) < 0.001f;
+    
     public static void PauseTime()
     {
         Time.timeScale = 0.0f;

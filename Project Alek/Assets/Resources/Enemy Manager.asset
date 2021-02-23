@@ -12,8 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca377da9a3e341bbb383550f5f42175c, type: 3}
   m_Name: Enemy Manager
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   enemies:
-  - {fileID: 11400000, guid: a74d8c255aa675b42b09ae2f832b843d, type: 2}
   - {fileID: 11400000, guid: cedfc901c08aaf64db9d5d3d449ec512, type: 2}
   - {fileID: 11400000, guid: a74d8c255aa675b42b09ae2f832b843d, type: 2}
   - {fileID: 11400000, guid: 1df9f50e46e40b9468aa47faa3e8d642, type: 2}
+  - {fileID: 11400000, guid: a74d8c255aa675b42b09ae2f832b843d, type: 2}
