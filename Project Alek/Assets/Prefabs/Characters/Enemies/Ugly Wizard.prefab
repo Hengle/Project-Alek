@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 4615855872730620697}
   - component: {fileID: 3306748474429966067}
   - component: {fileID: 1657113048352796980}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ugly Wizard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
