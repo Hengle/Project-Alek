@@ -1,5 +1,6 @@
 ﻿using System;
 using Characters.Animations;
+using PixelCrushers;
 using SingletonScriptableObject;
 using UnityEngine;
 
@@ -12,11 +13,13 @@ namespace Overworld
         private Rigidbody rb;
 
         private Vector2 currentMovement;
-        
+
         private int speed;
         [SerializeField] private int walkSpeed = 5;
         [SerializeField] private int runSpeed = 10;
-  
+
+        protected static bool _isRegistered = false;
+        private bool didIRegister = false;
         private bool movementPressed;
         private bool runPressed;
 
@@ -63,12 +66,29 @@ namespace Overworld
             rb.MovePosition(playerTransform.position + finalPos * (speed * Time.fixedDeltaTime));
         }
 
-        private void OnEnable() => controls.Enable();
+        private void OnEnable()
+        {
+            if (!_isRegistered)
+            {
+                _isRegistered = true;
+                didIRegister = true;
+                controls.Enable();
+                InputDeviceManager.RegisterInputAction("Confirm", controls.UI.Submit);
+                InputDeviceManager.RegisterInputAction("Back", controls.UI.Cancel);
+            }
+        }
 
         private void OnDisable()
         {
             PlayerPositionManager.Position = transform.position;
-            controls.Disable();
+            if (didIRegister)
+            {
+                _isRegistered = false;
+                didIRegister = false;
+                controls.Disable();
+                InputDeviceManager.UnregisterInputAction("Confirm");
+                InputDeviceManager.UnregisterInputAction("Back");
+            }
         }
     }
 }
