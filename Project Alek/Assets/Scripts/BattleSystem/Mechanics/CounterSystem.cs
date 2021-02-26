@@ -35,7 +35,7 @@ namespace BattleSystem.Mechanics
             if (!hitWindow) return;
             if (unit.currentHP == 0 || unit.status == Status.Dead) return;
 
-            unit.currentTarget = BattleEngine.Instance.activeUnit;
+            unit.currentTarget = OldBattleEngine.Instance.activeUnit;
             unit.currentTarget.Unit.isCountered = true;
             isCountering = true;
             characterAttackEvent.Raise(unit.parent, characterAttackEvent);

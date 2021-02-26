@@ -13,6 +13,8 @@ TagManager:
   - GlobalVolume
   - Notification Handler
   - ChestCanvas
+  - ResultsCanvas
+  - GameOverCanvas
   layers:
   - Default
   - TransparentFX

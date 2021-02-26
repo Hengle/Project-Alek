@@ -27,9 +27,9 @@ namespace BattleSystem.UI
 
         public void Init()
         {
-            for (var i = 0; i < BattleEngine.Instance._membersForThisBattle.Count; i++)
+            for (var i = 0; i < OldBattleEngine.Instance._membersForThisBattle.Count; i++)
             {
-                var member = BattleEngine.Instance._membersForThisBattle[i];
+                var member = OldBattleEngine.Instance._membersForThisBattle[i];
                 memberPanels[i].transform.Find("Icon").gameObject.GetComponent<Image>().sprite = member.icon;
                 progressBars[i].fillAmount = (float) member.CurrentExperience / member.ExperienceToNextLevel;
                 classProgressBars[i].fillAmount = (float) member.currentClass.CurrentExperience / member.currentClass.ExperienceToNextLevel;
@@ -116,9 +116,9 @@ namespace BattleSystem.UI
         private void Update()
         {
             if (showingLevelUps) return;
-            for (var i = 0; i < BattleEngine.Instance._membersForThisBattle.Count; i++)
+            for (var i = 0; i < OldBattleEngine.Instance._membersForThisBattle.Count; i++)
             {
-                var member = BattleEngine.Instance._membersForThisBattle[i];
+                var member = OldBattleEngine.Instance._membersForThisBattle[i];
 
                 expText[i].text = $"+ {member.BattleExpReceived}";
                 progressBars[i].fillAmount = (float) member.CurrentExperience / member.ExperienceToNextLevel;

@@ -14,27 +14,27 @@ namespace BattleSystem.UI
         
         public void OnThisTurnListCreated()
         {
-            var count = BattleEngine.Instance.membersAndEnemiesThisTurn.Count;
+            var count = OldBattleEngine.Instance.membersAndEnemiesThisTurn.Count;
    
             for (var i = 0; i < thisTurnList.Count; i++)
             {
                 if (i >= count) { thisTurnList[i].SetActive(false); continue; }
 
-                thisTurnIcons[i].sprite = BattleEngine.Instance.membersAndEnemiesThisTurn[i].icon;
-                BattleEngine.Instance.membersAndEnemiesThisTurn[i].Unit.turnOrderIcon = thisTurnIcons[i];
+                thisTurnIcons[i].sprite = OldBattleEngine.Instance.membersAndEnemiesThisTurn[i].icon;
+                OldBattleEngine.Instance.membersAndEnemiesThisTurn[i].Unit.turnOrderIcon = thisTurnIcons[i];
                 thisTurnList[i].SetActive(true);
             }
         }
 
         public void OnNextTurnListCreated()
         {
-            var count = BattleEngine.Instance.membersAndEnemiesNextTurn.Count;
+            var count = OldBattleEngine.Instance.membersAndEnemiesNextTurn.Count;
 
             for (var i = 0; i < nextTurnList.Count; i++)
             {
                 if (i >= count) { nextTurnList[i].SetActive(false); continue; }
                 
-                nextTurnIcons[i].sprite = BattleEngine.Instance.membersAndEnemiesNextTurn[i].icon;
+                nextTurnIcons[i].sprite = OldBattleEngine.Instance.membersAndEnemiesNextTurn[i].icon;
                 nextTurnList[i].SetActive(true);
             }
         }

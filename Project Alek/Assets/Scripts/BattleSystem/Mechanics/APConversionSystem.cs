@@ -37,7 +37,7 @@ namespace BattleSystem.Mechanics
         private float InflictionChanceBoost => unit.conversionLevel * GlobalVariables.Instance.inflictionChanceIncrement;
 
         private static bool ChoosingSpellOrAbility =>
-            BattleEngine.Instance.choosingAbility || BattleEngine.Instance.choosingSpell;
+            OldBattleEngine.Instance.choosingAbility || OldBattleEngine.Instance.choosingSpell;
 
         private bool CanDecreaseConversion =>
             thisUnitTurn && ChoosingSpellOrAbility && BattleInput._controls.Battle.LeftShoulder.triggered

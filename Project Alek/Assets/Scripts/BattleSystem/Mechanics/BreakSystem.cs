@@ -134,7 +134,7 @@ namespace BattleSystem.Mechanics
             unitBase.onShieldBroken?.Invoke();
             currentState = UnitStates.Weakened;
             unitBase.Unit.currentState = currentState;
-            if (unitBase.Unit.isCountered) BattleEngine.Instance.endThisMembersTurn = true;
+            if (unitBase.Unit.isCountered) OldBattleEngine.Instance.endThisMembersTurn = true;
             unitBase.OnNewState(currentState);
         }
 

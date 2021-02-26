@@ -16,50 +16,50 @@ namespace BattleSystem
             // This is triggered at the start of a party member's turn
             if (!character.battlePanel.activeSelf)
             {
-                BattleEngine.Instance.choosingOption = true;
+                OldBattleEngine.Instance.choosingOption = true;
                 character.battlePanel.SetActive(true);
             }
             
             // This is triggered when going back to main menu from the ability menu
-            else if (BattleEngine.Instance.choosingAbility) 
+            else if (OldBattleEngine.Instance.choosingAbility) 
             {
                 character.BattlePanelAnim.SetTrigger(AnimationHandler.AbilityMenu);
-                BattleEngine.Instance.choosingOption = true;
-                BattleEngine.Instance.choosingAbility = false;
+                OldBattleEngine.Instance.choosingOption = true;
+                OldBattleEngine.Instance.choosingAbility = false;
             }
             
             // This is triggered when going back to main menu from the spell menu
-            else if (BattleEngine.Instance.choosingSpell)
+            else if (OldBattleEngine.Instance.choosingSpell)
             {
                 character.BattlePanelAnim.SetTrigger(AnimationHandler.SpellMenu);
-                BattleEngine.Instance.choosingOption = true;
-                BattleEngine.Instance.choosingSpell = false;
+                OldBattleEngine.Instance.choosingOption = true;
+                OldBattleEngine.Instance.choosingSpell = false;
             }
             
             // This is triggered when going back while choosing a target from the ability menu
-            else if (BattleEngine.Instance.choosingTarget && BattleEngine.Instance.abilityMenuLast) 
+            else if (OldBattleEngine.Instance.choosingTarget && OldBattleEngine.Instance.abilityMenuLast) 
             {
                 character.BattlePanelAnim.SetTrigger(AnimationHandler.AbilityMenu);
-                BattleEngine.Instance.choosingTarget = false;
-                BattleEngine.Instance.choosingAbility = true;
-                BattleEngine.Instance.abilityMenuLast = false;
+                OldBattleEngine.Instance.choosingTarget = false;
+                OldBattleEngine.Instance.choosingAbility = true;
+                OldBattleEngine.Instance.abilityMenuLast = false;
             }
             
             // This is triggered when going back while choosing a target from the spell menu
-            else if (BattleEngine.Instance.choosingTarget && BattleEngine.Instance.spellMenuLast) 
+            else if (OldBattleEngine.Instance.choosingTarget && OldBattleEngine.Instance.spellMenuLast) 
             {
                 character.BattlePanelAnim.SetTrigger(AnimationHandler.SpellMenu);
-                BattleEngine.Instance.choosingTarget = false;
-                BattleEngine.Instance.choosingSpell = true;
-                BattleEngine.Instance.spellMenuLast = false;
+                OldBattleEngine.Instance.choosingTarget = false;
+                OldBattleEngine.Instance.choosingSpell = true;
+                OldBattleEngine.Instance.spellMenuLast = false;
             }
             
             // This is triggered when going back while choosing a target from the main menu (attack button)
             else 
             {
                 character.BattlePanelAnim.SetTrigger(AnimationHandler.Panel);
-                BattleEngine.Instance.choosingOption = true;
-                BattleEngine.Instance.choosingTarget = false;
+                OldBattleEngine.Instance.choosingOption = true;
+                OldBattleEngine.Instance.choosingTarget = false;
             }
         }
 
@@ -90,7 +90,7 @@ namespace BattleSystem
             {
                 character.Unit.commandActionName = commandActionName;
                 character.Unit.commandActionOption = commandActionOption;
-                BattleEngine.Instance.skipChooseTarget = true;
+                OldBattleEngine.Instance.skipChooseTarget = true;
             }
             else
             {
@@ -101,36 +101,36 @@ namespace BattleSystem
             character.Unit.actionCost = commandCost;
 
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
-            if (BattleEngine.Instance.choosingAbility) BattleEngine.Instance.choosingAbility = false;
-            else if (BattleEngine.Instance.choosingSpell) BattleEngine.Instance.choosingSpell = false;
-            else BattleEngine.Instance.choosingOption = false;
+            if (OldBattleEngine.Instance.choosingAbility) OldBattleEngine.Instance.choosingAbility = false;
+            else if (OldBattleEngine.Instance.choosingSpell) OldBattleEngine.Instance.choosingSpell = false;
+            else OldBattleEngine.Instance.choosingOption = false;
         }
 
         public void OnAbilityMenuButton()
         {
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.AbilityMenu);
-            BattleEngine.Instance.choosingAbility = true;
-            BattleEngine.Instance.choosingOption = false;
+            OldBattleEngine.Instance.choosingAbility = true;
+            OldBattleEngine.Instance.choosingOption = false;
         }
 
         public void OnSpellMenuButton()
         {
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.SpellMenu);
-            BattleEngine.Instance.choosingSpell = true;
-            BattleEngine.Instance.choosingOption = false;
+            OldBattleEngine.Instance.choosingSpell = true;
+            OldBattleEngine.Instance.choosingOption = false;
         }
 
         public void OnEndTurnButton()
         {
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
-            BattleEngine.Instance.endThisMembersTurn = true;
-            BattleEngine.Instance.choosingOption = false;
+            OldBattleEngine.Instance.endThisMembersTurn = true;
+            OldBattleEngine.Instance.choosingOption = false;
         }
 
         public void OnFleeButton()
         {
             character.battlePanel.GetComponent<Animator>().SetTrigger(AnimationHandler.Panel);
-            Timing.RunCoroutine(BattleEngine.Instance.FleeBattleSequence());
+            Timing.RunCoroutine(OldBattleEngine.Instance.FleeBattleSequence());
         }
     }
 }

@@ -103,7 +103,7 @@ namespace BattleSystem
 
         private void AddCommand()
         {
-            if (BattleEngine.Instance.usingItem)
+            if (OldBattleEngine.Instance.usingItem)
             {
                 character.Unit.currentTarget = thisUnitBase;
                 if (thisUnitBase.Unit.status == Status.Dead && _currentlySelectedItem as RevivalItem)
@@ -122,8 +122,8 @@ namespace BattleSystem
                 }
 
                 character.Unit.anim.SetTrigger(AnimationHandler.ItemTrigger);
-                BattleEngine.Instance.inventoryInputManager.CurrentlySelectedInventorySlot.Use();
-                BattleEngine.Instance.choosingTarget = false;
+                OldBattleEngine.Instance.inventoryInputManager.CurrentlySelectedInventorySlot.Use();
+                OldBattleEngine.Instance.choosingTarget = false;
                 EventSystem.current.SetSelectedGameObject(null);
             }
             
@@ -134,8 +134,8 @@ namespace BattleSystem
             character.Unit.commandActionOption = classOption;
 
             if (character.CurrentAbility && character.CurrentAbility.endTurnOnUse)
-                BattleEngine.Instance.endTurnAfterCommand = true;
-            BattleEngine.Instance.choosingTarget = false;
+                OldBattleEngine.Instance.endTurnAfterCommand = true;
+            OldBattleEngine.Instance.choosingTarget = false;
             EventSystem.current.SetSelectedGameObject(null);
         }
 
@@ -145,7 +145,7 @@ namespace BattleSystem
 
             switch (_targetOptions)
             {
-                case 1: foreach (var enemy in BattleEngine.Instance._enemiesForThisBattle)
+                case 1: foreach (var enemy in OldBattleEngine.Instance._enemiesForThisBattle)
                     {
                         character.Unit.multiHitTargets.Add(enemy);
                         enemy.Unit.OnDeselectActions();
@@ -153,7 +153,7 @@ namespace BattleSystem
                     }
                     break;
                 
-                case 0: foreach (var member in BattleEngine.Instance._membersForThisBattle)
+                case 0: foreach (var member in OldBattleEngine.Instance._membersForThisBattle)
                     {
                         character.Unit.multiHitTargets.Add(member);
                         member.Unit.OnDeselectActions();
@@ -166,7 +166,7 @@ namespace BattleSystem
             
             character.Unit.commandActionName = className;
             character.Unit.commandActionOption = classOption;
-            BattleEngine.Instance.choosingTarget = false;
+            OldBattleEngine.Instance.choosingTarget = false;
             EventSystem.current.SetSelectedGameObject(null);
         }
 
@@ -218,7 +218,7 @@ namespace BattleSystem
             if (value2 == characterTurnEvent) _isMultiTarget = false;
             else if (value2 == chooseTargetEvent)
             {
-                BattleEngine.Instance.choosingTarget = true;
+                OldBattleEngine.Instance.choosingTarget = true;
                 character = (PartyMember) value1;
                     
                 SetNavigation();

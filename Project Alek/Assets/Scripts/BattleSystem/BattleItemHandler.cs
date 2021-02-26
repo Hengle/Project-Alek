@@ -18,8 +18,8 @@ namespace BattleSystem
                     ChooseTarget._targetOptions = eventType.EventItem.targetOptions;
                     ChooseTarget.GetItemCommand();
 
-                    BattleEngine.Instance.usingItem = true;
-                    BattleEngine.Instance.choosingOption = false;
+                    OldBattleEngine.Instance.usingItem = true;
+                    OldBattleEngine.Instance.choosingOption = false;
                     break;
                 case MMInventoryEventType.Select:
                     ChooseTarget._currentlySelectedItem = eventType.EventItem;

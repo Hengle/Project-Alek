@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd59972d9c034bbeb889734d87c704da, type: 3}
+  m_Name: Main Battle Engine
+  m_EditorClassIdentifier: 
+  battleResults: {fileID: 0}
+  gameOverCanvas: {fileID: 0}
+  inventoryInputManager: {fileID: 0}
+  generator: {fileID: 0}
+  enemiesForThisBattle: []
+  membersForThisBattle: []
+  membersAndEnemiesThisTurn: []
+  membersAndEnemiesNextTurn: []
+  activeUnit: {fileID: 0}
+  roundCount: 0
+  choosingOption: 0
+  choosingTarget: 0
+  skipChooseTarget: 0
+  usingItem: 0
+  performingAction: 0
+  endThisMembersTurn: 0
+  endTurnAfterCommand: 0
+  choosingAbility: 0
+  choosingSpell: 0
+  canGiveCommand: 1
+  abilityMenuLast: 0
+  spellMenuLast: 0

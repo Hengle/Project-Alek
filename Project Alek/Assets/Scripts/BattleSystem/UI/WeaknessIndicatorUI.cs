@@ -17,7 +17,7 @@ namespace BattleSystem.UI
         {
             get 
             {
-                var ability = BattleEngine.Instance.activeUnit.Unit.currentAbility;
+                var ability = OldBattleEngine.Instance.activeUnit.Unit.currentAbility;
                 return ability != null && ability.hasElemental && unit.parent._elementalWeaknesses.
                     Any(kvp => kvp.Key._type == ability.elementalType && kvp.Value);
             }
@@ -27,15 +27,15 @@ namespace BattleSystem.UI
         {
             get
             {
-                if (!BattleEngine.Instance.activeUnit.Unit.overrideElemental) return false;
-                var ability = BattleEngine.Instance.activeUnit.OverrideAbility;
+                if (!OldBattleEngine.Instance.activeUnit.Unit.overrideElemental) return false;
+                var ability = OldBattleEngine.Instance.activeUnit.OverrideAbility;
                 return ability != null && unit.parent._elementalWeaknesses.Any(kvp =>
                     kvp.Key._type == ability.elementalType && kvp.Value);
             }
         }
 
         private bool IsWeakToDamageType => unit.parent._damageTypeWeaknesses.Any(type => 
-                type.Key == ((PartyMember) BattleEngine.Instance.activeUnit).equippedWeapon.damageType && type.Value);
+                type.Key == ((PartyMember) OldBattleEngine.Instance.activeUnit).equippedWeapon.damageType && type.Value);
 
         private void Start()
         {

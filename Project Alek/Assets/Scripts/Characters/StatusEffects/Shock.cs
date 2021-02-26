@@ -25,7 +25,7 @@ namespace Characters.StatusEffects
             unitBase.TakeDamage(dmg);
  
             // show shocked visual effect
-            BattleEngine.Instance.canGiveCommand = false;
+            OldBattleEngine.Instance.canGiveCommand = false;
         }
     }
 }

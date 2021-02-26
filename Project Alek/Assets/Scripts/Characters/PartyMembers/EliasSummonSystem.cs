@@ -291,7 +291,7 @@ namespace Characters.PartyMembers
 
         private void CloseSubMenu()
         {
-            if (BattleEngine.Instance.activeUnit != elias) return;
+            if (OldBattleEngine.Instance.activeUnit != elias) return;
             if (!activeMenu || !activeMenu.activeSelf) return;
             
             activeMenu.SetActive(false);

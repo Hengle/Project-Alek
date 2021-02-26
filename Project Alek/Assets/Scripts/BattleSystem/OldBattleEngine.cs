@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Audio;
 using BattleSystem.Calculators;
 using UnityEngine;
 using Characters;
@@ -15,19 +14,20 @@ using DG.Tweening;
 using Kryz.CharacterStats;
 using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
-using MEC;
 using ScriptableObjectArchitecture;
 using SingletonScriptableObject;
 using UnityEngine.EventSystems;
+using Audio;
+using MEC;
 
 namespace BattleSystem
 {
-    public class BattleEngine : MonoBehaviorSingleton<BattleEngine>, IGameEventListener<BattleEvent>, IGameEventListener<UnitBase,CharacterGameEvent>
+    public class OldBattleEngine : MonoBehaviorSingleton<OldBattleEngine>, IGameEventListener<BattleEvent>, IGameEventListener<UnitBase,CharacterGameEvent>
     {
         #region FieldsAndProperties
         
-        [SerializeField] private GameObject battleResults;
-        [SerializeField] private GameObject gameOverCanvas;
+        [SerializeField] public GameObject battleResults;
+        [SerializeField] public GameObject gameOverCanvas;
    
         private SortingCalculator sortingCalculator;
 

@@ -15,7 +15,7 @@ namespace MoreMountains.InventoryEngine
 		public override bool Use()
 		{
 			base.Use();
-			var target = BattleEngine.Instance.activeUnit.CurrentTarget;
+			var target = OldBattleEngine.Instance.activeUnit.CurrentTarget;
 			target.Heal(HealthBonus);
 			AudioController.PlayAudio(CommonAudioTypes.Heal);
 			return true;

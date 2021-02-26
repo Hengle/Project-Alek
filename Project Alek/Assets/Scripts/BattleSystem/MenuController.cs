@@ -105,7 +105,7 @@ namespace BattleSystem
                     break;
                 case 3: // Self
                     EventSystem.current.SetSelectedGameObject(null);
-                    EventSystem.current.SetSelectedGameObject(BattleEngine.Instance.activeUnit.Unit.gameObject);
+                    EventSystem.current.SetSelectedGameObject(OldBattleEngine.Instance.activeUnit.Unit.gameObject);
                     break;
             }
             
@@ -116,7 +116,7 @@ namespace BattleSystem
 
         public void OnMMEvent(MMInventoryEvent eventType)
         {
-            if (BattleEngine.Instance.usingItem) return;
+            if (OldBattleEngine.Instance.usingItem) return;
             
             switch (eventType.InventoryEventType)
             {
