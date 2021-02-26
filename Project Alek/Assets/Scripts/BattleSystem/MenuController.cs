@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Characters.Animations;
 using ScriptableObjectArchitecture;
+using SingletonScriptableObject;
 
 namespace BattleSystem
 {
@@ -105,7 +106,7 @@ namespace BattleSystem
                     break;
                 case 3: // Self
                     EventSystem.current.SetSelectedGameObject(null);
-                    EventSystem.current.SetSelectedGameObject(OldBattleEngine.Instance.activeUnit.Unit.gameObject);
+                    EventSystem.current.SetSelectedGameObject(Battle.Engine.activeUnit.Unit.gameObject);
                     break;
             }
             
@@ -116,7 +117,7 @@ namespace BattleSystem
 
         public void OnMMEvent(MMInventoryEvent eventType)
         {
-            if (OldBattleEngine.Instance.usingItem) return;
+            if (Battle.Engine.usingItem) return;
             
             switch (eventType.InventoryEventType)
             {

@@ -1,4 +1,5 @@
 ﻿using ScriptableObjectArchitecture;
+using SingletonScriptableObject;
 using UnityEngine;
 
 namespace Characters.StatusEffects
@@ -17,7 +18,7 @@ namespace Characters.StatusEffects
             targetUnit = unit;
             statusEffect = effect;
             timer = statusEffect.turnDuration;
-    
+
             battleEvent.AddListener(this);
             
             targetUnit.onDeath += RemoveTimerAndEffect;

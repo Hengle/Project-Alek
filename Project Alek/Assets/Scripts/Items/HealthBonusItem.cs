@@ -2,6 +2,7 @@
 using System;
 using Audio;
 using BattleSystem;
+using SingletonScriptableObject;
 
 namespace MoreMountains.InventoryEngine
 {	
@@ -15,7 +16,7 @@ namespace MoreMountains.InventoryEngine
 		public override bool Use()
 		{
 			base.Use();
-			var target = OldBattleEngine.Instance.activeUnit.CurrentTarget;
+			var target = Battle.Engine.activeUnit.CurrentTarget;
 			target.Heal(HealthBonus);
 			AudioController.PlayAudio(CommonAudioTypes.Heal);
 			return true;

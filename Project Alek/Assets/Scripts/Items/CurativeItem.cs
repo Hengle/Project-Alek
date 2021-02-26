@@ -17,7 +17,7 @@ namespace MoreMountains.InventoryEngine
         public override bool Use()
         {
             base.Use();
-            var target = OldBattleEngine.Instance.activeUnit.CurrentTarget;
+            var target = Battle.Engine.activeUnit.CurrentTarget;
             target.CureAilments(ailmentsToCure);
             AudioController.PlayAudio(CommonAudioTypes.Heal);
             MainInventory.RemoveItem(this);

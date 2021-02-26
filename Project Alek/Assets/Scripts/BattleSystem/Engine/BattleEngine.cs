@@ -23,7 +23,7 @@ namespace BattleSystem.Engine
 
         protected abstract IEnumerator<float> LostBattleSequence();
 
-        protected abstract IEnumerator<float> FleeBattleSequence();
+        public abstract IEnumerator<float> FleeBattleSequence();
         
         protected abstract void EndOfBattle();
 

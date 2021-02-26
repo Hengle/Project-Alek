@@ -1,5 +1,6 @@
 ﻿using BattleSystem;
 using DamagePrefab;
+using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -25,7 +26,7 @@ namespace Characters.StatusEffects
             unitBase.TakeDamage(dmg);
  
             // show shocked visual effect
-            OldBattleEngine.Instance.canGiveCommand = false;
+            Battle.Engine.canGiveCommand = false;
         }
     }
 }

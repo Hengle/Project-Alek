@@ -15,6 +15,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using MEC;
+using SingletonScriptableObject;
 
 namespace Characters.PartyMembers
 {
@@ -291,7 +292,7 @@ namespace Characters.PartyMembers
 
         private void CloseSubMenu()
         {
-            if (OldBattleEngine.Instance.activeUnit != elias) return;
+            if (Battle.Engine.activeUnit != elias) return;
             if (!activeMenu || !activeMenu.activeSelf) return;
             
             activeMenu.SetActive(false);

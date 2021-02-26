@@ -40,8 +40,8 @@ namespace BattleSystem.Generator
 
         private static void RegisterDamagePrefabPairs()
         {
-            var members = OldBattleEngine.Instance._membersForThisBattle;
-            var  enemies = OldBattleEngine.Instance._enemiesForThisBattle;
+            var members = Battle.Engine.membersForThisBattle;
+            var  enemies = Battle.Engine.enemiesForThisBattle;
             var combined = new List<Transform>();
             
             members.ForEach(m => combined.Add(m.Unit.transform));
@@ -78,7 +78,7 @@ namespace BattleSystem.Generator
 
         private static void SetupPartyMenuController()
         {
-            foreach (var member in OldBattleEngine.Instance._membersForThisBattle)
+            foreach (var member in Battle.Engine.membersForThisBattle)
             {
                 SelectableObjectManager._memberSelectable.Add(member.Selectable);
                 member.MenuController = member.battlePanel.GetComponent<MenuController>();
@@ -114,7 +114,7 @@ namespace BattleSystem.Generator
             });
             
             mainMenu.Find("Inventory Button").gameObject.GetComponent<Button>().onClick.AddListener
-                (delegate { OldBattleEngine.Instance.inventoryInputManager.OpenInventory(); });
+                (delegate { Battle.Engine.inventoryInputManager.OpenInventory(); });
 
             mainMenu.Find("End Turn Button").gameObject.GetComponent<Button>().onClick.AddListener
                 (delegate { ((BattleOptionsPanel) character.battleOptionsPanel).OnEndTurnButton(); });
@@ -412,7 +412,7 @@ namespace BattleSystem.Generator
 
             character.Selectable = character.Unit.gameObject.GetComponent<Selectable>();
             
-            OldBattleEngine.Instance._membersForThisBattle.Add(character);
+            Battle.Engine.membersForThisBattle.Add(character);
         }
 
         private GameObject SpawnThisMember(UnitBase character, int i)
@@ -453,8 +453,8 @@ namespace BattleSystem.Generator
                 enemyGo.GetComponent<BreakSystem>().Init(clone, clone.maxShieldCount);
                 enemyGo.GetComponent<WeakAndResUnlockSystem>().Initialize(clone);
 
-                OldBattleEngine.Instance._enemiesForThisBattle.Add(clone);
-                OldBattleEngine.Instance._expGivers.Add(clone);
+                Battle.Engine.enemiesForThisBattle.Add(clone);
+                Battle.Engine.expGivers.Add(clone);
                 i++;
             }
         }

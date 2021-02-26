@@ -12,10 +12,10 @@ namespace BattleSystem.Engine
 {
     public abstract class BattleEngineFieldsAndProperties : ScriptableObject
     {
-        protected GameObject battleResults;
-        protected GameObject gameOverCanvas;
+        public GameObject battleResults;
+        public GameObject gameOverCanvas;
    
-        protected SortingCalculator sortingCalculator;
+        protected SortingCalculator _sortingCalculator;
 
         [HideInInspector] public InventoryInputManager inventoryInputManager;
         [HideInInspector] public BattleGenerator generator;
@@ -54,8 +54,8 @@ namespace BattleSystem.Engine
         protected bool AllEnemiesDead => enemiesForThisBattle.Count == 0;
         protected bool PartyOrEnemyTeamIsDead => AllMembersDead || AllEnemiesDead;
 
-        protected bool NewRoundCondition =>
-            membersAndEnemiesThisTurn.Count == 0 || membersAndEnemiesThisTurn.TrueForAll(u => u.IsDead);
+        protected bool NewRoundCondition => membersAndEnemiesThisTurn.Count == 0 || membersAndEnemiesThisTurn.
+            TrueForAll(u => u.IsDead);
 
         protected void ResetFields()
         {

@@ -1,5 +1,6 @@
 ﻿using MoreMountains.InventoryEngine;
 using MoreMountains.Tools;
+using SingletonScriptableObject;
 using UnityEngine;
 
 namespace BattleSystem
@@ -17,9 +18,9 @@ namespace BattleSystem
                 case MMInventoryEventType.PickTarget:
                     ChooseTarget._targetOptions = eventType.EventItem.targetOptions;
                     ChooseTarget.GetItemCommand();
-
-                    OldBattleEngine.Instance.usingItem = true;
-                    OldBattleEngine.Instance.choosingOption = false;
+                    
+                    Battle.Engine.usingItem = true;
+                    Battle.Engine.choosingOption = false;
                     break;
                 case MMInventoryEventType.Select:
                     ChooseTarget._currentlySelectedItem = eventType.EventItem;

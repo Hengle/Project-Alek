@@ -2,6 +2,7 @@
 using BattleSystem.Generator;
 using Characters;
 using Characters.PartyMembers;
+using SingletonScriptableObject;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -17,7 +18,7 @@ namespace BattleSystem.UI
         {
             get 
             {
-                var ability = OldBattleEngine.Instance.activeUnit.Unit.currentAbility;
+                var ability = Battle.Engine.activeUnit.Unit.currentAbility;
                 return ability != null && ability.hasElemental && unit.parent._elementalWeaknesses.
                     Any(kvp => kvp.Key._type == ability.elementalType && kvp.Value);
             }
@@ -27,15 +28,15 @@ namespace BattleSystem.UI
         {
             get
             {
-                if (!OldBattleEngine.Instance.activeUnit.Unit.overrideElemental) return false;
-                var ability = OldBattleEngine.Instance.activeUnit.OverrideAbility;
+                if (!Battle.Engine.activeUnit.Unit.overrideElemental) return false;
+                var ability = Battle.Engine.activeUnit.OverrideAbility;
                 return ability != null && unit.parent._elementalWeaknesses.Any(kvp =>
                     kvp.Key._type == ability.elementalType && kvp.Value);
             }
         }
 
         private bool IsWeakToDamageType => unit.parent._damageTypeWeaknesses.Any(type => 
-                type.Key == ((PartyMember) OldBattleEngine.Instance.activeUnit).equippedWeapon.damageType && type.Value);
+                type.Key == ((PartyMember) Battle.Engine.activeUnit).equippedWeapon.damageType && type.Value);
 
         private void Start()
         {

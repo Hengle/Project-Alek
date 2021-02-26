@@ -3,6 +3,7 @@ using Characters;
 using Characters.ElementalTypes;
 using Characters.StatusEffects;
 using ScriptableObjectArchitecture;
+using SingletonScriptableObject;
 using UnityEngine;
 
 namespace BattleSystem.Mechanics
@@ -134,7 +135,7 @@ namespace BattleSystem.Mechanics
             unitBase.onShieldBroken?.Invoke();
             currentState = UnitStates.Weakened;
             unitBase.Unit.currentState = currentState;
-            if (unitBase.Unit.isCountered) OldBattleEngine.Instance.endThisMembersTurn = true;
+            if (unitBase.Unit.isCountered) Battle.Engine.endThisMembersTurn = true;
             unitBase.OnNewState(currentState);
         }
 

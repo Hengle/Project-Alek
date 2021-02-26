@@ -29,13 +29,10 @@ namespace BattleSystem.Engine
             TimeManager.ResumeTime();
             
             ResetFields();
-            battleResults = GameObject.FindWithTag("ResultsCanvas");
-            gameOverCanvas = GameObject.FindWithTag("GameOverCanvas");
-            gameOverCanvas.SetActive(false);
-            
+
             inventoryInputManager = FindObjectOfType<InventoryInputManager>();
             generator = FindObjectOfType<BattleGenerator>();
-            sortingCalculator = FindObjectOfType<SortingCalculator>();
+            _sortingCalculator = FindObjectOfType<SortingCalculator>();
             
             BattleEvents.Instance.battleEvent.AddListener(this);
             BattleEvents.Instance.endOfTurnEvent.AddListener(this);
@@ -59,6 +56,8 @@ namespace BattleSystem.Engine
             BattleEvents.Instance.battleEvent.RemoveListener(this);
             BattleEvents.Instance.endOfTurnEvent.RemoveListener(this);
             BattleEvents.Instance.skipTurnEvent.RemoveListener(this);
+            
+            ResetFields();
         }
 
         protected override IEnumerator<float> SetupBattle()
@@ -303,7 +302,7 @@ namespace BattleSystem.Engine
             gameOverCanvas.SetActive(true);
         }
 
-        protected override IEnumerator<float> FleeBattleSequence()
+        public override IEnumerator<float> FleeBattleSequence()
         {
             //StopAllCoroutines();
             BattleEvents.Instance.fleeBattleEvent.Raise();
@@ -346,8 +345,8 @@ namespace BattleSystem.Engine
      
             BattleEvents.Instance.deathEvent.Raise(unit, BattleEvents.Instance.deathEvent);
             
-            sortingCalculator.ResortThisTurnOrder();
-            sortingCalculator.ResortNextTurnOrder();
+            _sortingCalculator.ResortThisTurnOrder();
+            _sortingCalculator.ResortNextTurnOrder();
             
             unit.onDeath -= RemoveFromBattle;
         }
@@ -360,20 +359,28 @@ namespace BattleSystem.Engine
             if (!unit.Unit.hasPerformedTurn) membersAndEnemiesThisTurn.Add(unit);
             membersAndEnemiesNextTurn.Add(unit);
             
-            sortingCalculator.ResortThisTurnOrder();
-            sortingCalculator.ResortNextTurnOrder();
+            _sortingCalculator.ResortThisTurnOrder();
+            _sortingCalculator.ResortNextTurnOrder();
 
             unit.onDeath += RemoveFromBattle;
         }
 
         public void OnEventRaised(BattleEvent value)
         {
-            throw new System.NotImplementedException();
+            switch (value)
+            {
+                case BattleEvent.WonBattle: Timing.RunCoroutine(WonBattleSequence());
+                    break;
+                case BattleEvent.LostBattle: Timing.RunCoroutine(LostBattleSequence());
+                    break;
+            }
         }
 
         public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
         {
-            throw new System.NotImplementedException();
+            if (value2 != BattleEvents.Instance.endOfTurnEvent && value2 != BattleEvents.Instance.skipTurnEvent) return;
+            RemoveFromTurn(value1);
+            Timing.RunCoroutine(GetNextTurn());
         }
     }
 }

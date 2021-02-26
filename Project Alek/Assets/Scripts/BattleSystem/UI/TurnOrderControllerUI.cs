@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using SingletonScriptableObject;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,27 +15,27 @@ namespace BattleSystem.UI
         
         public void OnThisTurnListCreated()
         {
-            var count = OldBattleEngine.Instance.membersAndEnemiesThisTurn.Count;
+            var count = Battle.Engine.membersAndEnemiesThisTurn.Count;
    
             for (var i = 0; i < thisTurnList.Count; i++)
             {
                 if (i >= count) { thisTurnList[i].SetActive(false); continue; }
 
-                thisTurnIcons[i].sprite = OldBattleEngine.Instance.membersAndEnemiesThisTurn[i].icon;
-                OldBattleEngine.Instance.membersAndEnemiesThisTurn[i].Unit.turnOrderIcon = thisTurnIcons[i];
+                thisTurnIcons[i].sprite = Battle.Engine.membersAndEnemiesThisTurn[i].icon;
+                Battle.Engine.membersAndEnemiesThisTurn[i].Unit.turnOrderIcon = thisTurnIcons[i];
                 thisTurnList[i].SetActive(true);
             }
         }
 
         public void OnNextTurnListCreated()
         {
-            var count = OldBattleEngine.Instance.membersAndEnemiesNextTurn.Count;
+            var count = Battle.Engine.membersAndEnemiesNextTurn.Count;
 
             for (var i = 0; i < nextTurnList.Count; i++)
             {
                 if (i >= count) { nextTurnList[i].SetActive(false); continue; }
                 
-                nextTurnIcons[i].sprite = OldBattleEngine.Instance.membersAndEnemiesNextTurn[i].icon;
+                nextTurnIcons[i].sprite = Battle.Engine.membersAndEnemiesNextTurn[i].icon;
                 nextTurnList[i].SetActive(true);
             }
         }

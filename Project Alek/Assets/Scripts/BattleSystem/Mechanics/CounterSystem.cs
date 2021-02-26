@@ -5,6 +5,7 @@ using Characters.CharacterExtensions;
 using Characters.StatusEffects;
 using MEC;
 using ScriptableObjectArchitecture;
+using SingletonScriptableObject;
 using UnityEngine;
 
 namespace BattleSystem.Mechanics
@@ -35,7 +36,7 @@ namespace BattleSystem.Mechanics
             if (!hitWindow) return;
             if (unit.currentHP == 0 || unit.status == Status.Dead) return;
 
-            unit.currentTarget = OldBattleEngine.Instance.activeUnit;
+            unit.currentTarget = Battle.Engine.activeUnit;
             unit.currentTarget.Unit.isCountered = true;
             isCountering = true;
             characterAttackEvent.Raise(unit.parent, characterAttackEvent);

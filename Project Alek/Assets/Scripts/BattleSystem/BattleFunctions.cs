@@ -26,7 +26,7 @@ namespace BattleSystem
 
         private void GetCommand(UnitBase unit)
         {
-            OldBattleEngine.Instance.performingAction = true;
+            Battle.Engine.performingAction = true;
             StartCoroutine(unit.Unit.commandActionName, unit);
         }
 
@@ -84,7 +84,7 @@ namespace BattleSystem
             yield return Timing.WaitUntilFalse(() => dealer.AnimationHandler.performingAction);
             yield return Timing.WaitForSeconds(0.5f);
             
-            OldBattleEngine.Instance.performingAction = false;
+            Battle.Engine.performingAction = false;
         }
 
         private static IEnumerator<float> CloseRangeAttack(UnitBase dealer)
@@ -107,7 +107,7 @@ namespace BattleSystem
             
             if (dealer.IsDead)
             {
-                OldBattleEngine.Instance.performingAction = false;
+                Battle.Engine.performingAction = false;
                 yield return Timing.WaitForSeconds(3f);
                 SetBackToOriginPosition(parent, originPosition);
                 yield break;
@@ -115,7 +115,7 @@ namespace BattleSystem
             
             yield return Timing.WaitUntilDone(MoveToPosition(parent, originPosition));
 
-            OldBattleEngine.Instance.performingAction = false;
+            Battle.Engine.performingAction = false;
         }
         
         private static IEnumerator<float> RangedAttack(UnitBase dealer)
@@ -128,7 +128,7 @@ namespace BattleSystem
 
             dealer.Unit.transform.rotation = originalRotation;
             
-            OldBattleEngine.Instance.performingAction = false;
+            Battle.Engine.performingAction = false;
         }
 
         private static IEnumerator<float> SpecialAttack(UnitBase dealer)
@@ -150,7 +150,7 @@ namespace BattleSystem
             yield return Timing.WaitUntilDone(ExecuteSpecialAttack(dealer));
             yield return Timing.WaitUntilDone(MoveToPosition(parent, originPosition));
 
-            OldBattleEngine.Instance.performingAction = false;
+            Battle.Engine.performingAction = false;
         }
 
         private static IEnumerator<float> ExecuteSpecialAttack(UnitBase dealer)
