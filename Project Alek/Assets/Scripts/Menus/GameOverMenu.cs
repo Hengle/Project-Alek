@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Audio;
 using MEC;
+using SceneManagement;
 using ScriptableObjectArchitecture;
-using SingletonScriptableObject;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;

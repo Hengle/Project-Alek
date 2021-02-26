@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using Utils;
 
 namespace Menus
 {

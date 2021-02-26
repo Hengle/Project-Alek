@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Characters.Abilities
+namespace Characters
 {
     [CreateAssetMenu(fileName = "Spell", menuName = "Ability/Spell")]
     public class Spell : RangedAttack

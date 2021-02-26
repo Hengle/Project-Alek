@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using Audio;
+using Characters;
 using Characters.PartyMembers;
 using MEC;
-using SingletonScriptableObject;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BattleSystem.UI
+namespace BattleSystem
 {
     public class BattleResultsUI : MonoBehaviour
     {

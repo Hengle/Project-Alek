@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Characters.StatusEffects
+namespace Characters
 {
     public class StatusEffectControllerUI : MonoBehaviour
     {

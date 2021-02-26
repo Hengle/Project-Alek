@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Characters.Enemies;
+using Characters;
 using ScriptableObjectArchitecture;
-using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;

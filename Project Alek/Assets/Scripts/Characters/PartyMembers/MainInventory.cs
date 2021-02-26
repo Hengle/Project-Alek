@@ -2,7 +2,7 @@
 using MoreMountains.InventoryEngine;
 using UnityEngine;
 
-namespace SingletonScriptableObject
+namespace Characters
 {
     [CreateAssetMenu(fileName = "Main Inventory", menuName = "Singleton SO/Main Inventory")]
     public class MainInventory : ScriptableObjectSingleton<MainInventory>

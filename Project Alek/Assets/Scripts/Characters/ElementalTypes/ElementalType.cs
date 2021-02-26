@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Characters.ElementalTypes
+namespace Characters
 {
     [EnumPaging] [LabelWidth(90)] public enum ElementalResistanceScalar { Normal = 25, Moderate = 50, Significant = 75, Major = 100 }
     [EnumPaging] [LabelWidth(90)] public enum ElementalWeaknessScalar { Normal = 125, Moderate = 150, Significant = 175, Major = 200 }

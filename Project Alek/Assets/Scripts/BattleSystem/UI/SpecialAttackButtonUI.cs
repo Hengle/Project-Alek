@@ -1,8 +1,9 @@
-﻿using Characters.PartyMembers;
+﻿using Characters;
+using Characters.PartyMembers;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BattleSystem.UI
+namespace BattleSystem
 {
     public class SpecialAttackButtonUI : MonoBehaviour
     {

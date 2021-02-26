@@ -2,7 +2,7 @@
 using ScriptableObjectArchitecture;
 using UnityEngine;
 
-namespace Characters.PartyMembers
+namespace Characters
 {
     public class CloseUpCamController : MonoBehaviour, IGameEventListener<UnitBase,CharacterGameEvent>
     {

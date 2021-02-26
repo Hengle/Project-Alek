@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using Characters;
-using Characters.Animations;
-using Characters.Enemies;
 using MEC;
 using TMPro;
 using UnityEngine;
 
-namespace BattleSystem.UI
+namespace BattleSystem
 {
     public class BreakSystemControllerUI : MonoBehaviour
     {

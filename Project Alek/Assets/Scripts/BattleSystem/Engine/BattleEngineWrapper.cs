@@ -1,7 +1,6 @@
-﻿using SingletonScriptableObject;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace BattleSystem.Engine
+namespace BattleSystem
 {
     public class BattleEngineWrapper : MonoBehaviorSingleton<BattleEngineWrapper>
     {

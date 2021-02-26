@@ -1,10 +1,8 @@
 ﻿using BattleSystem;
-using DamagePrefab;
-using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Characters.StatusEffects
+namespace Characters
 {
     [CreateAssetMenu(menuName = "Status Effect/Inhibiting Effect/Shock")]
     public class Shock : StatusEffect

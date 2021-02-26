@@ -1,4 +1,5 @@
-﻿using Characters.PartyMembers;
+﻿using Characters;
+using Characters.PartyMembers;
 using ScriptableObjectArchitecture;
 using UnityEngine;
 

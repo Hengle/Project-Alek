@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Characters.Enemies;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace SingletonScriptableObject
+namespace Characters
 {
     [CreateAssetMenu(fileName = "Enemy Manager", menuName = "Singleton SO/Enemy Manager")]
     public class EnemyManager : ScriptableObjectSingleton<EnemyManager>

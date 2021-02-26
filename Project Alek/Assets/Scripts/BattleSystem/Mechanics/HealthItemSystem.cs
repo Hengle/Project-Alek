@@ -1,10 +1,10 @@
 ﻿using Characters;
 using MoreMountains.InventoryEngine;
-using SingletonScriptableObject;
 using UnityEngine;
+using Utils;
 using Random = UnityEngine.Random;
 
-namespace BattleSystem.Mechanics
+namespace BattleSystem
 {
     public class HealthItemSystem : MonoBehaviour
     {

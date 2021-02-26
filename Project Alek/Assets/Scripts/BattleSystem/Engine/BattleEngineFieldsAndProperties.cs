@@ -1,14 +1,10 @@
 ﻿using System.Collections.Generic;
-using BattleSystem.Calculators;
-using BattleSystem.Generator;
 using Characters;
-using Characters.Enemies;
-using Characters.PartyMembers;
 using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace BattleSystem.Engine
+namespace BattleSystem
 {
     public abstract class BattleEngineFieldsAndProperties : ScriptableObject
     {

@@ -1,10 +1,10 @@
 ﻿using Characters;
 using ScriptableObjectArchitecture;
-using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Utils;
 
-namespace BattleSystem.Mechanics
+namespace BattleSystem
 {
     public class OverexertionSystem : MonoBehaviour, IGameEventListener<BattleEvent>,IGameEventListener<UnitBase,CharacterGameEvent>
     {

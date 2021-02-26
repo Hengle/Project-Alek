@@ -1,10 +1,10 @@
 ﻿using Kryz.CharacterStats;
 using ScriptableObjectArchitecture;
-using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Utils;
 
-namespace Characters.StatusEffects
+namespace Characters
 {
     public enum AffectedStat { None, MaxHP, Strength, Magic, Accuracy, Initiative, CriticalChance, Defense, Resistance }
     public enum Multiplier { None, Slight, Moderate, Significant}

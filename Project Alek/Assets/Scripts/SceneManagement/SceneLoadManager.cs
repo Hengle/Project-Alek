@@ -1,8 +1,8 @@
-﻿using UnityEngine.SceneManagement;
+﻿using MEC;
 using UnityEngine;
-using MEC;
+using UnityEngine.SceneManagement;
 
-namespace SingletonScriptableObject
+namespace SceneManagement
 {
     [CreateAssetMenu(fileName = "Scene Load Manager", menuName = "Singleton SO/Scene Load Manager")]
     public class SceneLoadManager : ScriptableObjectSingleton<SceneLoadManager>

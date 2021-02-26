@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using DamagePrefab;
+using BattleSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Characters.StatusEffects
+namespace Characters
 {
     [EnumPaging] public enum EffectType { DamageOverTime, Inhibiting, AI, StatChange, Unique }
     [EnumPaging] public enum Rate { EveryTurn, BeforeEveryAction, AfterEveryAction, AfterAttacked, Once }

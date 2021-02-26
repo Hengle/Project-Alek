@@ -1,8 +1,7 @@
-﻿using Characters.ElementalTypes;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Characters.Animations
+namespace Characters
 {
     public class SpellAnimationEvents : MonoBehaviour
     {

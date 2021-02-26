@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Characters.StatusEffects;
+using Characters.PartyMembers;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Characters.PartyMembers
+namespace Characters
 {
     public class LeandraInfusionSystem : MonoBehaviour
     {

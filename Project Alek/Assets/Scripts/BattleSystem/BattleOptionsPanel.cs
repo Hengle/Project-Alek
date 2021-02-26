@@ -1,8 +1,6 @@
 ﻿using Characters;
-using Characters.Animations;
 using Characters.PartyMembers;
 using MEC;
-using SingletonScriptableObject;
 using UnityEngine;
 
 namespace BattleSystem

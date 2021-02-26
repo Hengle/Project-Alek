@@ -1,4 +1,4 @@
-﻿using SingletonScriptableObject;
+﻿using SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;

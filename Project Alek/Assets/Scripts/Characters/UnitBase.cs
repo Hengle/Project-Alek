@@ -2,19 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using BattleSystem;
-using BattleSystem.Calculators;
-using BattleSystem.Mechanics;
 using UnityEngine;
-using Characters.Abilities;
-using Characters.Animations;
-using Characters.ElementalTypes;
-using Characters.StatusEffects;
-using DamagePrefab;
 using JetBrains.Annotations;
 using Kryz.CharacterStats;
-using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using UnityEngine.UI;
+using Utils;
 
 namespace Characters
 {

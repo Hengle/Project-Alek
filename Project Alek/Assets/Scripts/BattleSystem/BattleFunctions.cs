@@ -4,15 +4,11 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using Characters;
-using Characters.Abilities;
-using Characters.Animations;
-using Characters.CharacterExtensions;
 using Characters.PartyMembers;
-using Characters.StatusEffects;
 using DG.Tweening;
 using MEC;
 using ScriptableObjectArchitecture;
-using SingletonScriptableObject;
+using Utils;
 
 namespace BattleSystem
 {

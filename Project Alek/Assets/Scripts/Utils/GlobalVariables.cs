@@ -1,7 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace SingletonScriptableObject
+namespace Utils
 {
     [CreateAssetMenu(fileName = "Global Variables", menuName = "Singleton SO/Global Variables")]
     public class GlobalVariables : ScriptableObjectSingleton<GlobalVariables>

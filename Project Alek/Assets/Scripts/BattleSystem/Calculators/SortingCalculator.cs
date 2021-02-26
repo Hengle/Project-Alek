@@ -2,10 +2,9 @@
 using System.Linq;
 using Characters;
 using ScriptableObjectArchitecture;
-using SingletonScriptableObject;
 using UnityEngine;
 
-namespace BattleSystem.Calculators
+namespace BattleSystem
 {
     public class SortingCalculator : MonoBehaviour
     {

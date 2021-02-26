@@ -1,8 +1,8 @@
 ﻿using Kryz.CharacterStats;
-using SingletonScriptableObject;
 using UnityEngine;
+using Utils;
 
-namespace Characters.StatusEffects
+namespace Characters
 {
     [CreateAssetMenu(fileName = "Checkmate", menuName = "Status Effect/Checkmate")]
     public class Checkmate : StatChange

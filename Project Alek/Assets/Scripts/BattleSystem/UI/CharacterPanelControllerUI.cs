@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
-using BattleSystem.Mechanics;
 using Characters;
-using Characters.Animations;
 using Characters.PartyMembers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BattleSystem.UI
+namespace BattleSystem
 {
     public class CharacterPanelControllerUI : MonoBehaviour
     {

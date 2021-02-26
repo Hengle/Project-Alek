@@ -1,7 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Characters.Abilities
+namespace Characters
 {
     [CreateAssetMenu(fileName = "Ranged Attack", menuName = "Ability/Ranged Attack")]
     public class RangedAttack : Ability

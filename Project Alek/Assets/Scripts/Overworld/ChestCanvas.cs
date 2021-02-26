@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Characters;
+using Characters.PartyMembers;
 using MoreMountains.InventoryEngine;
-using SingletonScriptableObject;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using TMPro;

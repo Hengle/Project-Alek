@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Characters.Enemies;
 using Overworld;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace SingletonScriptableObject
+namespace Characters
 {
     [CreateAssetMenu(fileName = "Enemy Database", menuName = "Singleton SO/Enemy Database")]
     public class EnemyDatabase : ScriptableObjectSingleton<EnemyDatabase>

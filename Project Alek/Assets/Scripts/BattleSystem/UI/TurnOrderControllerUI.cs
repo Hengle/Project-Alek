@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using SingletonScriptableObject;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BattleSystem.UI
+namespace BattleSystem
 {
     public class TurnOrderControllerUI : MonoBehaviour
     {

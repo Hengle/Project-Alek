@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SingletonScriptableObject
+namespace Utils
 {
     [CreateAssetMenu(fileName = "Logger", menuName = "Singleton SO/Logger")]
     public class Logging : ScriptableObjectSingleton<Logging>

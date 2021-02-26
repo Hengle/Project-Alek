@@ -1,11 +1,9 @@
-﻿using System.Linq;
-using BattleSystem.Mechanics;
+﻿using Random = UnityEngine.Random;
+using System.Linq;
 using Characters;
-using Characters.Abilities;
-using SingletonScriptableObject;
-using Random = UnityEngine.Random;
+using Utils;
 
-namespace BattleSystem.Calculators
+namespace BattleSystem
 {
     public static class Calculator
     {

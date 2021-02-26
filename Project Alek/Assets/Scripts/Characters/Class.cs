@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using BattleSystem;
-using Characters.Abilities;
 using Characters.PartyMembers;
 using JetBrains.Annotations;
 using Kryz.CharacterStats;

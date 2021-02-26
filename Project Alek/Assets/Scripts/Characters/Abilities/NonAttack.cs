@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Characters.Abilities
+namespace Characters
 {
     /*
      * I don't know if I want there to be abilities that purely buff/debuff. It may lead to a reliance on

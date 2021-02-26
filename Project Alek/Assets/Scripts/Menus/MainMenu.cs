@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Audio;
 using MEC;
-using SingletonScriptableObject;
+using SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;

@@ -1,7 +1,6 @@
-﻿using BattleSystem.Engine;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace SingletonScriptableObject
+namespace BattleSystem
 {
     [CreateAssetMenu(fileName = "Battle Engine Controller", menuName = "Singleton SO/Battle Engine Controller")]
     public class Battle : ScriptableObjectSingleton<Battle>

@@ -1,8 +1,5 @@
 ﻿using Characters;
-using Characters.ElementalTypes;
-using Characters.StatusEffects;
 using DG.Tweening;
-using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using TMPro;
@@ -10,8 +7,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Utils;
 
-namespace BattleSystem.UI
+namespace BattleSystem
 {
     public class ProfileBoxManagerUI : MonoBehaviour
     {

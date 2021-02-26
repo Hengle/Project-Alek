@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using Characters.ElementalTypes;
-using Characters.StatusEffects;
 
-namespace Characters.Abilities
+namespace Characters
 {
     public enum AbilityType { CloseRange, Ranged, NonAttack }
     public enum DamageType { Physical, Magic, Special }

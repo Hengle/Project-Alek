@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 
-namespace DamagePrefab
+namespace BattleSystem
 {
     public class DamagePrefabManager : MonoBehaviorSingleton<DamagePrefabManager>
     {

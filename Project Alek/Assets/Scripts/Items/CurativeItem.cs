@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using Audio;
 using BattleSystem;
-using Characters.StatusEffects;
-using SingletonScriptableObject;
+using Characters;
+using Characters.PartyMembers;
 using UnityEngine;
 
 namespace MoreMountains.InventoryEngine

@@ -1,21 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BattleSystem.Mechanics;
-using BattleSystem.UI;
 using Characters;
-using Characters.Enemies;
 using UnityEngine;
 using UnityEngine.UI;
 using Characters.PartyMembers;
-using Characters.StatusEffects;
-using DamagePrefab;
 using MoreMountains.InventoryEngine;
-using SingletonScriptableObject;
 using Sirenix.Utilities;
 using TMPro;
 using Random = UnityEngine.Random;
 
-namespace BattleSystem.Generator
+namespace BattleSystem
 {
     public class BattleGenerator : MonoBehaviour
     {

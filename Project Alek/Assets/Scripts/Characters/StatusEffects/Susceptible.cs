@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Characters.StatusEffects
+namespace Characters
 {
     [CreateAssetMenu(menuName = "Status Effect/Inhibiting Effect/Susceptible")]
     public class Susceptible : StatusEffect

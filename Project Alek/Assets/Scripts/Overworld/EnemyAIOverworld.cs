@@ -1,5 +1,5 @@
 ﻿using System;
-using SingletonScriptableObject;
+using SceneManagement;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;

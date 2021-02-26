@@ -1,7 +1,6 @@
 ﻿using System;
 using Audio;
 using BattleSystem;
-using SingletonScriptableObject;
 using UnityEngine;
 
 namespace MoreMountains.InventoryEngine

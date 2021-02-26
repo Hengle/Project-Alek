@@ -1,6 +1,5 @@
 ﻿using MoreMountains.InventoryEngine;
 using MoreMountains.Tools;
-using SingletonScriptableObject;
 using UnityEngine;
 
 namespace BattleSystem

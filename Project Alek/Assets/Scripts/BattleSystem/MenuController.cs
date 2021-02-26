@@ -4,9 +4,7 @@ using MoreMountains.InventoryEngine;
 using MoreMountains.Tools;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using Characters.Animations;
 using ScriptableObjectArchitecture;
-using SingletonScriptableObject;
 
 namespace BattleSystem
 {

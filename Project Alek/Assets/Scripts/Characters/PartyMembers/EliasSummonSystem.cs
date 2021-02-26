@@ -1,23 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BattleSystem;
-using BattleSystem.Mechanics;
-using BattleSystem.UI;
-using Characters.Abilities;
-using Characters.Animations;
-using Characters.Enemies;
+using Characters.PartyMembers;
 using DG.Tweening;
 using JetBrains.Annotations;
+using MEC;
 using ScriptableObjectArchitecture;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using TMPro;
-using MEC;
-using SingletonScriptableObject;
+using Utils;
 
-namespace Characters.PartyMembers
+namespace Characters
 {
     public enum SummonState { Summon, Command }
     public class EliasSummonSystem : MonoBehaviour, IGameEventListener<GameObject>, IGameEventListener<UnitBase, CharacterGameEvent>

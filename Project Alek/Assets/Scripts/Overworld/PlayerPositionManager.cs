@@ -1,9 +1,8 @@
 ﻿using System.Collections;
-using Overworld;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace SingletonScriptableObject
+namespace Overworld
 {
     [CreateAssetMenu(fileName = "Player Position Manager", menuName = "Singleton SO/Player Position Manager")]
     public class PlayerPositionManager : ScriptableObjectSingleton<PlayerPositionManager>

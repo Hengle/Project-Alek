@@ -1,9 +1,9 @@
 ﻿using Characters;
-using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Utils;
 
-namespace BattleSystem.Mechanics
+namespace BattleSystem
 {
     public enum DamageBoostLvl { Level0 = 0, Level1 = 1, Level2 = 2, Level3 = 3, Level4 = 4, Level5 = 5 }
     public enum DefenseBoostLvl { Level0 = 0, Level1 = 1, Level2 = 2, Level3 = 3, Level4 = 4, Level5 = 5 }

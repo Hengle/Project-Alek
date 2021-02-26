@@ -5,7 +5,7 @@ using ScriptableObjectArchitecture;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace BattleSystem.UI
+namespace BattleSystem
 {
     public class APConversionControllerUI : MonoBehaviour, IGameEventListener<UnitBase,CharacterGameEvent>
     {

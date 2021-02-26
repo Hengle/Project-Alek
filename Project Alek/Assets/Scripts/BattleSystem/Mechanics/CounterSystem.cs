@@ -1,14 +1,10 @@
 ﻿using System.Collections.Generic;
 using Characters;
-using Characters.Animations;
-using Characters.CharacterExtensions;
-using Characters.StatusEffects;
 using MEC;
 using ScriptableObjectArchitecture;
-using SingletonScriptableObject;
 using UnityEngine;
 
-namespace BattleSystem.Mechanics
+namespace BattleSystem
 {
     public class CounterSystem : MonoBehaviour
     {

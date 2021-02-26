@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Characters.Animations;
+using Characters;
 using Characters.PartyMembers;
-using SingletonScriptableObject;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

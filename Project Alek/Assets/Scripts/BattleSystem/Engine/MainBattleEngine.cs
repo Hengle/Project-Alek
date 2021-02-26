@@ -1,25 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Audio;
-using BattleSystem.Calculators;
-using BattleSystem.Generator;
-using BattleSystem.UI;
-using Characters;
-using Characters.Animations;
-using Characters.CharacterExtensions;
-using Characters.Enemies;
-using Characters.PartyMembers;
-using Characters.StatusEffects;
+using UnityEngine;
+using UnityEngine.EventSystems;
 using DG.Tweening;
 using Kryz.CharacterStats;
 using MoreMountains.InventoryEngine;
 using ScriptableObjectArchitecture;
-using SingletonScriptableObject;
-using UnityEngine;
-using UnityEngine.EventSystems;
+using SceneManagement;
+using Characters;
+using Audio;
 using MEC;
 
-namespace BattleSystem.Engine
+namespace BattleSystem
 {
     [CreateAssetMenu(fileName = "Main Battle Engine", menuName = "Battle Engine/Main Battle Engine")]
     public class MainBattleEngine : BattleEngine, IGameEventListener<BattleEvent>, IGameEventListener<UnitBase,CharacterGameEvent>

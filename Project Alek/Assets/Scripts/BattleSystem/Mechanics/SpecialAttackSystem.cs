@@ -4,7 +4,7 @@ using ScriptableObjectArchitecture;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace BattleSystem.Mechanics
+namespace BattleSystem
 {
     public class SpecialAttackSystem : MonoBehaviour, IGameEventListener<BattleEvent>, IGameEventListener<UnitBase,CharacterGameEvent>
     {

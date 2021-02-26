@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Characters.StatusEffects
+namespace Characters
 {
     [CreateAssetMenu(menuName = "Status Effect/Unique/Infusion")]
     public class Infusion : StatusEffect

@@ -1,7 +1,6 @@
 ﻿using System;
-using Characters.Animations;
+using Characters;
 using PixelCrushers;
-using SingletonScriptableObject;
 using UnityEngine;
 
 namespace Overworld

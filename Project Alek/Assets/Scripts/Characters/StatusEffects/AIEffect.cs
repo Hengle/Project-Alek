@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Characters.StatusEffects
+namespace Characters
 {
     [CreateAssetMenu(fileName = "AI Effect", menuName = "Status Effect/AI Effect")]
     public class AIEffect : StatusEffect

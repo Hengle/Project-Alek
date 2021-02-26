@@ -1,9 +1,9 @@
 ﻿using Characters;
-using SingletonScriptableObject;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
-namespace BattleSystem.UI
+namespace BattleSystem
 {
     public class APBarColorControllerUI : MonoBehaviour
     {

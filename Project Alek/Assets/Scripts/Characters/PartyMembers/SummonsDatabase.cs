@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Characters.Enemies;
-using SingletonScriptableObject;
+using Events;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using Events;
 
-namespace Characters.PartyMembers
+namespace Characters
 {
     public enum SummonEvent { EquippedSummon, UneQuippedSummon, RegisteredSummon }
     [CreateAssetMenu(fileName = "Summons Database", menuName = "Summons Database")]

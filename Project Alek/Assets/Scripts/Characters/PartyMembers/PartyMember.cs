@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using BattleSystem;
-using Characters.Abilities;
-using Characters.StatusEffects;
 using MEC;
-using UnityEngine;
 using MoreMountains.InventoryEngine;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
-namespace Characters.PartyMembers
+namespace Characters
 {
     [CreateAssetMenu(fileName = "New Party Member", menuName = "Character/Party Member")]
     public class PartyMember : UnitBase, ICanBeLeveled

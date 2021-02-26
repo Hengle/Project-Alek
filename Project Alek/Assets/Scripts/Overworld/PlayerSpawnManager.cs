@@ -1,7 +1,8 @@
 ﻿using System.Linq;
+using Characters;
+using Characters.PartyMembers;
 using Cinemachine;
 using ScriptableObjectArchitecture;
-using SingletonScriptableObject;
 using UnityEngine;
 
 namespace Overworld

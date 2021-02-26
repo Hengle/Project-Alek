@@ -4,7 +4,7 @@ using Characters.PartyMembers;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace SingletonScriptableObject
+namespace Characters
 {
     [CreateAssetMenu(fileName = "Party Manager", menuName = "Singleton SO/Party Manager")]
     public class PartyManager : ScriptableObjectSingleton<PartyManager>

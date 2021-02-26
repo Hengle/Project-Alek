@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Characters;
-using Characters.Enemies;
 using ScriptableObjectArchitecture;
 using Sirenix.OdinInspector;
 using UnityEngine;

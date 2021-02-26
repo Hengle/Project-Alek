@@ -1,12 +1,9 @@
 ﻿using System.Linq;
 using Characters;
-using Characters.ElementalTypes;
-using Characters.StatusEffects;
 using ScriptableObjectArchitecture;
-using SingletonScriptableObject;
 using UnityEngine;
 
-namespace BattleSystem.Mechanics
+namespace BattleSystem
 {
     public enum UnitStates { Normal, Susceptible, Weakened, Checkmate }
     public class BreakSystem : MonoBehaviour, IGameEventListener<BattleEvent>, IGameEventListener<UnitBase,CharacterGameEvent>

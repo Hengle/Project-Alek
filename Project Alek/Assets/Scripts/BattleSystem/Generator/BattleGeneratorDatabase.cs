@@ -2,7 +2,7 @@
 using MoreMountains.InventoryEngine;
 using UnityEngine;
 
-namespace BattleSystem.Generator
+namespace BattleSystem
 {
     public class BattleGeneratorDatabase : MonoBehaviour
     {

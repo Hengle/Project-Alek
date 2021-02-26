@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace BattleSystem.UI
+namespace BattleSystem
 {
     public class InfoBoxUI : MonoBehaviour, ISelectHandler
     {

@@ -1,11 +1,11 @@
 ﻿using Characters;
 using ScriptableObjectArchitecture;
-using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utils;
 
-namespace BattleSystem.Mechanics
+namespace BattleSystem
 {
     public class APConversionSystem : MonoBehaviour, IGameEventListener<UnitBase,CharacterGameEvent>
     {

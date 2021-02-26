@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Characters.StatusEffects;
 using MEC;
 
-namespace Characters.CharacterExtensions
+namespace Characters
 {
     public static class InflictStatusExtension
     {

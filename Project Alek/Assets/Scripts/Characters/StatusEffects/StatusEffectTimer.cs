@@ -1,8 +1,7 @@
 ﻿using ScriptableObjectArchitecture;
-using SingletonScriptableObject;
 using UnityEngine;
 
-namespace Characters.StatusEffects
+namespace Characters
 {
     // TODO: This could probably inherit from a base Timer script since i will probably need different types of timers
     public class StatusEffectTimer : MonoBehaviour, IGameEventListener<BattleEvent>

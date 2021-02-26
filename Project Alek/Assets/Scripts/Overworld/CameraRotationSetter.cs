@@ -1,5 +1,4 @@
 ﻿using ScriptableObjectArchitecture;
-using SingletonScriptableObject;
 using UnityEngine;
 
 namespace Overworld

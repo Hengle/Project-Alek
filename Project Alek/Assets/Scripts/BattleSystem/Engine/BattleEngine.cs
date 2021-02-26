@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using Characters;
-using Characters.Enemies;
-using Characters.PartyMembers;
 
-namespace BattleSystem.Engine
+namespace BattleSystem
 {
     public abstract class BattleEngine : BattleEngineFieldsAndProperties
     {

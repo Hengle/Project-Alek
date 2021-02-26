@@ -5,17 +5,13 @@ using Audio;
 using JetBrains.Annotations;
 using Random = UnityEngine.Random;
 using BattleSystem;
-using BattleSystem.Calculators;
-using BattleSystem.Mechanics;
-using Characters.Abilities;
-using Characters.ElementalTypes;
 using Characters.PartyMembers;
 using ScriptableObjectArchitecture;
-using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using UnityEngine.InputSystem;
+using Utils;
 
-namespace Characters.Animations
+namespace Characters
 {
     // DO NOT CHANGE THE NAMES OF ANY ANIMATOR FUNCTIONS UNLESS YOU WANT TO MANUALLY UPDATE EVERY ANIMATION EVENT
     public class UnitAnimatorFunctions : MonoBehaviour, IGameEventListener<UnitBase,CharacterGameEvent>

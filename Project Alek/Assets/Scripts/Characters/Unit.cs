@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using BattleSystem;
-using BattleSystem.Mechanics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Characters.Abilities;
-using Characters.Animations;
-using Characters.Enemies;
-using Characters.StatusEffects;
 using ScriptableObjectArchitecture;
-using SingletonScriptableObject;
 using Sirenix.OdinInspector;
+using Utils;
 
 namespace Characters
 {

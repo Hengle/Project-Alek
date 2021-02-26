@@ -1,16 +1,12 @@
 ﻿using Characters;
-using Characters.Abilities;
-using Characters.ElementalTypes;
-using Characters.Enemies;
 using Characters.PartyMembers;
-using Characters.StatusEffects;
 using JetBrains.Annotations;
 using MoreMountains.InventoryEngine;
-using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
 using UnityEditor;
+using Utils;
 
 public class ScriptableObjectEditor : OdinMenuEditorWindow
 {

@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Globalization;
-using Overworld;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace SingletonScriptableObject
+namespace Overworld
 {
     [CreateAssetMenu(fileName = "Scene Rotation Manager", menuName = "Singleton SO/Scene Rotation Manager")]
     public class SceneRotationManager : ScriptableObjectSingleton<SceneRotationManager>

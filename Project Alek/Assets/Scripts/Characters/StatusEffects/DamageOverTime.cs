@@ -1,8 +1,8 @@
-﻿using DamagePrefab;
+﻿using BattleSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Characters.StatusEffects
+namespace Characters
 {
     [CreateAssetMenu(fileName = "DOT Effect", menuName = "Status Effect/Damage Over Time Effect")]
     public class DamageOverTime : StatusEffect

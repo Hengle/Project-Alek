@@ -1,12 +1,10 @@
 ﻿using System.Linq;
-using BattleSystem.Generator;
 using Characters;
 using Characters.PartyMembers;
-using SingletonScriptableObject;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace BattleSystem.UI
+namespace BattleSystem
 {
     public class WeaknessIndicatorUI : MonoBehaviour, ISelectHandler, IDeselectHandler
     {
