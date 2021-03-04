@@ -7,8 +7,8 @@ namespace Overworld
 {
     public class PlayerMovement : MonoBehaviour
     {
+        public static Controls _controls;
         private Animator anim;
-        private Controls controls;
         private Rigidbody rb;
 
         private Vector2 currentMovement;
@@ -17,21 +17,21 @@ namespace Overworld
         [SerializeField] private int walkSpeed = 5;
         [SerializeField] private int runSpeed = 10;
 
-        protected static bool _isRegistered = false;
-        private bool didIRegister = false;
+        private static bool isRegistered;
+        private bool didIRegister;
         private bool movementPressed;
         private bool runPressed;
 
         private void Awake()
         {
-            controls = new Controls();
-            controls.Overworld.Move.performed += ctx =>
+            _controls = new Controls();
+            _controls.Overworld.Move.performed += ctx =>
             {
                 currentMovement = ctx.ReadValue<Vector2>();
                 movementPressed = Math.Abs(currentMovement.x) > 0.01f ||
                                   Math.Abs(currentMovement.y) > 0.01f;
             };
-            controls.Overworld.Run.performed += ctx =>
+            _controls.Overworld.Run.performed += ctx =>
                 runPressed = ctx.ReadValueAsButton();
         }
 
@@ -67,13 +67,13 @@ namespace Overworld
 
         private void OnEnable()
         {
-            if (!_isRegistered)
+            if (!isRegistered)
             {
-                _isRegistered = true;
+                isRegistered = true;
                 didIRegister = true;
-                controls.Enable();
-                InputDeviceManager.RegisterInputAction("Confirm", controls.UI.Submit);
-                InputDeviceManager.RegisterInputAction("Back", controls.UI.Cancel);
+                _controls.Enable();
+                InputDeviceManager.RegisterInputAction("Confirm", _controls.UI.Submit);
+                InputDeviceManager.RegisterInputAction("Back", _controls.UI.Cancel);
             }
         }
 
@@ -82,9 +82,9 @@ namespace Overworld
             PlayerPositionManager.Position = transform.position;
             if (didIRegister)
             {
-                _isRegistered = false;
+                isRegistered = false;
                 didIRegister = false;
-                controls.Disable();
+                _controls.Disable();
                 InputDeviceManager.UnregisterInputAction("Confirm");
                 InputDeviceManager.UnregisterInputAction("Back");
             }
