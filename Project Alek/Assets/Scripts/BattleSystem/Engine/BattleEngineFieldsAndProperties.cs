@@ -49,9 +49,9 @@ namespace BattleSystem
         protected bool AllMembersDead => membersForThisBattle.Count == 0;
         protected bool AllEnemiesDead => enemiesForThisBattle.Count == 0;
         protected bool PartyOrEnemyTeamIsDead => AllMembersDead || AllEnemiesDead;
-
-        protected bool NewRoundCondition => membersAndEnemiesThisTurn.Count == 0 || membersAndEnemiesThisTurn.
-            TrueForAll(u => u.IsDead);
+        protected bool NextUnitInTurnIsDead => membersAndEnemiesThisTurn.Count > 0 && membersAndEnemiesThisTurn[0].IsDead;
+        protected bool NewRoundCondition => membersAndEnemiesThisTurn.Count == 0 ||
+                                            membersAndEnemiesThisTurn.TrueForAll(u => u.IsDead);
 
         protected void ResetFields()
         {

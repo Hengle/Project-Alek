@@ -3,7 +3,6 @@ using System.Linq;
 using Characters;
 using UnityEngine;
 using UnityEngine.UI;
-using Characters.PartyMembers;
 using MoreMountains.InventoryEngine;
 using Sirenix.Utilities;
 using TMPro;
@@ -155,7 +154,7 @@ namespace BattleSystem
                             ChooseTarget._isMultiTarget = true;
                         });
                 }
-                else BattleEvents.Instance.overrideButtonEvent.Raise(optionButton);
+                else BattleEvents.OverrideButtonEvent.Raise(optionButton);
 
                 optionButton.GetComponent<InfoBoxUI>().information =
                     $"{character.abilities[abilityListIndex].description}\n" +

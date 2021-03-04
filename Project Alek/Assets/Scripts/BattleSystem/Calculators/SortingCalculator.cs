@@ -22,8 +22,8 @@ namespace BattleSystem
                 GetNewListNextTurn();
             }
             
-            BattleEvents.Instance.thisTurnListCreatedEvent.Raise();
-            BattleEvents.Instance.nextTurnListCreatedEvent.Raise();
+            BattleEvents.ThisTurnListCreatedEvent.Raise();
+            BattleEvents.NextTurnListCreatedEvent.Raise();
 
             return true;
         }
@@ -82,7 +82,7 @@ namespace BattleSystem
             Battle.Engine.membersAndEnemiesThisTurn.Remove(Battle.Engine.activeUnit);
             Battle.Engine.membersAndEnemiesThisTurn.Insert(0, Battle.Engine.activeUnit);
             
-            BattleEvents.Instance.thisTurnListCreatedEvent.Raise();
+            BattleEvents.ThisTurnListCreatedEvent.Raise();
         }
 
         public void ResortNextTurnOrder()
@@ -93,7 +93,7 @@ namespace BattleSystem
             Battle.Engine.membersAndEnemiesNextTurn = Battle.Engine.membersAndEnemiesNextTurn.OrderByDescending
                 (e => e.Unit.finalInitVal).ToList();
             
-            BattleEvents.Instance.nextTurnListCreatedEvent.Raise();
+            BattleEvents.NextTurnListCreatedEvent.Raise();
         }
     }
 }

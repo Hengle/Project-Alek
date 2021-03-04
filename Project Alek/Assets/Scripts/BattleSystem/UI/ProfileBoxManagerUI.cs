@@ -181,7 +181,7 @@ namespace BattleSystem
             isOpen = true;
 
             stats.text =
-                $"Name: {unitBase.characterName}\n" +
+                $"{unitBase.characterName}\n" + "\n" +
                 $"Level: {unitBase.level}\n" +
                 $"STR: {unitBase.strength.Value} {StrDiff}\n" +
                 $"MAG: {unitBase.magic.Value} {MagDiff}\n" +

@@ -26,9 +26,9 @@ namespace BattleSystem
             generator = FindObjectOfType<BattleGenerator>();
             _sortingCalculator = FindObjectOfType<SortingCalculator>();
             
-            BattleEvents.Instance.battleEvent.AddListener(this);
-            BattleEvents.Instance.endOfTurnEvent.AddListener(this);
-            BattleEvents.Instance.skipTurnEvent.AddListener(this);
+            BattleEvents.NormalEvent.AddListener(this);
+            BattleEvents.EndOfTurnEvent.AddListener(this);
+            BattleEvents.SkipTurnEvent.AddListener(this);
 
             canGiveCommand = true;
             roundCount = 0;
@@ -45,9 +45,9 @@ namespace BattleSystem
             
             PartyManager.Members.ForEach(m => m.onRevival -= AddToBattle);
 
-            BattleEvents.Instance.battleEvent.RemoveListener(this);
-            BattleEvents.Instance.endOfTurnEvent.RemoveListener(this);
-            BattleEvents.Instance.skipTurnEvent.RemoveListener(this);
+            BattleEvents.NormalEvent.RemoveListener(this);
+            BattleEvents.EndOfTurnEvent.RemoveListener(this);
+            BattleEvents.SkipTurnEvent.RemoveListener(this);
             
             ResetFields();
         }
@@ -65,7 +65,7 @@ namespace BattleSystem
             membersForThisBattle.ForEach(m => { m.onDeath += RemoveFromBattle; m.onRevival += AddToBattle; });
             enemiesForThisBattle.ForEach(e => e.onDeath += RemoveFromBattle);
 
-            BattleEvents.Instance.setupCompleteEvent.Raise();
+            BattleEvents.SetupCompleteEvent.Raise();
             membersForThisBattle.ForEach(m => m.LevelUpEvent += 
                 battleResults.GetComponent<BattleResultsUI>().Enqueue);
             
@@ -79,21 +79,17 @@ namespace BattleSystem
 
             yield return Timing.WaitForSeconds(0.25f);
             
-            if (NewRoundCondition) { BattleEvents.Instance.battleEvent.Raise(BattleEvent.NewRound);
+            if (NewRoundCondition) { BattleEvents.NormalEvent.Raise(BattleEvent.NewRound);
                 yield return Timing.WaitUntilTrue(SortingCalculator.SortByInitiative); }
 
-            while (membersAndEnemiesThisTurn.Count > 0 && membersAndEnemiesThisTurn[0].IsDead)
-            {
-                membersAndEnemiesThisTurn.Remove(membersAndEnemiesThisTurn[0]);
-            }
-            
+            while (NextUnitInTurnIsDead) membersAndEnemiesThisTurn.Remove(membersAndEnemiesThisTurn[0]);
+
             var character = membersAndEnemiesThisTurn[0];
             
-            yield return Timing.WaitUntilDone(character.InflictStatus
-                (Rate.EveryTurn, 1, true));
+            yield return Timing.WaitUntilDone(character.InflictStatus(Rate.EveryTurn, 1, true));
                 
             if (PartyOrEnemyTeamIsDead) EndOfBattle();
-            else if (!character.GetStatus()) BattleEvents.Instance.skipTurnEvent.Raise(character, BattleEvents.Instance.skipTurnEvent);
+            else if (!character.GetStatus()) BattleEvents.SkipTurnEvent.Raise(character, BattleEvents.SkipTurnEvent);
             else Timing.RunCoroutine((CharacterType)character.id == CharacterType.PartyMember
                 ? ThisPlayerTurn((PartyMember) character)
                 : ThisEnemyTurn((Enemy) character));
@@ -109,13 +105,19 @@ namespace BattleSystem
             
             character.ReplenishAP();
             var battlePanel = (BattleOptionsPanel) character.battleOptionsPanel;
+
+            #region Main Menu
             
             main_menu:
             EventSystem.current.sendNavigationEvents = true;
-            BattleEvents.Instance.characterTurnEvent.Raise(character, BattleEvents.Instance.characterTurnEvent);
+            BattleEvents.CharacterTurnEvent.Raise(character, BattleEvents.CharacterTurnEvent);
             BattleInput._canPressBack = false;
             usingItem = false;
             battlePanel.ShowBattlePanel();
+            
+            #endregion
+
+            #region Choosing Option
 
             yield return Timing.WaitUntilFalse(() => choosingOption);
             
@@ -143,12 +145,16 @@ namespace BattleSystem
                 }
                 yield return Timing.WaitForOneFrame;
             }
+            
+            #endregion
 
             if (endThisMembersTurn) goto end_of_turn;
+
+            #region Choosing Target
             
             yield return Timing.WaitForOneFrame;
             if (skipChooseTarget) skipChooseTarget = false;
-            else BattleEvents.Instance.chooseTargetEvent.Raise(character, BattleEvents.Instance.chooseTargetEvent);
+            else BattleEvents.ChooseTargetEvent.Raise(character, BattleEvents.ChooseTargetEvent);
 
             while (choosingTarget)
             {
@@ -159,7 +165,11 @@ namespace BattleSystem
             
             abilityMenuLast = false;
             spellMenuLast = false;
-     
+            
+            #endregion
+
+            #region Performing Action
+
             if (usingItem)
             {
                 character.CurrentAP -= 2;
@@ -181,8 +191,8 @@ namespace BattleSystem
             else
             {
                 var attacker = character.Unit.hasSummon ? (UnitBase) character.Unit.currentSummon : character;
-                BattleEvents.Instance.characterAttackEvent.Raise(attacker, BattleEvents.Instance.characterAttackEvent);
-                BattleEvents.Instance.commandEvent.Raise(attacker, BattleEvents.Instance.commandEvent); 
+                BattleEvents.CharacterAttackEvent.Raise(attacker, BattleEvents.CharacterAttackEvent);
+                BattleEvents.CommandEvent.Raise(attacker, BattleEvents.CommandEvent);
             }
 
             yield return Timing.WaitUntilFalse(() => performingAction);
@@ -190,6 +200,8 @@ namespace BattleSystem
             if (endTurnAfterCommand) goto end_of_turn;
             yield return Timing.WaitUntilDone(character.InflictStatus
                 (Rate.AfterEveryAction, 0.5f, true));
+            
+            #endregion
 
             skip_command_execution:
             if (PartyOrEnemyTeamIsDead) goto end_of_turn;
@@ -198,15 +210,15 @@ namespace BattleSystem
             end_of_turn:
             endThisMembersTurn = false;
             endTurnAfterCommand = false;
-            BattleEvents.Instance.endOfTurnEvent.Raise(character, BattleEvents.Instance.endOfTurnEvent);
-            character.inventoryDisplay.SetActive(false); // TODO: Make this a part of the EndOfTurn event
+            BattleEvents.EndOfTurnEvent.Raise(character, BattleEvents.EndOfTurnEvent);
+            character.inventoryDisplay.SetActive(false);
         }
 
         protected override IEnumerator<float> ThisEnemyTurn(Enemy enemy)
         {
             activeUnit = enemy;
 
-            BattleEvents.Instance.enemyTurnEvent.Raise(enemy, BattleEvents.Instance.enemyTurnEvent);
+            BattleEvents.EnemyTurnEvent.Raise(enemy, BattleEvents.EnemyTurnEvent);
             enemy.ReplenishAP();
 
             while (enemy.GetStatus() && enemy.CurrentAP > 0)
@@ -220,8 +232,8 @@ namespace BattleSystem
                     (Rate.BeforeEveryAction, 0.5f, true));
 
                 if (!canGiveCommand) canGiveCommand = true;
-                else { BattleEvents.Instance.characterAttackEvent.Raise(enemy, BattleEvents.Instance.characterAttackEvent);
-                    BattleEvents.Instance.commandEvent.Raise(enemy, BattleEvents.Instance.commandEvent); }
+                else { BattleEvents.CharacterAttackEvent.Raise(enemy, BattleEvents.CharacterAttackEvent);
+                    BattleEvents.CommandEvent.Raise(enemy, BattleEvents.CommandEvent); }
 
                 yield return Timing.WaitUntilFalse(() => performingAction);
 
@@ -235,7 +247,7 @@ namespace BattleSystem
             }
 
             endThisMembersTurn = false;
-            BattleEvents.Instance.endOfTurnEvent.Raise(enemy, BattleEvents.Instance.endOfTurnEvent);
+            BattleEvents.EndOfTurnEvent.Raise(enemy, BattleEvents.EndOfTurnEvent);
         }
 
         protected override IEnumerator<float> WonBattleSequence()
@@ -297,7 +309,7 @@ namespace BattleSystem
         public override IEnumerator<float> FleeBattleSequence()
         {
             //StopAllCoroutines();
-            BattleEvents.Instance.fleeBattleEvent.Raise();
+            BattleEvents.FleeBattleEvent.Raise();
 
             yield return Timing.WaitForSeconds(0.5f);
             
@@ -321,8 +333,8 @@ namespace BattleSystem
 
         protected override void EndOfBattle()
         {
-            if (AllEnemiesDead) BattleEvents.Instance.battleEvent.Raise(BattleEvent.WonBattle);
-            else if (AllMembersDead) BattleEvents.Instance.battleEvent.Raise(BattleEvent.LostBattle);
+            if (AllEnemiesDead) BattleEvents.NormalEvent.Raise(BattleEvent.WonBattle);
+            else if (AllMembersDead) BattleEvents.NormalEvent.Raise(BattleEvent.LostBattle);
         }
 
         protected override void RemoveFromTurn(UnitBase unit) => membersAndEnemiesThisTurn.Remove(unit);
@@ -335,7 +347,7 @@ namespace BattleSystem
             membersAndEnemiesThisTurn.Remove(unit);
             membersAndEnemiesNextTurn.Remove(unit);
      
-            BattleEvents.Instance.deathEvent.Raise(unit, BattleEvents.Instance.deathEvent);
+            BattleEvents.DeathEvent.Raise(unit, BattleEvents.DeathEvent);
             
             _sortingCalculator.ResortThisTurnOrder();
             _sortingCalculator.ResortNextTurnOrder();
@@ -370,7 +382,7 @@ namespace BattleSystem
 
         public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
         {
-            if (value2 != BattleEvents.Instance.endOfTurnEvent && value2 != BattleEvents.Instance.skipTurnEvent) return;
+            if (value2 != BattleEvents.EndOfTurnEvent && value2 != BattleEvents.SkipTurnEvent) return;
             RemoveFromTurn(value1);
             Timing.RunCoroutine(GetNextTurn());
         }

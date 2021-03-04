@@ -65,19 +65,20 @@ namespace Characters
             
             InstantiateRuntimeSpawnPoint();
             
-            BattleEvents.Instance.overrideButtonEvent.AddListener(this);
-            BattleEvents.Instance.characterAttackEvent.AddListener(this);
-            BattleEvents.Instance.endOfTurnEvent.AddListener(this);
-            BattleEvents.Instance.characterTurnEvent.AddListener(this);
+            BattleEvents.OverrideButtonEvent.AddListener(this);
+            BattleEvents.CharacterAttackEvent.AddListener(this);
+            BattleEvents.EndOfTurnEvent.AddListener(this);
+            BattleEvents.CharacterTurnEvent.AddListener(this);
         }
 
         private void OnDisable()
         {
             if (!elias.abilities.Contains(summonAbility)) return;
-            BattleEvents.Instance.overrideButtonEvent.RemoveListener(this);
-            BattleEvents.Instance.characterAttackEvent.RemoveListener(this);
-            BattleEvents.Instance.endOfTurnEvent.RemoveListener(this);
-            BattleEvents.Instance.characterTurnEvent.RemoveListener(this);
+            
+            BattleEvents.OverrideButtonEvent.RemoveListener(this);
+            BattleEvents.CharacterAttackEvent.RemoveListener(this);
+            BattleEvents.EndOfTurnEvent.RemoveListener(this);
+            BattleEvents.CharacterTurnEvent.RemoveListener(this);
             
             if (isAnalyzing) elias.onHpValueChanged -= StopAnalyzeIfDamaged;
         }
@@ -397,22 +398,16 @@ namespace Characters
                 elias.Unit.anim.Play($"Ability {summonAbility.attackState}", 0);
             }
 
-            if (value1 == elias && value2 == BattleEvents.Instance.characterAttackEvent &&
+            if (value1 == elias && value2 == BattleEvents.CharacterAttackEvent &&
                 elias.CurrentAbility == analyzeAbility && !elias.CurrentTarget.Unit.isCountered)
             {
                 notificationHandler.ShowNotification($"Beginning analysis of {value1.characterName}");
                 BeginAnalyze((Enemy)elias.CurrentTarget);
             }
 
-            if (value1 == elias && value2 == BattleEvents.Instance.endOfTurnEvent && isAnalyzing)
-            {
-                SetListenerForHpLowered();
-            }
-
-            if (value1 == elias && value2 == BattleEvents.Instance.characterTurnEvent && isAnalyzing)
-            {
-                EndAnalyze();
-            }
+            if (value1 == elias && value2 == BattleEvents.EndOfTurnEvent && isAnalyzing) SetListenerForHpLowered();
+            
+            if (value1 == elias && value2 == BattleEvents.CharacterTurnEvent && isAnalyzing) EndAnalyze();
         }
     }
 }

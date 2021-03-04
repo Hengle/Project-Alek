@@ -7,36 +7,67 @@ namespace BattleSystem
     public class BattleEvents : MonoBehaviorSingleton<BattleEvents>
     {
         [FoldoutGroup("Events")] [SerializeField] 
-        public GameEvent setupCompleteEvent;
+        private GameEvent setupCompleteEvent;
+        public static GameEvent SetupCompleteEvent => Instance.setupCompleteEvent;
+        
         [FoldoutGroup("Events")] [SerializeField]
-        public BattleGameEvent battleEvent;
+        private BattleGameEvent battleEvent;
+        public static BattleGameEvent NormalEvent => Instance.battleEvent;
+        
         [FoldoutGroup("Events")] [SerializeField]
-        public CharacterGameEvent characterTurnEvent;
+        private CharacterGameEvent characterTurnEvent;
+        public static CharacterGameEvent CharacterTurnEvent => Instance.characterTurnEvent;
+        
         [FoldoutGroup("Events")] [SerializeField]
-        public CharacterGameEvent enemyTurnEvent;
+        private CharacterGameEvent enemyTurnEvent;
+        public static CharacterGameEvent EnemyTurnEvent => Instance.enemyTurnEvent;
+        
         [FoldoutGroup("Events")] [SerializeField]
-        public CharacterGameEvent chooseTargetEvent;
+        private CharacterGameEvent chooseTargetEvent;
+        public static CharacterGameEvent ChooseTargetEvent => Instance.chooseTargetEvent;
+        
         [FoldoutGroup("Events")] [SerializeField]
-        public CharacterGameEvent endOfTurnEvent;
+        private CharacterGameEvent endOfTurnEvent;
+        public static CharacterGameEvent EndOfTurnEvent => Instance.endOfTurnEvent;
+        
         [FoldoutGroup("Events")] [SerializeField]
-        public CharacterGameEvent skipTurnEvent;
+        private CharacterGameEvent skipTurnEvent;
+        public static CharacterGameEvent SkipTurnEvent => Instance.skipTurnEvent;
+        
         [FoldoutGroup("Events")] [SerializeField]
-        public CharacterGameEvent characterAttackEvent;
+        private CharacterGameEvent characterAttackEvent;
+        public static CharacterGameEvent CharacterAttackEvent => Instance.characterAttackEvent;
+        
         [FoldoutGroup("Events")] [SerializeField]
-        public CharacterGameEvent commandEvent;
+        private CharacterGameEvent commandEvent;
+        public static CharacterGameEvent CommandEvent => Instance.commandEvent;
+        
         [FoldoutGroup("Events")] [SerializeField]
-        public CharacterGameEvent deathEvent;
+        private CharacterGameEvent deathEvent;
+        public static CharacterGameEvent DeathEvent => Instance.deathEvent;
+        
         [FoldoutGroup("Events")] [SerializeField]
-        public GameEvent thisTurnListCreatedEvent;
+        private GameEvent thisTurnListCreatedEvent;
+        public static GameEvent ThisTurnListCreatedEvent => Instance.thisTurnListCreatedEvent;
+        
         [FoldoutGroup("Events")] [SerializeField]
-        public GameEvent nextTurnListCreatedEvent;
+        private GameEvent nextTurnListCreatedEvent;
+        public static GameEvent NextTurnListCreatedEvent => Instance.nextTurnListCreatedEvent;
+        
         [FoldoutGroup("Events")] [SerializeField]
-        public GameEvent retryBattleEvent;
+        private GameEvent retryBattleEvent;
+        public static GameEvent RetryBattleEvent => Instance.retryBattleEvent;
+        
         [FoldoutGroup("Events")] [SerializeField]
-        public GameEvent resortNextTurnEvent;
+        private GameEvent resortNextTurnEvent;
+        public static GameEvent ResortNextTurnEvent => Instance.resortNextTurnEvent;
+        
         [FoldoutGroup("Events")] [SerializeField]
-        public GameObjectGameEvent overrideButtonEvent;
+        private GameObjectGameEvent overrideButtonEvent;
+        public static GameObjectGameEvent OverrideButtonEvent => Instance.overrideButtonEvent;
+        
         [FoldoutGroup("Events")] [SerializeField]
-        public GameEvent fleeBattleEvent;
+        private GameEvent fleeBattleEvent;
+        public static GameEvent FleeBattleEvent => Instance.fleeBattleEvent;
     }
 }

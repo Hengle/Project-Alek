@@ -112,22 +112,22 @@ namespace Characters
             outline.enabled = false;
             status = Status.Normal;
             
-            BattleEvents.Instance.characterTurnEvent.AddListener(this);
-            BattleEvents.Instance.characterAttackEvent.AddListener(this);
-            BattleEvents.Instance.chooseTargetEvent.AddListener(this);
-            BattleEvents.Instance.battleEvent.AddListener(this);
-            BattleEvents.Instance.endOfTurnEvent.AddListener(this);
-            BattleEvents.Instance.skipTurnEvent.AddListener(this);
+            BattleEvents.CharacterTurnEvent.AddListener(this);
+            BattleEvents.CharacterAttackEvent.AddListener(this);
+            BattleEvents.ChooseTargetEvent.AddListener(this);
+            BattleEvents.NormalEvent.AddListener(this);
+            BattleEvents.EndOfTurnEvent.AddListener(this);
+            BattleEvents.SkipTurnEvent.AddListener(this);
         }
 
         private void OnDisable()
         {
-            BattleEvents.Instance.characterTurnEvent.RemoveListener(this);
-            BattleEvents.Instance.characterAttackEvent.RemoveListener(this);
-            BattleEvents.Instance.chooseTargetEvent.RemoveListener(this);
-            BattleEvents.Instance.battleEvent.RemoveListener(this);
-            BattleEvents.Instance.endOfTurnEvent.RemoveListener(this);
-            BattleEvents.Instance.skipTurnEvent.RemoveListener(this);
+            BattleEvents.CharacterTurnEvent.RemoveListener(this);
+            BattleEvents.CharacterAttackEvent.RemoveListener(this);
+            BattleEvents.ChooseTargetEvent.RemoveListener(this);
+            BattleEvents.NormalEvent.RemoveListener(this);
+            BattleEvents.EndOfTurnEvent.RemoveListener(this);
+            BattleEvents.SkipTurnEvent.RemoveListener(this);
         }
 
         private void OnDestroy()
@@ -181,7 +181,7 @@ namespace Characters
         
         public void OnEventRaised(UnitBase value1, CharacterGameEvent value2)
         {
-            if (value2 == BattleEvents.Instance.characterTurnEvent)
+            if (value2 == BattleEvents.CharacterTurnEvent)
             {
                 outline.enabled = false;
                 turnOrderIcon.color = Color.white;
@@ -190,21 +190,15 @@ namespace Characters
                 currentAbility = null;
                 if (value1 == parent) ResetTargets();
             }
-            else if (value2 == BattleEvents.Instance.chooseTargetEvent) button.enabled = true;
-            else if (value2 == BattleEvents.Instance.characterAttackEvent) outline.enabled = false;
-            else if (value1 == parent && value2 == BattleEvents.Instance.endOfTurnEvent ||
-                     value2 == BattleEvents.Instance.skipTurnEvent)
-            {
-                hasPerformedTurn = true;
-            }
+            else if (value2 == BattleEvents.ChooseTargetEvent) button.enabled = true;
+            else if (value2 == BattleEvents.CharacterAttackEvent) outline.enabled = false;
+            else if (value1 == parent && value2 == BattleEvents.EndOfTurnEvent ||
+                     value2 == BattleEvents.SkipTurnEvent) hasPerformedTurn = true;
         }
         
         public void OnEventRaised(BattleEvent value)
         {
-            if (value == BattleEvent.NewRound)
-            {
-                hasPerformedTurn = false;
-            }
+            if (value == BattleEvent.NewRound) hasPerformedTurn = false;
         }
     }
 }
